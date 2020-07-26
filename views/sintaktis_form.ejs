@@ -416,7 +416,7 @@ $("form").on("submit",function(ev){
             console.log(error)
         },
         success: function(data) {
-            console.log(data)
+            window.location.href="/dashboard"
         },
         type: 'POST'
     });
