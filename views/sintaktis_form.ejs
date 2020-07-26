@@ -1,0 +1,483 @@
+<div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-8">        
+    <br>
+    <div>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <form>
+            <h1>Αιτιολογική έκθεση</h1>
+            <hr>
+            <br><br>
+
+            <fieldset>
+                <br>
+                <div class="form-group row">
+                    <label for="title" class="col-sm-6 col-form-label">Τίτλος αξιολογούμενης ρύθμισης</label>
+                    <div class="col-sm-4">
+                    <input type="text" class="form-control" id="title" required>
+                    </div>
+                </div>
+
+                <br>
+                
+                <p>Επιλέξατε από τον παρακάτω κατάλογο τον τομέα ή τους τομείς νομοθέτησης στους οποίους αφορούν οι βασικές διατάξεις της αξιολογούμενης ρύθμισης:</p>
+                <div class="checkbox-group form-group row">
+                    <label for="ekpedeusi_politismos" class="col-sm-8 col-form-label">ΕΚΠΑΙΣΕΥΣΗ - ΠΟΛΙΤΙΣΜΟΣ<sup>16</sup></label>
+                    <input class="col-sm-2 form-check-input position-static" type="checkbox" id="ekpedeusi_politismos" value="ekpedeusi_politismos">
+                </div>
+                <div class="checkbox-group form-group row">
+                    <label for="eksoteriki_politiki" class="col-sm-8 col-form-label">ΕΘΝΙΚΗ ΑΜΥΝΑ - ΕΞΩΤΕΡΙΚΗ ΠΟΛΙΤΙΚΗ<sup>17</sup></label>
+                    <input class="col-sm-2 form-check-input position-static" type="checkbox" id="eksoteriki_politiki" value="eksoteriki_politiki">
+                </div>
+                <div class="checkbox-group form-group row">
+                    <label for="forologiki_politiki" class="col-sm-8 col-form-label">ΟΙΚΟΝΟΜΙΚΗ / ΔΗΜΟΣΙΟΝΟΜΙΚΗ / ΦΟΡΟΛΟΓΙΚΗ ΠΟΛΙΤΙΚΗ<sup>18</sup></label>
+                    <input class="col-sm-2 form-check-input position-static" type="checkbox" id="forologiki_politiki" value="forologiki_politiki">
+                </div>
+                <div class="checkbox-group form-group row">
+                    <label for="koinoniki_politiki" class="col-sm-8 col-form-label">ΚΟΙΝΩΝΙΚΗ ΠΟΛΙΤΙΚΗ<sup>19</sup></label>
+                    <input class="col-sm-2 form-check-input position-static" type="checkbox" id="koinoniki_politiki" value="koinoniki_politiki">
+                </div>
+                <div class="checkbox-group form-group row">
+                    <label for="dimosia_dioikisi" class="col-sm-8 col-form-label">ΔΗΜΟΣΙΑ ΔΙΟΙΚΗΣΗ - ΔΗΜΟΣΙΑ ΤΑΞΗ - ΔΙΚΑΙΟΣΥΝΗ<sup>20</sup></label>
+                    <input class="col-sm-2 form-check-input position-static" type="checkbox" id="dimosia_dioikisi" value="dimosia_dioikisi">
+                </div>
+                <div class="checkbox-group form-group row">
+                    <label for="anaptiksi" class="col-sm-8 col-form-label">ΑΝΑΠΤΥΞΗ - ΕΠΕΝΔΥΤΙΚΗ ΔΡΑΣΤΗΡΙΟΤΗΤΑ<sup>21</sup></label>
+                    <input class="col-sm-2 form-check-input position-static" type="checkbox" id="anaptiksi" value="anaptiksi">
+                </div>
+                <input type="button" name="next" class="next action-button" value="Next"/>
+
+                <hr>
+                <br>
+                <p class="explain_text"><sup>16</sup> Τομέας νομοθέτησης επί θεμάτων Υπουργείου Παιδείας & Θρησκευμάτων και Υπουργείου  Πολιτισμού & Αθλητισμού.</p>
+                <p class="explain_text"><sup>17</sup> Τομέας νομοθέτησης επί θεμάτων Υπουργείου Εθνικής Άμυνας και Υπουργείου Εξωτερικών.</p>
+                <p class="explain_text"><sup>18</sup> Τομέας νομοθέτησης επί θεμάτων Υπουργείου Οικονομικών.</p>
+                <p class="explain_text"><sup>19</sup> Τομέας νομοθέτησης επί θεμάτων Υπουργείου Εργασίας και Κοινωνικών Υποθέσεων και Υπουργείου Υγείας.</p>
+                <p class="explain_text"><sup>20</sup> Τομέας νομοθέτησης επί θεμάτων Υπουργείου Εσωτερικών, Υπουργείου Ψηφιακής Διακυβέρνησης, Υπουργείου Προστασίας του Πολίτη και Υπουργείου Δικαιοσύνης</p>
+                <p class="explain_text"><sup>21</sup> Τομέας νομοθέτησης επί θεμάτων Υπουργείου Ανάπτυξης & Επενδύσεων, Υπουργείου Περιβάλλοντος & Ενέργειας, Υπουργείου Υποδομών & Μεταφορών, Υπουργείου Ναυτιλίας & Νησιωτικής Πολιτικής, Υπουργείου Αγροτικής Ανάπτυξης & Τροφίμων και Υπουργείου Τουρισμού.</p>
+            </fieldset>
+        
+            <fieldset>
+                <h2>Η «ταυτότητα» της αξιολογούμενης ρύθμισης</h2>
+                <br>
+
+                <div class="form-group">
+                    <label for="field_1">1. Ποιο ζήτημα αντιμετωπίζει η αξιολογούμενη ρύθμιση;</label>
+                    <textarea class="form-control" id="field_1" rows="3"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="field_2">2. Γιατί αποτελεί πρόβλημα;</label>
+                    <textarea class="form-control" id="field_2" rows="3"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="field_3">3. Ποιους φορείς ή πληθυσμιακές ομάδες αφορά;</label>
+                    <textarea class="form-control" id="field_3" rows="3"></textarea>
+                </div>
+
+                <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                <input type="button" name="next" class="next action-button" value="Next"/>
+            </fieldset>
+
+            <fieldset>
+                <h2>Η αναγκαιότητα της αξιολογούμενης ρύθμισης</h2>
+                <br>
+                <div class="checkbox-group form-group row">
+                    <label for="field_4" class="col-sm-8 col-form-label">4. Το εν λόγω ζήτημα έχει αντιμετωπιστεί με νομοθετική ρύθμιση στο παρελθόν;</label>
+                    <select id="field_4" class="col-sm-2 form-control">
+                        <option selected disabled>Eπιλογή</option>
+                        <option value="yes">Ναι</option>
+                        <option value="no" >Όχι</option>
+                    </select>
+                </div>
+
+                <div id="field_4_wrap" class="form-group" style="display:none;">
+                    <label for="field_4_1">4.1 Ποιο είναι το ισχύον νομικό πλαίσιο που ρυθμίζει το ζήτημα;</label>
+                    <textarea class="form-control" id="field_4_1" rows="3"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="field_5_1">5.1 Γιατί δεν είναι δυνατό να αντιμετωπιστεί στο πλαίσιο της υφιστάμενης νομοθεσίας με αλλαγή προεδρικού διατάγματος, υπουργικής απόφασης ή άλλης κανονιστικής πράξης;</label>
+                    <textarea class="form-control" id="field_5_1" name="field_5_1" rows="3"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="field_5_2">5.2 Γιατί δεν είναι δυνατό να αντιμετωπιστεί στο πλαίσιο της υφιστάμενης νομοθεσίας με αλλαγή διοικητικής πρακτικής συμπεριλαμβανομένης της δυνατότητας νέας ερμηνευτικής προσέγγισης της υφιστάμενης νομοθεσίας;</label>
+                    <textarea class="form-control" id="field_5_2" name="field_5_2" rows="3"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="field_5_3">5.3 Γιατί δεν είναι δυνατό να αντιμετωπιστεί στο πλαίσιο της υφιστάμενης νομοθεσίας με διάθεση περισσότερων ανθρώπινων και υλικών πόρων;</label>
+                    <textarea class="form-control" id="field_5_3" name="field_5_3" rows="3"></textarea>
+                </div>
+
+                <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                <input type="button" name="next" class="next action-button" value="Next"/>
+            </fieldset>
+
+            <fieldset>
+                <h2>Συναφείς πρακτικές</h2>
+                <br>
+                <div class="checkbox-group form-group row">
+                    <label for="field_6" class="col-sm-8 col-form-label">6. Έχετε λάβει υπόψη συναφείς πρακτικές;</label>
+                    <select id="field_6" class="col-sm-2 form-control">
+                        <option selected disabled>Eπιλογή</option>
+                        <option value="yes">Ναι</option>
+                        <option value="no" >Όχι</option>
+                    </select>
+                </div>
+
+                <div id="field_6_wrap" class="form-group" style="display:none;">
+                    <label for="field_6_1">6.1 Σε άλλη/ες χώρα/ες της Ε.Ε. ή του ΟΟΣΑ:</label>
+                    <textarea class="form-control" id="field_6_1" rows="3"></textarea>
+                    <br>
+                    <label for="field_6_2">6.2 Σε όργανα της Ε.Ε.:</label>
+                    <textarea class="form-control" id="field_6_2" rows="3"></textarea>
+                    <label for="field_6_3">6.3 Σε διεθνείς οργανισμούς:</label>
+                    <textarea class="form-control" id="field_6_3" rows="3"></textarea>
+                </div>
+                <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                <input type="button" name="next" class="next action-button" value="Next"/>
+            </fieldset>
+
+            <fieldset>
+                <h2>Στόχοι αξιολογούμενης ρύθμισης</h2>
+                <br>
+                <div id="field_7_wrap">
+                    <label  class="col-form-label">7. Σημειώστε ποιοι από τους στόχους βιώσιμης ανάπτυξης των Ηνωμένων Εθνών επιδιώκονται με την αξιολογούμενη ρύθμιση</label>
+                    <div class="flex-form-group form-group">
+                        <div class="wrap">
+                          <input id="goal_1" class="checkbox-inline" type="checkbox" name="field_7_goal_1" value="goal_1">
+                          <label for="goal_1" class="checkbox-label"><img src="/img/gr-goal-1.jpg" width="60px"></label>
+                        </div>
+                        <div class="wrap">
+                          <input id="goal_2" class="checkbox-inline" type="checkbox" name="field_7_goal_2" value="goal_2">
+                          <label for="goal_2" class="checkbox-label"><img src="/img/gr-goal-2.jpg" width="60px"></label>
+                        </div>
+                        <div class="wrap">
+                          <input id="goal_3" class="checkbox-inline" type="checkbox" name="field_7_goal_3" value="goal_3">
+                          <label for="goal_3" class="checkbox-label"><img src="/img/gr-goal-3.jpg" width="60px"></label>
+                        </div>
+                        <div class="wrap">
+                          <input id="goal_4" class="checkbox-inline" type="checkbox" name="field_7_goal_4" value="goal_4">
+                          <label for="goal_4" class="checkbox-label"><img src="/img/gr-goal-4.jpg" width="60px"></label>
+                        </div>
+                      
+                    </div>
+                    <div class="flex-form-group form-group">
+                        <div class="wrap">
+                            <input id="goal_5" class="checkbox-inline" type="checkbox" name="field_7_goal_5" value="goal_5">
+                            <label for="goal_5" class="checkbox-label"><img src="/img/gr-goal-5.jpg" width="60px"></label>
+                        </div>
+                        <div class="wrap">
+                            <input id="goal_6" class="checkbox-inline" type="checkbox" name="field_7_goal_6" value="goal_6">
+                            <label for="goal_6" class="checkbox-label"><img src="/img/gr-goal-6.jpg" width="60px"></label>
+                        </div>
+                        <div class="wrap">
+                            <input id="goal_7" class="checkbox-inline" type="checkbox" name="field_7_goal_7" value="goal_7">
+                            <label for="goal_7" class="checkbox-label"><img src="/img/gr-goal-7.jpg" width="60px"></label>
+                        </div>
+                        <div class="wrap">
+                            <input id="goal_8" class="checkbox-inline" type="checkbox" name="field_7_goal_8" value="goal_8">
+                            <label for="goal_8" class="checkbox-label"><img src="/img/gr-goal-8.jpg" width="60px"></label>
+                        </div>
+                    
+                    </div>
+    
+                    <div class="flex-form-group form-group">
+                        <div class="wrap">
+                            <input id="goal_9" class="checkbox-inline" type="checkbox" name="field_7_goal_9" value="goal_9">
+                            <label for="goal_9" class="checkbox-label"><img src="/img/gr-goal-9.jpg" width="60px"></label>
+                        </div>
+                        <div class="wrap">
+                            <input id="goal_10" class="checkbox-inline" type="checkbox" name="field_7_goal_10" value="goal_10">
+                            <label for="goal_10" class="checkbox-label"><img src="/img/10.png" width="60px"></label>
+                        </div>
+                        <div class="wrap">
+                            <input id="goal_11" class="checkbox-inline" type="checkbox" name="field_7_goal_11" value="goal_11">
+                            <label for="goal_11" class="checkbox-label"><img src="/img/gr-goal-11.jpg" width="60px"></label>
+                        </div>
+                        <div class="wrap">
+                            <input id="goal_12" class="checkbox-inline" type="checkbox" name="field_7_goal_12" value="goal_12">
+                            <label for="goal_12" class="checkbox-label"><img src="/img/gr-goal-12.jpg" width="60px"></label>
+                        </div>
+                    </div>
+                    <div class="flex-form-group form-group">
+                        <div class="wrap">
+                            <input id="goal_13" class="checkbox-inline" type="checkbox" name="field_7_goal_13" value="goal_13">
+                            <label for="goal_13" class="checkbox-label"><img src="/img/gr-goal-13.jpg" width="60px"></label>
+                        </div>
+                        <div class="wrap">
+                            <input id="goal_14" class="checkbox-inline" type="checkbox" name="field_7_goal_14" value="goal_14">
+                            <label for="goal_14" class="checkbox-label"><img src="/img/gr-goal-14.jpg" width="60px"></label>
+                        </div>
+                        <div class="wrap">
+                            <input id="goal_15" class="checkbox-inline" type="checkbox" name="field_7_goal_15" value="goal_15">
+                            <label for="goal_15" class="checkbox-label"><img src="/img/gr-goal-15.jpg" width="60px"></label>
+                        </div>
+                        <div class="wrap">
+                            <input id="goal_16" class="checkbox-inline" type="checkbox" name="field_7_goal_16" value="goal_16">
+                            <label for="goal_16" class="checkbox-label"><img src="/img/gr-goal-16.jpg" width="60px"></label>
+                        </div>
+                    </div>
+                    <div class="flex-form-group form-group">
+                        <div class="wrap">
+                            <input id="goal_17" class="checkbox-inline" type="checkbox" name="field_7_goal_17" value="goal_17">
+                            <label for="goal_17" class="checkbox-label"><img src="/img/gr-goal-17.jpg" width="60px"></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="field_8_1">8.1 Ποιοι είναι οι βραχυπρόθεσμοι στόχοι της αξιολογούμενης ρύθμισης; </label>
+                    <textarea class="form-control" id="field_8_1" name="field_8_1" rows="3"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="field_8_2">8.2 Ποιοι είναι οι μακροπρόθεσμοι στόχοι της αξιολογούμενης ρύθμισης; </label>
+                    <textarea class="form-control" id="field_8_2" name="field_8_2" rows="3"></textarea>
+                </div>
+
+                <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                <input type="button" name="next" class="next action-button" value="Next"/>
+            </fieldset>
+
+            <fieldset>
+                <h2>Ψηφιακή διακυβέρνηση</h2>
+                <br>
+
+                <div class="checkbox-group form-group row">
+                    <label class="col-sm-8 col-form-label">10. Σε περίπτωση που προβλέπεται η χρήση πληροφοριακού συστήματος, ποια θα είναι η συμβολή αυτού στην επίτευξη των στόχων της αξιολογούμενης ρύθμισης: </label>
+                </div>
+
+                <div class="checkbox-group form-group row">
+                    <div class="col-2"></div>
+                    <label class="col-3 col-form-label">ΑΜΕΣΗ</label>
+                    <input class="col-2 form-check-input position-static" type="checkbox" id="field_10_amesi" name="field_10_amesi" value="field_10_amesi">
+                </div>
+                <div id="amesi_wrap" class="form-group" style="display:none;">
+                    <label for="field_10_amesi_comment">Εάν είναι άμεση, εξηγήστε:</label>
+                    <textarea class="form-control" id="field_10_amesi_comment" name="field_10_amesi_comment" rows="3"></textarea>
+                </div>
+
+                <div class="checkbox-group form-group row">
+                    <div class="col-2"></div>
+                    <label class="col-3 col-form-label">ΕΜΜΕΣΗ</label>
+                    <input class="col-2 form-check-input position-static" type="checkbox" id="field_10_emmesi" value="field_10_emmesi">
+                </div>         
+
+                <div id="emesi_wrap" class="form-group" style="display:none;">
+                    <label for="field_10_emesi_comment">Εάν είναι έμμεση, εξηγήστε:</label>
+                    <textarea class="form-control" id="field_10_emesi_comment" name="field_10_emesi_comment" rows="3"></textarea>
+                </div>
+
+                <div class="checkbox-group form-group row">
+                    <label for="field_11" class="col-sm-8 col-form-label">11. Το προβλεπόμενο πληροφοριακό σύστημα είναι συμβατό με την εκάστοτε ψηφιακή στρατηγική της χώρας (Βίβλος Ψηφιακού Μετασχηματισμού);</label>
+                    <select id="field_11" class="col-sm-2 form-control">
+                        <option selected disabled>Eπιλογή</option>
+                        <option value="yes">Ναι</option>
+                        <option value="no" >Όχι</option>
+                    </select>
+                </div>
+
+                <div id="field_11_wrap" class="form-group" style="display:none;">
+                    <label for="field_11_comments">Εξηγήστε</label>
+                    <textarea class="form-control" name="field_11_comments" id="field_11_comments" rows="3"></textarea>
+                </div>
+
+                <div class="checkbox-group form-group row">
+                    <label for="field_12" class="col-sm-8 col-form-label">12. Διασφαλίζεται η διαλειτουργικότητα του εν λόγω πληροφοριακού συστήματος με άλλα υφιστάμενα συστήματα;</label>
+                    <select id="field_12" class="col-sm-2 form-control">
+                        <option selected disabled>Eπιλογή</option>
+                        <option value="yes">Ναι</option>
+                        <option value="no" >Όχι</option>
+                    </select>
+                </div>
+
+                <div id="field_12_wrap" class="form-group" style="display:none;">
+                    <label for="field_12_comments">Αναφέρατε ποια είναι αυτά τα συστήματα:</label>
+                    <textarea class="form-control" name="field_12_comments" id="field_12_comments" rows="3"></textarea>
+                </div>
+
+                <div class="checkbox-group form-group row">
+                    <label for="field_13" class="col-sm-8 col-form-label">13. Έχει προηγηθεί μελέτη βιωσιμότητας του προβλεπόμενου πληροφοριακού συστήματος;</label>
+                    <select id="field_13" class="col-sm-2 form-control">
+                        <option selected disabled>Eπιλογή</option>
+                        <option value="yes">Ναι</option>
+                        <option value="no" >Όχι</option>
+                    </select>
+                </div>
+
+                <div id="field_13_wrap" class="form-group" style="display:none;">
+                    <label for="field_13_comments">Εξηγήστε</label>
+                    <textarea class="form-control" name="field_13_comments" id="field_13_comments" rows="3"></textarea>
+                </div>
+                
+                <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                <input type="button" name="next" class="next action-button" value="Next"/>
+            </fieldset>
+
+            <fieldset>
+                <h2>Κατ’ άρθρο ανάλυση αξιολογούμενης ρύθμισης</h2>
+                <br>
+                <p>Todo</p>
+                <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                <input type="button" name="next" class="action-button" value="Finish"/>
+            </fieldset>
+        </form>
+     
+
+    </div>
+</div>
+<div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4">
+    <div class="jss111">
+        <div class="jss274">
+            <h3 class="jss273 jss178 jss181">Πίνακας έκθεσης</h3>
+            <ul class="jss275" id="progressbar">
+                <li class="active">Η «ταυτότητα» της αξιολογούμενης ρύθμισης</li>
+                <li>Η αναγκαιότητα της αξιολογούμενης ρύθμισης</li>
+                <li>Συναφείς πρακτικές</li>
+                <li>Στόχοι αξιολογούμενης ρύθμισης</li>
+                <li>Ψηφιακή διακυβέρνηση</li>
+                <li>Κατ’ άρθρο ανάλυση αξιολογούμενης ρύθμισης</li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+
+  
+<style>
+    .flex-form-group {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .flex-form-group .wrap {
+        min-width: 8em;
+        margin: 4px; /* to add gap between rows */
+    }
+
+    fieldset{
+        position: relative;
+    }
+    fieldset:not(:first-of-type) {
+        display: none;
+    }
+
+    .explain_text{
+        font-size: 12px;
+    }
+    .checkbox-group {
+        display: flex;
+        align-items: center;
+    }
+
+    .form-check-input {
+        margin-top: 0px;
+    }
+    label {
+        font-weight: 700;
+    }
+
+    .parent {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .child {
+        flex: 1 0 21%; /* explanation below */
+        margin: 5px;
+        height: 100px;
+        background-color: blue;
+    }
+</style>
+
+
+<script>
+
+$("#field_10_emmesi").on("change", function(ev){
+    $("#emesi_wrap").toggle();
+})
+
+$("#field_10_amesi").on("change", function(ev){
+    $("#amesi_wrap").toggle();
+})
+
+$("#field_4").on("change", function(ev){
+    if($(this).val()=="yes"){
+        $("#field_4_wrap").show();
+    }else{
+        $("#field_4_wrap").hide();
+    }    
+})
+
+$("#field_6").on("change", function(ev){
+    if($(this).val()=="yes"){
+        $("#field_6_wrap").show();
+    }else{
+        $("#field_6_wrap").hide();
+    }    
+})
+
+$("#field_11").on("change", function(ev){
+    if($(this).val()=="yes"){
+        $("#field_11_wrap").show();
+    }else{
+        $("#field_11_wrap").hide();
+    }    
+})
+
+$("#field_12").on("change", function(ev){
+    if($(this).val()=="yes"){
+        $("#field_12_wrap").show();
+    }else{
+        $("#field_12_wrap").hide();
+    }    
+})
+
+$("#field_13").on("change", function(ev){
+    if($(this).val()=="yes"){
+        $("#field_13_wrap").show();
+    }else{
+        $("#field_13_wrap").hide();
+    }    
+})
+
+var current_fs, next_fs, previous_fs; //fieldsets
+
+
+$(".next").click(function(){
+	current_fs = $(this).parent();
+	next_fs = $(this).parent().next();
+	
+	//activate next step on progressbar using the index of next_fs
+	$("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+	
+	//show the next fieldset
+	next_fs.show(); 
+	//hide the current fieldset with style
+    current_fs.hide();
+});
+
+$(".previous").click(function(){
+	current_fs = $(this).parent();
+	previous_fs = $(this).parent().prev();
+	
+	//de-activate current step on progressbar
+	$("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+	
+	//show the previous fieldset
+	previous_fs.show(); 
+	//hide the current fieldset with style
+    current_fs.hide();
+});
+
+$(".submit").click(function(){
+	return false;
+})
+</script>
