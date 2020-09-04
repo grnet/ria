@@ -1,22 +1,22 @@
+//dependencies
 let express = require('express');
 let session = require('express-session');
 let path = require('path')
 let cookieParser = require('cookie-parser');
 
+//app routes/endpoints
 let homeRoute = require('./routes/home')
 let dashboardRoute = require('./routes/dashboard')
 let createRoute = require('./routes/create')
 let form_aRoute = require('./routes/form_a')
 let database = require('./services/database')
 
-const app = express();
+const app = express(); //app init
 
-let memoryStore = new session.MemoryStore();
+let memoryStore = new session.MemoryStore(); //We will store our user session details to the memory 
 
 app.use(session({                                 
-    secret:'thisShouldBeLongAndSecret',                         
-    resave: false,                         
-    saveUninitialized: true,                         
+    secret:'thisShouldBeLongAndSecret', //The secret is used to hash the session with HMAC                                          
     store: memoryStore                       
 }));
 
