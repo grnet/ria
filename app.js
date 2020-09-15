@@ -17,7 +17,7 @@ let memoryStore = new session.MemoryStore(); //We will store our user session de
 
 app.use(session({                                 
     secret:'thisShouldBeLongAndSecret', //The secret is used to hash the session with HMAC                                          
-    store: memoryStore                       
+    store: memoryStore
 }));
 
 app.set('views', path.join(__dirname, 'views'));

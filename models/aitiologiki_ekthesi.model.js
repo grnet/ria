@@ -1,7 +1,18 @@
+'use strict';
+const { aitiologiki_ekthesi } = require("../services/database");
+
 module.exports = (sequelize, DataTypes) => {
     var aitiologiki_ekthesi = sequelize.define('aitiologiki_ekthesi', {
         author_id: DataTypes.STRING,
         title: DataTypes.STRING,
+
+        ekpedeusi_politismos:DataTypes.BOOLEAN,
+        eksoteriki_politiki:DataTypes.BOOLEAN,
+        forologiki_politiki:DataTypes.BOOLEAN,
+        koinoniki_politiki:DataTypes.BOOLEAN,
+        dimosia_dioikisi:DataTypes.BOOLEAN,
+        anaptiksi:DataTypes.BOOLEAN,
+
         field_1: DataTypes.STRING,
         field_2: DataTypes.STRING,
         field_3: DataTypes.STRING,
@@ -29,7 +40,25 @@ module.exports = (sequelize, DataTypes) => {
 
         field_13: DataTypes.BOOLEAN,
         field_13_comments: DataTypes.STRING,
+
+        //field_14:DataTypes.BOOLEAN,
+
+        field_15_upourgeio: DataTypes.STRING,
+        field_15_sxedio_nomou: DataTypes.STRING,
+        field_15_analysi: DataTypes.STRING,
+        field_15_rythmiseis: DataTypes.STRING,
+
+        field_16: DataTypes.STRING,
+        field_16_kratikos_proypologismos: DataTypes.STRING,
+        field_16_proypologismos_forea: DataTypes.STRING,
+
+        field_17_upourgeio: DataTypes.STRING,
+        field_17_sxedio_nomou: DataTypes.STRING,
+        field_17_oikonomika_apotelesmata: DataTypes.STRING,
+                
+    },{
+        freezeTableName: true //table name same as model name
     });
-  
+
     return aitiologiki_ekthesi;
   };

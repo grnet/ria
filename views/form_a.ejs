@@ -28,7 +28,7 @@
                             <div class="checkbox-group form-group row">
                                 <label for="ekpedeusi_politismos" class="col-sm-8 col-form-label">ΕΚΠΑΙΣΕΥΣΗ - ΠΟΛΙΤΙΣΜΟΣ<sup>16</sup></label>
                                 <% if(data.ekpedeusi_politismos){ %>
-                                    <input class="col-sm-2 form-check-input position-static" name="ekpedeusi_politismos" type="checkbox" id="ekpedeusi_politismos" value="ekpedeusi_politismos" checked disabled>
+                                    <input class="col-sm-2 form-check-input position-static" name="ekpedeusi_politismos" type="checkbox" id="ekpedeusi_politismos" value="data.ekpedeusi_politismos" checked disabled>
                                 <% }else{ %>
                                     <input class="col-sm-2 form-check-input position-static" name="ekpedeusi_politismos" type="checkbox" id="ekpedeusi_politismos" value="ekpedeusi_politismos" disabled>
                                 <% } %>
@@ -114,9 +114,16 @@
                             <br>
                             <div class="checkbox-group form-group row">
                                 <label for="field_4" class="col-sm-8 col-form-label">4. Το εν λόγω ζήτημα έχει αντιμετωπιστεί με νομοθετική ρύθμιση στο παρελθόν;</label>
-                                <select id="field_4" name="field_4" class="col-sm-2 form-control" value="<%= data.field_4 %>" disabled>
+                                <select id="field_4" name="field_4" class="col-sm-2 form-control" value="<%= data.field_4 %>" >
+                                    <!--original: <select id="field_4" name="field_4" class="col-sm-2 form-control" value="<%= data.field_4 %>" disabled>-->
                                     <option value="yes">Ναι</option>
                                     <option value="no" >Όχι</option>
+                                  <!---- <% if (data.field_4 =="yes") { %>    
+                                        <option value="yes">Ναι</option>
+                                    <% }else { %>   
+                                        <option value="no" >Όχι</option>
+                                    <% } %> 
+                                    -->    
                                 </select>
                             </div>
             
@@ -177,38 +184,38 @@
                                 <div class="flex-form-group form-group">
                                     <div class="wrap">
                                       <input id="goal_1" class="checkbox-inline" type="checkbox" name="field_7_goal_1" value="goal_1">
-                                      <label for="goal_1" class="checkbox-label"><img src="/img/gr-goal-1.jpg" width="60px"></label>
+                                      <label for="goal_1" class="checkbox-label"><img src="/img/gr-goal-1.jpg" width="100px"></label>
                                     </div>
                                     <div class="wrap">
                                       <input id="goal_2" class="checkbox-inline" type="checkbox" name="field_7_goal_2" value="goal_2">
-                                      <label for="goal_2" class="checkbox-label"><img src="/img/gr-goal-2.jpg" width="60px"></label>
+                                      <label for="goal_2" class="checkbox-label"><img src="/img/gr-goal-2.jpg" width="100px"></label>
                                     </div>
                                     <div class="wrap">
                                       <input id="goal_3" class="checkbox-inline" type="checkbox" name="field_7_goal_3" value="goal_3">
-                                      <label for="goal_3" class="checkbox-label"><img src="/img/gr-goal-3.jpg" width="60px"></label>
+                                      <label for="goal_3" class="checkbox-label"><img src="/img/gr-goal-3.jpg" width="100px"></label>
                                     </div>
                                     <div class="wrap">
                                       <input id="goal_4" class="checkbox-inline" type="checkbox" name="field_7_goal_4" value="goal_4">
-                                      <label for="goal_4" class="checkbox-label"><img src="/img/gr-goal-4.jpg" width="60px"></label>
+                                      <label for="goal_4" class="checkbox-label"><img src="/img/gr-goal-4.jpg" width="100px"></label>
                                     </div>
                                   
                                 </div>
                                 <div class="flex-form-group form-group">
                                     <div class="wrap">
                                         <input id="goal_5" class="checkbox-inline" type="checkbox" name="field_7_goal_5" value="goal_5">
-                                        <label for="goal_5" class="checkbox-label"><img src="/img/gr-goal-5.jpg" width="60px"></label>
+                                        <label for="goal_5" class="checkbox-label"><img src="/img/gr-goal-5.jpg" width="100px"></label>
                                     </div>
                                     <div class="wrap">
                                         <input id="goal_6" class="checkbox-inline" type="checkbox" name="field_7_goal_6" value="goal_6">
-                                        <label for="goal_6" class="checkbox-label"><img src="/img/gr-goal-6.jpg" width="60px"></label>
+                                        <label for="goal_6" class="checkbox-label"><img src="/img/gr-goal-6.jpg" width="100px"></label>
                                     </div>
                                     <div class="wrap">
                                         <input id="goal_7" class="checkbox-inline" type="checkbox" name="field_7_goal_7" value="goal_7">
-                                        <label for="goal_7" class="checkbox-label"><img src="/img/gr-goal-7.jpg" width="60px"></label>
+                                        <label for="goal_7" class="checkbox-label"><img src="/img/gr-goal-7.jpg" width="100px"></label>
                                     </div>
                                     <div class="wrap">
                                         <input id="goal_8" class="checkbox-inline" type="checkbox" name="field_7_goal_8" value="goal_8">
-                                        <label for="goal_8" class="checkbox-label"><img src="/img/gr-goal-8.jpg" width="60px"></label>
+                                        <label for="goal_8" class="checkbox-label"><img src="/img/gr-goal-8.jpg" width="100px"></label>
                                     </div>
                                 
                                 </div>
@@ -216,43 +223,43 @@
                                 <div class="flex-form-group form-group">
                                     <div class="wrap">
                                         <input id="goal_9" class="checkbox-inline" type="checkbox" name="field_7_goal_9" value="goal_9">
-                                        <label for="goal_9" class="checkbox-label"><img src="/img/gr-goal-9.jpg" width="60px"></label>
+                                        <label for="goal_9" class="checkbox-label"><img src="/img/gr-goal-9.jpg" width="100px"></label>
                                     </div>
                                     <div class="wrap">
                                         <input id="goal_10" class="checkbox-inline" type="checkbox" name="field_7_goal_10" value="goal_10">
-                                        <label for="goal_10" class="checkbox-label"><img src="/img/10.png" width="60px"></label>
+                                        <label for="goal_10" class="checkbox-label"><img src="/img/10.png" width="100px"></label>
                                     </div>
                                     <div class="wrap">
                                         <input id="goal_11" class="checkbox-inline" type="checkbox" name="field_7_goal_11" value="goal_11">
-                                        <label for="goal_11" class="checkbox-label"><img src="/img/gr-goal-11.jpg" width="60px"></label>
+                                        <label for="goal_11" class="checkbox-label"><img src="/img/gr-goal-11.jpg" width="100px"></label>
                                     </div>
                                     <div class="wrap">
                                         <input id="goal_12" class="checkbox-inline" type="checkbox" name="field_7_goal_12" value="goal_12">
-                                        <label for="goal_12" class="checkbox-label"><img src="/img/gr-goal-12.jpg" width="60px"></label>
+                                        <label for="goal_12" class="checkbox-label"><img src="/img/gr-goal-12.jpg" width="100px"></label>
                                     </div>
                                 </div>
                                 <div class="flex-form-group form-group">
                                     <div class="wrap">
                                         <input id="goal_13" class="checkbox-inline" type="checkbox" name="field_7_goal_13" value="goal_13">
-                                        <label for="goal_13" class="checkbox-label"><img src="/img/gr-goal-13.jpg" width="60px"></label>
+                                        <label for="goal_13" class="checkbox-label"><img src="/img/gr-goal-13.jpg" width="100px"></label>
                                     </div>
                                     <div class="wrap">
                                         <input id="goal_14" class="checkbox-inline" type="checkbox" name="field_7_goal_14" value="goal_14">
-                                        <label for="goal_14" class="checkbox-label"><img src="/img/gr-goal-14.jpg" width="60px"></label>
+                                        <label for="goal_14" class="checkbox-label"><img src="/img/gr-goal-14.jpg" width="100px"></label>
                                     </div>
                                     <div class="wrap">
                                         <input id="goal_15" class="checkbox-inline" type="checkbox" name="field_7_goal_15" value="goal_15">
-                                        <label for="goal_15" class="checkbox-label"><img src="/img/gr-goal-15.jpg" width="60px"></label>
+                                        <label for="goal_15" class="checkbox-label"><img src="/img/gr-goal-15.jpg" width="100px"></label>
                                     </div>
                                     <div class="wrap">
                                         <input id="goal_16" class="checkbox-inline" type="checkbox" name="field_7_goal_16" value="goal_16">
-                                        <label for="goal_16" class="checkbox-label"><img src="/img/gr-goal-16.jpg" width="60px"></label>
+                                        <label for="goal_16" class="checkbox-label"><img src="/img/gr-goal-16.jpg" width="100px"></label>
                                     </div>
                                 </div>
                                 <div class="flex-form-group form-group">
                                     <div class="wrap">
                                         <input id="goal_17" class="checkbox-inline" type="checkbox" name="field_7_goal_17" value="goal_17">
-                                        <label for="goal_17" class="checkbox-label"><img src="/img/gr-goal-17.jpg" width="60px"></label>
+                                        <label for="goal_17" class="checkbox-label"><img src="/img/gr-goal-17.jpg" width="100px"></label>
                                     </div>
                                 </div>
                             </div>
@@ -351,8 +358,11 @@
                             <br>
                             <p>Todo</p>
                             <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
-                            <input type="submit" name="create_new" class="action-button" value="Finish"/>
+                            <input type="button" name="next" class="next action-button" value="Next"/>
                         </fieldset>
+
+                        <%- include('form_viewing/view_form_b.ejs') %>  
+                        <%- include('form_viewing/view_form_c.ejs') %> 
                     </form>
                  
             
@@ -360,7 +370,7 @@
             </div>
             <div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4">
                 <div class="jss111">
-                    <div class="jss274">
+                    <div class="jss274"></div>
                         <h3 class="jss273 jss178 jss181">Πίνακας έκθεσης</h3>
                         <ul class="jss275" id="progressbar">
                             <li class="active">Η «ταυτότητα» της αξιολογούμενης ρύθμισης</li>
@@ -369,6 +379,9 @@
                             <li>Στόχοι αξιολογούμενης ρύθμισης</li>
                             <li>Ψηφιακή διακυβέρνηση</li>
                             <li>Κατ’ άρθρο ανάλυση αξιολογούμενης ρύθμισης</li>
+                            <li>Έκθεση Γενικού Λογιστηρίου του Κράτους</li>
+                            <li>Οικονομικά αποτελέσματα επί του Κρατικού Προϋπολογισμού ή/και επί του
+                                προϋπολογισμού του/των αρμόδιου/ων φορέα/ων</li>
                         </ul>
             
                     </div>
@@ -427,6 +440,11 @@
             
             <script>
             
+            $(document).ready(function() {
+                 if ($("#field_4").val == 'yes')
+                    $("#field_4_wrap").show();
+                });   
+
             $("form").on("submit",function(ev){
                 ev.preventDefault();
                 console.log($(this).serialize())
@@ -439,6 +457,7 @@
                     },
                     success: function(data) {
                         console.log(data)
+                        window.location.href="/dashboard"
                     },
                     type: 'POST'
                 });
