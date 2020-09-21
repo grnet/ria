@@ -7,8 +7,9 @@ routes.get('/', function(req,res,next){
 routes.post('/', async function(req,res,next){
     req.body.author_id="1";
     let res_data = await database.aitiologiki_ekthesi.create(req.body)
+    res_data = await database.ekthesis_arthrwn_sintagmatos.create(req.body)
+    res_data = await database.stoxoi_tomea_nomothetisis.create(req.body)
     res.send(res_data)
-
 });
 
 

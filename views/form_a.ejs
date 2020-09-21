@@ -114,16 +114,13 @@
                             <br>
                             <div class="checkbox-group form-group row">
                                 <label for="field_4" class="col-sm-8 col-form-label">4. Το εν λόγω ζήτημα έχει αντιμετωπιστεί με νομοθετική ρύθμιση στο παρελθόν;</label>
-                                <select id="field_4" name="field_4" class="col-sm-2 form-control" value="<%= data.field_4 %>" >
-                                    <!--original: <select id="field_4" name="field_4" class="col-sm-2 form-control" value="<%= data.field_4 %>" disabled>-->
-                                    <option value="yes">Ναι</option>
-                                    <option value="no" >Όχι</option>
-                                  <!---- <% if (data.field_4 =="yes") { %>    
+                                <select id="field_4" name="field_4" class="col-sm-2 form-control" value="<%= data.field_4 %>" disabled >
+                                   <% if (data.field_4 =="yes") { %>    
                                         <option value="yes">Ναι</option>
                                     <% }else { %>   
                                         <option value="no" >Όχι</option>
                                     <% } %> 
-                                    -->    
+                                        
                                 </select>
                             </div>
             
@@ -156,10 +153,12 @@
                             <br>
                             <div class="checkbox-group form-group row">
                                 <label for="field_6" class="col-sm-8 col-form-label">6. Έχετε λάβει υπόψη συναφείς πρακτικές;</label>
-                                <select id="field_6" name="field_6" value="<%= data.field_6 %>" class="col-sm-2 form-control">
-                                    <option selected disabled>Eπιλογή</option>
-                                    <option value="yes">Ναι</option>
-                                    <option value="no" >Όχι</option>
+                                <select id="field_6" name="field_6" value="<%= data.field_6 %>" class="col-sm-2 form-control" disabled>
+                                    <% if (data.field_6 =="yes") { %>    
+                                        <option value="yes">Ναι</option>
+                                    <% }else { %>   
+                                        <option value="no" >Όχι</option>
+                                    <% } %> 
                                 </select>
                             </div>
             
@@ -293,7 +292,7 @@
                             </div>
                             <div id="amesi_wrap" class="form-group" style="display:none;">
                                 <label for="field_10_amesi_comment">Εάν είναι άμεση, εξηγήστε:</label>
-                                <textarea class="form-control" id="field_10_amesi_comment" name="field_10_amesi_comment" rows="3"><%= data.field_10_amesi_comment %></textarea>
+                                <textarea class="form-control" id="field_10_amesi_comment" name="field_10_amesi_comment" rows="3"><%= data.field_10_amesi_comments %></textarea>
                             </div>
             
                             <div class="checkbox-group form-group row">
@@ -304,15 +303,17 @@
             
                             <div id="emesi_wrap" class="form-group" style="display:none;">
                                 <label for="field_10_emesi_comment">Εάν είναι έμμεση, εξηγήστε:</label>
-                                <textarea class="form-control" id="field_10_emesi_comment" name="field_10_emmesi_comment" rows="3"><%= data.field_10_emmesi_comment %></textarea>
+                                <textarea class="form-control" id="field_10_emesi_comment" name="field_10_emmesi_comment" rows="3"><%= data.field_10_emmesi_comments %></textarea>
                             </div>
             
                             <div class="checkbox-group form-group row">
                                 <label for="field_11" class="col-sm-8 col-form-label">11. Το προβλεπόμενο πληροφοριακό σύστημα είναι συμβατό με την εκάστοτε ψηφιακή στρατηγική της χώρας (Βίβλος Ψηφιακού Μετασχηματισμού);</label>
-                                <select id="field_11" name="field_11" class="col-sm-2 form-control">
-                                    <option selected disabled>Eπιλογή</option>
-                                    <option value="yes">Ναι</option>
-                                    <option value="no" >Όχι</option>
+                                <select id="field_11" name="field_11" class="col-sm-2 form-control" disabled>
+                                    <% if (data.field_11 =="yes") { %>    
+                                        <option value="yes">Ναι</option>
+                                    <% }else { %>   
+                                        <option value="no" >Όχι</option>
+                                    <% } %> 
                                 </select>
                             </div>
             
@@ -323,10 +324,12 @@
             
                             <div class="checkbox-group form-group row">
                                 <label for="field_12" class="col-sm-8 col-form-label">12. Διασφαλίζεται η διαλειτουργικότητα του εν λόγω πληροφοριακού συστήματος με άλλα υφιστάμενα συστήματα;</label>
-                                <select id="field_12" name="field_12" class="col-sm-2 form-control">
-                                    <option selected disabled>Eπιλογή</option>
-                                    <option value="yes">Ναι</option>
-                                    <option value="no" >Όχι</option>
+                                <select id="field_12" name="field_12" class="col-sm-2 form-control" disabled>
+                                    <% if (data.field_12 =="yes") { %>    
+                                        <option value="yes">Ναι</option>
+                                    <% }else { %>   
+                                        <option value="no" >Όχι</option>
+                                    <% } %> 
                                 </select>
                             </div>
             
@@ -337,10 +340,12 @@
             
                             <div class="checkbox-group form-group row">
                                 <label for="field_13" class="col-sm-8 col-form-label">13. Έχει προηγηθεί μελέτη βιωσιμότητας του προβλεπόμενου πληροφοριακού συστήματος;</label>
-                                <select id="field_13" name="field_13" class="col-sm-2 form-control">
-                                    <option selected disabled>Eπιλογή</option>
-                                    <option value="yes">Ναι</option>
-                                    <option value="no" >Όχι</option>
+                                <select id="field_13" name="field_13" class="col-sm-2 form-control" disabled>
+                                    <% if (data.field_13 =="yes") { %>    
+                                        <option value="yes">Ναι</option>
+                                    <% }else { %>   
+                                        <option value="no" >Όχι</option>
+                                    <% } %> 
                                 </select>
                             </div>
             
@@ -363,6 +368,7 @@
 
                         <%- include('form_viewing/view_form_b.ejs') %>  
                         <%- include('form_viewing/view_form_c.ejs') %> 
+                        <%- include('form_viewing/view_form_f.ejs') %>
                     </form>
                  
             
@@ -439,11 +445,6 @@
             
             
             <script>
-            
-            $(document).ready(function() {
-                 if ($("#field_4").val == 'yes')
-                    $("#field_4_wrap").show();
-                });   
 
             $("form").on("submit",function(ev){
                 ev.preventDefault();
@@ -471,44 +472,78 @@
                 $("#amesi_wrap").toggle();
             })
             
-            $("#field_4").on("change", function(ev){
-                if($(this).val()=="yes"){
+            $("#field_25_dikaio").on("change", function(ev){
+                $("#dikaio_wrap").toggle();
+            })
+
+            $("#field_25_kanonismos").on("change", function(ev){
+                $("#kanonismos_wrap").toggle();
+            })
+
+            $("#field_25_odigia").on("change", function(ev){
+                $("#odigia_wrap").toggle();
+            })
+
+            $("#field_25_apofasi").on("change", function(ev){
+                $("#apofasi_wrap").toggle();
+            })
+
+            $("#field_26_antrwpina_dikaiwmata").on("change", function(ev){
+                $("#antrwpina_dikaiwmata_wrap").toggle();
+            })
+
+            $("#field_26_symvaseis").on("change", function(ev){
+                $("#symvaseis_wrap").toggle();
+            })
+
+            $("#field_27_dikastirio").on("change", function(ev){
+                $("#dikastirio_wrap").toggle();
+            })
+
+            $("#field_27_arxi").on("change", function(ev){
+                $("#arxi_wrap").toggle();
+            })
+
+            $("#field_28_nomologia").on("change", function(ev){
+                $("#nomologia_wrap").toggle();
+            })
+
+            $("#field_28_nomologia_dikaiwmatwn_anthrwpou").on("change", function(ev){
+                $("#nomologia_dikaiwmatwn_anthrwpou_wrap").toggle();
+            })
+
+            $("#field_28_alla_dikastiria").on("change", function(ev){
+                $("#alla_dikastiria_wrap").toggle();
+            })
+
+            $(function(ev) {
+                if($("#field_4").val()=="yes"){
                     $("#field_4_wrap").show();
-                }else{
-                    $("#field_4_wrap").hide();
-                }    
+                }
             })
             
-            $("#field_6").on("change", function(ev){
-                if($(this).val()=="yes"){
+            $(function(ev) {
+                if($("#field_6").val()=="yes"){
                     $("#field_6_wrap").show();
-                }else{
-                    $("#field_6_wrap").hide();
-                }    
+                }
             })
             
-            $("#field_11").on("change", function(ev){
-                if($(this).val()=="yes"){
+            $(function(ev) {
+                if($("#field_11").val()=="yes"){
                     $("#field_11_wrap").show();
-                }else{
-                    $("#field_11_wrap").hide();
-                }    
+                }
             })
             
-            $("#field_12").on("change", function(ev){
-                if($(this).val()=="yes"){
+            $(function(ev) {
+                if($("#field_12").val()=="yes"){
                     $("#field_12_wrap").show();
-                }else{
-                    $("#field_12_wrap").hide();
-                }    
+                }
             })
             
-            $("#field_13").on("change", function(ev){
-                if($(this).val()=="yes"){
+            $(function(ev) {
+                if($("#field_13").val()=="yes"){
                     $("#field_13_wrap").show();
-                }else{
-                    $("#field_13_wrap").hide();
-                }    
+                }
             })
             
             var current_fs, next_fs, previous_fs; //fieldsets

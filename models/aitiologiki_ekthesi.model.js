@@ -43,7 +43,7 @@ module.exports = (sequelize, DataTypes) => {
 
         //field_14:DataTypes.BOOLEAN,
 
-        field_15_upourgeio: DataTypes.STRING,
+        field_15_ypoyrgeio: DataTypes.STRING,
         field_15_sxedio_nomou: DataTypes.STRING,
         field_15_analysi: DataTypes.STRING,
         field_15_rythmiseis: DataTypes.STRING,
@@ -52,9 +52,37 @@ module.exports = (sequelize, DataTypes) => {
         field_16_kratikos_proypologismos: DataTypes.STRING,
         field_16_proypologismos_forea: DataTypes.STRING,
 
-        field_17_upourgeio: DataTypes.STRING,
+        field_17_ypoyrgeio: DataTypes.STRING,
         field_17_sxedio_nomou: DataTypes.STRING,
         field_17_oikonomika_apotelesmata: DataTypes.STRING,
+
+        field_24: DataTypes.TEXT,
+        field_25_dikaio: DataTypes.BOOLEAN,
+        field_25_dikaio_comment: DataTypes.TEXT,
+        field_25_kanonismos: DataTypes.BOOLEAN,
+        field_25_kanonismos_comment: DataTypes.TEXT,
+        field_25_odigia: DataTypes.BOOLEAN,
+        field_25_odigia_comment: DataTypes.TEXT,
+        field_25_apofasi: DataTypes.BOOLEAN,
+        field_25_apofasi_comment: DataTypes.TEXT,
+
+        field_26_antrwpina_dikaiwmata: DataTypes.BOOLEAN,
+        field_26_antrwpina_dikaiwmata_comment: DataTypes.TEXT,
+        field_26_symvaseis: DataTypes.BOOLEAN,
+        field_26_symvaseis_comment: DataTypes.TEXT,
+
+        field_27_dikastirio:DataTypes.BOOLEAN,
+        field_27_dikastirio_comment: DataTypes.TEXT,
+        field_27_arxi: DataTypes.BOOLEAN,
+        field_27_arxi_comment: DataTypes.TEXT,
+
+        field_28_nomologia: DataTypes.BOOLEAN,
+        field_28_nomologia_comment: DataTypes.TEXT,
+        field_28_nomologia_dikaiwmatwn_anthrwpou: DataTypes.BOOLEAN,
+        field_28_nomologia_dikaiwmatwn_anthrwpou_comment: DataTypes.TEXT,
+        field_28_alla_dikastiria: DataTypes.BOOLEAN, 
+        field_28_alla_dikastiria_comment: DataTypes.TEXT,
+
                 
     },{
         freezeTableName: true //table name same as model name

@@ -247,7 +247,7 @@
             <fieldset>
 
                 <h2>9.Ειδικότεροι στόχοι ανάλογα με τον τομέα νομοθέτησης</h2>
-                <table class="table" id="politismos_table">
+                <table class="table" id="politismos_table" style="display: none;">
                     <thead class="thead-dark">
                       <tr>
                         <th colspan="1">ΠΟΛΙΤΙΣΜΟΣ</th>
@@ -259,37 +259,19 @@
                     <tbody>
                       <tr>
                         <th colspan="1">Πραγματοποιηθείσες ανασκαφές, κατά είδος και αποτελέσματα, και αριθμός ευρημάτων</th>
-                        <td><input type="text" size="10" id="anaskafes_year5" placeholder="έτος 5"/>
-                            <input type="text" size="10" id="anaskafes_year4" placeholder="έτος 4"/>
-                            <input type="text" size="10" id="anaskafes_year3" placeholder="έτος 3"/>
-                            <input type="text" size="10" id="anaskafes_year2" placeholder="έτος 2"/>
-                            <input type="text" size="10" id="anaskafes_year1" placeholder="έτος 1"/></td>
-                        <td><input type="text" id="anaskafes_prosfata_stoixeia" size="10"/></td>
-                        <td><input type="text" id="anaskafes_epidiwkomenos_stoxos" size="10"/></td>
+                        <td><input type="text" size="10" id="anaskafes_year1" name="anaskafes_year1" placeholder="έτος 1"/>
+                            <input type="text" size="10" id="anaskafes_year2" name="anaskafes_year2" placeholder="έτος 2"/>
+                            <input type="text" size="10" id="anaskafes_year3" name="anaskafes_year3" placeholder="έτος 3"/>
+                            <input type="text" size="10" id="anaskafes_year4" name="anaskafes_year4" placeholder="έτος 4"/>
+                            <input type="text" size="10" id="anaskafes_year5" name="anaskafes_year5" placeholder="έτος 5"/></td>
+                        <td><input type="text" id="anaskafes_prosfata_stoixeia" name="anaskafes_prosfata_stoixeia" size="10"/></td>
+                        <td><input type="text" id="anaskafes_epidiwkomenos_stoxos" name="anaskafes_epidiwkomenos_stoxos" size="10"/></td>
                       </tr>
-                    <!--  <tr>
-                        <th colspan="1">Χρηματοδοτήσεις ανασκαφών, κατά φορέα, και ποσά που διατέθηκαν</th>
-                        <td><input type="text" size="10" placeholder="έτος 5"/>
-                            <input type="text" size="10" placeholder="έτος 4"/>
-                            <input type="text" size="10" placeholder="έτος 3"/>
-                            <input type="text" size="10" placeholder="έτος 2"/>
-                            <input type="text" size="10" placeholder="έτος 1"/></td>
-                        <td><input type="text" size="10"/></td>
-                        <td><input type="text" size="10"/></td>
-                      </tr>
-                      <tr>
-                        <th colspan="1">Πιστώσεις για ανασκαφές, που διατέθηκαν σε Εφορείες Αρχαιοτήτων</th>
-                        <td><input type="text" size="10" placeholder="έτος 5"/>
-                            <input type="text" size="10" placeholder="έτος 4"/>
-                            <input type="text" size="10" placeholder="έτος 3"/>
-                            <input type="text" size="10" placeholder="έτος 2"/>
-                            <input type="text" size="10" placeholder="έτος 1"/></td>
-                        <td><input type="text" size="10"/></td>
-                        <td><input type="text" size="10"/></td>
-                      </tr>-->
                     </tbody>
                   </table>
 
+                <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενα πεδία"/>
+                <input type="button" name="next" class="next action-button" value="Επόμενα πεδία"/>
             </fieldset>
 
             <fieldset>
@@ -306,8 +288,8 @@
                     <input class="col-2 form-check-input position-static" type="checkbox" id="field_10_amesi" name="field_10_amesi" value="field_10_amesi">
                 </div>
                 <div id="amesi_wrap" class="form-group" style="display:none;">
-                    <label for="field_10_amesi_comment">Εάν είναι άμεση, εξηγήστε:</label>
-                    <textarea class="form-control" id="field_10_amesi_comment" name="field_10_amesi_comment" rows="3"></textarea>
+                    <label for="field_10_amesi_comments">Εάν είναι άμεση, εξηγήστε:</label>
+                    <textarea class="form-control" id="field_10_amesi_comments" name="field_10_amesi_comments" rows="3"></textarea>
                 </div>
 
                 <div class="checkbox-group form-group row">
@@ -317,8 +299,8 @@
                 </div>         
 
                 <div id="emesi_wrap" class="form-group" style="display:none;">
-                    <label for="field_10_emesi_comment">Εάν είναι έμμεση, εξηγήστε:</label>
-                    <textarea class="form-control" id="field_10_emesi_comment" name="field_10_emmesi_comment" rows="3"></textarea>
+                    <label for="field_10_emesi_comments">Εάν είναι έμμεση, εξηγήστε:</label>
+                    <textarea class="form-control" id="field_10_emesi_comments" name="field_10_emmesi_comments" rows="3"></textarea>
                 </div>
 
                 <div class="checkbox-group form-group row">
@@ -368,7 +350,7 @@
             </fieldset>
 
             <fieldset>
-                <h2>Κατ’ άρθρο ανάλυση αξιολογούμενης ρύθμισης</h2>
+                <h2>14.Κατ’ άρθρο ανάλυση αξιολογούμενης ρύθμισης</h2>
                 <br>
                 <p>Todo</p>
                 <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενα πεδία"/>
@@ -377,7 +359,8 @@
 
             <%- include('form_filling/fill_form_b.ejs') %>
             <%- include('form_filling/fill_form_c.ejs') %>
-            
+            <%- include('form_filling/fill_form_f.ejs') %>
+             
         </form>
      
 
@@ -387,16 +370,23 @@
     <div class="jss111">
         <div class="jss274">
             <h3 class="jss273 jss178 jss181">Πίνακας έκθεσης</h3>
-            <ul class="jss275" id="progressbar">
-                <li class="active">Η «ταυτότητα» της αξιολογούμενης ρύθμισης</li>
-                <li>Η αναγκαιότητα της αξιολογούμενης ρύθμισης</li>
-                <li>Συναφείς πρακτικές</li>
-                <li>Στόχοι αξιολογούμενης ρύθμισης</li>
-                <li>Ψηφιακή διακυβέρνηση</li>
-                <li>Κατ’ άρθρο ανάλυση αξιολογούμενης ρύθμισης</li>
-                <li>Έκθεση Γενικού Λογιστηρίου του Κράτους</li>
-                <li>Οικονομικά αποτελέσματα επί του Κρατικού Προϋπολογισμού ή/και επί του
-                    προϋπολογισμού του/των αρμόδιου/ων φορέα/ων</li>
+            <ul class="jss275" id="progressbar">    
+                <li class="active"><h4><b>Αιτιολογική έκθεση</b></h4></li>
+                    <ul class="jss275" id="progressbar">
+                    <li class="active">Η «ταυτότητα» της αξιολογούμενης ρύθμισης</li>
+                    <li>Η αναγκαιότητα της αξιολογούμενης ρύθμισης</li>
+                    <li>Συναφείς πρακτικές</li>
+                    <li>Στόχοι αξιολογούμενης ρύθμισης</li>
+                    <li>Ειδικότεροι στόχοι ανάλογα με τον τομέα νομοθέτησης</li>
+                    <li>Ψηφιακή διακυβέρνηση</li>
+                    <li>Κατ’ άρθρο ανάλυση αξιολογούμενης ρύθμισης</li>
+                    </ul>   
+                <li><h4><b>Έκθεση του άρθρου 75 παρ. 1 και 2 του Συντάγματος</b></h4></li>  
+                    <ul class="jss276" id="progressbar"> 
+                        <li>Έκθεση Γενικού Λογιστηρίου του Κράτους</li>    
+                        <li>Οικονομικά αποτελέσματα επί του Κρατικού Προϋπολογισμού ή/και επί του
+                            προϋπολογισμού του/των αρμόδιου/ων φορέα/ων</li>  
+                    </ul>
             </ul>
 
         </div>
@@ -490,6 +480,12 @@ $("form").on("submit",function(ev){
     });
 })
 
+$("#ekpedeusi_politismos").click( function(ev){
+    if(this.checked) {
+        $("#politismos_table").show();
+    }    
+})
+
 $("#field_10_emmesi").on("change", function(ev){
     $("#emesi_wrap").toggle();
 })
@@ -498,7 +494,51 @@ $("#field_10_amesi").on("change", function(ev){
     $("#amesi_wrap").toggle();
 })
 
-$("#field_4").on("change", function(ev){
+$("#field_25_dikaio").on("change", function(ev){
+    $("#dikaio_wrap").toggle();
+})
+
+$("#field_25_kanonismos").on("change", function(ev){
+    $("#kanonismos_wrap").toggle();
+})
+
+$("#field_25_odigia").on("change", function(ev){
+    $("#odigia_wrap").toggle();
+})
+
+$("#field_25_apofasi").on("change", function(ev){
+    $("#apofasi_wrap").toggle();
+})
+
+$("#field_26_antrwpina_dikaiwmata").on("change", function(ev){
+    $("#antrwpina_dikaiwmata_wrap").toggle();
+})
+
+$("#field_26_symvaseis").on("change", function(ev){
+    $("#symvaseis_wrap").toggle();
+})
+
+$("#field_27_dikastirio").on("change", function(ev){
+    $("#dikastirio_wrap").toggle();
+})
+
+$("#field_27_arxi").on("change", function(ev){
+    $("#arxi_wrap").toggle();
+})
+
+$("#field_28_nomologia").on("change", function(ev){
+    $("#nomologia_wrap").toggle();
+})
+
+$("#field_28_nomologia_dikaiwmatwn_anthrwpou").on("change", function(ev){
+    $("#nomologia_dikaiwmatwn_anthrwpou_wrap").toggle();
+})
+
+$("#field_28_alla_dikastiria").on("change", function(ev){
+    $("#alla_dikastiria_wrap").toggle();
+})
+
+$("#field_4").on("click", function(ev){
     if($(this).val()=="yes"){
         $("#field_4_wrap").show();
     }else{
