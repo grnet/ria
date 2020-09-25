@@ -1,0 +1,79 @@
+<fieldset>
+
+    <h2>Η. Έκθεση εφαρμογής της ρύθμισης</h2>
+    <br>
+    <p>Todo: Tables 31, 32</p>
+    <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενη φόρμα"/>
+    <input type="button" name="next" class="next action-button" value="Επόμενα πεδία"/>
+</fieldset>
+
+<fieldset>    
+
+    <label>Ανάγκη σύστασης νέου νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας υπηρεσίας</label>
+    <div class="form-group">
+        <br>
+        <label for="field_33">33.Ποιες διατάξεις της αξιολογούμενης ρύθμισης προβλέπουν τη σύσταση νέου
+            νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας υπηρεσίας;</label>
+        <textarea class="form-control" id="field_33" name="field_33" rows="5"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="field_34">34.Γιατί προτείνεται η σύσταση αυτού του νέου οργάνου και δεν επαρκούν οι
+            υφιστάμενες διοικητικές δομές για να επιτευχθεί ο στόχος της αξιολογούμενης ρύθμισης;</label>
+        <textarea class="form-control" id="field_34" name="field_34" rows="5"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="field_35">35.Χρόνος έναρξης λειτουργίας του νέου οργάνου:</label>
+        <textarea class="form-control" id="field_35" name="field_35" rows="5"></textarea>
+    </div>
+
+    <div class="checkbox-group form-group row">
+        <label for="field_36" class="col-sm-8 col-form-label">6. Έχει γίνει η σχετική οικονομοτεχνική μελέτη αναφορικά με τη σύσταση
+            του νέου οργάνου;</label>
+        <select id="field_36" name="field_36" class="col-sm-2 form-control">
+            <option selected disabled>Eπιλογή</option>
+            <option value="yes">Ναι</option>
+            <option value="no" >Όχι</option>
+        </select>
+
+        <div id="field_36_wrap" class="form-group" style="display:none;">
+            <label for="field_36_upload">Εάν ΝΑΙ, να επισυναφθεί ηλεκτρονικά.</label>
+            <br>
+            <input type="file" id="field_36_upload" name="field_36_upload" accept=".pdf, .doc" multiple> 
+        </div>    
+    </div>
+
+    <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενα πεδία"/>
+    <input type="button" name="next" class="next action-button" value="Επόμενα πεδία"/>
+
+</fieldset>
+
+<fieldset>
+
+    <label>Στοιχεία νέου νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας υπηρεσίας</label>
+    <div class="form-group">
+        <br>
+        <label for="field_37">37.Επωνυμία ή ονομασία και νομική μορφή</label>
+        <textarea class="form-control" id="field_37" name="field_37" rows="3"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="field_38">38.Χώρος λειτουργίας του νέου οργάνου</label>
+        <textarea class="form-control" id="field_38" name="field_38" rows="3"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="field_39">39.Διασφάλιση επαρκούς υλικοτεχνικού & ηλεκτρονικού εξοπλισμού</label>
+        <textarea class="form-control" id="field_39" name="field_39" rows="3"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="field_40">40.Τρόπος στελέχωσης του νέου οργάνου</label>
+        <textarea class="form-control" id="field_40" name="field_40" rows="3"></textarea>
+    </div>
+    
+    <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενα πεδία"/>
+    <input type="submit" name="create_new" class="action-button" value="Υποβολή"/>
+
+</fieldset>

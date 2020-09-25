@@ -1,0 +1,46 @@
+<fieldset>
+
+    <h2>Ε. Έκθεση διαβούλευσης</h2>
+    <br>
+    <div class="form-group">
+        <label>22.Διαβούλευση κατά τη διάρκεια της νομοπαρασκευαστικής διαδικασίας
+            από την έναρξη κατάρτισης της αξιολογούμενης ρύθμισης μέχρι την
+            υπογραφή από τους συναρμόδιους Υπουργούς.</label>
+        <label for="field_22_sinergasia_ypoyrgeiwn">Συνεργασία με άλλα υπουργεία / υπηρεσίες</label>
+        <textarea class="form-control" id="field_22_sinergasia_ypoyrgeiwn" name="field_22_sinergasia_ypoyrgeiwn" rows="5"><%= data.field_22_sinergasia_ypoyrgeiwn %></textarea>
+    </div>
+    <div>
+        <label for="field_22_sinergasia_forewn_arxwn">Συνεργασία με κοινωνικούς φορείς / Ανεξάρτητες Αρχές</label>
+        <textarea class="form-control" id="field_22_sinergasia_forewn_arxwn" name="field_22_sinergasia_forewn_arxwn" rows="5"><%= data.field_22_sinergasia_forewn_arxwn %></textarea>
+    </div>
+
+    <div>
+        <label for="field_22_diethnis_diavouleusi">Διεθνής διαβούλευση</label>
+        <textarea class="form-control" id="field_22_diethnis_diavouleusi" name="field_22_diethnis_diavouleusi" rows="5"><%= data.field_22_diethnis_diavouleusi %></textarea>
+    </div>
+
+    <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενη φόρμα"/>
+    <input type="button" name="next" class="next action-button" value="Επόμενα πεδία"/>
+
+</fieldset>
+
+<fieldset>
+
+    <label for="field_23_upload">23.Σχόλια στο πλαίσιο της διαβούλευσης μέσω της ηλεκτρονικής πλατφόρμας
+        www.opengov.gr (ηλεκτρονική επισύναψη της έκθεσης). </label>
+    <input type="file" id="field_23_upload" name="field_23_upload" accept=".pdf, .doc" multiple> 
+    
+    <div class="form-group">
+        <label for="field_23__epi_arxis_comments">Επί των γενικών αρχών («επί της αρχής») της αξιολογούμενης ρύθμισης:</label>
+        <textarea class="form-control" id="field_23__epi_arxis_comments" name="field_23__epi_arxis_comments" rows="3"><%= data.field_23__epi_arxis_comments %></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="field_23__epi_arthrwn_comments">Επί των άρθρων της αξιολογούμενης ρύθμισης:</label>
+        <textarea class="form-control" id="field_23__epi_arthrwn_comments" name="field_23__epi_arthrwn_comments" rows="3" ><%= data.field_23__epi_arthrwn_comments %></textarea>
+    </div>
+
+    <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενα πεδία"/>
+    <input type="button" name="next" class="next action-button" value="Επόμενη φόρμα"/>
+    
+</fieldset>

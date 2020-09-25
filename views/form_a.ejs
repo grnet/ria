@@ -182,38 +182,70 @@
                                 <label  class="col-form-label">7. Σημειώστε ποιοι από τους στόχους βιώσιμης ανάπτυξης των Ηνωμένων Εθνών επιδιώκονται με την αξιολογούμενη ρύθμιση</label>
                                 <div class="flex-form-group form-group">
                                     <div class="wrap">
-                                      <input id="goal_1" class="checkbox-inline" type="checkbox" name="field_7_goal_1" value="goal_1">
+                                        <% if(data.field_7_goal_1){ %>
+                                            <input id="goal_1" class="checkbox-inline" type="checkbox" name="field_7_goal_1" value="data.field_7_goal_1" checked disabled>
+                                        <% }else{ %>
+                                            <input  id="goal_1" class="checkbox-inline" type="checkbox" name="field_7_goal_1" value="goal_1" disabled>
+                                        <% } %>
                                       <label for="goal_1" class="checkbox-label"><img src="/img/gr-goal-1.jpg" width="100px"></label>
                                     </div>
                                     <div class="wrap">
-                                      <input id="goal_2" class="checkbox-inline" type="checkbox" name="field_7_goal_2" value="goal_2">
+                                        <% if(data.field_7_goal_2){ %>
+                                            <input id="goal_2" class="checkbox-inline" type="checkbox" name="field_7_goal_2" value="data.field_7_goal_2" checked disabled>
+                                        <% }else{ %>
+                                            <input  id="goal_2" class="checkbox-inline" type="checkbox" name="field_7_goal_2" value="goal_2" disabled>
+                                        <% } %>
                                       <label for="goal_2" class="checkbox-label"><img src="/img/gr-goal-2.jpg" width="100px"></label>
                                     </div>
                                     <div class="wrap">
-                                      <input id="goal_3" class="checkbox-inline" type="checkbox" name="field_7_goal_3" value="goal_3">
+                                        <% if(data.field_7_goal_3){ %>
+                                            <input id="goal_3" class="checkbox-inline" type="checkbox" name="field_7_goal_3" value="data.field_7_goal_3" checked disabled>
+                                        <% }else{ %>
+                                            <input  id="goal_3" class="checkbox-inline" type="checkbox" name="field_7_goal_3" value="goal_3" disabled>
+                                        <% } %>
                                       <label for="goal_3" class="checkbox-label"><img src="/img/gr-goal-3.jpg" width="100px"></label>
                                     </div>
                                     <div class="wrap">
-                                      <input id="goal_4" class="checkbox-inline" type="checkbox" name="field_7_goal_4" value="goal_4">
+                                        <% if(data.field_7_goal_4){ %>
+                                            <input id="goal_14" class="checkbox-inline" type="checkbox" name="field_7_goal_4" value="data.field_7_goal_4" checked disabled>
+                                        <% }else{ %>
+                                            <input  id="goal_4" class="checkbox-inline" type="checkbox" name="field_7_goal_4" value="goal_4" disabled>
+                                        <% } %> 
                                       <label for="goal_4" class="checkbox-label"><img src="/img/gr-goal-4.jpg" width="100px"></label>
                                     </div>
                                   
                                 </div>
                                 <div class="flex-form-group form-group">
                                     <div class="wrap">
-                                        <input id="goal_5" class="checkbox-inline" type="checkbox" name="field_7_goal_5" value="goal_5">
+                                        <% if(data.field_7_goal_5){ %>
+                                            <input id="goal_5" class="checkbox-inline" type="checkbox" name="field_7_goal_5" value="data.field_7_goal_5" checked disabled>
+                                        <% }else{ %>
+                                            <input  id="goal_5" class="checkbox-inline" type="checkbox" name="field_7_goal_5" value="goal_5" disabled>
+                                        <% } %>
                                         <label for="goal_5" class="checkbox-label"><img src="/img/gr-goal-5.jpg" width="100px"></label>
                                     </div>
                                     <div class="wrap">
-                                        <input id="goal_6" class="checkbox-inline" type="checkbox" name="field_7_goal_6" value="goal_6">
+                                        <% if(data.field_7_goal_6){ %>
+                                            <input id="goal_6" class="checkbox-inline" type="checkbox" name="field_7_goal_6" value="data.field_7_goal_6" checked disabled>
+                                        <% }else{ %>
+                                            <input  id="goal_6" class="checkbox-inline" type="checkbox" name="field_7_goal_6" value="goal_6" disabled>
+                                        <% } %>
                                         <label for="goal_6" class="checkbox-label"><img src="/img/gr-goal-6.jpg" width="100px"></label>
                                     </div>
                                     <div class="wrap">
-                                        <input id="goal_7" class="checkbox-inline" type="checkbox" name="field_7_goal_7" value="goal_7">
+                                        <% if(data.field_7_goal_7){ %>
+                                            <input id="goal_7" class="checkbox-inline" type="checkbox" name="field_7_goal_7" value="data.field_7_goal_7" checked disabled>
+                                        <% }else{ %>
+                                            <input  id="goal_7" class="checkbox-inline" type="checkbox" name="field_7_goal_7" value="goal_7" disabled>
+                                        <% } %>
                                         <label for="goal_7" class="checkbox-label"><img src="/img/gr-goal-7.jpg" width="100px"></label>
                                     </div>
                                     <div class="wrap">
-                                        <input id="goal_8" class="checkbox-inline" type="checkbox" name="field_7_goal_8" value="goal_8">
+                                        <% if(data.field_7_goal_8){ %>
+                                            <input id="goal_8" class="checkbox-inline" type="checkbox" name="field_7_goal_8" value="data.field_7_goal_8" checked disabled>
+                                        <% }else{ %>
+                                            <input  id="goal_8" class="checkbox-inline" type="checkbox" name="field_7_goal_8" value="goal_8" disabled>
+                                        <% } %>
                                         <label for="goal_8" class="checkbox-label"><img src="/img/gr-goal-8.jpg" width="100px"></label>
                                     </div>
                                 
@@ -221,43 +253,79 @@
                 
                                 <div class="flex-form-group form-group">
                                     <div class="wrap">
-                                        <input id="goal_9" class="checkbox-inline" type="checkbox" name="field_7_goal_9" value="goal_9">
+                                        <% if(data.field_7_goal_9){ %>
+                                            <input id="goal_9" class="checkbox-inline" type="checkbox" name="field_7_goal_9" value="data.field_7_goal_9" checked disabled>
+                                        <% }else{ %>
+                                            <input  id="goal_9" class="checkbox-inline" type="checkbox" name="field_7_goal_9" value="goal_9" disabled>
+                                        <% } %>
                                         <label for="goal_9" class="checkbox-label"><img src="/img/gr-goal-9.jpg" width="100px"></label>
                                     </div>
                                     <div class="wrap">
-                                        <input id="goal_10" class="checkbox-inline" type="checkbox" name="field_7_goal_10" value="goal_10">
+                                        <% if(data.field_7_goal_10){ %>
+                                            <input id="goal_10" class="checkbox-inline" type="checkbox" name="field_7_goal_10" value="data.field_7_goal_10" checked disabled>
+                                        <% }else{ %>
+                                            <input  id="goal_10" class="checkbox-inline" type="checkbox" name="field_7_goal_10" value="goal_10" disabled>
+                                        <% } %>
                                         <label for="goal_10" class="checkbox-label"><img src="/img/10.png" width="100px"></label>
                                     </div>
                                     <div class="wrap">
-                                        <input id="goal_11" class="checkbox-inline" type="checkbox" name="field_7_goal_11" value="goal_11">
+                                        <% if(data.field_7_goal_11){ %>
+                                            <input id="goal_11" class="checkbox-inline" type="checkbox" name="field_7_goal_11" value="data.field_7_goal_11" checked disabled>
+                                        <% }else{ %>
+                                            <input  id="goal_11" class="checkbox-inline" type="checkbox" name="field_7_goal_11" value="goal_11" disabled>
+                                        <% } %>
                                         <label for="goal_11" class="checkbox-label"><img src="/img/gr-goal-11.jpg" width="100px"></label>
                                     </div>
                                     <div class="wrap">
-                                        <input id="goal_12" class="checkbox-inline" type="checkbox" name="field_7_goal_12" value="goal_12">
+                                        <% if(data.field_7_goal_12){ %>
+                                            <input id="goal_12" class="checkbox-inline" type="checkbox" name="field_7_goal_12" value="data.field_7_goal_12" checked disabled>
+                                        <% }else{ %>
+                                            <input  id="goal_12" class="checkbox-inline" type="checkbox" name="field_7_goal_12" value="goal_12" disabled>
+                                        <% } %>
                                         <label for="goal_12" class="checkbox-label"><img src="/img/gr-goal-12.jpg" width="100px"></label>
                                     </div>
                                 </div>
                                 <div class="flex-form-group form-group">
                                     <div class="wrap">
-                                        <input id="goal_13" class="checkbox-inline" type="checkbox" name="field_7_goal_13" value="goal_13">
+                                        <% if(data.field_7_goal_13){ %>
+                                            <input id="goal_13" class="checkbox-inline" type="checkbox" name="field_7_goal_13" value="data.field_7_goal_13" checked disabled>
+                                        <% }else{ %>
+                                            <input  id="goal_13" class="checkbox-inline" type="checkbox" name="field_7_goal_13" value="goal_13" disabled>
+                                        <% } %>
                                         <label for="goal_13" class="checkbox-label"><img src="/img/gr-goal-13.jpg" width="100px"></label>
                                     </div>
                                     <div class="wrap">
-                                        <input id="goal_14" class="checkbox-inline" type="checkbox" name="field_7_goal_14" value="goal_14">
+                                        <% if(data.field_7_goal_14){ %>
+                                            <input id="goal_14" class="checkbox-inline" type="checkbox" name="field_7_goal_14" value="data.field_7_goal_14" checked disabled>
+                                        <% }else{ %>
+                                            <input  id="goal_14" class="checkbox-inline" type="checkbox" name="field_7_goal_14" value="goal_14" disabled>
+                                        <% } %>
                                         <label for="goal_14" class="checkbox-label"><img src="/img/gr-goal-14.jpg" width="100px"></label>
                                     </div>
                                     <div class="wrap">
-                                        <input id="goal_15" class="checkbox-inline" type="checkbox" name="field_7_goal_15" value="goal_15">
+                                        <% if(data.field_7_goal_15){ %>
+                                            <input id="goal_15" class="checkbox-inline" type="checkbox" name="field_7_goal_15" value="data.field_7_goal_15" checked disabled>
+                                        <% }else{ %>
+                                            <input  id="goal_15" class="checkbox-inline" type="checkbox" name="field_7_goal_15" value="goal_15" disabled>
+                                        <% } %>
                                         <label for="goal_15" class="checkbox-label"><img src="/img/gr-goal-15.jpg" width="100px"></label>
                                     </div>
                                     <div class="wrap">
-                                        <input id="goal_16" class="checkbox-inline" type="checkbox" name="field_7_goal_16" value="goal_16">
+                                        <% if(data.field_7_goal_16){ %>
+                                            <input id="goal_16" class="checkbox-inline" type="checkbox" name="field_7_goal_16" value="data.field_7_goal_16" checked disabled>
+                                        <% }else{ %>
+                                            <input  id="goal_16" class="checkbox-inline" type="checkbox" name="field_7_goal_16" value="goal_16" disabled>
+                                        <% } %>
                                         <label for="goal_16" class="checkbox-label"><img src="/img/gr-goal-16.jpg" width="100px"></label>
                                     </div>
                                 </div>
                                 <div class="flex-form-group form-group">
                                     <div class="wrap">
-                                        <input id="goal_17" class="checkbox-inline" type="checkbox" name="field_7_goal_17" value="goal_17">
+                                        <% if(data.field_7_goal_17){ %>
+                                            <input id="goal_17" class="checkbox-inline" type="checkbox" name="field_7_goal_17" value="data.field_7_goal_17" checked disabled>
+                                        <% }else{ %>
+                                            <input  id="goal_17" class="checkbox-inline" type="checkbox" name="field_7_goal_17" value="goal_17" disabled>
+                                        <% } %>
                                         <label for="goal_17" class="checkbox-label"><img src="/img/gr-goal-17.jpg" width="100px"></label>
                                     </div>
                                 </div>
@@ -368,7 +436,11 @@
 
                         <%- include('form_viewing/view_form_b.ejs') %>  
                         <%- include('form_viewing/view_form_c.ejs') %> 
+                        <%- include('form_viewing/view_form_d.ejs') %>
+                        <%- include('form_viewing/view_form_e.ejs') %>
                         <%- include('form_viewing/view_form_f.ejs') %>
+                        <%- include('form_viewing/view_form_g.ejs') %>
+                        <%- include('form_viewing/view_form_h.ejs') %>
                     </form>
                  
             

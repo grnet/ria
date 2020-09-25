@@ -4,6 +4,7 @@ const { ekthesis_arthrwn_sintagmatos } = require("../services/database");
 module.exports = (sequelize, DataTypes) => {
     var ekthesis_arthrwn_sintagmatos = sequelize.define('ekthesis_arthrwn_sintagmatos', {
 
+        author_id: DataTypes.STRING,
         field_15_ypoyrgeio: DataTypes.STRING,
         field_15_sxedio_nomou: DataTypes.STRING,
         field_15_analysi: DataTypes.STRING,

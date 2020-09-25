@@ -27,6 +27,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname,'public/js')));
+//app.use('js',express.static(path.join(__dirname,'/js/')));
 
 app.use('/', homeRoute);
 app.use('/dashboard', dashboardRoute);
