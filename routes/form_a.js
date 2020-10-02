@@ -5,7 +5,7 @@ routes.get('/:entry_id', async (req,res,next) =>{
     
     let entry = await database.aitiologiki_ekthesi.findOne({where:{
         id: req.params.entry_id
-    }, include: [{model: database.stoxoi_tomea_nomothetisis}]
+    }//, include: [{model: database.stoxoi_tomea_nomothetisis}]
     })
     if(entry && entry.dataValues){
         res.render("form_a",{data:entry.dataValues})

@@ -10,6 +10,9 @@ let dashboardRoute = require('./routes/dashboard')
 let createRoute = require('./routes/create')
 let form_aRoute = require('./routes/form_a')
 let database = require('./services/database')
+let usersRoute = require('./routes/users')
+let adminDashboardRoute = require('./routes/admin_dashboard')
+
 
 const app = express(); //app init
 
@@ -27,13 +30,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname,'public/js')));
+//app.use(express.static(path.join(__dirname,'public/js')));
 //app.use('js',express.static(path.join(__dirname,'/js/')));
 
 app.use('/', homeRoute);
 app.use('/dashboard', dashboardRoute);
 app.use('/create', createRoute);
-app.use('/form_a', form_aRoute)
+app.use('/users', usersRoute);//yay this works!
+app.use('/form_a', form_aRoute);
+app.use('/admin_dashboard', adminDashboardRoute);
 
 
 app.listen(3000, () => {

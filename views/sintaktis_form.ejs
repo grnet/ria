@@ -5,7 +5,7 @@
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <form>
+        <form enctype="multipart/form-data"> 
             <h1>Αιτιολογική έκθεση</h1>
             <hr>
             <br><br>
@@ -266,7 +266,8 @@
                             <input type="text" size="10" id="anaskafes_year5" name="anaskafes_year5" placeholder="έτος 5"/></td>
                         <td><input type="text" id="anaskafes_prosfata_stoixeia" name="anaskafes_prosfata_stoixeia" size="10"/></td>
                         <td><input type="text" id="anaskafes_epidiwkomenos_stoxos" name="anaskafes_epidiwkomenos_stoxos" size="10"/></td>
-                      </tr>
+                            <input type="hidden" id="anaskafes_json" name= "anaskafes_json">
+                        </tr>
                       <tr>
                         <th colspan="1">Χρηματοδοτήσεις ανασκαφών, κατά φορέα, και ποσά που διατέθηκαν</th>
                         <td><input type="text" size="10" id="anaskafes_posa_year1" name="anaskafes_posa_year1" placeholder="έτος 1"/>
@@ -394,7 +395,22 @@
             <fieldset>
                 <h2>14.Κατ’ άρθρο ανάλυση αξιολογούμενης ρύθμισης</h2>
                 <br>
-                <p>Todo</p>
+                <label for="field_14_table">Σύνοψη στόχων κάθε άρθρου</label>
+                <table class="table" id="field_14_table">
+                    <thead class="thead">
+                      <tr>
+                        <th colspan="1">Άρθρο</th>
+                        <th colspan="1">Στόχος</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      
+                    </tbody>
+                  </table>
+
+                <input type="button" name="add_row_field_14" class="float-right" value="Επιπλέον σειρά" />
+                <input type="button" name="remove_row_field_14" class="float-right" value="Αφαίρεση σειράς" />
+                <br><br><br>
                 <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενα πεδία"/>
                 <input type="button" name="next" class="next action-button" value="Επόμενη φόρμα"/>
             </fieldset>
@@ -519,8 +535,9 @@
 
 $("form").on("submit",function(ev){
     ev.preventDefault();
-    console.log($(this).serialize())//comment this line out to hide query wrote in db
-
+   // console.log($(this).serialize())//comment this line out to hide query wrote in db
+    var tmp = $("amesa_esoda").val();
+    console.log("VALUE OF HIDDEN amesa_esoda IS: " + tmp)
     $.ajax({
         url: '/create',
         data:$(this).serialize(),
@@ -528,6 +545,7 @@ $("form").on("submit",function(ev){
             console.log(error)
         },
         success: function(data) {
+            console.log(data)
             window.location.href="/dashboard"
         },
         type: 'POST'
@@ -536,7 +554,7 @@ $("form").on("submit",function(ev){
 
 $("#ekpedeusi_politismos").click( function(ev){
     if(this.checked) {
-        $("#politismos_table").show();
+        $("#politismos_table").show();0
     }    
 })
 
@@ -642,14 +660,18 @@ $("#field_36").on("change", function(ev){
 
 var current_fs, next_fs, previous_fs; //fieldsets
 
+$("add_row_field_14").click(function(){
+    $("field_14_table tbody").append('<tr><td><textarea class="form-control" name="field_14_arthro" id="field_14_arthro"></textarea></td></tr>')
+})
+
 
 $(".next").click(function(){
 	current_fs = $(this).parent();
 	next_fs = $(this).parent().next();
-	
+    
 	//activate next step on progressbar using the index of next_fs
 	$("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
-	
+
 	//show the next fieldset
 	next_fs.show(); 
 	//hide the current fieldset with style

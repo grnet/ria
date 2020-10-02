@@ -1,7 +1,8 @@
 const routes = require('express').Router()
 let database = require("../services/database")
 routes.get('/', function(req,res,next){
-    res.render("create_b")
+    console.log("USERS GET WORKS!")
+    res.render("create")
 });
 
 routes.post('/', async function(req,res,next){

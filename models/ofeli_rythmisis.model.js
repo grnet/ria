@@ -13,6 +13,8 @@ module.exports = (sequelize, DataTypes) => {
         diafania_thesmwn: DataTypes.JSON,
         diaxirisi_kindynwn: DataTypes.JSON,
         emmesa_allo: DataTypes.JSON,
+    }, {   
+        freezeTableName: true //table name same as model name
     });
     return ofeli_rythmisis;
 }
