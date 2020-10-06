@@ -6,9 +6,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <form enctype="multipart/form-data"> 
-            <h1>Αιτιολογική έκθεση</h1>
-            <hr>
-            <br><br>
 
             <fieldset>
                 <br>
@@ -244,78 +241,7 @@
                 <input type="button" name="next" class="next action-button" value="Επόμενα πεδία"/>
             </fieldset>
 
-            <fieldset>
-
-                <h2>9.Ειδικότεροι στόχοι ανάλογα με τον τομέα νομοθέτησης</h2>
-                <table class="table" id="politismos_table" style="display: none;">
-                    <thead class="thead-dark">
-                      <tr>
-                        <th colspan="1">ΠΟΛΙΤΙΣΜΟΣ</th>
-                        <th colspan="1">Εξέλιξη την τελευταία 5ετία</th>
-                        <th colspan="1">Πρόσφατα στοιχεία</th>
-                        <th colspan="1">Επιδιωκόμενος στόχος (3ετία)</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th colspan="1">Πραγματοποιηθείσες ανασκαφές, κατά είδος και αποτελέσματα, και αριθμός ευρημάτων</th>
-                        <td><input type="text" size="10" id="anaskafes_year1" name="anaskafes_year1" placeholder="έτος 1"/>
-                            <input type="text" size="10" id="anaskafes_year2" name="anaskafes_year2" placeholder="έτος 2"/>
-                            <input type="text" size="10" id="anaskafes_year3" name="anaskafes_year3" placeholder="έτος 3"/>
-                            <input type="text" size="10" id="anaskafes_year4" name="anaskafes_year4" placeholder="έτος 4"/>
-                            <input type="text" size="10" id="anaskafes_year5" name="anaskafes_year5" placeholder="έτος 5"/></td>
-                        <td><input type="text" id="anaskafes_prosfata_stoixeia" name="anaskafes_prosfata_stoixeia" size="10"/></td>
-                        <td><input type="text" id="anaskafes_epidiwkomenos_stoxos" name="anaskafes_epidiwkomenos_stoxos" size="10"/></td>
-                            <input type="hidden" id="anaskafes_json" name= "anaskafes_json">
-                        </tr>
-                      <tr>
-                        <th colspan="1">Χρηματοδοτήσεις ανασκαφών, κατά φορέα, και ποσά που διατέθηκαν</th>
-                        <td><input type="text" size="10" id="anaskafes_posa_year1" name="anaskafes_posa_year1" placeholder="έτος 1"/>
-                            <input type="text" size="10" id="anaskafes_posa_year2" name="anaskafes_posa_year2" placeholder="έτος 2"/>
-                            <input type="text" size="10" id="anaskafes_posa_year3" name="anaskafes_posa_year3" placeholder="έτος 3"/>
-                            <input type="text" size="10" id="anaskafes_posa_year4" name="anaskafes_posa_year4" placeholder="έτος 4"/>
-                            <input type="text" size="10" id="anaskafes_posa_year5" name="anaskafes_posa_year5" placeholder="έτος 5"/></td>
-                        <td><input type="text" id="anaskafes_posa_prosfata_stoixeia" name="anaskafes_posa_prosfata_stoixeia" size="10"/></td>
-                        <td><input type="text" id="anaskafes_posa_epidiwkomenos_stoxos" name="anaskafes_posa_epidiwkomenos_stoxos" size="10"/></td>
-                      </tr>
-                      <tr>
-                        <th colspan="1">Χρηματοδοτήσεις ανασκαφών, κατά φορέα, και ποσά που διατέθηκαν</th>
-                        <td><input type="text" size="10" id="anaskafes_pistwseis_year1" name="anaskafes_pistwseis_year1" placeholder="έτος 1"/>
-                            <input type="text" size="10" id="anaskafes_pistwseis_year2" name="anaskafes_pistwseis_year2" placeholder="έτος 2"/>
-                            <input type="text" size="10" id="anaskafes_pistwseis_year3" name="anaskafes_pistwseis_year3" placeholder="έτος 3"/>
-                            <input type="text" size="10" id="anaskafes_pistwseis_year4" name="anaskafes_pistwseis_year4" placeholder="έτος 4"/>
-                            <input type="text" size="10" id="anaskafes_pistwseis_year5" name="anaskafes_pistwseis_year5" placeholder="έτος 5"/></td>
-                        <td><input type="text" id="anaskafes_pistwseis_prosfata_stoixeia" name="anaskafes_pistwseis_prosfata_stoixeia" size="10"/></td>
-                        <td><input type="text" id="anaskafes_pistwseis_epidiwkomenos_stoxos" name="anaskafes_pistwseis_epidiwkomenos_stoxos" size="10"/></td>
-                      </tr>
-                      <tr>
-                        <th colspan="1">Κήρυξη αρχαιολογικών χώρων, μνημείων, παραδοσιακών και ιστορικών οικισμών</th>
-                        <td><input type="text" size="10" id="anaskafes_kiriksi_year1" name="anaskafes_kiriksi_year1" placeholder="έτος 1"/>
-                            <input type="text" size="10" id="anaskafes_kiriksi_year2" name="anaskafes_kiriksi_year2" placeholder="έτος 2"/>
-                            <input type="text" size="10" id="anaskafes_kiriksi_year3" name="anaskafes_kiriksi_year3" placeholder="έτος 3"/>
-                            <input type="text" size="10" id="anaskafes_kiriksi_year4" name="anaskafes_kiriksi_year4" placeholder="έτος 4"/>
-                            <input type="text" size="10" id="anaskafes_kiriksi_year5" name="anaskafes_kiriksi_year5" placeholder="έτος 5"/></td>
-                        <td><input type="text" id="anaskafes_kiriksi_prosfata_stoixeia" name="anaskafes_kiriksi_prosfata_stoixeia" size="10"/></td>
-                        <td><input type="text" id="anaskafes_kiriksi_epidiwkomenos_stoxos" name="anaskafes_kiriksi_epidiwkomenos_stoxos" size="10"/></td>
-                      </tr>
-                      <tr>
-                        <th colspan="1">Πραγματοποιηθείσες απαλλοτριώσεις και καταβληθείσες αποζημιώσεις, για ακίνητα αρχαιολογικού ενδιαφέροντος</th>
-                        <td><input type="text" size="10" id="anaskafes_apallotriwseis_year1" name="anaskafes_apallotriwseis_year1" placeholder="έτος 1"/>
-                            <input type="text" size="10" id="anaskafes_apallotriwseis_year2" name="anaskafes_apallotriwseis_year2" placeholder="έτος 2"/>
-                            <input type="text" size="10" id="anaskafes_apallotriwseis_year3" name="anaskafes_apallotriwseis_year3" placeholder="έτος 3"/>
-                            <input type="text" size="10" id="anaskafes_apallotriwseis_year4" name="anaskafes_apallotriwseis_year4" placeholder="έτος 4"/>
-                            <input type="text" size="10" id="anaskafes_apallotriwseis_year5" name="anaskafes_apallotriwseis_year5" placeholder="έτος 5"/></td>
-                        <td><input type="text" id="anaskafes_apallotriwseis_prosfata_stoixeia" name="anaskafes_apallotriwseis_prosfata_stoixeia" size="10"/></td>
-                        <td><input type="text" id="anaskafes_apallotriwseis_epidiwkomenos_stoxos" name="anaskafes_apallotriwseis_epidiwkomenos_stoxos" size="10"/></td>
-                      </tr>
-                      <tr>
-                      <tr>
-                    </tbody>
-                  </table>
-
-                <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενα πεδία"/>
-                <input type="button" name="next" class="next action-button" value="Επόμενα πεδία"/>
-            </fieldset>
+            <%- include('fill_form/field_9.ejs') %>
 
             <fieldset>
                 <h2>Ψηφιακή διακυβέρνηση</h2>
@@ -393,11 +319,13 @@
             </fieldset>
 
             <fieldset>
-                <h2>14.Κατ’ άρθρο ανάλυση αξιολογούμενης ρύθμισης</h2>
+                <h2>Κατ’ άρθρο ανάλυση αξιολογούμενης ρύθμισης</h2>
                 <br>
-                <label for="field_14_table">Σύνοψη στόχων κάθε άρθρου</label>
                 <table class="table" id="field_14_table">
                     <thead class="thead">
+                        <tr>
+                            <th colspan="2">14.Σύνοψη στόχων κάθε άρθρου</th>
+                        </tr>  
                       <tr>
                         <th colspan="1">Άρθρο</th>
                         <th colspan="1">Στόχος</th>
@@ -415,13 +343,13 @@
                 <input type="button" name="next" class="next action-button" value="Επόμενη φόρμα"/>
             </fieldset>
 
-            <%- include('form_filling/fill_form_b.ejs') %>
-            <%- include('form_filling/fill_form_c.ejs') %> 
-            <%- include('form_filling/fill_form_d.ejs') %>
-            <%- include('form_filling/fill_form_e.ejs') %>
-            <%- include('form_filling/fill_form_f.ejs') %>
-            <%- include('form_filling/fill_form_g.ejs') %>
-            <%- include('form_filling/fill_form_h.ejs') %>
+            <%- include('fill_form/fill_form_b.ejs') %>
+            <%- include('fill_form/fill_form_c.ejs') %> 
+            <%- include('fill_form/fill_form_d.ejs') %>
+            <%- include('fill_form/fill_form_e.ejs') %>
+            <%- include('fill_form/fill_form_f.ejs') %>
+            <%- include('fill_form/fill_form_g.ejs') %>
+            <%- include('fill_form/fill_form_h.ejs') %>
 
         </form>   
 
@@ -554,10 +482,45 @@ $("form").on("submit",function(ev){
 
 $("#ekpedeusi_politismos").click( function(ev){
     if(this.checked) {
-        $("#politismos_table").show();0
+        $("#politismos_table").show();
+        $("#ekpaideysi_table").show();
     }    
 })
 
+$("#forologiki_politiki").click( function(ev){
+    if(this.checked) {
+        $("#oikonomia_table").show();
+        $("#forologia_table").show();
+        $("#ergasiakes_sxeseis_table").show();      
+    }    
+})
+
+$("#koinoniki_politiki").click( function(ev){
+    if(this.checked) {
+        $("#apasxolisi_table").show();
+        $("#koinwniki_asfalisi_table").show();
+        $("#koinwniki_pronoia_table").show();
+        $("#ygeia_table").show();      
+        $("#isotita_fylwn_table").show();   
+        $("#metanasteytiki_prisfygiki_politiki_table").show();      
+    }    
+})
+
+$("#dimosia_dioikisi").click( function(ev){
+    if(this.checked) {
+        $("#dimosia_dioikisi_table").show();
+        $("#dimosia_asfaleia_table").show();
+        $("#dikaiosini_table").show();     
+    }    
+})
+
+$("#anaptiksi").click( function(ev){
+    if(this.checked) {
+        $("#ependytiki_drastiriotita_table").show();
+        $("#perivallon_energeia_table").show();     
+    }    
+})
+anaptiksi
 $("#field_10_emmesi").on("change", function(ev){
     $("#emesi_wrap").toggle();
 })

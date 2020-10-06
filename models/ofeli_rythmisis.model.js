@@ -2,7 +2,12 @@ const {ofeli_rythmisis } = require("../services/database");
 
 module.exports = (sequelize, DataTypes) => {
     var ofeli_rythmisis = sequelize.define('ofeli_rythmisis', {
-        //article_id: DataTypes.STRING,
+        id: {
+            primaryKey: true,
+            autoIncrement: true,
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
         auksisi_esodwn: DataTypes.JSON,
         meiwsi_dapanwn: DataTypes.JSON,
         eksikonomisi_xronou: DataTypes.JSON,

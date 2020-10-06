@@ -1,8 +1,14 @@
 'use strict';
-const { aitiologiki_ekthesi } = require("../services/database");
+const { ekthesi } = require("../services/database");
 
 module.exports = (sequelize, DataTypes) => {
-    var aitiologiki_ekthesi = sequelize.define('aitiologiki_ekthesi', {
+    var ekthesi = sequelize.define('ekthesi', {
+        id: {
+            primaryKey: true,
+            autoIncrement: true,
+            type: DataTypes.INTEGER,
+            allowNull: false,
+          },
         author_id: DataTypes.STRING,
         title: DataTypes.STRING,
 
@@ -121,5 +127,5 @@ module.exports = (sequelize, DataTypes) => {
         freezeTableName: true //table name same as model name
     });
 
-    return aitiologiki_ekthesi;
+    return ekthesi;
   };
