@@ -31,7 +31,7 @@ async function field18_row1(req) {
     console.log("emmesa_allo: " + emmesa_allo)
     //map variables to model's fields
     await database.ofeli_rythmisis.create({auksisi_esodwn: auksisi_esodwn, meiwsi_dapanwn: meiwsi_dapanwn, eksikonomisi_xronou: eksikonomisi_xronou, apodotikotita: apodotikotita, amesa_allo: amesa_allo,
-        veltiwsi_ypiresiwn: veltiwsi_ypiresiwn, metaxirisi_politwn: metaxirisi_politwn, diafania_thesmwn: diafania_thesmwn, diaxirisi_kindynwn: diaxirisi_kindynwn, emmesa_allo: emmesa_allo }, req.body)  
+        veltiwsi_ypiresiwn: veltiwsi_ypiresiwn, metaxirisi_politwn: metaxirisi_politwn, diafania_thesmwn: diafania_thesmwn, diaxirisi_kindynwn: diaxirisi_kindynwn, emmesa_allo: emmesa_allo })  
     //await database.ofeli_rythmisis.create(req.body)
 }
 
@@ -39,7 +39,7 @@ routes.post('/', async function(req,res,next){
     req.body.author_id="1";
     
     //add row to ekthesi model, map values from req.body
-    let res_data = await database.ekthesi.create(req.body, {include: [{model: database.ofeli_rythmisis}]})
+    let res_data = await database.ekthesi.create(req.body)
     field18_row1(req)
     console.log(req.body)  
     res.send(res_data)

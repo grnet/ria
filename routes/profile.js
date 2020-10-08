@@ -1,13 +1,9 @@
 const routes = require('express').Router()
 let database = require("../services/database")
-routes.get('/', function(req,res,next){
+//des form_a.js kai dashboard.ejs gia to implementation
+routes.get('/:user_id', function(req,res,next){
    //implement get users from model
-    res.render("create")
+    res.render("user_views/user_profile")
 });
-
-routes.post('/', async function(req,res,next){
-    
-});
-
 
 module.exports = routes;

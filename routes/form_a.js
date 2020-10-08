@@ -2,9 +2,9 @@ const routes = require('express').Router()
 let database = require('../services/database')
 routes.get('/:entry_id', async (req,res,next) =>{
     
-    let entry = await database.ofeli_rythmisis.findOne({where:{
+    let entry = await database.ekthesi.findOne({where:{
         id: req.params.entry_id
-    }, include: [{model: database.ekthesi}]
+    }, include: [{model: database.ofeli_rythmisis}]
     })
     //try this to check on ofeli_r let entry = await database.ekthesi.findAll({include: [{model: database.ofeli_rythmisis}]})
     if(entry && entry.dataValues){

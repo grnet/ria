@@ -8,6 +8,7 @@
         <form enctype="multipart/form-data"> 
 
             <fieldset>
+                <h2>Α. Αιτιολογική έκθεση</h2>
                 <br>
                 <div class="form-group row">
                     <label for="title" class="col-sm-6 col-form-label">Τίτλος αξιολογούμενης ρύθμισης</label>
@@ -20,7 +21,7 @@
                 
                 <p>Επιλέξατε από τον παρακάτω κατάλογο τον τομέα ή τους τομείς νομοθέτησης στους οποίους αφορούν οι βασικές διατάξεις της αξιολογούμενης ρύθμισης:</p>
                 <div class="checkbox-group form-group row">
-                    <label for="ekpedeusi_politismos" class="col-sm-8 col-form-label">ΕΚΠΑΙΣΕΥΣΗ - ΠΟΛΙΤΙΣΜΟΣ<sup>16</sup></label>
+                    <label for="ekpedeusi_politismos" class="col-sm-8 col-form-label">ΕΚΠΑΙΔΕΥΣΗ - ΠΟΛΙΤΙΣΜΟΣ<sup>16</sup></label>
                     <input class="col-sm-2 form-check-input position-static" name="ekpedeusi_politismos" type="checkbox" id="ekpedeusi_politismos" value="ekpedeusi_politismos">
                 </div>
                 <div class="checkbox-group form-group row">
@@ -359,25 +360,81 @@
     <div class="jss111">
         <div class="jss274">
             <h3 class="jss273 jss178 jss181">Πίνακας έκθεσης</h3>
-            <ul class="aitiologiki_list" id="progressbar">    
-                <li class="active"><h4><b>Αιτιολογική έκθεση</b></h4></li>
+            <ul class="aitiologiki_list" >    
+                <li><h4><b>Αιτιολογική έκθεση</b></h4></li>
                     <ul class="aitiologiki_menu" id="progressbar">
-                    <li class="active">Η «ταυτότητα» της αξιολογούμενης ρύθμισης</li>
+                    <li class="active">Τίτλος αξιολογούμενης ρύθμισης & τομείς νομοθέτησης</li>                        
+                    <li>Η «ταυτότητα» της αξιολογούμενης ρύθμισης</li>
                     <li>Η αναγκαιότητα της αξιολογούμενης ρύθμισης</li>
                     <li>Συναφείς πρακτικές</li>
                     <li>Στόχοι αξιολογούμενης ρύθμισης</li>
                     <li>Ειδικότεροι στόχοι ανάλογα με τον τομέα νομοθέτησης</li>
                     <li>Ψηφιακή διακυβέρνηση</li>
                     <li>Κατ’ άρθρο ανάλυση αξιολογούμενης ρύθμισης</li>
-                    </ul>   
+                    </ul>
+            </ul>                       
+            <ul class="arthro_syntagmatos_list" >    
                 <li><h4><b>Έκθεση του άρθρου 75 παρ. 1 και 2 του Συντάγματος</b></h4></li>  
-                    <ul class="jss276" id="progressbar"> 
+                    <ul class="arthro_syntagmatos_menu" id="progressbar"> 
                         <li>Έκθεση Γενικού Λογιστηρίου του Κράτους</li>    
                         <li>Οικονομικά αποτελέσματα επί του Κρατικού Προϋπολογισμού ή/και επί του
                             προϋπολογισμού του/των αρμόδιου/ων φορέα/ων</li>  
                     </ul>
+            </ul>    
+            <ul class="eidiki_ekthesi_list" >    
+                <li><h4><b>Ειδική Έκθεση (άρθρο 75 παρ. 3 του Συντάγματος)
+                </b></h4></li>  
+                    <ul class="eidiki_ekthesi_menu" id="progressbar"> 
+                        <li>Οικονομικά αποτελέσματα</li>     
+                    </ul>
             </ul>
-
+            <ul class="ekthesi_genikwn_synepeiwn_list" >    
+                <li><h4><b>Έκθεση γενικών συνεπειών</b></h4></li>  
+                    <ul class="ekthesi_genikwn_synepeiwn_menu" id="progressbar"> 
+                        <li>Οφέλη αξιολογούμενης ρύθμισης</li>    
+                        <li>Κόστος αξιολογούμενης ρύθμισης</li> 
+                        <li>Κόστος αξιολογούμενης ρύθμισης</li>  
+                        <li>Γνώμες ή πορίσματα αρμόδιων υπηρεσιών και ανεξάρτητων αρχών</li>
+                    </ul>
+            </ul> 
+            <ul class="ekthesi_diavouleusis_list" >    
+                <li><h4><b>Έκθεση διαβούλευσης</b></h4></li>  
+                    <ul class="ekthesi_diavouleusis_menu" id="progressbar"> 
+                        <li>Διαβούλευση κατά τη διάρκεια της νομοπαρασκευαστικής διαδικασίας
+                            από την έναρξη κατάρτισης της αξιολογούμενης ρύθμισης μέχρι την
+                            υπογραφή από τους συναρμόδιους Υπουργούς</li>    
+                        <li>Σχόλια στο πλαίσιο της διαβούλευσης μέσω της ηλεκτρονικής πλατφόρμας
+                            www.opengov.gr</li> 
+                    </ul>
+            </ul>
+            <ul class="ekthesi_nomimotitas_list" >    
+                <li><h4><b>Έκθεση νομιμότητας</b></h4></li>  
+                    <ul class="ekthesi_nomimotitas_menu" id="progressbar"> 
+                        <li>Συναφείς συνταγματικές διατάξεις</li>    
+                        <li>Ενωσιακό δίκαιο</li> 
+                        <li>Συναφείς διατάξεις διεθνών συνθηκών ή συμφωνιών</li> 
+                        <li>Συναφής νομολογία των ανωτάτων και άλλων εθνικών δικαστηρίων,
+                            καθώς και αποφάσεις των Ανεξάρτητων Αρχών</li> 
+                        <li>Συναφής ευρωπαϊκή και διεθνής νομολογία</li>
+                    </ul>
+            </ul>
+            <ul class="pinakas_tropopoioymenwn_katargoymenwn_diataksewn_list" >    
+                <li><h4><b>Πίνακας τροποποιούμενων ή καταργούμενων διατάξεων</b></h4></li>  
+                    <ul class="pinakas_tropopoioymenwn_katargoymenwn_diataksewn_menu" id="progressbar"> 
+                        <li>Τροποποίηση – αντικατάσταση – συμπλήρωση διατάξεων</li>    
+                        <li>Κατάργηση διατάξεων</li> 
+                    </ul>
+            </ul> 
+            <ul class="ekthesi_efarmogis_rythmisis_list" >    
+                <li><h4><b>Έκθεση εφαρμογής της ρύθμισης</b></h4></li>  
+                    <ul class="ekthesi_efarmogis_rythmisis_menu" id="progressbar"> 
+                        <li>Συναρμοδιότητα Υπουργείων / υπηρεσιών / φορέων</li>    
+                        <li>Έκδοση κανονιστικών πράξεων και εγκυκλίων</li> 
+                        <li>Ανάγκη σύστασης νέου νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας
+                            υπηρεσίας</li> 
+                        <li>Στοιχεία νέου νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας υπηρεσίας</li> 
+                    </ul>
+            </ul>
         </div>
     </div>
 </div>
@@ -407,11 +464,59 @@
     .aitiologiki_menu {
         display: none
     }
-
     .aitiologiki_list:hover .aitiologiki_menu {
         display: initial 
     }
 
+    .arthro_syntagmatos_menu {
+        display: none
+    }
+    .arthro_syntagmatos_list:hover .arthro_syntagmatos_menu {
+        display: initial 
+    }
+
+    .eidiki_ekthesi_menu {
+        display: none
+    }
+    .eidiki_ekthesi_list:hover .eidiki_ekthesi_menu {
+        display: initial 
+    }
+
+    .ekthesi_genikwn_synepeiwn_menu {
+        display: none
+    }
+    .ekthesi_genikwn_synepeiwn_list:hover .ekthesi_genikwn_synepeiwn_menu {
+        display: initial 
+    }
+    
+    .ekthesi_diavouleusis_menu {
+        display: none
+    }
+    .ekthesi_diavouleusis_list:hover .ekthesi_diavouleusis_menu {
+        display: initial 
+    }
+
+    .ekthesi_nomimotitas_menu {
+        display: none
+    }
+    .ekthesi_nomimotitas_list:hover .ekthesi_nomimotitas_menu {
+        display: initial 
+    }
+    
+    .pinakas_tropopoioymenwn_katargoymenwn_diataksewn_menu {
+        display: none
+    }
+    .pinakas_tropopoioymenwn_katargoymenwn_diataksewn_list:hover .pinakas_tropopoioymenwn_katargoymenwn_diataksewn_menu {
+        display: initial 
+    }
+    
+    .ekthesi_efarmogis_rythmisis_menu {
+        display: none
+    }
+    .ekthesi_efarmogis_rythmisis_list:hover .ekthesi_efarmogis_rythmisis_menu {
+        display: initial 
+    }
+    
     .flex-form-group {
         display: flex;
         justify-content: space-between;
@@ -464,8 +569,6 @@
 $("form").on("submit",function(ev){
     ev.preventDefault();
    // console.log($(this).serialize())//comment this line out to hide query wrote in db
-    var tmp = $("amesa_esoda").val();
-    console.log("VALUE OF HIDDEN amesa_esoda IS: " + tmp)
     $.ajax({
         url: '/create',
         data:$(this).serialize(),
