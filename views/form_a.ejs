@@ -11,6 +11,7 @@
                     <form>
                         <h1>Αιτιολογική έκθεση</h1>
                         <hr>
+                        
                         <br><br>
             
                         <fieldset>
@@ -24,6 +25,15 @@
             
                             <br>
                             
+                            <p><% let ff= JSON.parse(data.ofeli_rythmisis.dataValues.auksisi_esodwn)  
+                                console.log(ff[0].field_18_amesa_esoda_oikonomia)
+                                console.log(ff[1].field_18_amesa_esoda_oikonomia.length)
+                                let i=0;
+                                if (typeof ff[i].field_18_amesa_esoda_oikonomia == 'undefined') {
+                                    console.log("0000")
+                                } else {
+                                    console.log(ff[i].field_18_amesa_esoda_oikonomia.length)
+                                } %>  </p>
                             <p>Επιλέξατε από τον παρακάτω κατάλογο τον τομέα ή τους τομείς νομοθέτησης στους οποίους αφορούν οι βασικές διατάξεις της αξιολογούμενης ρύθμισης:</p>
                             <div class="checkbox-group form-group row">
                                 <label for="ekpedeusi_politismos" class="col-sm-8 col-form-label">ΕΚΠΑΙΣΕΥΣΗ - ΠΟΛΙΤΙΣΜΟΣ<sup>16</sup></label>
