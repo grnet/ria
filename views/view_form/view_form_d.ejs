@@ -1,8 +1,850 @@
 <fieldset>
+
     <h2>Δ. Έκθεση γενικών συνεπειών</h2>
     <br>
-    <p>Todo: Tables 18,19,20</p>
-    
-    <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενη φόρμα"/>
-    <input type="button" name="next" class="next action-button" value="Επόμενη φόρμα"/>
+
+    <h3>18.Οφέλη αξιολογούμενης ρύθμισης</h3>
+    <table class="table" id="ofeli_rythmisis_table">
+        <thead class="thead">
+            <tr>
+                <th colspan="6">ΟΦΕΛΗ ΡΥΘΜΙΣΗΣ</th>
+            <tr>
+                <th colspan="6">ΑΜΕΣΑ</th>
+            <tr>
+                <th colspan="1"> </th>
+                <th colspan="1">ΘΕΣΜΟΙ, ΔΗΜΟΣΙΑ ΔΙΟΙΚΗΣΗ, ΔΙΑΦΑΝΕΙΑ</th>
+                <th colspan="1">ΑΓΟΡΑ, ΟΙΚΟΝΟΜΙΑ, ΑΝΤΑΓΩΝΙΣΜΟΣ</th>
+                <th colspan="1">ΚΟΙΝΩΝΙΑ & ΚΟΙΝΩΝΙΚΕΣ ΟΜΑΔΕΣ</th>
+                <th colspan="1">ΦΥΣΙΚΟ, ΑΣΤΙΚΟ ΚΑΙ ΠΟΛΙΤΙΣΤΙΚΟ ΠΕΡΙΒΑΛΛΟΝ</th>
+                <th colspan="1">ΝΗΣΙΩΤΙΚΟΤΗΤΑ</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <label class="col-sm-10 col-form-label">Αύξηση εσόδων</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <%  let amesa_auksisi_esodwn= JSON.parse(data.ofeli_rythmisis.dataValues.auksisi_esodwn)  
+                            if (typeof amesa_auksisi_esodwn[0].field_18_amesa_esoda_thesmoi !== 'undefined') { %>
+                        <input class="col-sm-2 form-check-input position-static" name="field_18_amesa_esoda_thesmoi"
+                            type="checkbox" id="field_18_amesa_esoda_thesmoi"
+                            value="data.ofeli_rythmisis.dataValues.auksisi_esodwn[0]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static" name="field_18_amesa_esoda_thesmoi"
+                            type="checkbox" id="field_18_amesa_esoda_thesmoi" value="field_18_amesa_esoda_thesmoi">
+                        <%  } %>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <%  if (typeof amesa_auksisi_esodwn[1].field_18_amesa_esoda_oikonomia !== 'undefined'){ %>
+                        <input class="col-sm-2 form-check-input position-static" name="field_18_amesa_esoda_oikonomia"
+                            type="checkbox" id="field_18_amesa_esoda_oikonomia"
+                            value="data.ofeli_rythmisis.dataValues.auksisi_esodwn[1]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static" name="field_18_amesa_esoda_oikonomia"
+                            type="checkbox" id="field_18_amesa_esoda_oikonomia" value="field_18_amesa_esoda_oikonomia">
+                        <%  } %>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <%  if (typeof amesa_auksisi_esodwn[2].field_18_amesa_esoda_kinonia !== 'undefined'){ %>
+                        <input class="col-sm-2 form-check-input position-static" name="field_18_amesa_esoda_kinonia"
+                            type="checkbox" id="field_18_amesa_esoda_kinonia"
+                            value="data.ofeli_rythmisis.dataValues.auksisi_esodwn[2]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static" name="field_18_amesa_esoda_kinonia"
+                            type="checkbox" id="field_18_amesa_esoda_kinonia" value="field_18_amesa_esoda_kinonia">
+                        <%  } %>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <%  if (typeof amesa_auksisi_esodwn[3].field_18_amesa_esoda_perivallon !== 'undefined'){ %>
+                        <input class="col-sm-2 form-check-input position-static" name="field_18_amesa_esoda_perivallon"
+                            type="checkbox" id="field_18_amesa_esoda_perivallon"
+                            value="data.ofeli_rythmisis.dataValues.auksisi_esodwn[3]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static" name="field_18_amesa_esoda_perivallon"
+                            type="checkbox" id="field_18_amesa_esoda_perivallon"
+                            value="field_18_amesa_esoda_perivallon">
+                        <%  } %>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <%   if (typeof amesa_auksisi_esodwn[4].field_18_amesa_esoda_nisiwtika !== 'undefined'){ %>
+                        <input class="col-sm-2 form-check-input position-static" name="field_18_amesa_esoda_nisiwtika"
+                            type="checkbox" id="field_18_amesa_esoda_nisiwtika"
+                            value="data.ofeli_rythmisis.dataValues.auksisi_esodwn[4]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static" name="field_18_amesa_esoda_nisiwtika"
+                            type="checkbox" id="field_18_amesa_esoda_nisiwtika" value="field_18_amesa_esoda_nisiwtika">
+                        <%  } %>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <label class="col-sm-11 col-form-label">Μείωση δαπανών</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <%  let amesa_meiwsi_dapanwn= JSON.parse(data.ofeli_rythmisis.dataValues.meiwsi_dapanwn)  
+                                if (typeof amesa_meiwsi_dapanwn[0].field_18_amesa_dapanes_thesmoi !== 'undefined') { %>
+                        <input class="col-sm-2 form-check-input position-static" name="field_18_amesa_dapanes_thesmoi"
+                            type="checkbox" id="field_18_amesa_dapanes_thesmoi"
+                            value="data.ofeli_rythmisis.dataValues.meiwsi_dapanwn[0]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static" name="field_18_amesa_dapanes_thesmoi"
+                            type="checkbox" id="field_18_amesa_dapanes_thesmoi" value="field_18_amesa_dapanes_thesmoi">
+                        <%  } %>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <%  if (typeof amesa_meiwsi_dapanwn[1].field_18_amesa_dapanes_oikonomia !== 'undefined') { %>
+                        <input class="col-sm-2 form-check-input position-static" name="field_18_amesa_dapanes_oikonomia"
+                            type="checkbox" id="field_18_amesa_dapanes_oikonomia"
+                            value="data.ofeli_rythmisis.dataValues.meiwsi_dapanwn[1]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static" name="field_18_amesa_dapanes_oikonomia"
+                            type="checkbox" id="field_18_amesa_dapanes_oikonomia"
+                            value="field_18_amesa_dapanes_oikonomia">
+                        <%  } %>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <%  if (typeof amesa_meiwsi_dapanwn[2].field_18_amesa_dapanes_kinonia !== 'undefined') { %>
+                        <input class="col-sm-2 form-check-input position-static" name="field_18_amesa_dapanes_kinonia"
+                            type="checkbox" id="field_18_amesa_dapanes_kinonia"
+                            value="data.ofeli_rythmisis.dataValues.meiwsi_dapanwn[2]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static" name="field_18_amesa_dapanes_kinonia"
+                            type="checkbox" id="field_18_amesa_dapanes_kinonia" value="field_18_amesa_dapanes_kinonia">
+                        <%  } %>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <%  if (typeof amesa_meiwsi_dapanwn[3].field_18_amesa_dapanes_perivallon !== 'undefined') { %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_amesa_dapanes_perivallon" type="checkbox"
+                            id="field_18_amesa_dapanes_perivallon"
+                            value="data.ofeli_rythmisis.dataValues.meiwsi_dapanwn[3]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_amesa_dapanes_perivallon" type="checkbox"
+                            id="field_18_amesa_dapanes_perivallon" value="field_18_amesa_dapanes_perivallon">
+                        <%  } %>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <%  if (typeof amesa_meiwsi_dapanwn[4].field_18_amesa_dapanes_nisiwtika !== 'undefined') { %>
+                        <input class="col-sm-2 form-check-input position-static" name="field_18_amesa_dapanes_nisiwtika"
+                            type="checkbox" id="field_18_amesa_dapanes_nisiwtika"
+                            value="data.ofeli_rythmisis.dataValues.meiwsi_dapanwn[4]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static" name="field_18_amesa_dapanes_nisiwtika"
+                            type="checkbox" id="field_18_amesa_dapanes_nisiwtika"
+                            value="field_18_amesa_dapanes_nisiwtika">
+                        <%  } %>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <label class="col-sm-12 col-form-label">Εξοικονόμηση χρόνου</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <%  let amesa_eksikonomisi_xronou = JSON.parse(data.ofeli_rythmisis.dataValues.eksikonomisi_xronou) 
+                                if (typeof amesa_eksikonomisi_xronou[0].field_18_amesa_eksikonomisi_xronou_thesmoi !== 'undefined') { %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_amesa_eksikonomisi_xronou_thesmoi" type="checkbox"
+                            id="field_18_amesa_eksikonomisi_xronou_thesmoi"
+                            value="data.ofeli_rythmisis.dataValues.eksikonomisi_xronou[0]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_amesa_eksikonomisi_xronou_thesmoi" type="checkbox"
+                            id="field_18_amesa_eksikonomisi_xronou_thesmoi"
+                            value="field_18_amesa_eksikonomisi_xronou_thesmoi">
+                        <%  } %>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <% if (typeof amesa_eksikonomisi_xronou[1].field_18_amesa_eksikonomisi_xronou_oikonomia !== 'undefined') { %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_amesa_eksikonomisi_xronou_oikonomia" type="checkbox"
+                            id="field_18_amesa_eksikonomisi_xronou_oikonomia"
+                            value="data.ofeli_rythmisis.dataValues.eksikonomisi_xronou[1]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_amesa_eksikonomisi_xronou_oikonomia" type="checkbox"
+                            id="field_18_amesa_eksikonomisi_xronou_oikonomia"
+                            value="field_18_amesa_eksikonomisi_xronou_oikonomia">
+                        <%  } %>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <% if (typeof amesa_eksikonomisi_xronou[2].field_18_amesa_eksikonomisi_xronou_kinonia !== 'undefined') { %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_amesa_eksikonomisi_xronou_kinonia" type="checkbox"
+                            id="field_18_amesa_eksikonomisi_xronou_kinonia"
+                            value="data.ofeli_rythmisis.dataValues.eksikonomisi_xronou[2]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_amesa_eksikonomisi_xronou_kinonia" type="checkbox"
+                            id="field_18_amesa_eksikonomisi_xronou_kinonia"
+                            value="field_18_amesa_eksikonomisi_xronou_kinonia">
+                        <%  } %>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <% if (typeof amesa_eksikonomisi_xronou[3].field_18_amesa_eksikonomisi_xronou_perivallon !== 'undefined') { %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_amesa_eksikonomisi_xronou_perivallon" type="checkbox"
+                            id="field_18_amesa_eksikonomisi_xronou_perivallon"
+                            value="data.ofeli_rythmisis.dataValues.eksikonomisi_xronou[3]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_amesa_eksikonomisi_xronou_perivallon" type="checkbox"
+                            id="field_18_amesa_eksikonomisi_xronou_perivallon"
+                            value="field_18_amesa_eksikonomisi_xronou_perivallon">
+                        <%  } %>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <% if (typeof amesa_eksikonomisi_xronou[4].field_18_amesa_eksikonomisi_xronou_nisiwtika !== 'undefined') { %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_amesa_eksikonomisi_xronou_nisiwtika" type="checkbox"
+                            id="field_18_amesa_eksikonomisi_xronou_nisiwtika"
+                            value="data.ofeli_rythmisis.dataValues.eksikonomisi_xronou[4]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_amesa_eksikonomisi_xronou_nisiwtika" type="checkbox"
+                            id="field_18_amesa_eksikonomisi_xronou_nisiwtika"
+                            value="field_18_amesa_eksikonomisi_xronou_nisiwtika">
+                        <%  } %>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <label class="col-sm-12 col-form-label">Μεγαλύτερη αποδοτικότητα </label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <% let amesa_apodotikotita = JSON.parse(data.ofeli_rythmisis.dataValues.apodotikotita) 
+                            if (typeof amesa_apodotikotita[0].field_18_amesa_apodotikotita_thesmoi !== 'undefined') { %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_amesa_apodotikotita_thesmoi" type="checkbox"
+                            id="field_18_amesa_apodotikotita_thesmoi"
+                            value="data.ofeli_rythmisis.dataValues.amesa_apodotikotita[0]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_amesa_apodotikotita_thesmoi" type="checkbox"
+                            id="field_18_amesa_apodotikotita_thesmoi" value="field_18_amesa_apodotikotita_thesmoi">
+                        <%  } %>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <%  if (typeof amesa_apodotikotita[1].field_18_amesa_apodotikotita_oikonomia !== 'undefined') { %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_amesa_apodotikotita_oikonomia" type="checkbox"
+                            id="field_18_amesa_apodotikotita_oikonomia"
+                            value="data.ofeli_rythmisis.dataValues.amesa_apodotikotita[1]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_amesa_apodotikotita_oikonomia" type="checkbox"
+                            id="field_18_amesa_apodotikotita_oikonomia" value="field_18_amesa_apodotikotita_oikonomia">
+                        <%  } %>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <%  if (typeof amesa_apodotikotita[2].field_18_amesa_apodotikotita_kinonia !== 'undefined') { %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_amesa_apodotikotita_kinonia" type="checkbox"
+                            id="field_18_amesa_apodotikotita_kinonia"
+                            value="data.ofeli_rythmisis.dataValues.amesa_apodotikotita[2]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_amesa_apodotikotita_kinonia" type="checkbox"
+                            id="field_18_amesa_apodotikotita_kinonia" value="field_18_amesa_apodotikotita_kinonia">
+                        <%  } %>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <%  if (typeof amesa_apodotikotita[3].field_18_amesa_apodotikotita_perivallon !== 'undefined') { %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_amesa_apodotikotita_perivallon" type="checkbox"
+                            id="field_18_amesa_apodotikotita_perivallon"
+                            value="data.ofeli_rythmisis.dataValues.amesa_apodotikotita[3]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_amesa_apodotikotita_perivallon" type="checkbox"
+                            id="field_18_amesa_apodotikotita_perivallon"
+                            value="field_18_amesa_apodotikotita_perivallon">
+                        <%  } %>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <%  if (typeof amesa_apodotikotita[4].field_18_amesa_apodotikotita_nisiwtika !== 'undefined') { %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_amesa_apodotikotita_nisiwtika" type="checkbox"
+                            id="field_18_amesa_apodotikotita_nisiwtika"
+                            value="data.ofeli_rythmisis.dataValues.amesa_apodotikotita[4]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_amesa_apodotikotita_nisiwtika" type="checkbox"
+                            id="field_18_amesa_apodotikotita_nisiwtika" value="field_18_amesa_apodotikotita_nisiwtika">
+                        <%  } %>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <label class="col-sm-12 col-form-label">Άλλο</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <% let amesa_allo = JSON.parse(data.ofeli_rythmisis.dataValues.amesa_allo) 
+                           if (typeof amesa_allo[0].field_18_amesa_allo_thesmoi !== 'undefined') { %>
+                        <input class="col-sm-2 form-check-input position-static" name="field_18_amesa_allo_thesmoi"
+                            type="checkbox" id="field_18_amesa_allo_thesmoi"
+                            value="data.ofeli_rythmisis.dataValues.amesa_allo[0]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static" name="field_18_amesa_allo_thesmoi"
+                            type="checkbox" id="field_18_amesa_allo_thesmoi" value="field_18_amesa_allo_thesmoi">
+                        <%  } %>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <% if (typeof amesa_allo[1].field_18_amesa_allo_oikonomia !== 'undefined') { %>
+                        <input class="col-sm-2 form-check-input position-static" name="field_18_amesa_allo_oikonomia"
+                            type="checkbox" id="field_18_amesa_allo_oikonomia"
+                            value="data.ofeli_rythmisis.dataValues.amesa_allo[1]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static" name="field_18_amesa_allo_oikonomia"
+                            type="checkbox" id="field_18_amesa_allo_oikonomia" value="field_18_amesa_allo_oikonomia">
+                        <%  } %>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <% if (typeof amesa_allo[2].field_18_amesa_allo_kinonia !== 'undefined') { %>
+                        <input class="col-sm-2 form-check-input position-static" name="field_18_amesa_allo_kinonia"
+                            type="checkbox" id="field_18_amesa_allo_kinonia"
+                            value="data.ofeli_rythmisis.dataValues.amesa_allo[2]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static" name="field_18_amesa_allo_kinonia"
+                            type="checkbox" id="field_18_amesa_allo_kinonia" value="field_18_amesa_allo_kinonia">
+                        <%  } %>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <% if (typeof amesa_allo[3].field_18_amesa_allo_perivallon !== 'undefined') { %>
+                        <input class="col-sm-2 form-check-input position-static" name="field_18_amesa_allo_perivallon"
+                            type="checkbox" id="field_18_amesa_allo_perivallon"
+                            value="data.ofeli_rythmisis.dataValues.amesa_allo[3]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static" name="field_18_amesa_allo_perivallon"
+                            type="checkbox" id="field_18_amesa_allo_perivallon" value="field_18_amesa_allo_perivallon">
+                        <%  } %>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <% if (typeof amesa_allo[4].field_18_amesa_allo_nisiwtika !== 'undefined') { %>
+                        <input class="col-sm-2 form-check-input position-static" name="field_18_amesa_allo_nisiwtika"
+                            type="checkbox" id="field_18_amesa_allo_nisiwtika"
+                            value="data.ofeli_rythmisis.dataValues.amesa_allo[4]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static" name="field_18_amesa_allo_nisiwtika"
+                            type="checkbox" id="field_18_amesa_allo_nisiwtika" value="field_18_amesa_allo_nisiwtika">
+                        <%  } %>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="6">ΕΜΜΕΣΑ</th>
+            <tr>
+                <th colspan="1"> </th>
+                <th colspan="1">ΘΕΣΜΟΙ, ΔΗΜΟΣΙΑ ΔΙΟΙΚΗΣΗ, ΔΙΑΦΑΝΕΙΑ</th>
+                <th colspan="1">ΑΓΟΡΑ, ΟΙΚΟΝΟΜΙΑ, ΑΝΤΑΓΩΝΙΣΜΟΣ</th>
+                <th colspan="1">ΚΟΙΝΩΝΙΑ & ΚΟΙΝΩΝΙΚΕΣ ΟΜΑΔΕΣ</th>
+                <th colspan="1">ΦΥΣΙΚΟ, ΑΣΤΙΚΟ ΚΑΙ ΠΟΛΙΤΙΣΤΙΚΟ ΠΕΡΙΒΑΛΛΟΝ</th>
+                <th colspan="1">ΝΗΣΙΩΤΙΚΟΤΗΤΑ</th>
+            </tr>
+            </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <label class="col-sm-12 col-form-label">Βελτίωση παρεχόμενων υπηρεσιών</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <% let veltiwsi_ypiresiwn = JSON.parse(data.ofeli_rythmisis.dataValues.veltiwsi_ypiresiwn) 
+                        if (typeof veltiwsi_ypiresiwn[0].field_18_emmesa_veltiosi_thesmoi !== 'undefined') { %>
+                        <input class="col-sm-2 form-check-input position-static" name="field_18_emmesa_veltiosi_thesmoi"
+                            type="checkbox" id="field_18_emmesa_veltiosi_thesmoi"
+                            value="data.ofeli_rythmisis.dataValues.veltiwsi_ypiresiwn[0]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static" name="field_18_emmesa_veltiosi_thesmoi"
+                            type="checkbox" id="field_18_emmesa_veltiosi_thesmoi"
+                            value="field_18_emmesa_veltiosi_thesmoi">
+                        <%  } %>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <% if (typeof veltiwsi_ypiresiwn[1].field_18_emmesa_veltiosi_oikonomia !== 'undefined') { %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_emmesa_veltiosi_oikonomia" type="checkbox"
+                            id="field_18_emmesa_veltiosi_oikonomia"
+                            value="data.ofeli_rythmisis.dataValues.veltiwsi_ypiresiwn[1]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_emmesa_veltiosi_oikonomia" type="checkbox"
+                            id="field_18_emmesa_veltiosi_oikonomia" value="field_18_emmesa_veltiosi_oikonomia">
+                        <%  } %>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <% if (typeof veltiwsi_ypiresiwn[2].field_18_emmesa_veltiosi_kinonia !== 'undefined') { %>
+                        <input class="col-sm-2 form-check-input position-static" name="field_18_emmesa_veltiosi_kinonia"
+                            type="checkbox" id="field_18_emmesa_veltiosi_kinonia"
+                            value="data.ofeli_rythmisis.dataValues.veltiwsi_ypiresiwn[2]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static" name="field_18_emmesa_veltiosi_kinonia"
+                            type="checkbox" id="field_18_emmesa_veltiosi_kinonia"
+                            value="field_18_emmesa_veltiosi_kinonia">
+                        <%  } %>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <% if (typeof veltiwsi_ypiresiwn[3].field_18_emmesa_veltiosi_perivallon !== 'undefined') { %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_emmesa_veltiosi_perivallon" type="checkbox"
+                            id="field_18_emmesa_veltiosi_perivallon"
+                            value="data.ofeli_rythmisis.dataValues.veltiwsi_ypiresiwn[3]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_emmesa_veltiosi_perivallon" type="checkbox"
+                            id="field_18_emmesa_veltiosi_perivallon" value="field_18_emmesa_veltiosi_perivallon">
+                        <%  } %>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <% if (typeof veltiwsi_ypiresiwn[4].field_18_emmesa_veltiosi_nisiwtika !== 'undefined') { %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_emmesa_veltiosi_nisiwtika" type="checkbox"
+                            id="field_18_emmesa_veltiosi_nisiwtika"
+                            value="data.ofeli_rythmisis.dataValues.veltiwsi_ypiresiwn[4]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_emmesa_veltiosi_nisiwtika" type="checkbox"
+                            id="field_18_emmesa_veltiosi_nisiwtika" value="field_18_emmesa_veltiosi_nisiwtika">
+                        <%  } %>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <label class="col-sm-11 col-form-label">Δίκαιη μεταχείριση πολιτών</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <% let metaxirisi_politwn = JSON.parse(data.ofeli_rythmisis.dataValues.metaxirisi_politwn) 
+                        if (typeof metaxirisi_politwn[0].field_18_emmesa_metaxirisi_thesmoi !== 'undefined') { %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_emmesa_metaxirisi_thesmoi" type="checkbox"
+                            id="field_18_emmesa_metaxirisi_thesmoi"
+                            value="data.ofeli_rythmisis.dataValues.metaxirisi_politwn[0]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_emmesa_metaxirisi_thesmoi" type="checkbox"
+                            id="field_18_emmesa_metaxirisi_thesmoi" value="field_18_emmesa_metaxirisi_thesmoi">
+                        <%  } %>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <% if (typeof metaxirisi_politwn[1].field_18_emmesa_metaxirisi_oikonomia !== 'undefined') { %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_emmesa_metaxirisi_oikonomia" type="checkbox"
+                            id="field_18_emmesa_metaxirisi_oikonomia"
+                            value="data.ofeli_rythmisis.dataValues.metaxirisi_politwn[1]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_emmesa_metaxirisi_oikonomia" type="checkbox"
+                            id="field_18_emmesa_metaxirisi_oikonomia" value="field_18_emmesa_metaxirisi_oikonomia">
+                        <%  } %>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <% if (typeof metaxirisi_politwn[2].field_18_emmesa_metaxirisi_kinonia !== 'undefined') { %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_emmesa_metaxirisi_kinonia" type="checkbox"
+                            id="field_18_emmesa_metaxirisi_kinonia"
+                            value="data.ofeli_rythmisis.dataValues.metaxirisi_politwn[2]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_emmesa_metaxirisi_kinonia" type="checkbox"
+                            id="field_18_emmesa_metaxirisi_kinonia" value="field_18_emmesa_metaxirisi_kinonia">
+                        <%  } %>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <% if (typeof metaxirisi_politwn[3].field_18_emmesa_metaxirisi_perivallon !== 'undefined') { %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_emmesa_metaxirisi_perivallon" type="checkbox"
+                            id="field_18_emmesa_metaxirisi_perivallon"
+                            value="data.ofeli_rythmisis.dataValues.metaxirisi_politwn[3]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_emmesa_metaxirisi_perivallon" type="checkbox"
+                            id="field_18_emmesa_metaxirisi_perivallon" value="field_18_emmesa_metaxirisi_perivallon">
+                        <%  } %>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <% if (typeof metaxirisi_politwn[4].field_18_emmesa_metaxirisi_nisiwtika !== 'undefined') { %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_emmesa_metaxirisi_nisiwtika" type="checkbox"
+                            id="field_18_emmesa_metaxirisi_nisiwtika"
+                            value="data.ofeli_rythmisis.dataValues.metaxirisi_politwn[4]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_emmesa_metaxirisi_nisiwtika" type="checkbox"
+                            id="field_18_emmesa_metaxirisi_nisiwtika" value="field_18_emmesa_metaxirisi_nisiwtika">
+                        <%  } %>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <label class="col-sm-12 col-form-label">Αυξημένη αξιοπιστία / διαφάνεια θεσμών</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <% let diafania_thesmwn = JSON.parse(data.ofeli_rythmisis.dataValues.diafania_thesmwn) 
+                        if (typeof diafania_thesmwn[0].field_18_emmesa_diafania_thesmoi !== 'undefined') { %>
+                        <input class="col-sm-2 form-check-input position-static" name="field_18_emmesa_diafania_thesmoi"
+                            type="checkbox" id="field_18_emmesa_diafania_thesmoi"
+                            value="data.ofeli_rythmisis.dataValues.diafania_thesmwn[0]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static" name="field_18_emmesa_diafania_thesmoi"
+                            type="checkbox" id="field_18_emmesa_diafania_thesmoi"
+                            value="field_18_emmesa_diafania_thesmoi">
+                        <%  } %>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <% if (typeof diafania_thesmwn[1].field_18_emmesa_diafania_oikonomia !== 'undefined') { %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_emmesa_diafania_oikonomia" type="checkbox"
+                            id="field_18_emmesa_diafania_oikonomia"
+                            value="data.ofeli_rythmisis.dataValues.diafania_thesmwn[1]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_emmesa_diafania_oikonomia" type="checkbox"
+                            id="field_18_emmesa_diafania_oikonomia" value="field_18_emmesa_diafania_oikonomia">
+                        <%  } %>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <% if (typeof diafania_thesmwn[2].field_18_emmesa_diafania_kinonia !== 'undefined') { %>
+                        <input class="col-sm-2 form-check-input position-static" name="field_18_emmesa_diafania_kinonia"
+                            type="checkbox" id="field_18_emmesa_diafania_kinonia"
+                            value="data.ofeli_rythmisis.dataValues.diafania_thesmwn[2]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static" name="field_18_emmesa_diafania_kinonia"
+                            type="checkbox" id="field_18_emmesa_diafania_kinonia"
+                            value="field_18_emmesa_diafania_kinonia">
+                        <%  } %>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <% if (typeof diafania_thesmwn[3].field_18_emmesa_diafania_perivallon !== 'undefined') { %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_emmesa_diafania_perivallon" type="checkbox"
+                            id="field_18_emmesa_diafania_perivallon"
+                            value="data.ofeli_rythmisis.dataValues.diafania_thesmwn[3]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_emmesa_diafania_perivallon" type="checkbox"
+                            id="field_18_emmesa_diafania_perivallon" value="field_18_emmesa_diafania_perivallon">
+                        <%  } %>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <% if (typeof diafania_thesmwn[4].field_18_emmesa_diafania_nisiwtika !== 'undefined') { %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_emmesa_diafania_nisiwtika" type="checkbox"
+                            id="field_18_emmesa_diafania_nisiwtika"
+                            value="data.ofeli_rythmisis.dataValues.diafania_thesmwn[4]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_emmesa_diafania_nisiwtika" type="checkbox"
+                            id="field_18_emmesa_diafania_nisiwtika" value="field_18_emmesa_diafania_nisiwtika">
+                        <%  } %>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <label class="col-sm-12 col-form-label">Βελτιωμένη διαχείριση κινδύνων</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <% let diaxirisi_kindynwn = JSON.parse(data.ofeli_rythmisis.dataValues.diaxirisi_kindynwn) 
+                        if (typeof diaxirisi_kindynwn[0].field_18_emmesa_diaxirisi_kindinwn_thesmoi !== 'undefined') { %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_emmesa_diaxirisi_kindinwn_thesmoi" type="checkbox"
+                            id="field_18_emmesa_diaxirisi_kindinwn_thesmoi"
+                            value="data.ofeli_rythmisis.dataValues.diaxirisi_kindynwn[0]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_emmesa_diaxirisi_kindinwn_thesmoi" type="checkbox"
+                            id="field_18_emmesa_diaxirisi_kindinwn_thesmoi"
+                            value="field_18_emmesa_diaxirisi_kindinwn_thesmoi">
+                        <%  } %>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <% if (typeof diaxirisi_kindynwn[1].field_18_emmesa_diaxirisi_kindinwn_oikonomia !== 'undefined') { %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_emmesa_diaxirisi_kindinwn_oikonomia" type="checkbox"
+                            id="field_18_emmesa_diaxirisi_kindinwn_oikonomia"
+                            value="data.ofeli_rythmisis.dataValues.diaxirisi_kindynwn[1]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_emmesa_diaxirisi_kindinwn_oikonomia" type="checkbox"
+                            id="field_18_emmesa_diaxirisi_kindinwn_oikonomia"
+                            value="field_18_emmesa_diaxirisi_kindinwn_oikonomia">
+                        <%  } %>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <% if (typeof diaxirisi_kindynwn[2].field_18_emmesa_diaxirisi_kindinwn_kinonia !== 'undefined') { %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_emmesa_diaxirisi_kindinwn_kinonia" type="checkbox"
+                            id="field_18_emmesa_diaxirisi_kindinwn_kinonia"
+                            value="data.ofeli_rythmisis.dataValues.diaxirisi_kindynwn[2]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_emmesa_diaxirisi_kindinwn_kinonia" type="checkbox"
+                            id="field_18_emmesa_diaxirisi_kindinwn_kinonia"
+                            value="field_18_emmesa_diaxirisi_kindinwn_kinonia">
+                        <%  } %>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <% if (typeof diaxirisi_kindynwn[3].field_18_emmesa_diaxirisi_kindinwn_perivallon !== 'undefined') { %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_emmesa_diaxirisi_kindinwn_perivallon" type="checkbox"
+                            id="field_18_emmesa_diaxirisi_kindinwn_perivallon"
+                            value="data.ofeli_rythmisis.dataValues.diaxirisi_kindynwn[3]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_emmesa_diaxirisi_kindinwn_perivallon" type="checkbox"
+                            id="field_18_emmesa_diaxirisi_kindinwn_perivallon"
+                            value="field_18_emmesa_diaxirisi_kindinwn_perivallon">
+                        <%  } %>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <% if (typeof diaxirisi_kindynwn[4].field_18_emmesa_diaxirisi_kindinwn_nisiwtika !== 'undefined') { %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_emmesa_diaxirisi_kindinwn_nisiwtika" type="checkbox"
+                            id="field_18_emmesa_diaxirisi_kindinwn_nisiwtika"
+                            value="data.ofeli_rythmisis.dataValues.diaxirisi_kindynwn[4]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static"
+                            name="field_18_emmesa_diaxirisi_kindinwn_nisiwtika" type="checkbox"
+                            id="field_18_emmesa_diaxirisi_kindinwn_nisiwtika"
+                            value="field_18_emmesa_diaxirisi_kindinwn_nisiwtika">
+                        <%  } %>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <label class="col-sm-12 col-form-label">Άλλο</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <% let emmesa_allo = JSON.parse(data.ofeli_rythmisis.dataValues.emmesa_allo) 
+                        if (typeof emmesa_allo[0].field_18_emmesa_allo_thesmoi !== 'undefined') { %>
+                        <input class="col-sm-2 form-check-input position-static" name="field_18_emmesa_allo_thesmoi"
+                            type="checkbox" id="field_18_emmesa_allo_thesmoi"
+                            value="data.ofeli_rythmisis.dataValues.emmesa_allo[0]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static" name="field_18_emmesa_allo_thesmoi"
+                            type="checkbox" id="field_18_emmesa_allo_thesmoi" value="field_18_emmesa_allo_thesmoi">
+                        <%  } %>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <% if (typeof emmesa_allo[1].field_18_emmesa_allo_oikonomia !== 'undefined') { %>
+                        <input class="col-sm-2 form-check-input position-static" name="field_18_emmesa_allo_oikonomia"
+                            type="checkbox" id="field_18_emmesa_allo_oikonomia"
+                            value="data.ofeli_rythmisis.dataValues.emmesa_allo[1]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static" name="field_18_emmesa_allo_oikonomia"
+                            type="checkbox" id="field_18_emmesa_allo_oikonomia" value="field_18_emmesa_allo_oikonomia">
+                        <%  } %>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <% if (typeof emmesa_allo[2].field_18_emmesa_allo_kinonia !== 'undefined') { %>
+                        <input class="col-sm-2 form-check-input position-static" name="field_18_emmesa_allo_kinonia"
+                            type="checkbox" id="field_18_emmesa_allo_kinonia"
+                            value="data.ofeli_rythmisis.dataValues.emmesa_allo[2]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static" name="field_18_emmesa_allo_kinonia"
+                            type="checkbox" id="field_18_emmesa_allo_kinonia" value="field_18_emmesa_allo_kinonia">
+                        <%  } %>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <% if (typeof emmesa_allo[3].field_18_emmesa_allo_perivallon !== 'undefined') { %>
+                        <input class="col-sm-2 form-check-input position-static" name="field_18_emmesa_allo_perivallon"
+                            type="checkbox" id="field_18_emmesa_allo_perivallon"
+                            value="data.ofeli_rythmisis.dataValues.emmesa_allo[3]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static" name="field_18_emmesa_allo_perivallon"
+                            type="checkbox" id="field_18_emmesa_allo_perivallon"
+                            value="field_18_emmesa_allo_perivallon">
+                        <%  } %>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <% if (typeof emmesa_allo[4].field_18_emmesa_allo_nisiwtika !== 'undefined') { %>
+                        <input class="col-sm-2 form-check-input position-static" name="field_18_emmesa_allo_nisiwtika"
+                            type="checkbox" id="field_18_emmesa_allo_nisiwtika"
+                            value="data.ofeli_rythmisis.dataValues.emmesa_allo[4]" checked>
+                        <%  }else{ %>
+                        <input class="col-sm-2 form-check-input position-static" name="field_18_emmesa_allo_nisiwtika"
+                            type="checkbox" id="field_18_emmesa_allo_nisiwtika" value="field_18_emmesa_allo_nisiwtika">
+                        <%  } %>
+                    </div>
+                </td>
+            </tr>
+            </tr>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="form-group">
+        <label for="field_18_comments">Σχολιασμός / ποιοτική αποτίμηση:</label>
+        <textarea class="form-control" id="field_18_comments" name="field_18_comments" rows="3"></textarea>
+    </div>
+
+    <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενη φόρμα" />
+    <input type="button" name="field_18_next" id="field_18_next" class="next action-button" value="Επόμενα πεδία" />
 </fieldset>

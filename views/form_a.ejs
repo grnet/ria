@@ -25,18 +25,9 @@
             
                             <br>
                             
-                            <p><% let ff= JSON.parse(data.ofeli_rythmisis.dataValues.auksisi_esodwn)  
-                                console.log(ff[0].field_18_amesa_esoda_oikonomia)
-                                console.log(ff[1].field_18_amesa_esoda_oikonomia.length)
-                                let i=0;
-                                if (typeof ff[i].field_18_amesa_esoda_oikonomia == 'undefined') {
-                                    console.log("0000")
-                                } else {
-                                    console.log(ff[i].field_18_amesa_esoda_oikonomia.length)
-                                } %>  </p>
                             <p>Επιλέξατε από τον παρακάτω κατάλογο τον τομέα ή τους τομείς νομοθέτησης στους οποίους αφορούν οι βασικές διατάξεις της αξιολογούμενης ρύθμισης:</p>
                             <div class="checkbox-group form-group row">
-                                <label for="ekpedeusi_politismos" class="col-sm-8 col-form-label">ΕΚΠΑΙΣΕΥΣΗ - ΠΟΛΙΤΙΣΜΟΣ<sup>16</sup></label>
+                                <label for="ekpedeusi_politismos" class="col-sm-8 col-form-label">ΕΚΠΑΙΣΕΥΣΗ - ΠΟΛΙΤΙΣΜΟΣ<sup>1</sup></label>
                                 <% if(data.ekpedeusi_politismos){ %>
                                     <input class="col-sm-2 form-check-input position-static" name="ekpedeusi_politismos" type="checkbox" id="ekpedeusi_politismos" value="data.ekpedeusi_politismos" checked disabled>
                                 <% }else{ %>
@@ -44,7 +35,7 @@
                                 <% } %>
                             </div>
                             <div class="checkbox-group form-group row">
-                                <label for="eksoteriki_politiki" class="col-sm-8 col-form-label">ΕΘΝΙΚΗ ΑΜΥΝΑ - ΕΞΩΤΕΡΙΚΗ ΠΟΛΙΤΙΚΗ<sup>17</sup></label>
+                                <label for="eksoteriki_politiki" class="col-sm-8 col-form-label">ΕΘΝΙΚΗ ΑΜΥΝΑ - ΕΞΩΤΕΡΙΚΗ ΠΟΛΙΤΙΚΗ<sup>2</sup></label>
                                 <% if(data.eksoteriki_politiki){ %>
                                     <input class="col-sm-2 form-check-input position-static" type="checkbox" id="eksoteriki_politiki" name="eksoteriki_politiki" value="eksoteriki_politiki" checked disabled>
                                 <% }else{ %>
@@ -52,7 +43,7 @@
                                 <% } %>
                             </div>
                             <div class="checkbox-group form-group row">
-                                <label for="forologiki_politiki" class="col-sm-8 col-form-label">ΟΙΚΟΝΟΜΙΚΗ / ΔΗΜΟΣΙΟΝΟΜΙΚΗ / ΦΟΡΟΛΟΓΙΚΗ ΠΟΛΙΤΙΚΗ<sup>18</sup></label>
+                                <label for="forologiki_politiki" class="col-sm-8 col-form-label">ΟΙΚΟΝΟΜΙΚΗ / ΔΗΜΟΣΙΟΝΟΜΙΚΗ / ΦΟΡΟΛΟΓΙΚΗ ΠΟΛΙΤΙΚΗ<sup>3</sup></label>
                                 <% if(data.forologiki_politiki){ %>
                                     <input class="col-sm-2 form-check-input position-static" type="checkbox" id="forologiki_politiki" name="forologiki_politiki" value="forologiki_politiki" disabled checked>
                                 <% }else{ %>
@@ -60,7 +51,7 @@
                                 <% } %>
                             </div>
                             <div class="checkbox-group form-group row">
-                                <label for="koinoniki_politiki" class="col-sm-8 col-form-label">ΚΟΙΝΩΝΙΚΗ ΠΟΛΙΤΙΚΗ<sup>19</sup></label>
+                                <label for="koinoniki_politiki" class="col-sm-8 col-form-label">ΚΟΙΝΩΝΙΚΗ ΠΟΛΙΤΙΚΗ<sup>4</sup></label>
                                 <% if(data.koinoniki_politiki){ %>
                                     <input class="col-sm-2 form-check-input position-static" type="checkbox" id="koinoniki_politiki" name="koinoniki_politiki" value="koinoniki_politiki" disabled checked>
                                 <% }else{ %>
@@ -68,7 +59,7 @@
                                 <% } %>
                             </div>
                             <div class="checkbox-group form-group row">
-                                <label for="dimosia_dioikisi" class="col-sm-8 col-form-label">ΔΗΜΟΣΙΑ ΔΙΟΙΚΗΣΗ - ΔΗΜΟΣΙΑ ΤΑΞΗ - ΔΙΚΑΙΟΣΥΝΗ<sup>20</sup></label>
+                                <label for="dimosia_dioikisi" class="col-sm-8 col-form-label">ΔΗΜΟΣΙΑ ΔΙΟΙΚΗΣΗ - ΔΗΜΟΣΙΑ ΤΑΞΗ - ΔΙΚΑΙΟΣΥΝΗ<sup>5</sup></label>
                                 <% if(data.dimosia_dioikisi){ %>
                                     <input class="col-sm-2 form-check-input position-static" type="checkbox" id="dimosia_dioikisi" name="dimosia_dioikisi" value="dimosia_dioikisi" checked disabled>
                                 <% }else{ %>
@@ -76,7 +67,7 @@
                                 <% } %>
                             </div>
                             <div class="checkbox-group form-group row">
-                                <label for="anaptiksi" class="col-sm-8 col-form-label">ΑΝΑΠΤΥΞΗ - ΕΠΕΝΔΥΤΙΚΗ ΔΡΑΣΤΗΡΙΟΤΗΤΑ<sup>21</sup></label>
+                                <label for="anaptiksi" class="col-sm-8 col-form-label">ΑΝΑΠΤΥΞΗ - ΕΠΕΝΔΥΤΙΚΗ ΔΡΑΣΤΗΡΙΟΤΗΤΑ<sup>6</sup></label>
                                 <% if(data.anaptiksi){ %>
                                     <input class="col-sm-2 form-check-input position-static" type="checkbox" id="anaptiksi" name="anaptiksi" value="anaptiksi" disabled checked>
                                 <% }else{ %>
@@ -84,16 +75,16 @@
                                 <% } %>
                                 
                             </div>
-                            <input type="button" name="next" class="next action-button" value="Next"/>
+                            <input type="button" name="next" class="next action-button" value="Επόμενα πεδία"/>
             
                             <hr>
                             <br>
-                            <p class="explain_text"><sup>16</sup> Τομέας νομοθέτησης επί θεμάτων Υπουργείου Παιδείας & Θρησκευμάτων και Υπουργείου  Πολιτισμού & Αθλητισμού.</p>
-                            <p class="explain_text"><sup>17</sup> Τομέας νομοθέτησης επί θεμάτων Υπουργείου Εθνικής Άμυνας και Υπουργείου Εξωτερικών.</p>
-                            <p class="explain_text"><sup>18</sup> Τομέας νομοθέτησης επί θεμάτων Υπουργείου Οικονομικών.</p>
-                            <p class="explain_text"><sup>19</sup> Τομέας νομοθέτησης επί θεμάτων Υπουργείου Εργασίας και Κοινωνικών Υποθέσεων και Υπουργείου Υγείας.</p>
-                            <p class="explain_text"><sup>20</sup> Τομέας νομοθέτησης επί θεμάτων Υπουργείου Εσωτερικών, Υπουργείου Ψηφιακής Διακυβέρνησης, Υπουργείου Προστασίας του Πολίτη και Υπουργείου Δικαιοσύνης</p>
-                            <p class="explain_text"><sup>21</sup> Τομέας νομοθέτησης επί θεμάτων Υπουργείου Ανάπτυξης & Επενδύσεων, Υπουργείου Περιβάλλοντος & Ενέργειας, Υπουργείου Υποδομών & Μεταφορών, Υπουργείου Ναυτιλίας & Νησιωτικής Πολιτικής, Υπουργείου Αγροτικής Ανάπτυξης & Τροφίμων και Υπουργείου Τουρισμού.</p>
+                            <p class="explain_text"><sup>1</sup> Τομέας νομοθέτησης επί θεμάτων Υπουργείου Παιδείας & Θρησκευμάτων και Υπουργείου  Πολιτισμού & Αθλητισμού.</p>
+                            <p class="explain_text"><sup>2</sup> Τομέας νομοθέτησης επί θεμάτων Υπουργείου Εθνικής Άμυνας και Υπουργείου Εξωτερικών.</p>
+                            <p class="explain_text"><sup>3</sup> Τομέας νομοθέτησης επί θεμάτων Υπουργείου Οικονομικών.</p>
+                            <p class="explain_text"><sup>4</sup> Τομέας νομοθέτησης επί θεμάτων Υπουργείου Εργασίας και Κοινωνικών Υποθέσεων και Υπουργείου Υγείας.</p>
+                            <p class="explain_text"><sup>5</sup> Τομέας νομοθέτησης επί θεμάτων Υπουργείου Εσωτερικών, Υπουργείου Ψηφιακής Διακυβέρνησης, Υπουργείου Προστασίας του Πολίτη και Υπουργείου Δικαιοσύνης</p>
+                            <p class="explain_text"><sup>6</sup> Τομέας νομοθέτησης επί θεμάτων Υπουργείου Ανάπτυξης & Επενδύσεων, Υπουργείου Περιβάλλοντος & Ενέργειας, Υπουργείου Υποδομών & Μεταφορών, Υπουργείου Ναυτιλίας & Νησιωτικής Πολιτικής, Υπουργείου Αγροτικής Ανάπτυξης & Τροφίμων και Υπουργείου Τουρισμού.</p>
                         </fieldset>
                     
                         <fieldset>
@@ -115,8 +106,8 @@
                                 <textarea class="form-control" id="field_3" name="field_3" rows="3" disabled><%= data.field_3 %></textarea>
                             </div>
             
-                            <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
-                            <input type="button" name="next" class="next action-button" value="Next"/>
+                            <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενα πεδία"/>
+                            <input type="button" name="next" class="next action-button" value="Επόμενα πεδία"/>
                         </fieldset>
             
                         <fieldset>
@@ -138,24 +129,31 @@
                                 <label for="field_4_1">4.1 Ποιο είναι το ισχύον νομικό πλαίσιο που ρυθμίζει το ζήτημα;</label>
                                 <textarea class="form-control" id="field_4_1" name="field_4_comments" rows="3" disabled><%= data.field_4_comments %></textarea>
                             </div>
-            
+                            
+                            <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενα πεδία"/>
+                            <input type="button" name="next" class="next action-button" value="Επόμενα πεδία"/>
+                        </fieldset>
+
+                        <fieldset>
+
+                            <label >5. Γιατί δεν είναι δυνατό να αντιμετωπιστεί στο πλαίσιο της υφιστάμενης νομοθεσίας:</label>
                             <div class="form-group">
-                                <label for="field_5_1">5.1 Γιατί δεν είναι δυνατό να αντιμετωπιστεί στο πλαίσιο της υφιστάμενης νομοθεσίας με αλλαγή προεδρικού διατάγματος, υπουργικής απόφασης ή άλλης κανονιστικής πράξης;</label>
+                                <label for="field_5_1">5.1 με αλλαγή προεδρικού διατάγματος, υπουργικής απόφασης ή άλλης κανονιστικής πράξης;</label>
                                 <textarea class="form-control" id="field_5_1" name="field_5_1" rows="3"  disabled><%= data.field_5_1 %></textarea>
                             </div>
             
                             <div class="form-group">
-                                <label for="field_5_2">5.2 Γιατί δεν είναι δυνατό να αντιμετωπιστεί στο πλαίσιο της υφιστάμενης νομοθεσίας με αλλαγή διοικητικής πρακτικής συμπεριλαμβανομένης της δυνατότητας νέας ερμηνευτικής προσέγγισης της υφιστάμενης νομοθεσίας;</label>
+                                <label for="field_5_2">5.2 με αλλαγή διοικητικής πρακτικής συμπεριλαμβανομένης της δυνατότητας νέας ερμηνευτικής προσέγγισης της υφιστάμενης νομοθεσίας;</label>
                                 <textarea class="form-control" id="field_5_2" name="field_5_2" rows="3" disabled><%= data.field_5_2 %></textarea>
                             </div>
             
                             <div class="form-group">
-                                <label for="field_5_3">5.3 Γιατί δεν είναι δυνατό να αντιμετωπιστεί στο πλαίσιο της υφιστάμενης νομοθεσίας με διάθεση περισσότερων ανθρώπινων και υλικών πόρων;</label>
+                                <label for="field_5_3">5.3 με διάθεση περισσότερων ανθρώπινων και υλικών πόρων;</label>
                                 <textarea class="form-control" id="field_5_3" name="field_5_3" rows="3" disabled><%= data.field_5_3 %></textarea>
                             </div>
             
-                            <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
-                            <input type="button" name="next" class="next action-button" value="Next"/>
+                            <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενα πεδία"/>
+                            <input type="button" name="next" class="next action-button" value="Επόμενα πεδία"/>
                         </fieldset>
             
                         <fieldset>
@@ -181,8 +179,8 @@
                                 <label for="field_6_3">6.3 Σε διεθνείς οργανισμούς:</label>
                                 <textarea class="form-control" id="field_6_3" name="field_6_3" rows="3"><%= data.field_6_3 %></textarea>
                             </div>
-                            <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
-                            <input type="button" name="next" class="next action-button" value="Next"/>
+                            <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενα πεδία"/>
+                            <input type="button" name="next" class="next action-button" value="Επόμενα πεδία"/>
                         </fieldset>
             
                         <fieldset>
@@ -341,18 +339,19 @@
                                 </div>
                             </div>
             
+                            <label>8. Ποιοι είναι οι στόχοι της αξιολογούμενης ρύθμισης;</label>
                             <div class="form-group">
-                                <label for="field_8_1">8.1 Ποιοι είναι οι βραχυπρόθεσμοι στόχοι της αξιολογούμενης ρύθμισης; </label>
+                                <label for="field_8_1">8.1 βραχυπρόθεσμοι: </label>
                                 <textarea class="form-control" id="field_8_1" name="field_8_1" rows="3"><%= data.field_8_1 %></textarea>
                             </div>
             
                             <div class="form-group">
-                                <label for="field_8_2">8.2 Ποιοι είναι οι μακροπρόθεσμοι στόχοι της αξιολογούμενης ρύθμισης; </label>
+                                <label for="field_8_2">8.2 μακροπρόθεσμοι: </label>
                                 <textarea class="form-control" id="field_8_2" name="field_8_2" rows="3"><%= data.field_8_2 %></textarea>
                             </div>
             
-                            <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
-                            <input type="button" name="next" class="next action-button" value="Next"/>
+                            <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενα πεδία"/>
+                            <input type="button" name="next" class="next action-button" value="Επόμενα πεδία"/>
                         </fieldset>
             
                         <fieldset>
@@ -432,16 +431,16 @@
                                 <textarea class="form-control" name="field_13_comments" id="field_13_comments" rows="3"><%= data.field_13_comments %></textarea>
                             </div>
                             
-                            <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
-                            <input type="button" name="next" class="next action-button" value="Next"/>
+                            <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενα πεδία"/>
+                            <input type="button" name="next" class="next action-button" value="Επόμενα πεδία"/>
                         </fieldset>
             
                         <fieldset>
                             <h2>Κατ’ άρθρο ανάλυση αξιολογούμενης ρύθμισης</h2>
                             <br>
                             <p>Todo</p>
-                            <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
-                            <input type="button" name="next" class="next action-button" value="Next"/>
+                            <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενα πεδία"/>
+                            <input type="button" name="next" class="next action-button" value="Επόμενη φόρμα"/>
                         </fieldset>
 
                         <%- include('view_form/view_form_b.ejs') %>  
@@ -458,27 +457,163 @@
             </div>
             <div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4">
                 <div class="jss111">
-                    <div class="jss274"></div>
+                    <div class="jss274">
                         <h3 class="jss273 jss178 jss181">Πίνακας έκθεσης</h3>
-                        <ul class="jss275" id="progressbar">
-                            <li class="active">Η «ταυτότητα» της αξιολογούμενης ρύθμισης</li>
-                            <li>Η αναγκαιότητα της αξιολογούμενης ρύθμισης</li>
-                            <li>Συναφείς πρακτικές</li>
-                            <li>Στόχοι αξιολογούμενης ρύθμισης</li>
-                            <li>Ψηφιακή διακυβέρνηση</li>
-                            <li>Κατ’ άρθρο ανάλυση αξιολογούμενης ρύθμισης</li>
-                            <li>Έκθεση Γενικού Λογιστηρίου του Κράτους</li>
-                            <li>Οικονομικά αποτελέσματα επί του Κρατικού Προϋπολογισμού ή/και επί του
-                                προϋπολογισμού του/των αρμόδιου/ων φορέα/ων</li>
+                        <ul class="aitiologiki_list" >    
+                            <li><h4><b>Αιτιολογική έκθεση</b></h4></li>
+                                <ul class="aitiologiki_menu" id="progressbar">
+                                <li class="active">Τίτλος αξιολογούμενης ρύθμισης & τομείς νομοθέτησης</li>                        
+                                <li>Η «ταυτότητα» της αξιολογούμενης ρύθμισης</li>
+                                <li>Η αναγκαιότητα της αξιολογούμενης ρύθμισης</li>
+                                <li>Συναφείς πρακτικές</li>
+                                <li>Στόχοι αξιολογούμενης ρύθμισης</li>
+                                <li>Ειδικότεροι στόχοι ανάλογα με τον τομέα νομοθέτησης</li>
+                                <li>Ψηφιακή διακυβέρνηση</li>
+                                <li>Κατ’ άρθρο ανάλυση αξιολογούμενης ρύθμισης</li>
+                                </ul>
+                        </ul>                       
+                        <ul class="arthro_syntagmatos_list" >    
+                            <li><h4><b>Έκθεση του άρθρου 75 παρ. 1 και 2 του Συντάγματος</b></h4></li>  
+                                <ul class="arthro_syntagmatos_menu" id="progressbar"> 
+                                    <li>Έκθεση Γενικού Λογιστηρίου του Κράτους</li>    
+                                    <li>Οικονομικά αποτελέσματα επί του Κρατικού Προϋπολογισμού ή/και επί του
+                                        προϋπολογισμού του/των αρμόδιου/ων φορέα/ων</li>  
+                                </ul>
+                        </ul>    
+                        <ul class="eidiki_ekthesi_list" >    
+                            <li><h4><b>Ειδική Έκθεση (άρθρο 75 παρ. 3 του Συντάγματος)
+                            </b></h4></li>  
+                                <ul class="eidiki_ekthesi_menu" id="progressbar"> 
+                                    <li>Οικονομικά αποτελέσματα</li>     
+                                </ul>
                         </ul>
-            
+                        <ul class="ekthesi_genikwn_synepeiwn_list" >    
+                            <li><h4><b>Έκθεση γενικών συνεπειών</b></h4></li>  
+                                <ul class="ekthesi_genikwn_synepeiwn_menu" id="progressbar"> 
+                                    <li>Οφέλη αξιολογούμενης ρύθμισης</li>    
+                                    <li>Κόστος αξιολογούμενης ρύθμισης</li> 
+                                    <li>Κόστος αξιολογούμενης ρύθμισης</li>  
+                                    <li>Γνώμες ή πορίσματα αρμόδιων υπηρεσιών και ανεξάρτητων αρχών</li>
+                                </ul>
+                        </ul> 
+                        <ul class="ekthesi_diavouleusis_list" >    
+                            <li><h4><b>Έκθεση διαβούλευσης</b></h4></li>  
+                                <ul class="ekthesi_diavouleusis_menu" id="progressbar"> 
+                                    <li>Διαβούλευση κατά τη διάρκεια της νομοπαρασκευαστικής διαδικασίας
+                                        από την έναρξη κατάρτισης της αξιολογούμενης ρύθμισης μέχρι την
+                                        υπογραφή από τους συναρμόδιους Υπουργούς</li>    
+                                    <li>Σχόλια στο πλαίσιο της διαβούλευσης μέσω της ηλεκτρονικής πλατφόρμας
+                                        www.opengov.gr</li> 
+                                </ul>
+                        </ul>
+                        <ul class="ekthesi_nomimotitas_list" >    
+                            <li><h4><b>Έκθεση νομιμότητας</b></h4></li>  
+                                <ul class="ekthesi_nomimotitas_menu" id="progressbar"> 
+                                    <li>Συναφείς συνταγματικές διατάξεις</li>    
+                                    <li>Ενωσιακό δίκαιο</li> 
+                                    <li>Συναφείς διατάξεις διεθνών συνθηκών ή συμφωνιών</li> 
+                                    <li>Συναφής νομολογία των ανωτάτων και άλλων εθνικών δικαστηρίων,
+                                        καθώς και αποφάσεις των Ανεξάρτητων Αρχών</li> 
+                                    <li>Συναφής ευρωπαϊκή και διεθνής νομολογία</li>
+                                </ul>
+                        </ul>
+                        <ul class="pinakas_tropopoioymenwn_katargoymenwn_diataksewn_list" >    
+                            <li><h4><b>Πίνακας τροποποιούμενων ή καταργούμενων διατάξεων</b></h4></li>  
+                                <ul class="pinakas_tropopoioymenwn_katargoymenwn_diataksewn_menu" id="progressbar"> 
+                                    <li>Τροποποίηση – αντικατάσταση – συμπλήρωση διατάξεων</li>    
+                                    <li>Κατάργηση διατάξεων</li> 
+                                </ul>
+                        </ul> 
+                        <ul class="ekthesi_efarmogis_rythmisis_list" >    
+                            <li><h4><b>Έκθεση εφαρμογής της ρύθμισης</b></h4></li>  
+                                <ul class="ekthesi_efarmogis_rythmisis_menu" id="progressbar"> 
+                                    <li>Συναρμοδιότητα Υπουργείων / υπηρεσιών / φορέων</li>    
+                                    <li>Έκδοση κανονιστικών πράξεων και εγκυκλίων</li> 
+                                    <li>Ανάγκη σύστασης νέου νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας
+                                        υπηρεσίας</li> 
+                                    <li>Στοιχεία νέου νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας υπηρεσίας</li> 
+                                </ul>
+                        </ul>
                     </div>
                 </div>
             </div>
             
-            
+                       
               
             <style>
+
+                table {
+                    border: 1px solid black;
+                    width: 100%;
+                    padding: 20px;
+                    text-align: left;
+                }
+                table th {
+                    background-color: grey;
+                    text-align: center;
+                    padding: 10px;
+                }
+                table td {
+                    width: 100%;
+                    border: 1px dotted black;
+                }
+
+                .aitiologiki_menu {
+                    display: none
+                }
+                .aitiologiki_list:hover .aitiologiki_menu {
+                    display: initial 
+                }
+
+                .arthro_syntagmatos_menu {
+                    display: none
+                }
+                .arthro_syntagmatos_list:hover .arthro_syntagmatos_menu {
+                    display: initial 
+                }
+
+                .eidiki_ekthesi_menu {
+                    display: none
+                }
+                .eidiki_ekthesi_list:hover .eidiki_ekthesi_menu {
+                    display: initial 
+                }
+
+                .ekthesi_genikwn_synepeiwn_menu {
+                    display: none
+                }
+                .ekthesi_genikwn_synepeiwn_list:hover .ekthesi_genikwn_synepeiwn_menu {
+                    display: initial 
+                }
+                
+                .ekthesi_diavouleusis_menu {
+                    display: none
+                }
+                .ekthesi_diavouleusis_list:hover .ekthesi_diavouleusis_menu {
+                    display: initial 
+                }
+
+                .ekthesi_nomimotitas_menu {
+                    display: none
+                }
+                .ekthesi_nomimotitas_list:hover .ekthesi_nomimotitas_menu {
+                    display: initial 
+                }
+                
+                .pinakas_tropopoioymenwn_katargoymenwn_diataksewn_menu {
+                    display: none
+                }
+                .pinakas_tropopoioymenwn_katargoymenwn_diataksewn_list:hover .pinakas_tropopoioymenwn_katargoymenwn_diataksewn_menu {
+                    display: initial 
+                }
+                
+                .ekthesi_efarmogis_rythmisis_menu {
+                    display: none
+                }
+                .ekthesi_efarmogis_rythmisis_list:hover .ekthesi_efarmogis_rythmisis_menu {
+                    display: initial 
+                }
+
                 .flex-form-group {
                     display: flex;
                     justify-content: space-between;
@@ -660,6 +795,16 @@
             $(".submit").click(function(){
                 return false;
             })
+
+           /*let ff= JSON.parse(data.ofeli_rythmisis.dataValues.auksisi_esodwn)  
+           console.log(ff[0].field_18_amesa_esoda_oikonomia)
+            console.log(ff[1].field_18_amesa_esoda_oikonomia.length)
+            let i=0;
+            if (typeof ff[i].field_18_amesa_esoda_oikonomia == 'undefined') {
+                console.log("0000")
+            } else {
+                 console.log(ff[i].field_18_amesa_esoda_oikonomia.length)
+            } */
             </script>
             
       </div>
