@@ -11,7 +11,9 @@ module.exports = (sequelize, DataTypes) => {
           },
         author_id: DataTypes.STRING,
         title: DataTypes.STRING,
-
+        epispeydon_ypoyrgeio: DataTypes.STRING,
+        stoixeia_epikoinwnias: DataTypes.STRING,
+  
         ekpedeusi_politismos:DataTypes.BOOLEAN,
         eksoteriki_politiki:DataTypes.BOOLEAN,
         forologiki_politiki:DataTypes.BOOLEAN,
