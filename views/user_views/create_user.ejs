@@ -38,6 +38,28 @@
             </div>
             <hr>
 
+            <div class="form-group">
+                <label for="ypoyrgeio">Υπουργείο:</label>
+                <input type="text" size="20" id="ypoyrgeio" name="ypoyrgeio" placeholder="Υπουργείο" /> 
+            </div>
+            <hr>
+
+            <div class="checkbox-group form-group row">
+                <label for="rolos" class="col-sm-2 col-form-label">Ρόλος: </label>
+                <select id="rolos" name="rolos" >
+                    <option selected disabled>Eπιλογή</option>
+                    <option value="syntaktis">Συντάκτης</option>
+                    <option value="ggnkth" >ΓΓΝΚΘ</option>
+                    <option value="syntonismos_ypoyrgeiwn" >Υπηρεσία Συντονισμού Υπουργείου</option>
+                    <option value="nomoparaskeyastiki" >Ρόλος Νομοπαρασκευαστική Επιτροπή</option>
+                    <option value="opengov" >Opengov</option>
+                    <option value="geniko_logistirio" >Γενικό Λογιστήριο του Κράτους</option>
+                    <option value="epitropi_poiotitas" >Επιτροπή Αξιολόγησης Ποιότητας</option>
+                    <option value="vouli" >Βουλή</option>
+                </select>
+            </div>
+            <br><hr>
+
             <div class="checkbox-group form-group row">
                 <label for="dikaiwmata_diaxeirisis" class="col-sm-8 col-form-label">Ο χρήστης έχει δικαιώματα διαχείρισης:</label>
                 <input class="col-sm-2 form-check-input position-static" type="checkbox" id="dikaiwmata_diaxeirisis" name="dikaiwmata_diaxeirisis" value="dikaiwmata_diaxeirisis">
@@ -89,10 +111,20 @@
       border: 1px solid #f1f1f1;
       margin-bottom: 25px;
     }
-    
+
+    .flex-form-group {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
     .checkbox-group {
         display: flex;
         align-items: center;
+    }
+
+    label {
+        font-weight: 700;
     }
 
 </style>

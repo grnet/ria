@@ -3,110 +3,51 @@
 <link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
 <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 
-<div class="MuiContainer-root jss110 MuiContainer-maxWidthLg">
-    <div class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-4">
-        <form>
-            <h1>Αναζήτηση χρήστη</h1>
-            <br>
-
-            <div class="form-group">
-                <label for="search_user">Παρακαλώ εισάγετε το όνομα, το επίθετο ή το username του χρήστη:</label>
-                <input type="text" size="20" id="search_user" name="search_user" placeholder="Όνομα, επίθετο ή username του χρήστη" required />
-            </div>
-            <hr>
-
-            <table id="users_found" class="hide">
+    <div class="MuiContainer-root jss110 MuiContainer-maxWidthLg">
+        <div class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-4">
+            <div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-8">      
+              <br><br>  
+              <table id="data" class="display">
                 <thead>
                     <tr>
-                        <th>Όνομα</th>
-                        <th>Επώνυμο</th>
-                        <th>Username</th>
+                      <th colspan="1">Όνομα</th>
+                      <th colspan="1">Επώνυμο</th>
+                      <th colspan="1">Username</th>
+                      <th colspan="1">Ρόλος</th>
+                      <th colspan="1">Υπουργείο</th>
                     </tr>
                 </thead>
                 <tbody>
                     
                     <% for(var i=0; i<users.length; i++) {%>
-                    <tr onclick="window.location.href='/form_a/<%= users[i].id %>'">
-                      <td><%= users[i].fname %></td>
-                      <td><%= users[i].lname %></td>
-                      <td><%= users[i].username %></td>
+                    <tr onclick="window.location.href='./edit_user/<%= users[i].user_id %>'">
+                      <td style="text-align:center" ><%= users[i].fname %></td>
+                      <td style="text-align:center" ><%= users[i].lname %></td>
+                      <td style="text-align:center" ><%= users[i].username %></td>
+                      <td style="text-align:center" ><%= users[i].rolos %></td>
+                      <td style="text-align:center" ><%= users[i].ypoyrgeio %></td>
                     </tr>
                     <% } %>
                     
                 </tbody>
             </table>
-
-            <input type="submit" name="create_new" class="action-button" value="Αναζήτηση"/>
-        </form>
+            </div>
+          
+      </div>
     </div>
-</div>
+    <%- include('../partials/footer.ejs') %>
+  </div>
 
-<%- include('../partials/footer.ejs') %>
-</div>
+  <style>
+   a {
+      color: blue;
+    }
+  </style>
 
-<style>
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background-color: white;
-    }
-    
-    * {
-      box-sizing: border-box;
-    }
-    
-    /* Add padding to containers */
-    .container {
-      padding: 16px;
-      background-color: black;
-    }
-    
-    /* Full-width input fields */
-    input[type=text], input[type=password] {
-      width: 140%;
-      padding: 15px;
-      margin: 5px 0 22px 0;
-      display: inline-block;
-      border: 2px solid #ccc;
-      border-radius: 4px;
-      background: #f1f1f1;
-    }
-    
-    input[type=text]:focus, input[type=password]:focus {
-      background-color: #ddd;
-      outline: none;
-    }
-    
-    /* Overwrite default styles of hr */
-    hr {
-      border: 1px solid #f1f1f1;
-      margin-bottom: 25px;
-    }
-
-</style>
-
-<script>
-
-$("form").on("submit",function(ev){
-    ev.preventDefault();
-    console.log($(this).serialize())//comment this line out to hide query wrote in db
-    $.ajax({
-        url: '/user_views/create_user',
-        data:$(this).serialize(),
-        error: function(error) {
-            console.log(error)
-        },
-        success: function(data) {
-            console.log(data)
-        },
-        type: 'POST'
-    });
-})
-
-$(document).ready( function () {
-        $('#users_found').DataTable();
+  <script>
+    $(document).ready( function () {
+        $('#data').DataTable();
     } );
-
-</script>
+  </script>
 </body>
-
 </html>

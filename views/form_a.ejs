@@ -1,833 +1,1229 @@
 <%- include('partials/head.ejs') %>
-    <div class="MuiContainer-root jss110 MuiContainer-maxWidthLg">
-        <div class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-4">
-            <div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-8">        
-                <br>
-                <div>
-                    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-                    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-                    <form>
-                        <h1>Αιτιολογική έκθεση</h1>
+<div class="MuiContainer-root jss110 MuiContainer-maxWidthLg">
+    <div class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-4">
+        <div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-8">
+            <br>
+            <div>
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+                    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+                    crossorigin="anonymous">
+                <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                    crossorigin="anonymous"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+                    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                    crossorigin="anonymous"></script>
+                <form>
+
+                    <fieldset>
+
+                        <h2>Α. Αιτιολογική έκθεση</h2>
+                        <br>
+
+                        <div class="form-group row">
+                            <label for="title" class="col-sm-6 col-form-label">Τίτλος αξιολογούμενης ρύθμισης</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="title" name="title"
+                                    value="<%= data.title %>" disabled>
+                            </div>
+                        </div>
+
+                        <br>
                         <hr>
-                        
-                        <br><br>
-            
-                        <fieldset>
-                            <br>
-                            <div class="form-group row">
-                                <label for="title" class="col-sm-6 col-form-label">Τίτλος αξιολογούμενης ρύθμισης</label>
-                                <div class="col-sm-4">
-                                <input type="text" class="form-control" id="title" name="title" value="<%= data.title %>" disabled>
-                                </div>
-                            </div>
-                            
-                            <br><hr>
-                            
-                            <div class="form-group row">
-                                <label for="epispeydon_ypoyrgeio" class="col-sm-6 col-form-label">Επισπεύδον Υπουργείο</label>
-                                <div class="col-sm-4">
-                                <textarea class="form-control" id="epispeydon_ypoyrgeio" name="epispeydon_ypoyrgeio" rows="3" disabled><%= data.epispeydon_ypoyrgeio %></textarea>
-                                </div>
-                            </div>
-            
-                            <hr>
 
-                            <div class="form-group row">
-                                <label for="stoixeia_epikoinwnias" class="col-sm-6 col-form-label">Στοιχεία επικοινωνίας</label>
-                                <div class="col-sm-4">
-                                <textarea class="form-control" id="stoixeia_epikoinwnias" name="stoixeia_epikoinwnias" rows="3" disabled><%= data.stoixeia_epikoinwnias %></textarea>
+                        <div class="form-group row">
+                            <label for="epispeydon_ypoyrgeio" class="col-sm-6 col-form-label">Επισπεύδον
+                                Υπουργείο</label>
+                            <div class="col-sm-4">
+                                <textarea class="form-control" id="epispeydon_ypoyrgeio" name="epispeydon_ypoyrgeio"
+                                    rows="3" disabled><%= data.epispeydon_ypoyrgeio %></textarea>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="form-group row">
+                            <label for="stoixeia_epikoinwnias" class="col-sm-6 col-form-label">Στοιχεία
+                                επικοινωνίας</label>
+                            <div class="col-sm-4">
+                                <textarea class="form-control" id="stoixeia_epikoinwnias" name="stoixeia_epikoinwnias"
+                                    rows="3" disabled><%= data.stoixeia_epikoinwnias %></textarea>
+                            </div>
+                        </div>
+
+                        <br>
+                        <hr>
+
+                        <p>Επιλέξατε από τον παρακάτω κατάλογο τον τομέα ή τους τομείς νομοθέτησης στους οποίους αφορούν
+                            οι βασικές διατάξεις της αξιολογούμενης ρύθμισης:</p>
+                        <div class="checkbox-group form-group row">
+                            <label for="ekpedeusi_politismos" class="col-sm-8 col-form-label">ΕΚΠΑΙΣΕΥΣΗ -
+                                ΠΟΛΙΤΙΣΜΟΣ<sup>1</sup></label>
+                            <% if(data.ekpedeusi_politismos){ %>
+                            <input class="col-sm-2 form-check-input position-static" name="ekpedeusi_politismos"
+                                type="checkbox" id="ekpedeusi_politismos" value="data.ekpedeusi_politismos" checked
+                                disabled>
+                            <% }else{ %>
+                            <input class="col-sm-2 form-check-input position-static" name="ekpedeusi_politismos"
+                                type="checkbox" id="ekpedeusi_politismos" value="ekpedeusi_politismos" disabled>
+                            <% } %>
+                        </div>
+                        <div class="checkbox-group form-group row">
+                            <label for="eksoteriki_politiki" class="col-sm-8 col-form-label">ΕΘΝΙΚΗ ΑΜΥΝΑ - ΕΞΩΤΕΡΙΚΗ
+                                ΠΟΛΙΤΙΚΗ<sup>2</sup></label>
+                            <% if(data.eksoteriki_politiki){ %>
+                            <input class="col-sm-2 form-check-input position-static" type="checkbox"
+                                id="eksoteriki_politiki" name="eksoteriki_politiki" value="eksoteriki_politiki" checked
+                                disabled>
+                            <% }else{ %>
+                            <input class="col-sm-2 form-check-input position-static" type="checkbox"
+                                id="eksoteriki_politiki" name="eksoteriki_politiki" value="eksoteriki_politiki"
+                                disabled>
+                            <% } %>
+                        </div>
+                        <div class="checkbox-group form-group row">
+                            <label for="forologiki_politiki" class="col-sm-8 col-form-label">ΟΙΚΟΝΟΜΙΚΗ / ΔΗΜΟΣΙΟΝΟΜΙΚΗ
+                                / ΦΟΡΟΛΟΓΙΚΗ ΠΟΛΙΤΙΚΗ<sup>3</sup></label>
+                            <% if(data.forologiki_politiki){ %>
+                            <input class="col-sm-2 form-check-input position-static" type="checkbox"
+                                id="forologiki_politiki" name="forologiki_politiki" value="forologiki_politiki" disabled
+                                checked>
+                            <% }else{ %>
+                            <input class="col-sm-2 form-check-input position-static" type="checkbox"
+                                id="forologiki_politiki" name="forologiki_politiki" value="forologiki_politiki"
+                                disabled>
+                            <% } %>
+                        </div>
+                        <div class="checkbox-group form-group row">
+                            <label for="koinoniki_politiki" class="col-sm-8 col-form-label">ΚΟΙΝΩΝΙΚΗ
+                                ΠΟΛΙΤΙΚΗ<sup>4</sup></label>
+                            <% if(data.koinoniki_politiki){ %>
+                            <input class="col-sm-2 form-check-input position-static" type="checkbox"
+                                id="koinoniki_politiki" name="koinoniki_politiki" value="koinoniki_politiki" disabled
+                                checked>
+                            <% }else{ %>
+                            <input class="col-sm-2 form-check-input position-static" type="checkbox"
+                                id="koinoniki_politiki" name="koinoniki_politiki" value="koinoniki_politiki" disabled>
+                            <% } %>
+                        </div>
+                        <div class="checkbox-group form-group row">
+                            <label for="dimosia_dioikisi" class="col-sm-8 col-form-label">ΔΗΜΟΣΙΑ ΔΙΟΙΚΗΣΗ - ΔΗΜΟΣΙΑ
+                                ΤΑΞΗ - ΔΙΚΑΙΟΣΥΝΗ<sup>5</sup></label>
+                            <% if(data.dimosia_dioikisi){ %>
+                            <input class="col-sm-2 form-check-input position-static" type="checkbox"
+                                id="dimosia_dioikisi" name="dimosia_dioikisi" value="dimosia_dioikisi" checked disabled>
+                            <% }else{ %>
+                            <input class="col-sm-2 form-check-input position-static" type="checkbox"
+                                id="dimosia_dioikisi" name="dimosia_dioikisi" value="dimosia_dioikisi" disabled>
+                            <% } %>
+                        </div>
+                        <div class="checkbox-group form-group row">
+                            <label for="anaptiksi" class="col-sm-8 col-form-label">ΑΝΑΠΤΥΞΗ - ΕΠΕΝΔΥΤΙΚΗ
+                                ΔΡΑΣΤΗΡΙΟΤΗΤΑ<sup>6</sup></label>
+                            <% if(data.anaptiksi){ %>
+                            <input class="col-sm-2 form-check-input position-static" type="checkbox" id="anaptiksi"
+                                name="anaptiksi" value="anaptiksi" disabled checked>
+                            <% }else{ %>
+                            <input class="col-sm-2 form-check-input position-static" type="checkbox" id="anaptiksi"
+                                name="anaptiksi" value="anaptiksi" disabled>
+                            <% } %>
+
+                        </div>
+                        <input type="button" name="next" class="next action-button" value="Επόμενα πεδία" />
+
+                        <hr>
+                        <br>
+                        <p class="explain_text"><sup>1</sup> Τομέας νομοθέτησης επί θεμάτων Υπουργείου Παιδείας &
+                            Θρησκευμάτων και Υπουργείου Πολιτισμού & Αθλητισμού.</p>
+                        <p class="explain_text"><sup>2</sup> Τομέας νομοθέτησης επί θεμάτων Υπουργείου Εθνικής Άμυνας
+                            και Υπουργείου Εξωτερικών.</p>
+                        <p class="explain_text"><sup>3</sup> Τομέας νομοθέτησης επί θεμάτων Υπουργείου Οικονομικών.</p>
+                        <p class="explain_text"><sup>4</sup> Τομέας νομοθέτησης επί θεμάτων Υπουργείου Εργασίας και
+                            Κοινωνικών Υποθέσεων και Υπουργείου Υγείας.</p>
+                        <p class="explain_text"><sup>5</sup> Τομέας νομοθέτησης επί θεμάτων Υπουργείου Εσωτερικών,
+                            Υπουργείου Ψηφιακής Διακυβέρνησης, Υπουργείου Προστασίας του Πολίτη και Υπουργείου
+                            Δικαιοσύνης</p>
+                        <p class="explain_text"><sup>6</sup> Τομέας νομοθέτησης επί θεμάτων Υπουργείου Ανάπτυξης &
+                            Επενδύσεων, Υπουργείου Περιβάλλοντος & Ενέργειας, Υπουργείου Υποδομών & Μεταφορών,
+                            Υπουργείου Ναυτιλίας & Νησιωτικής Πολιτικής, Υπουργείου Αγροτικής Ανάπτυξης & Τροφίμων και
+                            Υπουργείου Τουρισμού.</p>
+                    </fieldset>
+
+                    <fieldset>
+                        <h2>Η «ταυτότητα» της αξιολογούμενης ρύθμισης</h2>
+                        <br>
+
+                        <div class="form-group">
+                            <label for="field_1">1. Ποιο ζήτημα αντιμετωπίζει η αξιολογούμενη ρύθμιση;</label>
+                            <textarea class="form-control" id="field_1" name="field_1" rows="3"
+                                disabled><%= data.field_1 %></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="field_2">2. Γιατί αποτελεί πρόβλημα;</label>
+                            <textarea class="form-control" id="field_2" name="field_2" rows="3"
+                                disabled><%= data.field_2 %></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="field_3">3. Ποιους φορείς ή πληθυσμιακές ομάδες αφορά;</label>
+                            <textarea class="form-control" id="field_3" name="field_3" rows="3"
+                                disabled><%= data.field_3 %></textarea>
+                        </div>
+
+                        <input type="button" name="previous" class="previous action-button-previous"
+                            value="Προηγούμενα πεδία" />
+                        <input type="button" name="next" class="next action-button" value="Επόμενα πεδία" />
+                    </fieldset>
+
+                    <fieldset>
+                        <h2>Η αναγκαιότητα της αξιολογούμενης ρύθμισης</h2>
+                        <br>
+                        <div class="checkbox-group form-group row">
+                            <label for="field_4" class="col-sm-8 col-form-label">4. Το εν λόγω ζήτημα έχει
+                                αντιμετωπιστεί με νομοθετική ρύθμιση στο παρελθόν;</label>
+                            <select id="field_4" name="field_4" class="col-sm-2 form-control"
+                                value="<%= data.field_4 %>" disabled>
+                                <% if (data.field_4 =="yes") { %>
+                                <option value="yes">Ναι</option>
+                                <% }else { %>
+                                <option value="no">Όχι</option>
+                                <% } %>
+
+                            </select>
+                        </div>
+
+                        <div id="field_4_wrap" class="form-group" style="display:none;">
+                            <label for="field_4_1">4.1 Ποιο είναι το ισχύον νομικό πλαίσιο που ρυθμίζει το
+                                ζήτημα;</label>
+                            <textarea class="form-control" id="field_4_1" name="field_4_comments" rows="3"
+                                disabled><%= data.field_4_comments %></textarea>
+                        </div>
+
+                        <input type="button" name="previous" class="previous action-button-previous"
+                            value="Προηγούμενα πεδία" />
+                        <input type="button" name="next" class="next action-button" value="Επόμενα πεδία" />
+                    </fieldset>
+
+                    <fieldset>
+
+                        <label>5. Γιατί δεν είναι δυνατό να αντιμετωπιστεί στο πλαίσιο της υφιστάμενης
+                            νομοθεσίας:</label>
+                        <div class="form-group">
+                            <label for="field_5_1">5.1 με αλλαγή προεδρικού διατάγματος, υπουργικής απόφασης ή άλλης
+                                κανονιστικής πράξης;</label>
+                            <textarea class="form-control" id="field_5_1" name="field_5_1" rows="3"
+                                disabled><%= data.field_5_1 %></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="field_5_2">5.2 με αλλαγή διοικητικής πρακτικής συμπεριλαμβανομένης της
+                                δυνατότητας νέας ερμηνευτικής προσέγγισης της υφιστάμενης νομοθεσίας;</label>
+                            <textarea class="form-control" id="field_5_2" name="field_5_2" rows="3"
+                                disabled><%= data.field_5_2 %></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="field_5_3">5.3 με διάθεση περισσότερων ανθρώπινων και υλικών πόρων;</label>
+                            <textarea class="form-control" id="field_5_3" name="field_5_3" rows="3"
+                                disabled><%= data.field_5_3 %></textarea>
+                        </div>
+
+                        <input type="button" name="previous" class="previous action-button-previous"
+                            value="Προηγούμενα πεδία" />
+                        <input type="button" name="next" class="next action-button" value="Επόμενα πεδία" />
+                    </fieldset>
+
+                    <fieldset>
+                        <h2>Συναφείς πρακτικές</h2>
+                        <br>
+                        <div class="checkbox-group form-group row">
+                            <label for="field_6" class="col-sm-8 col-form-label">6. Έχετε λάβει υπόψη συναφείς
+                                πρακτικές;</label>
+                            <select id="field_6" name="field_6" value="<%= data.field_6 %>"
+                                class="col-sm-2 form-control" disabled>
+                                <% if (data.field_6 =="yes") { %>
+                                <option value="yes">Ναι</option>
+                                <% }else { %>
+                                <option value="no">Όχι</option>
+                                <% } %>
+                            </select>
+                        </div>
+
+                        <div id="field_6_wrap" class="form-group" style="display:none;">
+                            <label for="field_6_1">6.1 Σε άλλη/ες χώρα/ες της Ε.Ε. ή του ΟΟΣΑ:</label>
+                            <textarea class="form-control" id="field_6_1" name="field_6_1"
+                                rows="3"><%= data.field_6_1 %></textarea>
+                            <br>
+                            <label for="field_6_2">6.2 Σε όργανα της Ε.Ε.:</label>
+                            <textarea class="form-control" id="field_6_2" name="field_6_2"
+                                rows="3"><%= data.field_6_2 %></textarea>
+                            <label for="field_6_3">6.3 Σε διεθνείς οργανισμούς:</label>
+                            <textarea class="form-control" id="field_6_3" name="field_6_3"
+                                rows="3"><%= data.field_6_3 %></textarea>
+                        </div>
+                        <input type="button" name="previous" class="previous action-button-previous"
+                            value="Προηγούμενα πεδία" />
+                        <input type="button" name="next" class="next action-button" value="Επόμενα πεδία" />
+                    </fieldset>
+
+                    <fieldset>
+                        <h2>Στόχοι αξιολογούμενης ρύθμισης</h2>
+                        <br>
+                        <div id="field_7_wrap">
+                            <label class="col-form-label">7. Σημειώστε ποιοι από τους στόχους βιώσιμης ανάπτυξης των
+                                Ηνωμένων Εθνών επιδιώκονται με την αξιολογούμενη ρύθμιση</label>
+                            <div class="flex-form-group form-group">
+                                <div class="wrap">
+                                    <% if(data.field_7_goal_1){ %>
+                                    <input id="goal_1" class="checkbox-inline" type="checkbox" name="field_7_goal_1"
+                                        value="data.field_7_goal_1" checked disabled>
+                                    <% }else{ %>
+                                    <input id="goal_1" class="checkbox-inline" type="checkbox" name="field_7_goal_1"
+                                        value="goal_1" disabled>
+                                    <% } %>
+                                    <label for="goal_1" class="checkbox-label"><img src="/img/gr-goal-1.jpg"
+                                            width="100px"></label>
                                 </div>
+                                <div class="wrap">
+                                    <% if(data.field_7_goal_2){ %>
+                                    <input id="goal_2" class="checkbox-inline" type="checkbox" name="field_7_goal_2"
+                                        value="data.field_7_goal_2" checked disabled>
+                                    <% }else{ %>
+                                    <input id="goal_2" class="checkbox-inline" type="checkbox" name="field_7_goal_2"
+                                        value="goal_2" disabled>
+                                    <% } %>
+                                    <label for="goal_2" class="checkbox-label"><img src="/img/gr-goal-2.jpg"
+                                            width="100px"></label>
+                                </div>
+                                <div class="wrap">
+                                    <% if(data.field_7_goal_3){ %>
+                                    <input id="goal_3" class="checkbox-inline" type="checkbox" name="field_7_goal_3"
+                                        value="data.field_7_goal_3" checked disabled>
+                                    <% }else{ %>
+                                    <input id="goal_3" class="checkbox-inline" type="checkbox" name="field_7_goal_3"
+                                        value="goal_3" disabled>
+                                    <% } %>
+                                    <label for="goal_3" class="checkbox-label"><img src="/img/gr-goal-3.jpg"
+                                            width="100px"></label>
+                                </div>
+                                <div class="wrap">
+                                    <% if(data.field_7_goal_4){ %>
+                                    <input id="goal_14" class="checkbox-inline" type="checkbox" name="field_7_goal_4"
+                                        value="data.field_7_goal_4" checked disabled>
+                                    <% }else{ %>
+                                    <input id="goal_4" class="checkbox-inline" type="checkbox" name="field_7_goal_4"
+                                        value="goal_4" disabled>
+                                    <% } %>
+                                    <label for="goal_4" class="checkbox-label"><img src="/img/gr-goal-4.jpg"
+                                            width="100px"></label>
+                                </div>
+
+                            </div>
+                            <div class="flex-form-group form-group">
+                                <div class="wrap">
+                                    <% if(data.field_7_goal_5){ %>
+                                    <input id="goal_5" class="checkbox-inline" type="checkbox" name="field_7_goal_5"
+                                        value="data.field_7_goal_5" checked disabled>
+                                    <% }else{ %>
+                                    <input id="goal_5" class="checkbox-inline" type="checkbox" name="field_7_goal_5"
+                                        value="goal_5" disabled>
+                                    <% } %>
+                                    <label for="goal_5" class="checkbox-label"><img src="/img/gr-goal-5.jpg"
+                                            width="100px"></label>
+                                </div>
+                                <div class="wrap">
+                                    <% if(data.field_7_goal_6){ %>
+                                    <input id="goal_6" class="checkbox-inline" type="checkbox" name="field_7_goal_6"
+                                        value="data.field_7_goal_6" checked disabled>
+                                    <% }else{ %>
+                                    <input id="goal_6" class="checkbox-inline" type="checkbox" name="field_7_goal_6"
+                                        value="goal_6" disabled>
+                                    <% } %>
+                                    <label for="goal_6" class="checkbox-label"><img src="/img/gr-goal-6.jpg"
+                                            width="100px"></label>
+                                </div>
+                                <div class="wrap">
+                                    <% if(data.field_7_goal_7){ %>
+                                    <input id="goal_7" class="checkbox-inline" type="checkbox" name="field_7_goal_7"
+                                        value="data.field_7_goal_7" checked disabled>
+                                    <% }else{ %>
+                                    <input id="goal_7" class="checkbox-inline" type="checkbox" name="field_7_goal_7"
+                                        value="goal_7" disabled>
+                                    <% } %>
+                                    <label for="goal_7" class="checkbox-label"><img src="/img/gr-goal-7.jpg"
+                                            width="100px"></label>
+                                </div>
+                                <div class="wrap">
+                                    <% if(data.field_7_goal_8){ %>
+                                    <input id="goal_8" class="checkbox-inline" type="checkbox" name="field_7_goal_8"
+                                        value="data.field_7_goal_8" checked disabled>
+                                    <% }else{ %>
+                                    <input id="goal_8" class="checkbox-inline" type="checkbox" name="field_7_goal_8"
+                                        value="goal_8" disabled>
+                                    <% } %>
+                                    <label for="goal_8" class="checkbox-label"><img src="/img/gr-goal-8.jpg"
+                                            width="100px"></label>
+                                </div>
+
                             </div>
 
-                            <br><hr>
+                            <div class="flex-form-group form-group">
+                                <div class="wrap">
+                                    <% if(data.field_7_goal_9){ %>
+                                    <input id="goal_9" class="checkbox-inline" type="checkbox" name="field_7_goal_9"
+                                        value="data.field_7_goal_9" checked disabled>
+                                    <% }else{ %>
+                                    <input id="goal_9" class="checkbox-inline" type="checkbox" name="field_7_goal_9"
+                                        value="goal_9" disabled>
+                                    <% } %>
+                                    <label for="goal_9" class="checkbox-label"><img src="/img/gr-goal-9.jpg"
+                                            width="100px"></label>
+                                </div>
+                                <div class="wrap">
+                                    <% if(data.field_7_goal_10){ %>
+                                    <input id="goal_10" class="checkbox-inline" type="checkbox" name="field_7_goal_10"
+                                        value="data.field_7_goal_10" checked disabled>
+                                    <% }else{ %>
+                                    <input id="goal_10" class="checkbox-inline" type="checkbox" name="field_7_goal_10"
+                                        value="goal_10" disabled>
+                                    <% } %>
+                                    <label for="goal_10" class="checkbox-label"><img src="/img/10.png"
+                                            width="100px"></label>
+                                </div>
+                                <div class="wrap">
+                                    <% if(data.field_7_goal_11){ %>
+                                    <input id="goal_11" class="checkbox-inline" type="checkbox" name="field_7_goal_11"
+                                        value="data.field_7_goal_11" checked disabled>
+                                    <% }else{ %>
+                                    <input id="goal_11" class="checkbox-inline" type="checkbox" name="field_7_goal_11"
+                                        value="goal_11" disabled>
+                                    <% } %>
+                                    <label for="goal_11" class="checkbox-label"><img src="/img/gr-goal-11.jpg"
+                                            width="100px"></label>
+                                </div>
+                                <div class="wrap">
+                                    <% if(data.field_7_goal_12){ %>
+                                    <input id="goal_12" class="checkbox-inline" type="checkbox" name="field_7_goal_12"
+                                        value="data.field_7_goal_12" checked disabled>
+                                    <% }else{ %>
+                                    <input id="goal_12" class="checkbox-inline" type="checkbox" name="field_7_goal_12"
+                                        value="goal_12" disabled>
+                                    <% } %>
+                                    <label for="goal_12" class="checkbox-label"><img src="/img/gr-goal-12.jpg"
+                                            width="100px"></label>
+                                </div>
+                            </div>
+                            <div class="flex-form-group form-group">
+                                <div class="wrap">
+                                    <% if(data.field_7_goal_13){ %>
+                                    <input id="goal_13" class="checkbox-inline" type="checkbox" name="field_7_goal_13"
+                                        value="data.field_7_goal_13" checked disabled>
+                                    <% }else{ %>
+                                    <input id="goal_13" class="checkbox-inline" type="checkbox" name="field_7_goal_13"
+                                        value="goal_13" disabled>
+                                    <% } %>
+                                    <label for="goal_13" class="checkbox-label"><img src="/img/gr-goal-13.jpg"
+                                            width="100px"></label>
+                                </div>
+                                <div class="wrap">
+                                    <% if(data.field_7_goal_14){ %>
+                                    <input id="goal_14" class="checkbox-inline" type="checkbox" name="field_7_goal_14"
+                                        value="data.field_7_goal_14" checked disabled>
+                                    <% }else{ %>
+                                    <input id="goal_14" class="checkbox-inline" type="checkbox" name="field_7_goal_14"
+                                        value="goal_14" disabled>
+                                    <% } %>
+                                    <label for="goal_14" class="checkbox-label"><img src="/img/gr-goal-14.jpg"
+                                            width="100px"></label>
+                                </div>
+                                <div class="wrap">
+                                    <% if(data.field_7_goal_15){ %>
+                                    <input id="goal_15" class="checkbox-inline" type="checkbox" name="field_7_goal_15"
+                                        value="data.field_7_goal_15" checked disabled>
+                                    <% }else{ %>
+                                    <input id="goal_15" class="checkbox-inline" type="checkbox" name="field_7_goal_15"
+                                        value="goal_15" disabled>
+                                    <% } %>
+                                    <label for="goal_15" class="checkbox-label"><img src="/img/gr-goal-15.jpg"
+                                            width="100px"></label>
+                                </div>
+                                <div class="wrap">
+                                    <% if(data.field_7_goal_16){ %>
+                                    <input id="goal_16" class="checkbox-inline" type="checkbox" name="field_7_goal_16"
+                                        value="data.field_7_goal_16" checked disabled>
+                                    <% }else{ %>
+                                    <input id="goal_16" class="checkbox-inline" type="checkbox" name="field_7_goal_16"
+                                        value="goal_16" disabled>
+                                    <% } %>
+                                    <label for="goal_16" class="checkbox-label"><img src="/img/gr-goal-16.jpg"
+                                            width="100px"></label>
+                                </div>
+                            </div>
+                            <div class="flex-form-group form-group">
+                                <div class="wrap">
+                                    <% if(data.field_7_goal_17){ %>
+                                    <input id="goal_17" class="checkbox-inline" type="checkbox" name="field_7_goal_17"
+                                        value="data.field_7_goal_17" checked disabled>
+                                    <% }else{ %>
+                                    <input id="goal_17" class="checkbox-inline" type="checkbox" name="field_7_goal_17"
+                                        value="goal_17" disabled>
+                                    <% } %>
+                                    <label for="goal_17" class="checkbox-label"><img src="/img/gr-goal-17.jpg"
+                                            width="100px"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
 
-                            <p>Επιλέξατε από τον παρακάτω κατάλογο τον τομέα ή τους τομείς νομοθέτησης στους οποίους αφορούν οι βασικές διατάξεις της αξιολογούμενης ρύθμισης:</p>
-                            <div class="checkbox-group form-group row">
-                                <label for="ekpedeusi_politismos" class="col-sm-8 col-form-label">ΕΚΠΑΙΣΕΥΣΗ - ΠΟΛΙΤΙΣΜΟΣ<sup>1</sup></label>
-                                <% if(data.ekpedeusi_politismos){ %>
-                                    <input class="col-sm-2 form-check-input position-static" name="ekpedeusi_politismos" type="checkbox" id="ekpedeusi_politismos" value="data.ekpedeusi_politismos" checked disabled>
-                                <% }else{ %>
-                                    <input class="col-sm-2 form-check-input position-static" name="ekpedeusi_politismos" type="checkbox" id="ekpedeusi_politismos" value="ekpedeusi_politismos" disabled>
-                                <% } %>
-                            </div>
-                            <div class="checkbox-group form-group row">
-                                <label for="eksoteriki_politiki" class="col-sm-8 col-form-label">ΕΘΝΙΚΗ ΑΜΥΝΑ - ΕΞΩΤΕΡΙΚΗ ΠΟΛΙΤΙΚΗ<sup>2</sup></label>
-                                <% if(data.eksoteriki_politiki){ %>
-                                    <input class="col-sm-2 form-check-input position-static" type="checkbox" id="eksoteriki_politiki" name="eksoteriki_politiki" value="eksoteriki_politiki" checked disabled>
-                                <% }else{ %>
-                                    <input class="col-sm-2 form-check-input position-static" type="checkbox" id="eksoteriki_politiki" name="eksoteriki_politiki" value="eksoteriki_politiki" disabled>
-                                <% } %>
-                            </div>
-                            <div class="checkbox-group form-group row">
-                                <label for="forologiki_politiki" class="col-sm-8 col-form-label">ΟΙΚΟΝΟΜΙΚΗ / ΔΗΜΟΣΙΟΝΟΜΙΚΗ / ΦΟΡΟΛΟΓΙΚΗ ΠΟΛΙΤΙΚΗ<sup>3</sup></label>
-                                <% if(data.forologiki_politiki){ %>
-                                    <input class="col-sm-2 form-check-input position-static" type="checkbox" id="forologiki_politiki" name="forologiki_politiki" value="forologiki_politiki" disabled checked>
-                                <% }else{ %>
-                                    <input class="col-sm-2 form-check-input position-static" type="checkbox" id="forologiki_politiki" name="forologiki_politiki" value="forologiki_politiki" disabled>
-                                <% } %>
-                            </div>
-                            <div class="checkbox-group form-group row">
-                                <label for="koinoniki_politiki" class="col-sm-8 col-form-label">ΚΟΙΝΩΝΙΚΗ ΠΟΛΙΤΙΚΗ<sup>4</sup></label>
-                                <% if(data.koinoniki_politiki){ %>
-                                    <input class="col-sm-2 form-check-input position-static" type="checkbox" id="koinoniki_politiki" name="koinoniki_politiki" value="koinoniki_politiki" disabled checked>
-                                <% }else{ %>
-                                    <input class="col-sm-2 form-check-input position-static" type="checkbox" id="koinoniki_politiki" name="koinoniki_politiki" value="koinoniki_politiki" disabled>
-                                <% } %>
-                            </div>
-                            <div class="checkbox-group form-group row">
-                                <label for="dimosia_dioikisi" class="col-sm-8 col-form-label">ΔΗΜΟΣΙΑ ΔΙΟΙΚΗΣΗ - ΔΗΜΟΣΙΑ ΤΑΞΗ - ΔΙΚΑΙΟΣΥΝΗ<sup>5</sup></label>
-                                <% if(data.dimosia_dioikisi){ %>
-                                    <input class="col-sm-2 form-check-input position-static" type="checkbox" id="dimosia_dioikisi" name="dimosia_dioikisi" value="dimosia_dioikisi" checked disabled>
-                                <% }else{ %>
-                                    <input class="col-sm-2 form-check-input position-static" type="checkbox" id="dimosia_dioikisi" name="dimosia_dioikisi" value="dimosia_dioikisi" disabled>
-                                <% } %>
-                            </div>
-                            <div class="checkbox-group form-group row">
-                                <label for="anaptiksi" class="col-sm-8 col-form-label">ΑΝΑΠΤΥΞΗ - ΕΠΕΝΔΥΤΙΚΗ ΔΡΑΣΤΗΡΙΟΤΗΤΑ<sup>6</sup></label>
-                                <% if(data.anaptiksi){ %>
-                                    <input class="col-sm-2 form-check-input position-static" type="checkbox" id="anaptiksi" name="anaptiksi" value="anaptiksi" disabled checked>
-                                <% }else{ %>
-                                    <input class="col-sm-2 form-check-input position-static" type="checkbox" id="anaptiksi" name="anaptiksi" value="anaptiksi" disabled>
-                                <% } %>
-                                
-                            </div>
-                            <input type="button" name="next" class="next action-button" value="Επόμενα πεδία"/>
-            
-                            <hr>
-                            <br>
-                            <p class="explain_text"><sup>1</sup> Τομέας νομοθέτησης επί θεμάτων Υπουργείου Παιδείας & Θρησκευμάτων και Υπουργείου  Πολιτισμού & Αθλητισμού.</p>
-                            <p class="explain_text"><sup>2</sup> Τομέας νομοθέτησης επί θεμάτων Υπουργείου Εθνικής Άμυνας και Υπουργείου Εξωτερικών.</p>
-                            <p class="explain_text"><sup>3</sup> Τομέας νομοθέτησης επί θεμάτων Υπουργείου Οικονομικών.</p>
-                            <p class="explain_text"><sup>4</sup> Τομέας νομοθέτησης επί θεμάτων Υπουργείου Εργασίας και Κοινωνικών Υποθέσεων και Υπουργείου Υγείας.</p>
-                            <p class="explain_text"><sup>5</sup> Τομέας νομοθέτησης επί θεμάτων Υπουργείου Εσωτερικών, Υπουργείου Ψηφιακής Διακυβέρνησης, Υπουργείου Προστασίας του Πολίτη και Υπουργείου Δικαιοσύνης</p>
-                            <p class="explain_text"><sup>6</sup> Τομέας νομοθέτησης επί θεμάτων Υπουργείου Ανάπτυξης & Επενδύσεων, Υπουργείου Περιβάλλοντος & Ενέργειας, Υπουργείου Υποδομών & Μεταφορών, Υπουργείου Ναυτιλίας & Νησιωτικής Πολιτικής, Υπουργείου Αγροτικής Ανάπτυξης & Τροφίμων και Υπουργείου Τουρισμού.</p>
-                        </fieldset>
-                    
-                        <fieldset>
-                            <h2>Η «ταυτότητα» της αξιολογούμενης ρύθμισης</h2>
-                            <br>
-            
-                            <div class="form-group">
-                                <label for="field_1">1. Ποιο ζήτημα αντιμετωπίζει η αξιολογούμενη ρύθμιση;</label>
-                                <textarea class="form-control" id="field_1" name="field_1" rows="3" disabled><%= data.field_1 %></textarea>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="field_2">2. Γιατί αποτελεί πρόβλημα;</label>
-                                <textarea class="form-control" id="field_2" name="field_2" rows="3" disabled><%= data.field_2 %></textarea>
-                            </div>
-            
-                            <div class="form-group">
-                                <label for="field_3">3. Ποιους φορείς ή πληθυσμιακές ομάδες αφορά;</label>
-                                <textarea class="form-control" id="field_3" name="field_3" rows="3" disabled><%= data.field_3 %></textarea>
-                            </div>
-            
-                            <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενα πεδία"/>
-                            <input type="button" name="next" class="next action-button" value="Επόμενα πεδία"/>
-                        </fieldset>
-            
-                        <fieldset>
-                            <h2>Η αναγκαιότητα της αξιολογούμενης ρύθμισης</h2>
-                            <br>
-                            <div class="checkbox-group form-group row">
-                                <label for="field_4" class="col-sm-8 col-form-label">4. Το εν λόγω ζήτημα έχει αντιμετωπιστεί με νομοθετική ρύθμιση στο παρελθόν;</label>
-                                <select id="field_4" name="field_4" class="col-sm-2 form-control" value="<%= data.field_4 %>" disabled >
-                                   <% if (data.field_4 =="yes") { %>    
-                                        <option value="yes">Ναι</option>
-                                    <% }else { %>   
-                                        <option value="no" >Όχι</option>
-                                    <% } %> 
-                                        
-                                </select>
-                            </div>
-            
-                            <div id="field_4_wrap" class="form-group" style="display:none;">
-                                <label for="field_4_1">4.1 Ποιο είναι το ισχύον νομικό πλαίσιο που ρυθμίζει το ζήτημα;</label>
-                                <textarea class="form-control" id="field_4_1" name="field_4_comments" rows="3" disabled><%= data.field_4_comments %></textarea>
-                            </div>
-                            
-                            <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενα πεδία"/>
-                            <input type="button" name="next" class="next action-button" value="Επόμενα πεδία"/>
-                        </fieldset>
+                        <label>8. Ποιοι είναι οι στόχοι της αξιολογούμενης ρύθμισης;</label>
+                        <div class="form-group">
+                            <label for="field_8_1">8.1 βραχυπρόθεσμοι: </label>
+                            <textarea class="form-control" id="field_8_1" name="field_8_1"
+                                rows="3"><%= data.field_8_1 %></textarea>
+                        </div>
 
-                        <fieldset>
+                        <div class="form-group">
+                            <label for="field_8_2">8.2 μακροπρόθεσμοι: </label>
+                            <textarea class="form-control" id="field_8_2" name="field_8_2"
+                                rows="3"><%= data.field_8_2 %></textarea>
+                        </div>
 
-                            <label >5. Γιατί δεν είναι δυνατό να αντιμετωπιστεί στο πλαίσιο της υφιστάμενης νομοθεσίας:</label>
-                            <div class="form-group">
-                                <label for="field_5_1">5.1 με αλλαγή προεδρικού διατάγματος, υπουργικής απόφασης ή άλλης κανονιστικής πράξης;</label>
-                                <textarea class="form-control" id="field_5_1" name="field_5_1" rows="3"  disabled><%= data.field_5_1 %></textarea>
-                            </div>
-            
-                            <div class="form-group">
-                                <label for="field_5_2">5.2 με αλλαγή διοικητικής πρακτικής συμπεριλαμβανομένης της δυνατότητας νέας ερμηνευτικής προσέγγισης της υφιστάμενης νομοθεσίας;</label>
-                                <textarea class="form-control" id="field_5_2" name="field_5_2" rows="3" disabled><%= data.field_5_2 %></textarea>
-                            </div>
-            
-                            <div class="form-group">
-                                <label for="field_5_3">5.3 με διάθεση περισσότερων ανθρώπινων και υλικών πόρων;</label>
-                                <textarea class="form-control" id="field_5_3" name="field_5_3" rows="3" disabled><%= data.field_5_3 %></textarea>
-                            </div>
-            
-                            <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενα πεδία"/>
-                            <input type="button" name="next" class="next action-button" value="Επόμενα πεδία"/>
-                        </fieldset>
-            
-                        <fieldset>
-                            <h2>Συναφείς πρακτικές</h2>
-                            <br>
-                            <div class="checkbox-group form-group row">
-                                <label for="field_6" class="col-sm-8 col-form-label">6. Έχετε λάβει υπόψη συναφείς πρακτικές;</label>
-                                <select id="field_6" name="field_6" value="<%= data.field_6 %>" class="col-sm-2 form-control" disabled>
-                                    <% if (data.field_6 =="yes") { %>    
-                                        <option value="yes">Ναι</option>
-                                    <% }else { %>   
-                                        <option value="no" >Όχι</option>
-                                    <% } %> 
-                                </select>
-                            </div>
-            
-                            <div id="field_6_wrap" class="form-group" style="display:none;">
-                                <label for="field_6_1">6.1 Σε άλλη/ες χώρα/ες της Ε.Ε. ή του ΟΟΣΑ:</label>
-                                <textarea class="form-control" id="field_6_1" name="field_6_1" rows="3"><%= data.field_6_1 %></textarea>
-                                <br>
-                                <label for="field_6_2">6.2 Σε όργανα της Ε.Ε.:</label>
-                                <textarea class="form-control" id="field_6_2" name="field_6_2" rows="3"><%= data.field_6_2 %></textarea>
-                                <label for="field_6_3">6.3 Σε διεθνείς οργανισμούς:</label>
-                                <textarea class="form-control" id="field_6_3" name="field_6_3" rows="3"><%= data.field_6_3 %></textarea>
-                            </div>
-                            <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενα πεδία"/>
-                            <input type="button" name="next" class="next action-button" value="Επόμενα πεδία"/>
-                        </fieldset>
-            
-                        <fieldset>
-                            <h2>Στόχοι αξιολογούμενης ρύθμισης</h2>
-                            <br>
-                            <div id="field_7_wrap">
-                                <label  class="col-form-label">7. Σημειώστε ποιοι από τους στόχους βιώσιμης ανάπτυξης των Ηνωμένων Εθνών επιδιώκονται με την αξιολογούμενη ρύθμιση</label>
-                                <div class="flex-form-group form-group">
-                                    <div class="wrap">
-                                        <% if(data.field_7_goal_1){ %>
-                                            <input id="goal_1" class="checkbox-inline" type="checkbox" name="field_7_goal_1" value="data.field_7_goal_1" checked disabled>
-                                        <% }else{ %>
-                                            <input  id="goal_1" class="checkbox-inline" type="checkbox" name="field_7_goal_1" value="goal_1" disabled>
-                                        <% } %>
-                                      <label for="goal_1" class="checkbox-label"><img src="/img/gr-goal-1.jpg" width="100px"></label>
-                                    </div>
-                                    <div class="wrap">
-                                        <% if(data.field_7_goal_2){ %>
-                                            <input id="goal_2" class="checkbox-inline" type="checkbox" name="field_7_goal_2" value="data.field_7_goal_2" checked disabled>
-                                        <% }else{ %>
-                                            <input  id="goal_2" class="checkbox-inline" type="checkbox" name="field_7_goal_2" value="goal_2" disabled>
-                                        <% } %>
-                                      <label for="goal_2" class="checkbox-label"><img src="/img/gr-goal-2.jpg" width="100px"></label>
-                                    </div>
-                                    <div class="wrap">
-                                        <% if(data.field_7_goal_3){ %>
-                                            <input id="goal_3" class="checkbox-inline" type="checkbox" name="field_7_goal_3" value="data.field_7_goal_3" checked disabled>
-                                        <% }else{ %>
-                                            <input  id="goal_3" class="checkbox-inline" type="checkbox" name="field_7_goal_3" value="goal_3" disabled>
-                                        <% } %>
-                                      <label for="goal_3" class="checkbox-label"><img src="/img/gr-goal-3.jpg" width="100px"></label>
-                                    </div>
-                                    <div class="wrap">
-                                        <% if(data.field_7_goal_4){ %>
-                                            <input id="goal_14" class="checkbox-inline" type="checkbox" name="field_7_goal_4" value="data.field_7_goal_4" checked disabled>
-                                        <% }else{ %>
-                                            <input  id="goal_4" class="checkbox-inline" type="checkbox" name="field_7_goal_4" value="goal_4" disabled>
-                                        <% } %> 
-                                      <label for="goal_4" class="checkbox-label"><img src="/img/gr-goal-4.jpg" width="100px"></label>
-                                    </div>
-                                  
-                                </div>
-                                <div class="flex-form-group form-group">
-                                    <div class="wrap">
-                                        <% if(data.field_7_goal_5){ %>
-                                            <input id="goal_5" class="checkbox-inline" type="checkbox" name="field_7_goal_5" value="data.field_7_goal_5" checked disabled>
-                                        <% }else{ %>
-                                            <input  id="goal_5" class="checkbox-inline" type="checkbox" name="field_7_goal_5" value="goal_5" disabled>
-                                        <% } %>
-                                        <label for="goal_5" class="checkbox-label"><img src="/img/gr-goal-5.jpg" width="100px"></label>
-                                    </div>
-                                    <div class="wrap">
-                                        <% if(data.field_7_goal_6){ %>
-                                            <input id="goal_6" class="checkbox-inline" type="checkbox" name="field_7_goal_6" value="data.field_7_goal_6" checked disabled>
-                                        <% }else{ %>
-                                            <input  id="goal_6" class="checkbox-inline" type="checkbox" name="field_7_goal_6" value="goal_6" disabled>
-                                        <% } %>
-                                        <label for="goal_6" class="checkbox-label"><img src="/img/gr-goal-6.jpg" width="100px"></label>
-                                    </div>
-                                    <div class="wrap">
-                                        <% if(data.field_7_goal_7){ %>
-                                            <input id="goal_7" class="checkbox-inline" type="checkbox" name="field_7_goal_7" value="data.field_7_goal_7" checked disabled>
-                                        <% }else{ %>
-                                            <input  id="goal_7" class="checkbox-inline" type="checkbox" name="field_7_goal_7" value="goal_7" disabled>
-                                        <% } %>
-                                        <label for="goal_7" class="checkbox-label"><img src="/img/gr-goal-7.jpg" width="100px"></label>
-                                    </div>
-                                    <div class="wrap">
-                                        <% if(data.field_7_goal_8){ %>
-                                            <input id="goal_8" class="checkbox-inline" type="checkbox" name="field_7_goal_8" value="data.field_7_goal_8" checked disabled>
-                                        <% }else{ %>
-                                            <input  id="goal_8" class="checkbox-inline" type="checkbox" name="field_7_goal_8" value="goal_8" disabled>
-                                        <% } %>
-                                        <label for="goal_8" class="checkbox-label"><img src="/img/gr-goal-8.jpg" width="100px"></label>
-                                    </div>
-                                
-                                </div>
-                
-                                <div class="flex-form-group form-group">
-                                    <div class="wrap">
-                                        <% if(data.field_7_goal_9){ %>
-                                            <input id="goal_9" class="checkbox-inline" type="checkbox" name="field_7_goal_9" value="data.field_7_goal_9" checked disabled>
-                                        <% }else{ %>
-                                            <input  id="goal_9" class="checkbox-inline" type="checkbox" name="field_7_goal_9" value="goal_9" disabled>
-                                        <% } %>
-                                        <label for="goal_9" class="checkbox-label"><img src="/img/gr-goal-9.jpg" width="100px"></label>
-                                    </div>
-                                    <div class="wrap">
-                                        <% if(data.field_7_goal_10){ %>
-                                            <input id="goal_10" class="checkbox-inline" type="checkbox" name="field_7_goal_10" value="data.field_7_goal_10" checked disabled>
-                                        <% }else{ %>
-                                            <input  id="goal_10" class="checkbox-inline" type="checkbox" name="field_7_goal_10" value="goal_10" disabled>
-                                        <% } %>
-                                        <label for="goal_10" class="checkbox-label"><img src="/img/10.png" width="100px"></label>
-                                    </div>
-                                    <div class="wrap">
-                                        <% if(data.field_7_goal_11){ %>
-                                            <input id="goal_11" class="checkbox-inline" type="checkbox" name="field_7_goal_11" value="data.field_7_goal_11" checked disabled>
-                                        <% }else{ %>
-                                            <input  id="goal_11" class="checkbox-inline" type="checkbox" name="field_7_goal_11" value="goal_11" disabled>
-                                        <% } %>
-                                        <label for="goal_11" class="checkbox-label"><img src="/img/gr-goal-11.jpg" width="100px"></label>
-                                    </div>
-                                    <div class="wrap">
-                                        <% if(data.field_7_goal_12){ %>
-                                            <input id="goal_12" class="checkbox-inline" type="checkbox" name="field_7_goal_12" value="data.field_7_goal_12" checked disabled>
-                                        <% }else{ %>
-                                            <input  id="goal_12" class="checkbox-inline" type="checkbox" name="field_7_goal_12" value="goal_12" disabled>
-                                        <% } %>
-                                        <label for="goal_12" class="checkbox-label"><img src="/img/gr-goal-12.jpg" width="100px"></label>
-                                    </div>
-                                </div>
-                                <div class="flex-form-group form-group">
-                                    <div class="wrap">
-                                        <% if(data.field_7_goal_13){ %>
-                                            <input id="goal_13" class="checkbox-inline" type="checkbox" name="field_7_goal_13" value="data.field_7_goal_13" checked disabled>
-                                        <% }else{ %>
-                                            <input  id="goal_13" class="checkbox-inline" type="checkbox" name="field_7_goal_13" value="goal_13" disabled>
-                                        <% } %>
-                                        <label for="goal_13" class="checkbox-label"><img src="/img/gr-goal-13.jpg" width="100px"></label>
-                                    </div>
-                                    <div class="wrap">
-                                        <% if(data.field_7_goal_14){ %>
-                                            <input id="goal_14" class="checkbox-inline" type="checkbox" name="field_7_goal_14" value="data.field_7_goal_14" checked disabled>
-                                        <% }else{ %>
-                                            <input  id="goal_14" class="checkbox-inline" type="checkbox" name="field_7_goal_14" value="goal_14" disabled>
-                                        <% } %>
-                                        <label for="goal_14" class="checkbox-label"><img src="/img/gr-goal-14.jpg" width="100px"></label>
-                                    </div>
-                                    <div class="wrap">
-                                        <% if(data.field_7_goal_15){ %>
-                                            <input id="goal_15" class="checkbox-inline" type="checkbox" name="field_7_goal_15" value="data.field_7_goal_15" checked disabled>
-                                        <% }else{ %>
-                                            <input  id="goal_15" class="checkbox-inline" type="checkbox" name="field_7_goal_15" value="goal_15" disabled>
-                                        <% } %>
-                                        <label for="goal_15" class="checkbox-label"><img src="/img/gr-goal-15.jpg" width="100px"></label>
-                                    </div>
-                                    <div class="wrap">
-                                        <% if(data.field_7_goal_16){ %>
-                                            <input id="goal_16" class="checkbox-inline" type="checkbox" name="field_7_goal_16" value="data.field_7_goal_16" checked disabled>
-                                        <% }else{ %>
-                                            <input  id="goal_16" class="checkbox-inline" type="checkbox" name="field_7_goal_16" value="goal_16" disabled>
-                                        <% } %>
-                                        <label for="goal_16" class="checkbox-label"><img src="/img/gr-goal-16.jpg" width="100px"></label>
-                                    </div>
-                                </div>
-                                <div class="flex-form-group form-group">
-                                    <div class="wrap">
-                                        <% if(data.field_7_goal_17){ %>
-                                            <input id="goal_17" class="checkbox-inline" type="checkbox" name="field_7_goal_17" value="data.field_7_goal_17" checked disabled>
-                                        <% }else{ %>
-                                            <input  id="goal_17" class="checkbox-inline" type="checkbox" name="field_7_goal_17" value="goal_17" disabled>
-                                        <% } %>
-                                        <label for="goal_17" class="checkbox-label"><img src="/img/gr-goal-17.jpg" width="100px"></label>
-                                    </div>
-                                </div>
-                            </div>
-            
-                            <label>8. Ποιοι είναι οι στόχοι της αξιολογούμενης ρύθμισης;</label>
-                            <div class="form-group">
-                                <label for="field_8_1">8.1 βραχυπρόθεσμοι: </label>
-                                <textarea class="form-control" id="field_8_1" name="field_8_1" rows="3"><%= data.field_8_1 %></textarea>
-                            </div>
-            
-                            <div class="form-group">
-                                <label for="field_8_2">8.2 μακροπρόθεσμοι: </label>
-                                <textarea class="form-control" id="field_8_2" name="field_8_2" rows="3"><%= data.field_8_2 %></textarea>
-                            </div>
-            
-                            <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενα πεδία"/>
-                            <input type="button" name="next" class="next action-button" value="Επόμενα πεδία"/>
-                        </fieldset>
-            
-                        <fieldset>
-                            <h2>Ψηφιακή διακυβέρνηση</h2>
-                            <br>
-            
-                            <div class="checkbox-group form-group row">
-                                <label class="col-sm-8 col-form-label">10. Σε περίπτωση που προβλέπεται η χρήση πληροφοριακού συστήματος, ποια θα είναι η συμβολή αυτού στην επίτευξη των στόχων της αξιολογούμενης ρύθμισης: </label>
-                            </div>
-            
-                            <div class="checkbox-group form-group row">
-                                <div class="col-2"></div>
-                                <label class="col-3 col-form-label">ΑΜΕΣΗ</label>
-                                <input class="col-2 form-check-input position-static" type="checkbox" id="field_10_amesi" name="field_10_amesi" value="field_10_amesi">
-                            </div>
-                            <div id="amesi_wrap" class="form-group" style="display:none;">
-                                <label for="field_10_amesi_comment">Εάν είναι άμεση, εξηγήστε:</label>
-                                <textarea class="form-control" id="field_10_amesi_comment" name="field_10_amesi_comment" rows="3"><%= data.field_10_amesi_comments %></textarea>
-                            </div>
-            
-                            <div class="checkbox-group form-group row">
-                                <div class="col-2"></div>
-                                <label class="col-3 col-form-label">ΕΜΜΕΣΗ</label>
-                                <input class="col-2 form-check-input position-static" type="checkbox" id="field_10_emmesi" value="field_10_emmesi">
-                            </div>         
-            
-                            <div id="emesi_wrap" class="form-group" style="display:none;">
-                                <label for="field_10_emesi_comment">Εάν είναι έμμεση, εξηγήστε:</label>
-                                <textarea class="form-control" id="field_10_emesi_comment" name="field_10_emmesi_comment" rows="3"><%= data.field_10_emmesi_comments %></textarea>
-                            </div>
-            
-                            <div class="checkbox-group form-group row">
-                                <label for="field_11" class="col-sm-8 col-form-label">11. Το προβλεπόμενο πληροφοριακό σύστημα είναι συμβατό με την εκάστοτε ψηφιακή στρατηγική της χώρας (Βίβλος Ψηφιακού Μετασχηματισμού);</label>
-                                <select id="field_11" name="field_11" class="col-sm-2 form-control" disabled>
-                                    <% if (data.field_11 =="yes") { %>    
-                                        <option value="yes">Ναι</option>
-                                    <% }else { %>   
-                                        <option value="no" >Όχι</option>
-                                    <% } %> 
-                                </select>
-                            </div>
-            
-                            <div id="field_11_wrap" class="form-group" style="display:none;">
-                                <label for="field_11_comments">Εξηγήστε</label>
-                                <textarea class="form-control" name="field_11_comments" id="field_11_comments" rows="3"><%= data.field_11_comments %></textarea>
-                            </div>
-            
-                            <div class="checkbox-group form-group row">
-                                <label for="field_12" class="col-sm-8 col-form-label">12. Διασφαλίζεται η διαλειτουργικότητα του εν λόγω πληροφοριακού συστήματος με άλλα υφιστάμενα συστήματα;</label>
-                                <select id="field_12" name="field_12" class="col-sm-2 form-control" disabled>
-                                    <% if (data.field_12 =="yes") { %>    
-                                        <option value="yes">Ναι</option>
-                                    <% }else { %>   
-                                        <option value="no" >Όχι</option>
-                                    <% } %> 
-                                </select>
-                            </div>
-            
-                            <div id="field_12_wrap" class="form-group" style="display:none;">
-                                <label for="field_12_comments">Αναφέρατε ποια είναι αυτά τα συστήματα:</label>
-                                <textarea class="form-control" name="field_12_comments" id="field_12_comments" rows="3"><%= data.field_12_comments %></textarea>
-                            </div>
-            
-                            <div class="checkbox-group form-group row">
-                                <label for="field_13" class="col-sm-8 col-form-label">13. Έχει προηγηθεί μελέτη βιωσιμότητας του προβλεπόμενου πληροφοριακού συστήματος;</label>
-                                <select id="field_13" name="field_13" class="col-sm-2 form-control" disabled>
-                                    <% if (data.field_13 =="yes") { %>    
-                                        <option value="yes">Ναι</option>
-                                    <% }else { %>   
-                                        <option value="no" >Όχι</option>
-                                    <% } %> 
-                                </select>
-                            </div>
-            
-                            <div id="field_13_wrap" class="form-group" style="display:none;">
-                                <label for="field_13_comments">Εξηγήστε</label>
-                                <textarea class="form-control" name="field_13_comments" id="field_13_comments" rows="3"><%= data.field_13_comments %></textarea>
-                            </div>
-                            
-                            <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενα πεδία"/>
-                            <input type="button" name="next" class="next action-button" value="Επόμενα πεδία"/>
-                        </fieldset>
-            
-                        <fieldset>
-                            <h2>Κατ’ άρθρο ανάλυση αξιολογούμενης ρύθμισης</h2>
-                            <br>
-                            <p>Todo</p>
-                            <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενα πεδία"/>
-                            <input type="button" name="next" class="next action-button" value="Επόμενη φόρμα"/>
-                        </fieldset>
+                        <input type="button" name="previous" class="previous action-button-previous"
+                            value="Προηγούμενα πεδία" />
+                        <input type="button" name="next" class="next action-button" value="Επόμενα πεδία" />
+                    </fieldset>
 
-                        <%- include('view_form/view_form_b.ejs') %>  
-                        <%- include('view_form/view_form_c.ejs') %> 
-                        <%- include('view_form/view_form_d.ejs') %>
-                        <%- include('view_form/view_form_e.ejs') %>
-                        <%- include('view_form/view_form_f.ejs') %>
-                        <%- include('view_form/view_form_g.ejs') %>
-                        <%- include('view_form/view_form_h.ejs') %>
-                    </form>
-                 
-            
+                    <%- include('view_form/view_field_9.ejs') %>
+
+                    <fieldset>
+                        <h2>Ψηφιακή διακυβέρνηση</h2>
+                        <br>
+
+                        <div class="checkbox-group form-group row">
+                            <label class="col-sm-8 col-form-label">10. Σε περίπτωση που προβλέπεται η χρήση
+                                πληροφοριακού συστήματος, ποια θα είναι η συμβολή αυτού στην επίτευξη των στόχων της
+                                αξιολογούμενης ρύθμισης: </label>
+                        </div>
+
+                        <div class="checkbox-group form-group row">
+                            <div class="col-2"></div>
+                            <label class="col-3 col-form-label">ΑΜΕΣΗ</label>
+                            <input class="col-2 form-check-input position-static" type="checkbox" id="field_10_amesi"
+                                name="field_10_amesi" value="field_10_amesi">
+                        </div>
+                        <div id="amesi_wrap" class="form-group" style="display:none;">
+                            <label for="field_10_amesi_comment">Εάν είναι άμεση, εξηγήστε:</label>
+                            <textarea class="form-control" id="field_10_amesi_comment" name="field_10_amesi_comment"
+                                rows="3"><%= data.field_10_amesi_comments %></textarea>
+                        </div>
+
+                        <div class="checkbox-group form-group row">
+                            <div class="col-2"></div>
+                            <label class="col-3 col-form-label">ΕΜΜΕΣΗ</label>
+                            <input class="col-2 form-check-input position-static" type="checkbox" id="field_10_emmesi"
+                                value="field_10_emmesi">
+                        </div>
+
+                        <div id="emesi_wrap" class="form-group" style="display:none;">
+                            <label for="field_10_emesi_comment">Εάν είναι έμμεση, εξηγήστε:</label>
+                            <textarea class="form-control" id="field_10_emesi_comment" name="field_10_emmesi_comment"
+                                rows="3"><%= data.field_10_emmesi_comments %></textarea>
+                        </div>
+                        <hr>
+
+                        <div class="checkbox-group form-group row">
+                            <label for="field_11" class="col-sm-8 col-form-label">11. Το προβλεπόμενο πληροφοριακό
+                                σύστημα είναι συμβατό με την εκάστοτε ψηφιακή στρατηγική της χώρας (Βίβλος Ψηφιακού
+                                Μετασχηματισμού);</label>
+                            <select id="field_11" name="field_11" class="col-sm-2 form-control" disabled>
+                                <% if (data.field_11 =="yes") { %>
+                                <option value="yes">Ναι</option>
+                                <% }else { %>
+                                <option value="no">Όχι</option>
+                                <% } %>
+                            </select>
+                        </div>
+
+                        <div id="field_11_wrap" class="form-group" style="display:none;">
+                            <label for="field_11_comments">Εξηγήστε</label>
+                            <textarea class="form-control" name="field_11_comments" id="field_11_comments"
+                                rows="3"><%= data.field_11_comments %></textarea>
+                        </div>
+                        <hr>
+
+                        <div class="checkbox-group form-group row">
+                            <label for="field_12" class="col-sm-8 col-form-label">12. Διασφαλίζεται η διαλειτουργικότητα
+                                του εν λόγω πληροφοριακού συστήματος με άλλα υφιστάμενα συστήματα;</label>
+                            <select id="field_12" name="field_12" class="col-sm-2 form-control" disabled>
+                                <% if (data.field_12 =="yes") { %>
+                                <option value="yes">Ναι</option>
+                                <% }else { %>
+                                <option value="no">Όχι</option>
+                                <% } %>
+                            </select>
+                        </div>
+
+                        <div id="field_12_wrap" class="form-group" style="display:none;">
+                            <label for="field_12_comments">Αναφέρατε ποια είναι αυτά τα συστήματα:</label>
+                            <textarea class="form-control" name="field_12_comments" id="field_12_comments"
+                                rows="3"><%= data.field_12_comments %></textarea>
+                        </div>
+                        <hr>
+
+                        <div class="checkbox-group form-group row">
+                            <label for="field_13" class="col-sm-8 col-form-label">13. Έχει προηγηθεί μελέτη βιωσιμότητας
+                                του προβλεπόμενου πληροφοριακού συστήματος;</label>
+                            <select id="field_13" name="field_13" class="col-sm-2 form-control" disabled>
+                                <% if (data.field_13 =="yes") { %>
+                                <option value="yes">Ναι</option>
+                                <% }else { %>
+                                <option value="no">Όχι</option>
+                                <% } %>
+                            </select>
+                        </div>
+
+                        <div id="field_13_wrap" class="form-group" style="display:none;">
+                            <label for="field_13_comments">Εξηγήστε</label>
+                            <textarea class="form-control" name="field_13_comments" id="field_13_comments"
+                                rows="3"><%= data.field_13_comments %></textarea>
+                        </div>
+
+                        <input type="button" name="previous" class="previous action-button-previous"
+                            value="Προηγούμενα πεδία" />
+                        <input type="button" name="next" class="next action-button" value="Επόμενα πεδία" />
+                    </fieldset>
+
+                    <fieldset>
+                        <h2>Κατ’ άρθρο ανάλυση αξιολογούμενης ρύθμισης</h2>
+                        <br>
+                        <table class="table" id="field_14_table">
+                            <thead class="thead">
+                                <tr>
+                                    <th colspan="2">14.Σύνοψη στόχων κάθε άρθρου</th>
+                                </tr>
+                                <tr>
+                                    <th colspan="1">Άρθρο</th>
+                                    <th colspan="1">Στόχος</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody_14">
+
+                            </tbody>
+                        </table>
+
+                        <input type="button" id="add_row_table_14" name="add_row_table_14" class="float-right"
+                            value="Επιπλέον σειρά" />
+
+                        <br><br><br>
+                        <input type="button" name="previous" class="previous action-button-previous"
+                            value="Προηγούμενα πεδία" />
+                        <input type="button" name="next" class="next action-button" value="Επόμενη φόρμα" />
+                    </fieldset>
+
+                    <%- include('view_form/view_form_b.ejs') %>
+                    <%- include('view_form/view_form_c.ejs') %>
+                    <%- include('view_form/view_form_d.ejs') %>
+                    <%- include('view_form/view_form_e.ejs') %>
+                    <%- include('view_form/view_form_f.ejs') %>
+                    <%- include('view_form/view_form_g.ejs') %>
+                    <%- include('view_form/view_form_h.ejs') %>
+                </form>
+
+
+            </div>
+        </div>
+        <div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4">
+            <div class="jss111">
+                <div class="jss274">
+                    <h3 class="jss273 jss178 jss181">Πίνακας έκθεσης</h3>
+                    <ul class="aitiologiki_list">
+                        <li>
+                            <h4><b>Αιτιολογική έκθεση</b></h4>
+                        </li>
+                        <ul class="aitiologiki_menu" id="progressbar">
+                            <li class="active">Τίτλος αξιολογούμενης ρύθμισης & τομείς νομοθέτησης</li>
+                            <li>Η «ταυτότητα» της αξιολογούμενης ρύθμισης</li>
+                            <li>Η αναγκαιότητα της αξιολογούμενης ρύθμισης</li>
+                            <li>Συναφείς πρακτικές</li>
+                            <li>Στόχοι αξιολογούμενης ρύθμισης</li>
+                            <li>Ειδικότεροι στόχοι ανάλογα με τον τομέα νομοθέτησης</li>
+                            <li>Ψηφιακή διακυβέρνηση</li>
+                            <li>Κατ’ άρθρο ανάλυση αξιολογούμενης ρύθμισης</li>
+                        </ul>
+                    </ul>
+                    <ul class="arthro_syntagmatos_list">
+                        <li>
+                            <h4><b>Έκθεση του άρθρου 75 παρ. 1 και 2 του Συντάγματος</b></h4>
+                        </li>
+                        <ul class="arthro_syntagmatos_menu" id="progressbar">
+                            <li>Έκθεση Γενικού Λογιστηρίου του Κράτους</li>
+                            <li>Οικονομικά αποτελέσματα επί του Κρατικού Προϋπολογισμού ή/και επί του
+                                προϋπολογισμού του/των αρμόδιου/ων φορέα/ων</li>
+                        </ul>
+                    </ul>
+                    <ul class="eidiki_ekthesi_list">
+                        <li>
+                            <h4><b>Ειδική Έκθεση (άρθρο 75 παρ. 3 του Συντάγματος)
+                                </b></h4>
+                        </li>
+                        <ul class="eidiki_ekthesi_menu" id="progressbar">
+                            <li>Οικονομικά αποτελέσματα</li>
+                        </ul>
+                    </ul>
+                    <ul class="ekthesi_genikwn_synepeiwn_list">
+                        <li>
+                            <h4><b>Έκθεση γενικών συνεπειών</b></h4>
+                        </li>
+                        <ul class="ekthesi_genikwn_synepeiwn_menu" id="progressbar">
+                            <li>Οφέλη αξιολογούμενης ρύθμισης</li>
+                            <li>Κόστος αξιολογούμενης ρύθμισης</li>
+                            <li>Κόστος αξιολογούμενης ρύθμισης</li>
+                            <li>Γνώμες ή πορίσματα αρμόδιων υπηρεσιών και ανεξάρτητων αρχών</li>
+                        </ul>
+                    </ul>
+                    <ul class="ekthesi_diavouleusis_list">
+                        <li>
+                            <h4><b>Έκθεση διαβούλευσης</b></h4>
+                        </li>
+                        <ul class="ekthesi_diavouleusis_menu" id="progressbar">
+                            <li>Διαβούλευση κατά τη διάρκεια της νομοπαρασκευαστικής διαδικασίας
+                                από την έναρξη κατάρτισης της αξιολογούμενης ρύθμισης μέχρι την
+                                υπογραφή από τους συναρμόδιους Υπουργούς</li>
+                            <li>Σχόλια στο πλαίσιο της διαβούλευσης μέσω της ηλεκτρονικής πλατφόρμας
+                                www.opengov.gr</li>
+                        </ul>
+                    </ul>
+                    <ul class="ekthesi_nomimotitas_list">
+                        <li>
+                            <h4><b>Έκθεση νομιμότητας</b></h4>
+                        </li>
+                        <ul class="ekthesi_nomimotitas_menu" id="progressbar">
+                            <li>Συναφείς συνταγματικές διατάξεις</li>
+                            <li>Ενωσιακό δίκαιο</li>
+                            <li>Συναφείς διατάξεις διεθνών συνθηκών ή συμφωνιών</li>
+                            <li>Συναφής νομολογία των ανωτάτων και άλλων εθνικών δικαστηρίων,
+                                καθώς και αποφάσεις των Ανεξάρτητων Αρχών</li>
+                            <li>Συναφής ευρωπαϊκή και διεθνής νομολογία</li>
+                        </ul>
+                    </ul>
+                    <ul class="pinakas_tropopoioymenwn_katargoymenwn_diataksewn_list">
+                        <li>
+                            <h4><b>Πίνακας τροποποιούμενων ή καταργούμενων διατάξεων</b></h4>
+                        </li>
+                        <ul class="pinakas_tropopoioymenwn_katargoymenwn_diataksewn_menu" id="progressbar">
+                            <li>Τροποποίηση – αντικατάσταση – συμπλήρωση διατάξεων</li>
+                            <li>Κατάργηση διατάξεων</li>
+                        </ul>
+                    </ul>
+                    <ul class="ekthesi_efarmogis_rythmisis_list">
+                        <li>
+                            <h4><b>Έκθεση εφαρμογής της ρύθμισης</b></h4>
+                        </li>
+                        <ul class="ekthesi_efarmogis_rythmisis_menu" id="progressbar">
+                            <li>Συναρμοδιότητα Υπουργείων / υπηρεσιών / φορέων</li>
+                            <li>Έκδοση κανονιστικών πράξεων και εγκυκλίων</li>
+                            <li>Ανάγκη σύστασης νέου νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας
+                                υπηρεσίας</li>
+                            <li>Στοιχεία νέου νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας υπηρεσίας</li>
+                        </ul>
+                    </ul>
                 </div>
             </div>
-            <div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4">
-                <div class="jss111">
-                    <div class="jss274">
-                        <h3 class="jss273 jss178 jss181">Πίνακας έκθεσης</h3>
-                        <ul class="aitiologiki_list" >    
-                            <li><h4><b>Αιτιολογική έκθεση</b></h4></li>
-                                <ul class="aitiologiki_menu" id="progressbar">
-                                <li class="active">Τίτλος αξιολογούμενης ρύθμισης & τομείς νομοθέτησης</li>                        
-                                <li>Η «ταυτότητα» της αξιολογούμενης ρύθμισης</li>
-                                <li>Η αναγκαιότητα της αξιολογούμενης ρύθμισης</li>
-                                <li>Συναφείς πρακτικές</li>
-                                <li>Στόχοι αξιολογούμενης ρύθμισης</li>
-                                <li>Ειδικότεροι στόχοι ανάλογα με τον τομέα νομοθέτησης</li>
-                                <li>Ψηφιακή διακυβέρνηση</li>
-                                <li>Κατ’ άρθρο ανάλυση αξιολογούμενης ρύθμισης</li>
-                                </ul>
-                        </ul>                       
-                        <ul class="arthro_syntagmatos_list" >    
-                            <li><h4><b>Έκθεση του άρθρου 75 παρ. 1 και 2 του Συντάγματος</b></h4></li>  
-                                <ul class="arthro_syntagmatos_menu" id="progressbar"> 
-                                    <li>Έκθεση Γενικού Λογιστηρίου του Κράτους</li>    
-                                    <li>Οικονομικά αποτελέσματα επί του Κρατικού Προϋπολογισμού ή/και επί του
-                                        προϋπολογισμού του/των αρμόδιου/ων φορέα/ων</li>  
-                                </ul>
-                        </ul>    
-                        <ul class="eidiki_ekthesi_list" >    
-                            <li><h4><b>Ειδική Έκθεση (άρθρο 75 παρ. 3 του Συντάγματος)
-                            </b></h4></li>  
-                                <ul class="eidiki_ekthesi_menu" id="progressbar"> 
-                                    <li>Οικονομικά αποτελέσματα</li>     
-                                </ul>
-                        </ul>
-                        <ul class="ekthesi_genikwn_synepeiwn_list" >    
-                            <li><h4><b>Έκθεση γενικών συνεπειών</b></h4></li>  
-                                <ul class="ekthesi_genikwn_synepeiwn_menu" id="progressbar"> 
-                                    <li>Οφέλη αξιολογούμενης ρύθμισης</li>    
-                                    <li>Κόστος αξιολογούμενης ρύθμισης</li> 
-                                    <li>Κόστος αξιολογούμενης ρύθμισης</li>  
-                                    <li>Γνώμες ή πορίσματα αρμόδιων υπηρεσιών και ανεξάρτητων αρχών</li>
-                                </ul>
-                        </ul> 
-                        <ul class="ekthesi_diavouleusis_list" >    
-                            <li><h4><b>Έκθεση διαβούλευσης</b></h4></li>  
-                                <ul class="ekthesi_diavouleusis_menu" id="progressbar"> 
-                                    <li>Διαβούλευση κατά τη διάρκεια της νομοπαρασκευαστικής διαδικασίας
-                                        από την έναρξη κατάρτισης της αξιολογούμενης ρύθμισης μέχρι την
-                                        υπογραφή από τους συναρμόδιους Υπουργούς</li>    
-                                    <li>Σχόλια στο πλαίσιο της διαβούλευσης μέσω της ηλεκτρονικής πλατφόρμας
-                                        www.opengov.gr</li> 
-                                </ul>
-                        </ul>
-                        <ul class="ekthesi_nomimotitas_list" >    
-                            <li><h4><b>Έκθεση νομιμότητας</b></h4></li>  
-                                <ul class="ekthesi_nomimotitas_menu" id="progressbar"> 
-                                    <li>Συναφείς συνταγματικές διατάξεις</li>    
-                                    <li>Ενωσιακό δίκαιο</li> 
-                                    <li>Συναφείς διατάξεις διεθνών συνθηκών ή συμφωνιών</li> 
-                                    <li>Συναφής νομολογία των ανωτάτων και άλλων εθνικών δικαστηρίων,
-                                        καθώς και αποφάσεις των Ανεξάρτητων Αρχών</li> 
-                                    <li>Συναφής ευρωπαϊκή και διεθνής νομολογία</li>
-                                </ul>
-                        </ul>
-                        <ul class="pinakas_tropopoioymenwn_katargoymenwn_diataksewn_list" >    
-                            <li><h4><b>Πίνακας τροποποιούμενων ή καταργούμενων διατάξεων</b></h4></li>  
-                                <ul class="pinakas_tropopoioymenwn_katargoymenwn_diataksewn_menu" id="progressbar"> 
-                                    <li>Τροποποίηση – αντικατάσταση – συμπλήρωση διατάξεων</li>    
-                                    <li>Κατάργηση διατάξεων</li> 
-                                </ul>
-                        </ul> 
-                        <ul class="ekthesi_efarmogis_rythmisis_list" >    
-                            <li><h4><b>Έκθεση εφαρμογής της ρύθμισης</b></h4></li>  
-                                <ul class="ekthesi_efarmogis_rythmisis_menu" id="progressbar"> 
-                                    <li>Συναρμοδιότητα Υπουργείων / υπηρεσιών / φορέων</li>    
-                                    <li>Έκδοση κανονιστικών πράξεων και εγκυκλίων</li> 
-                                    <li>Ανάγκη σύστασης νέου νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας
-                                        υπηρεσίας</li> 
-                                    <li>Στοιχεία νέου νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας υπηρεσίας</li> 
-                                </ul>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            
-                       
-              
-            <style>
+        </div>
 
-                table {
-                    border: 1px solid black;
-                    width: 100%;
-                    padding: 20px;
-                    text-align: left;
-                }
-                table th {
-                    background-color: grey;
-                    text-align: center;
-                    padding: 10px;
-                }
-                table td {
-                    width: 100%;
-                    border: 1px dotted black;
-                }
 
-                .aitiologiki_menu {
-                    display: none
-                }
-                .aitiologiki_list:hover .aitiologiki_menu {
-                    display: initial 
-                }
 
-                .arthro_syntagmatos_menu {
-                    display: none
-                }
-                .arthro_syntagmatos_list:hover .arthro_syntagmatos_menu {
-                    display: initial 
-                }
+        <style>
+            table {
+                border: 1px solid black;
+                width: 100%;
+                padding: 20px;
+                text-align: left;
+            }
 
-                .eidiki_ekthesi_menu {
-                    display: none
-                }
-                .eidiki_ekthesi_list:hover .eidiki_ekthesi_menu {
-                    display: initial 
-                }
+            table th {
+                background-color: grey;
+                text-align: center;
+                padding: 10px;
+            }
 
-                .ekthesi_genikwn_synepeiwn_menu {
-                    display: none
-                }
-                .ekthesi_genikwn_synepeiwn_list:hover .ekthesi_genikwn_synepeiwn_menu {
-                    display: initial 
-                }
-                
-                .ekthesi_diavouleusis_menu {
-                    display: none
-                }
-                .ekthesi_diavouleusis_list:hover .ekthesi_diavouleusis_menu {
-                    display: initial 
-                }
+            table td {
+                border: 1px dotted black;
+            }
 
-                .ekthesi_nomimotitas_menu {
-                    display: none
-                }
-                .ekthesi_nomimotitas_list:hover .ekthesi_nomimotitas_menu {
-                    display: initial 
-                }
-                
-                .pinakas_tropopoioymenwn_katargoymenwn_diataksewn_menu {
-                    display: none
-                }
-                .pinakas_tropopoioymenwn_katargoymenwn_diataksewn_list:hover .pinakas_tropopoioymenwn_katargoymenwn_diataksewn_menu {
-                    display: initial 
-                }
-                
-                .ekthesi_efarmogis_rythmisis_menu {
-                    display: none
-                }
-                .ekthesi_efarmogis_rythmisis_list:hover .ekthesi_efarmogis_rythmisis_menu {
-                    display: initial 
-                }
+            li.active {
+                border-color: blue;
+                border-width: 1px;
+                border-style: dashed;
+            }
 
-                .flex-form-group {
-                    display: flex;
-                    justify-content: space-between;
-                    flex-wrap: wrap;
-                }
-            
-                .flex-form-group .wrap {
-                    min-width: 8em;
-                    margin: 4px; /* to add gap between rows */
-                }
-            
-                fieldset{
-                    position: relative;
-                }
-                fieldset:not(:first-of-type) {
-                    display: none;
-                }
-            
-                .explain_text{
-                    font-size: 12px;
-                }
-                .checkbox-group {
-                    display: flex;
-                    align-items: center;
-                }
-            
-                .form-check-input {
-                    margin-top: 0px;
-                }
-                label {
-                    font-weight: 700;
-                }
-            
-                .parent {
-                    display: flex;
-                    flex-wrap: wrap;
-                }
-            
-                .child {
-                    flex: 1 0 21%; /* explanation below */
-                    margin: 5px;
-                    height: 100px;
-                    background-color: blue;
-                }
-            </style>
-            
-            
-            <script>
+            .aitiologiki_menu {
+                display: none
+            }
 
-            $("form").on("submit",function(ev){
+            .aitiologiki_list:hover .aitiologiki_menu {
+                display: initial
+            }
+
+            .arthro_syntagmatos_menu {
+                display: none
+            }
+
+            .arthro_syntagmatos_list:hover .arthro_syntagmatos_menu {
+                display: initial
+            }
+
+            .eidiki_ekthesi_menu {
+                display: none
+            }
+
+            .eidiki_ekthesi_list:hover .eidiki_ekthesi_menu {
+                display: initial
+            }
+
+            .ekthesi_genikwn_synepeiwn_menu {
+                display: none
+            }
+
+            .ekthesi_genikwn_synepeiwn_list:hover .ekthesi_genikwn_synepeiwn_menu {
+                display: initial
+            }
+
+            .ekthesi_diavouleusis_menu {
+                display: none
+            }
+
+            .ekthesi_diavouleusis_list:hover .ekthesi_diavouleusis_menu {
+                display: initial
+            }
+
+            .ekthesi_nomimotitas_menu {
+                display: none
+            }
+
+            .ekthesi_nomimotitas_list:hover .ekthesi_nomimotitas_menu {
+                display: initial
+            }
+
+            .pinakas_tropopoioymenwn_katargoymenwn_diataksewn_menu {
+                display: none
+            }
+
+            .pinakas_tropopoioymenwn_katargoymenwn_diataksewn_list:hover .pinakas_tropopoioymenwn_katargoymenwn_diataksewn_menu {
+                display: initial
+            }
+
+            .ekthesi_efarmogis_rythmisis_menu {
+                display: none
+            }
+
+            .ekthesi_efarmogis_rythmisis_list:hover .ekthesi_efarmogis_rythmisis_menu {
+                display: initial
+            }
+
+            .flex-form-group {
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+            }
+
+            .flex-form-group .wrap {
+                min-width: 8em;
+                margin: 4px;
+                /* to add gap between rows */
+            }
+
+            fieldset {
+                position: relative;
+            }
+
+            fieldset:not(:first-of-type) {
+                display: none;
+            }
+
+            .explain_text {
+                font-size: 12px;
+            }
+
+            .checkbox-group {
+                display: flex;
+                align-items: center;
+            }
+
+            .form-check-input {
+                margin-top: 0px;
+            }
+
+            label {
+                font-weight: 700;
+            }
+
+            .parent {
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+            .child {
+                flex: 1 0 21%;
+                /* explanation below */
+                margin: 5px;
+                height: 100px;
+                background-color: blue;
+            }
+        </style>
+
+
+        <script>
+
+            $("form").on("submit", function (ev) {
                 ev.preventDefault();
                 console.log($(this).serialize())
-            
+
                 $.ajax({
                     url: '/create',
-                    data:$(this).serialize(),
-                    error: function(error) {
+                    data: $(this).serialize(),
+                    error: function (error) {
                         console.log(error)
                     },
-                    success: function(data) {
+                    success: function (data) {
                         console.log(data)
-                        window.location.href="/dashboard"
+                        window.location.href = "/dashboard"
                     },
                     type: 'POST'
                 });
             })
-            
-            $("#field_10_emmesi").on("change", function(ev){
+
+            //row counter
+            var table14RowIndex = 0;
+
+            // jQuery button click event for table 14 to add a row
+            $("#add_row_table_14").on("click", function () {
+                //append adds row to table body with id 'tbody_14'
+                //line 604 creates unique id for the line, which will later be used for deletion
+                //also adding a delete icon for each row 
+                $('#tbody_14').append(`
+                 <tr id="R${++table14RowIndex}"> 
+                <td> 
+                    <textarea class="form-control" id="arthro" name="arthro" placeholder="Άρθρο" rows="1"></textarea>
+                </td> 
+                <td> 
+                    <textarea class="form-control" id="stoxos" name="stoxos" placeholder="Στόχος" rows="1"></textarea>
+                    <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
+                </td>    
+                </tr>`
+                );
+            });
+
+            // jQuery button click event to remove a row 
+            $('#tbody_14').on('click', '.remove', function () {
+
+                // Getting all the rows close to the one to be removed 
+                var child = $(this).closest('tr').nextAll();
+
+                // Iterating across all the rows  
+                // obtained to change the index 
+                child.each(function () {
+
+                    // Getting <tr> id
+                    var id = $(this).attr('id');
+
+                    // Gets row number from <tr> id
+                    var row_num = parseInt(id.substring(1));
+
+                    //Getting index
+                    var idx = $(this).children('.row-index');
+
+                    // Modifying row index
+                    idx.html(`Row ${row_num - 1}`);
+
+                    // Modifying row id
+                    $(this).attr('id', `R${row_num - 1}`);
+                });
+
+                // Removing the current row. 
+                $(this).closest('tr').remove();
+
+                // Decreasing the total number of rows by 1. 
+                table14RowIndex--;
+            });
+
+            var table29RowIndex = 0;
+            $("#add_row_table_29").on("click", function () {
+
+                $('#tbody_29').append(`
+                <tr id="R${++table29RowIndex}"> 
+                    <td> 
+                        <textarea class="form-control" placeholder="Διατάξεις αξιολογούμενης ρύθμισης" rows="1"></textarea>
+                    </td> 
+                    <td> 
+                        <textarea class="form-control" placeholder="Υφιστάμενες διατάξεις" rows="1"></textarea>
+                        <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
+                    </td>    
+                </tr>`
+                );
+            });
+
+            $('#tbody_29').on('click', '.remove', function () {
+
+                var child = $(this).closest('tr').nextAll();
+
+                child.each(function () {
+
+                    var id = $(this).attr('id');
+                    var row_num = parseInt(id.substring(1));
+                    var idx = $(this).children('.row-index');
+                    idx.html(`Row ${row_num - 1}`);
+                    $(this).attr('id', `R${row_num - 1}`);
+                });
+
+                $(this).closest('tr').remove();
+                table29RowIndex--;
+            });
+
+            var table30RowIndex = 0;
+            $("#add_row_table_30").on("click", function () {
+
+            $('#tbody_30').append(`
+            <tr id="R${++table30RowIndex}"> 
+                <td> 
+                    <textarea class="form-control" placeholder="Διατάξεις αξιολογούμενης ρύθμισης που προβλέπουν κατάργηση" rows="2"></textarea>
+                </td> 
+                <td> 
+                    <textarea class="form-control" placeholder="Καταργούμενες διατάξεις" rows="2"></textarea>
+                    <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
+                </td>    
+            </tr>`
+                );
+            });
+
+            $('#tbody_30').on('click', '.remove', function () {
+
+                var child = $(this).closest('tr').nextAll();
+
+                child.each(function () {
+
+                    var id = $(this).attr('id');
+                    var row_num = parseInt(id.substring(1));
+                    var idx = $(this).children('.row-index');
+                    idx.html(`Row ${row_num - 1}`);
+                    $(this).attr('id', `R${row_num - 1}`);
+                });
+
+                $(this).closest('tr').remove();
+                table30RowIndex--;
+            });
+
+            var table31RowIndex = 0;
+            $("#add_row_table_31").on("click", function () {
+
+            $('#tbody_31').append(`
+            <tr id="R${++table31RowIndex}"> 
+                <td> 
+                    <textarea class="form-control" placeholder="Σχετική διάταξη αξιολογούμενης ρύθμισης" rows="2"></textarea>
+                </td> 
+                <td> 
+                    <textarea class="form-control" placeholder="Συναρμόδια Υπουργεία – Συναρμόδιες υπηρεσίες / φορείς" rows="2"></textarea>
+                </td> 
+                <td> 
+                    <textarea class="form-control" placeholder="Αντικείμενο συναρμοδιότητας" rows="2"></textarea>
+                    <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
+                </td>    
+            </tr>`
+                );
+            });
+
+            $('#tbody_31').on('click', '.remove', function () {
+
+                var child = $(this).closest('tr').nextAll();
+
+                child.each(function () {
+
+                    var id = $(this).attr('id');
+                    var row_num = parseInt(id.substring(1));
+                    var idx = $(this).children('.row-index');
+                    idx.html(`Row ${row_num - 1}`);
+                    $(this).attr('id', `R${row_num - 1}`);
+                });
+
+                $(this).closest('tr').remove();
+                table31RowIndex--;
+            });
+
+            var table32RowIndex = 0;
+            $("#add_row_table_32").on("click", function () {
+
+            $('#tbody_32').append(`
+                <tr id="R${++table32RowIndex}"> 
+                    <td> 
+                        <textarea class="form-control" placeholder="Εξουσιοδοτική διάταξη" rows="4"></textarea>
+                    </td> 
+                    <td> 
+                        <textarea class="form-control" placeholder="Είδος πράξης" rows="4"></textarea>
+                    </td> 
+                    <td> 
+                        <textarea class="form-control" placeholder="Αρμόδιο ή επισπεύδον Υπουργείο ή υπηρεσία" rows="4"></textarea>
+                    </td> 
+                    <td> 
+                        <textarea class="form-control" placeholder="Αντικείμενο" rows="4"></textarea>
+                    </td> 
+                    <td> 
+                        <textarea class="form-control" placeholder="Χρονοδιάγραμμα (ενδεικτική ή αποκλειστική προθεσμία)" rows="4"></textarea>
+                        <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
+                    </td>    
+                </tr>`
+                );
+            });
+
+            $('#tbody_32').on('click', '.remove', function () {
+
+                var child = $(this).closest('tr').nextAll();
+
+                child.each(function () {
+
+                    var id = $(this).attr('id');
+                    var row_num = parseInt(id.substring(1));
+                    var idx = $(this).children('.row-index');
+                    idx.html(`Row ${row_num - 1}`);
+                    $(this).attr('id', `R${row_num - 1}`);
+                });
+
+                $(this).closest('tr').remove();
+                table32RowIndex--;
+            });
+
+
+            $("#field_10_emmesi").on("change", function (ev) {
                 $("#emesi_wrap").toggle();
             })
-            
-            $("#field_10_amesi").on("change", function(ev){
+
+            $("#field_10_amesi").on("change", function (ev) {
                 $("#amesi_wrap").toggle();
             })
-            
-            $("#field_25_dikaio").on("change", function(ev){
+
+            $("#field_25_dikaio").on("change", function (ev) {
                 $("#dikaio_wrap").toggle();
             })
 
-            $("#field_25_kanonismos").on("change", function(ev){
+            $("#field_25_kanonismos").on("change", function (ev) {
                 $("#kanonismos_wrap").toggle();
             })
 
-            $("#field_25_odigia").on("change", function(ev){
+            $("#field_25_odigia").on("change", function (ev) {
                 $("#odigia_wrap").toggle();
             })
 
-            $("#field_25_apofasi").on("change", function(ev){
+            $("#field_25_apofasi").on("change", function (ev) {
                 $("#apofasi_wrap").toggle();
             })
 
-            $("#field_26_antrwpina_dikaiwmata").on("change", function(ev){
+            $("#field_26_antrwpina_dikaiwmata").on("change", function (ev) {
                 $("#antrwpina_dikaiwmata_wrap").toggle();
             })
 
-            $("#field_26_symvaseis").on("change", function(ev){
+            $("#field_26_symvaseis").on("change", function (ev) {
                 $("#symvaseis_wrap").toggle();
             })
 
-            $("#field_27_dikastirio").on("change", function(ev){
+            $("#field_27_dikastirio").on("change", function (ev) {
                 $("#dikastirio_wrap").toggle();
             })
 
-            $("#field_27_arxi").on("change", function(ev){
+            $("#field_27_arxi").on("change", function (ev) {
                 $("#arxi_wrap").toggle();
             })
 
-            $("#field_28_nomologia").on("change", function(ev){
+            $("#field_28_nomologia").on("change", function (ev) {
                 $("#nomologia_wrap").toggle();
             })
 
-            $("#field_28_nomologia_dikaiwmatwn_anthrwpou").on("change", function(ev){
+            $("#field_28_nomologia_dikaiwmatwn_anthrwpou").on("change", function (ev) {
                 $("#nomologia_dikaiwmatwn_anthrwpou_wrap").toggle();
             })
 
-            $("#field_28_alla_dikastiria").on("change", function(ev){
+            $("#field_28_alla_dikastiria").on("change", function (ev) {
                 $("#alla_dikastiria_wrap").toggle();
             })
 
-            $(function(ev) {
-                if($("#field_4").val()=="yes"){
+            $(function (ev) {
+                if ($("#field_4").val() == "yes") {
                     $("#field_4_wrap").show();
                 }
             })
-            
-            $(function(ev) {
-                if($("#field_6").val()=="yes"){
+
+            $(function (ev) {
+                if ($("#field_6").val() == "yes") {
                     $("#field_6_wrap").show();
                 }
             })
-            
-            $(function(ev) {
-                if($("#field_11").val()=="yes"){
+
+            $(function (ev) {
+                if ($("#field_11").val() == "yes") {
                     $("#field_11_wrap").show();
                 }
             })
-            
-            $(function(ev) {
-                if($("#field_12").val()=="yes"){
+
+            $(function (ev) {
+                if ($("#field_12").val() == "yes") {
                     $("#field_12_wrap").show();
                 }
             })
-            
-            $(function(ev) {
-                if($("#field_13").val()=="yes"){
+
+            $(function (ev) {
+                if ($("#field_13").val() == "yes") {
                     $("#field_13_wrap").show();
                 }
             })
-            
+
             var current_fs, next_fs, previous_fs; //fieldsets
-            
-            
-            $(".next").click(function(){
+
+
+            $(".next").click(function () {
                 current_fs = $(this).parent();
                 next_fs = $(this).parent().next();
-                
+
                 //activate next step on progressbar using the index of next_fs
                 $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
-                
+
                 //show the next fieldset
-                next_fs.show(); 
+                next_fs.show();
                 //hide the current fieldset with style
                 current_fs.hide();
             });
-            
-            $(".previous").click(function(){
+
+            $(".previous").click(function () {
                 current_fs = $(this).parent();
                 previous_fs = $(this).parent().prev();
-                
+
                 //de-activate current step on progressbar
                 $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
-                
+
                 //show the previous fieldset
-                previous_fs.show(); 
+                previous_fs.show();
                 //hide the current fieldset with style
                 current_fs.hide();
             });
-            
-            $(".submit").click(function(){
+
+            $(".submit").click(function () {
                 return false;
             })
 
-           /*let ff= JSON.parse(data.ofeli_rythmisis.dataValues.auksisi_esodwn)  
-           console.log(ff[0].field_18_amesa_esoda_oikonomia)
-            console.log(ff[1].field_18_amesa_esoda_oikonomia.length)
-            let i=0;
-            if (typeof ff[i].field_18_amesa_esoda_oikonomia == 'undefined') {
-                console.log("0000")
-            } else {
-                 console.log(ff[i].field_18_amesa_esoda_oikonomia.length)
-            } */
-            </script>
-            
-      </div>
+            /*let ff= JSON.parse(data.ofeli_rythmisis.dataValues.auksisi_esodwn)
+            console.log(ff[0].field_18_amesa_esoda_oikonomia)
+             console.log(ff[1].field_18_amesa_esoda_oikonomia.length)
+             let i=0;
+             if (typeof ff[i].field_18_amesa_esoda_oikonomia == 'undefined') {
+                 console.log("0000")
+             } else {
+                  console.log(ff[i].field_18_amesa_esoda_oikonomia.length)
+             } */
+        </script>
+
     </div>
-    <%- include('partials/footer.ejs') %>
-  </div>
+</div>
+<%- include('partials/footer.ejs') %>
+</div>
 </body>
+
 </html>

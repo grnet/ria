@@ -13,6 +13,7 @@ let database = require('./services/database')
 let usersRoute = require('./routes/users')
 let createUserRoute = require('./routes/create_user')
 let searchUserRoute = require('./routes/search_user')
+let editUserRoute = require('./routes/edit_user')
 let adminDashboardRoute = require('./routes/admin_dashboard')
 
 const app = express(); //app init
@@ -42,7 +43,7 @@ app.use('/form_a', form_aRoute);
 app.use('/user_views/admin_dashboard', adminDashboardRoute);
 app.use('/user_views/create_user', createUserRoute);
 app.use('/user_views/search_user', searchUserRoute);
-
+app.use('/user_views/edit_user', editUserRoute);
 
 
 app.listen(3000, () => {

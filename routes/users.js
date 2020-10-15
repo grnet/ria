@@ -5,9 +5,4 @@ routes.get('/', function(req,res,next){
     res.render("create")
 });
 
-routes.post('/', async function(req,res,next){
-    
-});
-
-
 module.exports = routes;

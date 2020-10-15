@@ -70,7 +70,6 @@ module.exports = (sequelize, DataTypes) => {
         //ekthesis sintagmatos
         field_15_ypoyrgeio: DataTypes.STRING,
         field_15_sxedio_nomou: DataTypes.STRING,
-        field_15_analysi: DataTypes.STRING,
         field_15_rythmiseis: DataTypes.STRING,
 
         field_16: DataTypes.STRING,
@@ -85,8 +84,12 @@ module.exports = (sequelize, DataTypes) => {
         field_22_sinergasia_ypoyrgeiwn: DataTypes.TEXT,
         field_22_sinergasia_forewn_arxwn: DataTypes.TEXT,
         field_22_diethnis_diavouleusi: DataTypes.TEXT,
-        field_23__epi_arxis_comments: DataTypes.TEXT,
-        field_23__epi_arthrwn_comments: DataTypes.TEXT,
+        field_23_arxes_symmetasxontes: DataTypes.STRING,
+        field_23_arxes_sxolia_yiothetithikan: DataTypes.TEXT,
+        field_23_arxes_sxolia_den_yiothetithikan: DataTypes.TEXT,
+        field_23_arthra_symmetasxontes: DataTypes.STRING,
+        field_23_arthra_sxolia_yiothetithikan: DataTypes.TEXT,
+        field_23_arthra_sxolia_den_yiothetithikan: DataTypes.TEXT,
 
         field_24: DataTypes.TEXT,
         field_25_dikaio: DataTypes.BOOLEAN,

@@ -1,13 +1,16 @@
-const {ofeli_rythmisis } = require("../services/database");
+'use strict';
+
+const {rythmiseis } = require("../services/database");
 
 module.exports = (sequelize, DataTypes) => {
-    var ofeli_rythmisis = sequelize.define('ofeli_rythmisis', {
+    var rythmiseis = sequelize.define('rythmiseis', {
         id: {
             primaryKey: true,
             autoIncrement: true,
             type: DataTypes.INTEGER,
             allowNull: false,
         },
+        //table 18
         auksisi_esodwn: DataTypes.JSON,
         meiwsi_dapanwn: DataTypes.JSON,
         eksikonomisi_xronou: DataTypes.JSON,
@@ -18,8 +21,20 @@ module.exports = (sequelize, DataTypes) => {
         diafania_thesmwn: DataTypes.JSON,
         diaxirisi_kindynwn: DataTypes.JSON,
         emmesa_allo: DataTypes.JSON,
+
+        //table19
+        proetimasia: DataTypes.JSON,
+        ypodomi: DataTypes.JSON,
+        kinitikotita: DataTypes.JSON,
+        emplekomenoi: DataTypes.JSON,
+        efarmogi_allo: DataTypes.JSON,
+        apodosi_diaxirisis: DataTypes.JSON,
+        ektelesi: DataTypes.JSON,
+        apodosi_kostos: DataTypes.JSON,
+        apodosi_allo: DataTypes.JSON,
+
     }, {   
         freezeTableName: true //table name same as model name
     });
-    return ofeli_rythmisis;
+    return rythmiseis;
 }
