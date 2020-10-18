@@ -46,7 +46,7 @@
 
             <div class="checkbox-group form-group row">
                 <label for="rolos" class="col-sm-2 col-form-label">Ρόλος: </label>
-                <select id="rolos" name="rolos" >
+                <select id="rolos" name="rolos" class="col-sm-2 form-control">
                     <option selected disabled>Eπιλογή</option>
                     <option value="syntaktis">Συντάκτης</option>
                     <option value="ggnkth" >ΓΓΝΚΘ</option>
@@ -123,9 +123,15 @@
         align-items: center;
     }
 
+    .form-check-input {
+        margin-top: 0px;
+    }
+
     label {
         font-weight: 700;
     }
+
+    .action-button {font-size: 16px;}
 
 </style>
 

@@ -1,0 +1,66 @@
+<%- include('../partials/head.ejs') %>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+
+<div class="MuiContainer-root jss110 MuiContainer-maxWidthLg">
+  <div class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-4">
+    <div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-8">
+      <br><br>
+
+      <p class="MuiTypography-root jss211 MuiTypography-body1">
+        Ως χρήστης του συστήματος μπορείτε, επιλέγονταςτον αντίστοιχο σύνδεσμο, να: <br>
+        -Διαχειριστείτε τα στοιχεία του προφίλ σας <br>
+        -Να ξεκινήσετε μια νέα έκθεση
+        -Να δείτε τις καταχωρημένες εκθέσεις σε κάθε κατηγορία και να συνεχίσετε μια θεση που έχετε αποθηκεύσει προσωρινά <br>
+        </p>
+
+    </div>
+    <div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4">
+      <div class="jss111">
+        <div class="jss274">
+          <h3 class="jss273 jss178 jss181">Χρήσιμοι Σύνδεσμοι</h3>
+          <ul class="jss275" id="progressbar">
+            <h4 class="jss276 jss178 jss181">Το Προφίλ Μου:</h4>
+            <li><a href="/user_profile">Τα Στοιχεία Μου</a></li>
+          </ul>
+          <ul class="jss275" id="progressbar">
+            <h4 class="jss276 jss178 jss181">Επεξεργασία Εκθέσεων</h4>
+            <li><a href="user_views/history">Ιστορικό</a></li>
+          </ul>
+          <ul class="jss275" id="progressbar">
+            <h4 class="jss276 jss178 jss181">Νέα Έκθεση</h4>
+            <li><a href="../create">Προσχέδιο νόμου</a></li>
+            <li><a href="../create">Κατευθυντήριες γραμμές</a></li>
+            <li><a href="../create">Επείγοντα και κατεπείγοντα νομοσχέδια</a></li>
+            <li><a href="../create">Πρόταση νόμου</a></li>
+            <li><a href="../create">Κύρωση διεθνών συμβάσεων</a></li>
+            <li><a href="../create">Τροπολογίες (Υπουργών και Βουλευτών)</a></li>
+          </ul>
+          
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%- include('../partials/footer.ejs') %>
+</div>
+
+<style>
+
+    a {
+      color: blue;
+    }
+    
+
+</style>
+
+<script>
+  $(document).ready(function () {
+    $('#data').DataTable();
+  });
+</script>
+</body>
+
+</html>

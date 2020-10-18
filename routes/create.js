@@ -73,7 +73,10 @@ routes.post('/', async function(req,res,next){
 
     let field_9_data = await database.field_9.create({ atmosfairiki_rypansi: atmosfairiki_rypansi, viologikoi_katharismoi:viologikoi_katharismoi, katallhles_aktes: katallhles_aktes, katallilotita_diktyoy_ydreysis: katallilotita_diktyoy_ydreysis, xrisi_aporrimmatwn: xrisi_aporrimmatwn, aporrimmata_xyta: aporrimmata_xyta, katastrofi_dasikwn_ektasewn: katastrofi_dasikwn_ektasewn, anadaswseis: anadaswseis, prostateuomenes_perioxes:prostateuomenes_perioxes, proypologismos_prostasias_perivallontos: proypologismos_prostasias_perivallontos, katanalwsi_energeias_kata_kefali: katanalwsi_energeias_kata_kefali, katanalwsi_energeias_ana_morfi: katanalwsi_energeias_ana_morfi, katanalwsi_energeias_apo_ananewsimes_piges: katanalwsi_energeias_apo_ananewsimes_piges, meiwsi_ekpompwn_thermokipioy: meiwsi_ekpompwn_thermokipioy,
         allos_deiktis1: allos_deiktis1, allos_deiktis2: allos_deiktis2, allos_deiktis3:allos_deiktis3, allos_deiktis4: allos_deiktis4, allos_deiktis5: allos_deiktis5 , field9Id: res_data.id } )   
-    console.log(req.body)  
+        var arthro14 = JSON.stringify([req.body.arthro])
+        console.log(arthro14[0])//logs [
+        var arthro14_1 = JSON.parse([arthro14])
+        console.log(arthro14_1[0])  //logs array
     res.send(res_data)
 });
 

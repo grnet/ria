@@ -7,7 +7,7 @@ routes.get('/', async (req,res,next) =>{
     }
     })
     //console.log(entries)
-    res.render("dashboard",{entries:entries})
+    res.render("user_views/history",{entries:entries})
 });
 
 module.exports = routes;

@@ -1,0 +1,93 @@
+<%- include('partials/head.ejs') %>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+
+<div class="MuiContainer-root jss110 MuiContainer-maxWidthLg">
+    <div class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-4">
+        <form>
+            <h1>Απαιτείται ταυτοποίηση</h1>
+            
+            <h4>Για να προχωρήσετε πρέπει πρώτα να συνδεθείτε.</h4>
+            <div class="form-group">
+                <label for="username">Χρήστης:</label>
+                <input type="text" size="5" id="username" name="username" placeholder="Χρήστης" required />
+            </div>
+
+            <div class="form-group">
+                <label for="password">Κωδικός πρόσβασης χρήστη:</label>
+                <input type="password" size="5" id="password" name="password" placeholder="Κωδικός πρόσβασης" required /> 
+            </div>
+
+            <input type="submit" name="login" class="action-button" value="Σύνδεση"/>
+        </form>
+    </div>
+</div>
+
+<%- include('partials/footer.ejs') %>
+</div>
+
+<style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: white;
+    }
+    
+    * {
+      box-sizing: border-box;
+    }
+    
+    /* Add padding to containers */
+    .container {
+      padding: 16px;
+      background-color: black;
+    }
+    
+    /* Full-width input fields */
+    input[type=text], input[type=password] {
+      width: 140%;
+      padding: 15px;
+      margin: 5px 0 22px 0;
+      display: inline-block;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+      background: #f1f1f1;
+    }
+    
+    input[type=text]:focus, input[type=password]:focus {
+      background-color: #ddd;
+      outline: none;
+    }
+    
+    /* Overwrite default styles of hr */
+    hr {
+      border: 1px solid #f1f1f1;
+      margin-bottom: 25px;
+    }
+
+    .action-button {font-size: 16px;}
+
+
+</style>
+
+<script>
+
+$("form").on("submit",function(ev){
+    ev.preventDefault();
+    $.ajax({
+        url: '/login',
+        data:$(this).serialize(),
+        error: function(error) {
+            console.log(error)
+        },
+        success: function(data) {
+            window.location = data.redirect
+        },
+        type: 'POST'
+    });
+})
+
+</script>
+</body>
+
+</html>
