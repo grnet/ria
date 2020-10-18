@@ -52,9 +52,14 @@
 
             <div class="checkbox-group form-group row">
                 <label for="dikaiwmata_diaxeirisis" class="col-sm-8 col-form-label">Ο χρήστης έχει δικαιώματα
-                    διαχείρισης:</label>
-                <input class="col-sm-2 form-check-input position-static" type="checkbox" id="dikaiwmata_diaxeirisis"
-                    name="dikaiwmata_diaxeirisis" value="<%= data.dikaiwmata_diaxeirisis %>">
+                    διαχείρισης:</label>                  
+                    <% if(data.dikaiwmata_diaxeirisis){ %>
+                    <input class="col-sm-2 form-check-input position-static" type="checkbox"
+                        id="dikaiwmata_diaxeirisis" name="dikaiwmata_diaxeirisis" value="dikaiwmata_diaxeirisis" checked>
+                    <% }else{ %>
+                    <input class="col-sm-2 form-check-input position-static" type="checkbox"
+                        id="dikaiwmata_diaxeirisis" name="dikaiwmata_diaxeirisis" value="dikaiwmata_diaxeirisis" >
+                    <% } %>                    
             </div>
             <hr>
 

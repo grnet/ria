@@ -381,8 +381,11 @@
             <%- include('fill_form/fill_form_g.ejs') %>
             <%- include('fill_form/fill_form_h.ejs') %>
 
-        </form>   
+            <br>
+        <input type="button" name="save_temporarily" class="save_temporarily float-right" value="Προσωρινή αποθήκευση"/>
 
+        </form>   
+        
     </div>
 </div>
 <div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4">
@@ -600,6 +603,23 @@
 $("form").on("submit",function(ev){
     ev.preventDefault();
    // console.log($(this).serialize())//comment this line out to hide query wrote in db
+    $.ajax({
+        url: '/create',
+        data:$(this).serialize(),
+        error: function(error) {
+            console.log(error)
+        },
+        success: function(data) {
+            console.log(data)
+            window.location.href="/user_views/history"
+        },
+        type: 'POST'
+    });
+})
+
+$(".save_temporarily").on("click",function(ev){
+    ev.preventDefault();
+    console.log($(this).serialize())//comment this line out to hide query wrote in db
     $.ajax({
         url: '/create',
         data:$(this).serialize(),
