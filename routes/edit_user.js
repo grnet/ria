@@ -1,9 +1,9 @@
 const routes = require('express').Router()
 let database = require('../services/database')
-routes.get('/:user_id', async (req,res,next) =>{
+routes.get('/:username', async (req,res,next) =>{
     
     let user = await database.user.findOne({where:{
-        user_id: req.params.user_id
+        username: req.params.username
     }})
     if(user && user.dataValues){
         res.render("user_views/edit_user",{data:user.dataValues})
@@ -13,7 +13,7 @@ routes.get('/:user_id', async (req,res,next) =>{
     }
 });
 
-routes.delete('/:user_id/delete', async (req,res,next) =>{
+routes.delete('/:username', async (req,res,next) =>{
     
     let user = await database.user.findOne({where: {user_id: req.params.user_id}}).catch(e => {
         console.log(e.message)
@@ -27,7 +27,7 @@ routes.delete('/:user_id/delete', async (req,res,next) =>{
    });
 
 
-routes.put('/:user_id', async (req,res,next) =>{
+routes.put('/:username', async (req,res,next) =>{
     
     let user = await database.user.update( {fname: req.body.fname, lname: req.body.lname},{where:{
         user_id: req.params.user_id
