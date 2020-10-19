@@ -28,6 +28,15 @@
             <li><a href="./search_user">Επεξεργασία στοιχείων χρήστη</a></li>
             <li><a href="./user_profile">Τα στοιχεία μου</a></li>
           </ul>
+          <ul class="jss275" id="progressbar">
+            <h4 class="jss276 jss178 jss181">Νέα Έκθεση</h4>
+            <li><a href="../create">Προσχέδιο νόμου</a></li>
+            <li><a href="../create">Κατευθυντήριες γραμμές</a></li>
+            <li><a href="../create">Επείγοντα και κατεπείγοντα νομοσχέδια</a></li>
+            <li><a href="../create">Πρόταση νόμου</a></li>
+            <li><a href="../create">Κύρωση διεθνών συμβάσεων</a></li>
+            <li><a href="../create">Τροπολογίες (Υπουργών και Βουλευτών)</a></li>
+          </ul>
           <ul>
             <h4 class="jss276 jss178 jss181">Διαχείριση Εκθέσεων</h4>
             <li><a href="./summaries">Συνοπτικά στοιχεία</a></li>
@@ -35,8 +44,10 @@
           </ul>
           </ul>
         </div>
+        <input type="button" name="exit" class="exit float-right" value="Έξοδος"/>
       </div>
     </div>
+ 
   </div>
 </div>
 <%- include('../partials/footer.ejs') %>
@@ -48,6 +59,7 @@
       color: blue;
     }
     
+    .exit{ font-size: 16px; }
 
 </style>
 
@@ -55,6 +67,13 @@
   $(document).ready(function () {
     $('#data').DataTable();
   });
+
+  $(".exit").on("click",function(ev){
+    
+    window.location.href="/login"
+
+  });
+
 </script>
 </body>
 

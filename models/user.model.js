@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
         rolos: DataTypes.BOOLEAN,
         dikaiwmata_diaxeirisis: DataTypes.BOOLEAN,
         ypoyrgeio: DataTypes.STRING,
+        isLoggedIn: DataTypes.BOOLEAN,
         
     }, {   
         freezeTableName: true //table name same as model name

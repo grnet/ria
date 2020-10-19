@@ -382,8 +382,8 @@
             <%- include('fill_form/fill_form_h.ejs') %>
 
             <br>
-        <input type="button" name="save_temporarily" class="save_temporarily float-right" value="Προσωρινή αποθήκευση"/>
-
+            <input type="button" name="save_temporarily" class="save_temporarily float-right" value="Προσωρινή αποθήκευση"/>
+            <input type="button" name="exit" class="exit float-right" value="Έξοδος"/>
         </form>   
         
     </div>
@@ -474,6 +474,7 @@
 
   
 <style>
+    .exit{ font-size: 16px; }
     table {
         border: 1px solid black;
         width: 100%;
@@ -633,6 +634,12 @@ $(".save_temporarily").on("click",function(ev){
         type: 'POST'
     });
 })
+
+$(".exit").on("click",function(ev){
+    
+    window.location.href="/login"
+
+  });
 
 //row counter
 var table14RowIndex = 0;

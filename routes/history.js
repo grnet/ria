@@ -6,8 +6,10 @@ routes.get('/', async (req,res,next) =>{
         author_id: "1"
     }
     })
-    //console.log(entries)
-    res.render("user_views/history",{entries:entries})
+    let user = await database.user.findOne({where:{
+        isLoggedIn: true
+    }})
+    res.render("user_views/history",{entries:entries, user:user})
 });
 
 module.exports = routes;

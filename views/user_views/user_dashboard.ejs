@@ -39,11 +39,11 @@
             <li><a href="../create">Κύρωση διεθνών συμβάσεων</a></li>
             <li><a href="../create">Τροπολογίες (Υπουργών και Βουλευτών)</a></li>
           </ul>
-          
-          </ul>
         </div>
       </div>
+      <input type="button" name="exit" class="exit float-right" value="Έξοδος"/>
     </div>
+    
   </div>
 </div>
 <%- include('../partials/footer.ejs') %>
@@ -55,13 +55,18 @@
       color: blue;
     }
     
-
+    .exit{ font-size: 16px; }
 </style>
 
 <script>
   $(document).ready(function () {
     $('#data').DataTable();
   });
+  $(".exit").on("click",function(ev){
+    
+    window.location.href="/login"
+
+  })
 </script>
 </body>
 

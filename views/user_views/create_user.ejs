@@ -12,36 +12,36 @@
 
             <div class="form-group">
                 <label for="fname">Όνομα χρήστη:</label>
-                <input type="text" size="5" id="fname" name="fname" placeholder="Όνομα χρήστη" required />
+                <input type="text" size="10" id="fname" name="fname" placeholder="Όνομα χρήστη" required />
             </div>
             <hr>
 
             <div class="form-group">
                 <label for="lname">Επώνυμο χρήστη:</label>
-                <input type="text" size="5" id="lname" name="lname" placeholder="Επώνυμο χρήστη" required /> 
+                <input type="text" size="10" id="lname" name="lname" placeholder="Επώνυμο χρήστη" required /> 
             </div>
             <hr>
 
             <div class="form-group">
                 <label for="username">Username χρήστη:</label>
-                <input type="text" size="5" id="username" name="username" placeholder="Username" required /> 
+                <input type="text" size="10" id="username" name="username" placeholder="Username" required /> 
             </div>
             <hr>
 
             <div class="form-group">
                 <label for="password">Κωδικός πρόσβασης χρήστη:</label>
-                <input type="password" size="5" id="password" name="password" placeholder="Κωδικός πρόσβασης" required /> 
+                <input type="password" size="10" id="password" name="password" placeholder="Κωδικός πρόσβασης" required /> 
             </div>
 
             <div class="form-group">
                 <label for="password">Επανάληψη κωδικού πρόσβασης χρήστη:</label>
-                <input type="password" size="5" id="repeat_password" name="repeat_password" placeholder="Επανάληψη κωδικού πρόσβασης" required /> 
+                <input type="password" size="10" id="repeat_password" name="repeat_password" placeholder="Επανάληψη κωδικού πρόσβασης" required /> 
             </div>
             <hr>
 
             <div class="form-group">
                 <label for="ypoyrgeio">Υπουργείο:</label>
-                <input type="text" size="5" id="ypoyrgeio" name="ypoyrgeio" placeholder="Υπουργείο" /> 
+                <input type="text" size="10" id="ypoyrgeio" name="ypoyrgeio" placeholder="Υπουργείο" /> 
             </div>
             <hr>
 
@@ -68,27 +68,11 @@
             <hr>
             
             <input type="submit" name="create_new" class="action-button" value="Δημιουργία"/>
+            <br>
+            <input type="button" name="exit" class="exit float-right" value="Έξοδος"/>
             
         </form>
-        <div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4">
-            <div class="jss111">
-              <div class="jss274">
-                <h3 class="jss273 jss178 jss181">Χρήσιμοι Σύνδεσμοι</h3>
-                <ul class="jss275" id="progressbar">
-                  <h4 class="jss276 jss178 jss181">Διαχείριση Χρηστών:</h4>
-                  <li><a href="./create_user">Δημιουργία νέου χρήστη</a></li>
-                  <li><a href="./search_user">Επεξεργασία στοιχείων χρήστη</a></li>
-                  <li><a href="./user_profile">Τα στοιχεία μου</a></li>
-                </ul>
-                <ul>
-                  <h4 class="jss276 jss178 jss181">Διαχείριση Εκθέσεων</h4>
-                  <li><a href="./summaries">Συνοπτικά στοιχεία</a></li>
-                  <li><a href="./history">Ιστορικό</a></li>
-                </ul>
-                </ul>
-              </div>
-            </div>
-          </div>
+        
     </div>
 </div>
 
@@ -152,7 +136,7 @@
         font-weight: 700;
     }
 
-    .action-button {font-size: 16px;}
+    .action-button, .exit {font-size: 16px;}
 
     a {
       color: blue;
@@ -177,7 +161,13 @@ $("form").on("submit",function(ev){
         },
         type: 'POST'
     });
-})
+});
+
+$(".exit").on("click",function(ev){
+    
+    window.location.href="/login"
+
+  });
 
 </script>
 </body>

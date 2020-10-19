@@ -630,6 +630,9 @@
                     <%- include('view_form/view_form_g.ejs') %>
                     <%- include('view_form/view_form_h.ejs') %>
                 </form>
+                <input type="button" name="save_temporarily" class="save_temporarily float-right"
+                    value="Προσωρινή αποθήκευση" />
+                <input type="button" name="exit" class="exit float-right" value="Έξοδος" />
 
 
             </div>
@@ -736,6 +739,11 @@
 
 
         <style>
+            .action-button,
+            .exit {
+                font-size: 16px;
+            }
+
             table {
                 border: 1px solid black;
                 width: 100%;
@@ -895,6 +903,29 @@
                 });
             })
 
+            $(".save_temporarily").on("click", function (ev) {
+                ev.preventDefault();
+                console.log($(this).serialize())//comment this line out to hide query wrote in db
+                $.ajax({
+                    url: '/create',
+                    data: $(this).serialize(),
+                    error: function (error) {
+                        console.log(error)
+                    },
+                    success: function (data) {
+                        console.log(data)
+                        window.location.href = "/user_views/history"
+                    },
+                    type: 'POST'
+                });
+            })
+
+            $(".exit").on("click", function (ev) {
+
+                window.location.href = "/login"
+
+            });
+
             //row counter
             var table14RowIndex = 0;
 
@@ -985,7 +1016,7 @@
             var table30RowIndex = 0;
             $("#add_row_table_30").on("click", function () {
 
-            $('#tbody_30').append(`
+                $('#tbody_30').append(`
             <tr id="R${++table30RowIndex}"> 
                 <td> 
                     <textarea class="form-control" placeholder="Διατάξεις αξιολογούμενης ρύθμισης που προβλέπουν κατάργηση" rows="2"></textarea>
@@ -1018,7 +1049,7 @@
             var table31RowIndex = 0;
             $("#add_row_table_31").on("click", function () {
 
-            $('#tbody_31').append(`
+                $('#tbody_31').append(`
             <tr id="R${++table31RowIndex}"> 
                 <td> 
                     <textarea class="form-control" placeholder="Σχετική διάταξη αξιολογούμενης ρύθμισης" rows="2"></textarea>
@@ -1054,7 +1085,7 @@
             var table32RowIndex = 0;
             $("#add_row_table_32").on("click", function () {
 
-            $('#tbody_32').append(`
+                $('#tbody_32').append(`
                 <tr id="R${++table32RowIndex}"> 
                     <td> 
                         <textarea class="form-control" placeholder="Εξουσιοδοτική διάταξη" rows="4"></textarea>

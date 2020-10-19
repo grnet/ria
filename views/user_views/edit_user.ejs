@@ -69,6 +69,8 @@
             <br>
             <input type="submit" id="edit_submit" name="edit_submit" class="action-button float-right"
                 value="Επεξεργασία" />
+                
+                <input type="button" name="exit" class="exit float-right" value="Έξοδος"/>
         </form>
     </div>
 </div>
@@ -121,7 +123,7 @@
         align-items: center;
     }
 
-    .action-button {font-size: 16px;}
+    .action-button, .exit {font-size: 16px;}
 
 </style>
 
@@ -167,7 +169,11 @@
             type: 'POST'
         });
     })
+    $(".exit").on("click",function(ev){
+    
+        window.location.href="/login"
 
+    });
 </script>
 </body>
 
