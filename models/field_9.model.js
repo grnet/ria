@@ -9,6 +9,15 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
         },
 
+        //ependytiki_drastiriotita_table        
+        pagkosmia_antagwnistikotita :DataTypes.JSON,
+        ependyseis: DataTypes.JSON,
+        ameses_ependyseis: DataTypes.JSON,
+        nees_epixeiriseis: DataTypes.JSON,
+        kleistes_epixeiriseis: DataTypes.JSON,
+        dioikitiko_kostos: DataTypes.JSON,
+        mx_systasis_epixeirisis: DataTypes.JSON,
+        
         //perivallon_energeia_table
         atmosfairiki_rypansi: DataTypes.JSON,
         viologikoi_katharismoi: DataTypes.JSON,

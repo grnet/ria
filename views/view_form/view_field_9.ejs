@@ -1071,7 +1071,7 @@
         </tbody>
     </table>
 
-    <table class="table" id="metanasteytiki_prisfygiki_politiki_table" style="display: none;">
+    <table class="table" id="metanasteytiki_prosfygiki_politiki_table" style="display: none;">
         <thead class="thead">
             <tr>
                 <th colspan="1">ΜΕΤΑΝΑΣΤΕΥΤΙΚΗ-ΠΡΟΣΦΥΓΙΚΗ ΠΟΛΙΤΙΚΗ</th>
@@ -1568,74 +1568,81 @@
         </thead>
         <tbody>
             <tr>
+                <% let pagkosmia_antagwnistikotita = JSON.parse(data.field_9.dataValues.pagkosmia_antagwnistikotita) %>
                 <th colspan="1">Δείκτης παγκόσμιας ανταγωνιστικότητας</th>
-                <td><input type="text" size="10" id="pagkosmia_antagwnistikotita_year1" name="pagkosmia_antagwnistikotita_year1" placeholder="έτος 1" />
-                    <input type="text" size="10" id="pagkosmia_antagwnistikotita_year2" name="pagkosmia_antagwnistikotita_year2" placeholder="έτος 2" />
-                    <input type="text" size="10" id="pagkosmia_antagwnistikotita_year3" name="pagkosmia_antagwnistikotita_year3" placeholder="έτος 3" />
-                    <input type="text" size="10" id="pagkosmia_antagwnistikotita_year4" name="pagkosmia_antagwnistikotita_year4" placeholder="έτος 4" />
-                    <input type="text" size="10" id="pagkosmia_antagwnistikotita_year5" name="pagkosmia_antagwnistikotita_year5" placeholder="έτος 5" /></td>
-                <td><input type="text" id="pagkosmia_antagwnistikotita_prosfata_stoixeia" name="pagkosmia_antagwnistikotita_prosfata_stoixeia" size="10" /> </td>
-                <td><input type="text" id="pagkosmia_antagwnistikotita_epidiwkomenos_stoxos" name="pagkosmia_antagwnistikotita_epidiwkomenos_stoxos" size="10" /></td>
+                <td><input type="text" size="10" id="pagkosmia_antagwnistikotita_year1" name="pagkosmia_antagwnistikotita_year1" placeholder="έτος 1" value="<%= pagkosmia_antagwnistikotita[0].pagkosmia_antagwnistikotita_year1 %>" />
+                    <input type="text" size="10" id="pagkosmia_antagwnistikotita_year2" name="pagkosmia_antagwnistikotita_year2" placeholder="έτος 2" value="<%= pagkosmia_antagwnistikotita[1].pagkosmia_antagwnistikotita_year2 %>" />
+                    <input type="text" size="10" id="pagkosmia_antagwnistikotita_year3" name="pagkosmia_antagwnistikotita_year3" placeholder="έτος 3" value="<%= pagkosmia_antagwnistikotita[2].pagkosmia_antagwnistikotita_year3 %>" />
+                    <input type="text" size="10" id="pagkosmia_antagwnistikotita_year4" name="pagkosmia_antagwnistikotita_year4" placeholder="έτος 4" value="<%= pagkosmia_antagwnistikotita[3].pagkosmia_antagwnistikotita_year4 %>" />
+                    <input type="text" size="10" id="pagkosmia_antagwnistikotita_year5" name="pagkosmia_antagwnistikotita_year5" placeholder="έτος 5" value="<%= pagkosmia_antagwnistikotita[4].pagkosmia_antagwnistikotita_year5 %>" /></td>
+                <td><input type="text" id="pagkosmia_antagwnistikotita_prosfata_stoixeia" name="pagkosmia_antagwnistikotita_prosfata_stoixeia" size="10" value="<%= pagkosmia_antagwnistikotita[5].pagkosmia_antagwnistikotita_prosfata_stoixeia %>" /> </td>
+                <td><input type="text" id="pagkosmia_antagwnistikotita_epidiwkomenos_stoxos" name="pagkosmia_antagwnistikotita_epidiwkomenos_stoxos" size="10" value="<%= pagkosmia_antagwnistikotita[6].pagkosmia_antagwnistikotita_epidiwkomenos_stoxos %>" /></td>
             </tr>
             <tr>
+                <% let ependyseis = JSON.parse(data.field_9.dataValues.ependyseis) %>
                 <th colspan="1">Επενδύσεις ως % ΑΕΠ</th>
-                <td><input type="text" size="10" id="ependyseis_year1" name="ependyseis_year1" placeholder="έτος 1" />
-                    <input type="text" size="10" id="ependyseis_year2" name="ependyseis_year2" placeholder="έτος 2" />
-                    <input type="text" size="10" id="ependyseis_year3" name="ependyseis_year3" placeholder="έτος 3" />
-                    <input type="text" size="10" id="ependyseis_year4" name="ependyseis_year4" placeholder="έτος 4" />
-                    <input type="text" size="10" id="ependyseis_year5" name="ependyseis_year5" placeholder="έτος 5" /></td>
-                <td><input type="text" id="ependyseis_prosfata_stoixeia" name="ependyseis_prosfata_stoixeia" size="10" /></td>
-                <td><input type="text" id="ependyseis_epidiwkomenos_stoxos" name="ependyseis_epidiwkomenos_stoxos" size="10" /></td>
+                <td><input type="text" size="10" id="ependyseis_year1" name="ependyseis_year1" placeholder="έτος 1" value="<%= ependyseis[0].ependyseis_year1 %>" />
+                    <input type="text" size="10" id="ependyseis_year2" name="ependyseis_year2" placeholder="έτος 2" value="<%= ependyseis[1].ependyseis_year2 %>" />
+                    <input type="text" size="10" id="ependyseis_year3" name="ependyseis_year3" placeholder="έτος 3" value="<%= ependyseis[2].ependyseis_year3 %>" />
+                    <input type="text" size="10" id="ependyseis_year4" name="ependyseis_year4" placeholder="έτος 4" value="<%= ependyseis[3].ependyseis_year4 %>" />
+                    <input type="text" size="10" id="ependyseis_year5" name="ependyseis_year5" placeholder="έτος 5" value="<%= ependyseis[4].ependyseis_year5 %>" /></td>
+                <td><input type="text" id="ependyseis_prosfata_stoixeia" name="ependyseis_prosfata_stoixeia" size="10" value="<%= ependyseis[5].ependyseis_prosfata_stoixeia %>" /></td>
+                <td><input type="text" id="ependyseis_epidiwkomenos_stoxos" name="ependyseis_epidiwkomenos_stoxos" size="10" value="<%= ependyseis[6].pagkosmia_antagwnistikotita_epidiwkomenos_stoxos %>" /></td>
             </tr>
             <tr>
+                <% let ameses_ependyseis = JSON.parse(data.field_9.dataValues.ameses_ependyseis) %>
                 <th colspan="1">Άμεσες ξένες επενδύσεις ως % ΑΕΠ</th>
-                <td><input type="text" size="10" id="ameses_ependyseis_year1" name="ameses_ependyseis_year1" placeholder="έτος 1" />
-                    <input type="text" size="10" id="ameses_ependyseis_year2" name="ameses_ependyseis_year2" placeholder="έτος 2" />
-                    <input type="text" size="10" id="ameses_ependyseis_year3" name="ameses_ependyseis_year3" placeholder="έτος 3" />
-                    <input type="text" size="10" id="ameses_ependyseis_year4" name="ameses_ependyseis_year4" placeholder="έτος 4" />
-                    <input type="text" size="10" id="ameses_ependyseis_year5" name="ameses_ependyseis_year5" placeholder="έτος 5" /></td>
-                <td><input type="text" id="ameses_ependyseis_prosfata_stoixeia" name="ameses_ependyseis_prosfata_stoixeia" size="10" /></td>
-                <td><input type="text" id="ameses_ependyseis_epidiwkomenos_stoxos" name="ameses_ependyseis_epidiwkomenos_stoxos" size="10" /></td>
+                <td><input type="text" size="10" id="ameses_ependyseis_year1" name="ameses_ependyseis_year1" placeholder="έτος 1" value="<%= ameses_ependyseis[0].ameses_ependyseis_year1 %>" />
+                    <input type="text" size="10" id="ameses_ependyseis_year2" name="ameses_ependyseis_year2" placeholder="έτος 2" value="<%= ameses_ependyseis[1].ameses_ependyseis_year2 %>" />
+                    <input type="text" size="10" id="ameses_ependyseis_year3" name="ameses_ependyseis_year3" placeholder="έτος 3" value="<%= ameses_ependyseis[2].ameses_ependyseis_year3 %>" />
+                    <input type="text" size="10" id="ameses_ependyseis_year4" name="ameses_ependyseis_year4" placeholder="έτος 4" value="<%= ameses_ependyseis[3].ameses_ependyseis_year4 %>" />
+                    <input type="text" size="10" id="ameses_ependyseis_year5" name="ameses_ependyseis_year5" placeholder="έτος 5" value="<%= ameses_ependyseis[4].ameses_ependyseis_year5 %>" /></td>
+                <td><input type="text" id="ameses_ependyseis_prosfata_stoixeia" name="ameses_ependyseis_prosfata_stoixeia" size="10" value="<%= ameses_ependyseis[5].ameses_ependyseis_prosfata_stoixeia %>"/></td>
+                <td><input type="text" id="ameses_ependyseis_epidiwkomenos_stoxos" name="ameses_ependyseis_epidiwkomenos_stoxos" size="10" value="<%= ameses_ependyseis[6].ameses_ependyseis_epidiwkomenos_stoxos %>" /></td>
             </tr>
             <tr>
+                <% let nees_epixeiriseis = JSON.parse(data.field_9.dataValues.nees_epixeiriseis) %>
                 <th colspan="1">Αριθμός επιχειρήσεων που ανοίγουν ανά κλάδο και περιφέρεια και αντίστοιχος αριθμός απασχολουμένων σε αυτές</th>
-                <td><input type="text" size="10" id="nees_epixeirisis_year1" name="nees_epixeirisis_year1" placeholder="έτος 1" />
-                    <input type="text" size="10" id="nees_epixeirisis_year2" name="nees_epixeirisis_year2" placeholder="έτος 2" />
-                    <input type="text" size="10" id="nees_epixeirisis_year3" name="nees_epixeirisis_year3" placeholder="έτος 3" />
-                    <input type="text" size="10" id="nees_epixeirisis_year4" name="nees_epixeirisis_year4" placeholder="έτος 4" />
-                    <input type="text" size="10" id="nees_epixeirisis_year5" name="nees_epixeirisis_year5" placeholder="έτος 5" /></td>
-                <td><input type="text" id="nees_epixeirisis_prosfata_stoixeia" name="nees_epixeirisis_prosfata_stoixeia" size="10" /></td>
-                <td><input type="text" id="nees_epixeirisis_epidiwkomenos_stoxos" name="nees_epixeirisis_epidiwkomenos_stoxos" size="10" /></td>
+                <td><input type="text" size="10" id="nees_epixeiriseis_year1" name="nees_epixeiriseis_year1" placeholder="έτος 1" value="<%= nees_epixeiriseis[0].nees_epixeiriseis_year1 %>" />
+                    <input type="text" size="10" id="nees_epixeiriseis_year2" name="nees_epixeiriseis_year2" placeholder="έτος 2" value="<%= nees_epixeiriseis[1].nees_epixeiriseis_year2 %>" />
+                    <input type="text" size="10" id="nees_epixeiriseis_year3" name="nees_epixeiriseis_year3" placeholder="έτος 3" value="<%= nees_epixeiriseis[2].nees_epixeiriseis_year3 %>" />
+                    <input type="text" size="10" id="nees_epixeiriseis_year4" name="nees_epixeiriseis_year4" placeholder="έτος 4" value="<%= nees_epixeiriseis[3].nees_epixeiriseis_year4 %>" />
+                    <input type="text" size="10" id="nees_epixeiriseis_year5" name="nees_epixeiriseis_year5" placeholder="έτος 5" value="<%= nees_epixeiriseis[4].nees_epixeiriseis_year5 %>" /></td>
+                <td><input type="text" id="nees_epixeiriseis_prosfata_stoixeia" name="nees_epixeiriseis_prosfata_stoixeia" size="10" value="<%= nees_epixeiriseis[5].nees_epixeirisis_prosfata_stoixeia %>" /></td>
+                <td><input type="text" id="nees_epixeiriseis_epidiwkomenos_stoxos" name="nees_epixeiriseis_epidiwkomenos_stoxos" size="10" value="<%= nees_epixeiriseis[6].nees_epixeiriseis_epidiwkomenos_stoxos %>" /></td>
             </tr>
             <tr>
+                <% let kleistes_epixeiriseis = JSON.parse(data.field_9.dataValues.kleistes_epixeiriseis) %>
                 <th colspan="1">Αριθμός επιχειρήσεων που κλείνουν ανά κλάδο και περιφέρεια και αντίστοιχος αριθμός απασχολουμένων σε αυτές</th>
-                <td><input type="text" size="10" id="kleistes_epixeirisis_year1" name="kleistes_epixeirisis_year1" placeholder="έτος 1" />
-                    <input type="text" size="10" id="kleistes_epixeirisis_year2" name="kleistes_epixeirisis_year2" placeholder="έτος 2" />
-                    <input type="text" size="10" id="kleistes_epixeirisis_year3" name="kleistes_epixeirisis_year3" placeholder="έτος 3" />
-                    <input type="text" size="10" id="kleistes_epixeirisis_year4" name="kleistes_epixeirisis_year4" placeholder="έτος 4" />
-                    <input type="text" size="10" id="kleistes_epixeirisis_year5" name="kleistes_epixeirisis_year5" placeholder="έτος 5" /></td>
-                <td><input type="text" id="kleistes_epixeirisis_prosfata_stoixeia" name="kleistes_epixeirisis_prosfata_stoixeia" size="10" /></td>
-                <td><input type="text" id="kleistes_epixeirisis_epidiwkomenos_stoxos" name="kleistes_epixeirisis_epidiwkomenos_stoxos" size="10" /></td>
+                <td><input type="text" size="10" id="kleistes_epixeirisis_year1" name="kleistes_epixeirisis_year1" placeholder="έτος 1" value="<%= kleistes_epixeiriseis[0].nees_epixeiriseis_year1 %>" />
+                    <input type="text" size="10" id="kleistes_epixeirisis_year2" name="kleistes_epixeirisis_year2" placeholder="έτος 2" value="<%= kleistes_epixeiriseis[1].nees_epixeiriseis_year2 %>" />
+                    <input type="text" size="10" id="kleistes_epixeirisis_year3" name="kleistes_epixeirisis_year3" placeholder="έτος 3" value="<%= kleistes_epixeiriseis[2].nees_epixeiriseis_year3 %>" />
+                    <input type="text" size="10" id="kleistes_epixeirisis_year4" name="kleistes_epixeirisis_year4" placeholder="έτος 4" value="<%= kleistes_epixeiriseis[3].nees_epixeiriseis_year4 %>" />
+                    <input type="text" size="10" id="kleistes_epixeirisis_year5" name="kleistes_epixeirisis_year5" placeholder="έτος 5" value="<%= kleistes_epixeiriseis[4].nees_epixeiriseis_year5 %>" /></td>
+                <td><input type="text" id="kleistes_epixeirisis_prosfata_stoixeia" name="kleistes_epixeirisis_prosfata_stoixeia" size="10" value="<%= kleistes_epixeiriseis[5].kleistes_epixeirisis_prosfata_stoixeia %>" /></td>
+                <td><input type="text" id="kleistes_epixeirisis_epidiwkomenos_stoxos" name="kleistes_epixeirisis_epidiwkomenos_stoxos" size="10" value="<%= kleistes_epixeiriseis[6].kleistes_epixeirisis_epidiwkomenos_stoxos %>" /></td>
             </tr>
             <tr>
+                <% let dioikitiko_kostos = JSON.parse(data.field_9.dataValues.dioikitiko_kostos) %>
                 <th colspan="1">Διοικητικό κόστος σύστασης επιχειρήσεων</th>
-                <td><input type="text" size="10" id="dioikitiko_kostos_year1" name="dioikitiko_kostos_year1" placeholder="έτος 1" />
-                    <input type="text" size="10" id="dioikitiko_kostos_year2" name="dioikitiko_kostos_year2" placeholder="έτος 2" />
-                    <input type="text" size="10" id="dioikitiko_kostos_year3" name="dioikitiko_kostos_year3" placeholder="έτος 3" />
-                    <input type="text" size="10" id="dioikitiko_kostos_year4" name="dioikitiko_kostos_year4" placeholder="έτος 4" />
-                    <input type="text" size="10" id="dioikitiko_kostos_year5" name="dioikitiko_kostos_year5" placeholder="έτος 5" /></td>
-                <td><input type="text" id="dioikitiko_kostos_prosfata_stoixeia" name="dioikitiko_kostos_prosfata_stoixeia" size="10" /></td>
-                <td><input type="text" id="dioikitiko_kostos_epidiwkomenos_stoxos" name="dioikitiko_kostos_epidiwkomenos_stoxos" size="10" /></td>
+                <td><input type="text" size="10" id="dioikitiko_kostos_year1" name="dioikitiko_kostos_year1" placeholder="έτος 1" value="<%= dioikitiko_kostos[0].dioikitiko_kostos_year1 %>" />
+                    <input type="text" size="10" id="dioikitiko_kostos_year2" name="dioikitiko_kostos_year2" placeholder="έτος 2" value="<%= dioikitiko_kostos[1].dioikitiko_kostos_year2 %>" />
+                    <input type="text" size="10" id="dioikitiko_kostos_year3" name="dioikitiko_kostos_year3" placeholder="έτος 3" value="<%= dioikitiko_kostos[2].dioikitiko_kostos_year3 %>" />
+                    <input type="text" size="10" id="dioikitiko_kostos_year4" name="dioikitiko_kostos_year4" placeholder="έτος 4" value="<%= dioikitiko_kostos[3].dioikitiko_kostos_year4 %>" />
+                    <input type="text" size="10" id="dioikitiko_kostos_year5" name="dioikitiko_kostos_year5" placeholder="έτος 5" value="<%= dioikitiko_kostos[4].dioikitiko_kostos_year5 %>" /></td>
+                <td><input type="text" id="dioikitiko_kostos_prosfata_stoixeia" name="dioikitiko_kostos_prosfata_stoixeia" size="10" value="<%= dioikitiko_kostos[5].dioikitiko_kostos_prosfata_stoixeia %>" /></td>
+                <td><input type="text" id="dioikitiko_kostos_epidiwkomenos_stoxos" name="dioikitiko_kostos_epidiwkomenos_stoxos" size="10" value="<%= dioikitiko_kostos[6].dioikitiko_kostos_epidiwkomenos_stoxos %>" /></td>
             </tr>
             <tr>
+                <% let mx_systasis_epixeirisis = JSON.parse(data.field_9.dataValues.mx_systasis_epixeirisis) %>
                 <th colspan="1">Μέσος χρόνος σύστασης επιχειρήσεων</th>
-                <td><input type="text" size="10" id="mo_systasis_epixireisis_year1" name="mo_systasis_epixireisis_year1" placeholder="έτος 1" />
-                    <input type="text" size="10" id="mo_systasis_epixireisis_year2" name="mo_systasis_epixireisis_year2" placeholder="έτος 2" />
-                    <input type="text" size="10" id="mo_systasis_epixireisis_year3" name="mo_systasis_epixireisis_year3" placeholder="έτος 3" />
-                    <input type="text" size="10" id="mo_systasis_epixireisis_year4" name="mo_systasis_epixireisis_year4" placeholder="έτος 4" />
-                    <input type="text" size="10" id="mo_systasis_epixireisis_year5" name="mo_systasis_epixireisis_year5" placeholder="έτος 5" /></td>
-                <td><input type="text" id="mo_systasis_epixireisis_prosfata_stoixeia" name="mo_systasis_epixireisis_prosfata_stoixeia" size="10" /></td>
-                <td><input type="text" id="mo_systasis_epixireisis_epidiwkomenos_stoxos" name="mo_systasis_epixireisis_epidiwkomenos_stoxos" size="10" /></td>
+                <td><input type="text" size="10" id="mx_systasis_epixeirisis_year1" name="mx_systasis_epixeirisis_year1" placeholder="έτος 1" value="<%= mx_systasis_epixeirisis[0].dioikitiko_kostos_year1 %>" />
+                    <input type="text" size="10" id="mx_systasis_epixeirisis_year2" name="mx_systasis_epixeirisis_year2" placeholder="έτος 2" value="<%= mx_systasis_epixeirisis[1].dioikitiko_kostos_year2 %>" />
+                    <input type="text" size="10" id="mx_systasis_epixeirisis_year3" name="mx_systasis_epixeirisis_year3" placeholder="έτος 3" value="<%= mx_systasis_epixeirisis[2].dioikitiko_kostos_year3 %>" />
+                    <input type="text" size="10" id="mx_systasis_epixeirisis_year4" name="mx_systasis_epixeirisis_year4" placeholder="έτος 4" value="<%= mx_systasis_epixeirisis[3].dioikitiko_kostos_year4 %>" />
+                    <input type="text" size="10" id="mx_systasis_epixeirisis_year5" name="mx_systasis_epixeirisis_year5" placeholder="έτος 5" value="<%= mx_systasis_epixeirisis[4].dioikitiko_kostos_year5 %>" /></td>
+                <td><input type="text" id="mx_systasis_epixeirisis_prosfata_stoixeia" name="mx_systasis_epixeirisis_prosfata_stoixeia" size="10" value="<%= mx_systasis_epixeirisis[5].mx_systasis_epixeirisis_prosfata_stoixeia %>" /></td>
+                <td><input type="text" id="mx_systasis_epixeirisis_epidiwkomenos_stoxos" name="mx_systasis_epixeirisis_epidiwkomenos_stoxos" size="10" value="<%= mx_systasis_epixeirisis[6].mx_systasis_epixeirisis_epidiwkomenos_stoxos %>" /></td>
             </tr>
         </tbody>
     </table>
@@ -1653,145 +1660,156 @@
             <tr>
                 <% let atmosfairiki_rypansi = JSON.parse(data.field_9.dataValues.atmosfairiki_rypansi) %>
                 <th colspan="1">Μονάδες - Ετήσιες εκπομπές αερίων ατμοσφαιρικής ρύπανσης κατά κεφαλή</th>
-                <td><input type="text" size="10" id="atmosfairiki_rypansi_year1" name="atmosfairiki_rypansi_year1" value="<%= atmosfairiki_rypansi[0].atmosfairiki_rypansi_year1 %>" />
-                    <input type="text" size="10" id="atmosfairiki_rypansi_year2" name="atmosfairiki_rypansi_year2" value="<%= atmosfairiki_rypansi[1].atmosfairiki_rypansi_year2 %>" />
-                    <input type="text" size="10" id="atmosfairiki_rypansi_year3" name="atmosfairiki_rypansi_year3" value="<%= atmosfairiki_rypansi[2].atmosfairiki_rypansi_year3 %>" />
-                    <input type="text" size="10" id="atmosfairiki_rypansi_year4" name="atmosfairiki_rypansi_year4" value="<%= atmosfairiki_rypansi[3].atmosfairiki_rypansi_year4 %>" />
-                    <input type="text" size="10" id="atmosfairiki_rypansi_year5" name="atmosfairiki_rypansi_year5" value="<%= atmosfairiki_rypansi[4].atmosfairiki_rypansi_year5 %>" /></td>
+                <td><input type="text" size="10" id="atmosfairiki_rypansi_year1" name="atmosfairiki_rypansi_year1" placeholder="έτος 1" value="<%= atmosfairiki_rypansi[0].atmosfairiki_rypansi_year1 %>" />
+                    <input type="text" size="10" id="atmosfairiki_rypansi_year2" name="atmosfairiki_rypansi_year2" placeholder="έτος 2" value="<%= atmosfairiki_rypansi[1].atmosfairiki_rypansi_year2 %>" />
+                    <input type="text" size="10" id="atmosfairiki_rypansi_year3" name="atmosfairiki_rypansi_year3" placeholder="έτος 3" value="<%= atmosfairiki_rypansi[2].atmosfairiki_rypansi_year3 %>" />
+                    <input type="text" size="10" id="atmosfairiki_rypansi_year4" name="atmosfairiki_rypansi_year4" placeholder="έτος 4" value="<%= atmosfairiki_rypansi[3].atmosfairiki_rypansi_year4 %>" />
+                    <input type="text" size="10" id="atmosfairiki_rypansi_year5" name="atmosfairiki_rypansi_year5" placeholder="έτος 5" value="<%= atmosfairiki_rypansi[4].atmosfairiki_rypansi_year5 %>" /></td>
                 <td><input type="text" id="atmosfairiki_rypansi_prosfata_stoixeia" name="atmosfairiki_rypansi_prosfata_stoixeia" size="10" value="<%= atmosfairiki_rypansi[5].atmosfairiki_rypansi_prosfata_stoixeia %>" /> </td>
                 <td><input type="text" id="atmosfairiki_rypansi_epidiwkomenos_stoxos" name="atmosfairiki_rypansi_epidiwkomenos_stoxos" size="10" value="<%= atmosfairiki_rypansi[6].atmosfairiki_rypansi_epidiwkomenos_stoxos %>" /></td>
             </tr>
             <tr>
                 <% let viologikoi_katharismoi = JSON.parse(data.field_9.dataValues.viologikoi_katharismoi) %>
                 <th colspan="1">Ποσοστό του πληθυσμού που εξυπηρετείται από βιολογικούς καθαρισμούς</th>
-                <td><input type="text" size="10" id="viologikoi_katharismoi_year1" name="viologikoi_katharismoi_year1" value="<%= viologikoi_katharismoi[0].atmosfairiki_rypansi_year5 %>" />
-                    <input type="text" size="10" id="viologikoi_katharismoi_year2" name="viologikoi_katharismoi_year2" value="<%= viologikoi_katharismoi[1].atmosfairiki_rypansi_year5 %>" />
-                    <input type="text" size="10" id="viologikoi_katharismoi_year3" name="viologikoi_katharismoi_year3" value="<%= viologikoi_katharismoi[2].atmosfairiki_rypansi_year5 %>" />
-                    <input type="text" size="10" id="viologikoi_katharismoi_year4" name="viologikoi_katharismoi_year4" value="<%= viologikoi_katharismoi[3].atmosfairiki_rypansi_year5 %>" />
-                    <input type="text" size="10" id="viologikoi_katharismoi_year5" name="viologikoi_katharismoi_year5" value="<%= viologikoi_katharismoi[4].atmosfairiki_rypansi_year5 %>" /></td>
+                <td><input type="text" size="10" id="viologikoi_katharismoi_year1" name="viologikoi_katharismoi_year1" placeholder="έτος 1" value="<%= viologikoi_katharismoi[0].atmosfairiki_rypansi_year5 %>" />
+                    <input type="text" size="10" id="viologikoi_katharismoi_year2" name="viologikoi_katharismoi_year2" placeholder="έτος 2" value="<%= viologikoi_katharismoi[1].atmosfairiki_rypansi_year5 %>" />
+                    <input type="text" size="10" id="viologikoi_katharismoi_year3" name="viologikoi_katharismoi_year3" placeholder="έτος 3" value="<%= viologikoi_katharismoi[2].atmosfairiki_rypansi_year5 %>" />
+                    <input type="text" size="10" id="viologikoi_katharismoi_year4" name="viologikoi_katharismoi_year4" placeholder="έτος 4" value="<%= viologikoi_katharismoi[3].atmosfairiki_rypansi_year5 %>" />
+                    <input type="text" size="10" id="viologikoi_katharismoi_year5" name="viologikoi_katharismoi_year5" placeholder="έτος 5" value="<%= viologikoi_katharismoi[4].atmosfairiki_rypansi_year5 %>" /></td>
                 <td><input type="text" id="viologikoi_katharismoi_prosfata_stoixeia" name="viologikoi_katharismoi_prosfata_stoixeia" size="10" value="<%= viologikoi_katharismoi[5].viologikoi_katharismoi_prosfata_stoixeia %>" /></td>
                 <td><input type="text" id="viologikoi_katharismoi_epidiwkomenos_stoxos" name="viologikoi_katharismoi_epidiwkomenos_stoxos" size="10" value="<%= viologikoi_katharismoi[6].viologikoi_katharismoi_epidiwkomenos_stoxos %>" /></td>
             </tr>
             <tr>
                 <% let katallhles_aktes = JSON.parse(data.field_9.dataValues.katallhles_aktes) %>
                 <th colspan="1">Ποσοστό των ακτών που κρίνονται κατάλληλες για κολύμβηση σε σχέση με το σύνολο των δυνάμενων να χρησιμοποιηθούν ακτών</th>
-                <td><input type="text" size="10" id="katallhles_aktes_year1" name="katallhles_aktes_year1" value="<%= katallhles_aktes[0].katallhles_aktes_year1 %>" />
-                    <input type="text" size="10" id="katallhles_aktes_year2" name="katallhles_aktes_year2" value="<%= katallhles_aktes[1].katallhles_aktes_year2 %>" />
-                    <input type="text" size="10" id="katallhles_aktes_year3" name="katallhles_aktes_year3" value="<%= katallhles_aktes[2].katallhles_aktes_year3 %>" />
-                    <input type="text" size="10" id="katallhles_aktes_year4" name="katallhles_aktes_year4" value="<%= katallhles_aktes[3].katallhles_aktes_year4 %>" />
-                    <input type="text" size="10" id="katallhles_aktes_year5" name="katallhles_aktes_year5" value="<%= katallhles_aktes[4].katallhles_aktes_year5 %>" /></td>
+                <td><input type="text" size="10" id="katallhles_aktes_year1" name="katallhles_aktes_year1" placeholder="έτος 1" value="<%= katallhles_aktes[0].katallhles_aktes_year1 %>" />
+                    <input type="text" size="10" id="katallhles_aktes_year2" name="katallhles_aktes_year2" placeholder="έτος 2" value="<%= katallhles_aktes[1].katallhles_aktes_year2 %>" />
+                    <input type="text" size="10" id="katallhles_aktes_year3" name="katallhles_aktes_year3" placeholder="έτος 3" value="<%= katallhles_aktes[2].katallhles_aktes_year3 %>" />
+                    <input type="text" size="10" id="katallhles_aktes_year4" name="katallhles_aktes_year4" placeholder="έτος 4" value="<%= katallhles_aktes[3].katallhles_aktes_year4 %>" />
+                    <input type="text" size="10" id="katallhles_aktes_year5" name="katallhles_aktes_year5" placeholder="έτος 5" value="<%= katallhles_aktes[4].katallhles_aktes_year5 %>" /></td>
                 <td><input type="text" id="katallhles_aktes_prosfata_stoixeia" name="katallhles_aktes_prosfata_stoixeia" size="10" value="<%= katallhles_aktes[5].katallhles_aktes_prosfata_stoixeia %>" /></td>
                 <td><input type="text" id="katallhles_aktes_epidiwkomenos_stoxos" name="katallhles_aktes_epidiwkomenos_stoxos" size="10" value="<%= katallhles_aktes[6].katallhles_aktes_epidiwkomenos_stoxos %>" /></td>
             </tr>
             <tr>
+                <% let katallilotita_diktyoy_ydreysis = JSON.parse(data.field_9.dataValues.katallilotita_diktyoy_ydreysis) %>
                 <th colspan="1">Αριθμός ελέγχων καταλληλότητας δικτύου ύδρευσης κατ’ έτος</th>
-                <td><input type="text" size="10" id="katallilotita_diktyoy_ydreysis_year1" name="katallilotita_diktyoy_ydreysis_year1" placeholder="έτος 1" />
-                    <input type="text" size="10" id="katallilotita_diktyoy_ydreysis_year2" name="katallilotita_diktyoy_ydreysis_year2" placeholder="έτος 2" />
-                    <input type="text" size="10" id="katallilotita_diktyoy_ydreysis_year3" name="katallilotita_diktyoy_ydreysis_year3" placeholder="έτος 3" />
-                    <input type="text" size="10" id="katallilotita_diktyoy_ydreysis_year4" name="katallilotita_diktyoy_ydreysis_year4" placeholder="έτος 4" />
-                    <input type="text" size="10" id="katallilotita_diktyoy_ydreysis_year5" name="katallilotita_diktyoy_ydreysis_year5" placeholder="έτος 5" /></td>
-                <td><input type="text" id="katallilotita_diktyoy_ydreysis_prosfata_stoixeia" name="katallilotita_diktyoy_ydreysis_prosfata_stoixeia" size="10" /></td>
-                <td><input type="text" id="katallilotita_diktyoy_ydreysis_epidiwkomenos_stoxos" name="katallilotita_diktyoy_ydreysis_epidiwkomenos_stoxos" size="10" /></td>
+                <td><input type="text" size="10" id="katallilotita_diktyoy_ydreysis_year1" name="katallilotita_diktyoy_ydreysis_year1" placeholder="έτος 1" value="<%= katallilotita_diktyoy_ydreysis[0].katallilotita_diktyoy_ydreysis_year1 %>" />
+                    <input type="text" size="10" id="katallilotita_diktyoy_ydreysis_year2" name="katallilotita_diktyoy_ydreysis_year2" placeholder="έτος 2" value="<%= katallilotita_diktyoy_ydreysis[1].katallilotita_diktyoy_ydreysis_year2 %>" />
+                    <input type="text" size="10" id="katallilotita_diktyoy_ydreysis_year3" name="katallilotita_diktyoy_ydreysis_year3" placeholder="έτος 3" value="<%= katallilotita_diktyoy_ydreysis[2].katallilotita_diktyoy_ydreysis_year3 %>" />
+                    <input type="text" size="10" id="katallilotita_diktyoy_ydreysis_year4" name="katallilotita_diktyoy_ydreysis_year4" placeholder="έτος 4" value="<%= katallilotita_diktyoy_ydreysis[3].katallilotita_diktyoy_ydreysis_year4 %>" />
+                    <input type="text" size="10" id="katallilotita_diktyoy_ydreysis_year5" name="katallilotita_diktyoy_ydreysis_year5" placeholder="έτος 5" value="<%= katallilotita_diktyoy_ydreysis[4].katallilotita_diktyoy_ydreysis_year5 %>" /></td>
+                <td><input type="text" id="katallilotita_diktyoy_ydreysis_prosfata_stoixeia" name="katallilotita_diktyoy_ydreysis_prosfata_stoixeia" size="10" value="<%= katallilotita_diktyoy_ydreysis[5].katallilotita_diktyoy_ydreysis_prosfata_stoixeia %>" /></td>
+                <td><input type="text" id="katallilotita_diktyoy_ydreysis_epidiwkomenos_stoxos" name="katallilotita_diktyoy_ydreysis_epidiwkomenos_stoxos" size="10" value="<%= katallilotita_diktyoy_ydreysis[6].katallilotita_diktyoy_ydreysis_epidiwkomenos_stoxos %>"/></td>
             </tr>
             <tr>
+                <% let xrisi_aporrimmatwn = JSON.parse(data.field_9.dataValues.xrisi_aporrimmatwn) %>
                 <th colspan="1">Ποσοστό οικιακών & βιομηχανικών απορριμμάτων που διατέθηκαν σε άλλες χρήσεις (π.χ. ανακύκλωση, παραγωγή ενέργειας, λιπασματοποίηση)</th>
-                <td><input type="text" size="10" id="xrisi_aporrimmatwn_year1" name="xrisi_aporrimmatwn_year1" placeholder="έτος 1" />
-                    <input type="text" size="10" id="xrisi_aporrimmatwn_year2" name="xrisi_aporrimmatwn_year2" placeholder="έτος 2" />
-                    <input type="text" size="10" id="xrisi_aporrimmatwn_year3" name="xrisi_aporrimmatwn_year3" placeholder="έτος 3" />
-                    <input type="text" size="10" id="xrisi_aporrimmatwn_year4" name="xrisi_aporrimmatwn_year4" placeholder="έτος 4" />
-                    <input type="text" size="10" id="xrisi_aporrimmatwn_year5" name="xrisi_aporrimmatwn_year5" placeholder="έτος 5" /></td>
-                <td><input type="text" id="xrisi_aporrimmatwn_prosfata_stoixeia" name="xrisi_aporrimmatwn_prosfata_stoixeia" size="10" /></td>
-                <td><input type="text" id="xrisi_aporrimmatwn_epidiwkomenos_stoxos" name="xrisi_aporrimmatwn_epidiwkomenos_stoxos" size="10" /></td>
+                <td><input type="text" size="10" id="xrisi_aporrimmatwn_year1" name="xrisi_aporrimmatwn_year1" placeholder="έτος 1" value="<%= xrisi_aporrimmatwn[0].xrisi_aporrimmatwn_year1 %>" />
+                    <input type="text" size="10" id="xrisi_aporrimmatwn_year2" name="xrisi_aporrimmatwn_year2" placeholder="έτος 2" value="<%= xrisi_aporrimmatwn[1].xrisi_aporrimmatwn_year2 %>" />
+                    <input type="text" size="10" id="xrisi_aporrimmatwn_year3" name="xrisi_aporrimmatwn_year3" placeholder="έτος 3" value="<%= xrisi_aporrimmatwn[2].xrisi_aporrimmatwn_year3 %>" />
+                    <input type="text" size="10" id="xrisi_aporrimmatwn_year4" name="xrisi_aporrimmatwn_year4" placeholder="έτος 4" value="<%= xrisi_aporrimmatwn[3].xrisi_aporrimmatwn_year4 %>" />
+                    <input type="text" size="10" id="xrisi_aporrimmatwn_year5" name="xrisi_aporrimmatwn_year5" placeholder="έτος 5" value="<%= xrisi_aporrimmatwn[4].xrisi_aporrimmatwn_year5 %>" /></td>
+                <td><input type="text" id="xrisi_aporrimmatwn_prosfata_stoixeia" name="xrisi_aporrimmatwn_prosfata_stoixeia" size="10" value="<%= xrisi_aporrimmatwn[5].xrisi_aporrimmatwn_epidiwkomenos_stoxos %>" /></td>
+                <td><input type="text" id="xrisi_aporrimmatwn_epidiwkomenos_stoxos" name="xrisi_aporrimmatwn_epidiwkomenos_stoxos" size="10" value="<%= xrisi_aporrimmatwn[6].xrisi_aporrimmatwn_epidiwkomenos_stoxos %>" /></td>
             </tr>
             <tr>
+                <% let aporrimmata_xyta = JSON.parse(data.field_9.dataValues.aporrimmata_xyta) %>
                 <th colspan="1">Ποσοστό διατιθέμενων απορριμμάτων σε ΧΥΤΑ</th>
-                <td><input type="text" size="10" id="aporrimmata_xyta_year1" name="aporrimmata_xyta_year1" placeholder="έτος 1" />
-                    <input type="text" size="10" id="aporrimmata_xyta_year2" name="aporrimmata_xyta_year2" placeholder="έτος 2" />
-                    <input type="text" size="10" id="aporrimmata_xyta_year3" name="aporrimmata_xyta_year3" placeholder="έτος 3" />
-                    <input type="text" size="10" id="aporrimmata_xyta_year4" name="aporrimmata_xyta_year4" placeholder="έτος 4" />
-                    <input type="text" size="10" id="aporrimmata_xyta_year5" name="aporrimmata_xyta_year5" placeholder="έτος 5" /></td>
-                <td><input type="text" id="aporrimmata_xyta_prosfata_stoixeia" name="aporrimmata_xyta_prosfata_stoixeia" size="10" /></td>
-                <td><input type="text" id="aporrimmata_xyta_epidiwkomenos_stoxos" name="aporrimmata_xyta_epidiwkomenos_stoxos" size="10" /></td>
+                <td><input type="text" size="10" id="aporrimmata_xyta_year1" name="aporrimmata_xyta_year1" placeholder="έτος 1" value="<%= aporrimmata_xyta[0].aporrimmata_xyta_year1 %>" />
+                    <input type="text" size="10" id="aporrimmata_xyta_year2" name="aporrimmata_xyta_year2" placeholder="έτος 2" value="<%= aporrimmata_xyta[1].aporrimmata_xyta_year2 %>" />
+                    <input type="text" size="10" id="aporrimmata_xyta_year3" name="aporrimmata_xyta_year3" placeholder="έτος 3" value="<%= aporrimmata_xyta[2].aporrimmata_xyta_year3 %>" />
+                    <input type="text" size="10" id="aporrimmata_xyta_year4" name="aporrimmata_xyta_year4" placeholder="έτος 4" value="<%= aporrimmata_xyta[3].aporrimmata_xyta_year4 %>" />
+                    <input type="text" size="10" id="aporrimmata_xyta_year5" name="aporrimmata_xyta_year5" placeholder="έτος 5" value="<%= aporrimmata_xyta[4].aporrimmata_xyta_year5 %>" /></td>
+                <td><input type="text" id="aporrimmata_xyta_prosfata_stoixeia" name="aporrimmata_xyta_prosfata_stoixeia" size="10" value="<%= aporrimmata_xyta[5].aporrimmata_xyta_prosfata_stoixeia %>" /></td>
+                <td><input type="text" id="aporrimmata_xyta_epidiwkomenos_stoxos" name="aporrimmata_xyta_epidiwkomenos_stoxos" size="10" value="<%= aporrimmata_xyta[6].aporrimmata_xyta_epidiwkomenos_stoxos %>" /></td>
             </tr>
             <tr>
+                <% let katastrofi_dasikwn_ektasewn = JSON.parse(data.field_9.dataValues.katastrofi_dasikwn_ektasewn) %>
                 <th colspan="1">Ποσοστό δασικών εκτάσεων που καταστράφηκαν από πυρκαγιά / σύνολο δασικών εκτάσεων</th>
-                <td><input type="text" size="10" id="katastrofi_dasikwn_ektasewn_year1" name="katastrofi_dasikwn_ektasewn_year1" placeholder="έτος 1" />
-                    <input type="text" size="10" id="katastrofi_dasikwn_ektasewn_year2" name="katastrofi_dasikwn_ektasewn_year2" placeholder="έτος 2" />
-                    <input type="text" size="10" id="katastrofi_dasikwn_ektasewn_year3" name="katastrofi_dasikwn_ektasewn_year3" placeholder="έτος 3" />
-                    <input type="text" size="10" id="katastrofi_dasikwn_ektasewn_year4" name="katastrofi_dasikwn_ektasewn_year4" placeholder="έτος 4" />
-                    <input type="text" size="10" id="katastrofi_dasikwn_ektasewn_year5" name="katastrofi_dasikwn_ektasewn_year5" placeholder="έτος 5" /></td>
-                <td><input type="text" id="katastrofi_dasikwn_ektasewn_prosfata_stoixeia" name="katastrofi_dasikwn_ektasewn_prosfata_stoixeia" size="10" /></td>
-                <td><input type="text" id="katastrofi_dasikwn_ektasewn_epidiwkomenos_stoxos" name="katastrofi_dasikwn_ektasewn_epidiwkomenos_stoxos" size="10" /></td>
+                <td><input type="text" size="10" id="katastrofi_dasikwn_ektasewn_year1" name="katastrofi_dasikwn_ektasewn_year1" placeholder="έτος 1" value="<%= katastrofi_dasikwn_ektasewn[0].katastrofi_dasikwn_ektasewn_year1 %>" />
+                    <input type="text" size="10" id="katastrofi_dasikwn_ektasewn_year2" name="katastrofi_dasikwn_ektasewn_year2" placeholder="έτος 2" value="<%= katastrofi_dasikwn_ektasewn[1].katastrofi_dasikwn_ektasewn_year2 %>" />
+                    <input type="text" size="10" id="katastrofi_dasikwn_ektasewn_year3" name="katastrofi_dasikwn_ektasewn_year3" placeholder="έτος 3" value="<%= katastrofi_dasikwn_ektasewn[2].katastrofi_dasikwn_ektasewn_year3 %>" />
+                    <input type="text" size="10" id="katastrofi_dasikwn_ektasewn_year4" name="katastrofi_dasikwn_ektasewn_year4" placeholder="έτος 4" value="<%= katastrofi_dasikwn_ektasewn[3].katastrofi_dasikwn_ektasewn_year4 %>" />
+                    <input type="text" size="10" id="katastrofi_dasikwn_ektasewn_year5" name="katastrofi_dasikwn_ektasewn_year5" placeholder="έτος 5" value="<%= katastrofi_dasikwn_ektasewn[4].katastrofi_dasikwn_ektasewn_year5 %>" /></td>
+                <td><input type="text" id="katastrofi_dasikwn_ektasewn_prosfata_stoixeia" name="katastrofi_dasikwn_ektasewn_prosfata_stoixeia" size="10" value="<%= katastrofi_dasikwn_ektasewn[5].katastrofi_dasikwn_ektasewn_prosfata_stoixeia %>" /></td>
+                <td><input type="text" id="katastrofi_dasikwn_ektasewn_epidiwkomenos_stoxos" name="katastrofi_dasikwn_ektasewn_epidiwkomenos_stoxos" size="10" value="<%= katastrofi_dasikwn_ektasewn[6].katastrofi_dasikwn_ektasewn_epidiwkomenos_stoxos %>" /></td>
             </tr>
             <tr>
+                <% let anadaswseis = JSON.parse(data.field_9.dataValues.anadaswseis) %>
                 <th colspan="1">Ποσοστό αναδασωθεισών (με φυσικό ή τεχνητό τρόπο) εκτάσεων / σύνολο κατεστραμμένων δασών από πυρκαγιές</th>
-                <td><input type="text" size="10" id="anadaswseis_year1" name="anadaswseis_year1" placeholder="έτος 1" />
-                    <input type="text" size="10" id="anadaswseis_year2" name="anadaswseis_year2" placeholder="έτος 2" />
-                    <input type="text" size="10" id="anadaswseis_year3" name="anadaswseis_year3" placeholder="έτος 3" />
-                    <input type="text" size="10" id="anadaswseis_year4" name="anadaswseis_year4" placeholder="έτος 4" />
-                    <input type="text" size="10" id="anadaswseis_year5" name="anadaswseis_year5" placeholder="έτος 5" /></td>
-                <td><input type="text" id="anadaswseis_prosfata_stoixeia" name="anadaswseis_prosfata_stoixeia" size="10" /></td>
-                <td><input type="text" id="anadaswseis_epidiwkomenos_stoxos" name="anadaswseis_epidiwkomenos_stoxos" size="10" /></td>
+                <td><input type="text" size="10" id="anadaswseis_year1" name="anadaswseis_year1" placeholder="έτος 1" value="<%= anadaswseis[0].anadaswseis_year1 %>" />
+                    <input type="text" size="10" id="anadaswseis_year2" name="anadaswseis_year2" placeholder="έτος 2" value="<%= anadaswseis[1].anadaswseis_year2 %>" />
+                    <input type="text" size="10" id="anadaswseis_year3" name="anadaswseis_year3" placeholder="έτος 3" value="<%= anadaswseis[2].anadaswseis_year3 %>" />
+                    <input type="text" size="10" id="anadaswseis_year4" name="anadaswseis_year4" placeholder="έτος 4" value="<%= anadaswseis[3].anadaswseis_year4 %>" />
+                    <input type="text" size="10" id="anadaswseis_year5" name="anadaswseis_year5" placeholder="έτος 5" value="<%= anadaswseis[4].anadaswseis_year5 %>" /></td>
+                <td><input type="text" id="anadaswseis_prosfata_stoixeia" name="anadaswseis_prosfata_stoixeia" size="10" value="<%= anadaswseis[5].anadaswseis_prosfata_stoixeia %>" /></td>
+                <td><input type="text" id="anadaswseis_epidiwkomenos_stoxos" name="anadaswseis_epidiwkomenos_stoxos" size="10" value="<%= anadaswseis[6].anadaswseis_epidiwkomenos_stoxos %>" /></td>
             </tr>
             <tr>
+                <% let prostateuomenes_perioxes = JSON.parse(data.field_9.dataValues.prostateuomenes_perioxes) %>
                 <th colspan="1">Ποσοστό προστατευόμενων περιοχών σε σχέση με την συνολική έκταση της χώρας</th>
-                <td><input type="text" size="10" id="prostateuomenes_perioxes_year1" name="prostateuomenes_perioxes_year1" placeholder="έτος 1" />
-                    <input type="text" size="10" id="prostateuomenes_perioxes_year2" name="prostateuomenes_perioxes_year2" placeholder="έτος 2" />
-                    <input type="text" size="10" id="prostateuomenes_perioxes_year3" name="prostateuomenes_perioxes_year3" placeholder="έτος 3" />
-                    <input type="text" size="10" id="prostateuomenes_perioxes_year4" name="prostateuomenes_perioxes_year4" placeholder="έτος 4" />
-                    <input type="text" size="10" id="prostateuomenes_perioxes_year5" name="prostateuomenes_perioxes_year5" placeholder="έτος 5" /></td>
-                <td><input type="text" id="prostateuomenes_perioxes_prosfata_stoixeia" name="prostateuomenes_perioxes_prosfata_stoixeia" size="10" /></td>
-                <td><input type="text" id="prostateuomenes_perioxes_epidiwkomenos_stoxos" name="prostateuomenes_perioxes_epidiwkomenos_stoxos" size="10" /></td>
+                <td><input type="text" size="10" id="prostateuomenes_perioxes_year1" name="prostateuomenes_perioxes_year1" placeholder="έτος 1" value="<%= prostateuomenes_perioxes[0].prostateuomenes_perioxes_year1 %>" />
+                    <input type="text" size="10" id="prostateuomenes_perioxes_year2" name="prostateuomenes_perioxes_year2" placeholder="έτος 2" value="<%= prostateuomenes_perioxes[1].prostateuomenes_perioxes_year2 %>" />
+                    <input type="text" size="10" id="prostateuomenes_perioxes_year3" name="prostateuomenes_perioxes_year3" placeholder="έτος 3" value="<%= prostateuomenes_perioxes[2].prostateuomenes_perioxes_year3 %>" />
+                    <input type="text" size="10" id="prostateuomenes_perioxes_year4" name="prostateuomenes_perioxes_year4" placeholder="έτος 4" value="<%= prostateuomenes_perioxes[3].prostateuomenes_perioxes_year4 %>" />
+                    <input type="text" size="10" id="prostateuomenes_perioxes_year5" name="prostateuomenes_perioxes_year5" placeholder="έτος 5" value="<%= prostateuomenes_perioxes[4].prostateuomenes_perioxes_year5 %>" /></td>
+                <td><input type="text" id="prostateuomenes_perioxes_prosfata_stoixeia" name="prostateuomenes_perioxes_prosfata_stoixeia" size="10" value="<%= prostateuomenes_perioxes[5].prostateuomenes_perioxes_prosfata_stoixeia %>" /></td>
+                <td><input type="text" id="prostateuomenes_perioxes_epidiwkomenos_stoxos" name="prostateuomenes_perioxes_epidiwkomenos_stoxos" size="10" value="<%= prostateuomenes_perioxes[6].prostateuomenes_perioxes_epidiwkomenos_stoxos %>" /></td>
             </tr>
             <tr>
+                <% let proypologismos_prostasias_perivallontos = JSON.parse(data.field_9.dataValues.proypologismos_prostasias_perivallontos) %>
                 <th colspan="1">Ποσοστό του προϋπολογισμού που διατίθεται για θέματα προστασίας περιβάλλοντος</th>
-                <td><input type="text" size="10" id="proypologismos_prostasias_perivallontos_year1" name="proypologismos_prostasias_perivallontos_year1" placeholder="έτος 1" />
-                    <input type="text" size="10" id="proypologismos_prostasias_perivallontos_year2" name="proypologismos_prostasias_perivallontos_year2" placeholder="έτος 2" />
-                    <input type="text" size="10" id="proypologismos_prostasias_perivallontos_year3" name="proypologismos_prostasias_perivallontos_year3" placeholder="έτος 3" />
-                    <input type="text" size="10" id="proypologismos_prostasias_perivallontos_year4" name="proypologismos_prostasias_perivallontos_year4" placeholder="έτος 4" />
-                    <input type="text" size="10" id="proypologismos_prostasias_perivallontos_year5" name="proypologismos_prostasias_perivallontos_year5" placeholder="έτος 5" /></td>
-                <td><input type="text" id="proypologismos_prostasias_perivallontos_prosfata_stoixeia" name="proypologismos_prostasias_perivallontos_prosfata_stoixeia" size="10" /></td>
-                <td><input type="text" id="proypologismos_prostasias_perivallontos_epidiwkomenos_stoxos" name="proypologismos_prostasias_perivallontos_epidiwkomenos_stoxos" size="10" /></td>
+                <td><input type="text" size="10" id="proypologismos_prostasias_perivallontos_year1" name="proypologismos_prostasias_perivallontos_year1" placeholder="έτος 1" value="<%= proypologismos_prostasias_perivallontos[0].proypologismos_prostasias_perivallontos_year1 %>" />
+                    <input type="text" size="10" id="proypologismos_prostasias_perivallontos_year2" name="proypologismos_prostasias_perivallontos_year2" placeholder="έτος 2" value="<%= proypologismos_prostasias_perivallontos[1].proypologismos_prostasias_perivallontos_year2 %>" />
+                    <input type="text" size="10" id="proypologismos_prostasias_perivallontos_year3" name="proypologismos_prostasias_perivallontos_year3" placeholder="έτος 3" value="<%= proypologismos_prostasias_perivallontos[2].proypologismos_prostasias_perivallontos_year3 %>" />
+                    <input type="text" size="10" id="proypologismos_prostasias_perivallontos_year4" name="proypologismos_prostasias_perivallontos_year4" placeholder="έτος 4" value="<%= proypologismos_prostasias_perivallontos[3].proypologismos_prostasias_perivallontos_year4 %>" />
+                    <input type="text" size="10" id="proypologismos_prostasias_perivallontos_year5" name="proypologismos_prostasias_perivallontos_year5" placeholder="έτος 5" value="<%= proypologismos_prostasias_perivallontos[4].proypologismos_prostasias_perivallontos_year5 %>" /></td>
+                <td><input type="text" id="proypologismos_prostasias_perivallontos_prosfata_stoixeia" name="proypologismos_prostasias_perivallontos_prosfata_stoixeia" size="10" value="<%= proypologismos_prostasias_perivallontos[5].proypologismos_prostasias_perivallontos_prosfata_stoixeia %>" /></td>
+                <td><input type="text" id="proypologismos_prostasias_perivallontos_epidiwkomenos_stoxos" name="proypologismos_prostasias_perivallontos_epidiwkomenos_stoxos" size="10" value="<%= proypologismos_prostasias_perivallontos[6].proypologismos_prostasias_perivallontos_epidiwkomenos_stoxos %>" /></td>
             </tr>
             <tr>
+                <% let katanalwsi_energeias_kata_kefali = JSON.parse(data.field_9.dataValues.katanalwsi_energeias_kata_kefali) %>
                 <th colspan="1">Κατανάλωση ενέργειας κατά κεφαλή</th>
-                <td><input type="text" size="10" id="katanalwsi_energeias_kata_kefali_year1" name="katanalwsi_energeias_kata_kefali_year1" placeholder="έτος 1" />
-                    <input type="text" size="10" id="katanalwsi_energeias_kata_kefali_year2" name="katanalwsi_energeias_kata_kefali_year2" placeholder="έτος 2" />
-                    <input type="text" size="10" id="katanalwsi_energeias_kata_kefali_year3" name="katanalwsi_energeias_kata_kefali_year3" placeholder="έτος 3" />
-                    <input type="text" size="10" id="katanalwsi_energeias_kata_kefali_year4" name="katanalwsi_energeias_kata_kefali_year4" placeholder="έτος 4" />
-                    <input type="text" size="10" id="katanalwsi_energeias_kata_kefali_year5" name="katanalwsi_energeias_kata_kefali_year5" placeholder="έτος 5" /></td>
-                <td><input type="text" id="katanalwsi_energeias_kata_kefali_prosfata_stoixeia" name="katanalwsi_energeias_kata_kefali_prosfata_stoixeia" size="10" /></td>
-                <td><input type="text" id="katanalwsi_energeias_kata_kefali_epidiwkomenos_stoxos" name="katanalwsi_energeias_kata_kefali_epidiwkomenos_stoxos" size="10" /></td>
+                <td><input type="text" size="10" id="katanalwsi_energeias_kata_kefali_year1" name="katanalwsi_energeias_kata_kefali_year1" placeholder="έτος 1" value="<%= katanalwsi_energeias_kata_kefali[0].katanalwsi_energeias_kata_kefali_year1 %>" />
+                    <input type="text" size="10" id="katanalwsi_energeias_kata_kefali_year2" name="katanalwsi_energeias_kata_kefali_year2" placeholder="έτος 2" value="<%= katanalwsi_energeias_kata_kefali[1].katanalwsi_energeias_kata_kefali_year2 %>" />
+                    <input type="text" size="10" id="katanalwsi_energeias_kata_kefali_year3" name="katanalwsi_energeias_kata_kefali_year3" placeholder="έτος 3" value="<%= katanalwsi_energeias_kata_kefali[2].katanalwsi_energeias_kata_kefali_year3 %>" />
+                    <input type="text" size="10" id="katanalwsi_energeias_kata_kefali_year4" name="katanalwsi_energeias_kata_kefali_year4" placeholder="έτος 4" value="<%= katanalwsi_energeias_kata_kefali[3].katanalwsi_energeias_kata_kefali_year4 %>" />
+                    <input type="text" size="10" id="katanalwsi_energeias_kata_kefali_year5" name="katanalwsi_energeias_kata_kefali_year5" placeholder="έτος 5" value="<%= katanalwsi_energeias_kata_kefali[4].katanalwsi_energeias_kata_kefali_year5 %>" /></td>
+                <td><input type="text" id="katanalwsi_energeias_kata_kefali_prosfata_stoixeia" name="katanalwsi_energeias_kata_kefali_prosfata_stoixeia" size="10" value="<%= katanalwsi_energeias_kata_kefali[5].katanalwsi_energeias_kata_kefali_prosfata_stoixeia %>" /></td>
+                <td><input type="text" id="katanalwsi_energeias_kata_kefali_epidiwkomenos_stoxos" name="katanalwsi_energeias_kata_kefali_epidiwkomenos_stoxos" size="10" value="<%= katanalwsi_energeias_kata_kefali[6].katanalwsi_energeias_kata_kefali_epidiwkomenos_stoxos %>" /></td>
             </tr>
             <tr>
+                <% let katanalwsi_energeias_ana_morfi = JSON.parse(data.field_9.dataValues.katanalwsi_energeias_ana_morfi) %>
                 <th colspan="1">Κατανάλωση ενέργειας ανά μορφή ενέργειας</th>
-                <td><input type="text" size="10" id="katanalwsi_energeias_ana_morfi_year1" name="katanalwsi_energeias_ana_morfi_year1" placeholder="έτος 1" />
-                    <input type="text" size="10" id="katanalwsi_energeias_ana_morfi_year2" name="katanalwsi_energeias_ana_morfi_year2" placeholder="έτος 2" />
-                    <input type="text" size="10" id="katanalwsi_energeias_ana_morfi_year3" name="katanalwsi_energeias_ana_morfi_year3" placeholder="έτος 3" />
-                    <input type="text" size="10" id="katanalwsi_energeias_ana_morfi_year4" name="katanalwsi_energeias_ana_morfi_year4" placeholder="έτος 4" />
-                    <input type="text" size="10" id="katanalwsi_energeias_ana_morfi_year5" name="katanalwsi_energeias_ana_morfi_year5" placeholder="έτος 5" /></td>
-                <td><input type="text" id="katanalwsi_energeias_ana_morfi_prosfata_stoixeia" name="katanalwsi_energeias_ana_morfi_prosfata_stoixeia" size="10" /></td>
-                <td><input type="text" id="katanalwsi_energeias_ana_morfi_epidiwkomenos_stoxos" name="katanalwsi_energeias_ana_morfi_epidiwkomenos_stoxos" size="10" /></td>
+                <td><input type="text" size="10" id="katanalwsi_energeias_ana_morfi_year1" name="katanalwsi_energeias_ana_morfi_year1" placeholder="έτος 1" value="<%= katanalwsi_energeias_kata_kefali[0].katanalwsi_energeias_ana_morfi_year1 %>" />
+                    <input type="text" size="10" id="katanalwsi_energeias_ana_morfi_year2" name="katanalwsi_energeias_ana_morfi_year2" placeholder="έτος 2" value="<%= katanalwsi_energeias_kata_kefali[1].katanalwsi_energeias_ana_morfi_year2 %>" />
+                    <input type="text" size="10" id="katanalwsi_energeias_ana_morfi_year3" name="katanalwsi_energeias_ana_morfi_year3" placeholder="έτος 3" value="<%= katanalwsi_energeias_kata_kefali[2].katanalwsi_energeias_ana_morfi_year3 %>" />
+                    <input type="text" size="10" id="katanalwsi_energeias_ana_morfi_year4" name="katanalwsi_energeias_ana_morfi_year4" placeholder="έτος 4" value="<%= katanalwsi_energeias_kata_kefali[3].katanalwsi_energeias_ana_morfi_year4 %>" />
+                    <input type="text" size="10" id="katanalwsi_energeias_ana_morfi_year5" name="katanalwsi_energeias_ana_morfi_year5" placeholder="έτος 5" value="<%= katanalwsi_energeias_kata_kefali[4].katanalwsi_energeias_ana_morfi_year5 %>" /></td>
+                <td><input type="text" id="katanalwsi_energeias_ana_morfi_prosfata_stoixeia" name="katanalwsi_energeias_ana_morfi_prosfata_stoixeia" size="10" value="<%= katanalwsi_energeias_kata_kefali[5].katanalwsi_energeias_ana_morfi_prosfata_stoixeia %>" /></td>
+                <td><input type="text" id="katanalwsi_energeias_ana_morfi_epidiwkomenos_stoxos" name="katanalwsi_energeias_ana_morfi_epidiwkomenos_stoxos" size="10" value="<%= katanalwsi_energeias_kata_kefali[6].katanalwsi_energeias_ana_morfi_epidiwkomenos_stoxos %>" /></td>
             </tr>
             <tr>
+                <% let katanalwsi_energeias_apo_ananewsimes_piges = JSON.parse(data.field_9.dataValues.katanalwsi_energeias_apo_ananewsimes_piges) %>
                 <th colspan="1">Κατανάλωση ενέργειας από ανανεώσιμες πηγές ενέργειας κατά κεφαλή</th>
-                <td><input type="text" size="10" id="katanalwsi_energeias_apo_ananewsimes_piges_year1" name="katanalwsi_energeias_apo_ananewsimes_piges_year1" placeholder="έτος 1" />
-                    <input type="text" size="10" id="katanalwsi_energeias_apo_ananewsimes_piges_year2" name="katanalwsi_energeias_apo_ananewsimes_piges_year2" placeholder="έτος 2" />
-                    <input type="text" size="10" id="katanalwsi_energeias_apo_ananewsimes_piges_year3" name="katanalwsi_energeias_apo_ananewsimes_piges_year3" placeholder="έτος 3" />
-                    <input type="text" size="10" id="katanalwsi_energeias_apo_ananewsimes_piges_year4" name="katanalwsi_energeias_apo_ananewsimes_piges_year4" placeholder="έτος 4" />
-                    <input type="text" size="10" id="katanalwsi_energeias_apo_ananewsimes_piges_year5" name="katanalwsi_energeias_apo_ananewsimes_piges_year5" placeholder="έτος 5" /></td>
-                <td><input type="text" id="katanalwsi_energeias_apo_ananewsimes_piges_prosfata_stoixeia" name="katanalwsi_energeias_apo_ananewsimes_piges_prosfata_stoixeia" size="10" /></td>
-                <td><input type="text" id="katanalwsi_energeias_apo_ananewsimes_piges_epidiwkomenos_stoxos" name="katanalwsi_energeias_apo_ananewsimes_piges_epidiwkomenos_stoxos" size="10" /></td>
+                <td><input type="text" size="10" id="katanalwsi_energeias_apo_ananewsimes_piges_year1" name="katanalwsi_energeias_apo_ananewsimes_piges_year1" placeholder="έτος 1" value="<%= katanalwsi_energeias_apo_ananewsimes_piges[0].katanalwsi_energeias_apo_ananewsimes_piges_year1 %>" />
+                    <input type="text" size="10" id="katanalwsi_energeias_apo_ananewsimes_piges_year2" name="katanalwsi_energeias_apo_ananewsimes_piges_year2" placeholder="έτος 2" value="<%= katanalwsi_energeias_apo_ananewsimes_piges[1].katanalwsi_energeias_apo_ananewsimes_piges_year2 %>" />
+                    <input type="text" size="10" id="katanalwsi_energeias_apo_ananewsimes_piges_year3" name="katanalwsi_energeias_apo_ananewsimes_piges_year3" placeholder="έτος 3" value="<%= katanalwsi_energeias_apo_ananewsimes_piges[2].katanalwsi_energeias_apo_ananewsimes_piges_year3 %>" />
+                    <input type="text" size="10" id="katanalwsi_energeias_apo_ananewsimes_piges_year4" name="katanalwsi_energeias_apo_ananewsimes_piges_year4" placeholder="έτος 4" value="<%= katanalwsi_energeias_apo_ananewsimes_piges[3].katanalwsi_energeias_apo_ananewsimes_piges_year4 %>" />
+                    <input type="text" size="10" id="katanalwsi_energeias_apo_ananewsimes_piges_year5" name="katanalwsi_energeias_apo_ananewsimes_piges_year5" placeholder="έτος 5" value="<%= katanalwsi_energeias_apo_ananewsimes_piges[4].katanalwsi_energeias_apo_ananewsimes_piges_year5 %>" /></td>
+                <td><input type="text" id="katanalwsi_energeias_apo_ananewsimes_piges_prosfata_stoixeia" name="katanalwsi_energeias_apo_ananewsimes_piges_prosfata_stoixeia" size="10" value="<%= katanalwsi_energeias_apo_ananewsimes_piges[5].katanalwsi_energeias_apo_ananewsimes_piges_prosfata_stoixeia %>" /></td>
+                <td><input type="text" id="katanalwsi_energeias_apo_ananewsimes_piges_epidiwkomenos_stoxos" name="katanalwsi_energeias_apo_ananewsimes_piges_epidiwkomenos_stoxos" size="10" value="<%= katanalwsi_energeias_apo_ananewsimes_piges[6].katanalwsi_energeias_apo_ananewsimes_piges_epidiwkomenos_stoxos %>" /></td>
             </tr>
             <tr>
                 <th colspan="1">Ποσοστά μείωσης εκπομπών αερίων θερμοκηπίου ανά τριετία</th>
-                <td><input type="text" size="10" id="meiwsi_ekpompwn_thermokipioy_year1" name="meiwsi_ekpompwn_thermokipioy_year1" placeholder="έτος 1" />
-                    <input type="text" size="10" id="meiwsi_ekpompwn_thermokipioy_year2" name="meiwsi_ekpompwn_thermokipioy_year2" placeholder="έτος 2" />
-                    <input type="text" size="10" id="meiwsi_ekpompwn_thermokipioy_year3" name="meiwsi_ekpompwn_thermokipioy_year3" placeholder="έτος 3" />
-                    <input type="text" size="10" id="meiwsi_ekpompwn_thermokipioy_year4" name="meiwsi_ekpompwn_thermokipioy_year4" placeholder="έτος 4" />
-                    <input type="text" size="10" id="meiwsi_ekpompwn_thermokipioy_year5" name="meiwsi_ekpompwn_thermokipioy_year5" placeholder="έτος 5" /></td>
-                <td><input type="text" id="meiwsi_ekpompwn_thermokipioy_prosfata_stoixeia" name="meiwsi_ekpompwn_thermokipioy_prosfata_stoixeia" size="10" /></td>
-                <td><input type="text" id="meiwsi_ekpompwn_thermokipioy_epidiwkomenos_stoxos" name="meiwsi_ekpompwn_thermokipioy_epidiwkomenos_stoxos" size="10" /></td>
+                <% let meiwsi_ekpompwn_thermokipioy = JSON.parse(data.field_9.dataValues.meiwsi_ekpompwn_thermokipioy) %>
+                <td><input type="text" size="10" id="meiwsi_ekpompwn_thermokipioy_year1" name="meiwsi_ekpompwn_thermokipioy_year1" placeholder="έτος 1" value="<%= meiwsi_ekpompwn_thermokipioy[0].meiwsi_ekpompwn_thermokipioy_year1 %>" />
+                    <input type="text" size="10" id="meiwsi_ekpompwn_thermokipioy_year2" name="meiwsi_ekpompwn_thermokipioy_year2" placeholder="έτος 2" value="<%= meiwsi_ekpompwn_thermokipioy[1].meiwsi_ekpompwn_thermokipioy_year2 %>" />
+                    <input type="text" size="10" id="meiwsi_ekpompwn_thermokipioy_year3" name="meiwsi_ekpompwn_thermokipioy_year3" placeholder="έτος 3" value="<%= meiwsi_ekpompwn_thermokipioy[2].meiwsi_ekpompwn_thermokipioy_year3 %>" />
+                    <input type="text" size="10" id="meiwsi_ekpompwn_thermokipioy_year4" name="meiwsi_ekpompwn_thermokipioy_year4" placeholder="έτος 4" value="<%= meiwsi_ekpompwn_thermokipioy[3].meiwsi_ekpompwn_thermokipioy_year4 %>" />
+                    <input type="text" size="10" id="meiwsi_ekpompwn_thermokipioy_year5" name="meiwsi_ekpompwn_thermokipioy_year5" placeholder="έτος 5" value="<%= meiwsi_ekpompwn_thermokipioy[4].meiwsi_ekpompwn_thermokipioy_year5 %>" /></td>
+                <td><input type="text" id="meiwsi_ekpompwn_thermokipioy_prosfata_stoixeia" name="meiwsi_ekpompwn_thermokipioy_prosfata_stoixeia" size="10" value="<%= katanalwsi_energeias_apo_ananewsimes_piges[5].meiwsi_ekpompwn_thermokipioy_prosfata_stoixeia %>" /></td>
+                <td><input type="text" id="meiwsi_ekpompwn_thermokipioy_epidiwkomenos_stoxos" name="meiwsi_ekpompwn_thermokipioy_epidiwkomenos_stoxos" size="10" value="<%= katanalwsi_energeias_apo_ananewsimes_piges[6].meiwsi_ekpompwn_thermokipioy_epidiwkomenos_stoxos %>" /></td>
             </tr>
         </tbody>
     </table>
