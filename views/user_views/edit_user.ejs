@@ -129,24 +129,25 @@
 
 <script>
 
-    var username = data.username;
+    var username = $("#username").val();
     $("#delete_user").on("click", function (ev) {
         ev.preventDefault();
-        // var answer = window.confirm("Διαγραφή χρήστη;");
+         var answer = window.confirm("Διαγραφή χρήστη;");
 
-        //if (!answer) {
-        $.ajax({
-            url: '/user_views/edit_user/' + username,
-            error: function (error) {
-                console.log(error)
-            },
-            success: function (data) {
-                //console.log(data)
-                window.location.href = "./admin_dashboard"
-            },
-            type: 'DELETE'
-        });
-        //  }
+        if (answer) {
+            $.ajax({
+                url: '/user_views/edit_user/' + username,
+                data: $(this).serialize(),
+                error: function (error) {
+                    console.log(error)
+                },
+                success: function (data) {
+                    console.log("USER WAS DELETED!")
+                    window.location = data.redirect;
+                },
+                type: 'DELETE'
+            });
+        }
 
     });
 
@@ -157,18 +158,19 @@
         console.log($(this).serialize())
 
         $.ajax({
-            url: '/create',
+            url: '/user_views/edit_user/' + username,
             data: $(this).serialize(),
             error: function (error) {
                 console.log(error)
             },
             success: function (data) {
                 console.log(data)
-                window.location.href = "./admin_dashboard"
+                console.log("USER WAS UPDATED!")
+                window.location = data.redirect
             },
-            type: 'POST'
+            type: 'PUT'
         });
-    })
+    });
     $(".exit").on("click",function(ev){
     
         window.location.href="/login"

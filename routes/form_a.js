@@ -15,4 +15,17 @@ routes.get('/:entry_id', async (req,res,next) =>{
     }
 });
 
+routes.put('/:entry_id', async function(req,res,next){
+    console.log("Entered form a js")
+    let ekthesi = await database.ekthesi.update( req.body,{where:{
+        id: req.params.id
+    }, returning: true, plain: true});
+    
+    if (!ekthesi){
+        console.log("Error in updating ekthesi.");
+        res.sendStatus.send(404);
+    } else {
+        res.sendStatus.send(200);
+    }
+});
 module.exports = routes;

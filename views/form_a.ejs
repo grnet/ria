@@ -25,7 +25,7 @@
                             <label for="title" class="col-sm-6 col-form-label">Τίτλος αξιολογούμενης ρύθμισης</label>
                             <div class="col-sm-4">
                                 <input type="text" class="form-control" id="title" name="title"
-                                    value="<%= data.title %>" disabled>
+                                    value="<%= data.title %>" >
                             </div>
                         </div>
 
@@ -610,6 +610,22 @@
                             </thead>
                             <tbody id="tbody_14">
 
+                                <% if(data.field_14_arthro != null && data.field_14_arthro.length != null ){
+                                     for (var i = 0; i < data.field_14_arthro.length; i++) { %>
+                                <tr>
+                                    <td><textarea class="form-control" id="field_14_arthro" name="field_14_arthro"
+                                            placeholder="Άρθρο" rows="1"><%= data.field_14_arthro[i] %></textarea></td>
+                                    <td>
+                                        <textarea class="form-control" placeholder="Υφιστάμενες διατάξεις"
+                                            rows="1"><%= data.field_14_stoxos[i] %></textarea>
+                                        <button class="btn remove float-right" type="button"><img src="/img/delete.png"
+                                                width="20px"></button>
+                                    </td>
+
+                                </tr>
+                                <% }
+                                  } %>
+                                    
                             </tbody>
                         </table>
 
@@ -902,12 +918,12 @@
                     type: 'POST'
                 });
             })
-
+            
             $(".save_temporarily").on("click", function (ev) {
                 ev.preventDefault();
                 console.log($(this).serialize())//comment this line out to hide query wrote in db
                 $.ajax({
-                    url: '/create',
+                    url: '/:entry_id',
                     data: $(this).serialize(),
                     error: function (error) {
                         console.log(error)
@@ -916,7 +932,7 @@
                         console.log(data)
                         window.location.href = "/user_views/history"
                     },
-                    type: 'POST'
+                    type: 'PUT'
                 });
             })
 
@@ -937,10 +953,9 @@
                 $('#tbody_14').append(`
                  <tr id="R${++table14RowIndex}"> 
                 <td> 
-                    <textarea class="form-control" id="arthro" name="arthro" placeholder="Άρθρο" rows="1"></textarea>
-                </td> 
+                    <textarea class="form-control" id="field_14_arthro" name="field_14_arthro" placeholder="Άρθρο" rows="1"></textarea>                </td> 
                 <td> 
-                    <textarea class="form-control" id="stoxos" name="stoxos" placeholder="Στόχος" rows="1"></textarea>
+                    <textarea class="form-control" id="field_14_stoxos" name="field_14_stoxos" placeholder="Στόχος" rows="1"></textarea>
                     <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
                 </td>    
                 </tr>`
@@ -986,10 +1001,10 @@
                 $('#tbody_29').append(`
                 <tr id="R${++table29RowIndex}"> 
                     <td> 
-                        <textarea class="form-control" placeholder="Διατάξεις αξιολογούμενης ρύθμισης" rows="1"></textarea>
+                        <textarea class="form-control" id="field_29_diatakseis_rythmisis" name="field_29_diatakseis_rythmisis" placeholder="Διατάξεις αξιολογούμενης ρύθμισης" rows="1"></textarea>
                     </td> 
                     <td> 
-                        <textarea class="form-control" placeholder="Υφιστάμενες διατάξεις" rows="1"></textarea>
+                        <textarea class="form-control" id="field_29_yfistamenes_diatakseis" name="field_29_yfistamenes_diatakseis" placeholder="Υφιστάμενες διατάξεις" rows="1"></textarea>
                         <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
                     </td>    
                 </tr>`
@@ -1017,16 +1032,16 @@
             $("#add_row_table_30").on("click", function () {
 
                 $('#tbody_30').append(`
-            <tr id="R${++table30RowIndex}"> 
-                <td> 
-                    <textarea class="form-control" placeholder="Διατάξεις αξιολογούμενης ρύθμισης που προβλέπουν κατάργηση" rows="2"></textarea>
-                </td> 
-                <td> 
-                    <textarea class="form-control" placeholder="Καταργούμενες διατάξεις" rows="2"></textarea>
-                    <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
-                </td>    
-            </tr>`
-                );
+                <tr id="R${++table30RowIndex}"> 
+                    <td> 
+                        <textarea class="form-control" id="field_30_diatakseis_katargisi" name="field_30_diatakseis_katargisi" placeholder="Διατάξεις αξιολογούμενης ρύθμισης που προβλέπουν κατάργηση" rows="2"></textarea>
+                    </td> 
+                    <td> 
+                        <textarea class="form-control" id="field_30_katargoumenes_diatakseis" name="field_30_katargoumenes_diatakseis" placeholder="Καταργούμενες διατάξεις" rows="2"></textarea>
+                        <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
+                    </td>    
+                </tr>`
+                    );
             });
 
             $('#tbody_30').on('click', '.remove', function () {
@@ -1052,13 +1067,13 @@
                 $('#tbody_31').append(`
             <tr id="R${++table31RowIndex}"> 
                 <td> 
-                    <textarea class="form-control" placeholder="Σχετική διάταξη αξιολογούμενης ρύθμισης" rows="2"></textarea>
+                    <textarea class="form-control" id="field_31_sxetiki_diataksi" name="field_31_sxetiki_diataksi" placeholder="Σχετική διάταξη αξιολογούμενης ρύθμισης" rows="2"></textarea>
                 </td> 
                 <td> 
-                    <textarea class="form-control" placeholder="Συναρμόδια Υπουργεία – Συναρμόδιες υπηρεσίες / φορείς" rows="2"></textarea>
+                    <textarea class="form-control" id="field_31_synarmodia_ypoyrgeia" name="field_31_synarmodia_ypoyrgeia" placeholder="Συναρμόδια Υπουργεία – Συναρμόδιες υπηρεσίες / φορείς" rows="2"></textarea>
                 </td> 
                 <td> 
-                    <textarea class="form-control" placeholder="Αντικείμενο συναρμοδιότητας" rows="2"></textarea>
+                    <textarea class="form-control" id="field_31_antikeimeno_synarmodiotitas" name="field_31_antikeimeno_synarmodiotitas" placeholder="Αντικείμενο συναρμοδιότητας" rows="2"></textarea>
                     <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
                 </td>    
             </tr>`
@@ -1088,19 +1103,19 @@
                 $('#tbody_32').append(`
                 <tr id="R${++table32RowIndex}"> 
                     <td> 
-                        <textarea class="form-control" placeholder="Εξουσιοδοτική διάταξη" rows="4"></textarea>
+                        <textarea class="form-control" id="field_32_eksousiodotiki_diataksi" name="field_32_eksousiodotiki_diataksi" placeholder="Εξουσιοδοτική διάταξη" rows="4"></textarea>
                     </td> 
                     <td> 
-                        <textarea class="form-control" placeholder="Είδος πράξης" rows="4"></textarea>
+                        <textarea class="form-control" id="field_32_eidos_praksis" name="field_32_eidos_praksis" placeholder="Είδος πράξης" rows="4"></textarea>
                     </td> 
                     <td> 
-                        <textarea class="form-control" placeholder="Αρμόδιο ή επισπεύδον Υπουργείο ή υπηρεσία" rows="4"></textarea>
+                        <textarea class="form-control" id="field_32_armodio_ypoyrgeio" name="field_32_armodio_ypoyrgeio" placeholder="Αρμόδιο ή επισπεύδον Υπουργείο ή υπηρεσία" rows="4"></textarea>
                     </td> 
                     <td> 
-                        <textarea class="form-control" placeholder="Αντικείμενο" rows="4"></textarea>
+                        <textarea class="form-control" id="field_32_antikeimeno" name="field_32_antikeimeno" placeholder="Αντικείμενο" rows="4"></textarea>
                     </td> 
                     <td> 
-                        <textarea class="form-control" placeholder="Χρονοδιάγραμμα (ενδεικτική ή αποκλειστική προθεσμία)" rows="4"></textarea>
+                        <textarea class="form-control" id="field_32_xronodiagramma" name="field_32_xronodiagramma" placeholder="Χρονοδιάγραμμα (ενδεικτική ή αποκλειστική προθεσμία)" rows="4"></textarea>
                         <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
                     </td>    
                 </tr>`
@@ -1238,6 +1253,21 @@
                 $("#perivallon_energeia_table").show();
             }
 
+            function setValuesField9(inputAsJSON, var1, var2, var3, var4, var5, var6, var7)
+            {
+                alert("PARSING!");
+                let parsed = JSON.parse(inputAsJSON)
+                let val1 = document.getElementById(var1);
+                alert("SETTING VALUE");
+                val1.val(parsed[0])
+                console.log(parsed);
+                console.log(var1);
+                console.log(val1);
+            }            
+
+           
+
+
             var current_fs, next_fs, previous_fs; //fieldsets
 
 
@@ -1271,7 +1301,7 @@
                 return false;
             })
 
-            /*let ff= JSON.parse(data.ofeli_rythmisis.dataValues.auksisi_esodwn)
+           /* let ff= JSON.parse(data.ofeli_rythmisis.dataValues.auksisi_esodwn)
             console.log(ff[0].field_18_amesa_esoda_oikonomia)
              console.log(ff[1].field_18_amesa_esoda_oikonomia.length)
              let i=0;

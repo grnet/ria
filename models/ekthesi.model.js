@@ -10,7 +10,11 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
           },
         author_id: DataTypes.STRING,
-        title: DataTypes.STRING,
+        title: {
+            type: DataTypes.STRING,
+            unique: true,
+            allowNull: false,
+          },
         epispeydon_ypoyrgeio: DataTypes.STRING,
         stoixeia_epikoinwnias: DataTypes.STRING,
   
@@ -67,6 +71,9 @@ module.exports = (sequelize, DataTypes) => {
 
         field_13: DataTypes.BOOLEAN,
         field_13_comments: DataTypes.STRING,
+        field_14_arthro: DataTypes.JSON,
+        field_14_stoxos: DataTypes.JSON,
+
         //ekthesis sintagmatos
         field_15_ypoyrgeio: DataTypes.STRING,
         field_15_sxedio_nomou: DataTypes.STRING,
@@ -117,6 +124,21 @@ module.exports = (sequelize, DataTypes) => {
         field_28_nomologia_dikaiwmatwn_anthrwpou_comment: DataTypes.TEXT,
         field_28_alla_dikastiria: DataTypes.BOOLEAN, 
         field_28_alla_dikastiria_comment: DataTypes.TEXT,
+
+        field_29_diatakseis_rythmisis: DataTypes.JSON,
+        field_29_yfistamenes_diatakseis: DataTypes.JSON,
+        field_30_diatakseis_katargisi: DataTypes.JSON,
+        field_30_katargoumenes_diatakseis: DataTypes.JSON,  
+
+        field_31_sxetiki_diataksi: DataTypes.JSON,  
+        field_31_synarmodia_ypoyrgeia: DataTypes.JSON,  
+        field_31_antikeimeno_synarmodiotitas: DataTypes.JSON,  
+
+        field_32_eksousiodotiki_diataksi: DataTypes.JSON,  
+        field_32_eidos_praksis: DataTypes.JSON,  
+        field_32_armodio_ypoyrgeio: DataTypes.JSON,  
+        field_32_antikeimeno: DataTypes.JSON,  
+        field_32_xronodiagramma: DataTypes.JSON,  
 
         field_33: DataTypes.TEXT,
         field_34: DataTypes.TEXT,

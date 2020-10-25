@@ -15,30 +15,29 @@ routes.get('/:username', async (req,res,next) =>{
 
 routes.delete('/:username', async (req,res,next) =>{
     
-    let user = await database.user.findOne({where: {user_id: req.params.user_id}}).catch(e => {
-        console.log(e.message)
-     })
-     console.log("FOUND USER" + user)
-     if (!user){
-       console.log("err");
-     }
-     return user.destroy();
-     res.redirect('user_views/admin_dashboard');
+    let user = await database.user.findOne({where: {username: req.params.username}})
+     
+    if (!user){
+        console.log("Error in deleting user.");
+        res.sendStatus.send(400);
+    } else {
+        user.destroy();
+        res.send({redirect: "../search_user"});
+    }
    });
 
 
 routes.put('/:username', async (req,res,next) =>{
     
-    let user = await database.user.update( {fname: req.body.fname, lname: req.body.lname},{where:{
-        user_id: req.params.user_id
-    }, returning: true, plain: true})
-    if(user && user.dataValues){
-        res.render("user_views/edit_user",{data:user.dataValues})
-        console.log(user.dataValues)
-    }else{
-        res.status(404).send("Not found")
+    let user = await database.user.update( req.body,{where:{
+        username: req.params.username
+    }, returning: true, plain: true});
+    if (!user){
+        console.log("Error in updating user.");
+        res.sendStatus.send(404);
+    } else {
+        res.send({redirect: "../search_user"});
     }
-
 });
 
 module.exports = routes;

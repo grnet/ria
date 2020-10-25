@@ -631,7 +631,7 @@ $(".save_temporarily").on("click",function(ev){
             console.log(data)
             window.location.href="/user_views/history"
         },
-        type: 'POST'
+        type: 'PUT'
     });
 })
 
@@ -652,10 +652,10 @@ $("#add_row_table_14").on("click", function(){
     $('#tbody_14').append(`
         <tr id="R${++table14RowIndex}"> 
             <td> 
-                <textarea class="form-control" id="arthro" name="arthro" placeholder="Άρθρο" rows="1"></textarea>
+                <textarea class="form-control" id="field_14_arthro" name="field_14_arthro" placeholder="Άρθρο" rows="1"></textarea>
             </td> 
             <td> 
-                <textarea class="form-control" id="stoxos" name="stoxos" placeholder="Στόχος" rows="1"></textarea>
+                <textarea class="form-control" id="field_14_stoxos" name="field_14_stoxos" placeholder="Στόχος" rows="1"></textarea>
                 <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
             </td>    
         </tr>`
@@ -701,10 +701,10 @@ $("#add_row_table_29").on("click", function(){
     $('#tbody_29').append(`
         <tr id="R${++table29RowIndex}"> 
             <td> 
-                <textarea class="form-control" placeholder="Διατάξεις αξιολογούμενης ρύθμισης" rows="1"></textarea>
+                <textarea class="form-control" id="field_29_diatakseis_rythmisis" name="field_29_diatakseis_rythmisis" placeholder="Διατάξεις αξιολογούμενης ρύθμισης" rows="1"></textarea>
             </td> 
             <td> 
-                <textarea class="form-control" placeholder="Υφιστάμενες διατάξεις" rows="1"></textarea>
+                <textarea class="form-control" id="field_29_yfistamenes_diatakseis" name="field_29_yfistamenes_diatakseis" placeholder="Υφιστάμενες διατάξεις" rows="1"></textarea>
                 <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
             </td>    
         </tr>`
@@ -734,10 +734,10 @@ $("#add_row_table_30").on("click", function(){
     $('#tbody_30').append(`
         <tr id="R${++table30RowIndex}"> 
             <td> 
-                <textarea class="form-control" placeholder="Διατάξεις αξιολογούμενης ρύθμισης που προβλέπουν κατάργηση" rows="2"></textarea>
+                <textarea class="form-control" id="field_30_diatakseis_katargisi" name="field_30_diatakseis_katargisi" placeholder="Διατάξεις αξιολογούμενης ρύθμισης που προβλέπουν κατάργηση" rows="2"></textarea>
             </td> 
             <td> 
-                <textarea class="form-control" placeholder="Καταργούμενες διατάξεις" rows="2"></textarea>
+                <textarea class="form-control" id="field_30_katargoumenes_diatakseis" name="field_30_katargoumenes_diatakseis" placeholder="Καταργούμενες διατάξεις" rows="2"></textarea>
                 <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
             </td>    
         </tr>`
@@ -767,13 +767,13 @@ $("#add_row_table_31").on("click", function(){
     $('#tbody_31').append(`
         <tr id="R${++table31RowIndex}"> 
             <td> 
-                <textarea class="form-control" placeholder="Σχετική διάταξη αξιολογούμενης ρύθμισης" rows="2"></textarea>
+                <textarea class="form-control" id="field_31_sxetiki_diataksi" name="field_31_sxetiki_diataksi" placeholder="Σχετική διάταξη αξιολογούμενης ρύθμισης" rows="2"></textarea>
             </td> 
             <td> 
-                <textarea class="form-control" placeholder="Συναρμόδια Υπουργεία – Συναρμόδιες υπηρεσίες / φορείς" rows="2"></textarea>
+                <textarea class="form-control" id="field_31_synarmodia_ypoyrgeia" name="field_31_synarmodia_ypoyrgeia" placeholder="Συναρμόδια Υπουργεία – Συναρμόδιες υπηρεσίες / φορείς" rows="2"></textarea>
             </td> 
             <td> 
-                <textarea class="form-control" placeholder="Αντικείμενο συναρμοδιότητας" rows="2"></textarea>
+                <textarea class="form-control" id="field_31_antikeimeno_synarmodiotitas" name="field_31_antikeimeno_synarmodiotitas" placeholder="Αντικείμενο συναρμοδιότητας" rows="2"></textarea>
                 <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
             </td>    
         </tr>`
@@ -803,19 +803,19 @@ $("#add_row_table_32").on("click", function(){
     $('#tbody_32').append(`
         <tr id="R${++table32RowIndex}"> 
             <td> 
-                <textarea class="form-control" placeholder="Εξουσιοδοτική διάταξη" rows="4"></textarea>
+                <textarea class="form-control" id="field_32_eksousiodotiki_diataksi" name="field_32_eksousiodotiki_diataksi" placeholder="Εξουσιοδοτική διάταξη" rows="4"></textarea>
             </td> 
             <td> 
-                <textarea class="form-control" placeholder="Είδος πράξης" rows="4"></textarea>
+                <textarea class="form-control" id="field_32_eidos_praksis" name="field_32_eidos_praksis" placeholder="Είδος πράξης" rows="4"></textarea>
             </td> 
             <td> 
-                <textarea class="form-control" placeholder="Αρμόδιο ή επισπεύδον Υπουργείο ή υπηρεσία" rows="4"></textarea>
+                <textarea class="form-control" id="field_32_armodio_ypoyrgeio" name="field_32_armodio_ypoyrgeio" placeholder="Αρμόδιο ή επισπεύδον Υπουργείο ή υπηρεσία" rows="4"></textarea>
             </td> 
             <td> 
-                <textarea class="form-control" placeholder="Αντικείμενο" rows="4"></textarea>
+                <textarea class="form-control" id="field_32_antikeimeno" name="field_32_antikeimeno" placeholder="Αντικείμενο" rows="4"></textarea>
             </td> 
             <td> 
-                <textarea class="form-control" placeholder="Χρονοδιάγραμμα (ενδεικτική ή αποκλειστική προθεσμία)" rows="4"></textarea>
+                <textarea class="form-control" id="field_32_xronodiagramma" name="field_32_xronodiagramma" placeholder="Χρονοδιάγραμμα (ενδεικτική ή αποκλειστική προθεσμία)" rows="4"></textarea>
                 <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
             </td>    
         </tr>`
