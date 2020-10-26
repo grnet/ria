@@ -620,10 +620,10 @@ $("form").on("submit",function(ev){
 
 $(".save_temporarily").on("click",function(ev){
     ev.preventDefault();
-    console.log($(this).serialize())//comment this line out to hide query wrote in db
+    console.log($("form").serialize())//comment this line out to hide query wrote in db
     $.ajax({
         url: '/create',
-        data:$(this).serialize(),
+        data:$("form").serialize(),
         error: function(error) {
             console.log(error)
         },
@@ -631,7 +631,7 @@ $(".save_temporarily").on("click",function(ev){
             console.log(data)
             window.location.href="/user_views/history"
         },
-        type: 'PUT'
+        type: 'POST'
     });
 })
 

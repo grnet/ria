@@ -10,11 +10,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
           },
         author_id: DataTypes.STRING,
-        title: {
-            type: DataTypes.STRING,
-            unique: true,
-            allowNull: false,
-          },
+        title: DataTypes.STRING,
         epispeydon_ypoyrgeio: DataTypes.STRING,
         stoixeia_epikoinwnias: DataTypes.STRING,
   

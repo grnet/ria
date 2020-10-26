@@ -9,23 +9,27 @@ routes.get('/:entry_id', async (req,res,next) =>{
     //try this to check on ofeli_r let entry = await database.ekthesi.findAll({include: [{model: database.ofeli_rythmisis}]})
     if(entry && entry.dataValues){
         res.render("form_a",{data:entry.dataValues})
-        console.log(entry.dataValues)
+        req.session.ekthesi_id = req.params.entry_id
+        req.session.save()
     }else{
         res.status(404).send("Not found")
     }
+    console.log(req.session.ekthesi_id)
 });
 
 routes.put('/:entry_id', async function(req,res,next){
-    console.log("Entered form a js")
-    let ekthesi = await database.ekthesi.update( req.body,{where:{
-        id: req.params.id
-    }, returning: true, plain: true});
-    
+
+    ekthesi_id = req.session.ekthesi_id
+    console.log("ekthesi_id: " + ekthesi_id)
+    let ekthesi = await database.ekthesi.update(req.body, {where:{
+        id: ekthesi_id
+    }, include: [{model: database.rythmiseis}, {model: database.field_9}], returning: true, plain: true
+    })
+    //console.log(ekthesi.dataValues)
     if (!ekthesi){
-        console.log("Error in updating ekthesi.");
-        res.sendStatus.send(404);
-    } else {
-        res.sendStatus.send(200);
+        res.status(404).send("Error in updating ekthesi.")
+    } else {  
+        res.send({redirect: "./user_views/history"});
     }
 });
 module.exports = routes;

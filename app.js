@@ -19,12 +19,14 @@ let historyRoute = require('./routes/history')
 let summariesRoute = require('./routes/summaries')
 
 const app = express(); //app init
+app.use(cookieParser());
 
-let memoryStore = new session.MemoryStore(); //We will store our user session details to the memory 
-
-app.use(session({                                 
-    secret:'thisShouldBeLongAndSecret', //The secret is used to hash the session with HMAC                                          
-    store: memoryStore
+// prune expired entries every 24h to avoid memory leaks
+let memoryStore = new session.MemoryStore({checkPeriod: 86400000 }); //We will store our user session details to the memory 
+ app.use(session({                                 
+    secret:'thisShouldBeLongAndSecret', //The secret is used to hash the session with HMAC                                         
+    store: memoryStore,
+    
 }));
 
 app.set('views', path.join(__dirname, 'views'));

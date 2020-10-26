@@ -9,7 +9,9 @@ routes.get('/', async function(req,res,next){
         console.log(logoutuser)
         logoutuser.update({isLoggedIn: false})
         console.log(logoutuser)
-    }    
+        
+    }   
+ 
     res.render("login")
 });
 
