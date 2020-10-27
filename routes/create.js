@@ -108,6 +108,12 @@ routes.post('/', async function(req,res,next){
     //add row to ekthesi model, map values from req.body
     let res_data = await ekthesi.create(req.body)
        
+    for (i in req.body) {
+        console.log("heyheyhey "+req.body.includes(fiels_14));
+
+    }
+    console.log("req.body[0] "+req.body[0]);
+
     //map letiables to model's fields
     let rythmiseis_data = await database.rythmiseis.create({auksisi_esodwn: auksisi_esodwn, meiwsi_dapanwn: meiwsi_dapanwn, eksikonomisi_xronou: eksikonomisi_xronou, apodotikotita: apodotikotita, amesa_allo: amesa_allo,
         veltiwsi_ypiresiwn: veltiwsi_ypiresiwn, metaxirisi_politwn: metaxirisi_politwn, diafania_thesmwn: diafania_thesmwn, diaxirisi_kindynwn: diaxirisi_kindynwn, emmesa_allo: emmesa_allo, 
@@ -125,18 +131,4 @@ routes.post('/', async function(req,res,next){
     res.send(res_data)
 });
 
-routes.put('/', async function(req,res,next){
-    req.body.author_id="1";
-    let ekthesi = await database.ekthesi.update( req.body,{where:{
-       // id: req.params.id
-       title: req.params.title
-    }, returning: true, plain: true});
-    
-    if (!ekthesi){
-        console.log("Error in updating ekthesi.");
-        res.sendStatus.send(404);
-    } else {
-        res.sendStatus.send(200);
-    }
-});
 module.exports = routes;

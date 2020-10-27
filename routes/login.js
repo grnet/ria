@@ -2,7 +2,7 @@ const routes = require('express').Router()
 let database = require('../services/database')
 
 routes.get('/', async function(req,res,next){
-    let logoutuser = await database.user.findOne({where:{
+    /*let logoutuser = await database.user.findOne({where:{
         isLoggedIn: true
     }})
     if(logoutuser) {
@@ -10,7 +10,7 @@ routes.get('/', async function(req,res,next){
         logoutuser.update({isLoggedIn: false})
         console.log(logoutuser)
         
-    }   
+    }   */ 
  
     res.render("login")
 });
@@ -22,8 +22,11 @@ routes.post('/', async function(req,res,next){
         password: req.body.password
     }})
     if(user && user.dataValues){
-        user.update({isLoggedIn: true})
-        console.log(user)
+        req.session.username = user.username;
+        req.session.dikaiwmata_diaxeirisis = user.dikaiwmata_diaxeirisis;
+        req.session.rolos = user.rolos;
+        console.log( "req.session.dikaiwmata_diaxeirisis: " + req.session.dikaiwmata_diaxeirisis
+                    + " , req.session.rolos: " + req.session.rolos)
         if(user.dikaiwmata_diaxeirisis) {
             res.send({redirect: "user_views/admin_dashboard"});
         }
@@ -33,6 +36,9 @@ routes.post('/', async function(req,res,next){
     }else{
         res.status(404).send("Not found")
     }
+    console.log(req.sessionID)
+    console.log(req.session)
+
 });
 
 /*this works. might be handy for put,delete. review later

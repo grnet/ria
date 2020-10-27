@@ -10,11 +10,12 @@ routes.get('/:entry_id', async (req,res,next) =>{
     if(entry && entry.dataValues){
         res.render("form_a",{data:entry.dataValues})
         req.session.ekthesi_id = req.params.entry_id
-        req.session.save()
+        //req.session.save()//optional
+        console.log(req.session)
     }else{
         res.status(404).send("Not found")
     }
-    console.log(req.session.ekthesi_id)
+    console.log(req.sessionID)
 });
 
 routes.put('/:entry_id', async function(req,res,next){
@@ -25,6 +26,8 @@ routes.put('/:entry_id', async function(req,res,next){
         id: ekthesi_id
     }, include: [{model: database.rythmiseis}, {model: database.field_9}], returning: true, plain: true
     })
+    console.log(req.sessionID)
+
     //console.log(ekthesi.dataValues)
     if (!ekthesi){
         res.status(404).send("Error in updating ekthesi.")

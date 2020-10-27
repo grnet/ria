@@ -22,22 +22,23 @@
       <div class="jss111">
         <div class="jss274">
           <h3 class="jss273 jss178 jss181">Χρήσιμοι Σύνδεσμοι</h3>
-          <ul class="jss275" id="progressbar">
+          <ul class="jss275" id="profile">
             <h4 class="jss276 jss178 jss181">Το Προφίλ Μου:</h4>
             <li><a href="./user_profile">Τα Στοιχεία Μου</a></li>
           </ul>
-          <ul class="jss275" id="progressbar">
+          <ul class="jss275" id="edit_ekthesi">
             <h4 class="jss276 jss178 jss181">Επεξεργασία Εκθέσεων</h4>
             <li><a href="./history">Ιστορικό</a></li>
           </ul>
-          <ul class="jss275" id="progressbar">
+          <ul class="jss275" id="ekthesi">
             <h4 class="jss276 jss178 jss181">Νέα Έκθεση</h4>
-            <li><a href="../create">Προσχέδιο νόμου</a></li>
-            <li><a href="../create">Κατευθυντήριες γραμμές</a></li>
-            <li><a href="../create">Επείγοντα και κατεπείγοντα νομοσχέδια</a></li>
-            <li><a href="../create">Πρόταση νόμου</a></li>
-            <li><a href="../create">Κύρωση διεθνών συμβάσεων</a></li>
-            <li><a href="../create">Τροπολογίες (Υπουργών και Βουλευτών)</a></li>
+            <li id="sxedio_nomoy"><a href="../create">Σχέδιο νόμου</a></li>
+            <li id="prosxedio"><a href="../create">Προσχέδιο νόμου</a></li>
+            <li id="kateythintiries"><a href="../create">Κατευθυντήριες γραμμές</a></li>
+            <li id="epeigonta"><a href="../create">Επείγοντα και κατεπείγοντα νομοσχέδια</a></li>
+            <li id="protasi_nomoy"><a href="../create">Πρόταση νόμου</a></li>
+            <li id="diethneis_symvaseis"><a href="../create">Διεθνείς Συμβάσεις</a></li>
+            <li id="tropologies"><a href="../create">Τροπολογίες (Υπουργών και Βουλευτών)</a></li>
           </ul>
         </div>
       </div>
@@ -67,6 +68,29 @@
     window.location.href="/login"
 
   })
+
+  var user_role = '<%= data.rolos %>';
+  console.log(user_role)
+  if (user_role == 'Βουλευτής') {
+    document.getElementById("ekthesi").children[1].style.display = "none";
+    document.getElementById("ekthesi").children[2].style.display = "none";
+    document.getElementById("ekthesi").children[3].style.display = "none";
+    document.getElementById("ekthesi").children[4].style.display = "none";
+    document.getElementById("ekthesi").children[6].style.display = "none";    
+  } else if (user_role == 'Βουλή') {
+    document.getElementById("ekthesi").children[0].style.display = "none";
+    document.getElementById("ekthesi").children[1].style.display = "none";
+    document.getElementById("ekthesi").children[2].style.display = "none";
+    document.getElementById("ekthesi").children[3].style.display = "none";
+    document.getElementById("ekthesi").children[4].style.display = "none";
+    document.getElementById("ekthesi").children[5].style.display = "none";
+    document.getElementById("ekthesi").children[6].style.display = "none";
+    document.getElementById("ekthesi").children[7].style.display = "none";
+  } else if (user_role == 'Συντάκτης Υπουργείου') {
+    document.getElementById("ekthesi").children[5].style.display = "none";
+    document.getElementById("ekthesi").children[7].style.display = "none";
+  }
+
 </script>
 </body>
 

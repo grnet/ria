@@ -25,7 +25,7 @@
                             <label for="title" class="col-sm-6 col-form-label">Τίτλος αξιολογούμενης ρύθμισης</label>
                             <div class="col-sm-4">
                                 <input type="text" class="form-control" id="title" name="title"
-                                    value="<%= data.title %>" >
+                                    value="<%= data.title %>">
                             </div>
                         </div>
 
@@ -625,7 +625,7 @@
                                 </tr>
                                 <% }
                                   } %>
-                                    
+
                             </tbody>
                         </table>
 
@@ -900,7 +900,7 @@
 
 
         <script>
-            
+
             var ekthesi_id = '<%= data.id %>'
             console.log(ekthesi_id);
             $("form").on("submit", function (ev) {
@@ -920,7 +920,7 @@
                     type: 'POST'
                 });
             })
-            
+
             $(".save_temporarily").on("click", function (ev) {
                 ev.preventDefault();
                 console.log($("form").serialize())//comment this line out to hide query wrote in db
@@ -1043,7 +1043,7 @@
                         <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
                     </td>    
                 </tr>`
-                    );
+                );
             });
 
             $('#tbody_30').on('click', '.remove', function () {
@@ -1255,20 +1255,22 @@
                 $("#perivallon_energeia_table").show();
             }
 
-            function setValuesField9(inputAsJSON, var1, var2, var3, var4, var5, var6, var7)
-            {
+            function setValuesField9(inputAsJSON, var1) {
                 alert("PARSING!");
-                let parsed = JSON.parse(inputAsJSON)
-                let val1 = document.getElementById(var1);
-                alert("SETTING VALUE");
-                val1.val(parsed[0])
-                console.log(parsed);
+                //let parsed = JSON.parse(inputAsJSON)
+                //let val1 = document.getElementById(var1);
+                console.log(inputAsJSON);
+                console.log("SETTING VALUE");
+                console.log("initial var1 :" + var1);
+                var1.val(inputAsJSON[0])
+                
                 console.log(var1);
-                console.log(val1);
-            }            
+                //console.log(val1);
+            }
 
-           
-
+            $(document).ready(function () {
+                setValuesField9('<% data.field_9.dataValues.atmosfairiki_rypansi %>', document.getElementById(atmosfairiki_rypansi_year1).val());
+            });
 
             var current_fs, next_fs, previous_fs; //fieldsets
 
@@ -1303,15 +1305,15 @@
                 return false;
             })
 
-           /* let ff= JSON.parse(data.ofeli_rythmisis.dataValues.auksisi_esodwn)
-            console.log(ff[0].field_18_amesa_esoda_oikonomia)
-             console.log(ff[1].field_18_amesa_esoda_oikonomia.length)
-             let i=0;
-             if (typeof ff[i].field_18_amesa_esoda_oikonomia == 'undefined') {
-                 console.log("0000")
-             } else {
-                  console.log(ff[i].field_18_amesa_esoda_oikonomia.length)
-             } */
+            /* let ff= JSON.parse(data.ofeli_rythmisis.dataValues.auksisi_esodwn)
+             console.log(ff[0].field_18_amesa_esoda_oikonomia)
+              console.log(ff[1].field_18_amesa_esoda_oikonomia.length)
+              let i=0;
+              if (typeof ff[i].field_18_amesa_esoda_oikonomia == 'undefined') {
+                  console.log("0000")
+              } else {
+                   console.log(ff[i].field_18_amesa_esoda_oikonomia.length)
+              } */
         </script>
 
     </div>

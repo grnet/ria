@@ -51,6 +51,22 @@
             <hr>
 
             <div class="checkbox-group form-group row">
+                <label for="rolos" class="col-sm-2 col-form-label">Ρόλος: </label>
+                <select id="rolos" name="rolos" class="col-sm-2 form-control">
+                    <option selected disabled>Eπιλογή</option>
+                    <option value="Συντάκτης">Συντάκτης</option>
+                    <option value="ΓΓΝΚΘ" >ΓΓΝΚΘ</option>
+                    <option value="Υπηρεσία Συντονισμού Υπουργείου" >Υπηρεσία Συντονισμού Υπουργείου</option>
+                    <option value="Ρόλος Νομοπαρασκευαστική Επιτροπή" >Ρόλος Νομοπαρασκευαστική Επιτροπή</option>
+                    <option value="Opengov" >Opengov</option>
+                    <option value="Γενικό Λογιστήριο του Κράτους" >Γενικό Λογιστήριο του Κράτους</option>
+                    <option value="Επιτροπή Αξιολόγησης Ποιότητας" >Επιτροπή Αξιολόγησης Ποιότητας</option>
+                    <option value="Βουλή" >Βουλή</option>
+                </select>
+            </div>
+            <br><hr>
+
+            <div class="checkbox-group form-group row">
                 <label for="dikaiwmata_diaxeirisis" class="col-sm-8 col-form-label">Ο χρήστης έχει δικαιώματα
                     διαχείρισης:</label>                  
                     <% if(data.dikaiwmata_diaxeirisis){ %>
