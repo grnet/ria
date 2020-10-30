@@ -5,8 +5,11 @@
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <br>
+        <input type="button" name="back" class="back" value="Πίσω" />
+        <br><br>
         <form enctype="multipart/form-data"> 
-
+            
             <fieldset>
                 <h2>Α. Αιτιολογική έκθεση</h2>
                 <br>
@@ -21,9 +24,9 @@
                 <br><hr>
 
                 <div class="form-group row">
-                    <label for="epispeydon_ypoyrgeio" class="col-sm-6 col-form-label">Επισπεύδον Υπουργείο</label>
+                    <label for="epispeydon_ypoyrgeio" class="col-sm-6 col-form-label">Επισπεύδον φορέας</label>
                     <div class="col-sm-4">
-                    <textarea class="form-control" id="epispeydon_ypoyrgeio" name="epispeydon_ypoyrgeio" rows="3" placeholder="Επισπεύδον Υπουργείο"></textarea>
+                    <textarea class="form-control" id="epispeydon_ypoyrgeio" name="epispeydon_ypoyrgeio" rows="3" placeholder="Επισπεύδον Υπουργείο ή Βουλευτής"></textarea>
                     </div>
                 </div>
                 
@@ -392,7 +395,6 @@
 
             <br>
             <input type="button" name="save_temporarily" class="save_temporarily float-right" value="Προσωρινή αποθήκευση"/>
-            <input type="button" name="exit" class="exit float-right" value="Έξοδος"/>
         </form>   
         
     </div>
@@ -617,11 +619,11 @@ $("form").on("submit",function(ev){
         url: '/create',
         data:$(this).serialize(),
         error: function(error) {
-            console.log(error)
+            console.log(error);
         },
         success: function(data) {
-            console.log(data)
-            window.location.href="/user_views/history"
+            console.log(data);
+            window.location.href="/user_views/history";
         },
         type: 'POST'
     });
@@ -634,21 +636,19 @@ $(".save_temporarily").on("click",function(ev){
         url: '/create',
         data:$("form").serialize(),
         error: function(error) {
-            console.log(error)
+            console.log(error);
         },
         success: function(data) {
-            console.log(data)
-            window.location.href="/user_views/history"
+            console.log(data);
+            window.location.href="/user_views/history";
         },
         type: 'POST'
     });
 })
 
-$(".exit").on("click",function(ev){
-    
-    window.location.href="/login"
-
-  });
+$(".back").on("click", function (ev) {
+    window.location.href = "/user_views/history";
+})
 
 //row counter
 var table14RowIndex = 0;
@@ -661,10 +661,10 @@ $("#add_row_table_14").on("click", function(){
     $('#tbody_14').append(`
         <tr id="R${++table14RowIndex}"> 
             <td> 
-                <textarea class="form-control" id="field_14_arthro" name="field_14_arthro" placeholder="Άρθρο" rows="1"></textarea>
+                <textarea class="form-control" id="field_14_arthro${table14RowIndex}" name="field_14_arthro${table14RowIndex}" placeholder="Άρθρο" rows="1"></textarea>
             </td> 
             <td> 
-                <textarea class="form-control" id="field_14_stoxos" name="field_14_stoxos" placeholder="Στόχος" rows="1"></textarea>
+                <textarea class="form-control" id="field_14_stoxos${table14RowIndex}" name="field_14_stoxos${table14RowIndex}" placeholder="Στόχος" rows="1"></textarea>
                 <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
             </td>    
         </tr>`

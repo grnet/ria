@@ -4,52 +4,52 @@
 <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 
 <div class="MuiContainer-root jss110 MuiContainer-maxWidthLg">
+    <br>
+    <input type="button" name="back" class="back" value="Πίσω" />
+    <br><br>
     <div class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-4">
         <form>
-            <br><br>
-            <input type="button" name="back" class="back" value="Πίσω" />
-            <br><br>
-            <h1>Επεξεργασία στοιχείων χρήστη</h1>
+            <h1>Τα στοιχεία μου</h1>
             <br>
 
             <div class="form-group">
                 <label for="fname">Όνομα χρήστη:</label>
                 <input type="text" size="20" id="fname" name="fname" placeholder="Όνομα χρήστη"
-                    value="<%= data.fname %>" />
+                    value="<%= user.fname %>" />
             </div>
             <hr>
 
             <div class="form-group">
                 <label for="lname">Επώνυμο χρήστη:</label>
                 <input type="text" size="20" id="lname" name="lname" placeholder="Επώνυμο χρήστη"
-                    value="<%= data.lname %>" />
+                    value="<%= user.lname %>" />
             </div>
             <hr>
 
             <div class="form-group">
                 <label for="username">Username χρήστη:</label>
                 <input type="text" size="20" id="username" name="username" placeholder="Username"
-                    value="<%= data.username %>" />
+                    value="<%= user.username %>" />
             </div>
             <hr>
 
             <div class="form-group">
                 <label for="password">Κωδικός πρόσβασης χρήστη:</label>
                 <input type="password" size="20" id="password" name="password" placeholder="Κωδικός πρόσβασης"
-                    value="<%= data.password %>" />
+                    value="<%= user.password %>" />
             </div>
 
             <div class="form-group">
                 <label for="password">Επανάληψη κωδικού πρόσβασης χρήστη:</label>
                 <input type="password" size="20" id="repeat_password" name="repeat_password"
-                    placeholder="Επανάληψη κωδικού πρόσβασης" value="<%= data.password %>" />
+                    placeholder="Επανάληψη κωδικού πρόσβασης" value="<%= user.password %>" />
             </div>
             <hr>
 
             <div class="form-group">
                 <label for="ypoyrgeio">Υπουργείο:</label>
                 <input type="text" size="20" id="ypoyrgeio" name="ypoyrgeio" placeholder="Υπουργείο"
-                    value="<%= data.ypoyrgeio %>" />
+                    value="<%= user.ypoyrgeio %>" />
             </div>
             <hr>
 
@@ -74,7 +74,7 @@
             <div class="checkbox-group form-group row">
                 <label for="dikaiwmata_diaxeirisis" class="col-sm-8 col-form-label">Ο χρήστης έχει δικαιώματα
                     διαχείρισης:</label>
-                <% if(data.dikaiwmata_diaxeirisis){ %>
+                <% if(user.dikaiwmata_diaxeirisis){ %>
                 <input class="col-sm-2 form-check-input position-static" type="checkbox" id="dikaiwmata_diaxeirisis"
                     name="dikaiwmata_diaxeirisis" value="dikaiwmata_diaxeirisis" checked>
                 <% }else{ %>
@@ -84,13 +84,9 @@
             </div>
             <hr>
 
-
-            <button id="delete_user" class="btn float-right" type="button"><img src="/img/delete.png"
-                    width="30px"></button>
             <br>
             <input type="submit" id="edit_submit" name="edit_submit" class="action-button float-right"
                 value="Επεξεργασία" />
-
         </form>
     </div>
 </div>
@@ -152,55 +148,37 @@
 <script>
 
     var username = $("#username").val();
-    $("#delete_user").on("click", function (ev) {
-        ev.preventDefault();
-        var answer = window.confirm("Διαγραφή χρήστη;");
-
-        if (answer) {
-            $.ajax({
-                url: '/user_views/edit_user/' + username,
-                data: $(this).serialize(),
-                error: function (error) {
-                    console.log(error)
-                },
-                success: function (data) {
-                    console.log("USER WAS DELETED!")
-                    window.location = data.redirect;
-                },
-                type: 'DELETE'
-            });
-        }
-
-    });
+    var user_dikaiwmata_diaxeirisis = "<%= user.dikaiwmata_diaxeirisis %>";
 
     $("form").on("submit", function (ev) {
         ev.preventDefault();
-        console.log($(this).serialize())
+        console.log($(this).serialize());
 
         $.ajax({
-            url: '/user_views/edit_user/' + username,
-            data: $(this).serialize(),
+            url: '/user_views/profile/',
+            data: $("form").serialize(),
             error: function (error) {
-                console.log(error)
+                console.log(error);
             },
             success: function (data) {
-                console.log(data)
-                console.log("USER WAS UPDATED!")
-                window.location = data.redirect
+                window.location = data.redirect;
             },
             type: 'PUT'
         });
     });
     $(".back").on("click", function (ev) {
-        window.location.href = "/user_views/search_user";
-    });
+        if (user_dikaiwmata_diaxeirisis) {
+            window.location.href = "/user_views/admin_dashboard";
+        } else {
+            window.location.href = "/user_views/user_dashboard";
+        }
+    })
 
     function setDropdown(role) {
         let dropdownElement = document.getElementById(role);
-        dropdownElement.value = "<%= data.rolos %>"
-        console.log("DROPDOWN'S SET.");
-
+        dropdownElement.value = "<%= user.rolos %>"
     }
+
     setDropdown("rolos");
 </script>
 </body>

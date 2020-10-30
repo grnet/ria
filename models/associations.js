@@ -3,7 +3,7 @@
 //const { ekthesi, rythmiseis, field_9  } = require("../services/database"); if assocs not working uncommment
 
 function applyAssoc(sequelize) {
-	const { ekthesi, rythmiseis, field_9 } = sequelize.models;
+	const { ekthesi, rythmiseis, field_9, user } = sequelize.models;
 
 	//establishing one to one association between ekthesi and rythmiseis
 	ekthesi.hasOne(rythmiseis, {
@@ -16,6 +16,13 @@ function applyAssoc(sequelize) {
 		sourceKey: 'id',
 		foreignKey: 'field9Id'});
 		field_9.belongsTo(ekthesi, { foreignKey: 'field9Id', targetKey: 'id' });
+	
+	//establishing one to many association between user and ekthesi models
+	user.hasMany(ekthesi, {
+		sourceKey: 'username',
+		foreignKey: 'author'});
+		ekthesi.belongsTo(user, { foreignKey: 'author', targetKey: 'username' });
+
 }
 
 module.exports = { applyAssoc };

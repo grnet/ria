@@ -14,7 +14,10 @@
                 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
                     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
                     crossorigin="anonymous"></script>
-                <form>
+                <br>
+                <input type="button" name="back" class="back" value="Πίσω" />
+               <br><br>
+                <form enctype="multipart/form-data">
 
                     <fieldset>
 
@@ -756,7 +759,7 @@
 
         <style>
             .action-button,
-            .exit {
+            .back {
                 font-size: 16px;
             }
 
@@ -938,11 +941,9 @@
                 });
             })
 
-            $(".exit").on("click", function (ev) {
-
-                window.location.href = "/login"
-
-            });
+            $(".back").on("click", function (ev) {
+                window.location.href = "/user_views/history";//go to page that originally referred to current page
+            })
 
             //row counter
             var table14RowIndex = 0;
@@ -1268,9 +1269,9 @@
                 //console.log(val1);
             }
 
-            $(document).ready(function () {
-                setValuesField9('<% data.field_9.dataValues.atmosfairiki_rypansi %>', document.getElementById(atmosfairiki_rypansi_year1).val());
-            });
+        /*    $(document).ready(function () {
+                setValuesField9('<% data.field_9.dataValues.atmosfairiki_rypansi %>', document.getElementById(atmosfairiki_rypansi_year1));
+            });*/
 
             var current_fs, next_fs, previous_fs; //fieldsets
 

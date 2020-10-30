@@ -17,6 +17,8 @@ let adminDashboardRoute = require('./routes/admin_dashboard')
 let userDashboardRoute = require('./routes/user_dashboard')
 let historyRoute = require('./routes/history')
 let summariesRoute = require('./routes/summaries')
+let profileRoute = require('./routes/profile')
+
 
 const app = express(); //app init
 app.use(cookieParser());
@@ -50,6 +52,7 @@ app.use('/user_views/search_user', searchUserRoute);
 app.use('/user_views/edit_user', editUserRoute);
 app.use('/user_views/history', historyRoute)
 app.use('/user_views/summaries', summariesRoute)
+app.use('/user_views/profile', profileRoute)
 
 app.listen(3000, () => {
     database.sequelize.sync();

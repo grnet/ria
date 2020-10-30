@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false,
           },
-        author_id: DataTypes.STRING,
+        //author_id: DataTypes.STRING,
         title: DataTypes.STRING,
         epispeydon_ypoyrgeio: DataTypes.STRING,
         stoixeia_epikoinwnias: DataTypes.STRING,

@@ -8,7 +8,7 @@ routes.post('/', async function(req,res,next){
     
     //add row to user model, map values from req.body
     let res_data = await database.user.create(req.body)
-    console.log(req.body)  
+    //console.log(req.body)  
     res.send(res_data)
     
 });

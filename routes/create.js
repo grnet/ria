@@ -9,7 +9,7 @@ routes.get('/', function(req,res,next){
 });
 
 routes.post('/', async function(req,res,next){
-    req.body.author_id="1";
+    //req.body.author_id="1";
     
     //console.log(req.file)
     
@@ -105,16 +105,41 @@ routes.post('/', async function(req,res,next){
     let apodosi_allo = JSON.stringify([{"field_19_apodosi_allo_thesmoi": req.body.field_19_apodosi_allo_thesmoi}, {"field_19_apodosi_allo_oikonomia": req.body.field_19_apodosi_allo_oikonomia}, {"field_19_apodosi_allo_kinonia": req.body.field_19_apodosi_allo_kinonia}, {"field_19_apodosi_allo_perivallon": req.body.field_19_apodosi_allo_perivallon}, {"field_19_apodosi_allo_nisiwtika": req.body.field_19_apodosi_allo_nisiwtika}])
 
     //------------------------------------------------------------------------------//
-    //add row to ekthesi model, map values from req.body
-    let res_data = await ekthesi.create(req.body)
-       
-    for (i in req.body) {
-        console.log("heyheyhey "+req.body.includes(fiels_14));
+    //add row to ekthesi model, set foreign key equal to session username to get author & then map values from req.body
+    
+    let res_data = await ekthesi.create(req.body);
 
+    res_data = await database.ekthesi.update({author:req.session.username}, {where:{
+        id: res_data.id
     }
-    console.log("req.body[0] "+req.body[0]);
+    })
+    console.log(res_data)
+    console.log(req.session.username);
 
-    //map letiables to model's fields
+
+    let req_body = req.body
+    var keys = Object.keys(req_body);
+    var field14 = [];
+    for (i in keys) {
+       // console.log(i + " " + keys[i])
+        if (keys[i].includes("field_14_stoxos")) {
+            console.log("heyheyhey FOUND ROW "+keys[i]);
+            var field_14_stoxos = keys[i];
+            var value = keys[field_14_arthro];
+            console.log("value= " + value);
+            var field_14_arthro = keys[i-1];
+            field14.push({"arthro": field_14_arthro, "stoxos": field_14_stoxos}) 
+        }
+    }    
+    console.log(field14);
+    /*console.log(req_body);       
+    for (i in req_body) {
+        if (req_body[i].includes("field_14")) {
+            console.log("heyheyhey "+req_body[i]);
+        }
+    }*/
+
+    //map variables to model's fields
     let rythmiseis_data = await database.rythmiseis.create({auksisi_esodwn: auksisi_esodwn, meiwsi_dapanwn: meiwsi_dapanwn, eksikonomisi_xronou: eksikonomisi_xronou, apodotikotita: apodotikotita, amesa_allo: amesa_allo,
         veltiwsi_ypiresiwn: veltiwsi_ypiresiwn, metaxirisi_politwn: metaxirisi_politwn, diafania_thesmwn: diafania_thesmwn, diaxirisi_kindynwn: diaxirisi_kindynwn, emmesa_allo: emmesa_allo, 
         proetimasia: proetimasia, ypodomi: ypodomi, kinitikotita: kinitikotita, emplekomenoi: emplekomenoi, efarmogi_allo:efarmogi_allo, apodosi_diaxirisis: apodosi_diaxirisis, ektelesi: ektelesi, apodosi_kostos: apodosi_kostos, apodosi_allo: apodosi_allo, rythmisiId: res_data.id } )   
@@ -126,8 +151,6 @@ routes.post('/', async function(req,res,next){
         atmosfairiki_rypansi: atmosfairiki_rypansi, viologikoi_katharismoi:viologikoi_katharismoi, katallhles_aktes: katallhles_aktes, katallilotita_diktyoy_ydreysis: katallilotita_diktyoy_ydreysis, xrisi_aporrimmatwn: xrisi_aporrimmatwn, aporrimmata_xyta: aporrimmata_xyta, katastrofi_dasikwn_ektasewn: katastrofi_dasikwn_ektasewn, anadaswseis: anadaswseis, prostateuomenes_perioxes:prostateuomenes_perioxes, proypologismos_prostasias_perivallontos: proypologismos_prostasias_perivallontos, katanalwsi_energeias_kata_kefali: katanalwsi_energeias_kata_kefali, katanalwsi_energeias_ana_morfi: katanalwsi_energeias_ana_morfi, katanalwsi_energeias_apo_ananewsimes_piges: katanalwsi_energeias_apo_ananewsimes_piges, meiwsi_ekpompwn_thermokipioy: meiwsi_ekpompwn_thermokipioy,
         allos_deiktis1: allos_deiktis1, allos_deiktis2: allos_deiktis2, allos_deiktis3:allos_deiktis3, allos_deiktis4: allos_deiktis4, allos_deiktis5: allos_deiktis5 , field9Id: res_data.id } )   
         
-    console.log(req.body)    
-    console.log(req.body.table14RowIndex)
     res.send(res_data)
 });
 
