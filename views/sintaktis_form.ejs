@@ -15,16 +15,16 @@
                 <br>
                 
                 <div class="form-group row">
-                    <label for="title" class="col-sm-6 col-form-label">Τίτλος αξιολογούμενης ρύθμισης</label>
+                    <label for="title" class="col-sm-6 col-form-label required">Τίτλος αξιολογούμενης ρύθμισης</label>
                     <div class="col-sm-4">
-                    <input type="text" class="form-control" id="title" name="title" >
+                    <input type="text" class="form-control" id="title" name="title">
                     </div>
                 </div>
 
                 <br><hr>
 
                 <div class="form-group row">
-                    <label for="epispeydon_ypoyrgeio" class="col-sm-6 col-form-label">Επισπεύδον φορέας</label>
+                    <label for="epispeydon_ypoyrgeio" class="col-sm-6 col-form-label required">Επισπεύδον φορέας</label>
                     <div class="col-sm-4">
                     <textarea class="form-control" id="epispeydon_ypoyrgeio" name="epispeydon_ypoyrgeio" rows="3" placeholder="Επισπεύδον Υπουργείο ή Βουλευτής"></textarea>
                     </div>
@@ -51,7 +51,7 @@
                 <br><hr>
                 
                 <p>Επιλέξατε από τον παρακάτω κατάλογο τον τομέα ή τους τομείς νομοθέτησης στους οποίους αφορούν οι βασικές διατάξεις της αξιολογούμενης ρύθμισης:</p>
-                <div class="checkbox-group form-group row">
+                <div class="checkbox-group form-group row ">
                     <label for="ekpedeusi_politismos" class="col-sm-8 col-form-label">ΕΚΠΑΙΔΕΥΣΗ - ΠΟΛΙΤΙΣΜΟΣ<sup>1</sup></label>
                     <input class="col-sm-2 form-check-input position-static" name="ekpedeusi_politismos" type="checkbox" id="ekpedeusi_politismos" value="ekpedeusi_politismos">
                 </div>
@@ -92,17 +92,17 @@
                 <br>
 
                 <div class="form-group">
-                    <label for="field_1">1. Ποιο ζήτημα αντιμετωπίζει η αξιολογούμενη ρύθμιση;</label>
+                    <label for="field_1" class="required">1. Ποιο ζήτημα αντιμετωπίζει η αξιολογούμενη ρύθμιση;</label>
                     <textarea class="form-control" id="field_1" name="field_1" rows="3"></textarea>
                 </div>
                 
                 <div class="form-group">
-                    <label for="field_2">2. Γιατί αποτελεί πρόβλημα;</label>
+                    <label for="field_2" class="required">2. Γιατί αποτελεί πρόβλημα;</label>
                     <textarea class="form-control" id="field_2" name="field_2" rows="3"></textarea>
                 </div>
 
                 <div class="form-group">
-                    <label for="field_3">3. Ποιους φορείς ή πληθυσμιακές ομάδες αφορά;</label>
+                    <label for="field_3" class="required">3. Ποιους φορείς ή πληθυσμιακές ομάδες αφορά;</label>
                     <textarea class="form-control" id="field_3" name="field_3" rows="3"></textarea>
                 </div>
 
@@ -114,7 +114,7 @@
                 <h2>Η αναγκαιότητα της αξιολογούμενης ρύθμισης</h2>
                 <br>
                 <div class="checkbox-group form-group row">
-                    <label for="field_4" class="col-sm-8 col-form-label">4. Το εν λόγω ζήτημα έχει αντιμετωπιστεί με νομοθετική ρύθμιση στο παρελθόν;</label>
+                    <label for="field_4" class="col-sm-8 col-form-label required">4. Το εν λόγω ζήτημα έχει αντιμετωπιστεί με νομοθετική ρύθμιση στο παρελθόν;</label>
                     <select id="field_4" name="field_4" class="col-sm-2 form-control">
                         <option selected disabled>Eπιλογή</option>
                         <option value="yes">Ναι</option>
@@ -123,7 +123,7 @@
                 </div>
                 
                 <div id="field_4_wrap" class="form-group" style="display:none;">
-                    <label for="field_4_1">4.1 Ποιο είναι το ισχύον νομικό πλαίσιο που ρυθμίζει το ζήτημα;</label>
+                    <label for="field_4_1" class="required">4.1 Ποιο είναι το ισχύον νομικό πλαίσιο που ρυθμίζει το ζήτημα;</label>
                     <textarea class="form-control" id="field_4_1" name="field_4_comments" rows="3"></textarea>
                 </div>
             
@@ -132,19 +132,19 @@
             </fieldset>
             
             <fieldset>
-                <label >5. Γιατί δεν είναι δυνατό να αντιμετωπιστεί στο πλαίσιο της υφιστάμενης νομοθεσίας:</label>
+                <label class="required">5. Γιατί δεν είναι δυνατό να αντιμετωπιστεί στο πλαίσιο της υφιστάμενης νομοθεσίας:</label>
                 <div class="form-group">
-                    <label for="field_5_1">5.1 με αλλαγή προεδρικού διατάγματος, υπουργικής απόφασης ή άλλης κανονιστικής πράξης;</label>
+                    <label for="field_5_1" class="required">5.1 με αλλαγή προεδρικού διατάγματος, υπουργικής απόφασης ή άλλης κανονιστικής πράξης;</label>
                     <textarea class="form-control" id="field_5_1" name="field_5_1" rows="3"></textarea>
                 </div>
 
                 <div class="form-group">
-                    <label for="field_5_2">5.2 με αλλαγή διοικητικής πρακτικής συμπεριλαμβανομένης της δυνατότητας νέας ερμηνευτικής προσέγγισης της υφιστάμενης νομοθεσίας;</label>
+                    <label for="field_5_2" class="required">5.2 με αλλαγή διοικητικής πρακτικής συμπεριλαμβανομένης της δυνατότητας νέας ερμηνευτικής προσέγγισης της υφιστάμενης νομοθεσίας;</label>
                     <textarea class="form-control" id="field_5_2" name="field_5_2" rows="3"></textarea>
                 </div>
 
                 <div class="form-group">
-                    <label for="field_5_3">5.3 με διάθεση περισσότερων ανθρώπινων και υλικών πόρων;</label>
+                    <label for="field_5_3" class="required">5.3 με διάθεση περισσότερων ανθρώπινων και υλικών πόρων;</label>
                     <textarea class="form-control" id="field_5_3" name="field_5_3" rows="3"></textarea>
                 </div>
 
@@ -156,7 +156,7 @@
                 <h2>Συναφείς πρακτικές</h2>
                 <br>
                 <div class="checkbox-group form-group row">
-                    <label for="field_6" class="col-sm-8 col-form-label">6. Έχετε λάβει υπόψη συναφείς πρακτικές;</label>
+                    <label for="field_6" class="col-sm-8 col-form-label required">6. Έχετε λάβει υπόψη συναφείς πρακτικές;</label>
                     <select id="field_6" name="field_6" class="col-sm-2 form-control">
                         <option selected disabled>Eπιλογή</option>
                         <option value="yes">Ναι</option>
@@ -165,12 +165,12 @@
                 </div>
 
                 <div id="field_6_wrap" class="form-group" style="display:none;">
-                    <label for="field_6_1">6.1 Σε άλλη/ες χώρα/ες της Ε.Ε. ή του ΟΟΣΑ:</label>
+                    <label for="field_6_1" class="required">6.1 Σε άλλη/ες χώρα/ες της Ε.Ε. ή του ΟΟΣΑ:</label>
                     <textarea class="form-control" id="field_6_1" name="field_6_1" rows="3"></textarea>
                     <br>
-                    <label for="field_6_2">6.2 Σε όργανα της Ε.Ε.:</label>
+                    <label for="field_6_2" class="required">6.2 Σε όργανα της Ε.Ε.:</label>
                     <textarea class="form-control" id="field_6_2" name="field_6_2" rows="3"></textarea>
-                    <label for="field_6_3">6.3 Σε διεθνείς οργανισμούς:</label>
+                    <label for="field_6_3" class="required">6.3 Σε διεθνείς οργανισμούς:</label>
                     <textarea class="form-control" id="field_6_3" name="field_6_3" rows="3"></textarea>
                 </div>
                 <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενα πεδία"/>
@@ -181,7 +181,7 @@
                 <h2>Στόχοι αξιολογούμενης ρύθμισης</h2>
                 <br>
                 <div id="field_7_wrap">
-                    <label  class="col-form-label">7. Σημειώστε ποιοι από τους στόχους βιώσιμης ανάπτυξης των Ηνωμένων Εθνών επιδιώκονται με την αξιολογούμενη ρύθμιση</label>
+                    <label  class="col-form-label required">7. Σημειώστε ποιοι από τους στόχους βιώσιμης ανάπτυξης των Ηνωμένων Εθνών επιδιώκονται με την αξιολογούμενη ρύθμιση</label>
                     <div class="flex-form-group form-group">
                         <div class="wrap">
                           <input id="goal_1" class="checkbox-inline" type="checkbox" name="field_7_goal_1" value="goal_1">
@@ -265,14 +265,14 @@
                     </div>
                 </div>
                 <hr>
-                <label>8. Ποιοι είναι οι στόχοι της αξιολογούμενης ρύθμισης;</label>
+                <label class="required">8. Ποιοι είναι οι στόχοι της αξιολογούμενης ρύθμισης;</label>
                 <div class="form-group">
-                    <label for="field_8_1">8.1 βραχυπρόθεσμοι: </label>
+                    <label for="field_8_1" class="required">8.1 βραχυπρόθεσμοι: </label>
                     <textarea class="form-control" id="field_8_1" name="field_8_1" rows="3"></textarea>
                 </div>
 
                 <div class="form-group">
-                    <label for="field_8_2">8.2 μακροπρόθεσμοι: </label>
+                    <label for="field_8_2" class="required">8.2 μακροπρόθεσμοι: </label>
                     <textarea class="form-control" id="field_8_2" name="field_8_2" rows="3"></textarea>
                 </div>
 
@@ -287,33 +287,33 @@
                 <br>
 
                 <div class="checkbox-group form-group row">
-                    <label class="col-sm-8 col-form-label">10. Σε περίπτωση που προβλέπεται η χρήση πληροφοριακού συστήματος, ποια θα είναι η συμβολή αυτού στην επίτευξη των στόχων της αξιολογούμενης ρύθμισης: </label>
+                    <label class="col-sm-8 col-form-label required">10. Σε περίπτωση που προβλέπεται η χρήση πληροφοριακού συστήματος, ποια θα είναι η συμβολή αυτού στην επίτευξη των στόχων της αξιολογούμενης ρύθμισης: </label>
                 </div>
 
                 <div class="checkbox-group form-group row">
                     <div class="col-2"></div>
-                    <label class="col-3 col-form-label">ΑΜΕΣΗ</label>
+                    <label class="col-3 col-form-label required">ΑΜΕΣΗ</label>
                     <input class="col-2 form-check-input position-static" type="checkbox" id="field_10_amesi" name="field_10_amesi" value="field_10_amesi">
                 </div>
                 <div id="amesi_wrap" class="form-group" style="display:none;">
-                    <label for="field_10_amesi_comments">Εάν είναι άμεση, εξηγήστε:</label>
+                    <label for="field_10_amesi_comments " class="required" >Εάν είναι άμεση, εξηγήστε:</label>
                     <textarea class="form-control" id="field_10_amesi_comments" name="field_10_amesi_comments" rows="3"></textarea>
                 </div>
 
                 <div class="checkbox-group form-group row">
                     <div class="col-2"></div>
-                    <label class="col-3 col-form-label">ΕΜΜΕΣΗ</label>
+                    <label class="col-3 col-form-label required">ΕΜΜΕΣΗ</label>
                     <input class="col-2 form-check-input position-static" type="checkbox" id="field_10_emmesi" value="field_10_emmesi">
                 </div>         
 
                 <div id="emesi_wrap" class="form-group" style="display:none;">
-                    <label for="field_10_emesi_comments">Εάν είναι έμμεση, εξηγήστε:</label>
+                    <label for="field_10_emesi_comments " class="required">Εάν είναι έμμεση, εξηγήστε:</label>
                     <textarea class="form-control" id="field_10_emesi_comments" name="field_10_emmesi_comments" rows="3"></textarea>
                 </div>
                 <hr>
 
                 <div class="checkbox-group form-group row">
-                    <label for="field_11" class="col-sm-8 col-form-label">11. Το προβλεπόμενο πληροφοριακό σύστημα είναι συμβατό με την εκάστοτε ψηφιακή στρατηγική της χώρας (Βίβλος Ψηφιακού Μετασχηματισμού);</label>
+                    <label for="field_11" class="col-sm-8 col-form-label required">11. Το προβλεπόμενο πληροφοριακό σύστημα είναι συμβατό με την εκάστοτε ψηφιακή στρατηγική της χώρας (Βίβλος Ψηφιακού Μετασχηματισμού);</label>
                     <select id="field_11" name="field_11" class="col-sm-2 form-control">
                         <option selected disabled>Eπιλογή</option>
                         <option value="yes">Ναι</option>
@@ -322,13 +322,13 @@
                 </div>
 
                 <div id="field_11_wrap" class="form-group" style="display:none;">
-                    <label for="field_11_comments">Εξηγήστε</label>
+                    <label for="field_11_comments " class="required">Εξηγήστε</label>
                     <textarea class="form-control" name="field_11_comments" id="field_11_comments" rows="3"></textarea>
                 </div>
                 <hr>
 
                 <div class="checkbox-group form-group row">
-                    <label for="field_12" class="col-sm-8 col-form-label">12. Διασφαλίζεται η διαλειτουργικότητα του εν λόγω πληροφοριακού συστήματος με άλλα υφιστάμενα συστήματα;</label>
+                    <label for="field_12" class="col-sm-8 col-form-label required">12. Διασφαλίζεται η διαλειτουργικότητα του εν λόγω πληροφοριακού συστήματος με άλλα υφιστάμενα συστήματα;</label>
                     <select id="field_12" name="field_12" class="col-sm-2 form-control">
                         <option selected disabled>Eπιλογή</option>
                         <option value="yes">Ναι</option>
@@ -336,14 +336,14 @@
                     </select>
                 </div>
                 
-                <div id="field_12_wrap" class="form-group" style="display:none;">
-                    <label for="field_12_comments">Αναφέρατε ποια είναι αυτά τα συστήματα:</label>
+                <div id="field_12_wrap" class="form-group " style="display:none;">
+                    <label for="field_12_comments " class="required">Αναφέρατε ποια είναι αυτά τα συστήματα:</label>
                     <textarea class="form-control" name="field_12_comments" id="field_12_comments" rows="3"></textarea>
                 </div>
                 <hr>
                 
                 <div class="checkbox-group form-group row">
-                    <label for="field_13" class="col-sm-8 col-form-label">13. Έχει προηγηθεί μελέτη βιωσιμότητας του προβλεπόμενου πληροφοριακού συστήματος;</label>
+                    <label for="field_13" class="col-sm-8 col-form-label required">13. Έχει προηγηθεί μελέτη βιωσιμότητας του προβλεπόμενου πληροφοριακού συστήματος;</label>
                     <select id="field_13" name="field_13" class="col-sm-2 form-control">
                         <option selected disabled>Eπιλογή</option>
                         <option value="yes">Ναι</option>
@@ -352,7 +352,7 @@
                 </div>
 
                 <div id="field_13_wrap" class="form-group" style="display:none;">
-                    <label for="field_13_comments">Εξηγήστε</label>
+                    <label for="field_13_comments " class="required">Εξηγήστε</label>
                     <textarea class="form-control" name="field_13_comments" id="field_13_comments" rows="3"></textarea>
                 </div>
                 
@@ -360,13 +360,13 @@
                 <input type="button" name="next" class="next action-button" value="Επόμενα πεδία"/>
             </fieldset>
 
-            <fieldset>
-                <h2>Κατ’ άρθρο ανάλυση αξιολογούμενης ρύθμισης</h2>
+            <fieldset >
+                <h2 >Κατ’ άρθρο ανάλυση αξιολογούμενης ρύθμισης</h2>
                 <br>
-                <table class="table" id="field_14_table">
-                    <thead class="thead">
-                        <tr>
-                            <th colspan="2">14.Σύνοψη στόχων κάθε άρθρου</th>
+                <table class="table " id="field_14_table">
+                    <thead class="thead ">
+                        <tr> 
+                            <th colspan="2" ><label class="required">14.Σύνοψη στόχων κάθε άρθρου</label></th>
                         </tr>  
                         <tr>
                             <th colspan="1">Άρθρο</th>
@@ -607,6 +607,12 @@
         background-color: blue;
     }
 
+    form label.required:after
+    {
+        color: red;
+        content: " *";
+    }
+
 </style>
 
 
@@ -649,6 +655,40 @@ $(".save_temporarily").on("click",function(ev){
 $(".back").on("click", function (ev) {
     window.location.href = "/user_views/history";
 })
+
+var analysis = "<%= analysis%>";
+//console.log("analysis-> "+analysis); // log analysis type
+if ( analysis ==":kateythintiries_grammes") {
+    //document.getElementById("add_row_table_14").disabled = true;//js
+    $('#add_row_table_14').prop('disabled', true);//jquery
+    $("#field_15_ypoyrgeio").prop('disabled', true)//disable field
+    $("#field_15_sxedio_nomou").prop('disabled', true)
+    $("#field_15_rythmiseis").prop('disabled', true)
+    $("#field_15_ypoyrgeio_label").removeClass("required");//remove required class from label
+    $("#field_15_sxedio_nomou_label").removeClass("required");
+    $("#field_15_rythmiseis_label").removeClass("required");
+    $("#field_16_kratikos_proypologismos").prop('disabled', true)
+    $("#field_16_proypologismos_forea").prop('disabled', true)
+    $("#field_16_kratikos_proypologismos_label").removeClass("required");
+    $("#field_16_proypologismos_forea_label").removeClass("required");
+    $("#field_17_ypoyrgeio").prop('disabled', true)
+    $("#field_17_sxedio_nomou").prop('disabled', true)
+    $("#field_17_oikonomika_apotelesmata").prop('disabled', true)
+    $("#field_17_ypoyrgeio_label").removeClass("required");
+    $("#field_17_sxedio_nomou_label").removeClass("required");
+    $("#field_17_oikonomika_apotelesmata_label").removeClass("required");
+    $('#field_23_upload').prop('disabled', true);//jquery
+    $("#field_23_arxes_symmetasxontes").prop('disabled', true)
+    $("#field_23_arxes_sxolia_yiothetithikan").prop('disabled', true)
+    $("#field_23_arxes_sxolia_den_yiothetithikan").prop('disabled', true)
+    $("#field_23_arthra_symmetasxontes").prop('disabled', true)
+    $("#field_23_arthra_sxolia_yiothetithikan").prop('disabled', true)
+    $("#field_23_arthra_sxolia_den_yiothetithikan").prop('disabled', true)
+    $("#field_23_upload_label").removeClass("required");
+    $("#field_23_arxes_label").removeClass("required");
+    $("#field_23_arthra_label").removeClass("required");
+    
+}
 
 //row counter
 var table14RowIndex = 0;

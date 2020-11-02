@@ -1,11 +1,11 @@
 const routes = require('express').Router()
-const { ekthesi } = require('../services/database');
 let database = require("../services/database")
 let multer = require('multer');
 let upload =  multer({ dest: './uploads/'});
 
-routes.get('/', function(req,res,next){
-    res.render("create")
+routes.get('/:analysis', function(req,res,next){
+    console.log(req.params.analysis)
+    res.render("create", {analysis:req.params.analysis})
 });
 
 routes.post('/', async function(req,res,next){
