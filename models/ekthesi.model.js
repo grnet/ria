@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
           },
         //author_id: DataTypes.STRING,
+        typos_analysis: DataTypes.STRING, 
         title: DataTypes.STRING,
         epispeydon_ypoyrgeio: DataTypes.STRING,
         stoixeia_epikoinwnias: DataTypes.STRING,

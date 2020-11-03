@@ -61,7 +61,7 @@
                         <p>Επιλέξατε από τον παρακάτω κατάλογο τον τομέα ή τους τομείς νομοθέτησης στους οποίους αφορούν
                             οι βασικές διατάξεις της αξιολογούμενης ρύθμισης:</p>
                         <div class="checkbox-group form-group row">
-                            <label for="ekpedeusi_politismos" class="col-sm-8 col-form-label">ΕΚΠΑΙΣΕΥΣΗ -
+                            <label for="ekpedeusi_politismos" class="col-sm-8 col-form-label">ΕΚΠΑΙΔΕΥΣΗ -
                                 ΠΟΛΙΤΙΣΜΟΣ<sup>1</sup></label>
                             <% if(data.ekpedeusi_politismos){ %>
                             <input class="col-sm-2 form-check-input position-static" name="ekpedeusi_politismos"
@@ -615,10 +615,10 @@
                                      for (var i = 0; i < data.field_14_arthro.length; i++) { %>
                                 <tr>
                                     <td><textarea class="form-control" id="field_14_arthro" name="field_14_arthro"
-                                            placeholder="Άρθρο" rows="1"><%= data.field_14_arthro[i] %></textarea></td>
+                                            placeholder="Άρθρο" rows="1"><%= Object.values(data.field_14_arthro[i]) %></textarea></td>
                                     <td>
                                         <textarea class="form-control" placeholder="Υφιστάμενες διατάξεις"
-                                            rows="1"><%= data.field_14_stoxos[i] %></textarea>
+                                            rows="1"><%= Object.values(data.field_14_stoxos[i]) %></textarea>
                                         <button class="btn remove float-right" type="button"><img src="/img/delete.png"
                                                 width="20px"></button>
                                     </td>
@@ -943,8 +943,13 @@
             })
 
             //row counter
-            var table14RowIndex = 0;
-
+            var table14RowIndex; 
+            if ("data.field_14_arthro.length" != null){
+                var table14RowIndex  = "<%=data.field_14_arthro.length %>"
+            } else {
+                table14RowIndex = 0;
+            }
+            console.log("table14RowIndex: " + table14RowIndex)
             // jQuery button click event for table 14 to add a row
             $("#add_row_table_14").on("click", function () {
                 //append adds row to table body with id 'tbody_14'

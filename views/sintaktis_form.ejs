@@ -132,7 +132,7 @@
             </fieldset>
             
             <fieldset>
-                <label class="required">5. Γιατί δεν είναι δυνατό να αντιμετωπιστεί στο πλαίσιο της υφιστάμενης νομοθεσίας:</label>
+                <label>5. Γιατί δεν είναι δυνατό να αντιμετωπιστεί στο πλαίσιο της υφιστάμενης νομοθεσίας:</label>
                 <div class="form-group">
                     <label for="field_5_1" class="required">5.1 με αλλαγή προεδρικού διατάγματος, υπουργικής απόφασης ή άλλης κανονιστικής πράξης;</label>
                     <textarea class="form-control" id="field_5_1" name="field_5_1" rows="3"></textarea>
@@ -265,7 +265,7 @@
                     </div>
                 </div>
                 <hr>
-                <label class="required">8. Ποιοι είναι οι στόχοι της αξιολογούμενης ρύθμισης;</label>
+                <label>8. Ποιοι είναι οι στόχοι της αξιολογούμενης ρύθμισης;</label>
                 <div class="form-group">
                     <label for="field_8_1" class="required">8.1 βραχυπρόθεσμοι: </label>
                     <textarea class="form-control" id="field_8_1" name="field_8_1" rows="3"></textarea>
@@ -366,7 +366,7 @@
                 <table class="table " id="field_14_table">
                     <thead class="thead ">
                         <tr> 
-                            <th colspan="2" ><label class="required">14.Σύνοψη στόχων κάθε άρθρου</label></th>
+                            <th colspan="2" ><label id="table_14_label" class="required">14.Σύνοψη στόχων κάθε άρθρου</label></th>
                         </tr>  
                         <tr>
                             <th colspan="1">Άρθρο</th>
@@ -657,37 +657,142 @@ $(".back").on("click", function (ev) {
 })
 
 var analysis = "<%= analysis%>";
+
+function optionalFields (fieldId) {
+    $(fieldId).prop('disabled', true);//find and disable field or button
+    //console.log((fieldId));
+};
+
+function optionalFieldsClassRemoval (fieldLabel) {
+    $(fieldLabel).removeClass("required");//remove required class from label
+    console.log((fieldLabel));
+};
+
 //console.log("analysis-> "+analysis); // log analysis type
 if ( analysis ==":kateythintiries_grammes") {
-    //document.getElementById("add_row_table_14").disabled = true;//js
-    $('#add_row_table_14').prop('disabled', true);//jquery
-    $("#field_15_ypoyrgeio").prop('disabled', true)//disable field
-    $("#field_15_sxedio_nomou").prop('disabled', true)
-    $("#field_15_rythmiseis").prop('disabled', true)
-    $("#field_15_ypoyrgeio_label").removeClass("required");//remove required class from label
-    $("#field_15_sxedio_nomou_label").removeClass("required");
-    $("#field_15_rythmiseis_label").removeClass("required");
-    $("#field_16_kratikos_proypologismos").prop('disabled', true)
-    $("#field_16_proypologismos_forea").prop('disabled', true)
-    $("#field_16_kratikos_proypologismos_label").removeClass("required");
-    $("#field_16_proypologismos_forea_label").removeClass("required");
-    $("#field_17_ypoyrgeio").prop('disabled', true)
-    $("#field_17_sxedio_nomou").prop('disabled', true)
-    $("#field_17_oikonomika_apotelesmata").prop('disabled', true)
-    $("#field_17_ypoyrgeio_label").removeClass("required");
-    $("#field_17_sxedio_nomou_label").removeClass("required");
-    $("#field_17_oikonomika_apotelesmata_label").removeClass("required");
-    $('#field_23_upload').prop('disabled', true);//jquery
-    $("#field_23_arxes_symmetasxontes").prop('disabled', true)
-    $("#field_23_arxes_sxolia_yiothetithikan").prop('disabled', true)
-    $("#field_23_arxes_sxolia_den_yiothetithikan").prop('disabled', true)
-    $("#field_23_arthra_symmetasxontes").prop('disabled', true)
-    $("#field_23_arthra_sxolia_yiothetithikan").prop('disabled', true)
-    $("#field_23_arthra_sxolia_den_yiothetithikan").prop('disabled', true)
-    $("#field_23_upload_label").removeClass("required");
-    $("#field_23_arxes_label").removeClass("required");
-    $("#field_23_arthra_label").removeClass("required");
+
+    optionalFields("#add_row_table_14");
+    optionalFields("#field_15_ypoyrgeio");
+    optionalFields("#field_15_rythmiseis");
+    optionalFields("#field_15_sxedio_nomou");
+    optionalFields("#field_16_kratikos_proypologismos");
+    optionalFields("#field_16_proypologismos_forea");
+    optionalFields("#field_17_ypoyrgeio");
+    optionalFields("#field_17_sxedio_nomou");
+    optionalFields("#field_17_oikonomika_apotelesmata");
+    optionalFields("#field_23_upload");
+    optionalFields("#field_23_arxes_symmetasxontes");
+    optionalFields("#field_23_arxes_sxolia_yiothetithikan");
+    optionalFields("#field_23_arxes_sxolia_den_yiothetithikan");
+    optionalFields("#field_23_arthra_symmetasxontes");
+    optionalFields("#field_23_arthra_sxolia_yiothetithikan");
+    optionalFields("#field_23_arthra_sxolia_den_yiothetithikan");
+    optionalFields("#add_row_table_31");
+    optionalFields("#add_row_table_32");
+    optionalFields("#field_33");
+    optionalFields("#field_34");
+    optionalFields("#field_35");
+    optionalFields("#field_36");
+    optionalFields("#field_36_upload");
+    optionalFields("#field_37");
+    optionalFields("#field_38");
+    optionalFields("#field_39");
+    optionalFields("#field_40");
+
+    optionalFieldsClassRemoval("#table_14_label");
+    optionalFieldsClassRemoval("#field_15_ypoyrgeio_label");
+    optionalFieldsClassRemoval("#field_15_sxedio_nomou_label");
+    optionalFieldsClassRemoval("#field_15_rythmiseis_label");
+    optionalFieldsClassRemoval("#field_16_kratikos_proypologismos_label");
+    optionalFieldsClassRemoval("#field_16_proypologismos_forea_label");
+    optionalFieldsClassRemoval("#field_17_ypoyrgeio_label");
+    optionalFieldsClassRemoval("#field_17_sxedio_nomou_label");
+    optionalFieldsClassRemoval("#field_17_oikonomika_apotelesmata_label");
+    optionalFieldsClassRemoval("#field_23_upload_label");
+    optionalFieldsClassRemoval("#field_23_arxes_label");
+    optionalFieldsClassRemoval("#field_23_arthra_label");
+    optionalFieldsClassRemoval("#table_31_label");
+    optionalFieldsClassRemoval("#table_32_label");
+    optionalFieldsClassRemoval("#field_33_label");
+    optionalFieldsClassRemoval("#field_34_label");
+    optionalFieldsClassRemoval("#field_35_label");
+    optionalFieldsClassRemoval("#field_36_label");
+    optionalFieldsClassRemoval("#field_36_upload_label");
+    optionalFieldsClassRemoval("#field_37_label");
+    optionalFieldsClassRemoval("#field_38_label");
+    optionalFieldsClassRemoval("#field_39_label");
+    optionalFieldsClassRemoval("#field_40_label");   
+
+} else if ( analysis ==":prosxedio_nomoy") {
+    optionalFields("#field_15_ypoyrgeio");
+    optionalFields("#field_15_rythmiseis");
+    optionalFields("#field_15_sxedio_nomou");
+    optionalFields("#field_16_kratikos_proypologismos");
+    optionalFields("#field_16_proypologismos_forea");
+    optionalFields("#field_17_ypoyrgeio");
+    optionalFields("#field_17_sxedio_nomou");
+    optionalFields("#field_17_oikonomika_apotelesmata");
+    optionalFields("#field_23_upload");
+    optionalFields("#field_23_arxes_symmetasxontes");
+    optionalFields("#field_23_arxes_sxolia_yiothetithikan");
+    optionalFields("#field_23_arxes_sxolia_den_yiothetithikan");
+    optionalFields("#field_23_arthra_symmetasxontes");
+    optionalFields("#field_23_arthra_sxolia_yiothetithikan");
+    optionalFields("#field_23_arthra_sxolia_den_yiothetithikan");
+
+    optionalFieldsClassRemoval("#field_15_ypoyrgeio_label");
+    optionalFieldsClassRemoval("#field_15_sxedio_nomou_label");
+    optionalFieldsClassRemoval("#field_15_rythmiseis_label");
+    optionalFieldsClassRemoval("#field_16_kratikos_proypologismos_label");
+    optionalFieldsClassRemoval("#field_16_proypologismos_forea_label");
+    optionalFieldsClassRemoval("#field_17_ypoyrgeio_label");
+    optionalFieldsClassRemoval("#field_17_sxedio_nomou_label");
+    optionalFieldsClassRemoval("#field_17_oikonomika_apotelesmata_label");
+    optionalFieldsClassRemoval("#field_23_upload_label");
+    optionalFieldsClassRemoval("#field_23_arxes_label");
+    optionalFieldsClassRemoval("#field_23_arthra_label");    
+
+}  else if ( analysis ==":epeigonta_katepeigonta" || analysis ==":diethneis_symvaseis") {
     
+    optionalFields("#field_22_sinergasia_ypoyrgeiwn");
+    optionalFields("#field_22_sinergasia_forewn_arxwn");
+    optionalFields("#field_22_diethnis_diavouleusi");
+    optionalFields("#field_23_upload");
+    optionalFields("#field_23_arxes_symmetasxontes");
+    optionalFields("#field_23_arxes_sxolia_yiothetithikan");
+    optionalFields("#field_23_arxes_sxolia_den_yiothetithikan");
+    optionalFields("#field_23_arthra_symmetasxontes");
+    optionalFields("#field_23_arthra_sxolia_yiothetithikan");
+    optionalFields("#field_23_arthra_sxolia_den_yiothetithikan");
+    optionalFields("#add_row_table_31");
+    optionalFields("#add_row_table_32");
+    optionalFields("#field_33");
+    optionalFields("#field_34");
+    optionalFields("#field_35");
+    optionalFields("#field_36");
+    optionalFields("#field_36_upload");
+    optionalFields("#field_37");
+    optionalFields("#field_38");
+    optionalFields("#field_39");
+    optionalFields("#field_40");  
+
+    optionalFieldsClassRemoval("#field_22_sinergasia_ypoyrgeiwn_label");
+    optionalFieldsClassRemoval("#field_22_sinergasia_forewn_arxwn_label");
+    optionalFieldsClassRemoval("#field_22_diethnis_diavouleusi_label");
+    optionalFieldsClassRemoval("#field_23_upload_label");
+    optionalFieldsClassRemoval("#field_23_arxes_label");
+    optionalFieldsClassRemoval("#field_23_arthra_label");
+    optionalFieldsClassRemoval("#table_31_label");
+    optionalFieldsClassRemoval("#table_32_label");
+    optionalFieldsClassRemoval("#field_33_label");
+    optionalFieldsClassRemoval("#field_34_label");
+    optionalFieldsClassRemoval("#field_35_label");
+    optionalFieldsClassRemoval("#field_36_label");
+    optionalFieldsClassRemoval("#field_36_upload_label");
+    optionalFieldsClassRemoval("#field_37_label");
+    optionalFieldsClassRemoval("#field_38_label");
+    optionalFieldsClassRemoval("#field_39_label");
+    optionalFieldsClassRemoval("#field_40_label");  
 }
 
 //row counter

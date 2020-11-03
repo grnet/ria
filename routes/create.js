@@ -105,39 +105,38 @@ routes.post('/', async function(req,res,next){
     let apodosi_allo = JSON.stringify([{"field_19_apodosi_allo_thesmoi": req.body.field_19_apodosi_allo_thesmoi}, {"field_19_apodosi_allo_oikonomia": req.body.field_19_apodosi_allo_oikonomia}, {"field_19_apodosi_allo_kinonia": req.body.field_19_apodosi_allo_kinonia}, {"field_19_apodosi_allo_perivallon": req.body.field_19_apodosi_allo_perivallon}, {"field_19_apodosi_allo_nisiwtika": req.body.field_19_apodosi_allo_nisiwtika}])
 
     //------------------------------------------------------------------------------//
-    //add row to ekthesi model, set foreign key equal to session username to get author & then map values from req.body
-    
-    let res_data = await ekthesi.create(req.body);
+    //add row to ekthesi model, map values from req.body & set foreign key equal to session username to get author 
+    let res_data = await database.ekthesi.create(req.body);
 
-    res_data = await database.ekthesi.update({author:req.session.username}, {where:{
+    let req_body = req.body;//assign req.body to variable
+    var keys = Object.keys(req_body);//get keys 
+    var field_14_arthro = [];
+    var field_14_stoxos = [];
+    var value, field_14_temp;
+    for (i in keys) {//iterate through keys
+       // console.log(i + " " + keys[i])
+        if (keys[i].includes("field_14_arthro")) { 
+            //console.log("FOUND ROW "+keys[i]);
+            value= req_body[keys[i]];//get value from pair
+            //console.log(" FOUND val "+value);
+            field_14_temp = keys[i];//get key 
+            field_14_arthro.push({ field_14_temp: value}); 
+        } else if (keys[i].includes("field_14_stoxos")) { 
+            value = req_body[keys[i]];
+            field_14_temp = keys[i];
+            field_14_stoxos.push({ field_14_temp: value}); 
+        }
+    }    
+    //field_14_arthro = JSON.stringify(field_14_arthro);
+    //console.log(field_14_arthro);
+    //console.log(field_14);
+    var author = req.session.username;
+
+    res_data = await database.ekthesi.update({author:author, field_14_arthro:field_14_arthro,field_14_stoxos: field_14_stoxos}, {where:{
         id: res_data.id
     }
     })
-    console.log(res_data)
-    console.log(req.session.username);
-
-
-    let req_body = req.body
-    var keys = Object.keys(req_body);
-    var field14 = [];
-    for (i in keys) {
-       // console.log(i + " " + keys[i])
-        if (keys[i].includes("field_14_stoxos")) {
-            console.log("heyheyhey FOUND ROW "+keys[i]);
-            var field_14_stoxos = keys[i];
-            var value = keys[field_14_arthro];
-            console.log("value= " + value);
-            var field_14_arthro = keys[i-1];
-            field14.push({"arthro": field_14_arthro, "stoxos": field_14_stoxos}) 
-        }
-    }    
-    console.log(field14);
-    /*console.log(req_body);       
-    for (i in req_body) {
-        if (req_body[i].includes("field_14")) {
-            console.log("heyheyhey "+req_body[i]);
-        }
-    }*/
+    //console.log(res_data)
 
     //map variables to model's fields
     let rythmiseis_data = await database.rythmiseis.create({auksisi_esodwn: auksisi_esodwn, meiwsi_dapanwn: meiwsi_dapanwn, eksikonomisi_xronou: eksikonomisi_xronou, apodotikotita: apodotikotita, amesa_allo: amesa_allo,
