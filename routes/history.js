@@ -12,7 +12,7 @@ routes.get('/', async function(req,res,next) {
     let entries = await database.ekthesi.findAll({
         include: [{model: database.user}]
     })
-    console.log( entries)
+    //console.log( entries)
     /*let user_entries = await database.ekthesi.findAll({where:{
         author: user.username
     }

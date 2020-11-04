@@ -53,23 +53,25 @@
 
   var user_role = '<%= user.rolos %>';
   if (user_role == 'Βουλευτής') {
-    document.getElementById("ekthesi").children[1].style.display = "none";
-    document.getElementById("ekthesi").children[2].style.display = "none";
-    document.getElementById("ekthesi").children[3].style.display = "none";
-    document.getElementById("ekthesi").children[4].style.display = "none";
-    document.getElementById("ekthesi").children[6].style.display = "none";    
+    document.getElementById("users_ekthesi").children[1].style.display = "none";
+    document.getElementById("users_ekthesi").children[2].style.display = "none";
+    document.getElementById("users_ekthesi").children[3].style.display = "none";
+    document.getElementById("users_ekthesi").children[4].style.display = "none";
+    document.getElementById("users_ekthesi").children[6].style.display = "none";    
+    document.getElementById("users_ekthesi").children[7].style.display = "none";    
   } else if (user_role == 'Βουλή') {
-    document.getElementById("ekthesi").children[0].style.display = "none";
-    document.getElementById("ekthesi").children[1].style.display = "none";
-    document.getElementById("ekthesi").children[2].style.display = "none";
-    document.getElementById("ekthesi").children[3].style.display = "none";
-    document.getElementById("ekthesi").children[4].style.display = "none";
-    document.getElementById("ekthesi").children[5].style.display = "none";
-    document.getElementById("ekthesi").children[6].style.display = "none";
-    document.getElementById("ekthesi").children[7].style.display = "none";
+    document.getElementById("users_ekthesi").children[0].style.display = "none";
+    document.getElementById("users_ekthesi").children[1].style.display = "none";
+    document.getElementById("users_ekthesi").children[2].style.display = "none";
+    document.getElementById("users_ekthesi").children[3].style.display = "none";
+    document.getElementById("users_ekthesi").children[4].style.display = "none";
+    document.getElementById("users_ekthesi").children[5].style.display = "none";
+    document.getElementById("users_ekthesi").children[6].style.display = "none";
+    document.getElementById("users_ekthesi").children[7].style.display = "none";
+    document.getElementById("users_ekthesi").children[8].style.display = "none";    
   } else if (user_role == 'Συντάκτης Υπουργείου') {
-    document.getElementById("ekthesi").children[5].style.display = "none";
-    document.getElementById("ekthesi").children[7].style.display = "none";
+    document.getElementById("users_ekthesi").children[5].style.display = "none";
+    document.getElementById("users_ekthesi").children[8].style.display = "none";
   }
 
 </script>

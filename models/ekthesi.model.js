@@ -125,8 +125,8 @@ module.exports = (sequelize, DataTypes) => {
         field_29_diatakseis_rythmisis: DataTypes.JSON,
         field_29_yfistamenes_diatakseis: DataTypes.JSON,
         field_30_diatakseis_katargisi: DataTypes.JSON,
-        field_30_katargoumenes_diatakseis: DataTypes.JSON,  
-
+        field_30_katargoumenes_diatakseis: DataTypes.JSON,
+          
         field_31_sxetiki_diataksi: DataTypes.JSON,  
         field_31_synarmodia_ypoyrgeia: DataTypes.JSON,  
         field_31_antikeimeno_synarmodiotitas: DataTypes.JSON,  

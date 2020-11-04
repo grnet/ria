@@ -657,7 +657,7 @@ $(".back").on("click", function (ev) {
 })
 
 var analysis = "<%= analysis%>";
-
+var role = "<%= rolos%>";
 function optionalFields (fieldId) {
     $(fieldId).prop('disabled', true);//find and disable field or button
     //console.log((fieldId));
@@ -752,7 +752,7 @@ if ( analysis ==":kateythintiries_grammes") {
     optionalFieldsClassRemoval("#field_23_arxes_label");
     optionalFieldsClassRemoval("#field_23_arthra_label");    
 
-}  else if ( analysis ==":epeigonta_katepeigonta" || analysis ==":diethneis_symvaseis") {
+}  else if ( analysis ==":epeigonta_katepeigonta" || analysis ==":diethneis_symvaseis" || analysis ==":tropologies_upourgwn" ) {
     
     optionalFields("#field_22_sinergasia_ypoyrgeiwn");
     optionalFields("#field_22_sinergasia_forewn_arxwn");
@@ -793,6 +793,84 @@ if ( analysis ==":kateythintiries_grammes") {
     optionalFieldsClassRemoval("#field_38_label");
     optionalFieldsClassRemoval("#field_39_label");
     optionalFieldsClassRemoval("#field_40_label");  
+} else if (analysis ==":tropologies_vouleutwn"){
+    //optionalFields("#field_18");
+    $("#ofeli_rythmisis_table").hide(); 
+    $("#kostos_rythmisis_table").hide(); 
+    $("#kindynoi_rythmisis_table").hide(); 
+    optionalFields("#field_18_comments");
+    optionalFields("#field_19_comments");
+    optionalFields("#field_20_comments");
+    optionalFields("#field_21_comments");
+    optionalFields("#field_21_upload");
+    optionalFields("#field_22_sinergasia_ypoyrgeiwn");
+    optionalFields("#field_22_sinergasia_forewn_arxwn");
+    optionalFields("#field_22_diethnis_diavouleusi");
+    optionalFields("#field_23_upload");
+    optionalFields("#field_23_arxes_symmetasxontes");
+    optionalFields("#field_23_arxes_sxolia_yiothetithikan");
+    optionalFields("#field_23_arxes_sxolia_den_yiothetithikan");
+    optionalFields("#field_23_arthra_symmetasxontes");
+    optionalFields("#field_23_arthra_sxolia_yiothetithikan");
+    optionalFields("#field_23_arthra_sxolia_den_yiothetithikan");
+    optionalFields("#field_24");
+    optionalFields("#field_25_dikaio");
+    optionalFields("#field_25_kanonismos");
+    optionalFields("#field_25_odigia");
+    optionalFields("#field_25_apofasi");
+    optionalFields("#field_26_antrwpina_dikaiwmata");
+    optionalFields("#field_26_symvaseis");
+    optionalFields("#field_27_dikastirio");
+    optionalFields("#field_27_arxi");
+    optionalFields("#field_28_nomologia");
+    optionalFields("#field_28_nomologia_dikaiwmatwn_anthrwpou");
+    optionalFields("#field_28_alla_dikastiria");
+    optionalFields("#add_row_table_31");
+    optionalFields("#add_row_table_32");
+    optionalFields("#field_33");
+    optionalFields("#field_34");
+    optionalFields("#field_35");
+    optionalFields("#field_36");
+    optionalFields("#field_36_upload");
+    optionalFields("#field_37");
+    optionalFields("#field_38");
+    optionalFields("#field_39");
+    optionalFields("#field_40"); 
+
+    optionalFieldsClassRemoval("#ofeli_rythmisis_table_label");  
+    optionalFieldsClassRemoval("#kostos_rythmisis_table_label");  
+    optionalFieldsClassRemoval("#kindynoi_rythmisis_table_label");  
+    optionalFieldsClassRemoval("#field_21_upload_label");  
+    optionalFieldsClassRemoval("#field_21_comments_label");  
+    optionalFieldsClassRemoval("#field_22_sinergasia_ypoyrgeiwn_label");
+    optionalFieldsClassRemoval("#field_22_sinergasia_forewn_arxwn_label");
+    optionalFieldsClassRemoval("#field_22_diethnis_diavouleusi_label");
+    optionalFieldsClassRemoval("#field_23_upload_label");
+    optionalFieldsClassRemoval("#field_23_arxes_label");
+    optionalFieldsClassRemoval("#field_23_arthra_label");
+    optionalFieldsClassRemoval("#field_24_label");
+    optionalFieldsClassRemoval("#field_25_dikaio_label");
+    optionalFieldsClassRemoval("#field_25_kanonismos_label");
+    optionalFieldsClassRemoval("#field_25_odigia_label");
+    optionalFieldsClassRemoval("#field_25_apofasi_label");
+    optionalFieldsClassRemoval("#field_26_antrwpina_dikaiwmata_label");
+    optionalFieldsClassRemoval("#field_26_symvaseis_label");
+    optionalFieldsClassRemoval("#field_27_dikastirio_label");
+    optionalFieldsClassRemoval("#field_27_arxi_label");
+    optionalFieldsClassRemoval("#field_28_nomologia_label");
+    optionalFieldsClassRemoval("#field_28_nomologia_dikaiwmatwn_anthrwpou_label");
+    optionalFieldsClassRemoval("#field_28_alla_dikastiria_label");
+    optionalFieldsClassRemoval("#table_31_label");
+    optionalFieldsClassRemoval("#table_32_label");
+    optionalFieldsClassRemoval("#field_33_label");
+    optionalFieldsClassRemoval("#field_34_label");
+    optionalFieldsClassRemoval("#field_35_label");
+    optionalFieldsClassRemoval("#field_36_label");
+    optionalFieldsClassRemoval("#field_36_upload_label");
+    optionalFieldsClassRemoval("#field_37_label");
+    optionalFieldsClassRemoval("#field_38_label");
+    optionalFieldsClassRemoval("#field_39_label");
+    optionalFieldsClassRemoval("#field_40_label"); 
 }
 
 //row counter
@@ -855,10 +933,10 @@ $("#add_row_table_29").on("click", function(){
     $('#tbody_29').append(`
         <tr id="R${++table29RowIndex}"> 
             <td> 
-                <textarea class="form-control" id="field_29_diatakseis_rythmisis" name="field_29_diatakseis_rythmisis" placeholder="Διατάξεις αξιολογούμενης ρύθμισης" rows="1"></textarea>
+                <textarea class="form-control" id="field_29_diatakseis_rythmisis${table29RowIndex}" name="field_29_diatakseis_rythmisis${table29RowIndex}" placeholder="Διατάξεις αξιολογούμενης ρύθμισης" rows="1"></textarea>
             </td> 
             <td> 
-                <textarea class="form-control" id="field_29_yfistamenes_diatakseis" name="field_29_yfistamenes_diatakseis" placeholder="Υφιστάμενες διατάξεις" rows="1"></textarea>
+                <textarea class="form-control" id="field_29_yfistamenes_diatakseis${table29RowIndex}" name="field_29_yfistamenes_diatakseis${table29RowIndex}" placeholder="Υφιστάμενες διατάξεις" rows="1"></textarea>
                 <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
             </td>    
         </tr>`
@@ -888,10 +966,10 @@ $("#add_row_table_30").on("click", function(){
     $('#tbody_30').append(`
         <tr id="R${++table30RowIndex}"> 
             <td> 
-                <textarea class="form-control" id="field_30_diatakseis_katargisi" name="field_30_diatakseis_katargisi" placeholder="Διατάξεις αξιολογούμενης ρύθμισης που προβλέπουν κατάργηση" rows="2"></textarea>
+                <textarea class="form-control" id="field_30_diatakseis_katargisi${table30RowIndex}" name="field_30_diatakseis_katargisi${table30RowIndex}" placeholder="Διατάξεις αξιολογούμενης ρύθμισης που προβλέπουν κατάργηση" rows="2"></textarea>
             </td> 
             <td> 
-                <textarea class="form-control" id="field_30_katargoumenes_diatakseis" name="field_30_katargoumenes_diatakseis" placeholder="Καταργούμενες διατάξεις" rows="2"></textarea>
+                <textarea class="form-control" id="field_30_katargoumenes_diatakseis${table30RowIndex}" name="field_30_katargoumenes_diatakseis${table30RowIndex}" placeholder="Καταργούμενες διατάξεις" rows="2"></textarea>
                 <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
             </td>    
         </tr>`
@@ -921,13 +999,13 @@ $("#add_row_table_31").on("click", function(){
     $('#tbody_31').append(`
         <tr id="R${++table31RowIndex}"> 
             <td> 
-                <textarea class="form-control" id="field_31_sxetiki_diataksi" name="field_31_sxetiki_diataksi" placeholder="Σχετική διάταξη αξιολογούμενης ρύθμισης" rows="2"></textarea>
+                <textarea class="form-control" id="field_31_sxetiki_diataksi${table31RowIndex}" name="field_31_sxetiki_diataksi${table31RowIndex}" placeholder="Σχετική διάταξη αξιολογούμενης ρύθμισης" rows="2"></textarea>
             </td> 
             <td> 
-                <textarea class="form-control" id="field_31_synarmodia_ypoyrgeia" name="field_31_synarmodia_ypoyrgeia" placeholder="Συναρμόδια Υπουργεία – Συναρμόδιες υπηρεσίες / φορείς" rows="2"></textarea>
+                <textarea class="form-control" id="field_31_synarmodia_ypoyrgeia${table31RowIndex}" name="field_31_synarmodia_ypoyrgeia${table31RowIndex}" placeholder="Συναρμόδια Υπουργεία – Συναρμόδιες υπηρεσίες / φορείς" rows="2"></textarea>
             </td> 
             <td> 
-                <textarea class="form-control" id="field_31_antikeimeno_synarmodiotitas" name="field_31_antikeimeno_synarmodiotitas" placeholder="Αντικείμενο συναρμοδιότητας" rows="2"></textarea>
+                <textarea class="form-control" id="field_31_antikeimeno_synarmodiotitas${table31RowIndex}" name="field_31_antikeimeno_synarmodiotitas${table31RowIndex}" placeholder="Αντικείμενο συναρμοδιότητας" rows="2"></textarea>
                 <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
             </td>    
         </tr>`
@@ -957,19 +1035,19 @@ $("#add_row_table_32").on("click", function(){
     $('#tbody_32').append(`
         <tr id="R${++table32RowIndex}"> 
             <td> 
-                <textarea class="form-control" id="field_32_eksousiodotiki_diataksi" name="field_32_eksousiodotiki_diataksi" placeholder="Εξουσιοδοτική διάταξη" rows="4"></textarea>
+                <textarea class="form-control" id="field_32_eksousiodotiki_diataksi${table32RowIndex}" name="field_32_eksousiodotiki_diataksi${table32RowIndex}" placeholder="Εξουσιοδοτική διάταξη" rows="4"></textarea>
             </td> 
             <td> 
-                <textarea class="form-control" id="field_32_eidos_praksis" name="field_32_eidos_praksis" placeholder="Είδος πράξης" rows="4"></textarea>
+                <textarea class="form-control" id="field_32_eidos_praksis${table32RowIndex}" name="field_32_eidos_praksis${table32RowIndex}" placeholder="Είδος πράξης" rows="4"></textarea>
             </td> 
             <td> 
-                <textarea class="form-control" id="field_32_armodio_ypoyrgeio" name="field_32_armodio_ypoyrgeio" placeholder="Αρμόδιο ή επισπεύδον Υπουργείο ή υπηρεσία" rows="4"></textarea>
+                <textarea class="form-control" id="field_32_armodio_ypoyrgeio${table32RowIndex}" name="field_32_armodio_ypoyrgeio${table32RowIndex}" placeholder="Αρμόδιο ή επισπεύδον Υπουργείο ή υπηρεσία" rows="4"></textarea>
             </td> 
             <td> 
-                <textarea class="form-control" id="field_32_antikeimeno" name="field_32_antikeimeno" placeholder="Αντικείμενο" rows="4"></textarea>
+                <textarea class="form-control" id="field_32_antikeimeno${table32RowIndex}" name="field_32_antikeimeno${table32RowIndex}" placeholder="Αντικείμενο" rows="4"></textarea>
             </td> 
             <td> 
-                <textarea class="form-control" id="field_32_xronodiagramma" name="field_32_xronodiagramma" placeholder="Χρονοδιάγραμμα (ενδεικτική ή αποκλειστική προθεσμία)" rows="4"></textarea>
+                <textarea class="form-control" id="field_32_xronodiagramma${table32RowIndex}" name="field_32_xronodiagramma${table32RowIndex}" placeholder="Χρονοδιάγραμμα (ενδεικτική ή αποκλειστική προθεσμία)" rows="4"></textarea>
                 <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
             </td>    
         </tr>`

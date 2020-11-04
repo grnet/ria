@@ -613,11 +613,11 @@
 
                                 <% if(data.field_14_arthro != null && data.field_14_arthro.length != null ){
                                      for (var i = 0; i < data.field_14_arthro.length; i++) { %>
-                                <tr>
-                                    <td><textarea class="form-control" id="field_14_arthro" name="field_14_arthro"
+                                <tr id="table_14_row<%=i%>">
+                                    <td><textarea class="form-control" id="field_14_arthro<%=i%>" name="field_14_arthro<%=i%>"
                                             placeholder="Άρθρο" rows="1"><%= Object.values(data.field_14_arthro[i]) %></textarea></td>
                                     <td>
-                                        <textarea class="form-control" placeholder="Υφιστάμενες διατάξεις"
+                                        <textarea class="form-control" placeholder="Υφιστάμενες διατάξεις" id="field_14_stoxos<%=i%>" name="field_14_stoxos<%=i%>"
                                             rows="1"><%= Object.values(data.field_14_stoxos[i]) %></textarea>
                                         <button class="btn remove float-right" type="button"><img src="/img/delete.png"
                                                 width="20px"></button>
@@ -648,8 +648,6 @@
                 </form>
                 <input type="button" name="save_temporarily" class="save_temporarily float-right"
                     value="Προσωρινή αποθήκευση" />
-                <input type="button" name="exit" class="exit float-right" value="Έξοδος" />
-
 
             </div>
         </div>
@@ -949,18 +947,17 @@
             } else {
                 table14RowIndex = 0;
             }
-            console.log("table14RowIndex: " + table14RowIndex)
             // jQuery button click event for table 14 to add a row
             $("#add_row_table_14").on("click", function () {
                 //append adds row to table body with id 'tbody_14'
                 //line 604 creates unique id for the line, which will later be used for deletion
                 //also adding a delete icon for each row 
                 $('#tbody_14').append(`
-                 <tr id="R${++table14RowIndex}"> 
+                 <tr id="table_14_row${++table14RowIndex}"> 
                 <td> 
-                    <textarea class="form-control" id="field_14_arthro" name="field_14_arthro" placeholder="Άρθρο" rows="1"></textarea>                </td> 
+                    <textarea class="form-control" id="field_14_arthro${table14RowIndex}" name="field_14_arthro${table14RowIndex}" placeholder="Άρθρο" rows="1"></textarea>                </td> 
                 <td> 
-                    <textarea class="form-control" id="field_14_stoxos" name="field_14_stoxos" placeholder="Στόχος" rows="1"></textarea>
+                    <textarea class="form-control" id="field_14_stoxos${table14RowIndex}" name="field_14_stoxos${table14RowIndex}" placeholder="Στόχος" rows="1"></textarea>
                     <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
                 </td>    
                 </tr>`
@@ -972,17 +969,16 @@
 
                 // Getting all the rows close to the one to be removed 
                 var child = $(this).closest('tr').nextAll();
-
+                
                 // Iterating across all the rows  
                 // obtained to change the index 
                 child.each(function () {
 
                     // Getting <tr> id
                     var id = $(this).attr('id');
-
+                    //console.log("id: "+id)
                     // Gets row number from <tr> id
                     var row_num = parseInt(id.substring(1));
-
                     //Getting index
                     var idx = $(this).children('.row-index');
 
@@ -1001,15 +997,21 @@
             });
 
             var table29RowIndex = 0;
+            if ("data.field_29_diatakseis_rythmisis.length" != null){
+                var table29RowIndex  = "<%=data.field_29_diatakseis_rythmisis.length %>"
+            } else {
+                table29RowIndex = 0;
+            }
+            console.log(table29RowIndex)
             $("#add_row_table_29").on("click", function () {
 
                 $('#tbody_29').append(`
                 <tr id="R${++table29RowIndex}"> 
                     <td> 
-                        <textarea class="form-control" id="field_29_diatakseis_rythmisis" name="field_29_diatakseis_rythmisis" placeholder="Διατάξεις αξιολογούμενης ρύθμισης" rows="1"></textarea>
+                        <textarea class="form-control" id="field_29_diatakseis_rythmisis${table29RowIndex}" name="field_29_diatakseis_rythmisis${table29RowIndex}" placeholder="Διατάξεις αξιολογούμενης ρύθμισης" rows="1"></textarea>
                     </td> 
                     <td> 
-                        <textarea class="form-control" id="field_29_yfistamenes_diatakseis" name="field_29_yfistamenes_diatakseis" placeholder="Υφιστάμενες διατάξεις" rows="1"></textarea>
+                        <textarea class="form-control" id="field_29_yfistamenes_diatakseis${table29RowIndex}" name="field_29_yfistamenes_diatakseis${table29RowIndex}" placeholder="Υφιστάμενες διατάξεις" rows="1"></textarea>
                         <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
                     </td>    
                 </tr>`
@@ -1034,15 +1036,20 @@
             });
 
             var table30RowIndex = 0;
+            if ("data.field_30_diatakseis_katargisi.length" != null){
+                var table30RowIndex  = "<%=data.field_30_diatakseis_katargisi.length %>"
+            } else {
+                table30RowIndex = 0;
+            }
             $("#add_row_table_30").on("click", function () {
 
                 $('#tbody_30').append(`
                 <tr id="R${++table30RowIndex}"> 
                     <td> 
-                        <textarea class="form-control" id="field_30_diatakseis_katargisi" name="field_30_diatakseis_katargisi" placeholder="Διατάξεις αξιολογούμενης ρύθμισης που προβλέπουν κατάργηση" rows="2"></textarea>
+                        <textarea class="form-control" id="field_30_diatakseis_katargisi${table30RowIndex}" name="field_30_diatakseis_katargisi${table30RowIndex}" placeholder="Διατάξεις αξιολογούμενης ρύθμισης που προβλέπουν κατάργηση" rows="2"></textarea>
                     </td> 
                     <td> 
-                        <textarea class="form-control" id="field_30_katargoumenes_diatakseis" name="field_30_katargoumenes_diatakseis" placeholder="Καταργούμενες διατάξεις" rows="2"></textarea>
+                        <textarea class="form-control" id="field_30_katargoumenes_diatakseis${table30RowIndex}" name="field_30_katargoumenes_diatakseis${table30RowIndex}" placeholder="Καταργούμενες διατάξεις" rows="2"></textarea>
                         <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
                     </td>    
                 </tr>`
@@ -1067,18 +1074,23 @@
             });
 
             var table31RowIndex = 0;
+            if ("data.field_29_diatakseis_rythmisis.length" != null){
+                var table31RowIndex  = "<%=data.field_29_diatakseis_rythmisis.length %>"
+            } else {
+                table31RowIndex = 0;
+            }
             $("#add_row_table_31").on("click", function () {
 
                 $('#tbody_31').append(`
             <tr id="R${++table31RowIndex}"> 
                 <td> 
-                    <textarea class="form-control" id="field_31_sxetiki_diataksi" name="field_31_sxetiki_diataksi" placeholder="Σχετική διάταξη αξιολογούμενης ρύθμισης" rows="2"></textarea>
+                    <textarea class="form-control" id="field_31_sxetiki_diataksi${table31RowIndex}" name="field_31_sxetiki_diataksi${table31RowIndex}" placeholder="Σχετική διάταξη αξιολογούμενης ρύθμισης" rows="2"></textarea>
                 </td> 
                 <td> 
-                    <textarea class="form-control" id="field_31_synarmodia_ypoyrgeia" name="field_31_synarmodia_ypoyrgeia" placeholder="Συναρμόδια Υπουργεία – Συναρμόδιες υπηρεσίες / φορείς" rows="2"></textarea>
+                    <textarea class="form-control" id="field_31_synarmodia_ypoyrgeia${table31RowIndex}" name="field_31_synarmodia_ypoyrgeia${table31RowIndex}" placeholder="Συναρμόδια Υπουργεία – Συναρμόδιες υπηρεσίες / φορείς" rows="2"></textarea>
                 </td> 
                 <td> 
-                    <textarea class="form-control" id="field_31_antikeimeno_synarmodiotitas" name="field_31_antikeimeno_synarmodiotitas" placeholder="Αντικείμενο συναρμοδιότητας" rows="2"></textarea>
+                    <textarea class="form-control" id="field_31_antikeimeno_synarmodiotitas${table31RowIndex}" name="field_31_antikeimeno_synarmodiotitas${table31RowIndex}" placeholder="Αντικείμενο συναρμοδιότητας" rows="2"></textarea>
                     <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
                 </td>    
             </tr>`
@@ -1103,24 +1115,29 @@
             });
 
             var table32RowIndex = 0;
+            if ("data.field_29_diatakseis_rythmisis.length" != null){
+                var table32RowIndex  = "<%=data.field_29_diatakseis_rythmisis.length %>"
+            } else {
+                table32RowIndex = 0;
+            }
             $("#add_row_table_32").on("click", function () {
 
                 $('#tbody_32').append(`
                 <tr id="R${++table32RowIndex}"> 
                     <td> 
-                        <textarea class="form-control" id="field_32_eksousiodotiki_diataksi" name="field_32_eksousiodotiki_diataksi" placeholder="Εξουσιοδοτική διάταξη" rows="4"></textarea>
+                        <textarea class="form-control" id="field_32_eksousiodotiki_diataksi${table32RowIndex}" name="field_32_eksousiodotiki_diataksi${table32RowIndex}" placeholder="Εξουσιοδοτική διάταξη" rows="4"></textarea>
                     </td> 
                     <td> 
-                        <textarea class="form-control" id="field_32_eidos_praksis" name="field_32_eidos_praksis" placeholder="Είδος πράξης" rows="4"></textarea>
+                        <textarea class="form-control" id="field_32_eidos_praksis${table32RowIndex}" name="field_32_eidos_praksis${table32RowIndex}" placeholder="Είδος πράξης" rows="4"></textarea>
                     </td> 
                     <td> 
-                        <textarea class="form-control" id="field_32_armodio_ypoyrgeio" name="field_32_armodio_ypoyrgeio" placeholder="Αρμόδιο ή επισπεύδον Υπουργείο ή υπηρεσία" rows="4"></textarea>
+                        <textarea class="form-control" id="field_32_armodio_ypoyrgeio${table32RowIndex}" name="field_32_armodio_ypoyrgeio${table32RowIndex}" placeholder="Αρμόδιο ή επισπεύδον Υπουργείο ή υπηρεσία" rows="4"></textarea>
                     </td> 
                     <td> 
-                        <textarea class="form-control" id="field_32_antikeimeno" name="field_32_antikeimeno" placeholder="Αντικείμενο" rows="4"></textarea>
+                        <textarea class="form-control" id="field_32_antikeimeno${table32RowIndex}" name="field_32_antikeimeno${table32RowIndex}" placeholder="Αντικείμενο" rows="4"></textarea>
                     </td> 
                     <td> 
-                        <textarea class="form-control" id="field_32_xronodiagramma" name="field_32_xronodiagramma" placeholder="Χρονοδιάγραμμα (ενδεικτική ή αποκλειστική προθεσμία)" rows="4"></textarea>
+                        <textarea class="form-control" id="field_32_xronodiagramma${table32RowIndex}" name="field_32_xronodiagramma${table32RowIndex}" placeholder="Χρονοδιάγραμμα (ενδεικτική ή αποκλειστική προθεσμία)" rows="4"></textarea>
                         <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
                     </td>    
                 </tr>`

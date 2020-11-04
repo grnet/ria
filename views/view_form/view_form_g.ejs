@@ -15,12 +15,12 @@
 
             <% if(data.field_29_diatakseis_rythmisis != null && data.field_29_diatakseis_rythmisis.length != null ){
                 for (var i = 0; i < data.field_29_diatakseis_rythmisis.length; i++) { %>
-            <tr>
+            <tr id="table_29_row<%=i%>">
                 <td> 
-                    <textarea class="form-control" id="field_29_diatakseis_rythmisis" name="field_29_diatakseis_rythmisis" placeholder="Διατάξεις αξιολογούμενης ρύθμισης" rows="1"><%= data.field_29_diatakseis_rythmisis[i] %></textarea>
+                    <textarea class="form-control" id="field_29_diatakseis_rythmisis<%=i%>" name="field_29_diatakseis_rythmisis" placeholder="Διατάξεις αξιολογούμενης ρύθμισης<%=i%>" rows="1"><%= Object.values(data.field_29_diatakseis_rythmisis[i]) %></textarea>
                 </td> 
                 <td> 
-                    <textarea class="form-control" id="field_29_yfistamenes_diatakseis" name="field_29_yfistamenes_diatakseis" placeholder="Υφιστάμενες διατάξεις" rows="1"><%= data.field_29_yfistamenes_diatakseis[i] %></textarea>
+                    <textarea class="form-control" id="field_29_yfistamenes_diatakseis<%=i%>" name="field_29_yfistamenes_diatakseis" placeholder="Υφιστάμενες διατάξεις<%=i%>" rows="1"><%= Object.values(data.field_29_yfistamenes_diatakseis[i]) %></textarea>
                     <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
                 </td>
             </tr>    
@@ -54,12 +54,12 @@
 
             <% if(data.field_30_diatakseis_katargisi != null && data.field_30_diatakseis_katargisi.length != null ){
                 for (var i = 0; i < data.field_30_diatakseis_katargisi.length; i++) { %>
-                <tr>
+                <tr id="table_30_row<%=i%>">
                     <td> 
-                        <textarea class="form-control" id="field_30_diatakseis_katargisi" name="field_30_diatakseis_katargisi" placeholder="Διατάξεις αξιολογούμενης ρύθμισης που προβλέπουν κατάργηση" rows="2"><%= data.field_30_diatakseis_katargisi[i] %></textarea>
+                        <textarea class="form-control" id="field_30_diatakseis_katargisi<%=i%>" name="field_30_diatakseis_katargisi<%=i%>" placeholder="Διατάξεις αξιολογούμενης ρύθμισης που προβλέπουν κατάργηση" rows="2"><%= Object.values(data.field_30_diatakseis_katargisi[i]) %></textarea>
                     </td> 
                     <td> 
-                        <textarea class="form-control" id="field_30_katargoumenes_diatakseis" name="field_30_katargoumenes_diatakseis" placeholder="Καταργούμενες διατάξεις" rows="2"><%= data.field_30_katargoumenes_diatakseis[i] %></textarea>
+                        <textarea class="form-control" id="field_30_katargoumenes_diatakseis<%=i%>" name="field_30_katargoumenes_diatakseis<%=i%>" placeholder="Καταργούμενες διατάξεις" rows="2"><%= Object.values(data.field_30_katargoumenes_diatakseis[i]) %></textarea>
                         <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
                     </td>  
                 </tr>

@@ -22,7 +22,7 @@ routes.get('/:entry_id', async (req,res,next) =>{
 
 routes.put('/:entry_id', async function(req,res,next){
 
-    ekthesi_id = req.session.ekthesi_id
+    ekthesi_id = req.params.entry_id
     //console.log("ekthesi_id: " + ekthesi_id)
     let ekthesi = await database.ekthesi.update(req.body, {where:{
         id: ekthesi_id

@@ -18,15 +18,15 @@
 
             <%if(data.field_31_sxetiki_diataksi != null && data.field_31_sxetiki_diataksi.length != null ){
               for (var i = 0; i < data.field_31_sxetiki_diataksi.length; i++) { %>
-                <tr>
+                <tr id="table_31_row<%=i%>">
                     <td> 
-                        <textarea class="form-control" id="field_31_sxetiki_diataksi" name="field_31_sxetiki_diataksi" placeholder="Σχετική διάταξη αξιολογούμενης ρύθμισης" rows="2"><%= data.field_31_sxetiki_diataksi[i] %></textarea>
+                        <textarea class="form-control" id="field_31_sxetiki_diataksi<%=i%>" name="field_31_sxetiki_diataksi<%=i%>" placeholder="Σχετική διάταξη αξιολογούμενης ρύθμισης" rows="2"><%= Object.values(data.field_31_sxetiki_diataksi[i]) %></textarea>
                     </td> 
                     <td> 
-                        <textarea class="form-control" id="field_31_synarmodia_ypoyrgeia" name="field_31_synarmodia_ypoyrgeia" placeholder="Συναρμόδια Υπουργεία – Συναρμόδιες υπηρεσίες / φορείς" rows="2"><%= data.field_31_synarmodia_ypoyrgeia[i] %></textarea>
+                        <textarea class="form-control" id="field_31_synarmodia_ypoyrgeia<%=i%>" name="field_31_synarmodia_ypoyrgeia<%=i%>" placeholder="Συναρμόδια Υπουργεία – Συναρμόδιες υπηρεσίες / φορείς" rows="2"><%= Object.values(data.field_31_synarmodia_ypoyrgeia[i]) %></textarea>
                     </td> 
                     <td> 
-                        <textarea class="form-control" id="field_31_antikeimeno_synarmodiotitas" name="field_31_antikeimeno_synarmodiotitas" placeholder="Αντικείμενο συναρμοδιότητας" rows="2"><%= data.field_31_antikeimeno_synarmodiotitas[i] %></textarea>
+                        <textarea class="form-control" id="field_31_antikeimeno_synarmodiotitas<%=i%>" name="field_31_antikeimeno_synarmodiotitas<%=i%>" placeholder="Αντικείμενο συναρμοδιότητας" rows="2"><%= Object.values(data.field_31_antikeimeno_synarmodiotitas[i]) %></textarea>
                         <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
                     </td>  
                 </tr>
@@ -62,21 +62,21 @@
 
             <% if(data.field_32_eksousiodotiki_diataksi != null && data.field_32_eksousiodotiki_diataksi.length != null ){
                 for (var i = 0; i < data.field_32_eksousiodotiki_diataksi.length; i++) { %>
-                <tr>
+                <tr id="table_32_row<%=i%>">
                     <td> 
-                        <textarea class="form-control" id="field_32_eksousiodotiki_diataksi" name="field_32_eksousiodotiki_diataksi" placeholder="Εξουσιοδοτική διάταξη" rows="4"><%= data.field_32_eksousiodotiki_diataksi[i] %></textarea>
+                        <textarea class="form-control" id="field_32_eksousiodotiki_diataksi<%=i%>" name="field_32_eksousiodotiki_diataksi<%=i%>" placeholder="Εξουσιοδοτική διάταξη" rows="4"><%= Object.values(data.field_32_eksousiodotiki_diataksi[i]) %></textarea>
                     </td> 
                     <td> 
-                        <textarea class="form-control" id="field_32_eidos_praksis" name="field_32_eidos_praksis" placeholder="Είδος πράξης" rows="4"><%= data.field_32_eidos_praksis[i] %></textarea>
+                        <textarea class="form-control" id="field_32_eidos_praksis<%=i%>" name="field_32_eidos_praksis<%=i%>" placeholder="Είδος πράξης" rows="4"><%= Object.values(data.field_32_eidos_praksis[i]) %></textarea>
                     </td> 
                     <td> 
-                        <textarea class="form-control" id="field_32_armodio_ypoyrgeio" name="field_32_armodio_ypoyrgeio" placeholder="Αρμόδιο ή επισπεύδον Υπουργείο ή υπηρεσία" rows="4"><%= data.field_32_armodio_ypoyrgeio[i] %></textarea>
+                        <textarea class="form-control" id="field_32_armodio_ypoyrgeio<%=i%>" name="field_32_armodio_ypoyrgeio<%=i%>" placeholder="Αρμόδιο ή επισπεύδον Υπουργείο ή υπηρεσία" rows="4"><%= Object.values(data.field_32_armodio_ypoyrgeio[i]) %></textarea>
                     </td> 
                     <td> 
-                        <textarea class="form-control" id="field_32_antikeimeno" name="field_32_antikeimeno" placeholder="Αντικείμενο" rows="4"><%= data.field_32_antikeimeno[i] %></textarea>
+                        <textarea class="form-control" id="field_32_antikeimeno<%=i%>" name="field_32_antikeimeno<%=i%>" placeholder="Αντικείμενο" rows="4"><%= Object.values(data.field_32_antikeimeno[i]) %></textarea>
                     </td> 
                     <td> 
-                        <textarea class="form-control" id="field_32_xronodiagramma" name="field_32_xronodiagramma" placeholder="Χρονοδιάγραμμα (ενδεικτική ή αποκλειστική προθεσμία)" rows="4"><%= data.field_32_xronodiagramma[i] %></textarea>
+                        <textarea class="form-control" id="field_32_xronodiagramma<%=i%>" name="field_32_xronodiagramma<%=i%>" placeholder="Χρονοδιάγραμμα (ενδεικτική ή αποκλειστική προθεσμία)" rows="4"><%= Object.values(data.field_32_xronodiagramma[i]) %></textarea>
                         <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
                     </td>  
                 </tr>
