@@ -498,6 +498,8 @@
                         <input type="button" name="next" class="next action-button" value="Επόμενα πεδία" />
                     </fieldset>
 
+                    <%- include('fill_form/field_9.ejs') %>
+
                     <fieldset>
                         <h2>Ψηφιακή διακυβέρνηση</h2>
                         <br>
@@ -1275,22 +1277,80 @@
                 $("#perivallon_energeia_table").show();
             }
 
-            function setValuesField9(inputAsJSON, var1) {
-                alert("PARSING!");
-                //let parsed = JSON.parse(inputAsJSON)
-                //let val1 = document.getElementById(var1);
-                console.log(inputAsJSON);
-                console.log("SETTING VALUE");
-                console.log("initial var1 :" + var1);
-                var1.val(inputAsJSON[0])
-                
-                console.log(var1);
-                //console.log(val1);
+            function setValuesField9(inputAsJSON, var0, var1, var2, var3, var4, var5, var6) {
+                inputAsJSON=inputAsJSON.replace(/&#34;/g,'"');//replace html code for double quotes
+                //console.log("JSON: " + inputAsJSON);
+                //console.log(var1)
+                let parsed = JSON.parse(inputAsJSON)
+                let keys = Object.keys(parsed);//get keys 
+                //console.log("parsed: " + parsed);
+                //console.log("keys: " + keys);
+                $(var0).val(Object.values(parsed[keys[0]]));
+                $(var1).val(Object.values(parsed[keys[1]]));
+                $(var2).val(Object.values(parsed[keys[2]]));
+                $(var3).val(Object.values(parsed[keys[3]]));
+                $(var4).val(Object.values(parsed[keys[4]]));
+                $(var5).val(Object.values(parsed[keys[5]]));
+                $(var6).val(Object.values(parsed[keys[6]]));
+                console.log("var0: " + $(var0).val());
+                console.log("var1: " + $(var1).val());
+                console.log("var2: " + $(var2).val());
+                console.log("var3: " + $(var3).val());
+                console.log("var4: " + $(var4).val());
+                console.log("var5: " + $(var5).val());
+                console.log("var6: " + $(var6).val());    
             }
 
-            //$(document).ready(function () {
-              //  setValuesField9( document.getElementById(atmosfairiki_rypansi_year1));
-           // });
+                
+
+            setValuesField9( "<%=data.field_9.dataValues.atmosfairiki_rypansi%>",("#atmosfairiki_rypansi_year1"), ("#atmosfairiki_rypansi_year2"), ("#atmosfairiki_rypansi_year3"), ("#atmosfairiki_rypansi_year4"), ("#atmosfairiki_rypansi_year5"), ("#atmosfairiki_rypansi_prosfata_stoixeia"), ("#atmosfairiki_rypansi_epidiwkomenos_stoxos"));
+            setValuesField9( "<%=data.field_9.dataValues.viologikoi_katharismoi%>",("#viologikoi_katharismoi_year1"), ("#viologikoi_katharismoi_year2"), ("#viologikoi_katharismoi_year3"), ("#viologikoi_katharismoi_year4"), ("#viologikoi_katharismoi_year5"), ("#viologikoi_katharismoi_prosfata_stoixeia"), ("#viologikoi_katharismoi_epidiwkomenos_stoxos"));
+            setValuesField9( "<%=data.field_9.dataValues.katallhles_aktes%>",("#katallhles_aktes_year1"), ("#katallhles_aktes_year2"), ("#katallhles_aktes_year3"), ("#katallhles_aktes_year4"), ("#katallhles_aktes_year5"), ("#katallhles_aktes_prosfata_stoixeia"), ("#katallhles_aktes_epidiwkomenos_stoxos"));
+            setValuesField9( "<%=data.field_9.dataValues.katallilotita_diktyoy_ydreysis%>",("#katallilotita_diktyoy_ydreysis_year1"), ("#katallilotita_diktyoy_ydreysis_year2"), ("#katallilotita_diktyoy_ydreysis_year3"), ("#katallilotita_diktyoy_ydreysis_year4"), ("#katallilotita_diktyoy_ydreysis_year5"), ("#katallilotita_diktyoy_ydreysis_prosfata_stoixeia"), ("#katallilotita_diktyoy_ydreysis_epidiwkomenos_stoxos"));
+            setValuesField9( "<%=data.field_9.dataValues.xrisi_aporrimmatwn%>",("#xrisi_aporrimmatwn_year1"), ("#xrisi_aporrimmatwn_year2"), ("#xrisi_aporrimmatwn_year3"), ("#xrisi_aporrimmatwn_year4"), ("#xrisi_aporrimmatwn_year5"), ("#xrisi_aporrimmatwn_prosfata_stoixeia"), ("#xrisi_aporrimmatwn_epidiwkomenos_stoxos"));
+            setValuesField9( "<%=data.field_9.dataValues.aporrimmata_xyta%>",("#aporrimmata_xyta_year1"), ("#aporrimmata_xyta_year2"), ("#aporrimmata_xyta_year3"), ("#aporrimmata_xyta_year4"), ("#aporrimmata_xyta_year5"), ("#aporrimmata_xyta_prosfata_stoixeia"), ("#aporrimmata_xyta_epidiwkomenos_stoxos"));
+            setValuesField9( "<%=data.field_9.dataValues.katastrofi_dasikwn_ektasewn%>",("#katastrofi_dasikwn_ektasewn_year1"), ("#katastrofi_dasikwn_ektasewn_year2"), ("#katastrofi_dasikwn_ektasewn_year3"), ("#katastrofi_dasikwn_ektasewn_year4"), ("#katastrofi_dasikwn_ektasewn_year5"), ("#katastrofi_dasikwn_ektasewn_prosfata_stoixeia"), ("#katastrofi_dasikwn_ektasewn_epidiwkomenos_stoxos"));
+            setValuesField9( "<%=data.field_9.dataValues.prostateuomenes_perioxes%>",("#prostateuomenes_perioxes_year1"), ("#prostateuomenes_perioxes_year2"), ("#prostateuomenes_perioxes_year3"), ("#prostateuomenes_perioxes_year4"), ("#prostateuomenes_perioxes_year5"), ("#prostateuomenes_perioxes_prosfata_stoixeia"), ("#prostateuomenes_perioxes_epidiwkomenos_stoxos"));
+            setValuesField9( "<%=data.field_9.dataValues.anadaswseis%>",("#anadaswseis_year1"), ("#anadaswseis_year2"), ("#anadaswseis_year3"), ("#anadaswseis_year4"), ("#anadaswseis_year5"), ("#anadaswseis_prosfata_stoixeia"), ("#anadaswseis_epidiwkomenos_stoxos"));
+            setValuesField9( "<%=data.field_9.dataValues.proypologismos_prostasias_perivallontos%>",("#proypologismos_prostasias_perivallontos_year1"), ("#proypologismos_prostasias_perivallontos_year2"), ("#proypologismos_prostasias_perivallontos_year3"), ("#proypologismos_prostasias_perivallontos_year4"), ("#proypologismos_prostasias_perivallontos_year5"), ("#proypologismos_prostasias_perivallontos_prosfata_stoixeia"), ("#proypologismos_prostasias_perivallontos_epidiwkomenos_stoxos"));
+            setValuesField9( "<%=data.field_9.dataValues.katanalwsi_energeias_kata_kefali%>",("#katanalwsi_energeias_kata_kefali_year1"), ("#katanalwsi_energeias_kata_kefali_year2"), ("#katanalwsi_energeias_kata_kefali_year3"), ("#katanalwsi_energeias_kata_kefali_year4"), ("#katanalwsi_energeias_kata_kefali_year5"), ("#katanalwsi_energeias_kata_kefali_prosfata_stoixeia"), ("#katanalwsi_energeias_kata_kefali_epidiwkomenos_stoxos"));
+            setValuesField9( "<%=data.field_9.dataValues.katanalwsi_energeias_ana_morfi%>",("#katanalwsi_energeias_ana_morfi_year1"), ("#katanalwsi_energeias_ana_morfi_year2"), ("#katanalwsi_energeias_ana_morfi_year3"), ("#katanalwsi_energeias_ana_morfi_year4"), ("#katanalwsi_energeias_ana_morfi_year5"), ("#katanalwsi_energeias_ana_morfi_prosfata_stoixeia"), ("#katanalwsi_energeias_ana_morfi_epidiwkomenos_stoxos"));
+            setValuesField9( "<%=data.field_9.dataValues.katanalwsi_energeias_apo_ananewsimes_piges%>",("#katanalwsi_energeias_apo_ananewsimes_piges_year1"), ("#katanalwsi_energeias_apo_ananewsimes_piges_year2"), ("#katanalwsi_energeias_apo_ananewsimes_piges_year3"), ("#katanalwsi_energeias_apo_ananewsimes_piges_year4"), ("#katanalwsi_energeias_apo_ananewsimes_piges_year5"), ("#katanalwsi_energeias_apo_ananewsimes_piges_prosfata_stoixeia"), ("#katanalwsi_energeias_apo_ananewsimes_piges_epidiwkomenos_stoxos"));
+            setValuesField9( "<%=data.field_9.dataValues.meiwsi_ekpompwn_thermokipioy%>",("#meiwsi_ekpompwn_thermokipioy_year1"), ("#meiwsi_ekpompwn_thermokipioy_year2"), ("#meiwsi_ekpompwn_thermokipioy_year3"), ("#meiwsi_ekpompwn_thermokipioy_year4"), ("#meiwsi_ekpompwn_thermokipioy_year5"), ("#meiwsi_ekpompwn_thermokipioy_prosfata_stoixeia"), ("#meiwsi_ekpompwn_thermokipioy_epidiwkomenos_stoxos"));
+            setValuesField9( "<%=data.field_9.dataValues.pagkosmia_antagwnistikotita%>",("#pagkosmia_antagwnistikotita_year1"), ("#pagkosmia_antagwnistikotita_year2"), ("#pagkosmia_antagwnistikotita_year3"), ("#pagkosmia_antagwnistikotita_year4"), ("#pagkosmia_antagwnistikotita_year5"), ("#pagkosmia_antagwnistikotita_prosfata_stoixeia"), ("#pagkosmia_antagwnistikotita_epidiwkomenos_stoxos"));
+            setValuesField9( "<%=data.field_9.dataValues.ependyseis%>",("#ependyseis_year1"), ("#ependyseis_year2"), ("#ependyseis_year3"), ("#ependyseis_year4"), ("#ependyseis_year5"), ("#ependyseis_prosfata_stoixeia"), ("#ependyseis_epidiwkomenos_stoxos"));
+            setValuesField9( "<%=data.field_9.dataValues.ameses_ependyseis%>",("#ameses_ependyseis_year1"), ("#ameses_ependyseis_year2"), ("#ameses_ependyseis_year3"), ("#ameses_ependyseis_year4"), ("#ameses_ependyseis_year5"), ("#ameses_ependyseis_prosfata_stoixeia"), ("#ameses_ependyseis_epidiwkomenos_stoxos"));
+            setValuesField9( "<%=data.field_9.dataValues.nees_epixeiriseis%>",("#nees_epixeiriseis_year1"), ("#nees_epixeiriseis_year2"), ("#nees_epixeiriseis_year3"), ("#nees_epixeiriseis_year4"), ("#nees_epixeiriseis_year5"), ("#nees_epixeiriseis_prosfata_stoixeia"), ("#nees_epixeiriseis_epidiwkomenos_stoxos"));
+            setValuesField9( "<%=data.field_9.dataValues.kleistes_epixeiriseis%>",("#kleistes_epixeiriseis_year1"), ("#kleistes_epixeiriseis_year2"), ("#kleistes_epixeiriseis_year3"), ("#kleistes_epixeiriseis_year4"), ("#kleistes_epixeiriseis_year5"), ("#kleistes_epixeiriseis_prosfata_stoixeia"), ("#kleistes_epixeiriseis_epidiwkomenos_stoxos"));
+            setValuesField9( "<%=data.field_9.dataValues.dioikitiko_kostos%>",("#dioikitiko_kostos_year1"), ("#dioikitiko_kostos_year2"), ("#dioikitiko_kostos_year3"), ("#dioikitiko_kostos_year4"), ("#dioikitiko_kostos_year5"), ("#dioikitiko_kostos_prosfata_stoixeia"), ("#dioikitiko_kostos_epidiwkomenos_stoxos"));
+            setValuesField9( "<%=data.field_9.dataValues.mx_systasis_epixeirisis%>",("#mx_systasis_epixeirisis_year1"), ("#mx_systasis_epixeirisis_year2"), ("#mx_systasis_epixeirisis_year3"),     ("#mx_systasis_epixeirisis_year4"), ("#mx_systasis_epixeirisis_year5"), ("#mx_systasis_epixeirisis_prosfata_stoixeia"), ("#mx_systasis_epixeirisis_epidiwkomenos_stoxos"));
+            setValuesField9( "<%=data.field_9.dataValues.arithmos_diaforwn%>",("#arithmos_diaforwn_year1"), ("#arithmos_diaforwn_year2"), ("#arithmos_diaforwn_year3"), ("#arithmos_diaforwn_year4"), ("#arithmos_diaforwn_year5"), ("#arithmos_diaforwn_prosfata_stoixeia"), ("#arithmos_diaforwn_epidiwkomenos_stoxos"));
+            setValuesField9( "<%=data.field_9.dataValues.dioikitikes_periptwseis%>",("#dioikitikes_periptwseis_year1"), ("#dioikitikes_periptwseis_year2"), ("#dioikitikes_periptwseis_year3"), ("#dioikitikes_periptwseis_year4"), ("#dioikitikes_periptwseis_year5"), ("#dioikitikes_periptwseis_prosfata_stoixeia"), ("#dioikitikes_periptwseis_epidiwkomenos_stoxos"));
+            setValuesField9( "<%=data.field_9.dataValues.xronos_epilysis_ypothesewn%>",("#xronos_epilysis_ypothesewn_year1"), ("#xronos_epilysis_ypothesewn_year2"), ("#xronos_epilysis_ypothesewn_year3"), ("#xronos_epilysis_ypothesewn_year4"), ("#xronos_epilysis_ypothesewn_year5"), ("#xronos_epilysis_ypothesewn_prosfata_stoixeia"), ("#xronos_epilysis_ypothesewn_epidiwkomenos_stoxos"));
+            setValuesField9( "<%=data.field_9.dataValues.ekdosi_apofasewn%>",("#ekdosi_apofasewn_year1"), ("#ekdosi_apofasewn_year2"), ("#ekdosi_apofasewn_year3"), ("#ekdosi_apofasewn_year4"), ("#ekdosi_apofasewn_year5"), ("#ekdosi_apofasewn_prosfata_stoixeia"), ("#ekdosi_apofasewn_epidiwkomenos_stoxos"));
+            setValuesField9( "<%=data.field_9.dataValues.mo_ypotheswn_dikasti%>",("#mo_ypotheswn_dikasti_year1"), ("#mo_ypotheswn_dikasti_year2"), ("#mo_ypotheswn_dikasti_year3"), ("#mo_ypotheswn_dikasti_year4"), ("#mo_ypotheswn_dikasti_year5"), ("#mo_ypotheswn_dikasti_prosfata_stoixeia"), ("#mo_ypotheswn_dikasti_epidiwkomenos_stoxos"));
+            setValuesField9( "<%=data.field_9.dataValues.akyrwsi_apofasewn%>",("#akyrwsi_apofasewn_year1"), ("#akyrwsi_apofasewn_year2"), ("#akyrwsi_apofasewn_year3"), ("#akyrwsi_apofasewn_year4"), ("#akyrwsi_apofasewn_year5"), ("#akyrwsi_apofasewn_prosfata_stoixeia"), ("#akyrwsi_apofasewn_epidiwkomenos_stoxos"));
+            setValuesField9( "<%=data.field_9.dataValues.ekswdikastikos_symvivasmos%>",("#ekswdikastikos_symvivasmos_year1"), ("#ekswdikastikos_symvivasmos_year2"), ("#ekswdikastikos_symvivasmos_year3"),     ("#ekswdikastikos_symvivasmos_year4"), ("#ekswdikastikos_symvivasmos_year5"), ("#ekswdikastikos_symvivasmos_prosfata_stoixeia"), ("#ekswdikastikos_symvivasmos_epidiwkomenos_stoxos"));            
+            setValuesField9( "<%=data.field_9.dataValues.enallaktiki_epilysi_diaforwn%>",("#enallaktiki_epilysi_diaforwn_year1"), ("#enallaktiki_epilysi_diaforwn_year2"), ("#enallaktiki_epilysi_diaforwn_year3"), ("#enallaktiki_epilysi_diaforwn_year4"), ("#enallaktiki_epilysi_diaforwn_year5"), ("#enallaktiki_epilysi_diaforwn_prosfata_stoixeia"), ("#enallaktiki_epilysi_diaforwn_epidiwkomenos_stoxos"));
+            setValuesField9( "<%=data.field_9.dataValues.nomiki_prostasia%>",("#nomiki_prostasia_year1"), ("#nomiki_prostasia_year2"), ("#nomiki_prostasia_year3"), ("#nomiki_prostasia_year4"), ("#nomiki_prostasia_year5"), ("#nomiki_prostasia_prosfata_stoixeia"), ("#nomiki_prostasia_epidiwkomenos_stoxos"));
+            setValuesField9( "<%=data.field_9.dataValues.kostos_prosfygis%>",("#kostos_prosfygis_year1"), ("#kostos_prosfygis_year2"), ("#kostos_prosfygis_year3"), ("#kostos_prosfygis_year4"), ("#kostos_prosfygis_year5"), ("#kostos_prosfygis_prosfata_stoixeia"), ("#kostos_prosfygis_epidiwkomenos_stoxos"));
+            setValuesField9( "<%=data.field_9.dataValues.ilektroniki_ypovoli_dikografwn%>",("#ilektroniki_ypovoli_dikografwn_year1"), ("#ilektroniki_ypovoli_dikografwn_year2"), ("#ilektroniki_ypovoli_dikografwn_year3"), ("#ilektroniki_ypovoli_dikografwn_year4"), ("#ilektroniki_ypovoli_dikografwn_year5"), ("#ilektroniki_ypovoli_dikografwn_prosfata_stoixeia"), ("#ilektroniki_ypovoli_dikografwn_epidiwkomenos_stoxos"));
+            setValuesField9( "<%=data.field_9.dataValues.diekperaiwsi_ypothesewn%>",("#diekperaiwsi_ypothesewn_year1"), ("#diekperaiwsi_ypothesewn_year2"), ("#diekperaiwsi_ypothesewn_year3"), ("#diekperaiwsi_ypothesewn_year4"), ("#diekperaiwsi_ypothesewn_year5"), ("#diekperaiwsi_ypothesewn_prosfata_stoixeia"), ("#diekperaiwsi_ypothesewn_epidiwkomenos_stoxos"));
+            setValuesField9( "<%=data.field_9.dataValues.poines_se_xrima%>",("#poines_se_xrima_year1"), ("#poines_se_xrima_year2"), ("#poines_se_xrima_year3"), ("#poines_se_xrima_year4"), ("#poines_se_xrima_year5"), ("#poines_se_xrima_prosfata_stoixeia"), ("#poines_se_xrima_epidiwkomenos_stoxos"));
+            setValuesField9( "<%=data.field_9.dataValues.kostos_swfronismou%>",("#kostos_swfronismou_year1"), ("#kostos_swfronismou_year2"), ("#kostos_swfronismou_year3"), ("#kostos_swfronismou_year4"), ("#kostos_swfronismou_year5"), ("#kostos_swfronismou_prosfata_stoixeia"), ("#kostos_swfronismou_epidiwkomenos_stoxos"));
+            setValuesField9( "<%=data.field_9.dataValues.analogia_fylakwn_kratoumenwn%>",("#analogia_fylakwn_kratoumenwn_year1"), ("#analogia_fylakwn_kratoumenwn_year2"), ("#analogia_fylakwn_kratoumenwn_year3"), ("#analogia_fylakwn_kratoumenwn_year4"), ("#analogia_fylakwn_kratoumenwn_year5"), ("#analogia_fylakwn_kratoumenwn_prosfata_stoixeia"), ("#analogia_fylakwn_kratoumenwn_epidiwkomenos_stoxos"));            
+            setValuesField9( "<%=data.field_9.dataValues.drastes_adikimata%>",("#drastes_adikimata_year1"), ("#drastes_adikimata_year2"), ("#drastes_adikimata_year3"), ("#drastes_adikimata_year4"), ("#drastes_adikimata_year5"), ("#drastes_adikimata_prosfata_stoixeia"), ("#drastes_adikimata_epidiwkomenos_stoxos"));
+            setValuesField9( "<%=data.field_9.dataValues.adikimata_poinikoy_kwdika%>",("#adikimata_poinikoy_kwdika_year1"), ("#adikimata_poinikoy_kwdika_year2"), ("#adikimata_poinikoy_kwdika_year3"), ("#adikimata_poinikoy_kwdika_year4"), ("#adikimata_poinikoy_kwdika_year5"), ("#adikimata_poinikoy_kwdika_prosfata_stoixeia"), ("#adikimata_poinikoy_kwdika_epidiwkomenos_stoxos"));
+            setValuesField9( "<%=data.field_9.dataValues.diapraxthenta_adikimata%>",("#diapraxthenta_adikimata_year1"), ("#diapraxthenta_adikimata_year2"), ("#diapraxthenta_adikimata_year3"), ("#diapraxthenta_adikimata_year4"), ("#diapraxthenta_adikimata_year5"), ("#diapraxthenta_adikimata_prosfata_stoixeia"), ("#diapraxthenta_adikimata_epidiwkomenos_stoxos"));
+            setValuesField9( "<%=data.field_9.dataValues.etisia_statistika%>",("#etisia_statistika_year1"), ("#etisia_statistika_year2"), ("#etisia_statistika_year3"), ("#etisia_statistika_year4"), ("#etisia_statistika_year5"), ("#etisia_statistika_prosfata_stoixeia"), ("#etisia_statistika_epidiwkomenos_stoxos"));
+            setValuesField9( "<%=data.field_9.dataValues.adikimata_paranomi_eisodos%>",("#adikimata_paranomi_eisodos_year1"), ("#adikimata_paranomi_eisodos_year2"), ("#adikimata_paranomi_eisodos_year3"), ("#adikimata_paranomi_eisodos_year4"), ("#adikimata_paranomi_eisodos_year5"), ("#adikimata_paranomi_eisodos_prosfata_stoixeia"), ("#adikimata_paranomi_eisodos_epidiwkomenos_stoxos"));
+            setValuesField9( "<%=data.field_9.dataValues.syxnotita_egklimatwn%>",("#syxnotita_egklimatwn_year1"), ("#syxnotita_egklimatwn_year2"), ("#syxnotita_egklimatwn_year3"), ("#syxnotita_egklimatwn_year4"), ("#syxnotita_egklimatwn_year5"), ("#syxnotita_egklimatwn_prosfata_stoixeia"), ("#syxnotita_egklimatwn_epidiwkomenos_stoxos"));
+            setValuesField9( "<%=data.field_9.dataValues.eksixniasmena_egklimata%>",("#eksixniasmena_egklimata_year1"), ("#eksixniasmena_egklimata_year2"), ("#eksixniasmena_egklimata_year3"), ("#eksixniasmena_egklimata_year4"), ("#eksixniasmena_egklimata_year5"), ("#eksixniasmena_egklimata_prosfata_stoixeia"), ("#eksixniasmena_egklimata_epidiwkomenos_stoxos"));
+            setValuesField9( "<%=data.field_9.dataValues.ergazomenoi_asfaleia%>",("#ergazomenoi_asfaleia_year1"), ("#ergazomenoi_asfaleia_year2"), ("#ergazomenoi_asfaleia_year3"), ("#ergazomenoi_asfaleia_year4"), ("#ergazomenoi_asfaleia_year5"), ("#ergazomenoi_asfaleia_prosfata_stoixeia"), ("#ergazomenoi_asfaleia_epidiwkomenos_stoxos"));
+            setValuesField9( "<%=data.field_9.dataValues.katoikoi_ana_astynomiko%>",("#katoikoi_ana_astynomiko_year1"), ("#katoikoi_ana_astynomiko_year2"), ("#katoikoi_ana_astynomiko_year3"), ("#katoikoi_ana_astynomiko_year4"), ("#katoikoi_ana_astynomiko_year5"), ("#katoikoi_ana_astynomiko_prosfata_stoixeia"), ("#katoikoi_ana_astynomiko_epidiwkomenos_stoxos"));
+            setValuesField9( "<%=data.field_9.dataValues.analogia_astynomikwn_ana_1000_katoikoys%>",("#analogia_astynomikwn_ana_1000_katoikoys_year1"), ("#analogia_astynomikwn_ana_1000_katoikoys_year2"), ("#analogia_astynomikwn_ana_1000_katoikoys_year3"), ("#analogia_astynomikwn_ana_1000_katoikoys_year4"), ("#analogia_astynomikwn_ana_1000_katoikoys_year5"), ("#analogia_astynomikwn_ana_1000_katoikoys_prosfata_stoixeia"), ("#analogia_astynomikwn_ana_1000_katoikoys_epidiwkomenos_stoxos"));
+            setValuesField9( "<%=data.field_9.dataValues.dapanes_astynomias%>",("#dapanes_astynomias_year1"), ("#dapanes_astynomias_year2"), ("#dapanes_astynomias_year3"), ("#dapanes_astynomias_year4"), ("#dapanes_astynomias_year5"), ("#dapanes_astynomias_prosfata_stoixeia"), ("#dapanes_astynomias_epidiwkomenos_stoxos"));
+            setValuesField9( "<%=data.field_9.dataValues.poroi_antimetwpisis%>",("#poroi_antimetwpisis_year1"), ("#poroi_antimetwpisis_year2"), ("#poroi_antimetwpisis_year3"), ("#poroi_antimetwpisis_year4"), ("#poroi_antimetwpisis_year5"), ("#poroi_antimetwpisis_prosfata_stoixeia"), ("#poroi_antimetwpisis_epidiwkomenos_stoxos"));
 
             var current_fs, next_fs, previous_fs; //fieldsets
 
