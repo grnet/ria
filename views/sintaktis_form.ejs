@@ -15,6 +15,20 @@
                 <h2>Α. Αιτιολογική έκθεση</h2>
                 <br>
                 
+                <div class="checkbox-group form-group row">
+                    <label for="status_ekthesis" class="col-sm-8 col-form-label required">Κατάσταση έκθεσης</label>
+                    <select id="status_ekthesis" name="status_ekthesis" class="col-sm-2 form-control">
+                        <option selected disabled>Eπιλογή</option>
+                        <option value="Σε σύνταξη">Σε σύνταξη</option>
+                        <option value="Εκκρεμεί έκθεση ΓΛΚ">Εκκρεμεί έκθεση ΓΛΚ</option>
+                        <option value="Ολοκληρώθηκε">Ολοκληρώθηκε</option>
+                        <option value="Οριστικοποιήθηκε">Οριστικοποιήθηκε</option>
+                        <option value="Επιμελημένη">Επιμελημένη</option>
+                        <option value="Προς Δημοσίευση">Προς Δημοσίευση</option>
+
+                    </select>
+                </div>
+
                 <div class="form-group row">
                     <label for="title" class="col-sm-6 col-form-label required">Τίτλος αξιολογούμενης ρύθμισης</label>
                     <div class="col-sm-4">
@@ -938,7 +952,7 @@ $("#add_row_table_17").on("click", function(){
     $('#tbody_17').append(`
         <tr id="R${++table17RowIndex}"> 
             <td> 
-                <textarea class="form-control" id="field_17_seira${table17RowIndex}" name="field_17_seira${table17RowIndex}" value="${table17RowIndex}" rows="1"></textarea>
+                <textarea class="form-control" id="field_17_seira${table17RowIndex}" name="field_17_seira${table17RowIndex}" value=${table17RowIndex} rows="1"></textarea>
             </td> 
             <td> 
                 <textarea class="form-control" id="field_17_onoma${table17RowIndex}" name="field_17_onoma${table17RowIndex}" placeholder="Όνομα" rows="1"></textarea> 
@@ -952,8 +966,9 @@ $("#add_row_table_17").on("click", function(){
             </td> 
         </tr>`
         ); 
+        console.log(table17RowIndex)
   }); 
-
+  
 // jQuery button click event to remove a row 
 $('#tbody_17').on('click', '.remove', function () { 
   
