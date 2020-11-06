@@ -9,7 +9,8 @@
         <input type="button" name="back" class="back" value="Πίσω" />
         <br><br>
         <form enctype="multipart/form-data"> 
-            
+            <input type="hidden" id="typos_analysis" name="typos_analysis" value="<%= analysis%>">
+
             <fieldset>
                 <h2>Α. Αιτιολογική έκθεση</h2>
                 <br>
@@ -24,9 +25,9 @@
                 <br><hr>
 
                 <div class="form-group row">
-                    <label for="epispeydon_ypoyrgeio" class="col-sm-6 col-form-label required">Επισπεύδον φορέας</label>
+                    <label for="epispeudon_foreas" class="col-sm-6 col-form-label required">Επισπεύδον φορέας</label>
                     <div class="col-sm-4">
-                    <textarea class="form-control" id="epispeydon_ypoyrgeio" name="epispeydon_ypoyrgeio" rows="3" placeholder="Επισπεύδον Υπουργείο ή Βουλευτής"></textarea>
+                    <textarea class="form-control" id="epispeudon_foreas" name="epispeudon_foreas" rows="3" placeholder="Επισπεύδον Υπουργείο ή Βουλευτής"></textarea>
                     </div>
                 </div>
                 
@@ -926,6 +927,66 @@ $('#tbody_14').on('click', '.remove', function () {
   // Decreasing the total number of rows by 1. 
   table14RowIndex--; 
 }); 
+
+var table17RowIndex = 0;
+
+// jQuery button click event for table 14 to add a row
+$("#add_row_table_17").on("click", function(){
+    //append adds row to table body with id 'tbody_14'
+    //line 604 creates unique id for the line, which will later be used for deletion
+    //also adding a delete icon for each row 
+    $('#tbody_17').append(`
+        <tr id="R${++table17RowIndex}"> 
+            <td> 
+                <textarea class="form-control" id="field_17_seira${table17RowIndex}" name="field_17_seira${table17RowIndex}" value="${table17RowIndex}" rows="1"></textarea>
+            </td> 
+            <td> 
+                <textarea class="form-control" id="field_17_onoma${table17RowIndex}" name="field_17_onoma${table17RowIndex}" placeholder="Όνομα" rows="1"></textarea> 
+            </td>    
+            <td> 
+                <textarea class="form-control" id="field_17_epwnumo${table17RowIndex}" name="field_17_epwnumo${table17RowIndex}" placeholder="Επώνυμο" rows="1"></textarea>
+            </td> 
+            <td> 
+                <textarea class="form-control" id="field_17_idiotita${table17RowIndex}" name="field_17_idiotita${table17RowIndex}" placeholder="Ιδιότητα" rows="1"></textarea>
+                <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
+            </td> 
+        </tr>`
+        ); 
+  }); 
+
+// jQuery button click event to remove a row 
+$('#tbody_17').on('click', '.remove', function () { 
+  
+  // Getting all the rows close to the one to be removed 
+  var child = $(this).closest('tr').nextAll(); 
+
+  // Iterating across all the rows  
+  // obtained to change the index 
+  child.each(function () { 
+        
+      // Getting <tr> id
+      var id = $(this).attr('id'); 
+
+      // Gets row number from <tr> id
+      var row_num = parseInt(id.substring(1)); 
+
+      //Getting index
+      var idx = $(this).children('.row-index');  
+
+      // Modifying row index
+      idx.html(`Row ${row_num - 1}`); 
+
+      // Modifying row id
+      $(this).attr('id', `R${row_num - 1}`); 
+  }); 
+
+  // Removing the current row. 
+  $(this).closest('tr').remove(); 
+
+  // Decreasing the total number of rows by 1. 
+  table17RowIndex--; 
+}); 
+
 
 var table29RowIndex = 0;
 $("#add_row_table_29").on("click", function(){
