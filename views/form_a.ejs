@@ -19,23 +19,23 @@
                <br><br>
                 <form enctype="multipart/form-data">
 
+                    <div class="checkbox-group form-group row">
+                        <label for="status_ekthesis" class="col-sm-8 col-form-label required">Κατάσταση έκθεσης</label>
+                        <select id="status_ekthesis" name="status_ekthesis" class="col-sm-2 form-control">
+                            <option value="Σε σύνταξη">Σε σύνταξη</option>
+                            <option value="Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους">Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους</option>
+                            <option value="Ολοκληρώθηκε">Ολοκληρώθηκε</option>
+                            <option value="Οριστικοποιήθηκε">Οριστικοποιήθηκε</option>
+                            <option value="Επιμελημένη">Επιμελημένη</option>
+                            <option value="Προς Δημοσίευση">Προς Δημοσίευση</option>
+    
+                        </select>
+                    </div>
                     <fieldset>
 
                         <h2>Α. Αιτιολογική έκθεση</h2>
                         <br>
 
-                        <div class="checkbox-group form-group row">
-                            <label for="status_ekthesis" class="col-sm-8 col-form-label required">Κατάσταση έκθεσης</label>
-                            <select id="status_ekthesis" name="status_ekthesis" class="col-sm-2 form-control">
-                                <option value="Σε σύνταξη">Σε σύνταξη</option>
-                                <option value="Εκκρεμεί έκθεση ΓΛΚ">Εκκρεμεί έκθεση ΓΛΚ</option>
-                                <option value="Ολοκληρώθηκε">Ολοκληρώθηκε</option>
-                                <option value="Οριστικοποιήθηκε">Οριστικοποιήθηκε</option>
-                                <option value="Επιμελημένη">Επιμελημένη</option>
-                                <option value="Προς Δημοσίευση">Προς Δημοσίευση</option>
-        
-                            </select>
-                        </div>
 
                         <div class="form-group row">
                             <label for="title" class="col-sm-6 col-form-label">Τίτλος αξιολογούμενης ρύθμισης</label>
@@ -1177,8 +1177,8 @@
             });
 
             function setDropdown(elem) {
-                let dropdownElement = document.getElementById(elem);
-                dropdownElement.value = "<%= data.status_ekthesis %>"
+               
+                elem.value = "<%= data.status_ekthesis %>"
             }
             setDropdown("#status_ekthesis");
             $("#ekthesi_glk").click( function(ev){
