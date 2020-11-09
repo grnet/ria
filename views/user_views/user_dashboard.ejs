@@ -59,20 +59,20 @@
     document.getElementById("users_ekthesi").children[4].style.display = "none";
     document.getElementById("users_ekthesi").children[6].style.display = "none";    
     document.getElementById("users_ekthesi").children[7].style.display = "none";    
-  } else if (user_role == 'Βουλή' || user_role == 'Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων') {
-    document.getElementById("users_ekthesi").children[0].style.display = "none";
-    document.getElementById("users_ekthesi").children[1].style.display = "none";
-    document.getElementById("users_ekthesi").children[2].style.display = "none";
-    document.getElementById("users_ekthesi").children[3].style.display = "none";
-    document.getElementById("users_ekthesi").children[4].style.display = "none";
-    document.getElementById("users_ekthesi").children[5].style.display = "none";
-    document.getElementById("users_ekthesi").children[6].style.display = "none";
-    document.getElementById("users_ekthesi").children[7].style.display = "none";
-    document.getElementById("users_ekthesi").children[8].style.display = "none";    
-  } else if (user_role == 'Συντάκτης Υπουργείου') {
-    document.getElementById("users_ekthesi").children[5].style.display = "none";
-    document.getElementById("users_ekthesi").children[8].style.display = "none";
-  }
+  } else if (user_role == 'Συντάκτης Υπουργείου' || user_role == 'Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)') {
+      document.getElementById("users_ekthesi").children[5].style.display = "none";
+      document.getElementById("users_ekthesi").children[8].style.display = "none";
+  } else {
+      document.getElementById("users_ekthesi").children[0].style.display = "none";
+      document.getElementById("users_ekthesi").children[1].style.display = "none";
+      document.getElementById("users_ekthesi").children[2].style.display = "none";
+      document.getElementById("users_ekthesi").children[3].style.display = "none";
+      document.getElementById("users_ekthesi").children[4].style.display = "none";
+      document.getElementById("users_ekthesi").children[5].style.display = "none";
+      document.getElementById("users_ekthesi").children[6].style.display = "none";
+      document.getElementById("users_ekthesi").children[7].style.display = "none";
+      document.getElementById("users_ekthesi").children[8].style.display = "none";    
+  } 
 
 </script>
 </body>

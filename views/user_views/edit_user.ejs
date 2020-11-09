@@ -55,7 +55,8 @@
 
             <div class="checkbox-group form-group row">
                 <label for="rolos" class="col-sm-2 col-form-label">Ρόλος: </label>
-                <option selected disabled>Eπιλογή</option>
+                <select id="rolos" name="rolos" class="col-sm-2 form-control">
+                    <option selected disabled>Eπιλογή</option>
                     <option value="Συντάκτης Υπουργείου">Συντάκτης επισπεύδοντος Υπουργείου</option>
                     <option value="Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων">Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων</option>
                     <option value="Βουλευτής" >Βουλευτής</option>
@@ -66,6 +67,7 @@
                     <option value="Διεύθυνση Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)" >Διεύθυνση Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)</option>
                     <option value="Γενικός Γραμματέας Νομικών και Κοινοβουλευτικών Θεμάτων" >Γενικός Γραμματέας Νομικών και Κοινοβουλευτικών Θεμάτων</option>
                     <option value="Βουλή" >Βουλή</option>
+                </select>
             </div>
             <br>
             <hr>
@@ -197,8 +199,6 @@
     function setDropdown(role) {
         let dropdownElement = document.getElementById(role);
         dropdownElement.value = "<%= data.rolos %>"
-        console.log("DROPDOWN'S SET.");
-
     }
     setDropdown("rolos");
 </script>

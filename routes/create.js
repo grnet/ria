@@ -193,6 +193,9 @@ routes.post('/', async function(req,res,next){
     let keys = Object.keys(req_body);//get keys 
     let field_14_arthro = [];
     let field_14_stoxos = [];
+    let field_17_onoma = [];
+    let field_17_epitheto = [];
+    let field_17_idiotita = [];
     let field_29_diatakseis_rythmisis = [];
     let field_29_yfistamenes_diatakseis = [];
     let field_30_diatakseis_katargisi = [];
@@ -218,6 +221,18 @@ routes.post('/', async function(req,res,next){
             value = req_body[keys[i]];
             temp = keys[i];
             field_14_stoxos.push({ temp: value}); 
+        } else if (keys[i].includes("field_17_onoma")) { 
+            value = req_body[keys[i]];
+            temp = keys[i];
+            field_17_onoma.push({ temp: value}); 
+        } else if (keys[i].includes("field_17_epitheto")) { 
+            value = req_body[keys[i]];
+            temp = keys[i];
+            field_17_epitheto.push({ temp: value}); 
+        } else if (keys[i].includes("field_17_idiotita")) { 
+            value = req_body[keys[i]];
+            temp = keys[i];
+            field_17_idiotita.push({ temp: value}); 
         } else if (keys[i].includes("field_29_diatakseis_rythmisis")) { 
             console.log("FOUND ROW "+keys[i]);
             value = req_body[keys[i]];

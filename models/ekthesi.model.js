@@ -73,6 +73,7 @@ module.exports = (sequelize, DataTypes) => {
         field_14_stoxos: DataTypes.JSON,
 
         //ekthesis sintagmatos
+        ekthesi_glk: DataTypes.BOOLEAN,
         field_15_ypoyrgeio: DataTypes.STRING,
         field_15_sxedio_nomou: DataTypes.STRING,
         field_15_rythmiseis: DataTypes.STRING,
@@ -80,10 +81,14 @@ module.exports = (sequelize, DataTypes) => {
         field_16: DataTypes.STRING,
         field_16_kratikos_proypologismos: DataTypes.STRING,
         field_16_proypologismos_forea: DataTypes.STRING,
+        field_16_genikos_onoma: DataTypes.STRING,
+        field_16_genikos_epitheto: DataTypes.STRING,
+        field_16_genikos_idiototita: DataTypes.STRING,
 
         field_17_ypoyrgeio: DataTypes.STRING,
         field_17_sxedio_nomou: DataTypes.STRING,
         field_17_oikonomika_apotelesmata: DataTypes.STRING,
+        field_17_upourgoi: DataTypes.JSON,
 
         field_21_comments: DataTypes.STRING,
         field_22_sinergasia_ypoyrgeiwn: DataTypes.TEXT,

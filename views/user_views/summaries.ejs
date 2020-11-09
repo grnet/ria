@@ -86,6 +86,9 @@
     document.getElementById("admin_ekthesi").children[4].style.display = "none";
     document.getElementById("admin_ekthesi").children[6].style.display = "none";
     document.getElementById("admin_ekthesi").children[7].style.display = "none";
+  } else if (user_role == 'Συντάκτης Υπουργείου' || user_role == 'Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)') {
+      document.getElementById("admin_ekthesi").children[5].style.display = "none";
+      document.getElementById("admin_ekthesi").children[8].style.display = "none";
   } else if (user_role == 'Βουλή' || user_role == 'Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων') {
     document.getElementById("admin_ekthesi").children[0].style.display = "none";
     document.getElementById("admin_ekthesi").children[1].style.display = "none";
@@ -96,10 +99,7 @@
     document.getElementById("admin_ekthesi").children[6].style.display = "none";
     document.getElementById("admin_ekthesi").children[7].style.display = "none";
     document.getElementById("admin_ekthesi").children[8].style.display = "none";
-  } else if (user_role == 'Συντάκτης Υπουργείου') {
-    document.getElementById("admin_ekthesi").children[5].style.display = "none";
-    document.getElementById("admin_ekthesi").children[8].style.display = "none";
-  }
+  } 
 </script>
 </body>
 
