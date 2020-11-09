@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
         typos_analysis: DataTypes.STRING, 
         title: DataTypes.STRING,
         epispeudon_foreas: DataTypes.STRING,
-        status: DataTypes.STRING,
+        status_ekthesis: DataTypes.STRING,
         stoixeia_epikoinwnias: DataTypes.STRING,
   
         ekpedeusi_politismos:DataTypes.BOOLEAN,

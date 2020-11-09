@@ -670,6 +670,14 @@ $(".save_temporarily").on("click",function(ev){
 $(".back").on("click", function (ev) {
     window.location.href = "/user_views/history";
 })
+$("#status_ekthesis")[0].selectedIndex = 1;//set default dropdown value
+$("#ekthesi_glk").click( function(ev){
+    if(this.checked) {
+        $("#status_ekthesis")[0].selectedIndex = 2;     
+    } else {
+        $("#status_ekthesis")[0].selectedIndex = 1;
+    }  
+})
 
 var analysis = "<%= analysis%>";
 var role = "<%= rolos%>";

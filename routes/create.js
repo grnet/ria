@@ -297,8 +297,7 @@ routes.post('/', async function(req,res,next){
     }    
     //console.log("field_29_diatakseis_rythmisis: " + field_29_diatakseis_rythmisis);
     var author = req.session.username;
-
-    await database.ekthesi.update({author:author, field_14_arthro:field_14_arthro,field_14_stoxos: field_14_stoxos, field_29_diatakseis_rythmisis:field_29_diatakseis_rythmisis, field_29_yfistamenes_diatakseis:field_29_yfistamenes_diatakseis, field_30_diatakseis_katargisi:field_30_diatakseis_katargisi, field_30_katargoumenes_diatakseis:field_30_katargoumenes_diatakseis, 
+    await database.ekthesi.update({author:author, field_14_arthro:field_14_arthro,field_14_stoxos: field_14_stoxos, field_17_onoma:field_17_onoma, field_17_epitheto:field_17_epitheto, field_17_idiotita:field_17_idiotita, field_29_diatakseis_rythmisis:field_29_diatakseis_rythmisis, field_29_yfistamenes_diatakseis:field_29_yfistamenes_diatakseis, field_30_diatakseis_katargisi:field_30_diatakseis_katargisi, field_30_katargoumenes_diatakseis:field_30_katargoumenes_diatakseis, 
         field_31_sxetiki_diataksi:field_31_sxetiki_diataksi, field_31_synarmodia_ypoyrgeia:field_31_synarmodia_ypoyrgeia, field_31_antikeimeno_synarmodiotitas:field_31_antikeimeno_synarmodiotitas, field_32_eksousiodotiki_diataksi:field_32_eksousiodotiki_diataksi, field_32_eidos_praksis:field_32_eidos_praksis, field_32_armodio_ypoyrgeio:field_32_armodio_ypoyrgeio, field_32_antikeimeno:field_32_antikeimeno, field_32_xronodiagramma:field_32_xronodiagramma},
         {where:{
         id: res_data.id
