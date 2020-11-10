@@ -8,7 +8,7 @@
         <br>
         <input type="button" name="back" class="back" value="Πίσω" />
         <br><br>
-        <form enctype="multipart/form-data"> 
+        <form id="create_form" enctype="multipart/form-data"> 
             <input type="hidden" id="typos_analysis" name="typos_analysis" value="<%= analysis%>">
             <div class="checkbox-group form-group row">
                 <label for="status_ekthesis" class="col-sm-8 col-form-label required">Κατάσταση έκθεσης</label>
@@ -671,18 +671,16 @@ $(".back").on("click", function (ev) {
     window.location.href = "/user_views/history";
 })
 $("#status_ekthesis")[0].selectedIndex = 1;//set default dropdown value
-$("#ekthesi_glk").click( function(ev){
-    if(this.checked) {
-        $("#status_ekthesis")[0].selectedIndex = 2;     
-    } else {
-        $("#status_ekthesis")[0].selectedIndex = 1;
-    }  
-})
 
 var analysis = "<%= analysis%>";
 var role = "<%= rolos%>";
 function optionalFields (fieldId) {
-    $(fieldId).prop('disabled', true);//find and disable field or button
+    $(fieldId).prop('disabled', true);//find and disable field, button or fieldset
+    //console.log((fieldId));
+};
+
+function enableFields (fieldId) {
+    $(fieldId).prop('disabled', false);//find and enable field or button
     //console.log((fieldId));
 };
 
@@ -695,32 +693,17 @@ function optionalFieldsClassRemoval (fieldLabel) {
 if ( analysis ==":kateythintiries_grammes") {
 
     optionalFields("#add_row_table_14");
-    optionalFields("#field_15_ypoyrgeio");
-    optionalFields("#field_15_rythmiseis");
-    optionalFields("#field_15_sxedio_nomou");
-    optionalFields("#field_16_kratikos_proypologismos");
-    optionalFields("#field_16_proypologismos_forea");
-    optionalFields("#field_17_ypoyrgeio");
-    optionalFields("#field_17_sxedio_nomou");
-    optionalFields("#field_17_oikonomika_apotelesmata");
-    optionalFields("#field_23_upload");
-    optionalFields("#field_23_arxes_symmetasxontes");
-    optionalFields("#field_23_arxes_sxolia_yiothetithikan");
-    optionalFields("#field_23_arxes_sxolia_den_yiothetithikan");
-    optionalFields("#field_23_arthra_symmetasxontes");
-    optionalFields("#field_23_arthra_sxolia_yiothetithikan");
-    optionalFields("#field_23_arthra_sxolia_den_yiothetithikan");
+    optionalFields("#fieldset_15 :input");
+    optionalFields("#fieldset_16 :input");
+    optionalFields("#fieldset_17 :input");
+    optionalFields("#fieldset_23 :input");
     optionalFields("#add_row_table_31");
     optionalFields("#add_row_table_32");
-    optionalFields("#field_33");
-    optionalFields("#field_34");
-    optionalFields("#field_35");
-    optionalFields("#field_36");
-    optionalFields("#field_36_upload");
-    optionalFields("#field_37");
-    optionalFields("#field_38");
-    optionalFields("#field_39");
-    optionalFields("#field_40");
+    optionalFields("#fieldset_33 :input");
+    optionalFields("#fieldset_37 :input");
+    enableFields(document.getElementsByName("create_new"));
+    enableFields(document.getElementsByName("next"));
+    enableFields(document.getElementsByName("previous"));
 
     optionalFieldsClassRemoval("#table_14_label");
     optionalFieldsClassRemoval("#field_15_ypoyrgeio_label");
@@ -746,22 +729,13 @@ if ( analysis ==":kateythintiries_grammes") {
     optionalFieldsClassRemoval("#field_39_label");
     optionalFieldsClassRemoval("#field_40_label");   
 
-} else if ( analysis ==":prosxedio_nomoy") {
-    optionalFields("#field_15_ypoyrgeio");
-    optionalFields("#field_15_rythmiseis");
-    optionalFields("#field_15_sxedio_nomou");
-    optionalFields("#field_16_kratikos_proypologismos");
-    optionalFields("#field_16_proypologismos_forea");
-    optionalFields("#field_17_ypoyrgeio");
-    optionalFields("#field_17_sxedio_nomou");
-    optionalFields("#field_17_oikonomika_apotelesmata");
-    optionalFields("#field_23_upload");
-    optionalFields("#field_23_arxes_symmetasxontes");
-    optionalFields("#field_23_arxes_sxolia_yiothetithikan");
-    optionalFields("#field_23_arxes_sxolia_den_yiothetithikan");
-    optionalFields("#field_23_arthra_symmetasxontes");
-    optionalFields("#field_23_arthra_sxolia_yiothetithikan");
-    optionalFields("#field_23_arthra_sxolia_den_yiothetithikan");
+} else if ( analysis ==":prosxedio_nomou") {
+    optionalFields("#fieldset_15 :input");
+    optionalFields("#fieldset_16 :input");
+    optionalFields("#fieldset_17 :input");
+    optionalFields("#fieldset_23 :input");
+    enableFields(document.getElementsByName("next"));
+    enableFields(document.getElementsByName("previous"));
 
     optionalFieldsClassRemoval("#field_15_ypoyrgeio_label");
     optionalFieldsClassRemoval("#field_15_sxedio_nomou_label");
@@ -777,27 +751,15 @@ if ( analysis ==":kateythintiries_grammes") {
 
 }  else if ( analysis ==":epeigonta_katepeigonta" || analysis ==":diethneis_symvaseis" || analysis ==":tropologies_upourgwn" ) {
     
-    optionalFields("#field_22_sinergasia_ypoyrgeiwn");
-    optionalFields("#field_22_sinergasia_forewn_arxwn");
-    optionalFields("#field_22_diethnis_diavouleusi");
-    optionalFields("#field_23_upload");
-    optionalFields("#field_23_arxes_symmetasxontes");
-    optionalFields("#field_23_arxes_sxolia_yiothetithikan");
-    optionalFields("#field_23_arxes_sxolia_den_yiothetithikan");
-    optionalFields("#field_23_arthra_symmetasxontes");
-    optionalFields("#field_23_arthra_sxolia_yiothetithikan");
-    optionalFields("#field_23_arthra_sxolia_den_yiothetithikan");
+    optionalFields("#fieldset_22 :input");
+    optionalFields("#fieldset_23 :input");
     optionalFields("#add_row_table_31");
     optionalFields("#add_row_table_32");
-    optionalFields("#field_33");
-    optionalFields("#field_34");
-    optionalFields("#field_35");
-    optionalFields("#field_36");
-    optionalFields("#field_36_upload");
-    optionalFields("#field_37");
-    optionalFields("#field_38");
-    optionalFields("#field_39");
-    optionalFields("#field_40");  
+    optionalFields("#fieldset_33 :input");
+    optionalFields("#fieldset_37 :input");  
+    enableFields(document.getElementsByName("next"));
+    enableFields(document.getElementsByName("previous"));
+    enableFields(document.getElementsByName("create_new"));
 
     optionalFieldsClassRemoval("#field_22_sinergasia_ypoyrgeiwn_label");
     optionalFieldsClassRemoval("#field_22_sinergasia_forewn_arxwn_label");
@@ -816,49 +778,26 @@ if ( analysis ==":kateythintiries_grammes") {
     optionalFieldsClassRemoval("#field_38_label");
     optionalFieldsClassRemoval("#field_39_label");
     optionalFieldsClassRemoval("#field_40_label");  
+
 } else if (analysis ==":tropologies_vouleutwn"){
-    //optionalFields("#field_18");
-    $("#ofeli_rythmisis_table").hide(); 
-    $("#kostos_rythmisis_table").hide(); 
-    $("#kindynoi_rythmisis_table").hide(); 
-    optionalFields("#field_18_comments");
-    optionalFields("#field_19_comments");
-    optionalFields("#field_20_comments");
-    optionalFields("#field_21_comments");
-    optionalFields("#field_21_upload");
-    optionalFields("#field_22_sinergasia_ypoyrgeiwn");
-    optionalFields("#field_22_sinergasia_forewn_arxwn");
-    optionalFields("#field_22_diethnis_diavouleusi");
-    optionalFields("#field_23_upload");
-    optionalFields("#field_23_arxes_symmetasxontes");
-    optionalFields("#field_23_arxes_sxolia_yiothetithikan");
-    optionalFields("#field_23_arxes_sxolia_den_yiothetithikan");
-    optionalFields("#field_23_arthra_symmetasxontes");
-    optionalFields("#field_23_arthra_sxolia_yiothetithikan");
-    optionalFields("#field_23_arthra_sxolia_den_yiothetithikan");
-    optionalFields("#field_24");
-    optionalFields("#field_25_dikaio");
-    optionalFields("#field_25_kanonismos");
-    optionalFields("#field_25_odigia");
-    optionalFields("#field_25_apofasi");
-    optionalFields("#field_26_antrwpina_dikaiwmata");
-    optionalFields("#field_26_symvaseis");
-    optionalFields("#field_27_dikastirio");
-    optionalFields("#field_27_arxi");
-    optionalFields("#field_28_nomologia");
-    optionalFields("#field_28_nomologia_dikaiwmatwn_anthrwpou");
-    optionalFields("#field_28_alla_dikastiria");
+    optionalFields("#fieldset_18 :input");
+    optionalFields("#fieldset_19 :input");
+    optionalFields("#fieldset_20 :input");
+    optionalFields("#fieldset_21 :input");
+    optionalFields("#fieldset_22 :input");
+    optionalFields("#fieldset_23 :input");
+    optionalFields("#fieldset_24 :input");
+    optionalFields("#fieldset_25 :input");
+    optionalFields("#fieldset_26 :input");
+    optionalFields("#fieldset_27 :input");
+    optionalFields("#fieldset_28 :input");
     optionalFields("#add_row_table_31");
     optionalFields("#add_row_table_32");
-    optionalFields("#field_33");
-    optionalFields("#field_34");
-    optionalFields("#field_35");
-    optionalFields("#field_36");
-    optionalFields("#field_36_upload");
-    optionalFields("#field_37");
-    optionalFields("#field_38");
-    optionalFields("#field_39");
-    optionalFields("#field_40"); 
+    optionalFields("#fieldset_33 :input");
+    optionalFields("#fieldset_37 :input");  
+    enableFields(document.getElementsByName("next"));
+    enableFields(document.getElementsByName("previous"));
+    enableFields(document.getElementsByName("create_new"));
 
     optionalFieldsClassRemoval("#ofeli_rythmisis_table_label");  
     optionalFieldsClassRemoval("#kostos_rythmisis_table_label");  
@@ -895,7 +834,19 @@ if ( analysis ==":kateythintiries_grammes") {
     optionalFieldsClassRemoval("#field_39_label");
     optionalFieldsClassRemoval("#field_40_label"); 
 }
+//Γενικό Λογιστήριο can't create a form, so we disable those fields
+optionalFields("#fieldset_15 :input");
+optionalFields("#fieldset_16 :input");
+enableFields(document.getElementsByName("next"));
+enableFields(document.getElementsByName("previous"));
+enableFields(document.getElementsByName("ekthesi_glk"));
 
+$("#ekthesi_glk").click( function(ev){
+    if(this.checked) {
+        $("#status_ekthesis")[0].selectedIndex = 2;
+        $(this).prop('disabled', true);     
+    }   
+})
 //row counter
 var table14RowIndex = 0;
 
