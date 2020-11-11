@@ -8,7 +8,93 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
+        //ergasiakes_sxeseis_table
+        symvaseis: DataTypes.JSON,
+        sse_diamesolavisi: DataTypes.JSON,
+        sse_diaitisia: DataTypes.JSON,
+        mesos_xronos_mesolavisis: DataTypes.JSON,
+        mesos_xronos_diaitisias: DataTypes.JSON,
+        diarkeia_sse: DataTypes.JSON,
+        wres_ergasias: DataTypes.JSON,
+        ameivomenes_yperwries: DataTypes.JSON,
+        atyximata: DataTypes.JSON,
 
+        //apasxolisi_table
+        anergia: DataTypes.JSON,
+        makroxronia_anergoi: DataTypes.JSON,
+        anergia_newn: DataTypes.JSON,
+        anergia_gynaikwn: DataTypes.JSON,
+        anergia_ana_perifereia: DataTypes.JSON,
+        anergia_morfwsi: DataTypes.JSON,
+        deiktis_apasxolisis: DataTypes.JSON,
+        meriki_apasxolisi: DataTypes.JSON,
+        symvasi_orismenoy_xronoy: DataTypes.JSON,
+
+        //koinwniki_asfalisi_table
+        ypsos_syntaksewn: DataTypes.JSON,
+        ypsos_eisforwn: DataTypes.JSON,
+        ilikia_syntaksiodotisis: DataTypes.JSON,
+        aponomi_syntaksis: DataTypes.JSON,
+        syntaksiodotiki_dapani: DataTypes.JSON,
+        prosfyges_syntaksis: DataTypes.JSON,
+       
+        //koinwniki_pronoia_table
+        kathestws_ftwxeias: DataTypes.JSON,
+        sterisi_vasikwn_agathwn: DataTypes.JSON,
+        noikokyria_ektaktes_anagkes: DataTypes.JSON,
+        epidomata_dapani: DataTypes.JSON,
+        paidia_se_orfanotrofeia: DataTypes.JSON,
+        astegoi_sitisi: DataTypes.JSON,
+        proswrini_katoikia: DataTypes.JSON,
+        kostos_frontidas: DataTypes.JSON,
+       
+        //ygeia_table
+        astheneis: DataTypes.JSON,
+        paidiki_thnisimotita: DataTypes.JSON,
+        dapanes_ygeias: DataTypes.JSON,
+        dapanes_farmakwn: DataTypes.JSON,
+        arithmos_iatrwn_ana_1000_katoikous: DataTypes.JSON,
+        arithmos_klinwn_ana_1000_katoikous: DataTypes.JSON,
+        diarkeia_epeigousas_nosileias: DataTypes.JSON,
+        eidikes_nosileutikes_ypiresies: DataTypes.JSON,
+        anamoni_asthenwn: DataTypes.JSON,
+        arithmos_nosileiwn_ana_1000_katoikous: DataTypes.JSON,
+        arithmos_klinwn_ana_ypiresia: DataTypes.JSON,
+
+        //isotita_fylwn_table
+        apasxolisi_fylwn_synolika: DataTypes.JSON,
+        apasxolisi_fylwn_perifereia: DataTypes.JSON,
+        apasxolisi_fylwn_oikonomia: DataTypes.JSON,
+        apasxolisi_fylwn_ilikia: DataTypes.JSON,
+        anergia_fylwn_synolika: DataTypes.JSON,
+        anergia_fylwn_perifereia: DataTypes.JSON,
+        anergia_fylwn_oikonomia: DataTypes.JSON,
+        anergia_fylwn_ilikia: DataTypes.JSON,
+        autoapasxoloymenoi_fylo: DataTypes.JSON,
+        ergodotes_fylo: DataTypes.JSON,
+        ds_fylo: DataTypes.JSON,
+        symvoulia_fylo: DataTypes.JSON,
+
+        //metanasteytiki_prosfygiki_politiki
+        aitimata_asyloy: DataTypes.JSON,
+        metanasteytikes_roes: DataTypes.JSON,
+        apelaseis: DataTypes.JSON,
+        monades_filoksenias: DataTypes.JSON,
+        filoksenia_paravatikotita: DataTypes.JSON,    
+
+        //dimosia_dioikisi_table
+        dimosioi_ypalliloi: DataTypes.JSON,
+        monimoi_metaklitoi: DataTypes.JSON,
+        analogia_ypallilwn: DataTypes.JSON,
+        prosvasi_internet: DataTypes.JSON,
+        intranet: DataTypes.JSON,
+        analogia_ypologistwn: DataTypes.JSON,
+        istoselides: DataTypes.JSON,
+        kentra_pliroforisis: DataTypes.JSON,
+        eksypiretisi_ypiresies: DataTypes.JSON,
+        kostos_proswpikou: DataTypes.JSON,
+        kostos_diaxirisis_proswpikou: DataTypes.JSON,
+        
         //dimosia_asfaleia_table
         drastes_adikimata: DataTypes.JSON,
         adikimata_poinikoy_kwdika: DataTypes.JSON,

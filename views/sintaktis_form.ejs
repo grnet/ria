@@ -10,9 +10,11 @@
         <br><br>
         <form id="create_form" enctype="multipart/form-data"> 
             <input type="hidden" id="typos_analysis" name="typos_analysis" value="<%= analysis%>">
+            <input type="hidden" id="status_ekthesis" name="status_ekthesis" value="Σε σύνταξη">
+            
             <div class="checkbox-group form-group row">
-                <label for="status_ekthesis" class="col-sm-8 col-form-label required">Κατάσταση έκθεσης</label>
-                <select id="status_ekthesis" name="status_ekthesis" class="col-sm-2 form-control">
+                <label for="status_ekthesis_drp" class="col-sm-8 col-form-label required">Κατάσταση έκθεσης</label>
+                <select id="status_ekthesis_drp" name="status_ekthesis_drp" class="col-sm-2 form-control">
                     <option selected disabled>Eπιλογή</option>
                     <option value="Σε σύνταξη">Σε σύνταξη</option>
                     <option value="Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους">Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους</option>
@@ -670,7 +672,7 @@ $(".save_temporarily").on("click",function(ev){
 $(".back").on("click", function (ev) {
     window.location.href = "/user_views/history";
 })
-$("#status_ekthesis")[0].selectedIndex = 1;//set default dropdown value
+$("#status_ekthesis_drp")[0].selectedIndex = 1;//set default dropdown value
 
 var analysis = "<%= analysis%>";
 var role = "<%= rolos%>";
@@ -840,11 +842,15 @@ optionalFields("#fieldset_16 :input");
 enableFields(document.getElementsByName("next"));
 enableFields(document.getElementsByName("previous"));
 enableFields(document.getElementsByName("ekthesi_glk"));
+console.log($("#status_ekthesis").val());
 
 $("#ekthesi_glk").click( function(ev){
     if(this.checked) {
-        $("#status_ekthesis")[0].selectedIndex = 2;
+        $("#status_ekthesis_drp").val("Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους");
+        $("#status_ekthesis").val("Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους"); 
         $(this).prop('disabled', true);     
+        console.log($("#status_ekthesis").val());
+        console.log($("#status_ekthesis_drp").val());
     }   
 })
 //row counter
