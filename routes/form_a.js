@@ -22,7 +22,9 @@ routes.get('/:entry_id', async (req,res,next) =>{
 routes.put('/:entry_id', async function(req,res,next){
 
     ekthesi_id = req.params.entry_id
-    //console.log("ekthesi_id: " + ekthesi_id)
+    console.log("req.body: "+ Object.keys(req.body) + Object.values(req.body))
+    console.log("status: "+req.body.status_ekthesis)
+    console.log("id: "+req.body.id)
     let ekthesi = await database.ekthesi.update(req.body, {where:{
         id: ekthesi_id
     }, include: [{model: database.rythmiseis}, {model: database.field_9}], returning: true, plain: true

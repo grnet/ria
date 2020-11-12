@@ -26,13 +26,12 @@
                         <br>
                         <input type="hidden" id="typos_analysis" name="typos_analysis"
                             value="<%= data.typos_analysis%>">
-                        <input type="hidden" id="status_ekthesis" name="status_ekthesis"
-                            value="<%= data.status_ekthesis %>">
+                        <input type="hidden" id="status_ekthesis" name="status_ekthesis" value="<%= data.status_ekthesis%>">
 
                         <div class="checkbox-group form-group row">
                             <label for="status_ekthesis_drp" class="col-sm-8 col-form-label required">Κατάσταση
                                 έκθεσης</label>
-                            <select id="status_ekthesis_drp" name="status_ekthesis_drp" class="col-sm-2 form-control">
+                            <select id="status_ekthesis_drp" name="status_ekthesis_drp" class="col-sm-2 form-control" value="<%= data.status_ekthesis%>>
                                 <option value="Σε σύνταξη">Σε σύνταξη</option>
                                 <option value="Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους">Εκκρεμεί η έκθεση
                                     Γενικού Λογιστηρίου του Κράτους</option>
@@ -61,7 +60,7 @@
                                 Υπουργείο</label>
                             <div class="col-sm-4">
                                 <textarea class="form-control" id="epispeydon_ypoyrgeio" name="epispeydon_ypoyrgeio"
-                                    rows="3" disabled><%= data.epispeydon_ypoyrgeio %></textarea>
+                                    rows="3"><%= data.epispeydon_ypoyrgeio %></textarea>
                             </div>
                         </div>
 
@@ -72,7 +71,7 @@
                                 επικοινωνίας</label>
                             <div class="col-sm-4">
                                 <textarea class="form-control" id="stoixeia_epikoinwnias" name="stoixeia_epikoinwnias"
-                                    rows="3" disabled><%= data.stoixeia_epikoinwnias %></textarea>
+                                    rows="3"><%= data.stoixeia_epikoinwnias %></textarea>
                             </div>
                         </div>
 
@@ -86,11 +85,10 @@
                                 ΠΟΛΙΤΙΣΜΟΣ<sup>1</sup></label>
                             <% if(data.ekpedeusi_politismos){ %>
                             <input class="col-sm-2 form-check-input position-static" name="ekpedeusi_politismos"
-                                type="checkbox" id="ekpedeusi_politismos" value="data.ekpedeusi_politismos" checked
-                                disabled>
+                                type="checkbox" id="ekpedeusi_politismos" value="data.ekpedeusi_politismos" checked>
                             <% }else{ %>
                             <input class="col-sm-2 form-check-input position-static" name="ekpedeusi_politismos"
-                                type="checkbox" id="ekpedeusi_politismos" value="ekpedeusi_politismos" disabled>
+                                type="checkbox" id="ekpedeusi_politismos" value="ekpedeusi_politismos">
                             <% } %>
                         </div>
                         <div class="checkbox-group form-group row">
@@ -98,12 +96,10 @@
                                 ΠΟΛΙΤΙΚΗ<sup>2</sup></label>
                             <% if(data.eksoteriki_politiki){ %>
                             <input class="col-sm-2 form-check-input position-static" type="checkbox"
-                                id="eksoteriki_politiki" name="eksoteriki_politiki" value="eksoteriki_politiki" checked
-                                disabled>
+                                id="eksoteriki_politiki" name="eksoteriki_politiki" value="eksoteriki_politiki" checked>
                             <% }else{ %>
                             <input class="col-sm-2 form-check-input position-static" type="checkbox"
-                                id="eksoteriki_politiki" name="eksoteriki_politiki" value="eksoteriki_politiki"
-                                disabled>
+                                id="eksoteriki_politiki" name="eksoteriki_politiki" value="eksoteriki_politiki">
                             <% } %>
                         </div>
                         <div class="checkbox-group form-group row">
@@ -111,12 +107,10 @@
                                 / ΦΟΡΟΛΟΓΙΚΗ ΠΟΛΙΤΙΚΗ<sup>3</sup></label>
                             <% if(data.forologiki_politiki){ %>
                             <input class="col-sm-2 form-check-input position-static" type="checkbox"
-                                id="forologiki_politiki" name="forologiki_politiki" value="forologiki_politiki" disabled
-                                checked>
+                                id="forologiki_politiki" name="forologiki_politiki" value="forologiki_politiki" checked>
                             <% }else{ %>
                             <input class="col-sm-2 form-check-input position-static" type="checkbox"
-                                id="forologiki_politiki" name="forologiki_politiki" value="forologiki_politiki"
-                                disabled>
+                                id="forologiki_politiki" name="forologiki_politiki" value="forologiki_politiki">
                             <% } %>
                         </div>
                         <div class="checkbox-group form-group row">
@@ -124,11 +118,10 @@
                                 ΠΟΛΙΤΙΚΗ<sup>4</sup></label>
                             <% if(data.koinoniki_politiki){ %>
                             <input class="col-sm-2 form-check-input position-static" type="checkbox"
-                                id="koinoniki_politiki" name="koinoniki_politiki" value="koinoniki_politiki" disabled
-                                checked>
+                                id="koinoniki_politiki" name="koinoniki_politiki" value="koinoniki_politiki" checked>
                             <% }else{ %>
                             <input class="col-sm-2 form-check-input position-static" type="checkbox"
-                                id="koinoniki_politiki" name="koinoniki_politiki" value="koinoniki_politiki" disabled>
+                                id="koinoniki_politiki" name="koinoniki_politiki" value="koinoniki_politiki">
                             <% } %>
                         </div>
                         <div class="checkbox-group form-group row">
@@ -136,10 +129,10 @@
                                 ΤΑΞΗ - ΔΙΚΑΙΟΣΥΝΗ<sup>5</sup></label>
                             <% if(data.dimosia_dioikisi){ %>
                             <input class="col-sm-2 form-check-input position-static" type="checkbox"
-                                id="dimosia_dioikisi" name="dimosia_dioikisi" value="dimosia_dioikisi" checked disabled>
+                                id="dimosia_dioikisi" name="dimosia_dioikisi" value="dimosia_dioikisi" checked>
                             <% }else{ %>
                             <input class="col-sm-2 form-check-input position-static" type="checkbox"
-                                id="dimosia_dioikisi" name="dimosia_dioikisi" value="dimosia_dioikisi" disabled>
+                                id="dimosia_dioikisi" name="dimosia_dioikisi" value="dimosia_dioikisi">
                             <% } %>
                         </div>
                         <div class="checkbox-group form-group row">
@@ -147,10 +140,10 @@
                                 ΔΡΑΣΤΗΡΙΟΤΗΤΑ<sup>6</sup></label>
                             <% if(data.anaptiksi){ %>
                             <input class="col-sm-2 form-check-input position-static" type="checkbox" id="anaptiksi"
-                                name="anaptiksi" value="anaptiksi" disabled checked>
+                                name="anaptiksi" value="anaptiksi" checked>
                             <% }else{ %>
                             <input class="col-sm-2 form-check-input position-static" type="checkbox" id="anaptiksi"
-                                name="anaptiksi" value="anaptiksi" disabled>
+                                name="anaptiksi" value="anaptiksi">
                             <% } %>
 
                         </div>
@@ -178,22 +171,19 @@
                         <h2>Η «ταυτότητα» της αξιολογούμενης ρύθμισης</h2>
                         <br>
 
-                        <div class="form-group">
+                        <div class="form-group syntaktis">
                             <label for="field_1">1. Ποιο ζήτημα αντιμετωπίζει η αξιολογούμενη ρύθμιση;</label>
-                            <textarea class="form-control" id="field_1" name="field_1" rows="3"
-                                disabled><%= data.field_1 %></textarea>
+                            <textarea class="form-control" id="field_1" name="field_1" rows="3"><%= data.field_1 %></textarea>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group syntaktis">
                             <label for="field_2">2. Γιατί αποτελεί πρόβλημα;</label>
-                            <textarea class="form-control" id="field_2" name="field_2" rows="3"
-                                disabled><%= data.field_2 %></textarea>
+                            <textarea class="form-control" id="field_2" name="field_2" rows="3"><%= data.field_2 %></textarea>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group syntaktis">
                             <label for="field_3">3. Ποιους φορείς ή πληθυσμιακές ομάδες αφορά;</label>
-                            <textarea class="form-control" id="field_3" name="field_3" rows="3"
-                                disabled><%= data.field_3 %></textarea>
+                            <textarea class="form-control" id="field_3" name="field_3" rows="3"><%= data.field_3 %></textarea>
                         </div>
 
                         <input type="button" name="previous" class="previous action-button-previous"
@@ -944,7 +934,7 @@
                 });
             })
 
-            $(".save_temporarily").on("click", function (ev) {
+            function updateForm (ev) {
                 ev.preventDefault();
                 console.log($("form").serialize())//comment this line out to hide query wrote in db
                 $.ajax({
@@ -959,11 +949,25 @@
                     },
                     type: 'PUT'
                 });
+            }
+
+            $(".save_temporarily").on("click", function (ev) {
+                updateForm(ev);
+            })
+
+            $(".return_to_author").on("click", function (ev) {
+                $("#status_ekthesis").val("Σε σύνταξη");
+                $('input[name=status_ekthesis]').val("Σε σύνταξη");//change hidden input's value
+                updateForm(ev);
             })
 
             $(".back").on("click", function (ev) {
                 window.location.href = "/user_views/history";//go to page that originally referred to current page
             })
+
+            if (role != 'Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων') {
+                $(".return_to_author").hide();
+            }
 
             //row counter
             var table14RowIndex;
@@ -1316,7 +1320,11 @@
             };
 
             if (role == "Γενικό Λογιστήριο του Κράτους") {
-                optionalFields("#edit_form :input");
+                //optionalFields("#edit_form :input");
+                //$("input.syntaktis").attr("disabled", true);
+               // console.log(document.getElementsByClassName("syntaktis")[0]);
+               // enableFields(document.getElementsByClassName("syntaktis")[0])
+                $(".syntaktis :input").prop('disabled', true);//disable elems of certain class
                 enableFields("#ekthesi_glk");
                 enableFields("#field_15_ypoyrgeio");
                 enableFields("#field_15_sxedio_nomou");
@@ -1338,15 +1346,31 @@
                 enableFields(document.getElementsByName("previous"));
             }
             //finish this by adding pop up window && changing status
-            $("#ekthesi_glk").click(function (ev) {
-                if (!this.checked) {
-                    $("#status_ekthesis_drp").val("Σε σύνταξη");
-                    $("#status_ekthesis").val("Σε σύνταξη");
-                    $(this).prop('disabled', true);
-                    console.log($("#status_ekthesis").val());
-                    console.log($("#status_ekthesis_drp").val());
+            if($("#ekthesi_glk").val("Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους")) {
+                $("#ekthesi_glk").prop('checked', true);
+                console.log('Dis be hella checked ;)')
+            }
+            
+            $("#ekthesi_glk").on("change",function (ev) {
+                if (role == "Γενικό Λογιστήριο του Κράτους") {
+                    if (!this.checked) {
+                        $("#status_ekthesis_drp").val("Επιμελημένη");
+                        $('input[name=status_ekthesis]').val("Επιμελημένη");//change hidden input's value
+                        //$("#status_ekthesis").val("Επιμελημένη");
+                        console.log($("#status_ekthesis").val());
+                        var answer = window.confirm("Αποεπιλέγοντας το checkbox η κατάσταση μετατρέπεται σε 'Επιμελημένη' και" 
+                        +" η ανάλυση αποστέλλεται στον Αρμόδιο του εκάστωτε Υπουργείου. Συνέχεια;");
+                        if (answer) {
+                            updateForm(ev); 
+                        } else {
+                            $("#ekthesi_glk").prop('checked', true);
+                            $("#status_ekthesis_drp").val("Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους");
+                            $('input[name=status_ekthesis]').val("Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους");//change hidden input's value
+                            console.log($("#status_ekthesis").val());
+                        }
+                    }
                 }
-            })
+            });
 
             function setValuesField9(inputAsJSON, var0, var1, var2, var3, var4, var5, var6) {
                 inputAsJSON = inputAsJSON.replace(/&#34;/g, '"');//replace html code for double quotes

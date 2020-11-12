@@ -9,7 +9,167 @@
       <br><br>
       <input type="button" name="back" class="back float-right" value="Πίσω" />
       <br><br>
-      <table id="all_entries_data" class="display">
+      
+      <br>
+      
+      <table id="entries_data" class="display">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Τίτλος</th>
+            <th>Όνομα συντάκτη</th>
+            <th>Επώνυμο συντάκτη</th>
+            <th>Ρόλος συντάκτη</th>
+            <th>Υπουργείο συντάκτη</th>
+            <th>Τύπος ανάλυσης</th>
+            <th>Κατάσταση αίτησης</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <% for(var i=0; i<entries.length; i++) {%>
+            <tr onclick="window.location.href='/form_a/<%= entries[i].id %>'">
+              <td style="text-align:center"><%= entries[i].id %></td>
+              <td><%= entries[i].title %></td>
+              <td><%= entries[i].user.fname%></td>
+              <td><%= entries[i].user.lname%></td>
+              <td><%= entries[i].user.rolos%></td>
+              <td><%= entries[i].user.ypoyrgeio %></td>
+              <td><%= entries[i].typos_analysis %></td>
+              <td><%= entries[i].status_ekthesis %></td>
+            </tr>
+            <% } %>
+
+        </tbody>
+      </table>
+      <br><br>
+      
+      <table id="users_entries_data" class="display">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Τίτλος</th>
+            <th>Όνομα συντάκτη</th>
+            <th>Επώνυμο συντάκτη</th>
+            <th>Ρόλος συντάκτη</th>
+            <th>Υπουργείο συντάκτη</th>
+            <th>Τύπος ανάλυσης</th>
+            <th>Κατάσταση αίτησης</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <% for(var i=0; i<users.length; i++) {%>
+            <% for(var j=0; j<users[i].ekthesis.length; j++) {%>
+              <% if (users[i].ekthesis[j].status_ekthesis == 'Σε σύνταξη') {%> 
+                <tr onclick="window.location.href='/form_a/<%= user.ekthesis[i].id %>'">
+                <td style="text-align:center"><%= users[i].ekthesis[j].id %></td>
+                <td><%= users[i].ekthesis[j].title %></td>
+                <td><%= users[i].fname %></td>
+                <td><%= users[i].lname %></td>
+                <td><%= users[i].rolos %></td>
+                <td><%= users[i].ypoyrgeio %></td>
+                <td><%= users[i].ekthesis[j].typos_analysis %></td>
+                <td><%= users[i].ekthesis[j].status_ekthesis %></td>
+                </tr>
+              <% } %>
+            <% } %>
+          <% } %>  
+        </tbody>
+      </table>
+      <br><br>
+      <%- include('../user_views/menus.ejs') %>
+    </div>
+
+  </div>
+
+</div>
+
+<%- include('../partials/footer.ejs') %>
+</div>
+
+<style>
+  a {
+    color: blue;
+  }
+
+  .exit,
+  .back {
+    font-size: 16px;
+  }
+</style>
+
+<script>
+  $(document).ready(function () {
+    $('#users_entries_data').DataTable();
+    $('#entries_data').DataTable();
+    //$('#per_role_entries_data').DataTable();
+
+  });
+
+  var user_role = '<%= user.rolos %>';
+  var user_dikaiwmata_diaxeirisis = "<%= user.dikaiwmata_diaxeirisis %>"
+  if (user_dikaiwmata_diaxeirisis) { //depending on administrational show menu
+    $("#admin_menu").show();
+    $("#user_menu").hide();
+    //depending on user role hide menu items
+    if (user_role == 'Βουλευτής') {
+      document.getElementById("admin_ekthesi").children[1].style.display = "none";
+      document.getElementById("admin_ekthesi").children[2].style.display = "none";
+      document.getElementById("admin_ekthesi").children[3].style.display = "none";
+      document.getElementById("admin_ekthesi").children[4].style.display = "none";
+      document.getElementById("admin_ekthesi").children[6].style.display = "none";
+      document.getElementById("admin_ekthesi").children[7].style.display = "none";
+    } else if (user_role == 'Συντάκτης επισπεύδοντος Υπουργείου' || user_role == 'Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)') {
+      document.getElementById("admin_ekthesi").children[5].style.display = "none";
+      document.getElementById("admin_ekthesi").children[8].style.display = "none";
+    } else {
+      document.getElementById("admin_ekthesi").children[0].style.display = "none";
+      document.getElementById("admin_ekthesi").children[1].style.display = "none";
+      document.getElementById("admin_ekthesi").children[2].style.display = "none";
+      document.getElementById("admin_ekthesi").children[3].style.display = "none";
+      document.getElementById("admin_ekthesi").children[4].style.display = "none";
+      document.getElementById("admin_ekthesi").children[5].style.display = "none";
+      document.getElementById("admin_ekthesi").children[6].style.display = "none";
+      document.getElementById("admin_ekthesi").children[7].style.display = "none";
+      document.getElementById("admin_ekthesi").children[8].style.display = "none";
+    }
+  }
+  else {
+    $("#user_menu").show();
+    $("#admin_menu").hide();
+    if (user_role == 'Βουλευτής') {
+      document.getElementById("users_ekthesi").children[1].style.display = "none";
+      document.getElementById("users_ekthesi").children[2].style.display = "none";
+      document.getElementById("users_ekthesi").children[3].style.display = "none";
+      document.getElementById("users_ekthesi").children[4].style.display = "none";
+      document.getElementById("users_ekthesi").children[6].style.display = "none";
+      document.getElementById("users_ekthesi").children[7].style.display = "none";
+    } else if (user_role == 'Συντάκτης επισπεύδοντος Υπουργείου' || user_role == 'Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)') {
+      document.getElementById("users_ekthesi").children[5].style.display = "none";
+      document.getElementById("users_ekthesi").children[8].style.display = "none";
+    } else {
+      document.getElementById("users_ekthesi").children[0].style.display = "none";
+      document.getElementById("users_ekthesi").children[1].style.display = "none";
+      document.getElementById("users_ekthesi").children[2].style.display = "none";
+      document.getElementById("users_ekthesi").children[3].style.display = "none";
+      document.getElementById("users_ekthesi").children[4].style.display = "none";
+      document.getElementById("users_ekthesi").children[5].style.display = "none";
+      document.getElementById("users_ekthesi").children[6].style.display = "none";
+      document.getElementById("users_ekthesi").children[7].style.display = "none";
+      document.getElementById("users_ekthesi").children[8].style.display = "none";
+    }
+  }
+
+  $(".back").on("click", function (ev) {
+    if (user_dikaiwmata_diaxeirisis) {
+      window.location.href = "/user_views/admin_dashboard";
+    } else {
+      window.location.href = "/user_views/user_dashboard";
+    }
+  });
+
+  /* <table id="all_entries_data" class="display">
         <thead>
           <tr>
             <th>ID</th>
@@ -37,158 +197,8 @@
 
         </tbody>
       </table>
-      <br>
       
-      <table id="status_entries_data" class="display">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Τίτλος</th>
-            <th>Όνομα συντάκτη</th>
-            <th>Επώνυμο συντάκτη</th>
-            <th>Ρόλος συντάκτη</th>
-            <th>Τύπος ανάλυσης</th>
-            <th>Κατάσταση αίτησης</th>
-          </tr>
-        </thead>
-        <tbody>
-
-          <% for(var i=0; i<status.length; i++) {%>
-            <tr onclick="window.location.href='/form_a/<%= status[i].id %>'">
-              <td style="text-align:center"><%= status[i].id %></td>
-              <td><%= status[i].title %></td>
-              <td><%=status[0].user.fname%></td>
-              <td><%=status[0].user.lname%></td>
-              <td><%=status[0].user.rolos%></td>
-              <td><%= status[i].typos_analysis %></td>
-              <td><%= status[i].status_ekthesis %></td>
-            </tr>
-            <% } %>
-
-        </tbody>
-      </table>
-      <br><br>
-      <table id="per_role_entries_data" class="display">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Τίτλος</th>
-            <th>Όνομα συντάκτη</th>
-            <th>Επώνυμο συντάκτη</th>
-            <th>Ρόλος συντάκτη</th>
-            <th>Τύπος ανάλυσης</th>
-            <th>Κατάσταση αίτησης</th>
-          </tr>
-        </thead>
-        <tbody>
-
-          <% for(var i=0; i<per_role_entries.length; i++) { %>
-            <%  for(var j=0; j<per_role_entries[i].ekthesis.length; j++) {%>
-            <tr onclick="window.location.href='/form_a/<%= per_role_entries[i].ekthesis[j].id %>'">
-              <td style="text-align:center"><%= per_role_entries[i].ekthesis[j].id %></td>
-              <td><%= per_role_entries[i].ekthesis[j].title %></td>
-              <td><%= per_role_entries[i].fname %></td>
-              <td><%= per_role_entries[i].lname %></td>
-              <td><%= per_role_entries[i].rolos %></td>
-              <td><%= per_role_entries[i].ekthesis[j].typos_analysis %></td>
-              <td><%= per_role_entries[i].ekthesis[j].status_ekthesis %></td>
-            </tr>
-            <% } 
-            }%>
-
-        </tbody>
-      </table>
-      
-      <%- include('../user_views/menus.ejs') %>
-    </div>
-
-  </div>
-
-</div>
-
-<%- include('../partials/footer.ejs') %>
-</div>
-
-<style>
-  a {
-    color: blue;
-  }
-
-  .exit,
-  .back {
-    font-size: 16px;
-  }
-</style>
-
-<script>
-  $(document).ready(function () {
-    $('#all_entries_data').DataTable();
-    $('#status_entries_data').DataTable();
-    $('#per_role_entries_data').DataTable();
-
-  });
-
-  var user_role = '<%= user.rolos %>';
-  var user_dikaiwmata_diaxeirisis = "<%= user.dikaiwmata_diaxeirisis %>"
-  if (user_dikaiwmata_diaxeirisis) { //depending on administrational show menu
-    $("#admin_menu").show();
-    $("#user_menu").hide();
-    //depending on user role hide menu items
-    if (user_role == 'Βουλευτής') {
-      document.getElementById("admin_ekthesi").children[1].style.display = "none";
-      document.getElementById("admin_ekthesi").children[2].style.display = "none";
-      document.getElementById("admin_ekthesi").children[3].style.display = "none";
-      document.getElementById("admin_ekthesi").children[4].style.display = "none";
-      document.getElementById("admin_ekthesi").children[6].style.display = "none";
-      document.getElementById("admin_ekthesi").children[7].style.display = "none";
-    } else if (user_role == 'Συντάκτης Υπουργείου' || user_role == 'Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)') {
-      document.getElementById("admin_ekthesi").children[5].style.display = "none";
-      document.getElementById("admin_ekthesi").children[8].style.display = "none";
-    } else {
-      document.getElementById("admin_ekthesi").children[0].style.display = "none";
-      document.getElementById("admin_ekthesi").children[1].style.display = "none";
-      document.getElementById("admin_ekthesi").children[2].style.display = "none";
-      document.getElementById("admin_ekthesi").children[3].style.display = "none";
-      document.getElementById("admin_ekthesi").children[4].style.display = "none";
-      document.getElementById("admin_ekthesi").children[5].style.display = "none";
-      document.getElementById("admin_ekthesi").children[6].style.display = "none";
-      document.getElementById("admin_ekthesi").children[7].style.display = "none";
-      document.getElementById("admin_ekthesi").children[8].style.display = "none";
-    }
-  }
-  else {
-    $("#user_menu").show();
-    $("#admin_menu").hide();
-    if (user_role == 'Βουλευτής') {
-      document.getElementById("users_ekthesi").children[1].style.display = "none";
-      document.getElementById("users_ekthesi").children[2].style.display = "none";
-      document.getElementById("users_ekthesi").children[3].style.display = "none";
-      document.getElementById("users_ekthesi").children[4].style.display = "none";
-      document.getElementById("users_ekthesi").children[6].style.display = "none";
-      document.getElementById("users_ekthesi").children[7].style.display = "none";
-    } else if (user_role == 'Συντάκτης Υπουργείου' || user_role == 'Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)') {
-      document.getElementById("users_ekthesi").children[5].style.display = "none";
-      document.getElementById("users_ekthesi").children[8].style.display = "none";
-    } else {
-      document.getElementById("users_ekthesi").children[0].style.display = "none";
-      document.getElementById("users_ekthesi").children[1].style.display = "none";
-      document.getElementById("users_ekthesi").children[2].style.display = "none";
-      document.getElementById("users_ekthesi").children[3].style.display = "none";
-      document.getElementById("users_ekthesi").children[4].style.display = "none";
-      document.getElementById("users_ekthesi").children[5].style.display = "none";
-      document.getElementById("users_ekthesi").children[6].style.display = "none";
-      document.getElementById("users_ekthesi").children[7].style.display = "none";
-      document.getElementById("users_ekthesi").children[8].style.display = "none";
-    }
-  }
-
-  $(".back").on("click", function (ev) {
-    if (user_dikaiwmata_diaxeirisis) {
-      window.location.href = "/user_views/admin_dashboard";
-    } else {
-      window.location.href = "/user_views/user_dashboard";
-    }
-  });
+      */
 </script>
 </body>
 
