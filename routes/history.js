@@ -9,9 +9,14 @@ routes.get('/', async function (req, res, next) {
             username: req.session.username
         }, include: [{ model: database.ekthesi }]
     });
-    let entries;
+    let entries, status;
     //console.log( user);
     if (user && user.dataValues) {
+        users = await database.user.findAll({
+            where: {
+                ypoyrgeio: user.ypoyrgeio
+            }, include: [{ model: database.ekthesi }]
+        })
         //for each different role we render different results
         if (user.rolos == "Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων") {
             entries = await database.ekthesi.findAll({
@@ -21,50 +26,26 @@ routes.get('/', async function (req, res, next) {
                     }
                 }, include: [{ model: database.user }]
             })
-            res.render("user_views/history", { entries: entries, user: user });
-
         } else if (user.rolos == "Συντάκτης επισπεύδοντος Υπουργείου") {
+            status = "Σε σύνταξη";
             entries = await database.ekthesi.findAll({
                 where: {
-                    status_ekthesis: "Σε σύνταξη"
+                    status_ekthesis: status
                 }, include: [{ model: database.user }]
             })
-            users = await database.user.findAll({
+        } else if (user.rolos == "Γενικό Λογιστήριο του Κράτους") {
+            status = "Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους"
+            entries = await database.ekthesi.findAll({
                 where: {
-                    ypoyrgeio: user.ypoyrgeio
-                }, include: [{ model: database.ekthesi }]
+                    status_ekthesis: status
+                    
+                }, include: [{ model: database.user }]
             })
-
-            res.render("user_views/history", { entries: entries, user: user, users:users });
-        }
-
-        /*let per_role_entries = await database.user.findAll({
-            where: {
-                rolos: user.rolos
-            }, include: [{ model: database.ekthesi }]
-        });
-        let status_query = "Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους"
-        let status = await database.ekthesi.findAll({
-            where: {
-                status_ekthesis: status_query
-            }, include: [{ model: database.user }]
-        });
-        let entries = await database.ekthesi.findAll({
-            include: [{ model: database.user }]
-        });
-        //console.log("FOUND per_role_entries EKTHESIS: " + per_role_entries)
-        res.render("user_views/history", { entries: entries, user: user, status: status, per_role_entries: per_role_entries })*/
+        }   
+        res.render("user_views/history", { entries: entries, user: user, users:users, status:status });
     } else {
         res.status(404).send("Not found")
     }
-
-    //console.log( entries)
-    /*let user_entries = await database.ekthesi.findAll({where:{
-        author: user.username
-    }
-    })*/
-
-
 });
 
 module.exports = routes;

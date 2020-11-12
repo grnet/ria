@@ -915,6 +915,7 @@
         <script>
 
             var ekthesi_id = '<%= data.id %>'
+            var role = "<%= rolos%>";
             console.log(ekthesi_id);
             $("form").on("submit", function (ev) {
                 ev.preventDefault();
@@ -956,7 +957,6 @@
             })
 
             $(".return_to_author").on("click", function (ev) {
-                $("#status_ekthesis").val("Σε σύνταξη");
                 $('input[name=status_ekthesis]').val("Σε σύνταξη");//change hidden input's value
                 updateForm(ev);
             })
@@ -964,6 +964,23 @@
             $(".back").on("click", function (ev) {
                 window.location.href = "/user_views/history";//go to page that originally referred to current page
             })
+
+            function onSubmitStatus (role) {
+                if (role.includes("Συντάκτης")) {
+                    if($("#ekthesi_glk").checked) {
+                        if ($('input[name=status_ekthesis]').val("Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους")) {
+                            alert("Για την ανάλυση εκκρεμεί ο έλεγχος του ΓΛΚ που έχετε ζητήσει. Επικοινωνήστε με το ΓΛΚ για να το ολοκληρώσει ή ενημερώστε τον αρμόδιο του Υπουργείου σας για να το επιλύσει (εφόσον δε χρειάζεται η έκθεση ΓΛΚ).");
+                            //TODO: redirect?
+                        }
+                    } else if (!$("#ekthesi_glk").checked) {
+                        if ($('input[name=status_ekthesis]').val("Σε σύνταξη") || $('input[name=status_ekthesis]').val("Επιμελημένη")) {
+                            $('input[name=status_ekthesis]').val("Ολοκληρώθηκε");
+                        }    
+                    } 
+                } else if (role.includes("Αρμόδιος" || "αρμόδιοςσσσσ")) {
+                    $('input[name=status_ekthesis]').val("Οριστικοποιήθηκε");//might not be needed   
+                }
+            }                
 
             if (role != 'Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων') {
                 $(".return_to_author").hide();
@@ -1303,7 +1320,6 @@
                 $("#perivallon_energeia_table").show();
             }
 
-            var role = "<%= rolos%>";
             function optionalFields(fieldId) {
                 $(fieldId).prop('disabled', true);//find and disable field, button or fieldset
                 //console.log((fieldId));
@@ -1345,18 +1361,17 @@
                 enableFields(document.getElementsByName("next"));
                 enableFields(document.getElementsByName("previous"));
             }
-            //finish this by adding pop up window && changing status
-            if($("#ekthesi_glk").val("Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους")) {
+            //default value when loading page
+            if($('input[name=status_ekthesis]').val() =="Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους") {
                 $("#ekthesi_glk").prop('checked', true);
-                console.log('Dis be hella checked ;)')
             }
             
             $("#ekthesi_glk").on("change",function (ev) {
-                if (role == "Γενικό Λογιστήριο του Κράτους") {
+                //actions to take when ΓΛΚ checks checkbox
+                if (role =="Γενικό Λογιστήριο του Κράτους") {    
                     if (!this.checked) {
                         $("#status_ekthesis_drp").val("Επιμελημένη");
                         $('input[name=status_ekthesis]').val("Επιμελημένη");//change hidden input's value
-                        //$("#status_ekthesis").val("Επιμελημένη");
                         console.log($("#status_ekthesis").val());
                         var answer = window.confirm("Αποεπιλέγοντας το checkbox η κατάσταση μετατρέπεται σε 'Επιμελημένη' και" 
                         +" η ανάλυση αποστέλλεται στον Αρμόδιο του εκάστωτε Υπουργείου. Συνέχεια;");
@@ -1369,9 +1384,14 @@
                             console.log($("#status_ekthesis").val());
                         }
                     }
+                } else if (role !="Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων") {
+                    if(this.checked) {
+                        $("#status_ekthesis").val("Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους"); 
+                        $(this).prop('disabled', true);                             
+                    }   
                 }
             });
-
+            
             function setValuesField9(inputAsJSON, var0, var1, var2, var3, var4, var5, var6) {
                 inputAsJSON = inputAsJSON.replace(/&#34;/g, '"');//replace html code for double quotes
                 //console.log("JSON: " + inputAsJSON);

@@ -15,7 +15,6 @@
       <table id="entries_data" class="display">
         <thead>
           <tr>
-            <th>ID</th>
             <th>Τίτλος</th>
             <th>Όνομα συντάκτη</th>
             <th>Επώνυμο συντάκτη</th>
@@ -29,7 +28,6 @@
 
           <% for(var i=0; i<entries.length; i++) {%>
             <tr onclick="window.location.href='/form_a/<%= entries[i].id %>'">
-              <td style="text-align:center"><%= entries[i].id %></td>
               <td><%= entries[i].title %></td>
               <td><%= entries[i].user.fname%></td>
               <td><%= entries[i].user.lname%></td>
@@ -44,10 +42,9 @@
       </table>
       <br><br>
       
-      <table id="users_entries_data" class="display">
+       <table id="users_entries_data" class="display">
         <thead>
           <tr>
-            <th>ID</th>
             <th>Τίτλος</th>
             <th>Όνομα συντάκτη</th>
             <th>Επώνυμο συντάκτη</th>
@@ -58,26 +55,27 @@
           </tr>
         </thead>
         <tbody>
-
-          <% for(var i=0; i<users.length; i++) {%>
-            <% for(var j=0; j<users[i].ekthesis.length; j++) {%>
-              <% if (users[i].ekthesis[j].status_ekthesis == 'Σε σύνταξη') {%> 
-                <tr onclick="window.location.href='/form_a/<%= user.ekthesis[i].id %>'">
-                <td style="text-align:center"><%= users[i].ekthesis[j].id %></td>
-                <td><%= users[i].ekthesis[j].title %></td>
-                <td><%= users[i].fname %></td>
-                <td><%= users[i].lname %></td>
-                <td><%= users[i].rolos %></td>
-                <td><%= users[i].ypoyrgeio %></td>
-                <td><%= users[i].ekthesis[j].typos_analysis %></td>
-                <td><%= users[i].ekthesis[j].status_ekthesis %></td>
-                </tr>
+          <% if(users){%>  
+            <% for(var i=0; i<users.length; i++) {%>
+              <% for(var j=0; j<users[i].ekthesis.length; j++) {%>
+                <% if (users[i].ekthesis[j].status_ekthesis == status) {%> 
+                  <tr onclick="window.location.href='/form_a/<%= users[i].ekthesis[j].id %>'">
+                  <td><%= users[i].ekthesis[j].title %></td>
+                  <td><%= users[i].fname %></td>
+                  <td><%= users[i].lname %></td>
+                  <td><%= users[i].rolos %></td>
+                  <td><%= users[i].ypoyrgeio %></td>
+                  <td><%= users[i].ekthesis[j].typos_analysis %></td>
+                  <td><%= users[i].ekthesis[j].status_ekthesis %></td>
+                  </tr>
+                <% } %>
               <% } %>
-            <% } %>
+            <% } %>  
           <% } %>  
         </tbody>
       </table>
       <br><br>
+      
       <%- include('../user_views/menus.ejs') %>
     </div>
 
@@ -168,37 +166,6 @@
       window.location.href = "/user_views/user_dashboard";
     }
   });
-
-  /* <table id="all_entries_data" class="display">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Τίτλος</th>
-            <th>Όνομα συντάκτη</th>
-            <th>Επώνυμο συντάκτη</th>
-            <th>Ρόλος συντάκτη</th>
-            <th>Τύπος ανάλυσης</th>
-            <th>Κατάσταση αίτησης</th>
-          </tr>
-        </thead>
-        <tbody>
-
-          <% for(var i=0; i<user.ekthesis.length; i++) {%>
-            <tr onclick="window.location.href='/form_a/<%= user.ekthesis[i].id %>'">
-              <td style="text-align:center"><%= user.ekthesis[i].id %></td>
-              <td><%= user.ekthesis[i].title %></td>
-              <td><%= user.fname %></td>
-              <td><%= user.lname %></td>
-              <td><%= user.rolos %></td>
-              <td><%= user.ekthesis[i].typos_analysis %></td>
-              <td><%= user.ekthesis[i].status_ekthesis %></td>
-            </tr>
-            <% } %>
-
-        </tbody>
-      </table>
-      
-      */
 </script>
 </body>
 
