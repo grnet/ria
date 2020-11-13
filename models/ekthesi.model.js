@@ -152,7 +152,12 @@ module.exports = (sequelize, DataTypes) => {
         field_38: DataTypes.TEXT,
         field_39: DataTypes.TEXT,
         field_40: DataTypes.TEXT,
-                
+
+        egkrisi_aksiologisis_nomoparaskeyastikis:DataTypes.BOOLEAN,
+        egkrisi_kalis_nomothetisis:DataTypes.BOOLEAN,
+        egkrisi_dieuthinsis_nomoparaskeyastikis:DataTypes.BOOLEAN,
+        egkrisi_genikou_grammatea:DataTypes.BOOLEAN,
+        //todo: add checkboxes        
     },{
         freezeTableName: true //table name same as model name
     });

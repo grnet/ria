@@ -1,58 +1,51 @@
-<div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-8">        
+<div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-8">
     <br>
     <div>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
         <br>
         <input type="button" name="back" class="back" value="Πίσω" />
         <br><br>
-        <form id="create_form" enctype="multipart/form-data"> 
+        <form enctype="multipart/form-data">
             <input type="hidden" id="typos_analysis" name="typos_analysis" value="<%= analysis%>">
             <input type="hidden" id="status_ekthesis" name="status_ekthesis" value="Σε σύνταξη">
-            
-            <div class="checkbox-group form-group row">
-                <label for="status_ekthesis_drp" class="col-sm-8 col-form-label required">Κατάσταση έκθεσης</label>
-                <select id="status_ekthesis_drp" name="status_ekthesis_drp" class="col-sm-2 form-control">
-                    <option selected disabled>Eπιλογή</option>
-                    <option value="Σε σύνταξη">Σε σύνταξη</option>
-                    <option value="Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους">Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους</option>
-                    <option value="Ολοκληρώθηκε">Ολοκληρώθηκε</option>
-                    <option value="Οριστικοποιήθηκε">Οριστικοποιήθηκε</option>
-                    <option value="Επιμελημένη">Επιμελημένη</option>
-                    <option value="Προς Δημοσίευση">Προς Δημοσίευση</option>
 
-                </select>
-            </div>
             <fieldset>
                 <h2>Α. Αιτιολογική έκθεση</h2>
                 <br>
-                
-                
 
                 <div class="form-group row">
                     <label for="title" class="col-sm-6 col-form-label required">Τίτλος αξιολογούμενης ρύθμισης</label>
                     <div class="col-sm-4">
-                    <input type="text" class="form-control" id="title" name="title">
+                        <input type="text" class="form-control" id="title" name="title">
                     </div>
                 </div>
 
-                <br><hr>
+                <br>
+                <hr>
 
                 <div class="form-group row">
                     <label for="epispeudon_foreas" class="col-sm-6 col-form-label required">Επισπεύδον φορέας</label>
                     <div class="col-sm-4">
-                    <textarea class="form-control" id="epispeudon_foreas" name="epispeudon_foreas" rows="3" placeholder="Επισπεύδον Υπουργείο ή Βουλευτής"></textarea>
+                        <textarea class="form-control" id="epispeudon_foreas" name="epispeudon_foreas" rows="3"
+                            placeholder="Επισπεύδον Υπουργείο ή Βουλευτής"></textarea>
                     </div>
                 </div>
-                
+
                 <hr>
 
                 <div class="form-group row">
                     <label for="rythmisi_pou_afora" class="col-sm-6 col-form-label">Ρύθμιση την οποία αφορά</label>
                     <div class="col-sm-4">
-                    <textarea class="form-control" id="rythmisi_pou_afora" name="rythmisi_pou_afora" rows="3" placeholder="Ρύθμιση"></textarea>
+                        <textarea class="form-control" id="rythmisi_pou_afora" name="rythmisi_pou_afora" rows="3"
+                            placeholder="Ρύθμιση"></textarea>
                     </div>
                 </div>
 
@@ -61,49 +54,70 @@
                 <div class="form-group row">
                     <label for="stoixeia_epikoinwnias" class="col-sm-6 col-form-label">Στοιχεία επικοινωνίας</label>
                     <div class="col-sm-4">
-                    <textarea class="form-control" id="stoixeia_epikoinwnias" name="stoixeia_epikoinwnias" rows="3" placeholder="E-mail, κινητό, γραφείο κ.ο.κ"></textarea>
+                        <textarea class="form-control" id="stoixeia_epikoinwnias" name="stoixeia_epikoinwnias" rows="3"
+                            placeholder="E-mail, κινητό, γραφείο κ.ο.κ"></textarea>
                     </div>
                 </div>
 
-                <br><hr>
-                
-                <p>Επιλέξατε από τον παρακάτω κατάλογο τον τομέα ή τους τομείς νομοθέτησης στους οποίους αφορούν οι βασικές διατάξεις της αξιολογούμενης ρύθμισης:</p>
+                <br>
+                <hr>
+
+                <p>Επιλέξατε από τον παρακάτω κατάλογο τον τομέα ή τους τομείς νομοθέτησης στους οποίους αφορούν οι
+                    βασικές διατάξεις της αξιολογούμενης ρύθμισης:</p>
                 <div class="checkbox-group form-group row ">
-                    <label for="ekpedeusi_politismos" class="col-sm-8 col-form-label">ΕΚΠΑΙΔΕΥΣΗ - ΠΟΛΙΤΙΣΜΟΣ<sup>1</sup></label>
-                    <input class="col-sm-2 form-check-input position-static" name="ekpedeusi_politismos" type="checkbox" id="ekpedeusi_politismos" value="ekpedeusi_politismos">
+                    <label for="ekpedeusi_politismos" class="col-sm-8 col-form-label">ΕΚΠΑΙΔΕΥΣΗ -
+                        ΠΟΛΙΤΙΣΜΟΣ<sup>1</sup></label>
+                    <input class="col-sm-2 form-check-input position-static" name="ekpedeusi_politismos" type="checkbox"
+                        id="ekpedeusi_politismos" value="ekpedeusi_politismos">
                 </div>
                 <div class="checkbox-group form-group row">
-                    <label for="eksoteriki_politiki" class="col-sm-8 col-form-label">ΕΘΝΙΚΗ ΑΜΥΝΑ - ΕΞΩΤΕΡΙΚΗ ΠΟΛΙΤΙΚΗ<sup>2</sup></label>
-                    <input class="col-sm-2 form-check-input position-static" type="checkbox" id="eksoteriki_politiki" name="eksoteriki_politiki" value="eksoteriki_politiki">
+                    <label for="eksoteriki_politiki" class="col-sm-8 col-form-label">ΕΘΝΙΚΗ ΑΜΥΝΑ - ΕΞΩΤΕΡΙΚΗ
+                        ΠΟΛΙΤΙΚΗ<sup>2</sup></label>
+                    <input class="col-sm-2 form-check-input position-static" type="checkbox" id="eksoteriki_politiki"
+                        name="eksoteriki_politiki" value="eksoteriki_politiki">
                 </div>
                 <div class="checkbox-group form-group row">
-                    <label for="forologiki_politiki" class="col-sm-8 col-form-label">ΟΙΚΟΝΟΜΙΚΗ / ΔΗΜΟΣΙΟΝΟΜΙΚΗ / ΦΟΡΟΛΟΓΙΚΗ ΠΟΛΙΤΙΚΗ<sup>3</sup></label>
-                    <input class="col-sm-2 form-check-input position-static" type="checkbox" id="forologiki_politiki" name="forologiki_politiki" value="forologiki_politiki">
+                    <label for="forologiki_politiki" class="col-sm-8 col-form-label">ΟΙΚΟΝΟΜΙΚΗ / ΔΗΜΟΣΙΟΝΟΜΙΚΗ /
+                        ΦΟΡΟΛΟΓΙΚΗ ΠΟΛΙΤΙΚΗ<sup>3</sup></label>
+                    <input class="col-sm-2 form-check-input position-static" type="checkbox" id="forologiki_politiki"
+                        name="forologiki_politiki" value="forologiki_politiki">
                 </div>
                 <div class="checkbox-group form-group row">
-                    <label for="koinoniki_politiki" class="col-sm-8 col-form-label">ΚΟΙΝΩΝΙΚΗ ΠΟΛΙΤΙΚΗ<sup>4</sup></label>
-                    <input class="col-sm-2 form-check-input position-static" type="checkbox" id="koinoniki_politiki" name="koinoniki_politiki" value="koinoniki_politiki">
+                    <label for="koinoniki_politiki" class="col-sm-8 col-form-label">ΚΟΙΝΩΝΙΚΗ
+                        ΠΟΛΙΤΙΚΗ<sup>4</sup></label>
+                    <input class="col-sm-2 form-check-input position-static" type="checkbox" id="koinoniki_politiki"
+                        name="koinoniki_politiki" value="koinoniki_politiki">
                 </div>
                 <div class="checkbox-group form-group row">
-                    <label for="dimosia_dioikisi" class="col-sm-8 col-form-label">ΔΗΜΟΣΙΑ ΔΙΟΙΚΗΣΗ - ΔΗΜΟΣΙΑ ΤΑΞΗ - ΔΙΚΑΙΟΣΥΝΗ<sup>5</sup></label>
-                    <input class="col-sm-2 form-check-input position-static" type="checkbox" id="dimosia_dioikisi" name="dimosia_dioikisi" value="dimosia_dioikisi">
+                    <label for="dimosia_dioikisi" class="col-sm-8 col-form-label">ΔΗΜΟΣΙΑ ΔΙΟΙΚΗΣΗ - ΔΗΜΟΣΙΑ ΤΑΞΗ -
+                        ΔΙΚΑΙΟΣΥΝΗ<sup>5</sup></label>
+                    <input class="col-sm-2 form-check-input position-static" type="checkbox" id="dimosia_dioikisi"
+                        name="dimosia_dioikisi" value="dimosia_dioikisi">
                 </div>
                 <div class="checkbox-group form-group row">
-                    <label for="anaptiksi" class="col-sm-8 col-form-label">ΑΝΑΠΤΥΞΗ - ΕΠΕΝΔΥΤΙΚΗ ΔΡΑΣΤΗΡΙΟΤΗΤΑ<sup>6</sup></label>
-                    <input class="col-sm-2 form-check-input position-static" type="checkbox" id="anaptiksi" name="anaptiksi" value="anaptiksi">
+                    <label for="anaptiksi" class="col-sm-8 col-form-label">ΑΝΑΠΤΥΞΗ - ΕΠΕΝΔΥΤΙΚΗ
+                        ΔΡΑΣΤΗΡΙΟΤΗΤΑ<sup>6</sup></label>
+                    <input class="col-sm-2 form-check-input position-static" type="checkbox" id="anaptiksi"
+                        name="anaptiksi" value="anaptiksi">
                 </div>
-                <input type="button" name="next" class="next action-button" value="Επόμενα πεδία"/>
+                <input type="button" name="next" class="next action-button" value="Επόμενα πεδία" />
 
                 <hr>
                 <br>
-                <p class="explain_text"><sup>1</sup> Τομέας νομοθέτησης επί θεμάτων Υπουργείου Παιδείας & Θρησκευμάτων και Υπουργείου  Πολιτισμού & Αθλητισμού.</p>
-                <p class="explain_text"><sup>2</sup> Τομέας νομοθέτησης επί θεμάτων Υπουργείου Εθνικής Άμυνας και Υπουργείου Εξωτερικών.</p>
+                <p class="explain_text"><sup>1</sup> Τομέας νομοθέτησης επί θεμάτων Υπουργείου Παιδείας & Θρησκευμάτων
+                    και Υπουργείου Πολιτισμού & Αθλητισμού.</p>
+                <p class="explain_text"><sup>2</sup> Τομέας νομοθέτησης επί θεμάτων Υπουργείου Εθνικής Άμυνας και
+                    Υπουργείου Εξωτερικών.</p>
                 <p class="explain_text"><sup>3</sup> Τομέας νομοθέτησης επί θεμάτων Υπουργείου Οικονομικών.</p>
-                <p class="explain_text"><sup>4</sup> Τομέας νομοθέτησης επί θεμάτων Υπουργείου Εργασίας και Κοινωνικών Υποθέσεων και Υπουργείου Υγείας.</p>
-                <p class="explain_text"><sup>5</sup> Τομέας νομοθέτησης επί θεμάτων Υπουργείου Εσωτερικών, Υπουργείου Ψηφιακής Διακυβέρνησης, Υπουργείου Προστασίας του Πολίτη και Υπουργείου Δικαιοσύνης</p>
-                <p class="explain_text"><sup>6</sup> Τομέας νομοθέτησης επί θεμάτων Υπουργείου Ανάπτυξης & Επενδύσεων, Υπουργείου Περιβάλλοντος & Ενέργειας, Υπουργείου Υποδομών & Μεταφορών, Υπουργείου Ναυτιλίας & Νησιωτικής Πολιτικής, Υπουργείου Αγροτικής Ανάπτυξης & Τροφίμων και Υπουργείου Τουρισμού.</p>
+                <p class="explain_text"><sup>4</sup> Τομέας νομοθέτησης επί θεμάτων Υπουργείου Εργασίας και Κοινωνικών
+                    Υποθέσεων και Υπουργείου Υγείας.</p>
+                <p class="explain_text"><sup>5</sup> Τομέας νομοθέτησης επί θεμάτων Υπουργείου Εσωτερικών, Υπουργείου
+                    Ψηφιακής Διακυβέρνησης, Υπουργείου Προστασίας του Πολίτη και Υπουργείου Δικαιοσύνης</p>
+                <p class="explain_text"><sup>6</sup> Τομέας νομοθέτησης επί θεμάτων Υπουργείου Ανάπτυξης & Επενδύσεων,
+                    Υπουργείου Περιβάλλοντος & Ενέργειας, Υπουργείου Υποδομών & Μεταφορών, Υπουργείου Ναυτιλίας &
+                    Νησιωτικής Πολιτικής, Υπουργείου Αγροτικής Ανάπτυξης & Τροφίμων και Υπουργείου Τουρισμού.</p>
             </fieldset>
-        
+
             <fieldset>
                 <h2>Η «ταυτότητα» της αξιολογούμενης ρύθμισης</h2>
                 <br>
@@ -112,7 +126,7 @@
                     <label for="field_1" class="required">1. Ποιο ζήτημα αντιμετωπίζει η αξιολογούμενη ρύθμιση;</label>
                     <textarea class="form-control" id="field_1" name="field_1" rows="3"></textarea>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="field_2" class="required">2. Γιατί αποτελεί πρόβλημα;</label>
                     <textarea class="form-control" id="field_2" name="field_2" rows="3"></textarea>
@@ -123,61 +137,70 @@
                     <textarea class="form-control" id="field_3" name="field_3" rows="3"></textarea>
                 </div>
 
-                <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενα πεδία"/>
-                <input type="button" name="next" class="next action-button" value="Επόμενα πεδία"/>
+                <input type="button" name="previous" class="previous action-button-previous"
+                    value="Προηγούμενα πεδία" />
+                <input type="button" name="next" class="next action-button" value="Επόμενα πεδία" />
             </fieldset>
 
             <fieldset>
                 <h2>Η αναγκαιότητα της αξιολογούμενης ρύθμισης</h2>
                 <br>
                 <div class="checkbox-group form-group row">
-                    <label for="field_4" class="col-sm-8 col-form-label required">4. Το εν λόγω ζήτημα έχει αντιμετωπιστεί με νομοθετική ρύθμιση στο παρελθόν;</label>
+                    <label for="field_4" class="col-sm-8 col-form-label required">4. Το εν λόγω ζήτημα έχει
+                        αντιμετωπιστεί με νομοθετική ρύθμιση στο παρελθόν;</label>
                     <select id="field_4" name="field_4" class="col-sm-2 form-control">
                         <option selected disabled>Eπιλογή</option>
                         <option value="yes">Ναι</option>
-                        <option value="no" >Όχι</option>
+                        <option value="no">Όχι</option>
                     </select>
                 </div>
-                
+
                 <div id="field_4_wrap" class="form-group" style="display:none;">
-                    <label for="field_4_1" class="required">4.1 Ποιο είναι το ισχύον νομικό πλαίσιο που ρυθμίζει το ζήτημα;</label>
+                    <label for="field_4_1" class="required">4.1 Ποιο είναι το ισχύον νομικό πλαίσιο που ρυθμίζει το
+                        ζήτημα;</label>
                     <textarea class="form-control" id="field_4_1" name="field_4_comments" rows="3"></textarea>
                 </div>
-            
-                <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενα πεδία"/>
-                <input type="button" name="next" class="next action-button" value="Επόμενα πεδία"/>
+
+                <input type="button" name="previous" class="previous action-button-previous"
+                    value="Προηγούμενα πεδία" />
+                <input type="button" name="next" class="next action-button" value="Επόμενα πεδία" />
             </fieldset>
-            
+
             <fieldset>
                 <label>5. Γιατί δεν είναι δυνατό να αντιμετωπιστεί στο πλαίσιο της υφιστάμενης νομοθεσίας:</label>
                 <div class="form-group">
-                    <label for="field_5_1" class="required">5.1 με αλλαγή προεδρικού διατάγματος, υπουργικής απόφασης ή άλλης κανονιστικής πράξης;</label>
+                    <label for="field_5_1" class="required">5.1 με αλλαγή προεδρικού διατάγματος, υπουργικής απόφασης ή
+                        άλλης κανονιστικής πράξης;</label>
                     <textarea class="form-control" id="field_5_1" name="field_5_1" rows="3"></textarea>
                 </div>
 
                 <div class="form-group">
-                    <label for="field_5_2" class="required">5.2 με αλλαγή διοικητικής πρακτικής συμπεριλαμβανομένης της δυνατότητας νέας ερμηνευτικής προσέγγισης της υφιστάμενης νομοθεσίας;</label>
+                    <label for="field_5_2" class="required">5.2 με αλλαγή διοικητικής πρακτικής συμπεριλαμβανομένης της
+                        δυνατότητας νέας ερμηνευτικής προσέγγισης της υφιστάμενης νομοθεσίας;</label>
                     <textarea class="form-control" id="field_5_2" name="field_5_2" rows="3"></textarea>
                 </div>
 
                 <div class="form-group">
-                    <label for="field_5_3" class="required">5.3 με διάθεση περισσότερων ανθρώπινων και υλικών πόρων;</label>
+                    <label for="field_5_3" class="required">5.3 με διάθεση περισσότερων ανθρώπινων και υλικών
+                        πόρων;</label>
                     <textarea class="form-control" id="field_5_3" name="field_5_3" rows="3"></textarea>
                 </div>
 
-                <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενα πεδία"/>
-                <input type="button" name="next" class="next action-button" value="Επόμενα πεδία"/>
+                <input type="button" name="previous" class="previous action-button-previous"
+                    value="Προηγούμενα πεδία" />
+                <input type="button" name="next" class="next action-button" value="Επόμενα πεδία" />
             </fieldset>
 
             <fieldset>
                 <h2>Συναφείς πρακτικές</h2>
                 <br>
                 <div class="checkbox-group form-group row">
-                    <label for="field_6" class="col-sm-8 col-form-label required">6. Έχετε λάβει υπόψη συναφείς πρακτικές;</label>
+                    <label for="field_6" class="col-sm-8 col-form-label required">6. Έχετε λάβει υπόψη συναφείς
+                        πρακτικές;</label>
                     <select id="field_6" name="field_6" class="col-sm-2 form-control">
                         <option selected disabled>Eπιλογή</option>
                         <option value="yes">Ναι</option>
-                        <option value="no" >Όχι</option>
+                        <option value="no">Όχι</option>
                     </select>
                 </div>
 
@@ -190,94 +213,129 @@
                     <label for="field_6_3" class="required">6.3 Σε διεθνείς οργανισμούς:</label>
                     <textarea class="form-control" id="field_6_3" name="field_6_3" rows="3"></textarea>
                 </div>
-                <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενα πεδία"/>
-                <input type="button" name="next" class="next action-button" value="Επόμενα πεδία"/>
+                <input type="button" name="previous" class="previous action-button-previous"
+                    value="Προηγούμενα πεδία" />
+                <input type="button" name="next" class="next action-button" value="Επόμενα πεδία" />
             </fieldset>
 
             <fieldset>
                 <h2>Στόχοι αξιολογούμενης ρύθμισης</h2>
                 <br>
                 <div id="field_7_wrap">
-                    <label  class="col-form-label required">7. Σημειώστε ποιοι από τους στόχους βιώσιμης ανάπτυξης των Ηνωμένων Εθνών επιδιώκονται με την αξιολογούμενη ρύθμιση</label>
+                    <label class="col-form-label required">7. Σημειώστε ποιοι από τους στόχους βιώσιμης ανάπτυξης των
+                        Ηνωμένων Εθνών επιδιώκονται με την αξιολογούμενη ρύθμιση</label>
                     <div class="flex-form-group form-group">
                         <div class="wrap">
-                          <input id="goal_1" class="checkbox-inline" type="checkbox" name="field_7_goal_1" value="goal_1">
-                          <label for="goal_1" class="checkbox-label"><img src="/img/gr-goal-1.jpg" width="100px"></label>
+                            <input id="goal_1" class="checkbox-inline" type="checkbox" name="field_7_goal_1"
+                                value="goal_1">
+                            <label for="goal_1" class="checkbox-label"><img src="/img/gr-goal-1.jpg"
+                                    width="100px"></label>
                         </div>
                         <div class="wrap">
-                          <input id="goal_2" class="checkbox-inline" type="checkbox" name="field_7_goal_2" value="goal_2">
-                          <label for="goal_2" class="checkbox-label"><img src="/img/gr-goal-2.jpg" width="100px"></label>
+                            <input id="goal_2" class="checkbox-inline" type="checkbox" name="field_7_goal_2"
+                                value="goal_2">
+                            <label for="goal_2" class="checkbox-label"><img src="/img/gr-goal-2.jpg"
+                                    width="100px"></label>
                         </div>
                         <div class="wrap">
-                          <input id="goal_3" class="checkbox-inline" type="checkbox" name="field_7_goal_3" value="goal_3">
-                          <label for="goal_3" class="checkbox-label"><img src="/img/gr-goal-3.jpg" width="100px"></label>
+                            <input id="goal_3" class="checkbox-inline" type="checkbox" name="field_7_goal_3"
+                                value="goal_3">
+                            <label for="goal_3" class="checkbox-label"><img src="/img/gr-goal-3.jpg"
+                                    width="100px"></label>
                         </div>
                         <div class="wrap">
-                          <input id="goal_4" class="checkbox-inline" type="checkbox" name="field_7_goal_4" value="goal_4">
-                          <label for="goal_4" class="checkbox-label"><img src="/img/gr-goal-4.jpg" width="100px"></label>
+                            <input id="goal_4" class="checkbox-inline" type="checkbox" name="field_7_goal_4"
+                                value="goal_4">
+                            <label for="goal_4" class="checkbox-label"><img src="/img/gr-goal-4.jpg"
+                                    width="100px"></label>
                         </div>
-                      
+
                     </div>
                     <div class="flex-form-group form-group">
                         <div class="wrap">
-                            <input id="goal_5" class="checkbox-inline" type="checkbox" name="field_7_goal_5" value="goal_5">
-                            <label for="goal_5" class="checkbox-label"><img src="/img/gr-goal-5.jpg" width="100px"></label>
+                            <input id="goal_5" class="checkbox-inline" type="checkbox" name="field_7_goal_5"
+                                value="goal_5">
+                            <label for="goal_5" class="checkbox-label"><img src="/img/gr-goal-5.jpg"
+                                    width="100px"></label>
                         </div>
                         <div class="wrap">
-                            <input id="goal_6" class="checkbox-inline" type="checkbox" name="field_7_goal_6" value="goal_6">
-                            <label for="goal_6" class="checkbox-label"><img src="/img/gr-goal-6.jpg" width="100px"></label>
+                            <input id="goal_6" class="checkbox-inline" type="checkbox" name="field_7_goal_6"
+                                value="goal_6">
+                            <label for="goal_6" class="checkbox-label"><img src="/img/gr-goal-6.jpg"
+                                    width="100px"></label>
                         </div>
                         <div class="wrap">
-                            <input id="goal_7" class="checkbox-inline" type="checkbox" name="field_7_goal_7" value="goal_7">
-                            <label for="goal_7" class="checkbox-label"><img src="/img/gr-goal-7.jpg" width="100px"></label>
+                            <input id="goal_7" class="checkbox-inline" type="checkbox" name="field_7_goal_7"
+                                value="goal_7">
+                            <label for="goal_7" class="checkbox-label"><img src="/img/gr-goal-7.jpg"
+                                    width="100px"></label>
                         </div>
                         <div class="wrap">
-                            <input id="goal_8" class="checkbox-inline" type="checkbox" name="field_7_goal_8" value="goal_8">
-                            <label for="goal_8" class="checkbox-label"><img src="/img/gr-goal-8.jpg" width="100px"></label>
+                            <input id="goal_8" class="checkbox-inline" type="checkbox" name="field_7_goal_8"
+                                value="goal_8">
+                            <label for="goal_8" class="checkbox-label"><img src="/img/gr-goal-8.jpg"
+                                    width="100px"></label>
                         </div>
-                    
+
                     </div>
-    
+
                     <div class="flex-form-group form-group">
                         <div class="wrap">
-                            <input id="goal_9" class="checkbox-inline" type="checkbox" name="field_7_goal_9" value="goal_9">
-                            <label for="goal_9" class="checkbox-label"><img src="/img/gr-goal-9.jpg" width="100px"></label>
+                            <input id="goal_9" class="checkbox-inline" type="checkbox" name="field_7_goal_9"
+                                value="goal_9">
+                            <label for="goal_9" class="checkbox-label"><img src="/img/gr-goal-9.jpg"
+                                    width="100px"></label>
                         </div>
                         <div class="wrap">
-                            <input id="goal_10" class="checkbox-inline" type="checkbox" name="field_7_goal_10" value="goal_10">
+                            <input id="goal_10" class="checkbox-inline" type="checkbox" name="field_7_goal_10"
+                                value="goal_10">
                             <label for="goal_10" class="checkbox-label"><img src="/img/10.png" width="100px"></label>
                         </div>
                         <div class="wrap">
-                            <input id="goal_11" class="checkbox-inline" type="checkbox" name="field_7_goal_11" value="goal_11">
-                            <label for="goal_11" class="checkbox-label"><img src="/img/gr-goal-11.jpg" width="100px"></label>
+                            <input id="goal_11" class="checkbox-inline" type="checkbox" name="field_7_goal_11"
+                                value="goal_11">
+                            <label for="goal_11" class="checkbox-label"><img src="/img/gr-goal-11.jpg"
+                                    width="100px"></label>
                         </div>
                         <div class="wrap">
-                            <input id="goal_12" class="checkbox-inline" type="checkbox" name="field_7_goal_12" value="goal_12">
-                            <label for="goal_12" class="checkbox-label"><img src="/img/gr-goal-12.jpg" width="100px"></label>
-                        </div>
-                    </div>
-                    <div class="flex-form-group form-group">
-                        <div class="wrap">
-                            <input id="goal_13" class="checkbox-inline" type="checkbox" name="field_7_goal_13" value="goal_13">
-                            <label for="goal_13" class="checkbox-label"><img src="/img/gr-goal-13.jpg" width="100px"></label>
-                        </div>
-                        <div class="wrap">
-                            <input id="goal_14" class="checkbox-inline" type="checkbox" name="field_7_goal_14" value="goal_14">
-                            <label for="goal_14" class="checkbox-label"><img src="/img/gr-goal-14.jpg" width="100px"></label>
-                        </div>
-                        <div class="wrap">
-                            <input id="goal_15" class="checkbox-inline" type="checkbox" name="field_7_goal_15" value="goal_15">
-                            <label for="goal_15" class="checkbox-label"><img src="/img/gr-goal-15.jpg" width="100px"></label>
-                        </div>
-                        <div class="wrap">
-                            <input id="goal_16" class="checkbox-inline" type="checkbox" name="field_7_goal_16" value="goal_16">
-                            <label for="goal_16" class="checkbox-label"><img src="/img/gr-goal-16.jpg" width="100px"></label>
+                            <input id="goal_12" class="checkbox-inline" type="checkbox" name="field_7_goal_12"
+                                value="goal_12">
+                            <label for="goal_12" class="checkbox-label"><img src="/img/gr-goal-12.jpg"
+                                    width="100px"></label>
                         </div>
                     </div>
                     <div class="flex-form-group form-group">
                         <div class="wrap">
-                            <input id="goal_17" class="checkbox-inline" type="checkbox" name="field_7_goal_17" value="goal_17">
-                            <label for="goal_17" class="checkbox-label"><img src="/img/gr-goal-17.jpg" width="100px"></label>
+                            <input id="goal_13" class="checkbox-inline" type="checkbox" name="field_7_goal_13"
+                                value="goal_13">
+                            <label for="goal_13" class="checkbox-label"><img src="/img/gr-goal-13.jpg"
+                                    width="100px"></label>
+                        </div>
+                        <div class="wrap">
+                            <input id="goal_14" class="checkbox-inline" type="checkbox" name="field_7_goal_14"
+                                value="goal_14">
+                            <label for="goal_14" class="checkbox-label"><img src="/img/gr-goal-14.jpg"
+                                    width="100px"></label>
+                        </div>
+                        <div class="wrap">
+                            <input id="goal_15" class="checkbox-inline" type="checkbox" name="field_7_goal_15"
+                                value="goal_15">
+                            <label for="goal_15" class="checkbox-label"><img src="/img/gr-goal-15.jpg"
+                                    width="100px"></label>
+                        </div>
+                        <div class="wrap">
+                            <input id="goal_16" class="checkbox-inline" type="checkbox" name="field_7_goal_16"
+                                value="goal_16">
+                            <label for="goal_16" class="checkbox-label"><img src="/img/gr-goal-16.jpg"
+                                    width="100px"></label>
+                        </div>
+                    </div>
+                    <div class="flex-form-group form-group">
+                        <div class="wrap">
+                            <input id="goal_17" class="checkbox-inline" type="checkbox" name="field_7_goal_17"
+                                value="goal_17">
+                            <label for="goal_17" class="checkbox-label"><img src="/img/gr-goal-17.jpg"
+                                    width="100px"></label>
                         </div>
                     </div>
                 </div>
@@ -293,8 +351,9 @@
                     <textarea class="form-control" id="field_8_2" name="field_8_2" rows="3"></textarea>
                 </div>
 
-                <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενα πεδία"/>
-                <input type="button" name="next" class="next action-button" value="Επόμενα πεδία"/>
+                <input type="button" name="previous" class="previous action-button-previous"
+                    value="Προηγούμενα πεδία" />
+                <input type="button" name="next" class="next action-button" value="Επόμενα πεδία" />
             </fieldset>
 
             <%- include('fill_form/field_9.ejs') %>
@@ -304,37 +363,45 @@
                 <br>
 
                 <div class="checkbox-group form-group row">
-                    <label class="col-sm-8 col-form-label required">10. Σε περίπτωση που προβλέπεται η χρήση πληροφοριακού συστήματος, ποια θα είναι η συμβολή αυτού στην επίτευξη των στόχων της αξιολογούμενης ρύθμισης: </label>
+                    <label class="col-sm-8 col-form-label required">10. Σε περίπτωση που προβλέπεται η χρήση
+                        πληροφοριακού συστήματος, ποια θα είναι η συμβολή αυτού στην επίτευξη των στόχων της
+                        αξιολογούμενης ρύθμισης: </label>
                 </div>
 
                 <div class="checkbox-group form-group row">
                     <div class="col-2"></div>
                     <label class="col-3 col-form-label required">ΑΜΕΣΗ</label>
-                    <input class="col-2 form-check-input position-static" type="checkbox" id="field_10_amesi" name="field_10_amesi" value="field_10_amesi">
+                    <input class="col-2 form-check-input position-static" type="checkbox" id="field_10_amesi"
+                        name="field_10_amesi" value="field_10_amesi">
                 </div>
                 <div id="amesi_wrap" class="form-group" style="display:none;">
-                    <label for="field_10_amesi_comments " class="required" >Εάν είναι άμεση, εξηγήστε:</label>
-                    <textarea class="form-control" id="field_10_amesi_comments" name="field_10_amesi_comments" rows="3"></textarea>
+                    <label for="field_10_amesi_comments " class="required">Εάν είναι άμεση, εξηγήστε:</label>
+                    <textarea class="form-control" id="field_10_amesi_comments" name="field_10_amesi_comments"
+                        rows="3"></textarea>
                 </div>
 
                 <div class="checkbox-group form-group row">
                     <div class="col-2"></div>
                     <label class="col-3 col-form-label required">ΕΜΜΕΣΗ</label>
-                    <input class="col-2 form-check-input position-static" type="checkbox" id="field_10_emmesi" value="field_10_emmesi">
-                </div>         
+                    <input class="col-2 form-check-input position-static" type="checkbox" id="field_10_emmesi"
+                        value="field_10_emmesi">
+                </div>
 
                 <div id="emesi_wrap" class="form-group" style="display:none;">
                     <label for="field_10_emesi_comments " class="required">Εάν είναι έμμεση, εξηγήστε:</label>
-                    <textarea class="form-control" id="field_10_emesi_comments" name="field_10_emmesi_comments" rows="3"></textarea>
+                    <textarea class="form-control" id="field_10_emesi_comments" name="field_10_emmesi_comments"
+                        rows="3"></textarea>
                 </div>
                 <hr>
 
                 <div class="checkbox-group form-group row">
-                    <label for="field_11" class="col-sm-8 col-form-label required">11. Το προβλεπόμενο πληροφοριακό σύστημα είναι συμβατό με την εκάστοτε ψηφιακή στρατηγική της χώρας (Βίβλος Ψηφιακού Μετασχηματισμού);</label>
+                    <label for="field_11" class="col-sm-8 col-form-label required">11. Το προβλεπόμενο πληροφοριακό
+                        σύστημα είναι συμβατό με την εκάστοτε ψηφιακή στρατηγική της χώρας (Βίβλος Ψηφιακού
+                        Μετασχηματισμού);</label>
                     <select id="field_11" name="field_11" class="col-sm-2 form-control">
                         <option selected disabled>Eπιλογή</option>
                         <option value="yes">Ναι</option>
-                        <option value="no" >Όχι</option>
+                        <option value="no">Όχι</option>
                     </select>
                 </div>
 
@@ -345,26 +412,28 @@
                 <hr>
 
                 <div class="checkbox-group form-group row">
-                    <label for="field_12" class="col-sm-8 col-form-label required">12. Διασφαλίζεται η διαλειτουργικότητα του εν λόγω πληροφοριακού συστήματος με άλλα υφιστάμενα συστήματα;</label>
+                    <label for="field_12" class="col-sm-8 col-form-label required">12. Διασφαλίζεται η
+                        διαλειτουργικότητα του εν λόγω πληροφοριακού συστήματος με άλλα υφιστάμενα συστήματα;</label>
                     <select id="field_12" name="field_12" class="col-sm-2 form-control">
                         <option selected disabled>Eπιλογή</option>
                         <option value="yes">Ναι</option>
-                        <option value="no" >Όχι</option>
+                        <option value="no">Όχι</option>
                     </select>
                 </div>
-                
+
                 <div id="field_12_wrap" class="form-group " style="display:none;">
                     <label for="field_12_comments " class="required">Αναφέρατε ποια είναι αυτά τα συστήματα:</label>
                     <textarea class="form-control" name="field_12_comments" id="field_12_comments" rows="3"></textarea>
                 </div>
                 <hr>
-                
+
                 <div class="checkbox-group form-group row">
-                    <label for="field_13" class="col-sm-8 col-form-label required">13. Έχει προηγηθεί μελέτη βιωσιμότητας του προβλεπόμενου πληροφοριακού συστήματος;</label>
+                    <label for="field_13" class="col-sm-8 col-form-label required">13. Έχει προηγηθεί μελέτη
+                        βιωσιμότητας του προβλεπόμενου πληροφοριακού συστήματος;</label>
                     <select id="field_13" name="field_13" class="col-sm-2 form-control">
                         <option selected disabled>Eπιλογή</option>
                         <option value="yes">Ναι</option>
-                        <option value="no" >Όχι</option>
+                        <option value="no">Όχι</option>
                     </select>
                 </div>
 
@@ -372,38 +441,42 @@
                     <label for="field_13_comments " class="required">Εξηγήστε</label>
                     <textarea class="form-control" name="field_13_comments" id="field_13_comments" rows="3"></textarea>
                 </div>
-                
-                <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενα πεδία"/>
-                <input type="button" name="next" class="next action-button" value="Επόμενα πεδία"/>
+
+                <input type="button" name="previous" class="previous action-button-previous"
+                    value="Προηγούμενα πεδία" />
+                <input type="button" name="next" class="next action-button" value="Επόμενα πεδία" />
             </fieldset>
 
-            <fieldset >
-                <h2 >Κατ’ άρθρο ανάλυση αξιολογούμενης ρύθμισης</h2>
+            <fieldset>
+                <h2>Κατ’ άρθρο ανάλυση αξιολογούμενης ρύθμισης</h2>
                 <br>
                 <table class="table " id="field_14_table">
                     <thead class="thead ">
-                        <tr> 
-                            <th colspan="2" ><label id="table_14_label" class="required">14.Σύνοψη στόχων κάθε άρθρου</label></th>
-                        </tr>  
+                        <tr>
+                            <th colspan="2"><label id="table_14_label" class="required">14.Σύνοψη στόχων κάθε
+                                    άρθρου</label></th>
+                        </tr>
                         <tr>
                             <th colspan="1">Άρθρο</th>
                             <th colspan="1">Στόχος</th>
-                       </tr>
+                        </tr>
                     </thead>
                     <tbody id="tbody_14">
-                      
-                    </tbody>
-                  </table>
 
-                <input type="button" id="add_row_table_14" name="add_row_table_14" class="float-right" value="Επιπλέον σειρά" />
-                
+                    </tbody>
+                </table>
+
+                <input type="button" id="add_row_table_14" name="add_row_table_14" class="float-right"
+                    value="Επιπλέον σειρά" />
+
                 <br><br><br>
-                <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενα πεδία"/>
-                <input type="button" name="next" class="next action-button" value="Επόμενη φόρμα"/>
+                <input type="button" name="previous" class="previous action-button-previous"
+                    value="Προηγούμενα πεδία" />
+                <input type="button" name="next" class="next action-button" value="Επόμενη φόρμα" />
             </fieldset>
 
             <%- include('fill_form/fill_form_b.ejs') %>
-            <%- include('fill_form/fill_form_c.ejs') %> 
+            <%- include('fill_form/fill_form_c.ejs') %>
             <%- include('fill_form/fill_form_d.ejs') %>
             <%- include('fill_form/fill_form_e.ejs') %>
             <%- include('fill_form/fill_form_f.ejs') %>
@@ -411,19 +484,22 @@
             <%- include('fill_form/fill_form_h.ejs') %>
 
             <br>
-            <input type="button" name="save_temporarily" class="save_temporarily float-right" value="Προσωρινή αποθήκευση"/>
-        </form>   
-        
+            <input type="button" name="save_temporarily" class="save_temporarily float-right"
+                value="Προσωρινή αποθήκευση" />
+        </form>
+
     </div>
 </div>
 <div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4">
     <div class="jss111">
         <div class="jss274">
             <h3 class="jss273 jss178 jss181">Πίνακας έκθεσης</h3>
-            <ul class="aitiologiki_list" >    
-                <li><h4><b>Αιτιολογική έκθεση</b></h4></li>
-                    <ul class="aitiologiki_menu" id="progressbar">
-                    <li class="active">Τίτλος αξιολογούμενης ρύθμισης & τομείς νομοθέτησης</li>                        
+            <ul class="aitiologiki_list">
+                <li>
+                    <h4><b>Αιτιολογική έκθεση</b></h4>
+                </li>
+                <ul class="aitiologiki_menu" id="progressbar">
+                    <li class="active">Τίτλος αξιολογούμενης ρύθμισης & τομείς νομοθέτησης</li>
                     <li>Η «ταυτότητα» της αξιολογούμενης ρύθμισης</li>
                     <li>Η αναγκαιότητα της αξιολογούμενης ρύθμισης</li>
                     <li>Συναφείς πρακτικές</li>
@@ -431,93 +507,113 @@
                     <li>Ειδικότεροι στόχοι ανάλογα με τον τομέα νομοθέτησης</li>
                     <li>Ψηφιακή διακυβέρνηση</li>
                     <li>Κατ’ άρθρο ανάλυση αξιολογούμενης ρύθμισης</li>
-                    </ul>
-            </ul>                       
-            <ul class="arthro_syntagmatos_list" >    
-                <li><h4><b>Έκθεση του άρθρου 75 παρ. 1 και 2 του Συντάγματος</b></h4></li>  
-                    <ul class="arthro_syntagmatos_menu" id="progressbar"> 
-                        <li>Έκθεση Γενικού Λογιστηρίου του Κράτους</li>    
-                        <li>Οικονομικά αποτελέσματα επί του Κρατικού Προϋπολογισμού ή/και επί του
-                            προϋπολογισμού του/των αρμόδιου/ων φορέα/ων</li>  
-                    </ul>
-            </ul>    
-            <ul class="eidiki_ekthesi_list" >    
-                <li><h4><b>Ειδική Έκθεση (άρθρο 75 παρ. 3 του Συντάγματος)
-                </b></h4></li>  
-                    <ul class="eidiki_ekthesi_menu" id="progressbar"> 
-                        <li>Οικονομικά αποτελέσματα</li>     
-                    </ul>
+                </ul>
             </ul>
-            <ul class="ekthesi_genikwn_synepeiwn_list" >    
-                <li><h4><b>Έκθεση γενικών συνεπειών</b></h4></li>  
-                    <ul class="ekthesi_genikwn_synepeiwn_menu" id="progressbar"> 
-                        <li>Οφέλη αξιολογούμενης ρύθμισης</li>    
-                        <li>Κόστος αξιολογούμενης ρύθμισης</li> 
-                        <li>Κόστος αξιολογούμενης ρύθμισης</li>  
-                        <li>Γνώμες ή πορίσματα αρμόδιων υπηρεσιών και ανεξάρτητων αρχών</li>
-                    </ul>
-            </ul> 
-            <ul class="ekthesi_diavouleusis_list" >    
-                <li><h4><b>Έκθεση διαβούλευσης</b></h4></li>  
-                    <ul class="ekthesi_diavouleusis_menu" id="progressbar"> 
-                        <li>Διαβούλευση κατά τη διάρκεια της νομοπαρασκευαστικής διαδικασίας
-                            από την έναρξη κατάρτισης της αξιολογούμενης ρύθμισης μέχρι την
-                            υπογραφή από τους συναρμόδιους Υπουργούς</li>    
-                        <li>Σχόλια στο πλαίσιο της διαβούλευσης μέσω της ηλεκτρονικής πλατφόρμας
-                            www.opengov.gr</li> 
-                    </ul>
+            <ul class="arthro_syntagmatos_list">
+                <li>
+                    <h4><b>Έκθεση του άρθρου 75 παρ. 1 και 2 του Συντάγματος</b></h4>
+                </li>
+                <ul class="arthro_syntagmatos_menu" id="progressbar">
+                    <li>Έκθεση Γενικού Λογιστηρίου του Κράτους</li>
+                    <li>Οικονομικά αποτελέσματα επί του Κρατικού Προϋπολογισμού ή/και επί του
+                        προϋπολογισμού του/των αρμόδιου/ων φορέα/ων</li>
+                </ul>
             </ul>
-            <ul class="ekthesi_nomimotitas_list" >    
-                <li><h4><b>Έκθεση νομιμότητας</b></h4></li>  
-                    <ul class="ekthesi_nomimotitas_menu" id="progressbar"> 
-                        <li>Συναφείς συνταγματικές διατάξεις</li>    
-                        <li>Ενωσιακό δίκαιο</li> 
-                        <li>Συναφείς διατάξεις διεθνών συνθηκών ή συμφωνιών</li> 
-                        <li>Συναφής νομολογία των ανωτάτων και άλλων εθνικών δικαστηρίων,
-                            καθώς και αποφάσεις των Ανεξάρτητων Αρχών</li> 
-                        <li>Συναφής ευρωπαϊκή και διεθνής νομολογία</li>
-                    </ul>
+            <ul class="eidiki_ekthesi_list">
+                <li>
+                    <h4><b>Ειδική Έκθεση (άρθρο 75 παρ. 3 του Συντάγματος)
+                        </b></h4>
+                </li>
+                <ul class="eidiki_ekthesi_menu" id="progressbar">
+                    <li>Οικονομικά αποτελέσματα</li>
+                </ul>
             </ul>
-            <ul class="pinakas_tropopoioymenwn_katargoymenwn_diataksewn_list" >    
-                <li><h4><b>Πίνακας τροποποιούμενων ή καταργούμενων διατάξεων</b></h4></li>  
-                    <ul class="pinakas_tropopoioymenwn_katargoymenwn_diataksewn_menu" id="progressbar"> 
-                        <li>Τροποποίηση – αντικατάσταση – συμπλήρωση διατάξεων</li>    
-                        <li>Κατάργηση διατάξεων</li> 
-                    </ul>
-            </ul> 
-            <ul class="ekthesi_efarmogis_rythmisis_list" >    
-                <li><h4><b>Έκθεση εφαρμογής της ρύθμισης</b></h4></li>  
-                    <ul class="ekthesi_efarmogis_rythmisis_menu" id="progressbar"> 
-                        <li>Συναρμοδιότητα Υπουργείων / υπηρεσιών / φορέων</li>    
-                        <li>Έκδοση κανονιστικών πράξεων και εγκυκλίων</li> 
-                        <li>Ανάγκη σύστασης νέου νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας
-                            υπηρεσίας</li> 
-                        <li>Στοιχεία νέου νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας υπηρεσίας</li> 
-                    </ul>
+            <ul class="ekthesi_genikwn_synepeiwn_list">
+                <li>
+                    <h4><b>Έκθεση γενικών συνεπειών</b></h4>
+                </li>
+                <ul class="ekthesi_genikwn_synepeiwn_menu" id="progressbar">
+                    <li>Οφέλη αξιολογούμενης ρύθμισης</li>
+                    <li>Κόστος αξιολογούμενης ρύθμισης</li>
+                    <li>Κόστος αξιολογούμενης ρύθμισης</li>
+                    <li>Γνώμες ή πορίσματα αρμόδιων υπηρεσιών και ανεξάρτητων αρχών</li>
+                </ul>
+            </ul>
+            <ul class="ekthesi_diavouleusis_list">
+                <li>
+                    <h4><b>Έκθεση διαβούλευσης</b></h4>
+                </li>
+                <ul class="ekthesi_diavouleusis_menu" id="progressbar">
+                    <li>Διαβούλευση κατά τη διάρκεια της νομοπαρασκευαστικής διαδικασίας
+                        από την έναρξη κατάρτισης της αξιολογούμενης ρύθμισης μέχρι την
+                        υπογραφή από τους συναρμόδιους Υπουργούς</li>
+                    <li>Σχόλια στο πλαίσιο της διαβούλευσης μέσω της ηλεκτρονικής πλατφόρμας
+                        www.opengov.gr</li>
+                </ul>
+            </ul>
+            <ul class="ekthesi_nomimotitas_list">
+                <li>
+                    <h4><b>Έκθεση νομιμότητας</b></h4>
+                </li>
+                <ul class="ekthesi_nomimotitas_menu" id="progressbar">
+                    <li>Συναφείς συνταγματικές διατάξεις</li>
+                    <li>Ενωσιακό δίκαιο</li>
+                    <li>Συναφείς διατάξεις διεθνών συνθηκών ή συμφωνιών</li>
+                    <li>Συναφής νομολογία των ανωτάτων και άλλων εθνικών δικαστηρίων,
+                        καθώς και αποφάσεις των Ανεξάρτητων Αρχών</li>
+                    <li>Συναφής ευρωπαϊκή και διεθνής νομολογία</li>
+                </ul>
+            </ul>
+            <ul class="pinakas_tropopoioymenwn_katargoymenwn_diataksewn_list">
+                <li>
+                    <h4><b>Πίνακας τροποποιούμενων ή καταργούμενων διατάξεων</b></h4>
+                </li>
+                <ul class="pinakas_tropopoioymenwn_katargoymenwn_diataksewn_menu" id="progressbar">
+                    <li>Τροποποίηση – αντικατάσταση – συμπλήρωση διατάξεων</li>
+                    <li>Κατάργηση διατάξεων</li>
+                </ul>
+            </ul>
+            <ul class="ekthesi_efarmogis_rythmisis_list">
+                <li>
+                    <h4><b>Έκθεση εφαρμογής της ρύθμισης</b></h4>
+                </li>
+                <ul class="ekthesi_efarmogis_rythmisis_menu" id="progressbar">
+                    <li>Συναρμοδιότητα Υπουργείων / υπηρεσιών / φορέων</li>
+                    <li>Έκδοση κανονιστικών πράξεων και εγκυκλίων</li>
+                    <li>Ανάγκη σύστασης νέου νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας
+                        υπηρεσίας</li>
+                    <li>Στοιχεία νέου νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας υπηρεσίας</li>
+                </ul>
             </ul>
         </div>
     </div>
 </div>
 
 
-  
+
 <style>
-    .exit{ font-size: 16px; }
+    .exit {
+        font-size: 16px;
+    }
+
     table {
         border: 1px solid black;
         width: 100%;
         padding: 20px;
         text-align: left;
     }
+
     table th {
         background-color: grey;
         text-align: center;
         padding: 10px;
     }
+
     table td {
         border: 1px dotted black;
     }
-    li.active{
+
+    li.active {
         border-color: blue;
         border-width: 1px;
         border-style: dashed;
@@ -526,59 +622,67 @@
     .aitiologiki_menu {
         display: none
     }
+
     .aitiologiki_list:hover .aitiologiki_menu {
-        display: initial 
+        display: initial
     }
 
     .arthro_syntagmatos_menu {
         display: none
     }
+
     .arthro_syntagmatos_list:hover .arthro_syntagmatos_menu {
-        display: initial 
+        display: initial
     }
 
     .eidiki_ekthesi_menu {
         display: none
     }
+
     .eidiki_ekthesi_list:hover .eidiki_ekthesi_menu {
-        display: initial 
+        display: initial
     }
 
     .ekthesi_genikwn_synepeiwn_menu {
         display: none
     }
+
     .ekthesi_genikwn_synepeiwn_list:hover .ekthesi_genikwn_synepeiwn_menu {
-        display: initial 
+        display: initial
     }
-    
+
     .ekthesi_diavouleusis_menu {
         display: none
     }
+
     .ekthesi_diavouleusis_list:hover .ekthesi_diavouleusis_menu {
-        display: initial 
+        display: initial
     }
 
     .ekthesi_nomimotitas_menu {
         display: none
     }
+
     .ekthesi_nomimotitas_list:hover .ekthesi_nomimotitas_menu {
-        display: initial 
+        display: initial
     }
-    
+
     .pinakas_tropopoioymenwn_katargoymenwn_diataksewn_menu {
         display: none
     }
+
     .pinakas_tropopoioymenwn_katargoymenwn_diataksewn_list:hover .pinakas_tropopoioymenwn_katargoymenwn_diataksewn_menu {
-        display: initial 
+        display: initial
     }
-    
+
     .ekthesi_efarmogis_rythmisis_menu {
         display: none
     }
+
     .ekthesi_efarmogis_rythmisis_list:hover .ekthesi_efarmogis_rythmisis_menu {
-        display: initial 
+        display: initial
     }
-    
+
     .flex-form-group {
         display: flex;
         justify-content: space-between;
@@ -587,19 +691,22 @@
 
     .flex-form-group .wrap {
         min-width: 8em;
-        margin: 4px; /* to add gap between rows */
+        margin: 4px;
+        /* to add gap between rows */
     }
 
-    fieldset{
+    fieldset {
         position: relative;
     }
+
     fieldset:not(:first-of-type) {
         display: none;
     }
 
-    .explain_text{
+    .explain_text {
         font-size: 12px;
     }
+
     .checkbox-group {
         display: flex;
         align-items: center;
@@ -608,6 +715,7 @@
     .form-check-input {
         margin-top: 0px;
     }
+
     label {
         font-weight: 700;
     }
@@ -618,255 +726,265 @@
     }
 
     .child {
-        flex: 1 0 21%; /* explanation below */
+        flex: 1 0 21%;
+        /* explanation below */
         margin: 5px;
         height: 100px;
         background-color: blue;
     }
 
-    form label.required:after
-    {
+    form label.required:after {
         color: red;
         content: " *";
     }
-
 </style>
 
 
 <script>
 
-$("form").on("submit",function(ev){
-    ev.preventDefault();
-   // console.log($(this).serialize())//comment this line out to hide query wrote in db
-    $.ajax({
-        url: '/create',
-        data:$(this).serialize(),
-        error: function(error) {
-            console.log(error);
-        },
-        success: function(data) {
-            console.log(data);
-            window.location.href="/user_views/history";
-        },
-        type: 'POST'
-    });
-})
+    $("form").on("submit", function (ev) {
+        ev.preventDefault();
+        // console.log($(this).serialize())//comment this line out to hide query wrote in db
+        onSubmitStatus();
+        $.ajax({
+            url: '/create',
+            data: $(this).serialize(),
+            error: function (error) {
+                console.log(error);
+            },
+            success: function (data) {
+                console.log(data);
+                window.location.href = "/user_views/history";
+            },
+            type: 'POST'
+        });
+    })
 
-$(".save_temporarily").on("click",function(ev){
-    ev.preventDefault();
-    console.log($("form").serialize())//comment this line out to hide query wrote in db
-    $.ajax({
-        url: '/create',
-        data:$("form").serialize(),
-        error: function(error) {
-            console.log(error);
-        },
-        success: function(data) {
-            console.log(data);
-            window.location.href="/user_views/history";
-        },
-        type: 'POST'
-    });
-})
+    $(".save_temporarily").on("click", function (ev) {
+        ev.preventDefault();
+        console.log($("form").serialize())//comment this line out to hide query wrote in db
+        $.ajax({
+            url: '/create',
+            data: $("form").serialize(),
+            error: function (error) {
+                console.log(error);
+            },
+            success: function (data) {
+                console.log(data);
+                window.location.href = "/user_views/history";
+            },
+            type: 'POST'
+        });
+    })
 
-$(".back").on("click", function (ev) {
-    window.location.href = "/user_views/history";
-})
-$("#status_ekthesis_drp")[0].selectedIndex = 1;//set default dropdown value
+    $(".back").on("click", function (ev) {
+        window.location.href = "/user_views/history";
+    })
 
-var analysis = "<%= analysis%>";
-var role = "<%= rolos%>";
-function optionalFields (fieldId) {
-    $(fieldId).prop('disabled', true);//find and disable field, button or fieldset
-    //console.log((fieldId));
-};
+    function onSubmitStatus() {
+        if (role == "Συντάκτης επισπεύδοντος Υπουργείου") {
+            if ($("#ekthesi_glk").prop("checked")) {
+                alert("Για την ανάλυση εκκρεμεί ο έλεγχος του Γενικού Λογιστηρίου του Κράτους που έχετε ζητήσει. Επικοινωνήστε με το Γενικό Λογιστήριο του Κράτους για να το ολοκληρώσει ή ενημερώστε τον αρμόδιο του Υπουργείου σας για να το επιλύσει (εφόσον δε χρειάζεται η έκθεση του Γενικού Λογιστηρίου του Κράτους).");
+                //TODO: redirect?
+            } else {
+                if ($('input[name=status_ekthesis]').val("Σε σύνταξη") || $('input[name=status_ekthesis]').val("Επιμελημένη")) {
+                    $('input[name=status_ekthesis]').val("Ολοκληρώθηκε");
+                    console.log($('input[name=status_ekthesis]').val());
+                }
+            }
+        } 
+    }
 
-function enableFields (fieldId) {
-    $(fieldId).prop('disabled', false);//find and enable field or button
-    //console.log((fieldId));
-};
+    var analysis = "<%= analysis%>";
+    var role = "<%= rolos%>";
+    function optionalFields(fieldId) {
+        $(fieldId).prop('disabled', true);//find and disable field, button or fieldset
+        //console.log((fieldId));
+    };
 
-function optionalFieldsClassRemoval (fieldLabel) {
-    $(fieldLabel).removeClass("required");//remove required class from label
-    console.log((fieldLabel));
-};
+    function enableFields(fieldId) {
+        $(fieldId).prop('disabled', false);//find and enable field or button
+        //console.log((fieldId));
+    };
 
-//console.log("analysis-> "+analysis); // log analysis type
-if ( analysis ==":kateythintiries_grammes") {
+    function optionalFieldsClassRemoval(fieldLabel) {
+        $(fieldLabel).removeClass("required");//remove required class from label
+    };
 
-    optionalFields("#add_row_table_14");
+    //console.log("analysis-> "+analysis); // log analysis type
+    if (analysis == ":kateythintiries_grammes") {
+
+        optionalFields("#add_row_table_14");
+        optionalFields("#fieldset_15 :input");
+        optionalFields("#fieldset_16 :input");
+        optionalFields("#fieldset_17 :input");
+        optionalFields("#fieldset_23 :input");
+        optionalFields("#add_row_table_31");
+        optionalFields("#add_row_table_32");
+        optionalFields("#fieldset_33 :input");
+        optionalFields("#fieldset_37 :input");
+        enableFields(document.getElementsByName("create_new"));
+        enableFields(document.getElementsByName("next"));
+        enableFields(document.getElementsByName("previous"));
+
+        optionalFieldsClassRemoval("#table_14_label");
+        optionalFieldsClassRemoval("#field_15_ypoyrgeio_label");
+        optionalFieldsClassRemoval("#field_15_sxedio_nomou_label");
+        optionalFieldsClassRemoval("#field_15_rythmiseis_label");
+        optionalFieldsClassRemoval("#field_16_kratikos_proypologismos_label");
+        optionalFieldsClassRemoval("#field_16_proypologismos_forea_label");
+        optionalFieldsClassRemoval("#field_17_ypoyrgeio_label");
+        optionalFieldsClassRemoval("#field_17_sxedio_nomou_label");
+        optionalFieldsClassRemoval("#field_17_oikonomika_apotelesmata_label");
+        optionalFieldsClassRemoval("#field_23_upload_label");
+        optionalFieldsClassRemoval("#field_23_arxes_label");
+        optionalFieldsClassRemoval("#field_23_arthra_label");
+        optionalFieldsClassRemoval("#table_31_label");
+        optionalFieldsClassRemoval("#table_32_label");
+        optionalFieldsClassRemoval("#field_33_label");
+        optionalFieldsClassRemoval("#field_34_label");
+        optionalFieldsClassRemoval("#field_35_label");
+        optionalFieldsClassRemoval("#field_36_label");
+        optionalFieldsClassRemoval("#field_36_upload_label");
+        optionalFieldsClassRemoval("#field_37_label");
+        optionalFieldsClassRemoval("#field_38_label");
+        optionalFieldsClassRemoval("#field_39_label");
+        optionalFieldsClassRemoval("#field_40_label");
+
+    } else if (analysis == ":prosxedio_nomou") {
+        optionalFields("#fieldset_15 :input");
+        optionalFields("#fieldset_16 :input");
+        optionalFields("#fieldset_17 :input");
+        optionalFields("#fieldset_23 :input");
+        enableFields(document.getElementsByName("next"));
+        enableFields(document.getElementsByName("previous"));
+
+        optionalFieldsClassRemoval("#field_15_ypoyrgeio_label");
+        optionalFieldsClassRemoval("#field_15_sxedio_nomou_label");
+        optionalFieldsClassRemoval("#field_15_rythmiseis_label");
+        optionalFieldsClassRemoval("#field_16_kratikos_proypologismos_label");
+        optionalFieldsClassRemoval("#field_16_proypologismos_forea_label");
+        optionalFieldsClassRemoval("#field_17_ypoyrgeio_label");
+        optionalFieldsClassRemoval("#field_17_sxedio_nomou_label");
+        optionalFieldsClassRemoval("#field_17_oikonomika_apotelesmata_label");
+        optionalFieldsClassRemoval("#field_23_upload_label");
+        optionalFieldsClassRemoval("#field_23_arxes_label");
+        optionalFieldsClassRemoval("#field_23_arthra_label");
+
+    } else if (analysis == ":epeigonta_katepeigonta" || analysis == ":diethneis_symvaseis" || analysis == ":tropologies_upourgwn") {
+
+        optionalFields("#fieldset_22 :input");
+        optionalFields("#fieldset_23 :input");
+        optionalFields("#add_row_table_31");
+        optionalFields("#add_row_table_32");
+        optionalFields("#fieldset_33 :input");
+        optionalFields("#fieldset_37 :input");
+        enableFields(document.getElementsByName("next"));
+        enableFields(document.getElementsByName("previous"));
+        enableFields(document.getElementsByName("create_new"));
+
+        optionalFieldsClassRemoval("#field_22_sinergasia_ypoyrgeiwn_label");
+        optionalFieldsClassRemoval("#field_22_sinergasia_forewn_arxwn_label");
+        optionalFieldsClassRemoval("#field_22_diethnis_diavouleusi_label");
+        optionalFieldsClassRemoval("#field_23_upload_label");
+        optionalFieldsClassRemoval("#field_23_arxes_label");
+        optionalFieldsClassRemoval("#field_23_arthra_label");
+        optionalFieldsClassRemoval("#table_31_label");
+        optionalFieldsClassRemoval("#table_32_label");
+        optionalFieldsClassRemoval("#field_33_label");
+        optionalFieldsClassRemoval("#field_34_label");
+        optionalFieldsClassRemoval("#field_35_label");
+        optionalFieldsClassRemoval("#field_36_label");
+        optionalFieldsClassRemoval("#field_36_upload_label");
+        optionalFieldsClassRemoval("#field_37_label");
+        optionalFieldsClassRemoval("#field_38_label");
+        optionalFieldsClassRemoval("#field_39_label");
+        optionalFieldsClassRemoval("#field_40_label");
+
+    } else if (analysis == ":tropologies_vouleutwn") {
+        optionalFields("#fieldset_18 :input");
+        optionalFields("#fieldset_19 :input");
+        optionalFields("#fieldset_20 :input");
+        optionalFields("#fieldset_21 :input");
+        optionalFields("#fieldset_22 :input");
+        optionalFields("#fieldset_23 :input");
+        optionalFields("#fieldset_24 :input");
+        optionalFields("#fieldset_25 :input");
+        optionalFields("#fieldset_26 :input");
+        optionalFields("#fieldset_27 :input");
+        optionalFields("#fieldset_28 :input");
+        optionalFields("#add_row_table_31");
+        optionalFields("#add_row_table_32");
+        optionalFields("#fieldset_33 :input");
+        optionalFields("#fieldset_37 :input");
+        enableFields(document.getElementsByName("next"));
+        enableFields(document.getElementsByName("previous"));
+        enableFields(document.getElementsByName("create_new"));
+
+        optionalFieldsClassRemoval("#ofeli_rythmisis_table_label");
+        optionalFieldsClassRemoval("#kostos_rythmisis_table_label");
+        optionalFieldsClassRemoval("#kindynoi_rythmisis_table_label");
+        optionalFieldsClassRemoval("#field_21_upload_label");
+        optionalFieldsClassRemoval("#field_21_comments_label");
+        optionalFieldsClassRemoval("#field_22_sinergasia_ypoyrgeiwn_label");
+        optionalFieldsClassRemoval("#field_22_sinergasia_forewn_arxwn_label");
+        optionalFieldsClassRemoval("#field_22_diethnis_diavouleusi_label");
+        optionalFieldsClassRemoval("#field_23_upload_label");
+        optionalFieldsClassRemoval("#field_23_arxes_label");
+        optionalFieldsClassRemoval("#field_23_arthra_label");
+        optionalFieldsClassRemoval("#field_24_label");
+        optionalFieldsClassRemoval("#field_25_dikaio_label");
+        optionalFieldsClassRemoval("#field_25_kanonismos_label");
+        optionalFieldsClassRemoval("#field_25_odigia_label");
+        optionalFieldsClassRemoval("#field_25_apofasi_label");
+        optionalFieldsClassRemoval("#field_26_antrwpina_dikaiwmata_label");
+        optionalFieldsClassRemoval("#field_26_symvaseis_label");
+        optionalFieldsClassRemoval("#field_27_dikastirio_label");
+        optionalFieldsClassRemoval("#field_27_arxi_label");
+        optionalFieldsClassRemoval("#field_28_nomologia_label");
+        optionalFieldsClassRemoval("#field_28_nomologia_dikaiwmatwn_anthrwpou_label");
+        optionalFieldsClassRemoval("#field_28_alla_dikastiria_label");
+        optionalFieldsClassRemoval("#table_31_label");
+        optionalFieldsClassRemoval("#table_32_label");
+        optionalFieldsClassRemoval("#field_33_label");
+        optionalFieldsClassRemoval("#field_34_label");
+        optionalFieldsClassRemoval("#field_35_label");
+        optionalFieldsClassRemoval("#field_36_label");
+        optionalFieldsClassRemoval("#field_36_upload_label");
+        optionalFieldsClassRemoval("#field_37_label");
+        optionalFieldsClassRemoval("#field_38_label");
+        optionalFieldsClassRemoval("#field_39_label");
+        optionalFieldsClassRemoval("#field_40_label");
+    }
+    //Γενικό Λογιστήριο can't create a form, so we disable those fields
     optionalFields("#fieldset_15 :input");
     optionalFields("#fieldset_16 :input");
-    optionalFields("#fieldset_17 :input");
-    optionalFields("#fieldset_23 :input");
-    optionalFields("#add_row_table_31");
-    optionalFields("#add_row_table_32");
-    optionalFields("#fieldset_33 :input");
-    optionalFields("#fieldset_37 :input");
-    enableFields(document.getElementsByName("create_new"));
     enableFields(document.getElementsByName("next"));
     enableFields(document.getElementsByName("previous"));
+    enableFields(document.getElementsByName("ekthesi_glk"));
+    console.log($("#status_ekthesis").val());
 
-    optionalFieldsClassRemoval("#table_14_label");
-    optionalFieldsClassRemoval("#field_15_ypoyrgeio_label");
-    optionalFieldsClassRemoval("#field_15_sxedio_nomou_label");
-    optionalFieldsClassRemoval("#field_15_rythmiseis_label");
-    optionalFieldsClassRemoval("#field_16_kratikos_proypologismos_label");
-    optionalFieldsClassRemoval("#field_16_proypologismos_forea_label");
-    optionalFieldsClassRemoval("#field_17_ypoyrgeio_label");
-    optionalFieldsClassRemoval("#field_17_sxedio_nomou_label");
-    optionalFieldsClassRemoval("#field_17_oikonomika_apotelesmata_label");
-    optionalFieldsClassRemoval("#field_23_upload_label");
-    optionalFieldsClassRemoval("#field_23_arxes_label");
-    optionalFieldsClassRemoval("#field_23_arthra_label");
-    optionalFieldsClassRemoval("#table_31_label");
-    optionalFieldsClassRemoval("#table_32_label");
-    optionalFieldsClassRemoval("#field_33_label");
-    optionalFieldsClassRemoval("#field_34_label");
-    optionalFieldsClassRemoval("#field_35_label");
-    optionalFieldsClassRemoval("#field_36_label");
-    optionalFieldsClassRemoval("#field_36_upload_label");
-    optionalFieldsClassRemoval("#field_37_label");
-    optionalFieldsClassRemoval("#field_38_label");
-    optionalFieldsClassRemoval("#field_39_label");
-    optionalFieldsClassRemoval("#field_40_label");   
+    $("#ekthesi_glk").click(function (ev) {
+        if (this.checked) {
+            $("#status_ekthesis_drp").val("Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους");
+            $("#status_ekthesis").val("Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους");
+            $(this).prop('disabled', true);
+            console.log($("#status_ekthesis").val());
+            console.log($("#status_ekthesis_drp").val());
+        }
+    })
 
-} else if ( analysis ==":prosxedio_nomou") {
-    optionalFields("#fieldset_15 :input");
-    optionalFields("#fieldset_16 :input");
-    optionalFields("#fieldset_17 :input");
-    optionalFields("#fieldset_23 :input");
-    enableFields(document.getElementsByName("next"));
-    enableFields(document.getElementsByName("previous"));
+    //if (role == 'Επιτροπή Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)') { }
 
-    optionalFieldsClassRemoval("#field_15_ypoyrgeio_label");
-    optionalFieldsClassRemoval("#field_15_sxedio_nomou_label");
-    optionalFieldsClassRemoval("#field_15_rythmiseis_label");
-    optionalFieldsClassRemoval("#field_16_kratikos_proypologismos_label");
-    optionalFieldsClassRemoval("#field_16_proypologismos_forea_label");
-    optionalFieldsClassRemoval("#field_17_ypoyrgeio_label");
-    optionalFieldsClassRemoval("#field_17_sxedio_nomou_label");
-    optionalFieldsClassRemoval("#field_17_oikonomika_apotelesmata_label");
-    optionalFieldsClassRemoval("#field_23_upload_label");
-    optionalFieldsClassRemoval("#field_23_arxes_label");
-    optionalFieldsClassRemoval("#field_23_arthra_label");    
+    //row counter
+    var table14RowIndex = 0;
 
-}  else if ( analysis ==":epeigonta_katepeigonta" || analysis ==":diethneis_symvaseis" || analysis ==":tropologies_upourgwn" ) {
-    
-    optionalFields("#fieldset_22 :input");
-    optionalFields("#fieldset_23 :input");
-    optionalFields("#add_row_table_31");
-    optionalFields("#add_row_table_32");
-    optionalFields("#fieldset_33 :input");
-    optionalFields("#fieldset_37 :input");  
-    enableFields(document.getElementsByName("next"));
-    enableFields(document.getElementsByName("previous"));
-    enableFields(document.getElementsByName("create_new"));
-
-    optionalFieldsClassRemoval("#field_22_sinergasia_ypoyrgeiwn_label");
-    optionalFieldsClassRemoval("#field_22_sinergasia_forewn_arxwn_label");
-    optionalFieldsClassRemoval("#field_22_diethnis_diavouleusi_label");
-    optionalFieldsClassRemoval("#field_23_upload_label");
-    optionalFieldsClassRemoval("#field_23_arxes_label");
-    optionalFieldsClassRemoval("#field_23_arthra_label");
-    optionalFieldsClassRemoval("#table_31_label");
-    optionalFieldsClassRemoval("#table_32_label");
-    optionalFieldsClassRemoval("#field_33_label");
-    optionalFieldsClassRemoval("#field_34_label");
-    optionalFieldsClassRemoval("#field_35_label");
-    optionalFieldsClassRemoval("#field_36_label");
-    optionalFieldsClassRemoval("#field_36_upload_label");
-    optionalFieldsClassRemoval("#field_37_label");
-    optionalFieldsClassRemoval("#field_38_label");
-    optionalFieldsClassRemoval("#field_39_label");
-    optionalFieldsClassRemoval("#field_40_label");  
-
-} else if (analysis ==":tropologies_vouleutwn"){
-    optionalFields("#fieldset_18 :input");
-    optionalFields("#fieldset_19 :input");
-    optionalFields("#fieldset_20 :input");
-    optionalFields("#fieldset_21 :input");
-    optionalFields("#fieldset_22 :input");
-    optionalFields("#fieldset_23 :input");
-    optionalFields("#fieldset_24 :input");
-    optionalFields("#fieldset_25 :input");
-    optionalFields("#fieldset_26 :input");
-    optionalFields("#fieldset_27 :input");
-    optionalFields("#fieldset_28 :input");
-    optionalFields("#add_row_table_31");
-    optionalFields("#add_row_table_32");
-    optionalFields("#fieldset_33 :input");
-    optionalFields("#fieldset_37 :input");  
-    enableFields(document.getElementsByName("next"));
-    enableFields(document.getElementsByName("previous"));
-    enableFields(document.getElementsByName("create_new"));
-
-    optionalFieldsClassRemoval("#ofeli_rythmisis_table_label");  
-    optionalFieldsClassRemoval("#kostos_rythmisis_table_label");  
-    optionalFieldsClassRemoval("#kindynoi_rythmisis_table_label");  
-    optionalFieldsClassRemoval("#field_21_upload_label");  
-    optionalFieldsClassRemoval("#field_21_comments_label");  
-    optionalFieldsClassRemoval("#field_22_sinergasia_ypoyrgeiwn_label");
-    optionalFieldsClassRemoval("#field_22_sinergasia_forewn_arxwn_label");
-    optionalFieldsClassRemoval("#field_22_diethnis_diavouleusi_label");
-    optionalFieldsClassRemoval("#field_23_upload_label");
-    optionalFieldsClassRemoval("#field_23_arxes_label");
-    optionalFieldsClassRemoval("#field_23_arthra_label");
-    optionalFieldsClassRemoval("#field_24_label");
-    optionalFieldsClassRemoval("#field_25_dikaio_label");
-    optionalFieldsClassRemoval("#field_25_kanonismos_label");
-    optionalFieldsClassRemoval("#field_25_odigia_label");
-    optionalFieldsClassRemoval("#field_25_apofasi_label");
-    optionalFieldsClassRemoval("#field_26_antrwpina_dikaiwmata_label");
-    optionalFieldsClassRemoval("#field_26_symvaseis_label");
-    optionalFieldsClassRemoval("#field_27_dikastirio_label");
-    optionalFieldsClassRemoval("#field_27_arxi_label");
-    optionalFieldsClassRemoval("#field_28_nomologia_label");
-    optionalFieldsClassRemoval("#field_28_nomologia_dikaiwmatwn_anthrwpou_label");
-    optionalFieldsClassRemoval("#field_28_alla_dikastiria_label");
-    optionalFieldsClassRemoval("#table_31_label");
-    optionalFieldsClassRemoval("#table_32_label");
-    optionalFieldsClassRemoval("#field_33_label");
-    optionalFieldsClassRemoval("#field_34_label");
-    optionalFieldsClassRemoval("#field_35_label");
-    optionalFieldsClassRemoval("#field_36_label");
-    optionalFieldsClassRemoval("#field_36_upload_label");
-    optionalFieldsClassRemoval("#field_37_label");
-    optionalFieldsClassRemoval("#field_38_label");
-    optionalFieldsClassRemoval("#field_39_label");
-    optionalFieldsClassRemoval("#field_40_label"); 
-}
-//Γενικό Λογιστήριο can't create a form, so we disable those fields
-optionalFields("#fieldset_15 :input");
-optionalFields("#fieldset_16 :input");
-enableFields(document.getElementsByName("next"));
-enableFields(document.getElementsByName("previous"));
-enableFields(document.getElementsByName("ekthesi_glk"));
-console.log($("#status_ekthesis").val());
-
-$("#ekthesi_glk").click( function(ev){
-    if(this.checked) {
-        $("#status_ekthesis_drp").val("Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους");
-        $("#status_ekthesis").val("Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους"); 
-        $(this).prop('disabled', true);     
-        console.log($("#status_ekthesis").val());
-        console.log($("#status_ekthesis_drp").val());
-    }   
-})
-
-if (role == 'Επιτροπή Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)' ) {
-    
-}
-
-//row counter
-var table14RowIndex = 0;
-
-// jQuery button click event for table 14 to add a row
-$("#add_row_table_14").on("click", function(){
-    //append adds row to table body with id 'tbody_14'
-    //line 604 creates unique id for the line, which will later be used for deletion
-    //also adding a delete icon for each row 
-    $('#tbody_14').append(`
+    // jQuery button click event for table 14 to add a row
+    $("#add_row_table_14").on("click", function () {
+        //append adds row to table body with id 'tbody_14'
+        //line 604 creates unique id for the line, which will later be used for deletion
+        //also adding a delete icon for each row 
+        $('#tbody_14').append(`
         <tr id="R${++table14RowIndex}"> 
             <td> 
                 <textarea class="form-control" id="field_14_arthro${table14RowIndex}" name="field_14_arthro${table14RowIndex}" placeholder="Άρθρο" rows="1"></textarea>
@@ -876,50 +994,50 @@ $("#add_row_table_14").on("click", function(){
                 <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
             </td>    
         </tr>`
-        ); 
-  }); 
+        );
+    });
 
-// jQuery button click event to remove a row 
-$('#tbody_14').on('click', '.remove', function () { 
-  
-  // Getting all the rows close to the one to be removed 
-  var child = $(this).closest('tr').nextAll(); 
+    // jQuery button click event to remove a row 
+    $('#tbody_14').on('click', '.remove', function () {
 
-  // Iterating across all the rows  
-  // obtained to change the index 
-  child.each(function () { 
-        
-      // Getting <tr> id
-      var id = $(this).attr('id'); 
+        // Getting all the rows close to the one to be removed 
+        var child = $(this).closest('tr').nextAll();
 
-      // Gets row number from <tr> id
-      var row_num = parseInt(id.substring(1)); 
+        // Iterating across all the rows  
+        // obtained to change the index 
+        child.each(function () {
 
-      //Getting index
-      var idx = $(this).children('.row-index');  
+            // Getting <tr> id
+            var id = $(this).attr('id');
 
-      // Modifying row index
-      idx.html(`Row ${row_num - 1}`); 
+            // Gets row number from <tr> id
+            var row_num = parseInt(id.substring(1));
 
-      // Modifying row id
-      $(this).attr('id', `R${row_num - 1}`); 
-  }); 
+            //Getting index
+            var idx = $(this).children('.row-index');
 
-  // Removing the current row. 
-  $(this).closest('tr').remove(); 
+            // Modifying row index
+            idx.html(`Row ${row_num - 1}`);
 
-  // Decreasing the total number of rows by 1. 
-  table14RowIndex--; 
-}); 
+            // Modifying row id
+            $(this).attr('id', `R${row_num - 1}`);
+        });
 
-var table17RowIndex = 0;
+        // Removing the current row. 
+        $(this).closest('tr').remove();
 
-// jQuery button click event for table 14 to add a row
-$("#add_row_table_17").on("click", function(){
-    //append adds row to table body with id 'tbody_14'
-    //line 604 creates unique id for the line, which will later be used for deletion
-    //also adding a delete icon for each row 
-    $('#tbody_17').append(`
+        // Decreasing the total number of rows by 1. 
+        table14RowIndex--;
+    });
+
+    var table17RowIndex = 0;
+
+    // jQuery button click event for table 14 to add a row
+    $("#add_row_table_17").on("click", function () {
+        //append adds row to table body with id 'tbody_14'
+        //line 604 creates unique id for the line, which will later be used for deletion
+        //also adding a delete icon for each row 
+        $('#tbody_17').append(`
         <tr id="R${++table17RowIndex}">  
             <td> 
                 <textarea class="form-control" id="field_17_onoma${table17RowIndex}" name="field_17_onoma${table17RowIndex}" placeholder="Όνομα" rows="1"></textarea> 
@@ -932,48 +1050,48 @@ $("#add_row_table_17").on("click", function(){
                 <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
             </td> 
         </tr>`
-        ); 
+        );
         console.log(table17RowIndex)
-  }); 
-  
-// jQuery button click event to remove a row 
-$('#tbody_17').on('click', '.remove', function () { 
-  
-  // Getting all the rows close to the one to be removed 
-  var child = $(this).closest('tr').nextAll(); 
+    });
 
-  // Iterating across all the rows  
-  // obtained to change the index 
-  child.each(function () { 
-        
-      // Getting <tr> id
-      var id = $(this).attr('id'); 
+    // jQuery button click event to remove a row 
+    $('#tbody_17').on('click', '.remove', function () {
 
-      // Gets row number from <tr> id
-      var row_num = parseInt(id.substring(1)); 
+        // Getting all the rows close to the one to be removed 
+        var child = $(this).closest('tr').nextAll();
 
-      //Getting index
-      var idx = $(this).children('.row-index');  
+        // Iterating across all the rows  
+        // obtained to change the index 
+        child.each(function () {
 
-      // Modifying row index
-      idx.html(`Row ${row_num - 1}`); 
+            // Getting <tr> id
+            var id = $(this).attr('id');
 
-      // Modifying row id
-      $(this).attr('id', `R${row_num - 1}`); 
-  }); 
+            // Gets row number from <tr> id
+            var row_num = parseInt(id.substring(1));
 
-  // Removing the current row. 
-  $(this).closest('tr').remove(); 
+            //Getting index
+            var idx = $(this).children('.row-index');
 
-  // Decreasing the total number of rows by 1. 
-  table17RowIndex--; 
-}); 
+            // Modifying row index
+            idx.html(`Row ${row_num - 1}`);
+
+            // Modifying row id
+            $(this).attr('id', `R${row_num - 1}`);
+        });
+
+        // Removing the current row. 
+        $(this).closest('tr').remove();
+
+        // Decreasing the total number of rows by 1. 
+        table17RowIndex--;
+    });
 
 
-var table29RowIndex = 0;
-$("#add_row_table_29").on("click", function(){
+    var table29RowIndex = 0;
+    $("#add_row_table_29").on("click", function () {
 
-    $('#tbody_29').append(`
+        $('#tbody_29').append(`
         <tr id="R${++table29RowIndex}"> 
             <td> 
                 <textarea class="form-control" id="field_29_diatakseis_rythmisis${table29RowIndex}" name="field_29_diatakseis_rythmisis${table29RowIndex}" placeholder="Διατάξεις αξιολογούμενης ρύθμισης" rows="1"></textarea>
@@ -983,30 +1101,30 @@ $("#add_row_table_29").on("click", function(){
                 <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
             </td>    
         </tr>`
-        ); 
-  }); 
+        );
+    });
 
-$('#tbody_29').on('click', '.remove', function () { 
-  
-  var child = $(this).closest('tr').nextAll(); 
+    $('#tbody_29').on('click', '.remove', function () {
 
-  child.each(function () { 
-        
-      var id = $(this).attr('id'); 
-      var row_num = parseInt(id.substring(1)); 
-      var idx = $(this).children('.row-index');  
-      idx.html(`Row ${row_num - 1}`); 
-      $(this).attr('id', `R${row_num - 1}`); 
-  }); 
+        var child = $(this).closest('tr').nextAll();
 
-  $(this).closest('tr').remove(); 
-  table29RowIndex--; 
-}); 
+        child.each(function () {
 
-var table30RowIndex = 0;
-$("#add_row_table_30").on("click", function(){
+            var id = $(this).attr('id');
+            var row_num = parseInt(id.substring(1));
+            var idx = $(this).children('.row-index');
+            idx.html(`Row ${row_num - 1}`);
+            $(this).attr('id', `R${row_num - 1}`);
+        });
 
-    $('#tbody_30').append(`
+        $(this).closest('tr').remove();
+        table29RowIndex--;
+    });
+
+    var table30RowIndex = 0;
+    $("#add_row_table_30").on("click", function () {
+
+        $('#tbody_30').append(`
         <tr id="R${++table30RowIndex}"> 
             <td> 
                 <textarea class="form-control" id="field_30_diatakseis_katargisi${table30RowIndex}" name="field_30_diatakseis_katargisi${table30RowIndex}" placeholder="Διατάξεις αξιολογούμενης ρύθμισης που προβλέπουν κατάργηση" rows="2"></textarea>
@@ -1016,30 +1134,30 @@ $("#add_row_table_30").on("click", function(){
                 <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
             </td>    
         </tr>`
-        ); 
-  }); 
+        );
+    });
 
-$('#tbody_30').on('click', '.remove', function () { 
-  
-  var child = $(this).closest('tr').nextAll(); 
+    $('#tbody_30').on('click', '.remove', function () {
 
-  child.each(function () { 
-        
-      var id = $(this).attr('id'); 
-      var row_num = parseInt(id.substring(1)); 
-      var idx = $(this).children('.row-index');  
-      idx.html(`Row ${row_num - 1}`); 
-      $(this).attr('id', `R${row_num - 1}`); 
-  }); 
+        var child = $(this).closest('tr').nextAll();
 
-  $(this).closest('tr').remove(); 
-  table30RowIndex--; 
-}); 
+        child.each(function () {
 
-var table31RowIndex = 0;
-$("#add_row_table_31").on("click", function(){
+            var id = $(this).attr('id');
+            var row_num = parseInt(id.substring(1));
+            var idx = $(this).children('.row-index');
+            idx.html(`Row ${row_num - 1}`);
+            $(this).attr('id', `R${row_num - 1}`);
+        });
 
-    $('#tbody_31').append(`
+        $(this).closest('tr').remove();
+        table30RowIndex--;
+    });
+
+    var table31RowIndex = 0;
+    $("#add_row_table_31").on("click", function () {
+
+        $('#tbody_31').append(`
         <tr id="R${++table31RowIndex}"> 
             <td> 
                 <textarea class="form-control" id="field_31_sxetiki_diataksi${table31RowIndex}" name="field_31_sxetiki_diataksi${table31RowIndex}" placeholder="Σχετική διάταξη αξιολογούμενης ρύθμισης" rows="2"></textarea>
@@ -1052,30 +1170,30 @@ $("#add_row_table_31").on("click", function(){
                 <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
             </td>    
         </tr>`
-        ); 
-  }); 
+        );
+    });
 
-$('#tbody_31').on('click', '.remove', function () { 
-  
-  var child = $(this).closest('tr').nextAll(); 
+    $('#tbody_31').on('click', '.remove', function () {
 
-  child.each(function () { 
-        
-      var id = $(this).attr('id'); 
-      var row_num = parseInt(id.substring(1)); 
-      var idx = $(this).children('.row-index');  
-      idx.html(`Row ${row_num - 1}`); 
-      $(this).attr('id', `R${row_num - 1}`); 
-  }); 
+        var child = $(this).closest('tr').nextAll();
 
-  $(this).closest('tr').remove(); 
-  table31RowIndex--; 
-}); 
+        child.each(function () {
 
-var table32RowIndex = 0;
-$("#add_row_table_32").on("click", function(){
+            var id = $(this).attr('id');
+            var row_num = parseInt(id.substring(1));
+            var idx = $(this).children('.row-index');
+            idx.html(`Row ${row_num - 1}`);
+            $(this).attr('id', `R${row_num - 1}`);
+        });
 
-    $('#tbody_32').append(`
+        $(this).closest('tr').remove();
+        table31RowIndex--;
+    });
+
+    var table32RowIndex = 0;
+    $("#add_row_table_32").on("click", function () {
+
+        $('#tbody_32').append(`
         <tr id="R${++table32RowIndex}"> 
             <td> 
                 <textarea class="form-control" id="field_32_eksousiodotiki_diataksi${table32RowIndex}" name="field_32_eksousiodotiki_diataksi${table32RowIndex}" placeholder="Εξουσιοδοτική διάταξη" rows="4"></textarea>
@@ -1094,197 +1212,197 @@ $("#add_row_table_32").on("click", function(){
                 <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
             </td>    
         </tr>`
-        ); 
-  }); 
+        );
+    });
 
-$('#tbody_32').on('click', '.remove', function () { 
-  
-  var child = $(this).closest('tr').nextAll(); 
+    $('#tbody_32').on('click', '.remove', function () {
 
-  child.each(function () { 
-        
-      var id = $(this).attr('id'); 
-      var row_num = parseInt(id.substring(1)); 
-      var idx = $(this).children('.row-index');  
-      idx.html(`Row ${row_num - 1}`); 
-      $(this).attr('id', `R${row_num - 1}`); 
-  }); 
+        var child = $(this).closest('tr').nextAll();
 
-  $(this).closest('tr').remove(); 
-  table32RowIndex--; 
-});
+        child.each(function () {
 
-$("#ekpedeusi_politismos").click( function(ev){
-    if(this.checked) {
-        $("#politismos_table").show();
-        $("#ekpaideysi_table").show();
-    }    
-})
+            var id = $(this).attr('id');
+            var row_num = parseInt(id.substring(1));
+            var idx = $(this).children('.row-index');
+            idx.html(`Row ${row_num - 1}`);
+            $(this).attr('id', `R${row_num - 1}`);
+        });
 
-$("#forologiki_politiki").click( function(ev){
-    if(this.checked) {
-        $("#oikonomia_table").show();
-        $("#forologia_table").show();
-        $("#ergasiakes_sxeseis_table").show();      
-    }    
-})
+        $(this).closest('tr').remove();
+        table32RowIndex--;
+    });
 
-$("#koinoniki_politiki").click( function(ev){
-    if(this.checked) {
-        $("#apasxolisi_table").show();
-        $("#koinwniki_asfalisi_table").show();
-        $("#koinwniki_pronoia_table").show();
-        $("#ygeia_table").show();      
-        $("#isotita_fylwn_table").show();   
-        $("#metanasteytiki_prosfygiki_politiki_table").show();      
-    }    
-})
+    $("#ekpedeusi_politismos").click(function (ev) {
+        if (this.checked) {
+            $("#politismos_table").show();
+            $("#ekpaideysi_table").show();
+        }
+    })
 
-$("#dimosia_dioikisi").click( function(ev){
-    if(this.checked) {
-        $("#dimosia_dioikisi_table").show();
-        $("#dimosia_asfaleia_table").show();
-        $("#dikaiosini_table").show();     
-    }    
-})
+    $("#forologiki_politiki").click(function (ev) {
+        if (this.checked) {
+            $("#oikonomia_table").show();
+            $("#forologia_table").show();
+            $("#ergasiakes_sxeseis_table").show();
+        }
+    })
 
-$("#anaptiksi").click( function(ev){
-    if(this.checked) {
-        $("#ependytiki_drastiriotita_table").show();
-        $("#perivallon_energeia_table").show();     
-    }    
-})
+    $("#koinoniki_politiki").click(function (ev) {
+        if (this.checked) {
+            $("#apasxolisi_table").show();
+            $("#koinwniki_asfalisi_table").show();
+            $("#koinwniki_pronoia_table").show();
+            $("#ygeia_table").show();
+            $("#isotita_fylwn_table").show();
+            $("#metanasteytiki_prosfygiki_politiki_table").show();
+        }
+    })
 
-$("#field_10_emmesi").on("change", function(ev){
-    $("#emesi_wrap").toggle();
-})
+    $("#dimosia_dioikisi").click(function (ev) {
+        if (this.checked) {
+            $("#dimosia_dioikisi_table").show();
+            $("#dimosia_asfaleia_table").show();
+            $("#dikaiosini_table").show();
+        }
+    })
 
-$("#field_10_amesi").on("change", function(ev){
-    $("#amesi_wrap").toggle();
-})
+    $("#anaptiksi").click(function (ev) {
+        if (this.checked) {
+            $("#ependytiki_drastiriotita_table").show();
+            $("#perivallon_energeia_table").show();
+        }
+    })
 
-$("#field_25_dikaio").on("change", function(ev){
-    $("#dikaio_wrap").toggle();
-})
+    $("#field_10_emmesi").on("change", function (ev) {
+        $("#emesi_wrap").toggle();
+    })
 
-$("#field_25_kanonismos").on("change", function(ev){
-    $("#kanonismos_wrap").toggle();
-})
+    $("#field_10_amesi").on("change", function (ev) {
+        $("#amesi_wrap").toggle();
+    })
 
-$("#field_25_odigia").on("change", function(ev){
-    $("#odigia_wrap").toggle();
-})
+    $("#field_25_dikaio").on("change", function (ev) {
+        $("#dikaio_wrap").toggle();
+    })
 
-$("#field_25_apofasi").on("change", function(ev){
-    $("#apofasi_wrap").toggle();
-})
+    $("#field_25_kanonismos").on("change", function (ev) {
+        $("#kanonismos_wrap").toggle();
+    })
 
-$("#field_26_antrwpina_dikaiwmata").on("change", function(ev){
-    $("#antrwpina_dikaiwmata_wrap").toggle();
-})
+    $("#field_25_odigia").on("change", function (ev) {
+        $("#odigia_wrap").toggle();
+    })
 
-$("#field_26_symvaseis").on("change", function(ev){
-    $("#symvaseis_wrap").toggle();
-})
+    $("#field_25_apofasi").on("change", function (ev) {
+        $("#apofasi_wrap").toggle();
+    })
 
-$("#field_27_dikastirio").on("change", function(ev){
-    $("#dikastirio_wrap").toggle();
-})
+    $("#field_26_antrwpina_dikaiwmata").on("change", function (ev) {
+        $("#antrwpina_dikaiwmata_wrap").toggle();
+    })
 
-$("#field_27_arxi").on("change", function(ev){
-    $("#arxi_wrap").toggle();
-})
+    $("#field_26_symvaseis").on("change", function (ev) {
+        $("#symvaseis_wrap").toggle();
+    })
 
-$("#field_28_nomologia").on("change", function(ev){
-    $("#nomologia_wrap").toggle();
-})
+    $("#field_27_dikastirio").on("change", function (ev) {
+        $("#dikastirio_wrap").toggle();
+    })
 
-$("#field_28_nomologia_dikaiwmatwn_anthrwpou").on("change", function(ev){
-    $("#nomologia_dikaiwmatwn_anthrwpou_wrap").toggle();
-})
+    $("#field_27_arxi").on("change", function (ev) {
+        $("#arxi_wrap").toggle();
+    })
 
-$("#field_28_alla_dikastiria").on("change", function(ev){
-    $("#alla_dikastiria_wrap").toggle();
-})
+    $("#field_28_nomologia").on("change", function (ev) {
+        $("#nomologia_wrap").toggle();
+    })
 
-$("#field_4").on("click", function(ev){
-    if($(this).val()=="yes"){
-        $("#field_4_wrap").show();
-    }else{
-        $("#field_4_wrap").hide();
-    }    
-})
+    $("#field_28_nomologia_dikaiwmatwn_anthrwpou").on("change", function (ev) {
+        $("#nomologia_dikaiwmatwn_anthrwpou_wrap").toggle();
+    })
 
-$("#field_6").on("change", function(ev){
-    if($(this).val()=="yes"){
-        $("#field_6_wrap").show();
-    }else{
-        $("#field_6_wrap").hide();
-    }    
-})
+    $("#field_28_alla_dikastiria").on("change", function (ev) {
+        $("#alla_dikastiria_wrap").toggle();
+    })
 
-$("#field_11").on("change", function(ev){
-    if($(this).val()=="yes"){
-        $("#field_11_wrap").show();
-    }else{
-        $("#field_11_wrap").hide();
-    }    
-})
+    $("#field_4").on("click", function (ev) {
+        if ($(this).val() == "yes") {
+            $("#field_4_wrap").show();
+        } else {
+            $("#field_4_wrap").hide();
+        }
+    })
 
-$("#field_12").on("change", function(ev){
-    if($(this).val()=="yes"){
-        $("#field_12_wrap").show();
-    }else{
-        $("#field_12_wrap").hide();
-    }    
-})
+    $("#field_6").on("change", function (ev) {
+        if ($(this).val() == "yes") {
+            $("#field_6_wrap").show();
+        } else {
+            $("#field_6_wrap").hide();
+        }
+    })
 
-$("#field_13").on("change", function(ev){
-    if($(this).val()=="yes"){
-        $("#field_13_wrap").show();
-    }else{
-        $("#field_13_wrap").hide();
-    }    
-})
+    $("#field_11").on("change", function (ev) {
+        if ($(this).val() == "yes") {
+            $("#field_11_wrap").show();
+        } else {
+            $("#field_11_wrap").hide();
+        }
+    })
 
-$("#field_36").on("change", function(ev){
-    if($(this).val()=="yes"){
-        $("#field_36_wrap").show();
-    }else{
-        $("#field_36_wrap").hide();
-    }    
-})
+    $("#field_12").on("change", function (ev) {
+        if ($(this).val() == "yes") {
+            $("#field_12_wrap").show();
+        } else {
+            $("#field_12_wrap").hide();
+        }
+    })
 
-var current_fs, next_fs, previous_fs; //fieldsets
+    $("#field_13").on("change", function (ev) {
+        if ($(this).val() == "yes") {
+            $("#field_13_wrap").show();
+        } else {
+            $("#field_13_wrap").hide();
+        }
+    })
+
+    $("#field_36").on("change", function (ev) {
+        if ($(this).val() == "yes") {
+            $("#field_36_wrap").show();
+        } else {
+            $("#field_36_wrap").hide();
+        }
+    })
+
+    var current_fs, next_fs, previous_fs; //fieldsets
 
 
-$(".next").click(function(){
-	current_fs = $(this).parent();
-	next_fs = $(this).parent().next();
-    
-	//activate next step on progressbar using the index of next_fs
-	$("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+    $(".next").click(function () {
+        current_fs = $(this).parent();
+        next_fs = $(this).parent().next();
 
-	//show the next fieldset
-	next_fs.show(); 
-	//hide the current fieldset with style
-    current_fs.hide();
-});
+        //activate next step on progressbar using the index of next_fs
+        $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
 
-$(".previous").click(function(){
-	current_fs = $(this).parent();
-	previous_fs = $(this).parent().prev();
-	
-	//de-activate current step on progressbar
-	$("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
-	
-	//show the previous fieldset
-	previous_fs.show(); 
-	//hide the current fieldset with style
-    current_fs.hide();
-});
+        //show the next fieldset
+        next_fs.show();
+        //hide the current fieldset with style
+        current_fs.hide();
+    });
 
-$(".submit").click(function(){
-	return false;
-})
+    $(".previous").click(function () {
+        current_fs = $(this).parent();
+        previous_fs = $(this).parent().prev();
+
+        //de-activate current step on progressbar
+        $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+
+        //show the previous fieldset
+        previous_fs.show();
+        //hide the current fieldset with style
+        current_fs.hide();
+    });
+
+    $(".submit").click(function () {
+        return false;
+    })
 </script>

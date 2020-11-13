@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-       /* //ergasiakes_sxeseis_table
+        //ergasiakes_sxeseis_table
         symvaseis: DataTypes.JSON,
         sse_diamesolavisi: DataTypes.JSON,
         sse_diaitisia: DataTypes.JSON,
@@ -93,7 +93,7 @@ module.exports = (sequelize, DataTypes) => {
         kentra_pliroforisis: DataTypes.JSON,
         eksypiretisi_ypiresies: DataTypes.JSON,
         kostos_proswpikou: DataTypes.JSON,
-        kostos_diaxirisis_proswpikou: DataTypes.JSON,*/
+        kostos_diaxirisis_proswpikou: DataTypes.JSON,
         
         //dimosia_asfaleia_table
         drastes_adikimata: DataTypes.JSON,

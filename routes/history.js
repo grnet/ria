@@ -33,6 +33,14 @@ routes.get('/', async function (req, res, next) {
                     status_ekthesis: status
                 }, include: [{ model: database.user }]
             })
+        } else if (user.rolos == "Επιτροπή Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)" || user.rolos =="Γραφείο Καλής Νομοθέτησης (ΓΓΝΚΘ)" || user.rolos =="Διεύθυνση Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)" || user.rolos =="Γενικός Γραμματέας Νομικών και Κοινοβουλευτικών Θεμάτων") {
+            status = "Οριστικοποιήθηκε"
+            entries = await database.ekthesi.findAll({
+                where: {
+                    status_ekthesis: status
+                    
+                }, include: [{ model: database.user }]
+            })
         } else if (user.rolos == "Γενικό Λογιστήριο του Κράτους") {
             status = "Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους"
             entries = await database.ekthesi.findAll({
@@ -41,7 +49,7 @@ routes.get('/', async function (req, res, next) {
                     
                 }, include: [{ model: database.user }]
             })
-        }   
+        }  
         res.render("user_views/history", { entries: entries, user: user, users:users, status:status });
     } else {
         res.status(404).send("Not found")
