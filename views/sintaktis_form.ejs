@@ -782,18 +782,36 @@
     })
 
     function onSubmitStatus() {
-        if (role == "Συντάκτης επισπεύδοντος Υπουργείου") {
-            if ($("#ekthesi_glk").prop("checked")) {
+        if ($("#ekthesi_glk").prop("checked")) {
+            $("#status_ekthesis_drp").val("Σε σύνταξη");
                 alert("Για την ανάλυση εκκρεμεί ο έλεγχος του Γενικού Λογιστηρίου του Κράτους που έχετε ζητήσει. Επικοινωνήστε με το Γενικό Λογιστήριο του Κράτους για να το ολοκληρώσει ή ενημερώστε τον αρμόδιο του Υπουργείου σας για να το επιλύσει (εφόσον δε χρειάζεται η έκθεση του Γενικού Λογιστηρίου του Κράτους).");
-                //TODO: redirect?
-            } else {
-                if ($('input[name=status_ekthesis]').val("Σε σύνταξη") || $('input[name=status_ekthesis]').val("Επιμελημένη")) {
-                    $('input[name=status_ekthesis]').val("Ολοκληρώθηκε");
-                    console.log($('input[name=status_ekthesis]').val());
-                }
+            
+        } else {
+            if ($('input[name=status_ekthesis]').val("Σε σύνταξη") || $('input[name=status_ekthesis]').val("Επιμελημένη")) {
+                $('input[name=status_ekthesis]').val("Ολοκληρώθηκε");
+                console.log($('input[name=status_ekthesis]').val());
             }
-        } 
+        }
     }
+
+    $("#ekthesi_glk").click(function (ev) {
+        if (role == "Συντάκτης επισπεύδοντος Υπουργείου") {
+            if (this.checked) {
+                $("#status_ekthesis").val("Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους");
+                $(this).prop('disabled', true);
+                console.log($("#status_ekthesis").val());
+            }
+        } else { //Βουλευτής ή Νομοπαρασκευαστική
+            if (this.checked) {
+                $('input[name=status_ekthesis]').val("Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους");
+                console.log($('input[name=status_ekthesis]').val());
+            } else {
+                $('input[name=status_ekthesis]').val("Σε σύνταξη");
+                console.log($('input[name=status_ekthesis]').val());
+            }
+        }
+
+    })
 
     var analysis = "<%= analysis%>";
     var role = "<%= rolos%>";
@@ -963,16 +981,6 @@
     enableFields(document.getElementsByName("previous"));
     enableFields(document.getElementsByName("ekthesi_glk"));
     console.log($("#status_ekthesis").val());
-
-    $("#ekthesi_glk").click(function (ev) {
-        if (this.checked) {
-            $("#status_ekthesis_drp").val("Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους");
-            $("#status_ekthesis").val("Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους");
-            $(this).prop('disabled', true);
-            console.log($("#status_ekthesis").val());
-            console.log($("#status_ekthesis_drp").val());
-        }
-    })
 
     //if (role == 'Επιτροπή Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)') { }
 

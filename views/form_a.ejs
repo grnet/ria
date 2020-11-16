@@ -946,8 +946,8 @@
                             console.log($('input[name=status_ekthesis]').val());
                         }    
                     } 
-                } else if (role=="Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων") {
-                    $('input[name=status_ekthesis]').val("Οριστικοποιήθηκε");//might not be needed   
+                } else if (role=="Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων" || role=="Βουλευτής") {
+                    $('input[name=status_ekthesis]').val("Οριστικοποιήθηκε");
                     console.log($('input[name=status_ekthesis]').val());
                     if($("#ekthesi_glk").checked) {
                         $("#ekthesi_glk").prop('checked', false);
@@ -969,27 +969,30 @@
                 $(".return_to_author").hide();
             }
 
-            /*if (role == "Επιτροπή Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)" || role =="Γραφείο Καλής Νομοθέτησης (ΓΓΝΚΘ)" || role =="Διεύθυνση Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)" || role =="Γενικός Γραμματέας Νομικών και Κοινοβουλευτικών Θεμάτων") {
-                $("#egkrisi_genikou_grammatea").on("checked", submitVivibility("egkrisi_aksiologisis_nomoparaskeyastikis","egkrisi_kalis_nomothetisis","egkrisi_dieuthinsis_nomoparaskeyastikis"));
-                if($("#egkrisi_aksiologisis_nomoparaskeyastikis").prop("checked") && $("#egkrisi_kalis_nomothetisis").prop("checked") && $("#egkrisi_dieuthinsis_nomoparaskeyastikis").prop("checked") && $("#egkrisi_genikou_grammatea").prop("checked")) { 
-                        document.getElementById('create_new').disabled = false;
-                        console.log("all 4 are checked")
-                } else {
-                    optionalFields(document.getElementById('create_new'));
-                    console.log("none checked")
-                }
-            }*/
-            document.getElementById('create_new').disabled = true;                        
+            $("#egkrisi_aksiologisis_nomoparaskeyastikis").on("change", function() {
+                console.log("checking...")
+                submitVivibility("egkrisi_aksiologisis_nomoparaskeyastikis","egkrisi_kalis_nomothetisis","egkrisi_dieuthinsis_nomoparaskeyastikis", "egkrisi_genikou_grammatea");
+            });
+            $("#egkrisi_kalis_nomothetisis").on("change", function() {
+                console.log("checking...")
+                submitVivibility("egkrisi_aksiologisis_nomoparaskeyastikis","egkrisi_kalis_nomothetisis","egkrisi_dieuthinsis_nomoparaskeyastikis", "egkrisi_genikou_grammatea");
+            });
+            $("#egkrisi_dieuthinsis_nomoparaskeyastikis").on("change", function() {
+                console.log("checking...")
+                submitVivibility("egkrisi_aksiologisis_nomoparaskeyastikis","egkrisi_kalis_nomothetisis","egkrisi_dieuthinsis_nomoparaskeyastikis", "egkrisi_genikou_grammatea");
+            });
             $("#egkrisi_genikou_grammatea").on("change", function() {
+                console.log("checking...")
                 submitVivibility("egkrisi_aksiologisis_nomoparaskeyastikis","egkrisi_kalis_nomothetisis","egkrisi_dieuthinsis_nomoparaskeyastikis", "egkrisi_genikou_grammatea");
             });
 
             function submitVivibility( checkbox1, checkbox2, checkbox3, checkbox4) {                
-                if(($(checkbox1).prop('checked', true)) && ($(checkbox2).prop('checked', true)) && ($(checkbox3).prop('checked', true)) && ($(checkbox4).prop('checked', true))) {                    
+                if((document.getElementById(checkbox1).checked) && (document.getElementById(checkbox2).checked) && (document.getElementById(checkbox3).checked) && (document.getElementById(checkbox4).checked)) {                    
                     console.log("all 4 are checked")
                     document.getElementById('create_new').disabled = false;                        
                 }
                 else {
+                    console.log("not all 4 are checked")
                     document.getElementById('create_new').disabled = true;                        
                 }
             }
@@ -1010,7 +1013,7 @@
                             console.log($("#status_ekthesis").val());
                         }
                     }
-                } else if (role =="Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων") {
+                } else if (role =="Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων" || role =="Βουλευτής" || role =="Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)") {
                     if(this.checked) {
                         $('input[name=status_ekthesis]').val("Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους"); 
                         //$(this).prop('disabled', true);          

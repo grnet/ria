@@ -23,7 +23,8 @@ routes.get('/', async function (req, res, next) {
                 where: {
                     status_ekthesis: {
                         [Op.or]: ["Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους", "Επιμελημένη", "Ολοκληρώθηκε"]
-                    }
+                    }//,
+                    //[user.rolos]: {[Op.not]: ['Βουλευτής']}
                 }, include: [{ model: database.user }]
             })
         } else if (user.rolos == "Συντάκτης επισπεύδοντος Υπουργείου") {
@@ -49,7 +50,15 @@ routes.get('/', async function (req, res, next) {
                     
                 }, include: [{ model: database.user }]
             })
-        }  
+        } else if (user.rolos == "Βουλή") {
+            status = "Προς Δημοσίευση"
+            entries = await database.ekthesi.findAll({
+                where: {
+                    status_ekthesis: status
+                    
+                }, include: [{ model: database.user }]
+            })
+        } 
         res.render("user_views/history", { entries: entries, user: user, users:users, status:status });
     } else {
         res.status(404).send("Not found")
