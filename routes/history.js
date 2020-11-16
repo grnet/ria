@@ -22,7 +22,7 @@ routes.get('/', async function (req, res, next) {
             entries = await database.ekthesi.findAll({
                 where: {
                     status_ekthesis: {
-                        [Op.or]: ["Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους", "Ολοκληρώθηκε"]
+                        [Op.or]: ["Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους", "Επιμελημένη", "Ολοκληρώθηκε"]
                     }
                 }, include: [{ model: database.user }]
             })
