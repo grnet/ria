@@ -1,4 +1,5 @@
 const routes = require('express').Router()
+const session = require('express-session');
 let database = require('../services/database')
 routes.get('/:entry_id', async (req,res,next) =>{
     
@@ -7,12 +8,9 @@ routes.get('/:entry_id', async (req,res,next) =>{
     }, include: [{model: database.rythmiseis}, {model: database.field_9}]
     })
     console.log(entry)
-    //try this to check on ofeli_r let entry = await database.ekthesi.findAll({include: [{model: database.ofeli_rythmisis}]})
     if(entry && entry.dataValues){
         res.render("form_a",{data:entry.dataValues, rolos:req.session.rolos})
         req.session.ekthesi_id = req.params.entry_id
-        //req.session.save()//optional
-        //console.log(req.session)
     }else{
         res.status(404).send("Not found")
     }

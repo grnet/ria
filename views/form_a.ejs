@@ -814,6 +814,10 @@
 
             var ekthesi_id = '<%= data.id %>'
             var role = "<%= rolos%>";
+            if(sessionStorage.getItem("referer") != ekthesi_id) {
+                window.location.href = "/user_views/history"
+            }
+
             console.log(ekthesi_id);
             $("form").on("submit", function (ev) {
                 onSubmitStatus();
