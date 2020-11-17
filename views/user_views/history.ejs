@@ -25,7 +25,7 @@
           <% if(users){%>
           <% for(var i=0; i<users.length; i++) {%>
           <% for(var j=0; j<users[i].ekthesis.length; j++) {%>
-          <% if (users[i].ekthesis[j].status_ekthesis == status && users[i].ypoyrgeio == user.ypoyrgeio) {%>
+          <% if ( users[i].ypoyrgeio == user.ypoyrgeio) {%>
           <tr onclick="window.location.href='/form_a/<%= users[i].ekthesis[j].id %>'">
             <td><%= users[i].ekthesis[j].title %></td>
             <td><%= users[i].fname %> <%= users[i].lname %></td>

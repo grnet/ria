@@ -17,8 +17,8 @@
             <input type="hidden" id="typos_analysis" name="typos_analysis" value="<%= analysis%>">
             <input type="hidden" id="status_ekthesis" name="status_ekthesis" value="Σε σύνταξη">
 
-            <fieldset>
-                <h2>Α. Αιτιολογική έκθεση</h2>
+            <fieldset id="arxiki">
+                <h2>Αρχική σελίδα</h2>
                 <br>
 
                 <div class="form-group row">
@@ -118,8 +118,10 @@
                     Νησιωτικής Πολιτικής, Υπουργείου Αγροτικής Ανάπτυξης & Τροφίμων και Υπουργείου Τουρισμού.</p>
             </fieldset>
 
-            <fieldset>
-                <h2>Η «ταυτότητα» της αξιολογούμενης ρύθμισης</h2>
+            <fieldset id="tautotita_ruthmisis">
+                <h2>Α. Αιτιολογική έκθεση</h2>
+                <br><br>
+                <h3>Η «ταυτότητα» της αξιολογούμενης ρύθμισης</h3>
                 <br>
 
                 <div class="form-group">
@@ -142,8 +144,8 @@
                 <input type="button" name="next" class="next action-button" value="Επόμενα πεδία" />
             </fieldset>
 
-            <fieldset>
-                <h2>Η αναγκαιότητα της αξιολογούμενης ρύθμισης</h2>
+            <fieldset id="anagkaiotita_rythmisis_1">
+                <h2>Η αναγκαιότητα της αξιολογούμενης ρύθμισης (i)</h2>
                 <br>
                 <div class="checkbox-group form-group row">
                     <label for="field_4" class="col-sm-8 col-form-label required">4. Το εν λόγω ζήτημα έχει
@@ -166,7 +168,8 @@
                 <input type="button" name="next" class="next action-button" value="Επόμενα πεδία" />
             </fieldset>
 
-            <fieldset>
+            <fieldset id="anagkaiotita_rythmisis_2">
+                <h2>Η αναγκαιότητα της αξιολογούμενης ρύθμισης (ii)</h2>
                 <label>5. Γιατί δεν είναι δυνατό να αντιμετωπιστεί στο πλαίσιο της υφιστάμενης νομοθεσίας:</label>
                 <div class="form-group">
                     <label for="field_5_1" class="required">5.1 με αλλαγή προεδρικού διατάγματος, υπουργικής απόφασης ή
@@ -191,7 +194,7 @@
                 <input type="button" name="next" class="next action-button" value="Επόμενα πεδία" />
             </fieldset>
 
-            <fieldset>
+            <fieldset id="sunafeis_praktikes">
                 <h2>Συναφείς πρακτικές</h2>
                 <br>
                 <div class="checkbox-group form-group row">
@@ -218,7 +221,7 @@
                 <input type="button" name="next" class="next action-button" value="Επόμενα πεδία" />
             </fieldset>
 
-            <fieldset>
+            <fieldset id="stoxoi_ruthmisis">
                 <h2>Στόχοι αξιολογούμενης ρύθμισης</h2>
                 <br>
                 <div id="field_7_wrap">
@@ -358,7 +361,7 @@
 
             <%- include('fill_form/field_9.ejs') %>
 
-            <fieldset>
+            <fieldset id="digital_governance">
                 <h2>Ψηφιακή διακυβέρνηση</h2>
                 <br>
 
@@ -447,7 +450,7 @@
                 <input type="button" name="next" class="next action-button" value="Επόμενα πεδία" />
             </fieldset>
 
-            <fieldset>
+            <fieldset id="kat_arthro_analusi">
                 <h2>Κατ’ άρθρο ανάλυση αξιολογούμενης ρύθμισης</h2>
                 <br>
                 <table class="table " id="field_14_table">
@@ -490,106 +493,8 @@
 
     </div>
 </div>
-<div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4">
-    <div class="jss111">
-        <div class="jss274">
-            <h3 class="jss273 jss178 jss181">Πίνακας έκθεσης</h3>
-            <ul class="aitiologiki_list">
-                <li>
-                    <h4><b>Αιτιολογική έκθεση</b></h4>
-                </li>
-                <ul class="aitiologiki_menu" id="progressbar">
-                    <li class="active">Τίτλος αξιολογούμενης ρύθμισης & τομείς νομοθέτησης</li>
-                    <li>Η «ταυτότητα» της αξιολογούμενης ρύθμισης</li>
-                    <li>Η αναγκαιότητα της αξιολογούμενης ρύθμισης</li>
-                    <li>Συναφείς πρακτικές</li>
-                    <li>Στόχοι αξιολογούμενης ρύθμισης</li>
-                    <li>Ειδικότεροι στόχοι ανάλογα με τον τομέα νομοθέτησης</li>
-                    <li>Ψηφιακή διακυβέρνηση</li>
-                    <li>Κατ’ άρθρο ανάλυση αξιολογούμενης ρύθμισης</li>
-                </ul>
-            </ul>
-            <ul class="arthro_syntagmatos_list">
-                <li>
-                    <h4><b>Έκθεση του άρθρου 75 παρ. 1 και 2 του Συντάγματος</b></h4>
-                </li>
-                <ul class="arthro_syntagmatos_menu" id="progressbar">
-                    <li>Έκθεση Γενικού Λογιστηρίου του Κράτους</li>
-                    <li>Οικονομικά αποτελέσματα επί του Κρατικού Προϋπολογισμού ή/και επί του
-                        προϋπολογισμού του/των αρμόδιου/ων φορέα/ων</li>
-                </ul>
-            </ul>
-            <ul class="eidiki_ekthesi_list">
-                <li>
-                    <h4><b>Ειδική Έκθεση (άρθρο 75 παρ. 3 του Συντάγματος)
-                        </b></h4>
-                </li>
-                <ul class="eidiki_ekthesi_menu" id="progressbar">
-                    <li>Οικονομικά αποτελέσματα</li>
-                </ul>
-            </ul>
-            <ul class="ekthesi_genikwn_synepeiwn_list">
-                <li>
-                    <h4><b>Έκθεση γενικών συνεπειών</b></h4>
-                </li>
-                <ul class="ekthesi_genikwn_synepeiwn_menu" id="progressbar">
-                    <li>Οφέλη αξιολογούμενης ρύθμισης</li>
-                    <li>Κόστος αξιολογούμενης ρύθμισης</li>
-                    <li>Κόστος αξιολογούμενης ρύθμισης</li>
-                    <li>Γνώμες ή πορίσματα αρμόδιων υπηρεσιών και ανεξάρτητων αρχών</li>
-                </ul>
-            </ul>
-            <ul class="ekthesi_diavouleusis_list">
-                <li>
-                    <h4><b>Έκθεση διαβούλευσης</b></h4>
-                </li>
-                <ul class="ekthesi_diavouleusis_menu" id="progressbar">
-                    <li>Διαβούλευση κατά τη διάρκεια της νομοπαρασκευαστικής διαδικασίας
-                        από την έναρξη κατάρτισης της αξιολογούμενης ρύθμισης μέχρι την
-                        υπογραφή από τους συναρμόδιους Υπουργούς</li>
-                    <li>Σχόλια στο πλαίσιο της διαβούλευσης μέσω της ηλεκτρονικής πλατφόρμας
-                        www.opengov.gr</li>
-                </ul>
-            </ul>
-            <ul class="ekthesi_nomimotitas_list">
-                <li>
-                    <h4><b>Έκθεση νομιμότητας</b></h4>
-                </li>
-                <ul class="ekthesi_nomimotitas_menu" id="progressbar">
-                    <li>Συναφείς συνταγματικές διατάξεις</li>
-                    <li>Ενωσιακό δίκαιο</li>
-                    <li>Συναφείς διατάξεις διεθνών συνθηκών ή συμφωνιών</li>
-                    <li>Συναφής νομολογία των ανωτάτων και άλλων εθνικών δικαστηρίων,
-                        καθώς και αποφάσεις των Ανεξάρτητων Αρχών</li>
-                    <li>Συναφής ευρωπαϊκή και διεθνής νομολογία</li>
-                </ul>
-            </ul>
-            <ul class="pinakas_tropopoioymenwn_katargoymenwn_diataksewn_list">
-                <li>
-                    <h4><b>Πίνακας τροποποιούμενων ή καταργούμενων διατάξεων</b></h4>
-                </li>
-                <ul class="pinakas_tropopoioymenwn_katargoymenwn_diataksewn_menu" id="progressbar">
-                    <li>Τροποποίηση – αντικατάσταση – συμπλήρωση διατάξεων</li>
-                    <li>Κατάργηση διατάξεων</li>
-                </ul>
-            </ul>
-            <ul class="ekthesi_efarmogis_rythmisis_list">
-                <li>
-                    <h4><b>Έκθεση εφαρμογής της ρύθμισης</b></h4>
-                </li>
-                <ul class="ekthesi_efarmogis_rythmisis_menu" id="progressbar">
-                    <li>Συναρμοδιότητα Υπουργείων / υπηρεσιών / φορέων</li>
-                    <li>Έκδοση κανονιστικών πράξεων και εγκυκλίων</li>
-                    <li>Ανάγκη σύστασης νέου νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας
-                        υπηρεσίας</li>
-                    <li>Στοιχεία νέου νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας υπηρεσίας</li>
-                </ul>
-            </ul>
-        </div>
-    </div>
-</div>
-
-
+<%- include('sidebar.ejs') %>
+  
 
 <style>
     .exit {
@@ -619,6 +524,14 @@
         border-style: dashed;
     }
 
+    .arxiki_menu {
+        display: none
+    }
+
+    .arxiki_list:hover .arxiki_menu {
+        display: initial
+    }
+
     .aitiologiki_menu {
         display: none
     }
@@ -627,11 +540,11 @@
         display: initial
     }
 
-    .arthro_syntagmatos_menu {
+    .ekthesi_syntagmatos_menu {
         display: none
     }
 
-    .arthro_syntagmatos_list:hover .arthro_syntagmatos_menu {
+    .ekthesi_syntagmatos_list:hover .ekthesi_syntagmatos_menu {
         display: initial
     }
 
@@ -741,6 +654,24 @@
 
 
 <script>
+    (function ($) {
+        var $root = $('html, body');
+        $('a.menu').click(function () {
+            var href = $.attr(this, 'href');
+            current_fs = $("fieldset:visible");
+            $(".progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+            next_fs = $(href);
+            //hide the current fieldset with style
+            current_fs.hide();
+            //show the next fieldset
+            next_fs.show();
+            $(".progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+            return false;
+        });
+
+    }(jQuery));
+
 
     $("form").on("submit", function (ev) {
         ev.preventDefault();
@@ -784,8 +715,8 @@
     function onSubmitStatus() {
         if ($("#ekthesi_glk").prop("checked")) {
             $("#status_ekthesis_drp").val("Σε σύνταξη");
-                alert("Για την ανάλυση εκκρεμεί ο έλεγχος του Γενικού Λογιστηρίου του Κράτους που έχετε ζητήσει. Επικοινωνήστε με το Γενικό Λογιστήριο του Κράτους για να το ολοκληρώσει ή ενημερώστε τον αρμόδιο του Υπουργείου σας για να το επιλύσει (εφόσον δε χρειάζεται η έκθεση του Γενικού Λογιστηρίου του Κράτους).");
-            
+            alert("Για την ανάλυση εκκρεμεί ο έλεγχος του Γενικού Λογιστηρίου του Κράτους που έχετε ζητήσει. Επικοινωνήστε με το Γενικό Λογιστήριο του Κράτους για να το ολοκληρώσει ή ενημερώστε τον αρμόδιο του Υπουργείου σας για να το επιλύσει (εφόσον δε χρειάζεται η έκθεση του Γενικού Λογιστηρίου του Κράτους).");
+
         } else {
             if ($('input[name=status_ekthesis]').val("Σε σύνταξη") || $('input[name=status_ekthesis]').val("Επιμελημένη")) {
                 $('input[name=status_ekthesis]').val("Ολοκληρώθηκε");
@@ -1389,7 +1320,7 @@
         next_fs = $(this).parent().next();
 
         //activate next step on progressbar using the index of next_fs
-        $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+        $(".progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
 
         //show the next fieldset
         next_fs.show();
@@ -1402,8 +1333,11 @@
         previous_fs = $(this).parent().prev();
 
         //de-activate current step on progressbar
-        $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
-
+        $(".progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+        //add class "active" if it doesn't exist 
+        if (!$(previous_fs).hasClass("active")){
+            $(".progressbar li").eq($("fieldset").index(previous_fs)).addClass("active");
+        }
         //show the previous fieldset
         previous_fs.show();
         //hide the current fieldset with style
