@@ -814,6 +814,7 @@
 
             var ekthesi_id = '<%= data.id %>'
             var role = "<%= rolos%>";
+            //prevent user from going to a different form through url   
             if(sessionStorage.getItem("referer") != ekthesi_id) {
                 window.location.href = "/user_views/history"
             }
@@ -889,6 +890,17 @@
                 $(".return_to_author").hide();
             }
 
+            function submitVivibility(checkbox1, checkbox2, checkbox3, checkbox4) {
+                if ((document.getElementById(checkbox1).checked) && (document.getElementById(checkbox2).checked) && (document.getElementById(checkbox3).checked) && (document.getElementById(checkbox4).checked)) {
+                    console.log("all 4 are checked")
+                    document.getElementById('create_new').disabled = false;
+                }
+                else {
+                    console.log("not all 4 are checked")
+                    document.getElementById('create_new').disabled = true;
+                }
+            }
+
             $("#egkrisi_aksiologisis_nomoparaskeyastikis").on("change", function () {
                 console.log("checking...")
                 submitVivibility("egkrisi_aksiologisis_nomoparaskeyastikis", "egkrisi_kalis_nomothetisis", "egkrisi_dieuthinsis_nomoparaskeyastikis", "egkrisi_genikou_grammatea");
@@ -901,21 +913,9 @@
                 console.log("checking...")
                 submitVivibility("egkrisi_aksiologisis_nomoparaskeyastikis", "egkrisi_kalis_nomothetisis", "egkrisi_dieuthinsis_nomoparaskeyastikis", "egkrisi_genikou_grammatea");
             });
-            $("#egkrisi_genikou_grammatea").on("change", function () {
-                console.log("checking...")
+            $("#egkrisi_genikou_grammatea").on("change", function () {                
                 submitVivibility("egkrisi_aksiologisis_nomoparaskeyastikis", "egkrisi_kalis_nomothetisis", "egkrisi_dieuthinsis_nomoparaskeyastikis", "egkrisi_genikou_grammatea");
             });
-
-            function submitVivibility(checkbox1, checkbox2, checkbox3, checkbox4) {
-                if ((document.getElementById(checkbox1).checked) && (document.getElementById(checkbox2).checked) && (document.getElementById(checkbox3).checked) && (document.getElementById(checkbox4).checked)) {
-                    console.log("all 4 are checked")
-                    document.getElementById('create_new').disabled = false;
-                }
-                else {
-                    console.log("not all 4 are checked")
-                    document.getElementById('create_new').disabled = true;
-                }
-            }
 
             $("#ekthesi_glk").on("change", function (ev) {
                 //actions to take when ΓΛΚ checks checkbox
