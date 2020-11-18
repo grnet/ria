@@ -22,7 +22,6 @@ let profileRoute = require('./routes/profile')
 
 const app = express(); //app init
 app.use(cookieParser());
-
 // prune expired entries every 24h to avoid memory leaks
 let memoryStore = new session.MemoryStore({checkPeriod: 86400000 }); //We will store our user session details to the memory 
  app.use(session({                                 

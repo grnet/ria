@@ -10,9 +10,7 @@
       <input type="button" class="back" value="Πίσω" />
       <br><br>
       <input type="button" id="user_button" class="display-table-button" value="Οι αναλύσεις μου" />
-      <input type="button" id="users_button" class="display-table-button" value="Αναλύσεις ανά κατάσταση" />
-      <input type="button" id="entries_button" class="display-table-button"
-        value="Αναλύσεις ανά κατάσταση & Υπουργείο" />
+      <input type="button" id="entries_button" class="display-table-button" value="Διαθέσιμες αναλύσεις του Υπουργείου" />
       <br><br>
       <table id="user_data" class="display">
         <thead>
@@ -28,7 +26,7 @@
         <tbody>
 
           <% for(var i=0; i<user.ekthesis.length; i++) {%>
-          <tr onclick="window.location.href='/form_a/<%=  user.ekthesis[i].id %>'">
+          <tr onclick="setReferer('<%=  user.ekthesis[i].id %>')">
             <td><%= user.ekthesis[i].title %></td>
             <td><%= user.fname%> <%= user.lname%></td>
             <td><%= user.rolos%></td>
@@ -40,7 +38,6 @@
 
         </tbody>
       </table>
-      <br><br>
 
       <table id="entries_data" class="display">
         <thead>
@@ -55,50 +52,16 @@
         </thead>
         <tbody>
           <% if (entries != null) {%>
-          <% for(var i=0; i<entries.length; i++) {%>
-          <% if ( entries[i].user.ypoyrgeio == user.ypoyrgeio) {%>
-          <tr onclick="window.location.href='/form_a/<%= entries[i].id %>'">
-            <td><%= entries[i].title %></td>
-            <td><%= entries[i].user.fname%> <%= entries[i].user.lname%></td>
-            <td><%= entries[i].user.rolos%></td>
-            <td><%= entries[i].user.ypoyrgeio %></td>
-            <td><%= entries[i].typos_analysis %></td>
-            <td><%= entries[i].status_ekthesis %></td>
-          </tr>
-          <% } %>
-          <% } %>
-          <% } %>
-        </tbody>
-      </table>
-      <br><br>
-
-      <table id="users_entries_data" class="display">
-        <thead>
-          <tr>
-            <th>Τίτλος</th>
-            <th>Ονοματεπώνυμο συντάκτη</th>
-            <th>Ρόλος συντάκτη</th>
-            <th>Υπουργείο συντάκτη</th>
-            <th>Τύπος ανάλυσης</th>
-            <th>Κατάσταση αίτησης</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% if(users){%>
-          <% for(var i=0; i<users.length; i++) {%>
-          <% for(var j=0; j<users[i].ekthesis.length; j++) {%>
-          <% if ( users[i].ypoyrgeio == user.ypoyrgeio) {%>
-          <tr onclick="setReferer('<%= users[i].ekthesis[j].id %>')">
-            <td><%= users[i].ekthesis[j].title %></td>
-            <td><%= users[i].fname %> <%= users[i].lname %></td>
-            <td><%= users[i].rolos %></td>
-            <td><%= users[i].ypoyrgeio %></td>
-            <td><%= users[i].ekthesis[j].typos_analysis %></td>
-            <td><%= users[i].ekthesis[j].status_ekthesis %></td>
-          </tr>
-          <% } %>
-          <% } %>
-          <% } %>
+            <% for(var i=0; i<entries.length; i++) {%>
+              <tr onclick="setReferer('<%= entries[i].id %>')">
+                <td><%= entries[i].title %></td>
+                <td><%= entries[i].user.fname%> <%= entries[i].user.lname%></td>
+                <td><%= entries[i].user.rolos%></td>
+                <td><%= entries[i].user.ypoyrgeio %></td>
+                <td><%= entries[i].typos_analysis %></td>
+                <td><%= entries[i].status_ekthesis %></td>
+               </tr>
+            <% } %>
           <% } %>
         </tbody>
       </table>
@@ -133,10 +96,13 @@
 
 <script>
   $(document).ready(function () {
-    $('#users_entries_data').DataTable();
+    $("#user_data").dataTable(); // turn it into a datable
+    hideDataTable("#user_data", "#user_data_wrapper");
     $('#entries_data').DataTable();
-  });
+    hideDataTable("#entries_data", "#entries_data_wrapper");
 
+  });
+  
   function setReferer(id) {
     sessionStorage.setItem("referer", id);
     console.log(sessionStorage.getItem("referer"));
@@ -202,23 +168,30 @@
       { "width": "20%", "targets": [5,6] }
     ]
   });*/
-  //TODO: des pws ginetai hide to search
-  $("#user_data").hide() // table is initially hidden as I add table rows to it using jQuery
-  $("#user_data").dataTable(); // turn it into a datable
-  $("#user_data_wrapper").hide(); //datables creates a div with my-table_wrapper
-  
 
-  if ("<%= user.ekthesis.length %>" == 0) {
-    $("#user_data").hide();
+  function hideDataTable(my_table, table_wrapper) {
+    $(my_table).hide();
+    $(table_wrapper).hide();
   }
 
+  function showDataTable(my_table, table_wrapper) {
+    $(my_table).show();
+    $(table_wrapper).show();
+  }
+
+  // if ("<%= user.ekthesis.length %>" == 0) {
+  //   $("#user_data").hide();
+  // }
+
   $("#user_button").on("click", function (ev) {
-  $("#user_data").show() // table is initially hidden as I add table rows to it using jQuery
-  $("#user_data_wrapper").show(); //datables creates a div with my-table_wrapper
+    hideDataTable("#entries_data", "#entries_data_wrapper");
+    showDataTable("#user_data","#user_data_wrapper");
   });
-
-
-
+  $("#entries_button").on("click", function (ev) {
+    hideDataTable("#user_data", "#user_data_wrapper");
+    showDataTable("#entries_data","#entries_data_wrapper");
+  });
+ 
   $(".back").on("click", function (ev) {
     if (user_dikaiwmata_diaxeirisis) {
       window.location.href = "/user_views/admin_dashboard";

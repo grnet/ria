@@ -14,7 +14,7 @@
         <input type="button" name="back" class="back" value="Πίσω" />
         <br><br>
         <form enctype="multipart/form-data">
-            <input type="hidden" id="typos_analysis" name="typos_analysis" value="<%= analysis%>">
+            <input type="hidden" id="typos_analysis" name="typos_analysis" value="<%= analysis %>">
             <input type="hidden" id="status_ekthesis" name="status_ekthesis" value="Σε σύνταξη">
 
             <fieldset id="arxiki">
@@ -726,23 +726,17 @@
     }
 
     $("#ekthesi_glk").click(function (ev) {
-        if (role == "Συντάκτης επισπεύδοντος Υπουργείου") {
-            if (this.checked) {
+        if (this.checked) {
+            answer = window.confirm("Με την ενέργειά σας αυτή η έκθεση θα αποσταλλεί στο Γενικό Λογιστήριο του κράτους. Συνέχεια;");
+            if (answer) {
                 $("#status_ekthesis").val("Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους");
-                $(this).prop('disabled', true);
-                console.log($("#status_ekthesis").val());
+                if (role == "Συντάκτης επισπεύδοντος Υπουργείου") {
+                    $(this).prop('disabled', true);            
+                }                    
             }
-        } else { //Βουλευτής ή Νομοπαρασκευαστική
-            if (this.checked) {
-                $('input[name=status_ekthesis]').val("Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους");
-                console.log($('input[name=status_ekthesis]').val());
-            } else {
-                $('input[name=status_ekthesis]').val("Σε σύνταξη");
-                console.log($('input[name=status_ekthesis]').val());
-            }
-        }
-
-    })
+        } else {
+            $('input[name=status_ekthesis]').val("Σε σύνταξη");                
+        }})
 
     var analysis = "<%= analysis%>";
     var role = "<%= rolos%>";

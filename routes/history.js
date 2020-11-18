@@ -12,18 +12,20 @@ routes.get('/', async function (req, res, next) {
     let entries, status;
     //console.log( user);
     if (user && user.dataValues) {
-        users = await database.user.findAll({
+        /*users = await database.user.findAll({
             where: {
                 ypoyrgeio: user.ypoyrgeio
             }, include: [{ model: database.ekthesi }]
-        })
+        })*/
+        //for each different role we render different results
         if (user.rolos == "Συντάκτης επισπεύδοντος Υπουργείου") {
             status = "Σε σύνταξη";
             entries = await database.ekthesi.findAll({
                 where: {
                     status_ekthesis: {
                         [Op.or]: ["Σε σύνταξη", "Επιμελημένη"]
-                    }
+                    },
+                    '$user.ypoyrgeio$': user.ypoyrgeio //has to be from same ministry
                 }, include: [{ model: database.user }]
             })
         } else if (user.rolos == "Γενικό Λογιστήριο του Κράτους") {
@@ -50,20 +52,22 @@ routes.get('/', async function (req, res, next) {
 
                 }, include: [{ model: database.user }]
             })
+        } else if (user.rolos == "Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων") {
+            entries = await database.ekthesi.findAll({
+                where: {
+                    status_ekthesis: {
+                        [Op.or]: ["Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους", "Επιμελημένη", "Ολοκληρώθηκε"]
+                    }, '$user.rolos$': {[Op.not]: ['Βουλευτής']}
+                }, include: [{ model: database.user }]
+            })
+        } else if (user.rolos == "Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)") {
+            entries = await database.ekthesi.findAll({
+                where: {
+                    status_ekthesis: "Οριστικοποιήθηκε"                    
+                }, include: [{ model: database.user }]
+            })
         }
-        //for each different role we render different results
-        // if (user.rolos == "Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων") {
-        //     entries = await database.ekthesi.findAll({
-        //         where: {
-        //             status_ekthesis: {
-        //                 [Op.or]: ["Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους", "Επιμελημένη", "Ολοκληρώθηκε"]
-        //             }//,
-        //             //[user.rolos]: {[Op.not]: ['Βουλευτής']}
-        //         }, include: [{ model: database.user }]
-        // })
-
-        // } 
-        res.render("user_views/history", { entries: entries, user: user, users: users, status: status });
+        res.render("user_views/history", { entries: entries, user: user});
     } else {
         res.status(404).send("Not found")
     }

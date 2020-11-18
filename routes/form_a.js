@@ -9,8 +9,8 @@ routes.get('/:entry_id', async (req,res,next) =>{
     })
     console.log(entry)
     if(entry && entry.dataValues){
-        res.render("form_a",{data:entry.dataValues, rolos:req.session.rolos})
-        req.session.ekthesi_id = req.params.entry_id
+        req.session.ekthesi_id = req.params.entry_id;
+        res.render("form_a",{data:entry.dataValues, rolos:req.session.rolos});
     }else{
         res.status(404).send("Not found")
     }
@@ -19,10 +19,10 @@ routes.get('/:entry_id', async (req,res,next) =>{
 
 routes.put('/:entry_id', async function(req,res,next){
 
-    ekthesi_id = req.params.entry_id
-    console.log("req.body: "+ Object.keys(req.body) + Object.values(req.body))
-    console.log("status: "+req.body.status_ekthesis)
-    console.log("id: "+req.body.id)
+    ekthesi_id = req.params.entry_id;
+    console.log("req.body: "+ Object.keys(req.body) + Object.values(req.body));
+    console.log("status: "+req.body.status_ekthesis);
+    console.log("id: "+req.body.id);
     let ekthesi = await database.ekthesi.update(req.body, {where:{
         id: ekthesi_id
     }, include: [{model: database.rythmiseis}, {model: database.field_9}], returning: true, plain: true
@@ -31,7 +31,7 @@ routes.put('/:entry_id', async function(req,res,next){
 
     //console.log(ekthesi.dataValues)
     if (!ekthesi){
-        res.status(404).send("Error in updating ekthesi.")
+        res.status(404).send("Error in updating ekthesi.");
     } else {  
         res.send({redirect: "./user_views/history"});
     }
