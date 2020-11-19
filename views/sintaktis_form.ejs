@@ -653,7 +653,7 @@
 </style>
 
 
-<script>
+<script>    
     (function ($) {
         var $root = $('html, body');
         $('a.menu').click(function () {
@@ -676,10 +676,14 @@
     $("form").on("submit", function (ev) {
         ev.preventDefault();
         // console.log($(this).serialize())//comment this line out to hide query wrote in db
+        initializeAnalysis("#typos_analysis"); 
         onSubmitStatus();
+       // console.log('heyhey my val: '+ document.getElementById("field_23_upload").files[0].name);
         $.ajax({
             url: '/create',
             data: $(this).serialize(),
+            //processData: false, // jQuery does not process the data
+           // contentType: 'multipart/form-data',  // jQuery does not set contentType
             error: function (error) {
                 console.log(error);
             },
@@ -691,9 +695,11 @@
         });
     })
 
-    $(".save_temporarily").on("click", function (ev) {
+    $(".save_temporarily").on("click", function (ev) {        
         ev.preventDefault();
+        initializeAnalysis("#typos_analysis"); 
         console.log($("form").serialize())//comment this line out to hide query wrote in db
+        //console.log('heyhey my val: '+ document.getElementById("field_23_upload").files[0].name);
         $.ajax({
             url: '/create',
             data: $("form").serialize(),
@@ -711,7 +717,6 @@
     $(".back").on("click", function (ev) {
         window.location.href = "/user_views/history";
     })
-
     function onSubmitStatus() {
         if ($("#ekthesi_glk").prop("checked")) {
             $("#status_ekthesis_drp").val("Σε σύνταξη");
@@ -738,6 +743,30 @@
             $('input[name=status_ekthesis]').val("Σε σύνταξη");                
         }})
 
+    function initializeAnalysis (analysis) {
+        console.log("init val "+$(analysis).val());
+        if($(analysis).val() == ':sxedio_nomou') {
+            $(analysis).prop('value','Σχέδιο νόμου');
+        } else if($(analysis).val() == ':prosxedio_nomou') {
+            $(analysis).prop('value','Προσχέδιο νόμου');
+        } else if($(analysis).val() == ':kateythintiries_grammes') {
+            $(analysis).prop('value','Κατευθυντήριες γραμμές');
+        } else if($(analysis).val() == ':epeigon_katepeigon') {
+            $(analysis).prop('value','Επείγον ή κατεπείγον νομοσχέδιο');
+        } else if($(analysis).val() == ':diethneis_symvaseis') {
+            $(analysis).prop('value','Διεθνείς συμβάσεις');
+        } else if($(analysis).val() == ':tropologies_upourgwn') {
+            $(analysis).prop('value','Τροπολογίες Υπουργών');
+        } else if($(analysis).val() == ':protasi_nomou') {
+            $(analysis).prop('value','Πρόταση νόμου');
+        } else if($(analysis).val() == ':tropologies_vouleutwn') {
+            $(analysis).prop('value','Τροπολογίες Υπουργών');
+        }
+        console.log("1"+analysis);
+        console.log("2"+$(analysis));
+        console.log("3"+$(analysis).val());
+    }    
+    
     var analysis = "<%= analysis%>";
     var role = "<%= rolos%>";
     function optionalFields(fieldId) {

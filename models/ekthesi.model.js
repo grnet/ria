@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
         title: DataTypes.STRING,
         epispeudon_foreas: DataTypes.STRING,
         status_ekthesis: DataTypes.STRING,
+        //rythmisi_pou_afora: DataTypes.STRING,
         stoixeia_epikoinwnias: DataTypes.STRING,
   
         ekpedeusi_politismos:DataTypes.BOOLEAN,

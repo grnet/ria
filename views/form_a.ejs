@@ -26,6 +26,8 @@
                         <h2>Αρχική σελίδα</h2>
                         <br>
 
+                        <input type="button" name="convert" class="convert" style="float: right;" value="Μετατροπή" />
+
                         <div class="form-group row">
                             <label for="title" class="col-sm-6 col-form-label">Τίτλος αξιολογούμενης ρύθμισης</label>
                             <div class="col-sm-4">
@@ -38,16 +40,24 @@
                         <hr>
 
                         <div class="form-group row">
-                            <label for="epispeydon_ypoyrgeio" class="col-sm-6 col-form-label">Επισπεύδον
+                            <label for="epispeudon_foreas" class="col-sm-6 col-form-label">Επισπεύδον
                                 Υπουργείο</label>
                             <div class="col-sm-4">
-                                <textarea class="form-control" id="epispeydon_ypoyrgeio" name="epispeydon_ypoyrgeio"
-                                    rows="3"><%= data.epispeydon_ypoyrgeio %></textarea>
+                                <textarea class="form-control" id="epispeudon_foreas" name="epispeudon_foreas"
+                                    rows="3"><%= data.epispeudon_foreas %></textarea>
                             </div>
                         </div>
-
                         <hr>
 
+                        <div class="form-group row">
+                            <label for="rythmisi_pou_afora" class="col-sm-6 col-form-label">Ρύθμιση την οποία αφορά</label>
+                            <div class="col-sm-4">
+                                <textarea class="form-control" id="rythmisi_pou_afora" name="rythmisi_pou_afora" rows="3"
+                                    placeholder="Ρύθμιση"><%= data.rythmisi_pou_afora %></textarea>
+                            </div>
+                        </div>
+                        
+                        <hr>
                         <div class="form-group row">
                             <label for="stoixeia_epikoinwnias" class="col-sm-6 col-form-label">Στοιχεία
                                 επικοινωνίας</label>
@@ -811,7 +821,7 @@
 
 
         <script>
-
+            var answer;
             var ekthesi_id = '<%= data.id %>'
             var role = "<%= rolos%>";
             console.log(ekthesi_id);
@@ -843,18 +853,44 @@
                 });
             }
 
+            function createNewForm(ev) {
+                ev.preventDefault();
+                console.log($("form").serialize())
+                $.ajax({
+                url: '/create',
+                data: $("form").serialize(),
+            
+                error: function (error) {
+                    console.log(error);
+                },
+                success: function (data) {
+                    console.log(data);
+                    window.location.href = "/user_views/history";
+                },
+                type: 'POST'
+            });
+
+            }
+
             $(".save_temporarily").on("click", function (ev) {
                 updateForm(ev);
-            })
+            });
 
             $(".return-to-author").on("click", function (ev) {
                 $('input[name=status_ekthesis]').val("Σε σύνταξη");//change hidden input's value
                 updateForm(ev);
-            })
+            });
 
             $(".back").on("click", function (ev) {
                 window.location.href = "/user_views/history";//go to page that originally referred to current page
-            })
+            });
+
+            $('.convert').on("click", function (ev) { 
+                answer = window.confirm("Μετατροπή;");
+                    if (answer) {
+                        createNewForm(ev); 
+                    }
+            });
 
             $(document).ready(function () {
                 //default when loading page
@@ -868,7 +904,14 @@
 
                 if (role == "Επιτροπή Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)" || role == "Γραφείο Καλής Νομοθέτησης (ΓΓΝΚΘ)" || role == "Διεύθυνση Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)" || role == "Γενικός Γραμματέας Νομικών και Κοινοβουλευτικών Θεμάτων") {
                     optionalFields(".create-new");
-                }                    
+                }              
+                
+                if ($("#status_ekthesis").val() == 'Προς Δημοσίευση') {
+                    $(".convert").show();
+                    enableFields(".convert")
+                } else {
+                    $(".convert").hide();
+                }
             });
             console.log($('input[name=status_ekthesis]').val());
 
@@ -908,6 +951,18 @@
                 }
             }
 
+            function convertAnalysis(analysis) {
+                if($(analysis).val() == 'Κατευθυντήριες Γραμμές') {
+                    $(analysis).prop('value','Προσχέδιο Νόμου');
+                    // console.log( $("#title").val())
+                    // $("#title").prop('value', $("#title").val() + ' - Πρώην ' + $(analysis).val());
+                } else if($(analysis).val() == 'Προσχέδιο Νόμου') {
+                    $(analysis).prop('value','Σχέδιο Νόμου');
+                    // console.log( $("#title").val())
+                    // $("#title").prop('value', $("#title").val() + ' - Πρώην ' + $(analysis).val());
+                }
+            }
+            
             $("#egkrisi_aksiologisis_nomoparaskeyastikis").on("change", function () {
                 console.log("checking...")
                 submitVivibility("egkrisi_aksiologisis_nomoparaskeyastikis", "egkrisi_kalis_nomothetisis", "egkrisi_dieuthinsis_nomoparaskeyastikis", "egkrisi_genikou_grammatea");
@@ -924,8 +979,7 @@
                 submitVivibility("egkrisi_aksiologisis_nomoparaskeyastikis", "egkrisi_kalis_nomothetisis", "egkrisi_dieuthinsis_nomoparaskeyastikis", "egkrisi_genikou_grammatea");
             });
 
-            $("#ekthesi_glk").on("change", function (ev) {
-                var answer;
+            $("#ekthesi_glk").on("change", function (ev) {                
                 //actions to take when ΓΛΚ checks checkbox
                 if (role == "Γενικό Λογιστήριο του Κράτους") {
                     if (!this.checked) {

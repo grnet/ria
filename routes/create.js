@@ -1,19 +1,16 @@
 const routes = require('express').Router()
 let database = require("../services/database")
-let multer = require('multer');
-let upload =  multer({ dest: './uploads/'});
 
 routes.get('/:analysis', function(req,res,next){
     //console.log(req.params.analysis)
     res.render("create", {analysis:req.params.analysis, rolos:req.session.rolos})
 });
 
-routes.post('/',upload.fields([{ name: 'field_23_upload', maxCount: 2 }]), async function(req,res,next){
-    fileUploaded = upload 
-    console.log(fileUploaded);
+routes.post('/', async function(req,res,next){
+    console.log( req.body);
     //req.body.author_id="1";
-    //console.log("file: " + req.files);
-    //console.log("field23: " + req.files.field_23_upload);
+    //console.log("field23: " + Object.values(req.files.field_23_upload));
+
     //groupings for field9
     //ergasiakes_sxeseis_table
     let symvaseis = JSON.stringify([ {"symvaseis_year1": req.body.symvaseis_year1}, {"symvaseis_year2": req.body.symvaseis_year2}, {"symvaseis_year3": req.body.symvaseis_year3}, {"symvaseis_year4": req.body.symvaseis_year4}, {"symvaseis_year5": req.body.symvaseis_year5}, {"symvaseis_prosfata_stoixeia": req.body.symvaseis_prosfata_stoixeia}, {"symvaseis_epidiwkomenos_stoxos": req.body.symvaseis_epidiwkomenos_stoxos}])
