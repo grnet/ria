@@ -35,7 +35,23 @@
                                     value="<%= data.title %>">
                             </div>
                         </div>
+                        <br>
 
+                        <div class="form-group row">
+                            <label for="initial_submit" class="col-sm-6 col-form-label required">Αρχική καταχώρηση</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="initial_submit" name="initial_submit" value="<%= data.initial_submit %>" disabled>
+                            </div>
+                        </div>
+                        <br>
+                        <hr>
+
+                        <div class="form-group row">
+                            <label for="last_updated" class="col-sm-6 col-form-label required">Τελευταία ενημέρωση</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="last_updated" name="last_updated" value="<%= data.last_updated %>" disabled>
+                            </div>
+                        </div>
                         <br>
                         <hr>
 
@@ -912,6 +928,11 @@
                 } else {
                     $(".convert").hide();
                 }
+
+                //init_submit date - will be updated when actually submitted
+                if ($("#last_updated").val() == '') {
+                    getFullDate("#last_updated");
+                }
             });
             console.log($('input[name=status_ekthesis]').val());
 
@@ -962,6 +983,10 @@
                     // $("#title").prop('value', $("#title").val() + ' - Πρώην ' + $(analysis).val());
                 }
             }
+
+            function getFullDate(fieldId) {
+                $(fieldId).prop("value",new Date().toLocaleString("el-GR", {timeZone: "Europe/Athens"}));
+            }            
             
             $("#egkrisi_aksiologisis_nomoparaskeyastikis").on("change", function () {
                 console.log("checking...")

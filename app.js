@@ -34,11 +34,10 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true, parameterLimit: 1500 }));//change limit if too many parameters to be parsed
+app.use(express.urlencoded({ extended: true, parameterLimit: 2000 }));//change limit if too many parameters to be parsed
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 //app.use(express.static(path.join(__dirname,'public/js')));
-//app.use('js',express.static(path.join(__dirname,'/js/')));
 
 app.use('/', homeRoute);
 app.use('/login', loginRoute);;

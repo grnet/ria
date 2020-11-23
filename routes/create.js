@@ -1,15 +1,34 @@
 const routes = require('express').Router()
 let database = require("../services/database")
-
+var multer  = require('multer')
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'uploads')
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.originalname + '-' + Date().toLocaleString("el-GR", {timeZone: "Europe/Athens"}))
+    }
+  })
+   
+var upload = multer({ storage: storage }).fields([{ name: 'field_21_upload', maxCount: 2 }, { name: 'field_23_upload', maxCount: 2 }, { name: 'field_36_upload', maxCount: 2 }]);
 routes.get('/:analysis', function(req,res,next){
     //console.log(req.params.analysis)
     res.render("create", {analysis:req.params.analysis, rolos:req.session.rolos})
 });
 
-routes.post('/', async function(req,res,next){
+routes.post('/', upload, async function(req,res,next){
+    const file = req.files
+    if (!file) {
+      const error = new Error('Please upload a file')
+      error.httpStatusCode = 400
+      return next(error)
+    }
     console.log( req.body);
+    //console.log("files: " + req.files);
+    console.log("field23: " + req.files.field_23_upload);
     //req.body.author_id="1";
-    //console.log("field23: " + Object.values(req.files.field_23_upload));
+    console.log("field23_obj_vals: " + Object.values(req.files));
+    console.log("field23: " + Object.values(req.files.field_23_upload[0]));
 
     //groupings for field9
     //ergasiakes_sxeseis_table

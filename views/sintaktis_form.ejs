@@ -10,7 +10,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
-        <br>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/countable/3.0.1/Countable.min.js"></script>        <br>
         <input type="button" name="back" class="back" value="Πίσω" />
         <br><br>
         <form enctype="multipart/form-data">
@@ -27,7 +27,15 @@
                         <input type="text" class="form-control" id="title" name="title">
                     </div>
                 </div>
+                <br>
+                <hr>
 
+                <div class="form-group row">
+                    <label for="initial_submit" class="col-sm-6 col-form-label required">Αρχική καταχώρηση</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="initial_submit" name="initial_submit" disabled>
+                    </div>
+                </div>
                 <br>
                 <hr>
 
@@ -126,17 +134,20 @@
 
                 <div class="form-group">
                     <label for="field_1" class="required">1. Ποιο ζήτημα αντιμετωπίζει η αξιολογούμενη ρύθμιση;</label>
-                    <textarea class="form-control" id="field_1" name="field_1" rows="3"></textarea>
+                    <textarea class="form-control" id="field_1" name="field_1" rows="3" onkeypress="wordsCounter('field_1','words1',100, event)" onpaste="wordsCounter('field_1','words1',100, event)"></textarea>
+                    <p style="float: right;">Λέξεις: <span id="words1" ></span> /100</p>                                            
                 </div>
 
                 <div class="form-group">
                     <label for="field_2" class="required">2. Γιατί αποτελεί πρόβλημα;</label>
-                    <textarea class="form-control" id="field_2" name="field_2" rows="3"></textarea>
+                    <textarea class="form-control" id="field_2" name="field_2" rows="3" onkeypress="wordsCounter('field_2','words2',150, event)" onpaste="wordsCounter('field_2','words2',150, event)"></textarea>
+                    <p style="float: right;">Λέξεις: <span id="words2" ></span> /150</p>                                            
                 </div>
 
                 <div class="form-group">
                     <label for="field_3" class="required">3. Ποιους φορείς ή πληθυσμιακές ομάδες αφορά;</label>
-                    <textarea class="form-control" id="field_3" name="field_3" rows="3"></textarea>
+                    <textarea class="form-control" id="field_3" name="field_3" rows="3" onkeypress="wordsCounter('field_3','words3',100, event)" onpaste="wordsCounter('field_3','words3',100, event)"></textarea>
+                    <p style="float: right;">Λέξεις: <span id="words3" ></span> /100</p>                                            
                 </div>
 
                 <input type="button" name="previous" class="previous action-button-previous"
@@ -160,7 +171,8 @@
                 <div id="field_4_wrap" class="form-group" style="display:none;">
                     <label for="field_4_1" class="required">4.1 Ποιο είναι το ισχύον νομικό πλαίσιο που ρυθμίζει το
                         ζήτημα;</label>
-                    <textarea class="form-control" id="field_4_1" name="field_4_comments" rows="3"></textarea>
+                    <textarea class="form-control" id="field_4_1" name="field_4_comments" rows="3" onkeypress="wordsCounter('field_4_1','words4',150)" onpaste="wordsCounter('field_4_1','words4',150)"></textarea>
+                    <p style="float: right;">Λέξεις: <span id="words4" ></span> /150</p>                                            
                 </div>
 
                 <input type="button" name="previous" class="previous action-button-previous"
@@ -174,19 +186,22 @@
                 <div class="form-group">
                     <label for="field_5_1" class="required">5.1 με αλλαγή προεδρικού διατάγματος, υπουργικής απόφασης ή
                         άλλης κανονιστικής πράξης;</label>
-                    <textarea class="form-control" id="field_5_1" name="field_5_1" rows="3"></textarea>
+                    <textarea class="form-control" id="field_5_1" name="field_5_1" rows="3" onkeypress="wordsCounter('field_5_1','words5_1',150, event)" onpaste="wordsCounter('field_5_1','words5_1',150, event)"></textarea>
+                    <p style="float: right;">Λέξεις: <span id="words5_1" ></span> /150</p>                                            
                 </div>
 
                 <div class="form-group">
                     <label for="field_5_2" class="required">5.2 με αλλαγή διοικητικής πρακτικής συμπεριλαμβανομένης της
                         δυνατότητας νέας ερμηνευτικής προσέγγισης της υφιστάμενης νομοθεσίας;</label>
-                    <textarea class="form-control" id="field_5_2" name="field_5_2" rows="3"></textarea>
+                    <textarea class="form-control" id="field_5_2" name="field_5_2" rows="3" onkeypress="wordsCounter('field_5_2','words5_2',150, event)" onpaste="wordsCounter('field_5_2','words5_2',150, event)"></textarea>
+                    <p style="float: right;">Λέξεις: <span id="words5_2" ></span> /150</p>                                            
                 </div>
 
                 <div class="form-group">
                     <label for="field_5_3" class="required">5.3 με διάθεση περισσότερων ανθρώπινων και υλικών
                         πόρων;</label>
-                    <textarea class="form-control" id="field_5_3" name="field_5_3" rows="3"></textarea>
+                    <textarea class="form-control" id="field_5_3" name="field_5_3" rows="3" onkeypress="wordsCounter('field_5_3','words5_3',150, event)" onpaste="wordsCounter('field_5_3','words5_3',150, event)"></textarea>></textarea>
+                    <p style="float: right;">Λέξεις: <span id="words5_3" ></span> /150</p>                                            
                 </div>
 
                 <input type="button" name="previous" class="previous action-button-previous"
@@ -209,12 +224,15 @@
 
                 <div id="field_6_wrap" class="form-group" style="display:none;">
                     <label for="field_6_1" class="required">6.1 Σε άλλη/ες χώρα/ες της Ε.Ε. ή του ΟΟΣΑ:</label>
-                    <textarea class="form-control" id="field_6_1" name="field_6_1" rows="3"></textarea>
+                    <textarea class="form-control" id="field_6_1" name="field_6_1" rows="3" onkeypress="wordsCounter('field_6_1','words6_1',150, event)" onpaste="wordsCounter('field_6_1','words6_1',150, event)"></textarea>
+                    <p style="float: right;">Λέξεις: <span id="words6_1" ></span> /150</p>                                            
                     <br>
                     <label for="field_6_2" class="required">6.2 Σε όργανα της Ε.Ε.:</label>
-                    <textarea class="form-control" id="field_6_2" name="field_6_2" rows="3"></textarea>
+                    <textarea class="form-control" id="field_6_2" name="field_6_2" rows="3" onkeypress="wordsCounter('field_6_2','words2_6',150, event)" onpaste="wordsCounter('field_6_2','words6_2',150, event)"></textarea>
+                    <p style="float: right;">Λέξεις: <span id="words6_2" ></span> /150</p>                                            
                     <label for="field_6_3" class="required">6.3 Σε διεθνείς οργανισμούς:</label>
-                    <textarea class="form-control" id="field_6_3" name="field_6_3" rows="3"></textarea>
+                    <textarea class="form-control" id="field_6_3" name="field_6_3" rows="3" onkeypress="wordsCounter('field_6_3','words6_3',150, event)" onpaste="wordsCounter('field_6_3','words6_3',150, event)"></textarea>
+                    <p style="float: right;">Λέξεις: <span id="words6_3" ></span> /150</p>                                            
                 </div>
                 <input type="button" name="previous" class="previous action-button-previous"
                     value="Προηγούμενα πεδία" />
@@ -346,12 +364,14 @@
                 <label>8. Ποιοι είναι οι στόχοι της αξιολογούμενης ρύθμισης;</label>
                 <div class="form-group">
                     <label for="field_8_1" class="required">8.1 βραχυπρόθεσμοι: </label>
-                    <textarea class="form-control" id="field_8_1" name="field_8_1" rows="3"></textarea>
+                    <textarea class="form-control" id="field_8_1" name="field_8_1" rows="3" onkeypress="wordsCounter('field_8_1','words8_1',200, event)" onpaste="wordsCounter('field_8_1','words8_1',200, event)"></textarea>
+                        <p style="float: right;">Λέξεις: <span id="words8_1" ></span> /200</p>                                            
                 </div>
 
                 <div class="form-group">
                     <label for="field_8_2" class="required">8.2 μακροπρόθεσμοι: </label>
-                    <textarea class="form-control" id="field_8_2" name="field_8_2" rows="3"></textarea>
+                    <textarea class="form-control" id="field_8_2" name="field_8_2" rows="3" onkeypress="wordsCounter('field_8_2','words8_2',200, event)" onpaste="wordsCounter('field_8_2','words8_2',200, event)"></textarea>
+                    <p style="float: right;">Λέξεις: <span id="words8_2" ></span> /200</p>                                            
                 </div>
 
                 <input type="button" name="previous" class="previous action-button-previous"
@@ -373,19 +393,20 @@
 
                 <div class="checkbox-group form-group row">
                     <div class="col-2"></div>
-                    <label class="col-3 col-form-label required">ΑΜΕΣΗ</label>
+                    <label class="col-3 col-form-label">ΑΜΕΣΗ</label>
                     <input class="col-2 form-check-input position-static" type="checkbox" id="field_10_amesi"
                         name="field_10_amesi" value="field_10_amesi">
                 </div>
                 <div id="amesi_wrap" class="form-group" style="display:none;">
                     <label for="field_10_amesi_comments " class="required">Εάν είναι άμεση, εξηγήστε:</label>
                     <textarea class="form-control" id="field_10_amesi_comments" name="field_10_amesi_comments"
-                        rows="3"></textarea>
+                        rows="3" onkeypress="wordsCounter('field_10_amesi_comments','words10_1',150, event)" onpaste="wordsCounter('field_10_amesi_comments','words10_1',150, event)"></textarea>
+                    <p style="float: right;">Λέξεις: <span id="words10_1" ></span> /150</p>                                                                    
                 </div>
 
                 <div class="checkbox-group form-group row">
                     <div class="col-2"></div>
-                    <label class="col-3 col-form-label required">ΕΜΜΕΣΗ</label>
+                    <label class="col-3 col-form-label">ΕΜΜΕΣΗ</label>
                     <input class="col-2 form-check-input position-static" type="checkbox" id="field_10_emmesi"
                         value="field_10_emmesi">
                 </div>
@@ -393,7 +414,8 @@
                 <div id="emesi_wrap" class="form-group" style="display:none;">
                     <label for="field_10_emesi_comments " class="required">Εάν είναι έμμεση, εξηγήστε:</label>
                     <textarea class="form-control" id="field_10_emesi_comments" name="field_10_emmesi_comments"
-                        rows="3"></textarea>
+                        rows="3" onkeypress="wordsCounter('field_10_emesi_comments','words10_2',150, event)" onpaste="wordsCounter('field_10_emesi_comments','words10_2',150, event)"></textarea>
+                    <p style="float: right;">Λέξεις: <span id="words10_2" ></span> /150</p>                                            
                 </div>
                 <hr>
 
@@ -410,7 +432,8 @@
 
                 <div id="field_11_wrap" class="form-group" style="display:none;">
                     <label for="field_11_comments " class="required">Εξηγήστε</label>
-                    <textarea class="form-control" name="field_11_comments" id="field_11_comments" rows="3"></textarea>
+                    <textarea class="form-control" name="field_11_comments" id="field_11_comments" rows="3" onkeypress="wordsCounter('field_11_comments','words11',100, event)" onpaste="wordsCounter('field_11_comments','words11',100, event)"></textarea>
+                    <p style="float: right;">Λέξεις: <span id="words11" ></span> /100</p>                                            
                 </div>
                 <hr>
 
@@ -426,7 +449,8 @@
 
                 <div id="field_12_wrap" class="form-group " style="display:none;">
                     <label for="field_12_comments " class="required">Αναφέρατε ποια είναι αυτά τα συστήματα:</label>
-                    <textarea class="form-control" name="field_12_comments" id="field_12_comments" rows="3"></textarea>
+                    <textarea class="form-control" name="field_12_comments" id="field_12_comments" rows="3" onkeypress="wordsCounter('field_12_comments','words12',100, event)" onpaste="wordsCounter('field_12_comments','words12',100, event)"></textarea>
+                    <p style="float: right;">Λέξεις: <span id="words12" ></span> /100</p>                                            
                 </div>
                 <hr>
 
@@ -442,7 +466,8 @@
 
                 <div id="field_13_wrap" class="form-group" style="display:none;">
                     <label for="field_13_comments " class="required">Εξηγήστε</label>
-                    <textarea class="form-control" name="field_13_comments" id="field_13_comments" rows="3"></textarea>
+                    <textarea class="form-control" name="field_13_comments" id="field_13_comments" rows="3" onkeypress="wordsCounter('field_13_comments','words13',100, event)" onpaste="wordsCounter('field_13_comments','words13',100, event)"></textarea>
+                    <p style="float: right;">Λέξεις: <span id="words13" ></span> /100</p>                                            
                 </div>
 
                 <input type="button" name="previous" class="previous action-button-previous"
@@ -671,12 +696,41 @@
         });
 
     }(jQuery));
+    //count & limit words
+    function wordsCounter (fieldId, spanId, wordlimit, event) {
+        Countable.on(document.getElementById(fieldId), counter =>{
+            if(counter.words >= wordlimit) {
+                event.preventDefault();//if word limit is reached prevent typing
+            } 
+            //console.log(counter);
+            document.getElementById(spanId).innerHTML=counter.words.toString();   
+        })
+    }
 
+    // wordsCounter("field_2", "words2");
+    // wordsCounter("field_3", "words3");
+    // wordsCounter("field_4_1", "words4");
+    // wordsCounter("field_5_1", "words5_1");
+    // wordsCounter("field_5_2", "words5_2");
+    // wordsCounter("field_5_3", "words5_3");
+    // wordsCounter("field_6_1", "words6_1");
+    // wordsCounter("field_6_2", "words6_2");
+    // wordsCounter("field_6_3", "words6_3");
+    // wordsCounter("field_8_1", "words8_1");
+    // wordsCounter("field_8_2", "words8_2");
+    // wordsCounter("field_10_amesi_comments", "words10_1");
+    // wordsCounter("field_10_emesi_comments", "words10_2");
+    // wordsCounter("field_11_comments", "words11");
+    // wordsCounter("field_12_comments", "words12");
+    // wordsCounter("field_13_comments", "words13");//9 more
+
+    
 
     $("form").on("submit", function (ev) {
         ev.preventDefault();
         // console.log($(this).serialize())//comment this line out to hide query wrote in db
         initializeAnalysis("#typos_analysis"); 
+        getFullDateNow("#initial_submit");
         onSubmitStatus();
        // console.log('heyhey my val: '+ document.getElementById("field_23_upload").files[0].name);
         $.ajax({
@@ -698,11 +752,15 @@
     $(".save_temporarily").on("click", function (ev) {        
         ev.preventDefault();
         initializeAnalysis("#typos_analysis"); 
-        console.log($("form").serialize())//comment this line out to hide query wrote in db
+        getFullDate("#initial_submit");
+        var fd = new FormData($("form").get(0));    
+        console.log(fd)//comment this line out to hide query wrote in db
         //console.log('heyhey my val: '+ document.getElementById("field_23_upload").files[0].name);
         $.ajax({
             url: '/create',
-            data: $("form").serialize(),
+            data: fd,
+            contentType:false,
+            processData:false,
             error: function (error) {
                 console.log(error);
             },
@@ -730,7 +788,7 @@
         }
     }
 
-    $("#ekthesi_glk").click(function (ev) {
+    $("#ekthesi_glk").on("click",function (ev) {
         if (this.checked) {
             answer = window.confirm("Με την ενέργειά σας αυτή η έκθεση θα αποσταλλεί στο Γενικό Λογιστήριο του κράτους. Συνέχεια;");
             if (answer) {
@@ -767,6 +825,12 @@
         console.log("3"+$(analysis).val());
     }    
     
+    function getFullDate(fieldId) {
+        $(fieldId).prop("value",new Date().toLocaleString("el-GR", {timeZone: "Europe/Athens"}));
+    }
+    //init_submit date - will be updated when actually submitted
+    getFullDate("#initial_submit");
+
     var analysis = "<%= analysis%>";
     var role = "<%= rolos%>";
     function optionalFields(fieldId) {
@@ -949,7 +1013,8 @@
         $('#tbody_14').append(`
         <tr id="R${++table14RowIndex}"> 
             <td> 
-                <textarea class="form-control" id="field_14_arthro${table14RowIndex}" name="field_14_arthro${table14RowIndex}" placeholder="Άρθρο" rows="1"></textarea>
+                <textarea class="form-control" id="field_14_arthro${table14RowIndex}" name="field_14_arthro${table14RowIndex}" placeholder="Άρθρο" rows="1" onkeypress="wordsCounter('field_14_arthro${table14RowIndex}','words14_${table14RowIndex}',50, event)" onpaste="wordsCounter('field_14_arthro${table14RowIndex}','words14_${table14RowIndex}',50, event)"></textarea>
+                <p style="float: right;">Λέξεις: <span id="words14_${table14RowIndex}" ></span> /50</p>                                            
             </td> 
             <td> 
                 <textarea class="form-control" id="field_14_stoxos${table14RowIndex}" name="field_14_stoxos${table14RowIndex}" placeholder="Στόχος" rows="1"></textarea>

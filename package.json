@@ -17,5 +17,8 @@
     "path": "^0.12.7",
     "sequelize": "^6.3.3",
     "sqlite3": "^5.0.0"
+  },
+  "devDependencies": {
+    "countable": "^3.0.1"
   }
 }
