@@ -7,16 +7,19 @@
             από την έναρξη κατάρτισης της αξιολογούμενης ρύθμισης μέχρι την
             υπογραφή από τους συναρμόδιους Υπουργούς.</label>
         <label for="field_22_sinergasia_ypoyrgeiwn">Συνεργασία με άλλα υπουργεία / υπηρεσίες</label>
-        <textarea class="form-control" id="field_22_sinergasia_ypoyrgeiwn" name="field_22_sinergasia_ypoyrgeiwn" rows="5"><%= data.field_22_sinergasia_ypoyrgeiwn %></textarea>
+        <textarea class="form-control" id="field_22_sinergasia_ypoyrgeiwn" name="field_22_sinergasia_ypoyrgeiwn" rows="5" onkeypress="wordsCounter('field_22_sinergasia_ypoyrgeiwn','words22_1',150, event)" onpaste="wordsCounter('field_22_sinergasia_ypoyrgeiwn','words22_1',150, event)"><%= data.field_22_sinergasia_ypoyrgeiwn %></textarea>
+        <p style="float: right;">Λέξεις: <span id="words22_1" ></span> /150</p> 
     </div>
     <div>
         <label for="field_22_sinergasia_forewn_arxwn">Συνεργασία με κοινωνικούς φορείς / Ανεξάρτητες Αρχές</label>
-        <textarea class="form-control" id="field_22_sinergasia_forewn_arxwn" name="field_22_sinergasia_forewn_arxwn" rows="5"><%= data.field_22_sinergasia_forewn_arxwn %></textarea>
+        <textarea class="form-control" id="field_22_sinergasia_forewn_arxwn" name="field_22_sinergasia_forewn_arxwn" rows="5" onkeypress="wordsCounter('field_22_sinergasia_forewn_arxwn','words22_2',150, event)" onpaste="wordsCounter('field_22_sinergasia_forewn_arxwn','words22_2',150, event)"><%= data.field_22_sinergasia_forewn_arxwn %></textarea>
+        <p style="float: right;">Λέξεις: <span id="words22_2" ></span> /150</p> 
     </div>
 
     <div>
         <label for="field_22_diethnis_diavouleusi">Διεθνής διαβούλευση</label>
-        <textarea class="form-control" id="field_22_diethnis_diavouleusi" name="field_22_diethnis_diavouleusi" rows="5"><%= data.field_22_diethnis_diavouleusi %></textarea>
+        <textarea class="form-control" id="field_22_diethnis_diavouleusi" name="field_22_diethnis_diavouleusi" rows="5" onkeypress="wordsCounter('field_22_diethnis_diavouleusi','words22_3',150, event)" onpaste="wordsCounter('field_22_diethnis_diavouleusi','words22_3',150, event)"><%= data.field_22_diethnis_diavouleusi %></textarea>
+        <p style="float: right;">Λέξεις: <span id="words22_3" ></span> /150</p> 
     </div>
     <br>
     <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενη φόρμα"/>
@@ -30,19 +33,27 @@
         www.opengov.gr (ηλεκτρονική επισύναψη της έκθεσης). </label>
     <input type="file" id="field_23_upload" name="field_23_upload" accept=".pdf, .doc" multiple> 
     <br><br>
+    <embed src="../uploads/<%= data.field_23_upload[0] %>"  width="800px" height="2100px" />
+    <br><br>
         
     <h4>Επί των γενικών αρχών («επί της αρχής») της αξιολογούμενης ρύθμιση</h4>
     <br>   
-    <textarea class="form-control" id="field_23_arxes_symmetasxontes" name="field_23_arxes_symmetasxontes" placeholder="Αριθμός συμμετασχόντων" rows="1"><%= data.field_23_arxes_symmetasxontes %></textarea>  
-    <textarea class="form-control" id="field_23_arxes_sxolia_yiothetithikan" name="field_23_arxes_sxolia_yiothetithikan" placeholder="Σχόλια που υιοθετήθηκαν" rows="3"><%= data.field_23_arxes_sxolia_yiothetithikan %></textarea> 
-    <textarea class="form-control" id="field_23_arxes_sxolia_den_yiothetithikan" name="field_23_arxes_sxolia_den_yiothetithikan" placeholder="Σχόλια που δεν υιοθετήθηκαν (συμπεριλαμβανομένης επαρκούς αιτιολόγησης)" rows="3"><%= data.field_23_arxes_sxolia_den_yiothetithikan %></textarea>
+    <textarea class="form-control" id="field_23_arxes_symmetasxontes" name="field_23_arxes_symmetasxontes" placeholder="Αριθμός συμμετασχόντων" rows="3" onkeypress="wordsCounter('field_23_arxes_symmetasxontes','words23_1',250, event)" onpaste="wordsCounter('field_23_arxes_symmetasxontes','words23_1',250, event)"><%= data.field_23_arxes_symmetasxontes %></textarea>
+    <p style="float: right;">Λέξεις: <span id="words23_1" ></span> /250</p>
+    <textarea class="form-control" id="field_23_arxes_sxolia_yiothetithikan" name="field_23_arxes_sxolia_yiothetithikan" placeholder="Σχόλια που υιοθετήθηκαν" rows="3" onkeypress="wordsCounter('field_23_arxes_sxolia_yiothetithikan','words23_2',250, event)" onpaste="wordsCounter('field_23_arxes_sxolia_yiothetithikan','words23_2',250, event)"><%= data.field_23_arxes_sxolia_yiothetithikan %></textarea> 
+    <p style="float: right;">Λέξεις: <span id="words23_2" ></span> /250</p>
+    <textarea class="form-control" id="field_23_arxes_sxolia_den_yiothetithikan" name="field_23_arxes_sxolia_den_yiothetithikan" placeholder="Σχόλια που δεν υιοθετήθηκαν (συμπεριλαμβανομένης επαρκούς αιτιολόγησης)" rows="3" onkeypress="wordsCounter('field_23_arxes_sxolia_den_yiothetithikan','words23_3',250, event)" onpaste="wordsCounter('field_23_arxes_sxolia_den_yiothetithikan','words23_3',250, event)"><%= data.field_23_arxes_sxolia_den_yiothetithikan %></textarea>
+    <p style="float: right;">Λέξεις: <span id="words23_3" ></span> /250</p>
     <br>
     
     <h4>Επί των άρθρων της αξιολογούμενης ρύθμισης</h4>
     <br>   
-    <textarea class="form-control" id="field_23_arthra_symmetasxontes" name="field_23_arthra_symmetasxontes" placeholder="Αριθμός συμμετασχόντων" rows="1"><%= data.field_23_arthra_symmetasxontes %></textarea>  
-    <textarea class="form-control" id="field_23_arthra_sxolia_yiothetithikan" name="field_23_arthra_sxolia_yiothetithikan" placeholder="Σχόλια που υιοθετήθηκαν" rows="3"><%= data.field_23_arthra_sxolia_yiothetithikan %></textarea> 
-    <textarea class="form-control" id="field_23_arthra_sxolia_den_yiothetithikan" name="field_23_arthra_sxolia_den_yiothetithikan" placeholder="Σχόλια που δεν υιοθετήθηκαν (συμπεριλαμβανομένης επαρκούς αιτιολόγησης)" rows="3"><%= data.field_23_arthra_sxolia_den_yiothetithikan %></textarea>
+    <textarea class="form-control" id="field_23_arthra_symmetasxontes" name="field_23_arthra_symmetasxontes" placeholder="Αριθμός συμμετασχόντων" rows="3" onkeypress="wordsCounter('field_23_arthra_symmetasxontes','words23_4',250, event)" onpaste="wordsCounter('field_23_arthra_symmetasxontes','words23_4',250, event)"><%= data.field_23_arthra_symmetasxontes %></textarea>  
+    <p style="float: right;">Λέξεις: <span id="words23_4" ></span> /250</p>
+    <textarea class="form-control" id="field_23_arthra_sxolia_yiothetithikan" name="field_23_arthra_sxolia_yiothetithikan" placeholder="Σχόλια που υιοθετήθηκαν" rows="3" onkeypress="wordsCounter('field_23_arthra_sxolia_yiothetithikan','words23_5',250, event)" onpaste="wordsCounter('field_23_arthra_sxolia_yiothetithikan','words23_5',250, event)"><%= data.field_23_arthra_sxolia_yiothetithikan %></textarea> 
+    <p style="float: right;">Λέξεις: <span id="words23_5" ></span> /250</p>
+    <textarea class="form-control" id="field_23_arthra_sxolia_den_yiothetithikan" name="field_23_arthra_sxolia_den_yiothetithikan" placeholder="Σχόλια που δεν υιοθετήθηκαν (συμπεριλαμβανομένης επαρκούς αιτιολόγησης)" rows="3" onkeypress="wordsCounter('field_23_arthra_sxolia_den_yiothetithikan','words23_6',250, event)" onpaste="wordsCounter('field_23_arthra_sxolia_den_yiothetithikan','words23_6',250, event)"><%= data.field_23_arthra_sxolia_den_yiothetithikan %></textarea>
+    <p style="float: right;">Λέξεις: <span id="words23_6" ></span> /250</p>
     <br> 
     
 

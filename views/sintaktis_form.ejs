@@ -200,7 +200,7 @@
                 <div class="form-group">
                     <label for="field_5_3" class="required">5.3 με διάθεση περισσότερων ανθρώπινων και υλικών
                         πόρων;</label>
-                    <textarea class="form-control" id="field_5_3" name="field_5_3" rows="3" onkeypress="wordsCounter('field_5_3','words5_3',150, event)" onpaste="wordsCounter('field_5_3','words5_3',150, event)"></textarea>></textarea>
+                    <textarea class="form-control" id="field_5_3" name="field_5_3" rows="3" onkeypress="wordsCounter('field_5_3','words5_3',150, event)" onpaste="wordsCounter('field_5_3','words5_3',150, event)"></textarea>
                     <p style="float: right;">Λέξεις: <span id="words5_3" ></span> /150</p>                                            
                 </div>
 
@@ -365,7 +365,7 @@
                 <div class="form-group">
                     <label for="field_8_1" class="required">8.1 βραχυπρόθεσμοι: </label>
                     <textarea class="form-control" id="field_8_1" name="field_8_1" rows="3" onkeypress="wordsCounter('field_8_1','words8_1',200, event)" onpaste="wordsCounter('field_8_1','words8_1',200, event)"></textarea>
-                        <p style="float: right;">Λέξεις: <span id="words8_1" ></span> /200</p>                                            
+                    <p style="float: right;">Λέξεις: <span id="words8_1" ></span> /200</p>                                            
                 </div>
 
                 <div class="form-group">
@@ -707,25 +707,6 @@
         })
     }
 
-    // wordsCounter("field_2", "words2");
-    // wordsCounter("field_3", "words3");
-    // wordsCounter("field_4_1", "words4");
-    // wordsCounter("field_5_1", "words5_1");
-    // wordsCounter("field_5_2", "words5_2");
-    // wordsCounter("field_5_3", "words5_3");
-    // wordsCounter("field_6_1", "words6_1");
-    // wordsCounter("field_6_2", "words6_2");
-    // wordsCounter("field_6_3", "words6_3");
-    // wordsCounter("field_8_1", "words8_1");
-    // wordsCounter("field_8_2", "words8_2");
-    // wordsCounter("field_10_amesi_comments", "words10_1");
-    // wordsCounter("field_10_emesi_comments", "words10_2");
-    // wordsCounter("field_11_comments", "words11");
-    // wordsCounter("field_12_comments", "words12");
-    // wordsCounter("field_13_comments", "words13");//9 more
-
-    
-
     $("form").on("submit", function (ev) {
         ev.preventDefault();
         // console.log($(this).serialize())//comment this line out to hide query wrote in db
@@ -827,6 +808,7 @@
     
     function getFullDate(fieldId) {
         $(fieldId).prop("value",new Date().toLocaleString("el-GR", {timeZone: "Europe/Athens"}));
+        console.log($(fieldId).val());
     }
     //init_submit date - will be updated when actually submitted
     getFullDate("#initial_submit");
@@ -1187,7 +1169,8 @@
         $('#tbody_31').append(`
         <tr id="R${++table31RowIndex}"> 
             <td> 
-                <textarea class="form-control" id="field_31_sxetiki_diataksi${table31RowIndex}" name="field_31_sxetiki_diataksi${table31RowIndex}" placeholder="Σχετική διάταξη αξιολογούμενης ρύθμισης" rows="2"></textarea>
+                <textarea class="form-control" id="field_31_sxetiki_diataksi${table31RowIndex}" name="field_31_sxetiki_diataksi${table31RowIndex}" placeholder="Σχετική διάταξη αξιολογούμενης ρύθμισης" rows="2" onkeypress="wordsCounter('field_31_sxetiki_diataksi${table31RowIndex}','words31_${table31RowIndex}',50, event)" onpaste="wordsCounter('field_31_sxetiki_diataksi${table31RowIndex}','words31_${table31RowIndex}',50, event)"></textarea>
+                <p style="float: right;">Λέξεις: <span id="words31_${table31RowIndex}" ></span> /50</p>                                            
             </td> 
             <td> 
                 <textarea class="form-control" id="field_31_synarmodia_ypoyrgeia${table31RowIndex}" name="field_31_synarmodia_ypoyrgeia${table31RowIndex}" placeholder="Συναρμόδια Υπουργεία – Συναρμόδιες υπηρεσίες / φορείς" rows="2"></textarea>
@@ -1232,7 +1215,8 @@
                 <textarea class="form-control" id="field_32_armodio_ypoyrgeio${table32RowIndex}" name="field_32_armodio_ypoyrgeio${table32RowIndex}" placeholder="Αρμόδιο ή επισπεύδον Υπουργείο ή υπηρεσία" rows="4"></textarea>
             </td> 
             <td> 
-                <textarea class="form-control" id="field_32_antikeimeno${table32RowIndex}" name="field_32_antikeimeno${table32RowIndex}" placeholder="Αντικείμενο" rows="4"></textarea>
+                <textarea class="form-control" id="field_32_antikeimeno${table32RowIndex}" name="field_32_antikeimeno${table32RowIndex}" placeholder="Αντικείμενο" rows="4" onkeypress="wordsCounter('field_32_antikeimeno${table32RowIndex}','words32_${table32RowIndex}',50, event)" onpaste="wordsCounter('field_32_antikeimeno${table32RowIndex}','words32_${table32RowIndex}',50, event)"></textarea>
+                <p style="float: right;">Λέξεις: <span id="words32_${table32RowIndex}" ></span> /50</p>                                            
             </td> 
             <td> 
                 <textarea class="form-control" id="field_32_xronodiagramma${table32RowIndex}" name="field_32_xronodiagramma${table32RowIndex}" placeholder="Χρονοδιάγραμμα (ενδεικτική ή αποκλειστική προθεσμία)" rows="4"></textarea>

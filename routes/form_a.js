@@ -1,16 +1,27 @@
 const routes = require('express').Router()
 const session = require('express-session');
-let database = require('../services/database')
+let database = require('../services/database');
+let fs = require('fs');
+
 routes.get('/:entry_id', async (req,res,next) =>{
     
     let entry = await database.ekthesi.findOne({where:{
         id: req.params.entry_id
     }, include: [{model: database.rythmiseis}, {model: database.field_9}]
     })
-    console.log(entry)
+    var myFile = fs.readFile("./" + entry.field_23_upload[0] , function (err,data){
+        res.contentType("application/pdf");
+        console.log(data)
+    });
+    //https://bezkoder.com/node-js-express-file-upload/
+    //https://stackoverflow.com/questions/7288814/download-a-file-from-nodejs-server-using-express?rq=1
+    console.log("myFile: " + myFile)
+    //res.sendFile("./" + entry.field_23_upload[0], { root : 'uploads'});
+    
+    //console.log(entry)
     if(entry && entry.dataValues){
         req.session.ekthesi_id = req.params.entry_id;
-        res.render("form_a",{data:entry.dataValues, rolos:req.session.rolos});
+        res.render("form_a",{data:entry.dataValues, rolos:req.session.rolos, file:myFile});
     }else{
         res.status(404).send("Not found")
     }

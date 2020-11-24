@@ -12,11 +12,11 @@ module.exports = (sequelize, DataTypes) => {
         //author_id: DataTypes.STRING,
         typos_analysis: DataTypes.STRING, 
         title: DataTypes.STRING,
-        // initial_submit: DataTypes.DATE,
-        // last_updated: DataTypes.DATE,
+        initial_submit: DataTypes.STRING,
+        last_updated: DataTypes.STRING,
         epispeudon_foreas: DataTypes.STRING,
         status_ekthesis: DataTypes.STRING,
-        //rythmisi_pou_afora: DataTypes.STRING,
+        rythmisi_pou_afora: DataTypes.STRING,
         stoixeia_epikoinwnias: DataTypes.STRING,
   
         ekpedeusi_politismos:DataTypes.BOOLEAN,
@@ -92,7 +92,12 @@ module.exports = (sequelize, DataTypes) => {
         field_17_sxedio_nomou: DataTypes.STRING,
         field_17_oikonomika_apotelesmata: DataTypes.STRING,
         field_17_upourgoi: DataTypes.JSON,
+        
+        field_18_comments: DataTypes.STRING,
+        field_19_comments: DataTypes.STRING,
+        field_20_comments: DataTypes.STRING,
 
+        field_21_upload: DataTypes.JSON,
         field_21_comments: DataTypes.STRING,
         field_22_sinergasia_ypoyrgeiwn: DataTypes.TEXT,
         field_22_sinergasia_forewn_arxwn: DataTypes.TEXT,
@@ -103,6 +108,7 @@ module.exports = (sequelize, DataTypes) => {
         field_23_arthra_symmetasxontes: DataTypes.STRING,
         field_23_arthra_sxolia_yiothetithikan: DataTypes.TEXT,
         field_23_arthra_sxolia_den_yiothetithikan: DataTypes.TEXT,
+        field_23_upload: DataTypes.JSON,
 
         field_24: DataTypes.TEXT,
         field_25_dikaio: DataTypes.BOOLEAN,
@@ -151,6 +157,7 @@ module.exports = (sequelize, DataTypes) => {
         field_35: DataTypes.TEXT,
         field_36: DataTypes.TEXT,
         field_36: DataTypes.BOOLEAN,
+        field_36_upload: DataTypes.JSON,
         field_37: DataTypes.TEXT,
         field_38: DataTypes.TEXT,
         field_39: DataTypes.TEXT,

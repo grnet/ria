@@ -842,7 +842,8 @@
 
     <div class="form-group">
         <label for="field_18_comments">Σχολιασμός / ποιοτική αποτίμηση:</label>
-        <textarea class="form-control" id="field_18_comments" name="field_18_comments" rows="3"><%= data.field_18_comments %></textarea>
+        <textarea class="form-control" id="field_18_comments" name="field_18_comments" rows="3" onkeypress="wordsCounter('field_18_comments','words18',150, event)" onpaste="wordsCounter('field_18_comments','words18',150, event)"><%= data.field_18_comments %></textarea>
+        <p style="float: right;">Λέξεις: <span id="words18" ></span> /150</p>
     </div>
 
     <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενη φόρμα" />
@@ -1628,7 +1629,8 @@
 
     <div class="form-group">
         <label for="field_19_comments">Σχολιασμός / ποιοτική αποτίμηση:</label>
-        <textarea class="form-control" id="field_19_comments" name="field_19_comments" rows="3"><%= data.field_19_comments %></textarea>
+        <textarea class="form-control" id="field_19_comments" name="field_19_comments" rows="3" onkeypress="wordsCounter('field_19_comments','words19',150, event)" onpaste="wordsCounter('field_19_comments','words19',150, event)"><%= data.field_19_comments %></textarea>
+        <p style="float: right;">Λέξεις: <span id="words19" ></span> /150</p>
     </div>
 
     <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενα πεδία" />
@@ -2055,7 +2057,8 @@
 
     <div class="form-group">
         <label for="field_20_comments">Σχολιασμός / ποιοτική αποτίμηση:</label>
-        <textarea class="form-control" id="field_20_comments" name="field_20_comments" rows="3"></textarea>
+        <textarea class="form-control" id="field_20_comments" name="field_20_comments" rows="3" onkeypress="wordsCounter('field_20_comments','words20',150, event)" onpaste="wordsCounter('field_20_comments','words20',150, event)"><%= data.field_20_comments %></textarea>
+        <p style="float: right;">Λέξεις: <span id="words20" ></span> /150</p>
     </div>
 
     <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενα πεδία" />
@@ -2072,7 +2075,8 @@
     <div class="form-group">
         <label for="field_21_comments">Ειδική αιτιολογία σε περίπτωση σημαντικής απόκλισης μεταξύ της
             γνωμοδότησης και της αξιολογούμενης ρύθμισης.</label>
-        <textarea class="form-control" id="field_21_comments" name="field_21_comments" rows="3"></textarea>
+        <textarea class="form-control" id="field_21_comments" name="field_21_comments" rows="3" onkeypress="wordsCounter('field_21_comments','words21',200, event)" onpaste="wordsCounter('field_21_comments','words21',200, event)"><%= data.field_21_comments %></textarea>
+        <p style="float: right;">Λέξεις: <span id="words21" ></span> /200</p>
     </div>
 
     <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενα πεδία" />
