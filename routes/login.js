@@ -23,6 +23,8 @@ routes.post('/', async function(req,res,next){
     }})
     if(user && user.dataValues){
         req.session.username = user.username;
+        req.session.fname = user.fname;
+        req.session.lname = user.lname;
         req.session.dikaiwmata_diaxeirisis = user.dikaiwmata_diaxeirisis;
         req.session.rolos = user.rolos;
         console.log( "req.session.dikaiwmata_diaxeirisis: " + req.session.dikaiwmata_diaxeirisis

@@ -10,7 +10,9 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/countable/3.0.1/Countable.min.js"></script>        <br>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/countable/3.0.1/Countable.min.js"></script>       
+        
+        <br>
         <input type="button" name="back" class="back" value="Πίσω" />
         <br><br>
         <form enctype="multipart/form-data">
@@ -734,6 +736,9 @@
         ev.preventDefault();
         initializeAnalysis("#typos_analysis"); 
         getFullDate("#initial_submit");
+        console.log($("#field_4").val())
+        console.log($("#field_4_1").val())
+        console.log($("#field_5_1").val())
         var fd = new FormData($("form").get(0));    
         console.log(fd)//comment this line out to hide query wrote in db
         //console.log('heyhey my val: '+ document.getElementById("field_23_upload").files[0].name);
