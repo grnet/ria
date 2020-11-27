@@ -35,7 +35,7 @@
                 <div class="form-group row">
                     <label for="initial_submit" class="col-sm-6 col-form-label required">Αρχική καταχώρηση</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" id="initial_submit" name="initial_submit" disabled>
+                        <input type="text" class="form-control" id="initial_submit" name="initial_submit" >
                     </div>
                 </div>
                 <br>
@@ -165,8 +165,8 @@
                         αντιμετωπιστεί με νομοθετική ρύθμιση στο παρελθόν;</label>
                     <select id="field_4" name="field_4" class="col-sm-2 form-control">
                         <option selected disabled>Eπιλογή</option>
-                        <option value="yes">Ναι</option>
-                        <option value="no">Όχι</option>
+                        <option value="Ναι">Ναι</option>
+                        <option value="Όχι">Όχι</option>
                     </select>
                 </div>
 
@@ -219,8 +219,8 @@
                         πρακτικές;</label>
                     <select id="field_6" name="field_6" class="col-sm-2 form-control">
                         <option selected disabled>Eπιλογή</option>
-                        <option value="yes">Ναι</option>
-                        <option value="no">Όχι</option>
+                        <option value="Ναι">Ναι</option>
+                        <option value="Όχι">Όχι</option>
                     </select>
                 </div>
 
@@ -427,8 +427,8 @@
                         Μετασχηματισμού);</label>
                     <select id="field_11" name="field_11" class="col-sm-2 form-control">
                         <option selected disabled>Eπιλογή</option>
-                        <option value="yes">Ναι</option>
-                        <option value="no">Όχι</option>
+                        <option value="Ναι">Ναι</option>
+                        <option value="Όχι">Όχι</option>
                     </select>
                 </div>
 
@@ -444,8 +444,8 @@
                         διαλειτουργικότητα του εν λόγω πληροφοριακού συστήματος με άλλα υφιστάμενα συστήματα;</label>
                     <select id="field_12" name="field_12" class="col-sm-2 form-control">
                         <option selected disabled>Eπιλογή</option>
-                        <option value="yes">Ναι</option>
-                        <option value="no">Όχι</option>
+                        <option value="Ναι">Ναι</option>
+                        <option value="Όχι">Όχι</option>
                     </select>
                 </div>
 
@@ -461,8 +461,8 @@
                         βιωσιμότητας του προβλεπόμενου πληροφοριακού συστήματος;</label>
                     <select id="field_13" name="field_13" class="col-sm-2 form-control">
                         <option selected disabled>Eπιλογή</option>
-                        <option value="yes">Ναι</option>
-                        <option value="no">Όχι</option>
+                        <option value="Ναι">Ναι</option>
+                        <option value="Όχι">Όχι</option>
                     </select>
                 </div>
 
@@ -1342,7 +1342,7 @@
     })
 
     $("#field_4").on("click", function (ev) {
-        if ($(this).val() == "yes") {
+        if ($(this).val() == "Ναι") {
             $("#field_4_wrap").show();
         } else {
             $("#field_4_wrap").hide();
@@ -1350,7 +1350,7 @@
     })
 
     $("#field_6").on("change", function (ev) {
-        if ($(this).val() == "yes") {
+        if ($(this).val() == "Ναι") {
             $("#field_6_wrap").show();
         } else {
             $("#field_6_wrap").hide();
@@ -1358,7 +1358,7 @@
     })
 
     $("#field_11").on("change", function (ev) {
-        if ($(this).val() == "yes") {
+        if ($(this).val() == "Ναι") {
             $("#field_11_wrap").show();
         } else {
             $("#field_11_wrap").hide();
@@ -1366,7 +1366,7 @@
     })
 
     $("#field_12").on("change", function (ev) {
-        if ($(this).val() == "yes") {
+        if ($(this).val() == "Ναι") {
             $("#field_12_wrap").show();
         } else {
             $("#field_12_wrap").hide();
@@ -1374,7 +1374,7 @@
     })
 
     $("#field_13").on("change", function (ev) {
-        if ($(this).val() == "yes") {
+        if ($(this).val() == "Ναι") {
             $("#field_13_wrap").show();
         } else {
             $("#field_13_wrap").hide();
@@ -1382,7 +1382,7 @@
     })
 
     $("#field_36").on("change", function (ev) {
-        if ($(this).val() == "yes") {
+        if ($(this).val() == "Ναι") {
             $("#field_36_wrap").show();
         } else {
             $("#field_36_wrap").hide();
