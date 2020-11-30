@@ -3,7 +3,7 @@ let database = require("../services/database")
 var multer = require('multer')
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'uploads')
+        cb(null, './public/uploads/')
     },
     filename: function (req, file, cb) {
         cb(null, file.originalname + '-' + Date().toLocaleString("el-GR", { timeZone: "Europe/Athens" }))
@@ -11,6 +11,7 @@ var storage = multer.diskStorage({
 })
 
 var upload = multer({ storage: storage }).fields([{ name: 'field_21_upload', maxCount: 10 }, { name: 'field_23_upload', maxCount: 10 }, { name: 'field_36_upload', maxCount: 10 }]);
+
 routes.get('/:analysis', function (req, res, next) {
     //console.log(req.params.analysis)
     res.render("create", { analysis: req.params.analysis, rolos: req.session.rolos })

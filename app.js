@@ -18,8 +18,6 @@ let userDashboardRoute = require('./routes/user_dashboard')
 let historyRoute = require('./routes/history')
 let summariesRoute = require('./routes/summaries')
 let profileRoute = require('./routes/profile')
-let downloadRoute = require('./routes/download')
-
 
 const app = express(); //app init
 app.use(cookieParser());
@@ -38,6 +36,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true, parameterLimit: 2000 }));//change limit if too many parameters to be parsed
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use("/public/pdf_exports/", express.static(__dirname + '/public/pdf_exports/'));
+app.use("/public/uploads/", express.static(__dirname + '/public/uploads/'));
 //app.use(express.static(path.join(__dirname,'public/js')));
 
 app.use('/', homeRoute);
@@ -52,7 +52,6 @@ app.use('/user_views/edit_user', editUserRoute);
 app.use('/user_views/history', historyRoute)
 app.use('/user_views/summaries', summariesRoute)
 app.use('/user_views/profile', profileRoute)
-app.use('/form_a', downloadRoute);
 
 app.listen(3000, () => {
     database.sequelize.sync();

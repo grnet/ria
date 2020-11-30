@@ -27,7 +27,7 @@ routes.get('/:entry_id', async (req, res, next) => {
     //console.log(entry) , file:myFile
     if (entry && entry.dataValues) {
         req.session.ekthesi_id = req.params.entry_id;
-        res.render("form_a", { data: entry.dataValues, rolos: req.session.rolos });
+        res.render("form_a", { data: entry.dataValues, rolos: req.session.rolos, });
     } else {
         res.status(404).send("Not found")
     }
@@ -225,10 +225,11 @@ routes.post('/:entry_id', async (req, res, next) => {
 
     var pdfDoc = printer.createPdfKitDocument(docDefinition);
     pdf_name = data.title+'.pdf';
-    pdfDoc.pipe(fs.createWriteStream('./exports/'+pdf_name));
+    pdfDoc.pipe(fs.createWriteStream('./public/pdf_exports/'+pdf_name));
     pdfDoc.end();
     //res.header('content-type', 'application/pdf');
     res.download(pdf_name);
+    
 })
 
 routes.put('/:entry_id', async function (req, res, next) {

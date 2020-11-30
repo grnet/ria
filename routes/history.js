@@ -60,6 +60,7 @@ routes.get('/', async function (req, res, next) {
                     }, '$user.rolos$': {[Op.not]: ['Βουλευτής']}
                 }, include: [{ model: database.user }]
             })
+            //same query as above, delete next lines
         } else if (user.rolos == "Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)") {
             entries = await database.ekthesi.findAll({
                 where: {

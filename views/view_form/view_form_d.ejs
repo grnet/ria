@@ -2071,7 +2071,11 @@
     <label for="field_21_upload">21.Γνώμες ή πορίσματα αρμόδιων υπηρεσιών και ανεξάρτητων αρχών (ηλεκτρονική
         επισύναψη). </label>
     <input type="file" id="field_21_upload" name="field_21_upload" accept=".pdf" multiple> 
+
+    <% for (var i=0; i< data.field_21_upload.length;i++) {    %>
+        <p>Φάκελος <%=i%>: <a href="/public/uploads/<%= data.field_21_upload[i] %> ">εδώ</a>.</p>    
     
+    <% }%>
     <div class="form-group">
         <label for="field_21_comments">Ειδική αιτιολογία σε περίπτωση σημαντικής απόκλισης μεταξύ της
             γνωμοδότησης και της αξιολογούμενης ρύθμισης.</label>

@@ -10,8 +10,10 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/countable/3.0.1/Countable.min.js"></script>       
-        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/countable/3.0.1/Countable.min.js"></script>
+        <!-- Development version. Change to production later-->
+        <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+
         <br>
         <input type="button" name="back" class="back" value="Πίσω" />
         <br><br>
@@ -23,19 +25,26 @@
                 <h2>Αρχική σελίδα</h2>
                 <br>
 
+                <img src="/img/information.png" id="tooltip_img" aria-describedby="tooltip" style="float: right;"
+                    width="20px">
+                <div id="tooltip" role="tooltip" style="float: right;"> Ο τίτλος θα πρέπει να είναι μοναδικός
+                    <div id="arrow" data-popper-arrow style="float: right;"></div>
+                </div>
+                <br><br>
                 <div class="form-group row">
                     <label for="title" class="col-sm-6 col-form-label required">Τίτλος αξιολογούμενης ρύθμισης</label>
                     <div class="col-sm-4">
                         <input type="text" class="form-control" id="title" name="title">
                     </div>
                 </div>
+
                 <br>
                 <hr>
 
                 <div class="form-group row">
                     <label for="initial_submit" class="col-sm-6 col-form-label required">Αρχική καταχώρηση</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" id="initial_submit" name="initial_submit" >
+                        <input type="text" class="form-control" id="initial_submit" name="initial_submit">
                     </div>
                 </div>
                 <br>
@@ -136,20 +145,26 @@
 
                 <div class="form-group">
                     <label for="field_1" class="required">1. Ποιο ζήτημα αντιμετωπίζει η αξιολογούμενη ρύθμιση;</label>
-                    <textarea class="form-control" id="field_1" name="field_1" rows="3" onkeypress="wordsCounter('field_1','words1',100, event)" onpaste="wordsCounter('field_1','words1',100, event)"></textarea>
-                    <p style="float: right;">Λέξεις: <span id="words1" ></span> /100</p>                                            
+                    <textarea class="form-control" id="field_1" name="field_1" rows="3"
+                        onkeypress="wordsCounter('field_1','words1',100, event)"
+                        onpaste="wordsCounter('field_1','words1',100, event)"></textarea>
+                    <p style="float: right;">Λέξεις: <span id="words1"></span> /100</p>
                 </div>
 
                 <div class="form-group">
                     <label for="field_2" class="required">2. Γιατί αποτελεί πρόβλημα;</label>
-                    <textarea class="form-control" id="field_2" name="field_2" rows="3" onkeypress="wordsCounter('field_2','words2',150, event)" onpaste="wordsCounter('field_2','words2',150, event)"></textarea>
-                    <p style="float: right;">Λέξεις: <span id="words2" ></span> /150</p>                                            
+                    <textarea class="form-control" id="field_2" name="field_2" rows="3"
+                        onkeypress="wordsCounter('field_2','words2',150, event)"
+                        onpaste="wordsCounter('field_2','words2',150, event)"></textarea>
+                    <p style="float: right;">Λέξεις: <span id="words2"></span> /150</p>
                 </div>
 
                 <div class="form-group">
                     <label for="field_3" class="required">3. Ποιους φορείς ή πληθυσμιακές ομάδες αφορά;</label>
-                    <textarea class="form-control" id="field_3" name="field_3" rows="3" onkeypress="wordsCounter('field_3','words3',100, event)" onpaste="wordsCounter('field_3','words3',100, event)"></textarea>
-                    <p style="float: right;">Λέξεις: <span id="words3" ></span> /100</p>                                            
+                    <textarea class="form-control" id="field_3" name="field_3" rows="3"
+                        onkeypress="wordsCounter('field_3','words3',100, event)"
+                        onpaste="wordsCounter('field_3','words3',100, event)"></textarea>
+                    <p style="float: right;">Λέξεις: <span id="words3"></span> /100</p>
                 </div>
 
                 <input type="button" name="previous" class="previous action-button-previous"
@@ -173,8 +188,10 @@
                 <div id="field_4_wrap" class="form-group" style="display:none;">
                     <label for="field_4_1" class="required">4.1 Ποιο είναι το ισχύον νομικό πλαίσιο που ρυθμίζει το
                         ζήτημα;</label>
-                    <textarea class="form-control" id="field_4_1" name="field_4_comments" rows="3" onkeypress="wordsCounter('field_4_1','words4',150)" onpaste="wordsCounter('field_4_1','words4',150)"></textarea>
-                    <p style="float: right;">Λέξεις: <span id="words4" ></span> /150</p>                                            
+                    <textarea class="form-control" id="field_4_1" name="field_4_comments" rows="3"
+                        onkeypress="wordsCounter('field_4_1','words4',150)"
+                        onpaste="wordsCounter('field_4_1','words4',150)"></textarea>
+                    <p style="float: right;">Λέξεις: <span id="words4"></span> /150</p>
                 </div>
 
                 <input type="button" name="previous" class="previous action-button-previous"
@@ -188,22 +205,28 @@
                 <div class="form-group">
                     <label for="field_5_1" class="required">5.1 με αλλαγή προεδρικού διατάγματος, υπουργικής απόφασης ή
                         άλλης κανονιστικής πράξης;</label>
-                    <textarea class="form-control" id="field_5_1" name="field_5_1" rows="3" onkeypress="wordsCounter('field_5_1','words5_1',150, event)" onpaste="wordsCounter('field_5_1','words5_1',150, event)"></textarea>
-                    <p style="float: right;">Λέξεις: <span id="words5_1" ></span> /150</p>                                            
+                    <textarea class="form-control" id="field_5_1" name="field_5_1" rows="3"
+                        onkeypress="wordsCounter('field_5_1','words5_1',150, event)"
+                        onpaste="wordsCounter('field_5_1','words5_1',150, event)"></textarea>
+                    <p style="float: right;">Λέξεις: <span id="words5_1"></span> /150</p>
                 </div>
 
                 <div class="form-group">
                     <label for="field_5_2" class="required">5.2 με αλλαγή διοικητικής πρακτικής συμπεριλαμβανομένης της
                         δυνατότητας νέας ερμηνευτικής προσέγγισης της υφιστάμενης νομοθεσίας;</label>
-                    <textarea class="form-control" id="field_5_2" name="field_5_2" rows="3" onkeypress="wordsCounter('field_5_2','words5_2',150, event)" onpaste="wordsCounter('field_5_2','words5_2',150, event)"></textarea>
-                    <p style="float: right;">Λέξεις: <span id="words5_2" ></span> /150</p>                                            
+                    <textarea class="form-control" id="field_5_2" name="field_5_2" rows="3"
+                        onkeypress="wordsCounter('field_5_2','words5_2',150, event)"
+                        onpaste="wordsCounter('field_5_2','words5_2',150, event)"></textarea>
+                    <p style="float: right;">Λέξεις: <span id="words5_2"></span> /150</p>
                 </div>
 
                 <div class="form-group">
                     <label for="field_5_3" class="required">5.3 με διάθεση περισσότερων ανθρώπινων και υλικών
                         πόρων;</label>
-                    <textarea class="form-control" id="field_5_3" name="field_5_3" rows="3" onkeypress="wordsCounter('field_5_3','words5_3',150, event)" onpaste="wordsCounter('field_5_3','words5_3',150, event)"></textarea>
-                    <p style="float: right;">Λέξεις: <span id="words5_3" ></span> /150</p>                                            
+                    <textarea class="form-control" id="field_5_3" name="field_5_3" rows="3"
+                        onkeypress="wordsCounter('field_5_3','words5_3',150, event)"
+                        onpaste="wordsCounter('field_5_3','words5_3',150, event)"></textarea>
+                    <p style="float: right;">Λέξεις: <span id="words5_3"></span> /150</p>
                 </div>
 
                 <input type="button" name="previous" class="previous action-button-previous"
@@ -226,15 +249,21 @@
 
                 <div id="field_6_wrap" class="form-group" style="display:none;">
                     <label for="field_6_1" class="required">6.1 Σε άλλη/ες χώρα/ες της Ε.Ε. ή του ΟΟΣΑ:</label>
-                    <textarea class="form-control" id="field_6_1" name="field_6_1" rows="3" onkeypress="wordsCounter('field_6_1','words6_1',150, event)" onpaste="wordsCounter('field_6_1','words6_1',150, event)"></textarea>
-                    <p style="float: right;">Λέξεις: <span id="words6_1" ></span> /150</p>                                            
+                    <textarea class="form-control" id="field_6_1" name="field_6_1" rows="3"
+                        onkeypress="wordsCounter('field_6_1','words6_1',150, event)"
+                        onpaste="wordsCounter('field_6_1','words6_1',150, event)"></textarea>
+                    <p style="float: right;">Λέξεις: <span id="words6_1"></span> /150</p>
                     <br>
                     <label for="field_6_2" class="required">6.2 Σε όργανα της Ε.Ε.:</label>
-                    <textarea class="form-control" id="field_6_2" name="field_6_2" rows="3" onkeypress="wordsCounter('field_6_2','words2_6',150, event)" onpaste="wordsCounter('field_6_2','words6_2',150, event)"></textarea>
-                    <p style="float: right;">Λέξεις: <span id="words6_2" ></span> /150</p>                                            
+                    <textarea class="form-control" id="field_6_2" name="field_6_2" rows="3"
+                        onkeypress="wordsCounter('field_6_2','words6_2',150, event)"
+                        onpaste="wordsCounter('field_6_2','words6_2',150, event)"></textarea>
+                    <p style="float: right;">Λέξεις: <span id="words6_2"></span> /150</p>
                     <label for="field_6_3" class="required">6.3 Σε διεθνείς οργανισμούς:</label>
-                    <textarea class="form-control" id="field_6_3" name="field_6_3" rows="3" onkeypress="wordsCounter('field_6_3','words6_3',150, event)" onpaste="wordsCounter('field_6_3','words6_3',150, event)"></textarea>
-                    <p style="float: right;">Λέξεις: <span id="words6_3" ></span> /150</p>                                            
+                    <textarea class="form-control" id="field_6_3" name="field_6_3" rows="3"
+                        onkeypress="wordsCounter('field_6_3','words6_3',150, event)"
+                        onpaste="wordsCounter('field_6_3','words6_3',150, event)"></textarea>
+                    <p style="float: right;">Λέξεις: <span id="words6_3"></span> /150</p>
                 </div>
                 <input type="button" name="previous" class="previous action-button-previous"
                     value="Προηγούμενα πεδία" />
@@ -366,14 +395,18 @@
                 <label>8. Ποιοι είναι οι στόχοι της αξιολογούμενης ρύθμισης;</label>
                 <div class="form-group">
                     <label for="field_8_1" class="required">8.1 βραχυπρόθεσμοι: </label>
-                    <textarea class="form-control" id="field_8_1" name="field_8_1" rows="3" onkeypress="wordsCounter('field_8_1','words8_1',200, event)" onpaste="wordsCounter('field_8_1','words8_1',200, event)"></textarea>
-                    <p style="float: right;">Λέξεις: <span id="words8_1" ></span> /200</p>                                            
+                    <textarea class="form-control" id="field_8_1" name="field_8_1" rows="3"
+                        onkeypress="wordsCounter('field_8_1','words8_1',200, event)"
+                        onpaste="wordsCounter('field_8_1','words8_1',200, event)"></textarea>
+                    <p style="float: right;">Λέξεις: <span id="words8_1"></span> /200</p>
                 </div>
 
                 <div class="form-group">
                     <label for="field_8_2" class="required">8.2 μακροπρόθεσμοι: </label>
-                    <textarea class="form-control" id="field_8_2" name="field_8_2" rows="3" onkeypress="wordsCounter('field_8_2','words8_2',200, event)" onpaste="wordsCounter('field_8_2','words8_2',200, event)"></textarea>
-                    <p style="float: right;">Λέξεις: <span id="words8_2" ></span> /200</p>                                            
+                    <textarea class="form-control" id="field_8_2" name="field_8_2" rows="3"
+                        onkeypress="wordsCounter('field_8_2','words8_2',200, event)"
+                        onpaste="wordsCounter('field_8_2','words8_2',200, event)"></textarea>
+                    <p style="float: right;">Λέξεις: <span id="words8_2"></span> /200</p>
                 </div>
 
                 <input type="button" name="previous" class="previous action-button-previous"
@@ -401,9 +434,10 @@
                 </div>
                 <div id="amesi_wrap" class="form-group" style="display:none;">
                     <label for="field_10_amesi_comments " class="required">Εάν είναι άμεση, εξηγήστε:</label>
-                    <textarea class="form-control" id="field_10_amesi_comments" name="field_10_amesi_comments"
-                        rows="3" onkeypress="wordsCounter('field_10_amesi_comments','words10_1',150, event)" onpaste="wordsCounter('field_10_amesi_comments','words10_1',150, event)"></textarea>
-                    <p style="float: right;">Λέξεις: <span id="words10_1" ></span> /150</p>                                                                    
+                    <textarea class="form-control" id="field_10_amesi_comments" name="field_10_amesi_comments" rows="3"
+                        onkeypress="wordsCounter('field_10_amesi_comments','words10_1',150, event)"
+                        onpaste="wordsCounter('field_10_amesi_comments','words10_1',150, event)"></textarea>
+                    <p style="float: right;">Λέξεις: <span id="words10_1"></span> /150</p>
                 </div>
 
                 <div class="checkbox-group form-group row">
@@ -415,9 +449,10 @@
 
                 <div id="emesi_wrap" class="form-group" style="display:none;">
                     <label for="field_10_emesi_comments " class="required">Εάν είναι έμμεση, εξηγήστε:</label>
-                    <textarea class="form-control" id="field_10_emesi_comments" name="field_10_emmesi_comments"
-                        rows="3" onkeypress="wordsCounter('field_10_emesi_comments','words10_2',150, event)" onpaste="wordsCounter('field_10_emesi_comments','words10_2',150, event)"></textarea>
-                    <p style="float: right;">Λέξεις: <span id="words10_2" ></span> /150</p>                                            
+                    <textarea class="form-control" id="field_10_emesi_comments" name="field_10_emmesi_comments" rows="3"
+                        onkeypress="wordsCounter('field_10_emmesi_comments','words10_2',150, event)"
+                        onpaste="wordsCounter('field_10_emmesi_comments','words10_2',150, event)"></textarea>
+                    <p style="float: right;">Λέξεις: <span id="words10_2"></span> /150</p>
                 </div>
                 <hr>
 
@@ -434,8 +469,10 @@
 
                 <div id="field_11_wrap" class="form-group" style="display:none;">
                     <label for="field_11_comments " class="required">Εξηγήστε</label>
-                    <textarea class="form-control" name="field_11_comments" id="field_11_comments" rows="3" onkeypress="wordsCounter('field_11_comments','words11',100, event)" onpaste="wordsCounter('field_11_comments','words11',100, event)"></textarea>
-                    <p style="float: right;">Λέξεις: <span id="words11" ></span> /100</p>                                            
+                    <textarea class="form-control" name="field_11_comments" id="field_11_comments" rows="3"
+                        onkeypress="wordsCounter('field_11_comments','words11',100, event)"
+                        onpaste="wordsCounter('field_11_comments','words11',100, event)"></textarea>
+                    <p style="float: right;">Λέξεις: <span id="words11"></span> /100</p>
                 </div>
                 <hr>
 
@@ -451,8 +488,10 @@
 
                 <div id="field_12_wrap" class="form-group " style="display:none;">
                     <label for="field_12_comments " class="required">Αναφέρατε ποια είναι αυτά τα συστήματα:</label>
-                    <textarea class="form-control" name="field_12_comments" id="field_12_comments" rows="3" onkeypress="wordsCounter('field_12_comments','words12',100, event)" onpaste="wordsCounter('field_12_comments','words12',100, event)"></textarea>
-                    <p style="float: right;">Λέξεις: <span id="words12" ></span> /100</p>                                            
+                    <textarea class="form-control" name="field_12_comments" id="field_12_comments" rows="3"
+                        onkeypress="wordsCounter('field_12_comments','words12',100, event)"
+                        onpaste="wordsCounter('field_12_comments','words12',100, event)"></textarea>
+                    <p style="float: right;">Λέξεις: <span id="words12"></span> /100</p>
                 </div>
                 <hr>
 
@@ -468,8 +507,10 @@
 
                 <div id="field_13_wrap" class="form-group" style="display:none;">
                     <label for="field_13_comments " class="required">Εξηγήστε</label>
-                    <textarea class="form-control" name="field_13_comments" id="field_13_comments" rows="3" onkeypress="wordsCounter('field_13_comments','words13',100, event)" onpaste="wordsCounter('field_13_comments','words13',100, event)"></textarea>
-                    <p style="float: right;">Λέξεις: <span id="words13" ></span> /100</p>                                            
+                    <textarea class="form-control" name="field_13_comments" id="field_13_comments" rows="3"
+                        onkeypress="wordsCounter('field_13_comments','words13',100, event)"
+                        onpaste="wordsCounter('field_13_comments','words13',100, event)"></textarea>
+                    <p style="float: right;">Λέξεις: <span id="words13"></span> /100</p>
                 </div>
 
                 <input type="button" name="previous" class="previous action-button-previous"
@@ -477,13 +518,14 @@
                 <input type="button" name="next" class="next action-button" value="Επόμενα πεδία" />
             </fieldset>
 
-            <fieldset id="kat_arthro_analusi">
+            <fieldset id="kat_arthro_analusi" class='mostly-optional'>
                 <h2>Κατ’ άρθρο ανάλυση αξιολογούμενης ρύθμισης</h2>
                 <br>
                 <table class="table " id="field_14_table">
                     <thead class="thead ">
                         <tr>
-                            <th colspan="2"><label id="table_14_label" class="required">14.Σύνοψη στόχων κάθε
+                            <th colspan="2"><label id="table_14_label" class="mostly-optional-label required">14.Σύνοψη
+                                    στόχων κάθε
                                     άρθρου</label></th>
                         </tr>
                         <tr>
@@ -521,11 +563,47 @@
     </div>
 </div>
 <%- include('sidebar.ejs') %>
-  
+
 
 <style>
     .exit {
         font-size: 16px;
+    }
+
+    #tooltip {
+        background: #333;
+        color: white;
+        font-weight: bold;
+        padding: 4px 8px;
+        font-size: 13px;
+        border-radius: 4px;
+        display: none;
+    }
+
+    #tooltip[data-show] {
+        display: block;
+    }
+
+    #arrow,
+    #arrow::before {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        z-index: -1;
+    }
+
+    #arrow::before {
+        content: '';
+        transform: rotate(45deg);
+        background: #333;
+    }
+
+    #tooltip[data-popper-placement^='top']>#arrow {
+        bottom: -4px;
+    }
+
+    #tooltip[data-popper-placement^='bottom']>#arrow {
+        top: -4px;
     }
 
     table {
@@ -680,7 +758,7 @@
 </style>
 
 
-<script>    
+<script>
     (function ($) {
         var $root = $('html, body');
         $('a.menu').click(function () {
@@ -698,29 +776,29 @@
         });
 
     }(jQuery));
+
     //count & limit words
-    function wordsCounter (fieldId, spanId, wordlimit, event) {
-        Countable.on(document.getElementById(fieldId), counter =>{
-            if(counter.words >= wordlimit) {
+    function wordsCounter(fieldId, spanId, wordlimit, event) {
+        Countable.on(document.getElementById(fieldId), counter => {
+            if (counter.words >= wordlimit) {
                 event.preventDefault();//if word limit is reached prevent typing
-            } 
+            }
             //console.log(counter);
-            document.getElementById(spanId).innerHTML=counter.words.toString();   
+            document.getElementById(spanId).innerHTML = counter.words.toString();
         })
     }
 
     $("form").on("submit", function (ev) {
         ev.preventDefault();
         // console.log($(this).serialize())//comment this line out to hide query wrote in db
-        initializeAnalysis("#typos_analysis"); 
-        getFullDateNow("#initial_submit");
+        initializeAnalysis("#typos_analysis");
         onSubmitStatus();
-       // console.log('heyhey my val: '+ document.getElementById("field_23_upload").files[0].name);
+        // console.log('heyhey my val: '+ document.getElementById("field_23_upload").files[0].name);
         $.ajax({
             url: '/create',
             data: $(this).serialize(),
             //processData: false, // jQuery does not process the data
-           // contentType: 'multipart/form-data',  // jQuery does not set contentType
+            // contentType: 'multipart/form-data',  // jQuery does not set contentType
             error: function (error) {
                 console.log(error);
             },
@@ -732,21 +810,17 @@
         });
     })
 
-    $(".save_temporarily").on("click", function (ev) {        
+    $(".save_temporarily").on("click", function (ev) {
         ev.preventDefault();
-        initializeAnalysis("#typos_analysis"); 
-        getFullDate("#initial_submit");
-        console.log($("#field_4").val())
-        console.log($("#field_4_1").val())
-        console.log($("#field_5_1").val())
-        var fd = new FormData($("form").get(0));    
+        initializeAnalysis("#typos_analysis");
+        var fd = new FormData($("form").get(0));
         console.log(fd)//comment this line out to hide query wrote in db
         //console.log('heyhey my val: '+ document.getElementById("field_23_upload").files[0].name);
         $.ajax({
             url: '/create',
             data: fd,
-            contentType:false,
-            processData:false,
+            contentType: false,
+            processData: false,
             error: function (error) {
                 console.log(error);
             },
@@ -764,8 +838,8 @@
     function onSubmitStatus() {
         if ($("#ekthesi_glk").prop("checked")) {
             $("#status_ekthesis_drp").val("Σε σύνταξη");
-            alert("Για την ανάλυση εκκρεμεί ο έλεγχος του Γενικού Λογιστηρίου του Κράτους που έχετε ζητήσει. Επικοινωνήστε με το Γενικό Λογιστήριο του Κράτους για να το ολοκληρώσει ή ενημερώστε τον αρμόδιο του Υπουργείου σας για να το επιλύσει (εφόσον δε χρειάζεται η έκθεση του Γενικού Λογιστηρίου του Κράτους).");
-
+            alert("Για την ανάλυση εκκρεμεί ο έλεγχος του Γενικού Λογιστηρίου του Κράτους που έχετε ζητήσει. Επικοινωνήστε με το Γενικό Λογιστήριο του Κράτους για να τον ολοκληρώσει ή ενημερώστε τον αρμόδιο του Υπουργείου σας για να το επιλύσει.");
+            ev.preventDefault();
         } else {
             if ($('input[name=status_ekthesis]').val("Σε σύνταξη") || $('input[name=status_ekthesis]').val("Επιμελημένη")) {
                 $('input[name=status_ekthesis]').val("Ολοκληρώθηκε");
@@ -774,45 +848,49 @@
         }
     }
 
-    $("#ekthesi_glk").on("click",function (ev) {
+    $("#ekthesi_glk").on("click", function (ev) {
         if (this.checked) {
             answer = window.confirm("Με την ενέργειά σας αυτή η έκθεση θα αποσταλλεί στο Γενικό Λογιστήριο του κράτους. Συνέχεια;");
             if (answer) {
                 $("#status_ekthesis").val("Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους");
                 if (role == "Συντάκτης επισπεύδοντος Υπουργείου") {
-                    $(this).prop('disabled', true);            
-                }                    
+                    $(this).prop('disabled', true);
+                }
+            }
+            else {
+                $(this).prop('checked', false);
             }
         } else {
-            $('input[name=status_ekthesis]').val("Σε σύνταξη");                
-        }})
-
-    function initializeAnalysis (analysis) {
-        console.log("init val "+$(analysis).val());
-        if($(analysis).val() == ':sxedio_nomou') {
-            $(analysis).prop('value','Σχέδιο νόμου');
-        } else if($(analysis).val() == ':prosxedio_nomou') {
-            $(analysis).prop('value','Προσχέδιο νόμου');
-        } else if($(analysis).val() == ':kateythintiries_grammes') {
-            $(analysis).prop('value','Κατευθυντήριες γραμμές');
-        } else if($(analysis).val() == ':epeigon_katepeigon') {
-            $(analysis).prop('value','Επείγον ή κατεπείγον νομοσχέδιο');
-        } else if($(analysis).val() == ':diethneis_symvaseis') {
-            $(analysis).prop('value','Διεθνείς συμβάσεις');
-        } else if($(analysis).val() == ':tropologies_upourgwn') {
-            $(analysis).prop('value','Τροπολογίες Υπουργών');
-        } else if($(analysis).val() == ':protasi_nomou') {
-            $(analysis).prop('value','Πρόταση νόμου');
-        } else if($(analysis).val() == ':tropologies_vouleutwn') {
-            $(analysis).prop('value','Τροπολογίες Υπουργών');
+            $('input[name=status_ekthesis]').val("Σε σύνταξη");
         }
-        console.log("1"+analysis);
-        console.log("2"+$(analysis));
-        console.log("3"+$(analysis).val());
-    }    
-    
+    })
+
+    function initializeAnalysis(analysis) {
+        console.log("init val " + $(analysis).val());
+        if ($(analysis).val() == ':sxedio_nomou') {
+            $(analysis).prop('value', 'Σχέδιο νόμου');
+        } else if ($(analysis).val() == ':prosxedio_nomou') {
+            $(analysis).prop('value', 'Προσχέδιο νόμου');
+        } else if ($(analysis).val() == ':kateythintiries_grammes') {
+            $(analysis).prop('value', 'Κατευθυντήριες γραμμές');
+        } else if ($(analysis).val() == ':epeigon_katepeigon') {
+            $(analysis).prop('value', 'Επείγον ή κατεπείγον νομοσχέδιο');
+        } else if ($(analysis).val() == ':diethneis_symvaseis') {
+            $(analysis).prop('value', 'Διεθνείς συμβάσεις');
+        } else if ($(analysis).val() == ':tropologies_upourgwn') {
+            $(analysis).prop('value', 'Τροπολογίες Υπουργών');
+        } else if ($(analysis).val() == ':protasi_nomou') {
+            $(analysis).prop('value', 'Πρόταση νόμου');
+        } else if ($(analysis).val() == ':tropologies_vouleutwn') {
+            $(analysis).prop('value', 'Τροπολογίες Βουλευτών');
+        }
+        console.log("1" + analysis);
+        console.log("2" + $(analysis));
+        console.log("3" + $(analysis).val());
+    }
+
     function getFullDate(fieldId) {
-        $(fieldId).prop("value",new Date().toLocaleString("el-GR", {timeZone: "Europe/Athens"}));
+        $(fieldId).prop("value", new Date().toLocaleString("el-GR", { timeZone: "Europe/Athens" }));
         console.log($(fieldId).val());
     }
     //init_submit date - will be updated when actually submitted
@@ -830,22 +908,27 @@
         //console.log((fieldId));
     };
 
-    function optionalFieldsClassRemoval(fieldLabel) {
-        $(fieldLabel).removeClass("required");//remove required class from label
+    function optionalFieldsClassRemoval(fieldLabel, className) {
+        var items = document.getElementsByClassName(fieldLabel);
+        for (var i = 0; i < items.length; i++) {
+            $(items[i]).removeClass(className);//remove required class from label
+        }
+
     };
 
     //console.log("analysis-> "+analysis); // log analysis type
     if (analysis == ":kateythintiries_grammes") {
-
-        optionalFields("#add_row_table_14");
-        optionalFields("#fieldset_15 :input");
-        optionalFields("#fieldset_16 :input");
-        optionalFields("#fieldset_17 :input");
-        optionalFields("#fieldset_23 :input");
+        optionalFields(".mostly-optional :input");
+        optionalFieldsClassRemoval("mostly-optional-label", "required");
+        // optionalFields("#add_row_table_14");
+        // optionalFields("#fieldset_15 :input");
+        // optionalFields("#fieldset_16 :input");
+        // optionalFields("#fieldset_17 :input");
+        optionalFields("#sxolia_diavouleusis :input");
         optionalFields("#add_row_table_31");
         optionalFields("#add_row_table_32");
-        optionalFields("#fieldset_33 :input");
-        optionalFields("#fieldset_37 :input");
+        optionalFields("#sustasi_etairias :input");
+        optionalFields("#stoixeia_etairias :input");
         enableFields(document.getElementsByName("create_new"));
         enableFields(document.getElementsByName("next"));
         enableFields(document.getElementsByName("previous"));
@@ -875,12 +958,8 @@
         optionalFieldsClassRemoval("#field_40_label");
 
     } else if (analysis == ":prosxedio_nomou") {
-        optionalFields("#fieldset_15 :input");
-        optionalFields("#fieldset_16 :input");
-        optionalFields("#fieldset_17 :input");
-        optionalFields("#fieldset_23 :input");
-        enableFields(document.getElementsByName("next"));
-        enableFields(document.getElementsByName("previous"));
+        optionalFields(".mostly-optional :input");
+        optionalFieldsClassRemoval("mostly-optional-label", "required");
 
         optionalFieldsClassRemoval("#field_15_ypoyrgeio_label");
         optionalFieldsClassRemoval("#field_15_sxedio_nomou_label");
@@ -896,12 +975,12 @@
 
     } else if (analysis == ":epeigonta_katepeigonta" || analysis == ":diethneis_symvaseis" || analysis == ":tropologies_upourgwn") {
 
-        optionalFields("#fieldset_22 :input");
-        optionalFields("#fieldset_23 :input");
+        optionalFields("#diavouleusi_nomoparaskeuastikis :input");
+        optionalFields("#sxolia_diavouleusis :input");
         optionalFields("#add_row_table_31");
         optionalFields("#add_row_table_32");
-        optionalFields("#fieldset_33 :input");
-        optionalFields("#fieldset_37 :input");
+        optionalFields("#sustasi_etairias :input");
+        optionalFields("#stoixeia_etairias :input");
         enableFields(document.getElementsByName("next"));
         enableFields(document.getElementsByName("previous"));
         enableFields(document.getElementsByName("create_new"));
@@ -925,21 +1004,21 @@
         optionalFieldsClassRemoval("#field_40_label");
 
     } else if (analysis == ":tropologies_vouleutwn") {
-        optionalFields("#fieldset_18 :input");
-        optionalFields("#fieldset_19 :input");
-        optionalFields("#fieldset_20 :input");
-        optionalFields("#fieldset_21 :input");
-        optionalFields("#fieldset_22 :input");
-        optionalFields("#fieldset_23 :input");
-        optionalFields("#fieldset_24 :input");
-        optionalFields("#fieldset_25 :input");
-        optionalFields("#fieldset_26 :input");
-        optionalFields("#fieldset_27 :input");
-        optionalFields("#fieldset_28 :input");
+        optionalFields("#ofeli_rythmisis :input");
+        optionalFields("#kostos_rythmisis :input");
+        optionalFields("#kindynoi_rythmisis :input");
+        optionalFields("#porismata :input");
+        optionalFields("#diavouleusi_nomoparaskeuastikis :input");
+        optionalFields("#sxolia_diavouleusis :input");
+        optionalFields("#sunafeis_diatakseis :input");
+        optionalFields("#enwsiako_dikaio :input");
+        optionalFields("#diatakseis_diethnwn_sumfwniwn :input");
+        optionalFields("#nomologia_diethnwn_dikastiriwn :input");
+        optionalFields("#diethnis_nomologia :input");
         optionalFields("#add_row_table_31");
         optionalFields("#add_row_table_32");
-        optionalFields("#fieldset_33 :input");
-        optionalFields("#fieldset_37 :input");
+        optionalFields("#sustasi_etairias :input");
+        optionalFields("#stoixeia_etairias :input");
         enableFields(document.getElementsByName("next"));
         enableFields(document.getElementsByName("previous"));
         enableFields(document.getElementsByName("create_new"));
@@ -1248,6 +1327,53 @@
         table32RowIndex--;
     });
 
+    const img = document.querySelector('#tooltip_img');
+    const tooltip = document.querySelector('#tooltip');
+
+    let popperInstance = null;
+
+    function create() {
+        popperInstance = Popper.createPopper(button, tooltip, {
+            modifiers: [
+                {
+                    name: 'offset',
+                    options: {
+                        offset: [0, 8],
+                    },
+                },
+            ],
+        });
+    }
+
+    function destroy() {
+        if (popperInstance) {
+            popperInstance.destroy();
+            popperInstance = null;
+        }
+    }
+
+    function show() {
+        tooltip.setAttribute('data-show', '');
+        create();
+    }
+
+    function hide() {
+        tooltip.removeAttribute('data-show');
+        destroy();
+    }
+
+    const showEvents = ['mouseenter', 'focus'];
+    const hideEvents = ['mouseleave', 'blur'];
+
+    showEvents.forEach(event => {
+        img.addEventListener(event, show);
+    });
+
+    hideEvents.forEach(event => {
+        img.addEventListener(event, hide);
+    });
+
+
     $("#ekpedeusi_politismos").click(function (ev) {
         if (this.checked) {
             $("#politismos_table").show();
@@ -1412,7 +1538,7 @@
         //de-activate current step on progressbar
         $(".progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
         //add class "active" if it doesn't exist 
-        if (!$(previous_fs).hasClass("active")){
+        if (!$(previous_fs).hasClass("active")) {
             $(".progressbar li").eq($("fieldset").index(previous_fs)).addClass("active");
         }
         //show the previous fieldset
