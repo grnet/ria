@@ -11,20 +11,6 @@ routes.get('/:entry_id', async (req, res, next) => {
             id: req.params.entry_id
         }, include: [{ model: database.rythmiseis }, { model: database.field_9 }]
     })
-    // var myFile = fs.readFile("./" + entry.field_23_upload[0] , function (err,data){
-    //     res.contentType("application/pdf");
-    //     console.log(data)
-    // });
-    //https://bezkoder.com/node-js-express-file-upload/
-    //https://stackoverflow.com/questions/7288814/download-a-file-from-nodejs-server-using-express?rq=1
-    //console.log("myFile: " + myFile)
-    //res.sendFile("./" + entry.field_23_upload[0], { root : 'uploads'});
-    var url = "/:" + req.params.entry_id
-
-    //const filename = await pdf(url, req);
-    //res.contentType("application/pdf");
-    //res.sendFile(path.join(__dirname, filename)); // if 'public/temp/...' path is not relative to cur dir, make relevant change here.
-    //console.log(entry) , file:myFile
     if (entry && entry.dataValues) {
         req.session.ekthesi_id = req.params.entry_id;
         res.render("form_a", { data: entry.dataValues, rolos: req.session.rolos, });
@@ -35,23 +21,7 @@ routes.get('/:entry_id', async (req, res, next) => {
 
 routes.post('/:entry_id', async (req, res, next) => {
     var data = req.body;
-    console.log(data)
-    // Create a document
-    // const doc = new PDFDocument();
-
-    // Pipe its output somewhere, like to a file or HTTP response
-    // doc.pipe(fs.createWriteStream('output.pdf'));
-
-    // Embed a font, set the font size, and render some text
-    //find more fonts here: https://fonts.google.com/#UsePlace:use/Collection:Cardo
-    // let fontpath = ('Roboto-Regular.ttf');
-    // doc.font(fontpath);
-
-    // doc.text(`Τίτλος έκθεσης: `+data.title, {
-    //     width: 410,
-    //     align: 'left'
-    // });
-    // doc.end();
+    //console.log(data)
 
     var PdfPrinter = require('../node_modules/pdfmake/src/printer');
     // download default Roboto font from cdnjs.com
@@ -222,13 +192,15 @@ routes.post('/:entry_id', async (req, res, next) => {
             ]
         ]
     };
-
     var pdfDoc = printer.createPdfKitDocument(docDefinition);
     pdf_name = data.title+'.pdf';
+    pdf_name = pdf_name.replace(/\s+/g, '');
+
     pdfDoc.pipe(fs.createWriteStream('./public/pdf_exports/'+pdf_name));
     pdfDoc.end();
     //res.header('content-type', 'application/pdf');
-    res.download(pdf_name);
+    //res.download(pdf_name);
+    res.send(pdf_name);
     
 })
 

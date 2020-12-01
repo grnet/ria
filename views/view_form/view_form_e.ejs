@@ -32,6 +32,27 @@
     <label for="field_23_upload" class="mostly-optional-label required">23.Σχόλια στο πλαίσιο της διαβούλευσης μέσω της ηλεκτρονικής πλατφόρμας
         www.opengov.gr (ηλεκτρονική επισύναψη της έκθεσης). </label>
     <input type="file" id="field_23_upload" name="field_23_upload" accept=".pdf, .doc" multiple> 
+    <br>    
+    <table id="uploads_23" class="display">
+        <thead>
+            <tr>
+                <th colspan="1">Προηγούμενες αναρτήσεις:</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <% if(data.field_23_upload.length) { 
+                for (var i=0; i< data.field_23_upload.length;i++) {    %>
+            <tr>
+                <td>
+                    <a href="/public/uploads/<%= data.field_23_upload[i] %> "><%= data.field_23_upload[i] %></a>
+                </td>
+            </tr>
+            <%  }
+            }%>            
+
+        </tbody>
+    </table>    
     <br><br>
     <br><br>
         
