@@ -221,8 +221,8 @@
         <p style="float: right;">Λέξεις: <span id="words40"></span> /200</p>
     </div>
 
-
-    <p id="pdf_download">Το τελευταίο αποθηκευμένο πδφ βρίσκεται <a href="/public/pdf_exports/<%data.title%>">εδώ</a>.
+    <% var pdf_name = data.title.replace(/\s+/g, ''); %>
+    <p id="pdf_download">Το τελευταίο αποθηκευμένο pdf βρίσκεται <a href="/public/pdf_exports/<%=pdf_name%>.pdf">εδώ</a>.
     </p>
 
     <div class="checkbox-group form-group row ggnkth" style="display: none;">
