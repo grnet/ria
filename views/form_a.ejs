@@ -672,7 +672,8 @@
                         <table class="table" id="field_14_table">
                             <thead class="thead">
                                 <tr>
-                                    <th colspan="2"><label id="table_14_label" class="table-14-label required">14.Σύνοψη στόχων κάθε άρθρου</label></th>
+                                    <th colspan="2"><label id="table_14_label" class="table-14-label required">14.Σύνοψη
+                                            στόχων κάθε άρθρου</label></th>
                                 </tr>
                                 <tr>
                                     <th colspan="1">Άρθρο</th>
@@ -985,12 +986,19 @@
                 if (document.getElementById('ekpedeusi_politismos').checked) {
                     $("#politismos_table").show();
                     $("#ekpaideysi_table").show();
+                } else {
+                    $("#politismos_table").hide();
+                    $("#ekpaideysi_table").hide();
                 }
 
                 if (document.getElementById('forologiki_politiki').checked) {
                     $("#oikonomia_table").show();
                     $("#forologia_table").show();
                     $("#ergasiakes_sxeseis_table").show();
+                } else {
+                    $("#oikonomia_table").hide();
+                    $("#forologia_table").hide();
+                    $("#ergasiakes_sxeseis_table").hide();
                 }
 
                 if (document.getElementById('koinoniki_politiki').checked) {
@@ -1000,17 +1008,31 @@
                     $("#ygeia_table").show();
                     $("#isotita_fylwn_table").show();
                     $("#metanasteytiki_prosfygiki_politiki_table").show();
+                } else {
+                    $("#apasxolisi_table").hide();
+                    $("#koinwniki_asfalisi_table").hide();
+                    $("#koinwniki_pronoia_table").hide();
+                    $("#ygeia_table").hide();
+                    $("#isotita_fylwn_table").hide();
+                    $("#metanasteytiki_prosfygiki_politiki_table").hide()
                 }
 
                 if (document.getElementById('dimosia_dioikisi').checked) {
                     $("#dimosia_dioikisi_table").show();
                     $("#dimosia_asfaleia_table").show();
                     $("#dikaiosini_table").show();
+                } else {
+                    $("#dimosia_dioikisi_table").hide();
+                    $("#dimosia_asfaleia_table").hide();
+                    $("#dikaiosini_table").hide();
                 }
 
                 if (document.getElementById('anaptiksi').checked) {
                     $("#ependytiki_drastiriotita_table").show();
                     $("#perivallon_energeia_table").show();
+                } else {
+                    $("#ependytiki_drastiriotita_table").hide();
+                    $("#perivallon_energeia_table").hide();
                 }
 
                 if ($('input[name=status_ekthesis]').val() == "Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους") {
@@ -1025,7 +1047,7 @@
                     optionalFields(".create-new");
                 }
 
-                if (role == "Συντάκτης επισπεύδοντος Υπουργείου" && ($("#typos_analysis").val() == 'Προσχέδιο νόμου' || $("#typos_analysis").val() == 'Κατευθυντήριες γραμμές')) {
+                if (role == "Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)" && ($("#typos_analysis").val() == 'Προσχέδιο νόμου' || $("#typos_analysis").val() == 'Κατευθυντήριες γραμμές')) {
                     $(".convert").show();
                     enableFields(".convert")
                 } else {
@@ -1217,6 +1239,63 @@
                 table14RowIndex--;
             });
 
+            var table17RowIndex = 0;
+
+            // jQuery button click event for table 14 to add a row
+            $("#add_row_table_17").on("click", function () {
+                //append adds row to table body with id 'tbody_14'
+                //line 604 creates unique id for the line, which will later be used for deletion
+                //also adding a delete icon for each row 
+                $('#tbody_17').append(`
+        <tr id="R${++table17RowIndex}">  
+            <td> 
+                <textarea class="form-control" id="field_17_onoma${table17RowIndex}" name="field_17_onoma${table17RowIndex}" placeholder="Όνομα" rows="1"></textarea> 
+            </td>    
+            <td> 
+                <textarea class="form-control" id="field_17_epwnumo${table17RowIndex}" name="field_17_epwnumo${table17RowIndex}" placeholder="Επώνυμο" rows="1"></textarea>
+            </td> 
+            <td> 
+                <textarea class="form-control" id="field_17_idiotita${table17RowIndex}" name="field_17_idiotita${table17RowIndex}" placeholder="Ιδιότητα" rows="1"></textarea>
+                <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
+            </td> 
+        </tr>`
+                );
+                //console.log(table17RowIndex)
+            });
+
+            // jQuery button click event to remove a row 
+            $('#tbody_17').on('click', '.remove', function () {
+
+                // Getting all the rows close to the one to be removed 
+                var child = $(this).closest('tr').nextAll();
+
+                // Iterating across all the rows  
+                // obtained to change the index 
+                child.each(function () {
+
+                    // Getting <tr> id
+                    var id = $(this).attr('id');
+
+                    // Gets row number from <tr> id
+                    var row_num = parseInt(id.substring(1));
+
+                    //Getting index
+                    var idx = $(this).children('.row-index');
+
+                    // Modifying row index
+                    idx.html(`Row ${row_num - 1}`);
+
+                    // Modifying row id
+                    $(this).attr('id', `R${row_num - 1}`);
+                });
+
+                // Removing the current row. 
+                $(this).closest('tr').remove();
+
+                // Decreasing the total number of rows by 1. 
+                table17RowIndex--;
+            });
+            
             var table29RowIndex = 0;
             if ("data.field_29_diatakseis_rythmisis.length" != null) {
                 var table29RowIndex = "<%=data.field_29_diatakseis_rythmisis.length %>"
@@ -1606,7 +1685,7 @@
                 // enableFields(document.getElementsByClassName("syntaktis")[0])
                 $(".syntaktis :input").prop('disabled', true);//disable elems of certain class
                 optionalFields("#edit_form :input");
-                enableFields(".glk :input"); 
+                enableFields(".glk :input");
                 enableFields(".next");
                 enableFields(".previous");
 
@@ -1615,8 +1694,8 @@
                 enableFields(document.getElementsByName("next"));
                 enableFields(document.getElementsByName("previous"));
             } else {
-                optionalFields(".glk :input"); 
-                enableFields(".glk-required");                
+                optionalFields(".glk :input");
+                enableFields("#ekthesi_glk");
                 enableFields(".next");
                 enableFields(".previous");
             }

@@ -91,7 +91,9 @@ module.exports = (sequelize, DataTypes) => {
         field_17_ypoyrgeio: DataTypes.STRING,
         field_17_sxedio_nomou: DataTypes.STRING,
         field_17_oikonomika_apotelesmata: DataTypes.STRING,
-        field_17_upourgoi: DataTypes.JSON,
+        // field_17_onoma: DataTypes.JSON,
+        // field_17_epitheto: DataTypes.JSON,
+        // field_17_idiotita: DataTypes.JSON,
         
         field_18_comments: DataTypes.STRING,
         field_19_comments: DataTypes.STRING,

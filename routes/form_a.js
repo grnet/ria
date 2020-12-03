@@ -354,8 +354,14 @@ routes.post('/:entry_id', async (req, res, next) => {
                         widths: ['*', 'auto', 100, '*'],
 
                         body: [
-                            ['Άρθρο', 'Στόχος'],
-                            [buildTableBody(field_14_arthro), buildTableBody(field_14_stoxos)],
+                            //['Άρθρο', 'Στόχος'],
+                            //[buildTableBody(field_14_arthro), buildTableBody(field_14_stoxos)],
+                            field_14_arthro.forEach(value => {
+                                [
+                                 { text: value.text, style: 'cell' },
+                                 { text: value.status, },
+                                ]
+                            })    
                         ]
                     }
                 },
