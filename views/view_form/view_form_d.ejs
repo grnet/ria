@@ -1,9 +1,9 @@
-<fieldset id="ofeli_rythmisis">
+<fieldset id="ofeli_rythmisis" class="field-18" >
 
     <h2>Δ. Έκθεση γενικών συνεπειών</h2>
     <br>
 
-    <h3>18.Οφέλη αξιολογούμενης ρύθμισης</h3>
+    <h3><label id="ofeli_rythmisis_table_label" class="field-18-label required">18.Οφέλη αξιολογούμενης ρύθμισης</label></h3>
     <table class="table" id="rythmisei_table">
         <thead class="thead">
             <tr>
@@ -841,7 +841,7 @@
     </table>
 
     <div class="form-group">
-        <label for="field_18_comments">Σχολιασμός / ποιοτική αποτίμηση:</label>
+        <label for="field_18_comments" class="field-18-label required">Σχολιασμός / ποιοτική αποτίμηση:</label>
         <textarea class="form-control" id="field_18_comments" name="field_18_comments" rows="3"
             onkeypress="wordsCounter('field_18_comments','words18',150, event)"
             onpaste="wordsCounter('field_18_comments','words18',150, event)"><%= data.field_18_comments %></textarea>
@@ -852,9 +852,9 @@
     <input type="button" name="field_18_next" id="field_18_next" class="next action-button" value="Επόμενα πεδία" />
 </fieldset>
 
-<fieldset id="kostos_rythmisis">
+<fieldset id="kostos_rythmisis" class="field-19">
 
-    <h3>19.Κόστος αξιολογούμενης ρύθμισης</h3>
+    <h3><label id="kostos_rythmisis_table_label" class="field-19-label required">19.Κόστος αξιολογούμενης ρύθμισης</label></h3>
     <table class="table" id="kostos_rythmisis_table">
         <thead class="thead">
             <tr>
@@ -1628,7 +1628,7 @@
     </table>
 
     <div class="form-group">
-        <label for="field_19_comments">Σχολιασμός / ποιοτική αποτίμηση:</label>
+        <label for="field_19_comments" class="field-19-label required">Σχολιασμός / ποιοτική αποτίμηση:</label>
         <textarea class="form-control" id="field_19_comments" name="field_19_comments" rows="3"
             onkeypress="wordsCounter('field_19_comments','words19',150, event)"
             onpaste="wordsCounter('field_19_comments','words19',150, event)"><%= data.field_19_comments %></textarea>
@@ -1640,9 +1640,9 @@
 
 </fieldset>
 
-<fieldset id="kindynoi_rythmisis">
+<fieldset id="kindynoi_rythmisis" class="field-20">
 
-    <h3>20.Κίνδυνοι αξιολογούμενης ρύθμισης</h3>
+    <h3><label id="kindynoi_rythmisis_table_label" class="field-20-label required">20.Κίνδυνοι αξιολογούμενης ρύθμισης</label></h3>
     <table class="table" id="kostos_rythmisis_table">
         <thead class="thead">
             <tr>
@@ -2057,7 +2057,7 @@
     </table>
 
     <div class="form-group">
-        <label for="field_20_comments">Σχολιασμός / ποιοτική αποτίμηση:</label>
+        <label for="field_20_comments" class="required field-19-label">Σχολιασμός / ποιοτική αποτίμηση:</label>
         <textarea class="form-control" id="field_20_comments" name="field_20_comments" rows="3"
             onkeypress="wordsCounter('field_20_comments','words20',150, event)"
             onpaste="wordsCounter('field_20_comments','words20',150, event)"><%= data.field_20_comments %></textarea>
@@ -2069,9 +2069,9 @@
 
 </fieldset>
 
-<fieldset id="porismata">
+<fieldset id="porismata" class="field-21">
 
-    <label for="field_21_upload">21.Γνώμες ή πορίσματα αρμόδιων υπηρεσιών και ανεξάρτητων αρχών (ηλεκτρονική
+    <label class="required field-21-label" id="field_21_upload_label" for="field_21_upload">21.Γνώμες ή πορίσματα αρμόδιων υπηρεσιών και ανεξάρτητων αρχών (ηλεκτρονική
         επισύναψη). </label>
     <input type="file" id="field_21_upload" name="field_21_upload" accept=".pdf" multiple>
     <br>    
@@ -2097,7 +2097,7 @@
     </table>
     <br>
     <div class="form-group">
-        <label for="field_21_comments">Ειδική αιτιολογία σε περίπτωση σημαντικής απόκλισης μεταξύ της
+        <label class="required field-21-label" id="field_21_comments_label" for="field_21_comments">Ειδική αιτιολογία σε περίπτωση σημαντικής απόκλισης μεταξύ της
             γνωμοδότησης και της αξιολογούμενης ρύθμισης.</label>
         <textarea class="form-control" id="field_21_comments" name="field_21_comments" rows="3"
             onkeypress="wordsCounter('field_21_comments','words21',200, event)"

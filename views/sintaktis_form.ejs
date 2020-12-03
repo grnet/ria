@@ -519,15 +519,13 @@
                 <input type="button" name="next" class="next action-button" value="Επόμενα πεδία" />
             </fieldset>
 
-            <fieldset id="kat_arthro_analusi">
+            <fieldset id="kat_arthro_analusi" class="table-14">
                 <h2>Κατ’ άρθρο ανάλυση αξιολογούμενης ρύθμισης</h2>
                 <br>
                 <table class="table " id="field_14_table">
                     <thead class="thead ">
                         <tr>
-                            <th colspan="2"><label id="table_14_label" class="required">14.Σύνοψη
-                                    στόχων κάθε
-                                    άρθρου</label></th>
+                            <th colspan="2"><label id="table_14_label" class="table-14-label required">14.Σύνοψη στόχων κάθε άρθρου</label></th>
                         </tr>
                         <tr>
                             <th colspan="1">Άρθρο</th>
@@ -915,114 +913,72 @@
         for (var i = 0; i < items.length; i++) {
             $(items[i]).removeClass(className);//remove required class from label
         }
+    };
 
+    function addLabelClass(fieldLabel, className) {        
+        $(fieldLabel).addClass(className);//remove required class from label
     };
 
     //console.log("analysis-> "+analysis); // log analysis type
     if (analysis == ":kateythintiries_grammes") {
         optionalFields(".mostly-optional :input");
         optionalFields(".optional :input");        
-        optionalFields("#add_row_table_14");
-        optionalFields("#add_row_table_31");
-        optionalFields("#add_row_table_32");
-        enableFields(document.getElementsByName("create_new"));
-        enableFields(document.getElementsByName("next"));
-        enableFields(document.getElementsByName("previous"));
+        optionalFields(".table-14 :input");
+        enableFields(".create-new");
+        enableFields(".next");
+        enableFields(".previous");
 
         optionalFieldsClassRemoval("mostly-optional-label", "required");
         optionalFieldsClassRemoval("optional-label", "required");
-        optionalFieldsClassRemoval("#table_14_label", "required");
-        optionalFieldsClassRemoval("#table_31_label", "required");
-        optionalFieldsClassRemoval("#table_32_label", "required");
+        optionalFieldsClassRemoval("table-14-label", "required");
 
     } else if (analysis == ":prosxedio_nomou") {
         optionalFields(".mostly-optional :input");
         optionalFieldsClassRemoval("mostly-optional-label", "required");
 
-    } else if (analysis == ":epeigonta_katepeigonta" || analysis == ":diethneis_symvaseis" || analysis == ":tropologies_upourgwn") {
+    } else if (analysis == ":epeigon_katepeigon" || analysis == ":diethneis_symvaseis" || analysis == ":tropologies_upourgwn") {
+        optionalFields(".field-22 :input");        
+        optionalFields(".optional :input");        
+        enableFields(".create-new");
+        enableFields(".next");
+        enableFields(".previous");
 
-        optionalFields("#diavouleusi_nomoparaskeuastikis :input");
-        optionalFields("#sxolia_diavouleusis :input");
-        optionalFields("#add_row_table_31");
-        optionalFields("#add_row_table_32");
-        optionalFields("#sustasi_etairias :input");
-        optionalFields("#stoixeia_etairias :input");
-        enableFields(document.getElementsByName("next"));
-        enableFields(document.getElementsByName("previous"));
-        enableFields(document.getElementsByName("create_new"));
+        optionalFieldsClassRemoval("field-22-label", "required");
+        optionalFieldsClassRemoval("optional-label", "required");
 
-        optionalFieldsClassRemoval("#field_22_sinergasia_ypoyrgeiwn_label");
-        optionalFieldsClassRemoval("#field_22_sinergasia_forewn_arxwn_label");
-        optionalFieldsClassRemoval("#field_22_diethnis_diavouleusi_label");
-        optionalFieldsClassRemoval("#field_23_upload_label");
-        optionalFieldsClassRemoval("#field_23_arxes_label");
-        optionalFieldsClassRemoval("#field_23_arthra_label");
-        optionalFieldsClassRemoval("#table_31_label");
-        optionalFieldsClassRemoval("#table_32_label");
-        optionalFieldsClassRemoval("#field_33_label");
-        optionalFieldsClassRemoval("#field_34_label");
-        optionalFieldsClassRemoval("#field_35_label");
-        optionalFieldsClassRemoval("#field_36_label");
-        optionalFieldsClassRemoval("#field_36_upload_label");
-        optionalFieldsClassRemoval("#field_37_label");
-        optionalFieldsClassRemoval("#field_38_label");
-        optionalFieldsClassRemoval("#field_39_label");
-        optionalFieldsClassRemoval("#field_40_label");
 
-    } else if (analysis == ":tropologies_vouleutwn") {
-        optionalFields("#ofeli_rythmisis :input");
-        optionalFields("#kostos_rythmisis :input");
-        optionalFields("#kindynoi_rythmisis :input");
-        optionalFields("#porismata :input");
-        optionalFields("#diavouleusi_nomoparaskeuastikis :input");
-        optionalFields("#sxolia_diavouleusis :input");
-        optionalFields("#sunafeis_diatakseis :input");
-        optionalFields("#enwsiako_dikaio :input");
-        optionalFields("#diatakseis_diethnwn_sumfwniwn :input");
-        optionalFields("#nomologia_diethnwn_dikastiriwn :input");
-        optionalFields("#diethnis_nomologia :input");
-        optionalFields("#add_row_table_31");
-        optionalFields("#add_row_table_32");
-        optionalFields("#sustasi_etairias :input");
-        optionalFields("#stoixeia_etairias :input");
-        enableFields(document.getElementsByName("next"));
-        enableFields(document.getElementsByName("previous"));
-        enableFields(document.getElementsByName("create_new"));
+    } else if (analysis == ":tropologies_vouleutwn" || analysis == ":protasi_nomou") {
+        optionalFields(".field-18 :input");        
+        optionalFields(".field-19 :input");
+        optionalFields(".field-20 :input");
+        optionalFields(".field-21 :input");
+        optionalFields(".field-22 :input");   
+        optionalFields(".field-24 :input");        
+        optionalFields(".field-25 :input");        
+        optionalFields(".field-26 :input");        
+        optionalFields(".field-27 :input");        
+        optionalFields(".field-28 :input");        
+        
+        optionalFields(".optional :input");
+        enableFields(".table-31 :input");
+        enableFields(".table-32 :input");        
+        enableFields(".create-new");
+        enableFields(".next");
+        enableFields(".previous");
 
-        optionalFieldsClassRemoval("#ofeli_rythmisis_table_label");
-        optionalFieldsClassRemoval("#kostos_rythmisis_table_label");
-        optionalFieldsClassRemoval("#kindynoi_rythmisis_table_label");
-        optionalFieldsClassRemoval("#field_21_upload_label");
-        optionalFieldsClassRemoval("#field_21_comments_label");
-        optionalFieldsClassRemoval("#field_22_sinergasia_ypoyrgeiwn_label");
-        optionalFieldsClassRemoval("#field_22_sinergasia_forewn_arxwn_label");
-        optionalFieldsClassRemoval("#field_22_diethnis_diavouleusi_label");
-        optionalFieldsClassRemoval("#field_23_upload_label");
-        optionalFieldsClassRemoval("#field_23_arxes_label");
-        optionalFieldsClassRemoval("#field_23_arthra_label");
-        optionalFieldsClassRemoval("#field_24_label");
-        optionalFieldsClassRemoval("#field_25_dikaio_label");
-        optionalFieldsClassRemoval("#field_25_kanonismos_label");
-        optionalFieldsClassRemoval("#field_25_odigia_label");
-        optionalFieldsClassRemoval("#field_25_apofasi_label");
-        optionalFieldsClassRemoval("#field_26_antrwpina_dikaiwmata_label");
-        optionalFieldsClassRemoval("#field_26_symvaseis_label");
-        optionalFieldsClassRemoval("#field_27_dikastirio_label");
-        optionalFieldsClassRemoval("#field_27_arxi_label");
-        optionalFieldsClassRemoval("#field_28_nomologia_label");
-        optionalFieldsClassRemoval("#field_28_nomologia_dikaiwmatwn_anthrwpou_label");
-        optionalFieldsClassRemoval("#field_28_alla_dikastiria_label");
-        optionalFieldsClassRemoval("#table_31_label");
-        optionalFieldsClassRemoval("#table_32_label");
-        optionalFieldsClassRemoval("#field_33_label");
-        optionalFieldsClassRemoval("#field_34_label");
-        optionalFieldsClassRemoval("#field_35_label");
-        optionalFieldsClassRemoval("#field_36_label");
-        optionalFieldsClassRemoval("#field_36_upload_label");
-        optionalFieldsClassRemoval("#field_37_label");
-        optionalFieldsClassRemoval("#field_38_label");
-        optionalFieldsClassRemoval("#field_39_label");
-        optionalFieldsClassRemoval("#field_40_label");
+        optionalFieldsClassRemoval("field-18-label", "required");        
+        optionalFieldsClassRemoval("field-19-label", "required");
+        optionalFieldsClassRemoval("field-20-label", "required");
+        optionalFieldsClassRemoval("field-21-label", "required");
+        optionalFieldsClassRemoval("field-22-label", "required");
+        optionalFieldsClassRemoval("field-24-label", "required");        
+        optionalFieldsClassRemoval("field-25-label", "required");        
+        optionalFieldsClassRemoval("field-26-label", "required");        
+        optionalFieldsClassRemoval("field-27-label", "required");        
+        optionalFieldsClassRemoval("field-28-label", "required");        
+        optionalFieldsClassRemoval("optional-label", "required");
+        addLabelClass(".table-31-label", "required");
+        addLabelClass(".table-32-label", "required");
     }
     //these fields are by default disabled
     optionalFields(".glk :input");
