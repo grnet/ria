@@ -24,15 +24,14 @@
 
                     <input type="hidden" id="typos_analysis" name="typos_analysis" value="<%= data.typos_analysis%>">
                     <input type="hidden" id="status_ekthesis" name="status_ekthesis" value="<%= data.status_ekthesis%>">
-                    <input type="hidden" id="final_report" name="final_report" value="<%= data.title %>.pdf">
 
                     <fieldset id="arxiki">
 
                         <h2>Αρχική σελίδα</h2>
                         <br>
 
-                        <input type="button" name="convert" class="convert" style="float: right;" value="Μετατροπή" />
-
+                        <input type="button" name="convert" class="convert" style="float: right;" value="Αντιγραφή" style="display: none;"/>
+                        <br><br>
                         <div class="form-group row">
                             <label for="title" class="col-sm-6 col-form-label">Τίτλος αξιολογούμενης ρύθμισης</label>
                             <div class="col-sm-4">
@@ -446,7 +445,7 @@
                                     <input id="goal_10" class="checkbox-inline" type="checkbox" name="field_7_goal_10"
                                         value="goal-10">
                                     <% } %>
-                                    <label for="goal_10" class="checkbox-label"><img src="/img/10.png"
+                                    <label for="goal_10" class="checkbox-label"><img src="/img/gr-goal-10.jpg"
                                             width="100px"></label>
                                 </div>
                                 <div class="wrap">
@@ -915,11 +914,15 @@
 
             function createNewForm(ev) {
                 ev.preventDefault();
-                console.log($("form").serialize())
+                console.log($("form").serialize());
+                getFullDate($("#initial_submit"));
+                getFullDate($("#last_updated"));
+                var fd = new FormData($("form").get(0));
                 $.ajax({
                     url: '/create',
-                    data: $("form").serialize(),
-
+                    data: fd,
+                    contentType: false,
+                    processData: false,
                     error: function (error) {
                         console.log(error);
                     },
@@ -928,8 +931,7 @@
                         window.location.href = "/user_views/history";
                     },
                     type: 'POST'
-                });
-
+                });         
             }
 
             $(".save_temporarily").on("click", function (ev) {
@@ -946,8 +948,9 @@
             });
 
             $('.convert').on("click", function (ev) {
-                answer = window.confirm("Μετατροπή;");
+                answer = window.confirm("Αντιγραφή;");
                 if (answer) {
+                    convertAnalysis("#typos_analysis");
                     createNewForm(ev);
                 }
             });
@@ -967,10 +970,9 @@
                         console.log(data)
                     },
                     type: 'POST'
-                })//.then(function () {
-                //     //$('#final_report').val() = "./exports/" + title;
-                //     //console.log($('#final_report').val());
-                //     //return download(blob, title + ".pdf");//download pdf
+                })
+                //.then(function () {
+                // return download(blob, title + ".pdf");//download pdf from browser
                 // });
             });
 
@@ -979,7 +981,6 @@
                 if ($('input[name=status_ekthesis]').val() == "Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους") {
                     $("#ekthesi_glk").prop('checked', true);
                 }
-                console.log($('#final_report').val());
 
                 if (role != 'Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων') {
                     $(".return-to-author").hide();
@@ -989,13 +990,13 @@
                     optionalFields(".create-new");
                 }
 
-                if ($("#status_ekthesis").val() == 'Προς Δημοσίευση') {
+                if (role == "Συντάκτης επισπεύδοντος Υπουργείου" &&  ($("#typos_analysis").val() == 'Προσχέδιο νόμου' || $("#typos_analysis").val() == 'Κατευθυντήριες γραμμές')) {
                     $(".convert").show();
                     enableFields(".convert")
                 } else {
                     $(".convert").hide();
                 }
-
+                console.log($("#typos_analysis").val())
                 //init_submit date - will be updated when actually submitted
                 if ($("#last_updated").val() == '') {
                     getFullDate("#last_updated");
@@ -1051,12 +1052,13 @@
             }
 
             function convertAnalysis(analysis) {
-                if ($(analysis).val() == 'Κατευθυντήριες Γραμμές') {
-                    $(analysis).prop('value', 'Προσχέδιο Νόμου');
+                if ($(analysis).val() == 'Κατευθυντήριες γραμμές') {
+                    $(analysis).prop('value', 'Προσχέδιο νόμου');
                     // console.log( $("#title").val())
-                    // $("#title").prop('value', $("#title").val() + ' - Πρώην ' + $(analysis).val());
-                } else if ($(analysis).val() == 'Προσχέδιο Νόμου') {
-                    $(analysis).prop('value', 'Σχέδιο Νόμου');
+                    $("#title").prop('value', 'Αντίγραφο - '+$("#title").val());
+                } else if ($(analysis).val() == 'Προσχέδιο νόμου') {
+                    $(analysis).prop('value', 'Σχέδιο νόμου');
+                    $("#title").prop('value', 'Αντίγραφο - '+$("#title").val());
                     // console.log( $("#title").val())
                     // $("#title").prop('value', $("#title").val() + ' - Πρώην ' + $(analysis).val());
                 }
@@ -1186,7 +1188,6 @@
             } else {
                 table29RowIndex = 0;
             }
-            console.log(table29RowIndex)
             $("#add_row_table_29").on("click", function () {
 
                 $('#tbody_29').append(`

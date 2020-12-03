@@ -25,16 +25,16 @@
                 <h2>Αρχική σελίδα</h2>
                 <br>
 
-                <img src="/img/information.png" id="tooltip_img" aria-describedby="tooltip" style="float: right;"
-                    width="20px">
-                <div id="tooltip" role="tooltip" style="float: right;"> Ο τίτλος θα πρέπει να είναι μοναδικός
-                    <div id="arrow" data-popper-arrow style="float: right;"></div>
-                </div>
-                <br><br>
                 <div class="form-group row">
                     <label for="title" class="col-sm-6 col-form-label required">Τίτλος αξιολογούμενης ρύθμισης</label>
                     <div class="col-sm-4">
                         <input type="text" class="form-control" id="title" name="title">
+                    </div>
+                    <div>
+                        <img src="/img/information.png" id="tooltip_img" aria-describedby="tooltip_img" width="30px">
+                        <div id="tooltip" role="tooltip">Ο τίτλος θα πρέπει να είναι μοναδικός
+                        <div class="arrow" data-popper-arrow></div>
+                        </div>
                     </div>
                 </div>
 
@@ -341,7 +341,8 @@
                         <div class="wrap">
                             <input id="goal_10" class="checkbox-inline" type="checkbox" name="field_7_goal_10"
                                 value="goal-10">
-                            <label for="goal_10" class="checkbox-label"><img src="/img/10.png" width="100px"></label>
+                            <label for="goal_10" class="checkbox-label"><img src="/img/gr-goal-10.jpg"
+                                    width="100px"></label>
                         </div>
                         <div class="wrap">
                             <input id="goal_11" class="checkbox-inline" type="checkbox" name="field_7_goal_11"
@@ -518,13 +519,13 @@
                 <input type="button" name="next" class="next action-button" value="Επόμενα πεδία" />
             </fieldset>
 
-            <fieldset id="kat_arthro_analusi" class='mostly-optional'>
+            <fieldset id="kat_arthro_analusi">
                 <h2>Κατ’ άρθρο ανάλυση αξιολογούμενης ρύθμισης</h2>
                 <br>
                 <table class="table " id="field_14_table">
                     <thead class="thead ">
                         <tr>
-                            <th colspan="2"><label id="table_14_label" class="mostly-optional-label required">14.Σύνοψη
+                            <th colspan="2"><label id="table_14_label" class="required">14.Σύνοψη
                                     στόχων κάθε
                                     άρθρου</label></th>
                         </tr>
@@ -578,31 +579,32 @@
         font-size: 13px;
         border-radius: 4px;
         display: none;
+
     }
 
     #tooltip[data-show] {
         display: block;
     }
 
-    #arrow,
-    #arrow::before {
+    .arrow,
+    .arrow::before {
         position: absolute;
         width: 8px;
         height: 8px;
         z-index: -1;
     }
 
-    #arrow::before {
+    .arrow::before {
         content: '';
         transform: rotate(45deg);
         background: #333;
     }
 
-    #tooltip[data-popper-placement^='top']>#arrow {
+    #tooltip[data-popper-placement^='top']>.arrow {
         bottom: -4px;
     }
 
-    #tooltip[data-popper-placement^='bottom']>#arrow {
+    #tooltip[data-popper-placement^='bottom']>.arrow {
         top: -4px;
     }
 
@@ -792,12 +794,13 @@
         ev.preventDefault();
         initializeAnalysis("#typos_analysis");
         onSubmitStatus();
+        var fd = new FormData($("form").get(0));
         // console.log('heyhey my val: '+ document.getElementById("field_23_upload").files[0].name);
         $.ajax({
             url: '/create',
-            data: $(this).serialize(),
-            //processData: false, // jQuery does not process the data
-            // contentType: 'multipart/form-data',  // jQuery does not set contentType
+            data: fd,
+            contentType: false,
+            processData: false,
             error: function (error) {
                 console.log(error);
             },
@@ -918,59 +921,23 @@
     //console.log("analysis-> "+analysis); // log analysis type
     if (analysis == ":kateythintiries_grammes") {
         optionalFields(".mostly-optional :input");
-        optionalFieldsClassRemoval("mostly-optional-label", "required");
-        // optionalFields("#add_row_table_14");
-        // optionalFields("#fieldset_15 :input");
-        // optionalFields("#fieldset_16 :input");
-        // optionalFields("#fieldset_17 :input");
-        optionalFields("#sxolia_diavouleusis :input");
+        optionalFields(".optional :input");        
+        optionalFields("#add_row_table_14");
         optionalFields("#add_row_table_31");
         optionalFields("#add_row_table_32");
-        optionalFields("#sustasi_etairias :input");
-        optionalFields("#stoixeia_etairias :input");
         enableFields(document.getElementsByName("create_new"));
         enableFields(document.getElementsByName("next"));
         enableFields(document.getElementsByName("previous"));
 
-        optionalFieldsClassRemoval("#table_14_label");
-        optionalFieldsClassRemoval("#field_15_ypoyrgeio_label");
-        optionalFieldsClassRemoval("#field_15_sxedio_nomou_label");
-        optionalFieldsClassRemoval("#field_15_rythmiseis_label");
-        optionalFieldsClassRemoval("#field_16_kratikos_proypologismos_label");
-        optionalFieldsClassRemoval("#field_16_proypologismos_forea_label");
-        optionalFieldsClassRemoval("#field_17_ypoyrgeio_label");
-        optionalFieldsClassRemoval("#field_17_sxedio_nomou_label");
-        optionalFieldsClassRemoval("#field_17_oikonomika_apotelesmata_label");
-        optionalFieldsClassRemoval("#field_23_upload_label");
-        optionalFieldsClassRemoval("#field_23_arxes_label");
-        optionalFieldsClassRemoval("#field_23_arthra_label");
-        optionalFieldsClassRemoval("#table_31_label");
-        optionalFieldsClassRemoval("#table_32_label");
-        optionalFieldsClassRemoval("#field_33_label");
-        optionalFieldsClassRemoval("#field_34_label");
-        optionalFieldsClassRemoval("#field_35_label");
-        optionalFieldsClassRemoval("#field_36_label");
-        optionalFieldsClassRemoval("#field_36_upload_label");
-        optionalFieldsClassRemoval("#field_37_label");
-        optionalFieldsClassRemoval("#field_38_label");
-        optionalFieldsClassRemoval("#field_39_label");
-        optionalFieldsClassRemoval("#field_40_label");
+        optionalFieldsClassRemoval("mostly-optional-label", "required");
+        optionalFieldsClassRemoval("optional-label", "required");
+        optionalFieldsClassRemoval("#table_14_label", "required");
+        optionalFieldsClassRemoval("#table_31_label", "required");
+        optionalFieldsClassRemoval("#table_32_label", "required");
 
     } else if (analysis == ":prosxedio_nomou") {
         optionalFields(".mostly-optional :input");
         optionalFieldsClassRemoval("mostly-optional-label", "required");
-
-        optionalFieldsClassRemoval("#field_15_ypoyrgeio_label");
-        optionalFieldsClassRemoval("#field_15_sxedio_nomou_label");
-        optionalFieldsClassRemoval("#field_15_rythmiseis_label");
-        optionalFieldsClassRemoval("#field_16_kratikos_proypologismos_label");
-        optionalFieldsClassRemoval("#field_16_proypologismos_forea_label");
-        optionalFieldsClassRemoval("#field_17_ypoyrgeio_label");
-        optionalFieldsClassRemoval("#field_17_sxedio_nomou_label");
-        optionalFieldsClassRemoval("#field_17_oikonomika_apotelesmata_label");
-        optionalFieldsClassRemoval("#field_23_upload_label");
-        optionalFieldsClassRemoval("#field_23_arxes_label");
-        optionalFieldsClassRemoval("#field_23_arthra_label");
 
     } else if (analysis == ":epeigonta_katepeigonta" || analysis == ":diethneis_symvaseis" || analysis == ":tropologies_upourgwn") {
 
@@ -1057,12 +1024,13 @@
         optionalFieldsClassRemoval("#field_39_label");
         optionalFieldsClassRemoval("#field_40_label");
     }
-    //Γενικό Λογιστήριο can't create a form, so we disable those fields
-    optionalFields("#fieldset_15 :input");
-    optionalFields("#fieldset_16 :input");
-    enableFields(document.getElementsByName("next"));
-    enableFields(document.getElementsByName("previous"));
-    enableFields(document.getElementsByName("ekthesi_glk"));
+    //these fields are by default disabled
+    optionalFields(".glk :input");
+    optionalFields(".glk :input");
+    enableFields(".next");
+    enableFields(".previous");
+    enableFields("#ekthesi_glk");
+
     //console.log($("#status_ekthesis").val());
 
     //if (role == 'Επιτροπή Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)') { }
@@ -1332,12 +1300,12 @@
     let popperInstance = null;
 
     function create() {
-        popperInstance = Popper.createPopper(button, tooltip, {
+        popperInstance = Popper.createPopper(img, tooltip, {
             modifiers: [
                 {
                     name: 'offset',
                     options: {
-                        offset: [0, 8],
+                        offset: [0, 5],
                     },
                 },
             ],
