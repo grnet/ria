@@ -214,7 +214,7 @@ routes.post('/:entry_id', async (req, res, next) => {
                 { text: data.field_6_2 + "\n\n" },
                 { text: '6.3 Σε διεθνείς οργανισμούς: \n\n', decoration: 'underline' },
                 { text: data.field_6_3 + "\n\n" },
-
+                { text: '7. Σημειώστε ποιοι από τους στόχους βιώσιμης ανάπτυξης των Ηνωμένων Εθνών επιδιώκονται με την αξιολογούμενη ρύθμιση: \n\n', decoration: 'underline' },
                 {
                     columns: [setPdfImage(data.field_7_goal_1), setPdfImage(data.field_7_goal_2), setPdfImage(data.field_7_goal_3), setPdfImage(data.field_7_goal_4), setPdfImage(data.field_7_goal_5)
                     ], columnGap: 10
@@ -345,26 +345,26 @@ routes.post('/:entry_id', async (req, res, next) => {
                 { text: data.field_13_comments + "\n\n" },
 
                 { text: '14. Σύνοψη στόχων κάθε άρθρου \n\n', decoration: 'underline' },
-                {
-                    layout: 'lightHorizontalLines', // optional
-                    table: {
-                        // headers are automatically repeated if the table spans over multiple pages
-                        // you can declare how many rows should be treated as headers
-                        headerRows: 1,
-                        widths: ['*', 'auto', 100, '*'],
+                // {
+                //     layout: 'lightHorizontalLines', // optional
+                //     table: {
+                //         // headers are automatically repeated if the table spans over multiple pages
+                //         // you can declare how many rows should be treated as headers
+                //         headerRows: 1,
+                //         widths: ['*', 'auto', 100, '*'],
 
-                        body: [
-                            //['Άρθρο', 'Στόχος'],
-                            //[buildTableBody(field_14_arthro), buildTableBody(field_14_stoxos)],
-                            field_14_arthro.forEach(value => {
-                                [
-                                 { text: value.text, style: 'cell' },
-                                 { text: value.status, },
-                                ]
-                            })    
-                        ]
-                    }
-                },
+                //         body: [
+                //             //['Άρθρο', 'Στόχος'],
+                //             //[buildTableBody(field_14_arthro), buildTableBody(field_14_stoxos)],
+                //             field_14_arthro.forEach(value => {
+                //                 [
+                //                  { text: value.text, style: 'cell' },
+                //                  { text: value.status, },
+                //                 ]
+                //             })    
+                //         ]
+                //     }
+                // },
 
                 {
                     text: 'Έκθεση ΓΛΚ',
