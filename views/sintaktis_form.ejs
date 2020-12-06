@@ -957,8 +957,7 @@
         ev.preventDefault();
         initializeAnalysis("#typos_analysis");
         var fd = new FormData($("form").get(0));
-        //console.log(fd)
-        //console.log('heyhey my val: '+ document.getElementById("field_23_upload").files[0].name);
+        //console.log('my file: '+ document.getElementById("field_23_upload").files[0].name);
         $.ajax({
             url: '/create',
             data: fd,

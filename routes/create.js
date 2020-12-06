@@ -16,6 +16,7 @@ routes.get('/:analysis', function (req, res, next) {
     //console.log(req.params.analysis)
     res.render("create", { analysis: req.params.analysis, rolos: req.session.rolos })
 });
+//routes.post('/', form_create.upload_files, form_create.create_update_form
 
 routes.post('/', upload, async function (req, res, next) {
 

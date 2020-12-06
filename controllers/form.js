@@ -1,7 +1,8 @@
 let database = require("../services/database")
+var multer = require('multer')
 
-
-exports.create_update_form = ( async function (req, res, next) {
+exports.create_update_form = (async function (req, res, next) {
+    console.log("EEEEEEEE" + Object.values(req.body))
 
     //console.log("files: " + req.files);
     //console.log("field23: " + req.files.field_23_upload);
@@ -298,15 +299,14 @@ exports.create_update_form = ( async function (req, res, next) {
     var author = req.session.username;
     await database.ekthesi.update({
         author: author, field_14_arthro: field_14_arthro, field_14_stoxos: field_14_stoxos, field_17_onoma: field_17_onoma, field_17_epitheto: field_17_epitheto, field_17_idiotita: field_17_idiotita, field_29_diatakseis_rythmisis: field_29_diatakseis_rythmisis, field_29_yfistamenes_diatakseis: field_29_yfistamenes_diatakseis, field_30_diatakseis_katargisi: field_30_diatakseis_katargisi, field_30_katargoumenes_diatakseis: field_30_katargoumenes_diatakseis,
-        field_31_sxetiki_diataksi: field_31_sxetiki_diataksi, field_31_synarmodia_ypoyrgeia: field_31_synarmodia_ypoyrgeia, field_31_antikeimeno_synarmodiotitas: field_31_antikeimeno_synarmodiotitas, field_32_eksousiodotiki_diataksi: field_32_eksousiodotiki_diataksi, field_32_eidos_praksis: field_32_eidos_praksis, field_32_armodio_ypoyrgeio: field_32_armodio_ypoyrgeio, field_32_antikeimeno: field_32_antikeimeno, field_32_xronodiagramma: field_32_xronodiagramma        
+        field_31_sxetiki_diataksi: field_31_sxetiki_diataksi, field_31_synarmodia_ypoyrgeia: field_31_synarmodia_ypoyrgeia, field_31_antikeimeno_synarmodiotitas: field_31_antikeimeno_synarmodiotitas, field_32_eksousiodotiki_diataksi: field_32_eksousiodotiki_diataksi, field_32_eidos_praksis: field_32_eidos_praksis, field_32_armodio_ypoyrgeio: field_32_armodio_ypoyrgeio, field_32_antikeimeno: field_32_antikeimeno, field_32_xronodiagramma: field_32_xronodiagramma
     },
         {
             where: {
                 id: res_data.id
             }
-    })
+        })
     //console.log(res_data)
-    console.log("EEEEEEEE"+req.body.initial_submit)
 
     //map variables to model's fields
     let rythmiseis_data = await database.rythmiseis.create({
@@ -332,4 +332,57 @@ exports.create_update_form = ( async function (req, res, next) {
     })
 
     res.send(res_data)
+});
+
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './public/uploads/')
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + '-' + file.originalname)//Date().toLocaleString("el-GR", { timeZone: "Europe/Athens" })
+    }
+})
+
+var upload = multer({ storage: storage }).fields([{ name: 'field_21_upload', maxCount: 10 }, { name: 'field_23_upload', maxCount: 10 }, { name: 'field_36_upload', maxCount: 10 }]);
+
+exports.upload_files = (upload, async function (req, res, next) {
+    let field21 = [];
+    let field23 = [];
+    let field36 = [];
+    try {
+
+        const file = req.files;
+        if (file.field_21_upload) {
+            for (i in file.field_21_upload) {
+                field21.push(file.field_21_upload[i].filename)
+            }
+            console.log("field21: " + field21);
+            // const error = new Error('Please upload a file')
+            // error.httpStatusCode = 400
+            // return next(error)
+
+        }
+        if (file.field_23_upload) {
+            for (i in file.field_23_upload) {
+                field23.push(file.field_23_upload[i].filename)
+                console.log(file.field_23_upload[i].path);
+            }
+            console.log("field23: " + field23);
+        }
+        if (file.field_36_upload) {
+            for (i in file.field_36_upload) {
+                field36.push(file.field_36_upload[i].filename)
+            }
+            console.log("field36: " + field36);
+        }
+    } catch (e) {
+        console.log("Error message: " + e.message);
+    }
+    console.log(req.body);
+
+    console.log("files: " + req.files);
+    console.log("field23: " + req.files.field_23_upload);
+    req.body.author_id = "1";
+    console.log("field23_obj_vals: " + Object.values(req.files));
+    console.log("field23: " + Object.values(req.files.field_23_upload[0]));
 });
