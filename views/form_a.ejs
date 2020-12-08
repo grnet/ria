@@ -682,7 +682,7 @@
                             </thead>
                             <tbody id="tbody_14">
 
-                                <% if(data.field_14_arthro != null && data.field_14_arthro.length != null ){
+                                <% if( data.field_14_arthro && data.field_14_arthro.length ){
                                      for (var i = 0; i < data.field_14_arthro.length; i++) { %>
                                 <tr id="table_14_row<%=i%>">
                                     <td><textarea class="form-control" id="field_14_arthro<%=i%>"

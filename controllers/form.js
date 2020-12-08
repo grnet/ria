@@ -1,5 +1,6 @@
 let database = require("../services/database")
-var multer = require('multer')
+var multer = require('multer');
+const session = require("express-session");
 
 exports.create_update_form = (async function (req, res, next) {
     console.log("EEEEEEEE" + Object.values(req.body))
@@ -188,7 +189,8 @@ exports.create_update_form = (async function (req, res, next) {
     //------------------------------------------------------------------------------//
     //add row to ekthesi model, map values from req.body & set foreign key equal to session username to get author 
     let res_data = await database.ekthesi.create(req.body);
-
+    req.session.form_id = res_data.id;
+    
     let req_body = req.body;//assign req.body to variable
     let keys = Object.keys(req_body);//get keys 
     let field_14_arthro = [];
@@ -299,13 +301,13 @@ exports.create_update_form = (async function (req, res, next) {
     var author = req.session.username;
     await database.ekthesi.update({
         author: author, field_14_arthro: field_14_arthro, field_14_stoxos: field_14_stoxos, field_17_onoma: field_17_onoma, field_17_epitheto: field_17_epitheto, field_17_idiotita: field_17_idiotita, field_29_diatakseis_rythmisis: field_29_diatakseis_rythmisis, field_29_yfistamenes_diatakseis: field_29_yfistamenes_diatakseis, field_30_diatakseis_katargisi: field_30_diatakseis_katargisi, field_30_katargoumenes_diatakseis: field_30_katargoumenes_diatakseis,
-        field_31_sxetiki_diataksi: field_31_sxetiki_diataksi, field_31_synarmodia_ypoyrgeia: field_31_synarmodia_ypoyrgeia, field_31_antikeimeno_synarmodiotitas: field_31_antikeimeno_synarmodiotitas, field_32_eksousiodotiki_diataksi: field_32_eksousiodotiki_diataksi, field_32_eidos_praksis: field_32_eidos_praksis, field_32_armodio_ypoyrgeio: field_32_armodio_ypoyrgeio, field_32_antikeimeno: field_32_antikeimeno, field_32_xronodiagramma: field_32_xronodiagramma
+        field_31_sxetiki_diataksi: field_31_sxetiki_diataksi, field_31_synarmodia_ypoyrgeia: field_31_synarmodia_ypoyrgeia, field_31_antikeimeno_synarmodiotitas: field_31_antikeimeno_synarmodiotitas, field_32_eksousiodotiki_diataksi: field_32_eksousiodotiki_diataksi, field_32_eidos_praksis: field_32_eidos_praksis, field_32_armodio_ypoyrgeio: field_32_armodio_ypoyrgeio, field_32_antikeimeno: field_32_antikeimeno, field_32_xronodiagramma: field_32_xronodiagramma        
     },
         {
             where: {
                 id: res_data.id
             }
-        })
+    })
     //console.log(res_data)
 
     //map variables to model's fields
@@ -331,7 +333,7 @@ exports.create_update_form = (async function (req, res, next) {
         allos_deiktis1: allos_deiktis1, allos_deiktis2: allos_deiktis2, allos_deiktis3: allos_deiktis3, allos_deiktis4: allos_deiktis4, allos_deiktis5: allos_deiktis5, field9Id: res_data.id
     })
 
-    res.send(res_data)
+    res.send({redirect: "../user_views/history"});
 });
 
 var storage = multer.diskStorage({

@@ -11,13 +11,22 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/countable/3.0.1/Countable.min.js"></script>
-        <!-- Development version. Change to production later-->
+        <!-- Development version. Change to production version later-->
         <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
 
         <br>
         <input type="button" name="back" class="back" value="Πίσω" />
         <br><br>
         <form enctype="multipart/form-data">
+            <% if( typeof errors !== "undefined") {
+                for (i in errors) {%>
+                <div class="alert alert-danger alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Error! <%= errors[i].msg%></strong> 
+                  </div>
+            <%  }
+               } %>    
+
             <input type="hidden" id="typos_analysis" name="typos_analysis" value="<%= analysis %>">
             <input type="hidden" id="status_ekthesis" name="status_ekthesis" value="Σε σύνταξη">
 
@@ -31,7 +40,8 @@
                         <input type="text" class="form-control" id="title" name="title">
                     </div>
                     <div>
-                        <img src="/img/information.png" id="tooltip_img" aria-describedby="tooltip_img" width="30px" onmouseover="tooltipEvents('tooltip_img', 'tooltip')">
+                        <img src="/img/information.png" id="tooltip_img" aria-describedby="tooltip_img" width="30px"
+                            onmouseover="tooltipEvents('tooltip_img', 'tooltip')">
                         <div id="tooltip" role="tooltip">Ο τίτλος θα πρέπει να είναι μοναδικός
                             <div class="arrow" data-popper-arrow></div>
                         </div>
@@ -42,15 +52,16 @@
                 <hr>
 
                 <div class="form-group row">
-                    <label for="initial_submit" class="col-sm-6 col-form-label required">Αρχική καταχώρηση</label> 
+                    <label for="initial_submit" class="col-sm-6 col-form-label required">Αρχική καταχώρηση</label>
                     <div class="col-sm-4">
                         <input type="text" class="form-control" id="initial_submit" name="initial_submit">
-                    </div> 
-                    <div><img src="/img/information.png" id="tooltip_img2" aria-describedby="tooltip_img2" width="30px" onmouseover="tooltipEvents('tooltip_img2', 'tooltip2')">
+                    </div>
+                    <div><img src="/img/information.png" id="tooltip_img2" aria-describedby="tooltip_img2" width="30px"
+                            onmouseover="tooltipEvents('tooltip_img2', 'tooltip2')">
                         <div id="tooltip2" role="tooltip">Συμπληρώνεται αυτόματα
                             <div class="arrow" data-popper-arrow></div>
-                        </div>                                     
-                    </div>    
+                        </div>
+                    </div>
                 </div>
                 <br>
                 <hr>
@@ -61,11 +72,12 @@
                         <textarea class="form-control" id="epispeudon_foreas" name="epispeudon_foreas" rows="3"
                             placeholder="Επισπεύδον Υπουργείο ή Βουλευτής"></textarea>
                     </div>
-                    <div><img src="/img/information.png" id="tooltip_img3" aria-describedby="tooltip_img3" width="30px" onmouseover="tooltipEvents('tooltip_img3', 'tooltip3')">
+                    <div><img src="/img/information.png" id="tooltip_img3" aria-describedby="tooltip_img3" width="30px"
+                            onmouseover="tooltipEvents('tooltip_img3', 'tooltip3')">
                         <div id="tooltip3" role="tooltip">Επισπεύδον Υπουργείο ή Βουλευτής
                             <div class="arrow" data-popper-arrow></div>
-                        </div>                                     
-                    </div> 
+                        </div>
+                    </div>
                 </div>
 
                 <hr>
@@ -76,11 +88,12 @@
                         <textarea class="form-control" id="rythmisi_pou_afora" name="rythmisi_pou_afora" rows="3"
                             placeholder="Ρύθμιση"></textarea>
                     </div>
-                    <div><img src="/img/information.png" id="tooltip_img4" aria-describedby="tooltip_img4" width="30px" onmouseover="tooltipEvents('tooltip_img4', 'tooltip4')">
+                    <div><img src="/img/information.png" id="tooltip_img4" aria-describedby="tooltip_img4" width="30px"
+                            onmouseover="tooltipEvents('tooltip_img4', 'tooltip4')">
                         <div id="tooltip4" role="tooltip">Αν δεν αφορά κάποια ρύθμιση, το πεδίο παραμένει κενό
                             <div class="arrow" data-popper-arrow></div>
-                        </div>                                     
-                    </div> 
+                        </div>
+                    </div>
                 </div>
 
                 <hr>
@@ -91,24 +104,27 @@
                         <textarea class="form-control" id="stoixeia_epikoinwnias" name="stoixeia_epikoinwnias" rows="3"
                             placeholder="E-mail, κινητό, γραφείο κ.ο.κ"></textarea>
                     </div>
-                    <div><img src="/img/information.png" id="tooltip_img5" aria-describedby="tooltip_img5" width="30px" onmouseover="tooltipEvents('tooltip_img5', 'tooltip5')">
+                    <div><img src="/img/information.png" id="tooltip_img5" aria-describedby="tooltip_img5" width="30px"
+                            onmouseover="tooltipEvents('tooltip_img5', 'tooltip5')">
                         <div id="tooltip5" role="tooltip">E-mail, κινητό, γραφείο κ.ο.κ
                             <div class="arrow" data-popper-arrow></div>
-                        </div>                                     
-                    </div> 
+                        </div>
+                    </div>
                 </div>
 
                 <br>
                 <hr>
                 <div>
-                <p>Επιλέξατε από τον παρακάτω κατάλογο τον τομέα ή τους τομείς νομοθέτησης στους οποίους αφορούν οι
-                    βασικές διατάξεις της αξιολογούμενης ρύθμισης:    
-                    <img src="/img/information.png" id="tooltip_img6" aria-describedby="tooltip_img6" width="30px" onmouseover="tooltipEvents('tooltip_img6', 'tooltip6')">
-                        <div id="tooltip6" role="tooltip">Ανάλογα με τις επιλογές σας εμφανίζονται οι αντίστοιχοι πίνακες στο πεδίο "Ειδικότεροι στόχοι ανάλογα με τον τομέα νομοθέτησης"
-                            <div class="arrow" data-popper-arrow></div>
-                        </div>                                     
-                </p>
-                
+                    <p>Επιλέξατε από τον παρακάτω κατάλογο τον τομέα ή τους τομείς νομοθέτησης στους οποίους αφορούν οι
+                        βασικές διατάξεις της αξιολογούμενης ρύθμισης:
+                        <img src="/img/information.png" id="tooltip_img6" aria-describedby="tooltip_img6" width="30px"
+                            onmouseover="tooltipEvents('tooltip_img6', 'tooltip6')">
+                    <div id="tooltip6" role="tooltip">Ανάλογα με τις επιλογές σας εμφανίζονται οι αντίστοιχοι πίνακες
+                        στο πεδίο "Ειδικότεροι στόχοι ανάλογα με τον τομέα νομοθέτησης"
+                        <div class="arrow" data-popper-arrow></div>
+                    </div>
+                    </p>
+
                 </div>
                 <div class="checkbox-group form-group row ">
                     <label for="ekpedeusi_politismos" class="col-sm-8 col-form-label">ΕΚΠΑΙΔΕΥΣΗ -
@@ -947,7 +963,7 @@
             },
             success: function (data) {
                 console.log(data);
-                window.location.href = "/user_views/history";
+                //window.location.href = "/user_views/history";
             },
             type: 'POST'
         });
@@ -959,7 +975,7 @@
         var fd = new FormData($("form").get(0));
         //console.log('my file: '+ document.getElementById("field_23_upload").files[0].name);
         $.ajax({
-            url: '/create',
+            url: '/create/<%= analysis %>',
             data: fd,
             contentType: false,
             processData: false,
@@ -967,8 +983,9 @@
                 console.log(error);
             },
             success: function (data) {
-                console.log(data);
-                window.location.href = "/user_views/history";
+                window.location = data.redirect
+                //console.log(data);
+                //window.location.href = "/user_views/history";
             },
             type: 'POST'
         });
@@ -1393,8 +1410,8 @@
     });
 
     function tooltipEvents(imgId, tooltipId) {
-        const img = document.querySelector('#'+imgId);
-        const tooltip = document.querySelector('#'+tooltipId);
+        const img = document.querySelector('#' + imgId);
+        const tooltip = document.querySelector('#' + tooltipId);
 
         let popperInstance = null;
 
