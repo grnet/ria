@@ -99,16 +99,10 @@
                         <p>Επιλέξατε από τον παρακάτω κατάλογο τον τομέα ή τους τομείς νομοθέτησης στους οποίους αφορούν
                             οι βασικές διατάξεις της αξιολογούμενης ρύθμισης:</p>
                         <div class="checkbox-group form-group row">
-                            <label for="ekpedeusi_politismos" class="col-sm-8 col-form-label">ΕΚΠΑΙΔΕΥΣΗ -
-                                ΠΟΛΙΤΙΣΜΟΣ<sup>1</sup></label>
-                            <% if(data.ekpedeusi_politismos){ %>
-                            <input class="col-sm-2 form-check-input position-static" name="ekpedeusi_politismos"
-                                type="checkbox" id="ekpedeusi_politismos" value="data.ekpedeusi_politismos" checked>
-                            <% }else{ %>
-                            <input class="col-sm-2 form-check-input position-static" name="ekpedeusi_politismos"
-                                type="checkbox" id="ekpedeusi_politismos" value="ekpedeusi_politismos">
-                            <% } %>
+                            <label for="ekpedeusi_politismos" class="col-sm-8 col-form-label">ΕΚΠΑΙΔΕΥΣΗ - ΠΟΛΙΤΙΣΜΟΣ<sup>1</sup></label>                                    
+                            <input class="col-sm-2 form-check-input position-static" name="ekpedeusi_politismos" type="checkbox" id="ekpedeusi_politismos">
                         </div>
+    
                         <div class="checkbox-group form-group row">
                             <label for="eksoteriki_politiki" class="col-sm-8 col-form-label">ΕΘΝΙΚΗ ΑΜΥΝΑ - ΕΞΩΤΕΡΙΚΗ
                                 ΠΟΛΙΤΙΚΗ<sup>2</sup></label>
@@ -897,7 +891,7 @@
                 onSubmitStatus();
                 updateForm(ev);
             })
-
+            //TODO: update to FormData
             function updateForm(ev) {
                 ev.preventDefault();
                 console.log($("form").serialize())
@@ -983,14 +977,14 @@
 
             $(document).ready(function () {
                 //default when loading page
-                if (document.getElementById('ekpedeusi_politismos').checked) {
-                    $("#politismos_table").show();
-                    $("#ekpaideysi_table").show();
-                } else {
-                    $("#politismos_table").hide();
-                    $("#ekpaideysi_table").hide();
-                }
-
+                console.log('ekp: ' + "<%= data.ekpedeusi_politismos %>")
+                if("<%= data.ekpedeusi_politismos %>" ) {
+                    $('#ekpedeusi_politismos').prop( "checked", true );
+                    $("#ekpedeusi_politismos input:checkbox").prop('value', 'on')
+                } //else {
+                //     $("#ekpedeusi_politismos input:checkbox").prop('value', 'off')
+                // }
+                console.log('ekp: ' + $('#ekpedeusi_politismos').val())
                 if (document.getElementById('forologiki_politiki').checked) {
                     $("#oikonomia_table").show();
                     $("#forologia_table").show();
@@ -1295,7 +1289,7 @@
                 // Decreasing the total number of rows by 1. 
                 table17RowIndex--;
             });
-            
+
             var table29RowIndex = 0;
             if ("data.field_29_diatakseis_rythmisis.length" != null) {
                 var table29RowIndex = "<%=data.field_29_diatakseis_rythmisis.length %>"
@@ -1553,11 +1547,17 @@
                 }
             })
 
-            $("#ekpedeusi_politismos").click(function (ev) {
-                if (this.checked) {
+            $("#ekpedeusi_politismos").on('change',function (ev) {
+                if ($("#ekpedeusi_politismos").is(":checked")) {
                     $("#politismos_table").show();
                     $("#ekpaideysi_table").show();
+                    $("#ekpedeusi_politismos").prop('checked', true);
+                } else {
+                    $("#politismos_table").hide();
+                    $("#ekpaideysi_table").hide();
+                    $("#ekpedeusi_politismos").prop('checked', false);
                 }
+                console.log('ekp: ' + $(this).val())
             })
 
             $("#forologiki_politiki").click(function (ev) {

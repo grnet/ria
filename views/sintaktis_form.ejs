@@ -30,19 +30,19 @@
             <input type="hidden" id="typos_analysis" name="typos_analysis" value="<%= analysis %>">
             <input type="hidden" id="status_ekthesis" name="status_ekthesis" value="Σε σύνταξη">
 
-            <fieldset id="arxiki">
+            <fieldset id="arxiki" name="arxiki">
                 <h2>Αρχική σελίδα</h2>
                 <br>
 
                 <div class="form-group row">
                     <label for="title" class="col-sm-6 col-form-label required">Τίτλος αξιολογούμενης ρύθμισης</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" id="title" name="title">
+                        <input type="text" class="form-control" id="title" name="title" required>
                     </div>
                     <div>
                         <img src="/img/information.png" id="tooltip_img" aria-describedby="tooltip_img" width="30px"
                             onmouseover="tooltipEvents('tooltip_img', 'tooltip')">
-                        <div id="tooltip" role="tooltip">Ο τίτλος θα πρέπει να είναι μοναδικός
+                        <div id="tooltip" role="tooltip"><%= tooltips %>
                             <div class="arrow" data-popper-arrow></div>
                         </div>
                     </div>
@@ -70,7 +70,7 @@
                     <label for="epispeudon_foreas" class="col-sm-6 col-form-label required">Επισπεύδον φορέας</label>
                     <div class="col-sm-4">
                         <textarea class="form-control" id="epispeudon_foreas" name="epispeudon_foreas" rows="3"
-                            placeholder="Επισπεύδον Υπουργείο ή Βουλευτής"></textarea>
+                            placeholder="Επισπεύδον Υπουργείο ή Βουλευτής" required></textarea>
                     </div>
                     <div><img src="/img/information.png" id="tooltip_img3" aria-describedby="tooltip_img3" width="30px"
                             onmouseover="tooltipEvents('tooltip_img3', 'tooltip3')">
@@ -130,7 +130,7 @@
                     <label for="ekpedeusi_politismos" class="col-sm-8 col-form-label">ΕΚΠΑΙΔΕΥΣΗ -
                         ΠΟΛΙΤΙΣΜΟΣ<sup>1</sup></label>
                     <input class="col-sm-2 form-check-input position-static" name="ekpedeusi_politismos" type="checkbox"
-                        id="ekpedeusi_politismos" value="ekpedeusi_politismos">
+                        id="ekpedeusi_politismos">
                 </div>
                 <div class="checkbox-group form-group row">
                     <label for="eksoteriki_politiki" class="col-sm-8 col-form-label">ΕΘΝΙΚΗ ΑΜΥΝΑ - ΕΞΩΤΕΡΙΚΗ
@@ -946,7 +946,7 @@
             document.getElementById(spanId).innerHTML = counter.words.toString();
         })
     }
-
+    
     $("form").on("submit", function (ev) {
         ev.preventDefault();
         initializeAnalysis("#typos_analysis");
@@ -1461,6 +1461,11 @@
         if (this.checked) {
             $("#politismos_table").show();
             $("#ekpaideysi_table").show();
+            $(this).prop('value', 'true');
+        } else {
+            $("#politismos_table").hide();
+            $("#ekpaideysi_table").hide();
+            $(this).prop('value', 'false');
         }
     })
 
@@ -1469,6 +1474,10 @@
             $("#oikonomia_table").show();
             $("#forologia_table").show();
             $("#ergasiakes_sxeseis_table").show();
+        } else {
+            $("#oikonomia_table").hide();
+            $("#forologia_table").hide();
+            $("#ergasiakes_sxeseis_table").hide();
         }
     })
 
@@ -1480,6 +1489,13 @@
             $("#ygeia_table").show();
             $("#isotita_fylwn_table").show();
             $("#metanasteytiki_prosfygiki_politiki_table").show();
+        } else {
+            $("#apasxolisi_table").hide();
+            $("#koinwniki_asfalisi_table").hide();
+            $("#koinwniki_pronoia_table").hide();
+            $("#ygeia_table").hide();
+            $("#isotita_fylwn_table").hide();
+            $("#metanasteytiki_prosfygiki_politiki_table").hide();
         }
     })
 
@@ -1488,6 +1504,10 @@
             $("#dimosia_dioikisi_table").show();
             $("#dimosia_asfaleia_table").show();
             $("#dikaiosini_table").show();
+        } else {
+            $("#dimosia_dioikisi_table").hide();
+            $("#dimosia_asfaleia_table").hide();
+            $("#dikaiosini_table").hide();
         }
     })
 
@@ -1495,6 +1515,9 @@
         if (this.checked) {
             $("#ependytiki_drastiriotita_table").show();
             $("#perivallon_energeia_table").show();
+        } else {
+            $("#ependytiki_drastiriotita_table").hide();
+            $("#perivallon_energeia_table").hide();
         }
     })
 
@@ -1597,6 +1620,29 @@
             $("#field_36_wrap").hide();
         }
     })
+
+    // $('fieldset').find('[required]').each(function() {
+    // //your code here
+    // })
+
+
+    var tooltips = '<%= tooltips %>';
+    function setTooltip (fieldId) {
+        var fieldId = fieldId.substring(1);//remove 1st character
+        tooltips = tooltips.replace(/&#34;/g, '"');//replace html for double quotes
+        tooltips = JSON.parse(tooltips)//parse to JSON obj 
+        //console.log(tooltips)
+        console.log('fieldid: ' + fieldId);     
+        // var index = Object.keys(tooltips).indexOf(fieldId); 
+        // console.log('index: ' + index)      
+        for (i in tooltips) {
+            if (tooltips[i].fieldid == fieldId) {
+                console.log('FOUND IT!!' + tooltips[i].tooltiptext) 
+            }
+        }        
+    }
+    
+    setTooltip('#title');    
 
     var current_fs, next_fs, previous_fs; //fieldsets
 

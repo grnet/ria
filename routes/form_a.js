@@ -2,6 +2,8 @@ const routes = require('express').Router()
 let database = require('../services/database');
 const fs = require('fs');
 const csv = require('csv-parser')
+var multer = require('multer')
+
 
 routes.get('/:entry_id', async (req, res, next) => {
 
@@ -449,7 +451,7 @@ routes.put('/:entry_id', async function (req, res, next) {
     ekthesi_id = req.params.entry_id;
     console.log("req.body: " + Object.keys(req.body) + Object.values(req.body));
     console.log("status: " + req.body.status_ekthesis);
-    console.log("id: " + req.body.id);
+    console.log("ekpedeusi_politismos: " + req.body.ekpedeusi_politismos);
     let ekthesi = await database.ekthesi.update(req.body, {
         where: {
             id: ekthesi_id

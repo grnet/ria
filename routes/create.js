@@ -1,5 +1,7 @@
 const routes = require('express').Router()
 let database = require("../services/database")
+const csv = require('csv-parser')
+const fs = require('fs');
 const form_submit = require("../controllers/form")
 const { body, check, validationResult } = require('express-validator');
 var multer = require('multer')
@@ -15,10 +17,26 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage }).fields([{ name: 'field_21_upload', maxCount: 10 }, { name: 'field_23_upload', maxCount: 10 }, { name: 'field_36_upload', maxCount: 10 }]);
 
 routes.get('/:analysis', function (req, res, next) {
-    //console.log(req.params.analysis)
-    const valid_errors = req.session.errors;
-    req.session.errors = null;
-    res.render("create", { analysis: req.params.analysis, rolos: req.session.rolos, errors:valid_errors })
+
+    try {
+        var results = [];
+        const valid_errors = req.session.errors;
+        req.session.errors = null;
+        fs.createReadStream('public/csvs/tooltips.csv')
+            .pipe(csv())
+            .on('data', (data) => results.push(data))
+            .on('end', () => {
+                //console.log(results);
+                results = JSON.stringify(results)
+                //console.log('strngf: '+results);
+                // results = JSON.parse(results)
+                // console.log('prs: '+results);
+                res.render("create", { analysis: req.params.analysis, rolos: req.session.rolos, errors:valid_errors, tooltips:results });    
+            });                
+    } catch (err) {
+        console.log('error: ' + err)
+    }
+   
 });
 //routes.post('/', form_create.upload_files, form_submit.create_update_form
 
