@@ -37,7 +37,7 @@
                 <div class="form-group row">
                     <label for="title" class="col-sm-6 col-form-label required">Τίτλος αξιολογούμενης ρύθμισης</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" id="title" name="title" required>
+                        <input type="text" class="form-control" id="title" name="title">
                     </div>
                     <div>
                         <img src="/img/information.png" id="tooltip_img" aria-describedby="tooltip_img" width="30px"
@@ -70,7 +70,7 @@
                     <label for="epispeudon_foreas" class="col-sm-6 col-form-label required">Επισπεύδον φορέας</label>
                     <div class="col-sm-4">
                         <textarea class="form-control" id="epispeudon_foreas" name="epispeudon_foreas" rows="3"
-                            placeholder="Επισπεύδον Υπουργείο ή Βουλευτής" required></textarea>
+                            placeholder="Επισπεύδον Υπουργείο ή Βουλευτής"></textarea>
                     </div>
                     <div><img src="/img/information.png" id="tooltip_img3" aria-describedby="tooltip_img3" width="30px"
                             onmouseover="tooltipEvents('tooltip_img3', 'tooltip3')">
@@ -1643,7 +1643,8 @@
     }
     
     setTooltip('#title');    
-
+    //$('#title').prop('required',true);
+    
     var current_fs, next_fs, previous_fs; //fieldsets
 
 
