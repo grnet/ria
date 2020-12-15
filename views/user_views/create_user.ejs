@@ -15,43 +15,43 @@
 
             <div class="form-group">
                 <label for="fname">Όνομα χρήστη:</label>
-                <input type="text" size="10" id="fname" name="fname" placeholder="Όνομα χρήστη" required />
+                <input type="text" size="10" id="fname" name="fname" placeholder="Όνομα χρήστη" required minlength="5"/>
             </div>
             <hr>
 
             <div class="form-group">
                 <label for="lname">Επώνυμο χρήστη:</label>
-                <input type="text" size="10" id="lname" name="lname" placeholder="Επώνυμο χρήστη" required /> 
+                <input type="text" size="10" id="lname" name="lname" placeholder="Επώνυμο χρήστη" required minlength="5"/> 
             </div>
             <hr>
 
             <div class="form-group">
                 <label for="username">Username χρήστη:</label>
-                <input type="text" size="10" id="username" name="username" placeholder="Username" required /> 
+                <input type="text" size="10" id="username" name="username" placeholder="Username" required minlength="5"/> 
             </div>
             <hr>
 
             <div class="form-group">
                 <label for="password">Κωδικός πρόσβασης χρήστη:</label>
-                <input type="password" size="10" id="password" name="password" placeholder="Κωδικός πρόσβασης" required /> 
+                <input type="password" size="10" id="password" name="password" placeholder="Κωδικός πρόσβασης" required minlength="8"/> 
             </div>
 
             <div class="form-group">
                 <label for="password">Επανάληψη κωδικού πρόσβασης χρήστη:</label>
-                <input type="password" size="10" id="repeat_password" name="repeat_password" placeholder="Επανάληψη κωδικού πρόσβασης" required /> 
+                <input type="password" size="10" id="repeat_password" name="repeat_password" placeholder="Επανάληψη κωδικού πρόσβασης" required minlength="8"/> 
             </div>
             <hr>
 
             <div class="form-group">
                 <label for="ypoyrgeio">Υπουργείο:</label>
-                <input type="text" size="10" id="ypoyrgeio" name="ypoyrgeio" placeholder="Υπουργείο" /> 
+                <input type="text" size="10" id="ypoyrgeio" name="ypoyrgeio" placeholder="Υπουργείο" required minlength="10"/> 
             </div>
             <hr>
 
-            <div class="checkbox-group form-group row">
+            <div class="checkbox-group form-group row" >
                 <label for="rolos" class="col-sm-2 col-form-label">Ρόλος: </label>
-                <select id="rolos" name="rolos" class="col-sm-2 form-control">
-                    <option selected disabled>Eπιλογή</option>
+                <select id="rolos" name="rolos" class="col-sm-2 form-control" required>
+                    <option value="" selected disabled>Eπιλογή</option>
                     <option value="Συντάκτης επισπεύδοντος Υπουργείου">Συντάκτης επισπεύδοντος Υπουργείου</option>
                     <option value="Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων">Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων</option>
                     <option value="Βουλευτής" >Βουλευτής</option>
@@ -68,7 +68,7 @@
 
             <div class="checkbox-group form-group row">
                 <label for="dikaiwmata_diaxeirisis" class="col-sm-8 col-form-label">Ο χρήστης έχει δικαιώματα διαχείρισης:</label>
-                <input class="col-sm-2 form-check-input position-static" type="checkbox" id="dikaiwmata_diaxeirisis" name="dikaiwmata_diaxeirisis" value="dikaiwmata_diaxeirisis">
+                <input class="col-sm-2 form-check-input position-static" type="checkbox" id="dikaiwmata_diaxeirisis" name="dikaiwmata_diaxeirisis">
             </div>
             <hr>
             

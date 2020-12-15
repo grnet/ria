@@ -24,7 +24,7 @@ app.use(cookieParser());
 // prune expired entries every 24h to avoid memory leaks
 let memoryStore = new session.MemoryStore({checkPeriod: 86400000 }); //We will store our user session details to the memory 
  app.use(session({                                 
-    secret:'thisShouldBeLongAndSecret', //The secret is used to hash the session with HMAC                                         
+    secret:'this!_Should-_Be@-Long%-And*_Secret=-', //The secret is used to hash the session with HMAC                                         
     store: memoryStore,
     
 }));

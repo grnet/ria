@@ -14,49 +14,48 @@
 
             <div class="form-group">
                 <label for="fname">Όνομα χρήστη:</label>
-                <input type="text" size="20" id="fname" name="fname" placeholder="Όνομα χρήστη"
+                <input type="text" size="20" id="fname" name="fname" placeholder="Όνομα χρήστη" required minlength="5"
                     value="<%= data.fname %>" />
             </div>
             <hr>
 
             <div class="form-group">
                 <label for="lname">Επώνυμο χρήστη:</label>
-                <input type="text" size="20" id="lname" name="lname" placeholder="Επώνυμο χρήστη"
+                <input type="text" size="20" id="lname" name="lname" placeholder="Επώνυμο χρήστη" required minlength="5"
                     value="<%= data.lname %>" />
             </div>
             <hr>
 
             <div class="form-group">
                 <label for="username">Username χρήστη:</label>
-                <input type="text" size="20" id="username" name="username" placeholder="Username"
+                <input type="text" size="20" id="username" name="username" placeholder="Username" required minlength="5"
                     value="<%= data.username %>" />
             </div>
             <hr>
 
             <div class="form-group">
                 <label for="password">Κωδικός πρόσβασης χρήστη:</label>
-                <input type="password" size="20" id="password" name="password" placeholder="Κωδικός πρόσβασης"
-                    value="<%= data.password %>" />
+                <input type="password" size="20" id="password" name="password" placeholder="*****" minlength="8" />
             </div>
 
             <div class="form-group">
                 <label for="password">Επανάληψη κωδικού πρόσβασης χρήστη:</label>
-                <input type="password" size="20" id="repeat_password" name="repeat_password"
-                    placeholder="Επανάληψη κωδικού πρόσβασης" value="<%= data.password %>" />
+                <input type="password" size="20" id="repeat_password" name="repeat_password" minlength="8"
+                    placeholder="*****" />
             </div>
             <hr>
 
             <div class="form-group">
                 <label for="ypoyrgeio">Υπουργείο:</label>
-                <input type="text" size="20" id="ypoyrgeio" name="ypoyrgeio" placeholder="Υπουργείο"
+                <input type="text" size="20" id="ypoyrgeio" name="ypoyrgeio" placeholder="Υπουργείο" required minlength="10"
                     value="<%= data.ypoyrgeio %>" />
             </div>
             <hr>
 
             <div class="checkbox-group form-group row">
                 <label for="rolos" class="col-sm-2 col-form-label">Ρόλος: </label>
-                <select id="rolos" name="rolos" class="col-sm-2 form-control">
-                    <option selected disabled>Eπιλογή</option>
+                <select id="rolos" name="rolos" class="col-sm-2 form-control" required>
+                    <option value="" selected disabled>Eπιλογή</option>
                     <option value="Συντάκτης επισπεύδοντος Υπουργείου">Συντάκτης επισπεύδοντος Υπουργείου</option>
                     <option value="Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων">Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων</option>
                     <option value="Βουλευτής" >Βουλευτής</option>
@@ -73,15 +72,9 @@
             <hr>
 
             <div class="checkbox-group form-group row">
-                <label for="dikaiwmata_diaxeirisis" class="col-sm-8 col-form-label">Ο χρήστης έχει δικαιώματα
-                    διαχείρισης:</label>
-                <% if(data.dikaiwmata_diaxeirisis){ %>
-                <input class="col-sm-2 form-check-input position-static" type="checkbox" id="dikaiwmata_diaxeirisis"
-                    name="dikaiwmata_diaxeirisis" value="dikaiwmata_diaxeirisis" checked>
-                <% }else{ %>
-                <input class="col-sm-2 form-check-input position-static" type="checkbox" id="dikaiwmata_diaxeirisis"
-                    name="dikaiwmata_diaxeirisis" value="dikaiwmata_diaxeirisis">
-                <% } %>
+                <label for="dikaiwmata_diaxeirisis" class="col-sm-8 col-form-label">Ο χρήστης έχει δικαιώματα διαχείρισης:</label>
+                <input class="col-sm-2 form-check-input position-static" type="checkbox" id="dikaiwmata_diaxeirisis" name="dikaiwmata_diaxeirisis" value="true"/>
+                <input type="hidden" name="dikaiwmata_diaxeirisis" id="admin_hidden_input" value="false" />
             </div>
             <hr>
 
@@ -156,7 +149,6 @@
     $("#delete_user").on("click", function (ev) {
         ev.preventDefault();
         var answer = window.confirm("Διαγραφή χρήστη;");
-
         if (answer) {
             $.ajax({
                 url: '/user_views/edit_user/' + username,
@@ -165,7 +157,6 @@
                     console.log(error)
                 },
                 success: function (data) {
-                    console.log("USER WAS DELETED!")
                     window.location = data.redirect;
                 },
                 type: 'DELETE'
@@ -176,8 +167,10 @@
 
     $("form").on("submit", function (ev) {
         ev.preventDefault();
+        if ($("#dikaiwmata_diaxeirisis").prop('checked')){
+            $("#admin_hidden_input").prop('disabled', true);
+        }
         console.log($(this).serialize())
-
         $.ajax({
             url: '/user_views/edit_user/' + username,
             data: $(this).serialize(),
@@ -185,7 +178,6 @@
                 console.log(error)
             },
             success: function (data) {
-                console.log(data)
                 console.log("USER WAS UPDATED!")
                 window.location = data.redirect
             },
@@ -201,6 +193,32 @@
         dropdownElement.value = "<%= data.rolos %>"
     }
     setDropdown("rolos");
+
+    $(document).ready(function () {
+        if ("<%= data.dikaiwmata_diaxeirisis %>" === 'true') {
+            $("#dikaiwmata_diaxeirisis").prop('checked', true);
+        } 
+        console.log('val:'+$('#dikaiwmata_diaxeirisis').val())
+        console.log("data val: <%= data.dikaiwmata_diaxeirisis %>")
+    });
+     
+    //implement on check true-false values for checkbox
+    
+
+    // $("#dikaiwmata_diaxeirisis").on("change",function(ev){
+    //     this.value = this.checked ?'true':'false';
+    //     console.log($(this).val())
+    //     if (this.value == true) {
+    //         $(this).prop('checked', true);
+    //     } else {
+    //         $(this).prop('checked', false);
+    //     }
+    //     console.log('onClick val: '+this.value)
+    // }).change();
+
+    // unchecked chckbx workaround
+    // <input type="hidden"   name="dikaiwmata_diaxeirisis" value="false" />
+    // <input type="checkbox" name="dikaiwmata_diaxeirisis" value="true" />
 </script>
 </body>
 

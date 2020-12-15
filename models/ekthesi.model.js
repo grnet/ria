@@ -19,8 +19,8 @@ module.exports = (sequelize, DataTypes) => {
         rythmisi_pou_afora: DataTypes.STRING,
         stoixeia_epikoinwnias: DataTypes.STRING,
   
-        ekpedeusi_politismos:DataTypes.BOOLEAN,
-        eksoteriki_politiki:DataTypes.BOOLEAN,
+        ekpedeusi_politismos:DataTypes.STRING,
+        eksoteriki_politiki:DataTypes.STRING,
         forologiki_politiki:DataTypes.BOOLEAN,
         koinoniki_politiki:DataTypes.BOOLEAN,
         dimosia_dioikisi:DataTypes.BOOLEAN,
@@ -91,9 +91,9 @@ module.exports = (sequelize, DataTypes) => {
         field_17_ypoyrgeio: DataTypes.STRING,
         field_17_sxedio_nomou: DataTypes.STRING,
         field_17_oikonomika_apotelesmata: DataTypes.STRING,
-        // field_17_onoma: DataTypes.JSON,
-        // field_17_epitheto: DataTypes.JSON,
-        // field_17_idiotita: DataTypes.JSON,
+        field_17_onoma: DataTypes.JSON,
+        field_17_epitheto: DataTypes.JSON,
+        field_17_idiotita: DataTypes.JSON,
         
         field_18_comments: DataTypes.STRING,
         field_19_comments: DataTypes.STRING,
