@@ -40,21 +40,7 @@ routes.get('/:analysis', function (req, res, next) {
 });
 //routes.post('/', form_create.upload_files, form_submit.create_update_form
 
-routes.post('/:analysis', upload, 
- [check('title', 'Title is required').notEmpty(),
-  check('epispeudon_foreas', 'Epispeudon foreas is required').notEmpty(),
-//  check(body(), 'req.body is empty!!!').notEmpty()
-  // body('field_10_amesi').custom((value) => {
-  //   console.log(value);
-  //   if (value) {
-  //     console.log('yo am in');
-  //     if(check('field_11','field_11 is empty').notEmpty()) {
-  //       console.log('now i be here');
-  //     return Promise.reject();
-  //     }
-  //   } 
-  // }) 
-], async function (req, res, next) {
+routes.post('/:analysis', upload, async function (req, res, next) {
     
     const errors = validationResult(req);  
     if (!errors.isEmpty()) { // if array exists

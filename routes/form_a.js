@@ -148,10 +148,10 @@ routes.post('/:entry_id', async (req, res, next) => {
     // download default Roboto font from cdnjs.com
     fonts = {
         Roboto: {
-            normal: './node_modules/pdfmake/fonts/Roboto-Regular.ttf',
-            bold: './node_modules/pdfmake/fonts/Roboto-Bold.ttf',
-            italics: './node_modules/pdfmake/fonts/Roboto-Italic.ttf',
-            medium: './node_modules/pdfmake/fonts/Roboto-Medium.ttf',
+            normal: 'public/fonts/Roboto-Regular.ttf',
+            bold: 'public/fonts/Roboto-Bold.ttf',
+            italics: 'public/fonts/Roboto-Italic.ttf',
+            medium: 'public/fonts/Roboto-Medium.ttf',
         }
     }
     var printer = new PdfPrinter(fonts);
