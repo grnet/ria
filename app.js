@@ -36,8 +36,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true, parameterLimit: 2000 }));//change limit if too many parameters to be parsed
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use("/public/pdf_exports/", express.static(__dirname + '/public/pdf_exports/'));
-app.use("/public/uploads/", express.static(__dirname + '/public/uploads/'));
+app.use("/pdf_exports", express.static(__dirname + 'public'));
+app.use("/uploads", express.static(__dirname + 'public'));
 //app.use(express.static(path.join(__dirname,'public/js')));
 
 app.use('/', homeRoute);

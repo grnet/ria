@@ -188,6 +188,7 @@
                         <div class="form-group syntaktis">
                             <label for="field_1">1. Ποιο ζήτημα αντιμετωπίζει η αξιολογούμενη ρύθμιση;</label>
                             <textarea class="form-control" id="field_1" name="field_1" rows="3"
+                                onmouseover="wordsCounter('field_1','words1',100, event)"
                                 onkeypress="wordsCounter('field_1','words1',100, event)"
                                 onpaste="wordsCounter('field_1','words1',100, event)"><%= data.field_1 %></textarea>
                             <p style="float: right;">Λέξεις: <span id="words1"></span> /100</p>
@@ -196,6 +197,7 @@
                         <div class="form-group syntaktis">
                             <label for="field_2">2. Γιατί αποτελεί πρόβλημα;</label>
                             <textarea class="form-control" id="field_2" name="field_2" rows="3"
+                                onmouseover="wordsCounter('field_2','words2',150, event)"
                                 onkeypress="wordsCounter('field_2','words2',150, event)"
                                 onpaste="wordsCounter('field_2','words2',150, event)"><%= data.field_2 %></textarea>
                             <p style="float: right;">Λέξεις: <span id="words2"></span> /100</p>
