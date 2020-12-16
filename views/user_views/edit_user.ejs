@@ -73,8 +73,8 @@
 
             <div class="checkbox-group form-group row">
                 <label for="dikaiwmata_diaxeirisis" class="col-sm-8 col-form-label">Ο χρήστης έχει δικαιώματα διαχείρισης:</label>
-                <input class="col-sm-2 form-check-input position-static" type="checkbox" id="dikaiwmata_diaxeirisis" name="dikaiwmata_diaxeirisis" value="true"/>
-                <input type="hidden" name="dikaiwmata_diaxeirisis" id="admin_hidden_input" value="false" />
+                <input class="col-sm-2 form-check-input position-static" type="checkbox" id="dikaiwmata_diaxeirisis" name="dikaiwmata_diaxeirisis" value="1"/>
+                <input type="hidden" name="dikaiwmata_diaxeirisis" id="dikaiwmata_diaxeirisis_hidden" value="0" />
             </div>
             <hr>
 
@@ -168,7 +168,7 @@
     $("form").on("submit", function (ev) {
         ev.preventDefault();
         if ($("#dikaiwmata_diaxeirisis").prop('checked')){
-            $("#admin_hidden_input").prop('disabled', true);
+            $("#dikaiwmata_diaxeirisis_hidden").prop('disabled', true);
         }
         console.log($(this).serialize())
         $.ajax({
@@ -195,10 +195,9 @@
     setDropdown("rolos");
 
     $(document).ready(function () {
-        if ("<%= data.dikaiwmata_diaxeirisis %>" === 'true') {
+        if ("<%= data.dikaiwmata_diaxeirisis %>" === "1") {
             $("#dikaiwmata_diaxeirisis").prop('checked', true);
         } 
-        console.log('val:'+$('#dikaiwmata_diaxeirisis').val())
         console.log("data val: <%= data.dikaiwmata_diaxeirisis %>")
     });
      

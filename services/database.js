@@ -8,7 +8,7 @@ const { applyAssoc } = require('../models/associations.js');
 //   })
 
 //connect to db 
-const sequelize = new Sequelize({ database:'riadb', username:'riaapp', password:'GH!ojid63EE', dialect: 'mysql', host:'83.212.76.128', port:'2306' });
+const sequelize = new Sequelize({ database:'riadbtest', username:'riaapp', password:'GH!ojid63EE', dialect: 'mysql', host:'83.212.76.128', port:'2306' });
 
 const db = {};
 

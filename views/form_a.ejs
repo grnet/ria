@@ -896,10 +896,21 @@
             //TODO: update to FormData
             function updateForm(ev) {
                 ev.preventDefault();
-                console.log($("form").serialize())
+                //console.log($("form").serialize())
+                var fd = new FormData($("form").get(0)); 
+                console.log(fd);                
+                var checkbox = $("form").find("input[type=checkbox]:not(:checked)");//find all unchecked checkboxes 
+                console.log(checkbox);                
+                $.each(checkbox, function(key, chckbx) {
+                    fd.append($(chckbx).prop('name'), $(chckbx).value='' )//append to fd without value 
+                });
+                console.log(fd);
                 $.ajax({
                     url: '/form_a/' + ekthesi_id,
-                    data: $("form").serialize(),
+                    //data: $("form").serialize(),
+                    data: fd,
+                    contentType: false,
+                    processData: false,
                     error: function (error) {
                         console.log(error)
                     },
@@ -916,7 +927,7 @@
                 console.log($("form").serialize());
                 getFullDate($("#initial_submit"));
                 getFullDate($("#last_updated"));
-                var fd = new FormData($("form").get(0));
+                var fd = new FormData($("form").get(0));                
                 $.ajax({
                     url: '/create',
                     data: fd,

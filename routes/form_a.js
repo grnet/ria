@@ -3,7 +3,16 @@ let database = require('../services/database');
 const fs = require('fs');
 const csv = require('csv-parser')
 var multer = require('multer')
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'public/uploads/')
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + '-' + file.originalname )//Date().toLocaleString("el-GR", { timeZone: "Europe/Athens" })
+    }
+})
 
+var upload = multer({ storage: storage }).fields([{ name: 'field_21_upload', maxCount: 10 }, { name: 'field_23_upload', maxCount: 10 }, { name: 'field_36_upload', maxCount: 10 }]);
 
 routes.get('/:entry_id', async (req, res, next) => {
 
@@ -446,7 +455,7 @@ routes.post('/:entry_id', async (req, res, next) => {
 
 })
 
-routes.put('/:entry_id', async function (req, res, next) {
+routes.put('/:entry_id', upload, async function (req, res, next) {
 
     ekthesi_id = req.params.entry_id;
     console.log("req.body: " + Object.keys(req.body) + Object.values(req.body));
