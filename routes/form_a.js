@@ -149,9 +149,9 @@ routes.post('/:entry_id', async (req, res, next) => {
     fonts = {
         Roboto: {
             normal: './node_modules/pdfmake/fonts/Roboto-Regular.ttf',
-            bold: 'node_modules/pdfmake/fonts/Roboto-Bold.ttf',
-            italics: 'node_modules/pdfmake/fonts/Roboto-Italic.ttf',
-            medium: 'node_modules/pdfmake/fonts/Roboto-Medium.ttf',
+            bold: './node_modules/pdfmake/fonts/Roboto-Bold.ttf',
+            italics: './node_modules/pdfmake/fonts/Roboto-Italic.ttf',
+            medium: './node_modules/pdfmake/fonts/Roboto-Medium.ttf',
         }
     }
     var printer = new PdfPrinter(fonts);

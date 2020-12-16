@@ -7,7 +7,7 @@ const { body, check, validationResult } = require('express-validator');
 var multer = require('multer')
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, './public/uploads/')
+        cb(null, 'public/uploads/')
     },
     filename: function (req, file, cb) {
         cb(null, Date.now() + '-' + file.originalname )//Date().toLocaleString("el-GR", { timeZone: "Europe/Athens" })
@@ -22,7 +22,7 @@ routes.get('/:analysis', function (req, res, next) {
         var results = [];
         const valid_errors = req.session.errors;
         req.session.errors = null;
-        fs.createReadStream('public/csvs/tooltips.csv')
+        fs.createReadStream('./public/csvs/tooltips.csv')
             .pipe(csv())
             .on('data', (data) => results.push(data))
             .on('end', () => {
@@ -64,7 +64,7 @@ routes.post('/:analysis', upload,
       res.send({redirect: "../create/"+req.params.analysis});
     } else {
         console.log('no errors');
-        next();
+        //next();
     }
     let field21 = [];
     let field23 = [];
@@ -426,6 +426,7 @@ routes.post('/:analysis', upload,
         atmosfairiki_rypansi: atmosfairiki_rypansi, viologikoi_katharismoi: viologikoi_katharismoi, katallhles_aktes: katallhles_aktes, katallilotita_diktyoy_ydreysis: katallilotita_diktyoy_ydreysis, xrisi_aporrimmatwn: xrisi_aporrimmatwn, aporrimmata_xyta: aporrimmata_xyta, katastrofi_dasikwn_ektasewn: katastrofi_dasikwn_ektasewn, anadaswseis: anadaswseis, prostateuomenes_perioxes: prostateuomenes_perioxes, proypologismos_prostasias_perivallontos: proypologismos_prostasias_perivallontos, katanalwsi_energeias_kata_kefali: katanalwsi_energeias_kata_kefali, katanalwsi_energeias_ana_morfi: katanalwsi_energeias_ana_morfi, katanalwsi_energeias_apo_ananewsimes_piges: katanalwsi_energeias_apo_ananewsimes_piges, meiwsi_ekpompwn_thermokipioy: meiwsi_ekpompwn_thermokipioy,
         allos_deiktis1: allos_deiktis1, allos_deiktis2: allos_deiktis2, allos_deiktis3: allos_deiktis3, allos_deiktis4: allos_deiktis4, allos_deiktis5: allos_deiktis5, field9Id: res_data.id
     })
+    res.send({redirect: "../user_views/history"});
 });
 
 module.exports = routes;
