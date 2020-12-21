@@ -38,14 +38,7 @@
                     <label for="title" class="col-sm-6 col-form-label required">Τίτλος αξιολογούμενης ρύθμισης</label>
                     <div class="col-sm-4">
                         <input type="text" class="form-control" id="title" name="title">
-                    </div>
-                    <div>
-                        <img src="/img/information.png" id="tooltip_img" aria-describedby="tooltip_img" width="30px"
-                            onmouseover="tooltipEvents('tooltip_img', 'tooltip')">
-                        <div id="tooltip" role="tooltip"><%= tooltips %>
-                            <div class="arrow" data-popper-arrow></div>
-                        </div>
-                    </div>
+                    </div>           
                 </div>
 
                 <br>
@@ -1413,8 +1406,8 @@
     });
 
     function tooltipEvents(imgId, tooltipId) {
-        const img = document.querySelector('#' + imgId);
-        const tooltip = document.querySelector('#' + tooltipId);
+        const img = document.querySelector( '#' + imgId);
+        const tooltip = document.querySelector( '#' + tooltipId);
 
         let popperInstance = null;
 
@@ -1627,25 +1620,50 @@
     // $('fieldset').find('[required]').each(function() {
     // //your code here
     // })
+    addTooltip('#title');    
+    function addTooltip (fieldID) {
+        console.log('field: '+fieldID)
+        var parentDiv = $(fieldID).parent().closest('div');
+        var parentDiv = $(parentDiv).parent().closest('div');
+        options = `<div>
+                        <img src="/img/information.png" width="30px" id="${fieldID}_tooltip_img" aria-describedby="${fieldID}_tooltip_img" 
+                            onmouseover="tooltipEvents('${fieldID}_tooltip_img', 'tooltip')" >
+                        <div id="${fieldID}_tooltip" role="tooltip">
+                            <div class="arrow" data-popper-arrow></div>
+                        </div>
+                    </div>`;
+        parentDiv.append(options);
 
+    }    
 
     var tooltips = '<%= tooltips %>';
     function setTooltip (fieldId) {
-        var fieldId = fieldId.substring(1);//remove 1st character
-        tooltips = tooltips.replace(/&#34;/g, '"');//replace html for double quotes
+        var fieldId = fieldId.substring(1)//remove 1st character
+                             .replace(/\\'/g, "\\'")
+                             .replace(/\\"/g, '\\"')
+                             .replace(/\\&/g, "\\&")
+                             .replace(/\\r/g, "\\r")
+                             .replace(/\\t/g, "\\t")
+                             .replace(/\\b/g, "\\b")
+                             .replace(/\\f/g, "\\f");
+        tooltips = tooltips.replace(/&#34;/g, '"')
+                           .replace(/[\u0000-\u0019]+/g,"")//replace html for double quotes
         tooltips = JSON.parse(tooltips)//parse to JSON obj 
+        console.log(tooltips[0])
+
         //console.log(tooltips)
-        console.log('fieldid: ' + fieldId);     
+        //console.log('fieldid: ' + fieldId);     
         // var index = Object.keys(tooltips).indexOf(fieldId); 
         // console.log('index: ' + index)      
         for (i in tooltips) {
-            if (tooltips[i].fieldid == fieldId) {
-                console.log('FOUND IT!!' + tooltips[i].tooltiptext) 
+            if (tooltips[i].fieldId == fieldId) {
+                console.log('FOUND IT!!' + tooltips[i].tooltipText)
+                fieldId =  tooltips[i].tooltipText;
             }
-        }        
+        }   
+        return fieldId;     
     }
-    
-    setTooltip('#title');    
+    //setTooltip('#title');    
     //$('#title').prop('required',true);
     
     var current_fs, next_fs, previous_fs; //fieldsets

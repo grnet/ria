@@ -1,6 +1,8 @@
 const routes = require('express').Router();
 let database = require('../services/database');
 const bcrypt = require('bcrypt');
+const { body, check, validationResult } = require('express-validator');
+
 
 routes.get('/:username', async (req, res, next) => {
 
@@ -36,8 +38,8 @@ routes.put('/:username', async (req, res, next) => {
     const userPassword = req.body.password;
     bcrypt.hash(userPassword, 10, async function(err, hash) {
         //add row to user model, map values from req.body
-        if (hash) {
-            console.log(hash);
+        
+        if (hash) {        
             let user = await database.user.update({ fname: req.body.fname, lname: req.body.lname, username: req.body.username, password: hash, rolos: req.body.rolos, dikaiwmata_diaxeirisis: req.body.dikaiwmata_diaxeirisis, ypoyrgeio: req.body.ypoyrgeio }, {
                 where: {
                     username: req.params.username
