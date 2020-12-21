@@ -10,7 +10,7 @@ var storage = multer.diskStorage({
         cb(null, 'public/uploads/')
     },
     filename: function (req, file, cb) {
-        cb(null, Date.now() + '-' + file.originalname )//Date().toLocaleString("el-GR", { timeZone: "Europe/Athens" })
+        cb(null, Date.now() + '-' + file.originalname)//Date().toLocaleString("el-GR", { timeZone: "Europe/Athens" })
     }
 })
 
@@ -22,32 +22,55 @@ routes.get('/:analysis', function (req, res, next) {
         var results = [];
         const valid_errors = req.session.errors;
         req.session.errors = null;
-        fs.createReadStream('./public/csvs/tooltips.csv')
+        fs.createReadStream('./public/csvs/ASR_LabelsTooltips.csv')
             .pipe(csv())
             .on('data', (data) => results.push(data))
             .on('end', () => {
-                //console.log(results);
+                console.log(results);
                 results = JSON.stringify(results)
                 //console.log('strngf: '+results);
                 // results = JSON.parse(results)
                 // console.log('prs: '+results);
-                res.render("create", { analysis: req.params.analysis, rolos: req.session.rolos, errors:valid_errors, tooltips:results });    
-            });                
+                res.render("create", { analysis: req.params.analysis, rolos: req.session.rolos, errors: valid_errors, tooltips: results });
+            });
     } catch (err) {
         console.log('error: ' + err)
     }
-   
+
 });
 //routes.post('/', form_create.upload_files, form_submit.create_update_form
 
-routes.post('/:analysis', upload, async function (req, res, next) {
-    
-    const errors = validationResult(req);  
+routes.post('/:analysis',
+    upload,
+    [check('title', 'Title is required').notEmpty(),
+    check('epispeudon_foreas', 'Epispeudon foreas is required').notEmpty(),
+    //  check(body(), 'req.body is empty!!!').notEmpty()
+    body('field_10_amesi_comments').if(body('field_10_amesi').exists()).notEmpty().withMessage('Εάν είναι άμεση, εξηγήστε.'),
+    body('field_10_emmesi_comments').if(body('field_10_emmesi').exists()).notEmpty().withMessage('Εάν είναι έμμεση, εξηγήστε.'),
+    body('field_11_comments')
+    .if(body('field_10_emmesi').exists())//if user checked field_10_amesi
+    .if(body('field_10_amesi').exists())//or if user checked field_10_emmesi
+    .notEmpty().withMessage('Το πεδίο 11 είναι υποχρεωτικό.'),//field_11 must be filled in      
+    body('field_12_comments').if(body('field_10_emmesi').exists()).if(body('field_10_amesi').exists()).notEmpty().withMessage('Το πεδίο 12 είναι υποχρεωτικό.'),      
+    body('field_13_comments').if(body('field_10_emmesi').exists()).if(body('field_10_amesi').exists()).notEmpty().withMessage('Το πεδίο 13 είναι υποχρεωτικό.'),       
+
+    body('field_34').if(body('field_33').exists()).notEmpty().withMessage('Το πεδίο 34 είναι υποχρεωτικό.'),       
+    body('field_35').if(body('field_33').exists()).notEmpty().withMessage('Το πεδίο 35 είναι υποχρεωτικό.'),       
+    body('field_36').if(body('field_33').exists()).notEmpty().withMessage('Το πεδίο 36 είναι υποχρεωτικό.'),       
+    body('field_37').if(body('field_33').exists()).notEmpty().withMessage('Το πεδίο 37 είναι υποχρεωτικό.'),       
+    body('field_38').if(body('field_33').exists()).notEmpty().withMessage('Το πεδίο 38 είναι υποχρεωτικό.'),       
+    body('field_39').if(body('field_33').exists()).notEmpty().withMessage('Το πεδίο 39 είναι υποχρεωτικό.'),       
+    body('field_40').if(body('field_33').exists()).notEmpty().withMessage('Το πεδίο 40 είναι υποχρεωτικό.'),       
+
+    ], async function (req, res, next) {
+
+ console.log(req.body.field_10_emmesi)
+    const errors = validationResult(req);
     if (!errors.isEmpty()) { // if array exists
-      console.log(errors); 
-      req.session.errors = errors.array();     
-      //res.render("create",{ data:data, analysis: req.params.analysis, rolos: req.session.rolos, errors: errors.array() });
-      res.send({redirect: "../create/"+req.params.analysis});
+        console.log(errors);
+        req.session.errors = errors.array();
+        //res.render("create",{ data:data, analysis: req.params.analysis, rolos: req.session.rolos, errors: errors.array() });
+        res.send({ redirect: "../create/" + req.params.analysis });
     } else {
         console.log('no errors');
         //next();
@@ -387,7 +410,7 @@ routes.post('/:analysis', upload, async function (req, res, next) {
             where: {
                 id: res_data.id
             }
-    })
+        })
     //console.log(res_data)
 
     //map variables to model's fields
@@ -412,7 +435,7 @@ routes.post('/:analysis', upload, async function (req, res, next) {
         atmosfairiki_rypansi: atmosfairiki_rypansi, viologikoi_katharismoi: viologikoi_katharismoi, katallhles_aktes: katallhles_aktes, katallilotita_diktyoy_ydreysis: katallilotita_diktyoy_ydreysis, xrisi_aporrimmatwn: xrisi_aporrimmatwn, aporrimmata_xyta: aporrimmata_xyta, katastrofi_dasikwn_ektasewn: katastrofi_dasikwn_ektasewn, anadaswseis: anadaswseis, prostateuomenes_perioxes: prostateuomenes_perioxes, proypologismos_prostasias_perivallontos: proypologismos_prostasias_perivallontos, katanalwsi_energeias_kata_kefali: katanalwsi_energeias_kata_kefali, katanalwsi_energeias_ana_morfi: katanalwsi_energeias_ana_morfi, katanalwsi_energeias_apo_ananewsimes_piges: katanalwsi_energeias_apo_ananewsimes_piges, meiwsi_ekpompwn_thermokipioy: meiwsi_ekpompwn_thermokipioy,
         allos_deiktis1: allos_deiktis1, allos_deiktis2: allos_deiktis2, allos_deiktis3: allos_deiktis3, allos_deiktis4: allos_deiktis4, allos_deiktis5: allos_deiktis5, field9Id: res_data.id
     })
-    res.send({redirect: "../user_views/history"});
+    res.send({ redirect: "../user_views/history" });
 });
 
 module.exports = routes;

@@ -2,15 +2,126 @@ let database = require("../services/database")
 var multer = require('multer');
 const session = require("express-session");
 
-exports.create_update_form = (async function (req, res, next) {
-    console.log("EEEEEEEE" + Object.values(req.body))
+exports.create_form = (
+    // [check('title', 'Title is required').notEmpty(),
+    // check('epispeudon_foreas', 'Epispeudon foreas is required').notEmpty(),
+    //     //  check(body(), 'req.body is empty!!!').notEmpty()
+    //     // body('field_10_amesi').custom((value) => {
+    //     //   console.log(value);
+    //     //   if (value) {
+    //     //     console.log('yo am in');
+    //     //     if(check('field_11','field_11 is empty').notEmpty()) {
+    //     //       console.log('now i be here');
+    //     //     return Promise.reject();
+    //     //     }
+    //     //   } 
+    //     // }) 
+    // ],
+    async function (req, res, next) {
+        console.log("req.body from controller: " + Object.values(req.body))
 
-    //console.log("files: " + req.files);
-    //console.log("field23: " + req.files.field_23_upload);
-    //req.body.author_id="1";
-    //console.log("field23_obj_vals: " + Object.values(req.files));
-    //console.log("field23: " + Object.values(req.files.field_23_upload[0]));
+        //console.log("files: " + req.files);
+        //console.log("field23: " + req.files.field_23_upload);
+        //req.body.author_id="1";
+        //console.log("field23_obj_vals: " + Object.values(req.files));
+        //console.log("field23: " + Object.values(req.files.field_23_upload[0]));
+        //add row to ekthesi model, map values from req.body & set foreign key equal to session username to get author 
+        let res_data = await database.ekthesi.create(req.body);
+        req.session.form_id = res_data.id;
+        var author = req.session.username;
+        tablesToJSON();
+        await database.ekthesi.update({
+            author: author, field_14_arthro: field_14_arthro, field_14_stoxos: field_14_stoxos, field_17_onoma: field_17_onoma, field_17_epitheto: field_17_epitheto, field_17_idiotita: field_17_idiotita, field_29_diatakseis_rythmisis: field_29_diatakseis_rythmisis, field_29_yfistamenes_diatakseis: field_29_yfistamenes_diatakseis, field_30_diatakseis_katargisi: field_30_diatakseis_katargisi, field_30_katargoumenes_diatakseis: field_30_katargoumenes_diatakseis,
+            field_31_sxetiki_diataksi: field_31_sxetiki_diataksi, field_31_synarmodia_ypoyrgeia: field_31_synarmodia_ypoyrgeia, field_31_antikeimeno_synarmodiotitas: field_31_antikeimeno_synarmodiotitas, field_32_eksousiodotiki_diataksi: field_32_eksousiodotiki_diataksi, field_32_eidos_praksis: field_32_eidos_praksis, field_32_armodio_ypoyrgeio: field_32_armodio_ypoyrgeio, field_32_antikeimeno: field_32_antikeimeno, field_32_xronodiagramma: field_32_xronodiagramma
+        },
+            {
+                where: {
+                    id: res_data.id
+                }
+            })
+        //console.log(res_data)
 
+        //map variables to model's fields
+        let rythmiseis_data = await database.rythmiseis.create({
+            auksisi_esodwn: auksisi_esodwn, meiwsi_dapanwn: meiwsi_dapanwn, eksikonomisi_xronou: eksikonomisi_xronou, apodotikotita: apodotikotita, amesa_allo: amesa_allo,
+            veltiwsi_ypiresiwn: veltiwsi_ypiresiwn, metaxirisi_politwn: metaxirisi_politwn, diafania_thesmwn: diafania_thesmwn, diaxirisi_kindynwn: diaxirisi_kindynwn, emmesa_allo: emmesa_allo,
+            proetimasia: proetimasia, ypodomi: ypodomi, kinitikotita: kinitikotita, emplekomenoi: emplekomenoi, efarmogi_allo: efarmogi_allo, apodosi_diaxirisis: apodosi_diaxirisis, ektelesi: ektelesi, apodosi_kostos: apodosi_kostos, apodosi_allo: apodosi_allo, rythmisiId: res_data.id
+        })
+
+        let field_9_data = await database.field_9.create({
+            symvaseis: symvaseis, sse_diamesolavisi: sse_diamesolavisi, sse_diaitisia: sse_diaitisia, mesos_xronos_mesolavisis: mesos_xronos_mesolavisis, mesos_xronos_diaitisias: mesos_xronos_diaitisias, diarkeia_sse: diarkeia_sse, wres_ergasias: wres_ergasias, ameivomenes_yperwries: ameivomenes_yperwries, atyximata: atyximata,
+            ypsos_syntaksewn: ypsos_syntaksewn, ypsos_eisforwn: ypsos_eisforwn, ilikia_syntaksiodotisis: ilikia_syntaksiodotisis, aponomi_syntaksis: aponomi_syntaksis, syntaksiodotiki_dapani: syntaksiodotiki_dapani, prosfyges_syntaksis: prosfyges_syntaksis,
+            anergia: anergia, makroxronia_anergoi: makroxronia_anergoi, anergia_newn: anergia_newn, anergia_gynaikwn: anergia_gynaikwn, anergia_ana_perifereia: anergia_ana_perifereia, anergia_morfwsi: anergia_morfwsi, deiktis_apasxolisis: deiktis_apasxolisis, meriki_apasxolisi: meriki_apasxolisi, symvasi_orismenoy_xronoy: symvasi_orismenoy_xronoy,
+            kathestws_ftwxeias: kathestws_ftwxeias, sterisi_vasikwn_agathwn: sterisi_vasikwn_agathwn, noikokyria_ektaktes_anagkes: noikokyria_ektaktes_anagkes, epidomata_dapani: epidomata_dapani, paidia_se_orfanotrofeia: paidia_se_orfanotrofeia, astegoi_sitisi: astegoi_sitisi, proswrini_katoikia: proswrini_katoikia, kostos_frontidas: kostos_frontidas,
+            astheneis: astheneis, paidiki_thnisimotita: paidiki_thnisimotita, dapanes_ygeias: dapanes_ygeias, dapanes_farmakwn: dapanes_farmakwn, arithmos_iatrwn_ana_1000_katoikous: arithmos_iatrwn_ana_1000_katoikous, arithmos_klinwn_ana_1000_katoikous: arithmos_klinwn_ana_1000_katoikous, diarkeia_epeigousas_nosileias: diarkeia_epeigousas_nosileias, eidikes_nosileutikes_ypiresies: eidikes_nosileutikes_ypiresies, anamoni_asthenwn: anamoni_asthenwn, arithmos_nosileiwn_ana_1000_katoikous: arithmos_nosileiwn_ana_1000_katoikous, arithmos_klinwn_ana_ypiresia: arithmos_klinwn_ana_ypiresia,
+            apasxolisi_fylwn_synolika: apasxolisi_fylwn_synolika, apasxolisi_fylwn_perifereia: apasxolisi_fylwn_perifereia, apasxolisi_fylwn_oikonomia: apasxolisi_fylwn_oikonomia, apasxolisi_fylwn_ilikia: apasxolisi_fylwn_ilikia, anergia_fylwn_synolika: anergia_fylwn_synolika, anergia_fylwn_perifereia: anergia_fylwn_perifereia, anergia_fylwn_oikonomia: anergia_fylwn_oikonomia, anergia_fylwn_ilikia: anergia_fylwn_ilikia, autoapasxoloymenoi_fylo: autoapasxoloymenoi_fylo, ergodotes_fylo: ergodotes_fylo, ds_fylo: ds_fylo, symvoulia_fylo: symvoulia_fylo,
+            aitimata_asyloy: aitimata_asyloy, metanasteytikes_roes: metanasteytikes_roes, apelaseis: apelaseis, monades_filoksenias: monades_filoksenias, filoksenia_paravatikotita: filoksenia_paravatikotita,
+            dimosioi_ypalliloi: dimosioi_ypalliloi, monimoi_metaklitoi: monimoi_metaklitoi, analogia_ypallilwn: analogia_ypallilwn, prosvasi_internet: prosvasi_internet, intranet: intranet, analogia_ypologistwn: analogia_ypologistwn, istoselides: istoselides, kentra_pliroforisis: kentra_pliroforisis, eksypiretisi_ypiresies: eksypiretisi_ypiresies, kostos_proswpikou: kostos_proswpikou, kostos_diaxirisis_proswpikou: kostos_diaxirisis_proswpikou,
+            drastes_adikimata: drastes_adikimata, adikimata_poinikoy_kwdika: adikimata_poinikoy_kwdika, diapraxthenta_adikimata: diapraxthenta_adikimata, etisia_statistika: etisia_statistika, adikimata_paranomi_eisodos: adikimata_paranomi_eisodos, syxnotita_egklimatwn: syxnotita_egklimatwn, eksixniasmena_egklimata: eksixniasmena_egklimata, ergazomenoi_asfaleia: ergazomenoi_asfaleia, katoikoi_ana_astynomiko: katoikoi_ana_astynomiko, analogia_astynomikwn_ana_1000_katoikoys: analogia_astynomikwn_ana_1000_katoikoys, dapanes_astynomias: dapanes_astynomias, poroi_antimetwpisis: poroi_antimetwpisis,
+            arithmos_diaforwn: arithmos_diaforwn, dioikitikes_periptwseis: dioikitikes_periptwseis, xronos_epilysis_ypothesewn: xronos_epilysis_ypothesewn, ekdosi_apofasewn: ekdosi_apofasewn, mo_ypotheswn_dikasti: mo_ypotheswn_dikasti, akyrwsi_apofasewn: akyrwsi_apofasewn, ekswdikastikos_symvivasmos: ekswdikastikos_symvivasmos, enallaktiki_epilysi_diaforwn: enallaktiki_epilysi_diaforwn, nomiki_prostasia: nomiki_prostasia, kostos_prosfygis: kostos_prosfygis, ilektroniki_ypovoli_dikografwn: ilektroniki_ypovoli_dikografwn, diekperaiwsi_ypothesewn: diekperaiwsi_ypothesewn, poines_se_xrima: poines_se_xrima, kostos_swfronismou: kostos_swfronismou, analogia_fylakwn_kratoumenwn: analogia_fylakwn_kratoumenwn,
+            pagkosmia_antagwnistikotita: pagkosmia_antagwnistikotita, ependyseis: ependyseis, ameses_ependyseis: ameses_ependyseis, nees_epixeiriseis: nees_epixeiriseis, kleistes_epixeiriseis: kleistes_epixeiriseis, dioikitiko_kostos: dioikitiko_kostos, mx_systasis_epixeirisis: mx_systasis_epixeirisis,
+            atmosfairiki_rypansi: atmosfairiki_rypansi, viologikoi_katharismoi: viologikoi_katharismoi, katallhles_aktes: katallhles_aktes, katallilotita_diktyoy_ydreysis: katallilotita_diktyoy_ydreysis, xrisi_aporrimmatwn: xrisi_aporrimmatwn, aporrimmata_xyta: aporrimmata_xyta, katastrofi_dasikwn_ektasewn: katastrofi_dasikwn_ektasewn, anadaswseis: anadaswseis, prostateuomenes_perioxes: prostateuomenes_perioxes, proypologismos_prostasias_perivallontos: proypologismos_prostasias_perivallontos, katanalwsi_energeias_kata_kefali: katanalwsi_energeias_kata_kefali, katanalwsi_energeias_ana_morfi: katanalwsi_energeias_ana_morfi, katanalwsi_energeias_apo_ananewsimes_piges: katanalwsi_energeias_apo_ananewsimes_piges, meiwsi_ekpompwn_thermokipioy: meiwsi_ekpompwn_thermokipioy,
+            allos_deiktis1: allos_deiktis1, allos_deiktis2: allos_deiktis2, allos_deiktis3: allos_deiktis3, allos_deiktis4: allos_deiktis4, allos_deiktis5: allos_deiktis5, field9Id: res_data.id
+        })
+
+        res.send({ redirect: "../user_views/history" });
+    });
+
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './public/uploads/')
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + '-' + file.originalname)//Date().toLocaleString("el-GR", { timeZone: "Europe/Athens" })
+    }
+})
+
+var upload = multer({ storage: storage }).fields([{ name: 'field_21_upload', maxCount: 10 }, { name: 'field_23_upload', maxCount: 10 }, { name: 'field_36_upload', maxCount: 10 }]);
+
+exports.upload_files = (upload, async function (req, res, next) {
+    let field21 = [];
+    let field23 = [];
+    let field36 = [];
+    try {
+
+        const file = req.files;
+        if (file.field_21_upload) {
+            for (i in file.field_21_upload) {
+                field21.push(file.field_21_upload[i].filename)
+            }
+            console.log("field21: " + field21);
+            // const error = new Error('Please upload a file')
+            // error.httpStatusCode = 400
+            // return next(error)
+
+        }
+        if (file.field_23_upload) {
+            for (i in file.field_23_upload) {
+                field23.push(file.field_23_upload[i].filename)
+                console.log(file.field_23_upload[i].path);
+            }
+            console.log("field23: " + field23);
+        }
+        if (file.field_36_upload) {
+            for (i in file.field_36_upload) {
+                field36.push(file.field_36_upload[i].filename)
+            }
+            console.log("field36: " + field36);
+        }
+    } catch (e) {
+        console.log("Error message: " + e.message);
+    }
+    console.log(req.body);
+
+    console.log("files: " + req.files);
+    console.log("field23: " + req.files.field_23_upload);
+    req.body.author_id = "1";
+    console.log("field23_obj_vals: " + Object.values(req.files));
+    console.log("field23: " + Object.values(req.files.field_23_upload[0]));
+});
+
+
+function tablesToJSON() {
     //groupings for field9
     //ergasiakes_sxeseis_table
     let symvaseis = JSON.stringify([{ "symvaseis_year1": req.body.symvaseis_year1 }, { "symvaseis_year2": req.body.symvaseis_year2 }, { "symvaseis_year3": req.body.symvaseis_year3 }, { "symvaseis_year4": req.body.symvaseis_year4 }, { "symvaseis_year5": req.body.symvaseis_year5 }, { "symvaseis_prosfata_stoixeia": req.body.symvaseis_prosfata_stoixeia }, { "symvaseis_epidiwkomenos_stoxos": req.body.symvaseis_epidiwkomenos_stoxos }])
@@ -187,10 +298,7 @@ exports.create_update_form = (async function (req, res, next) {
     let apodosi_allo = JSON.stringify([{ "field_19_apodosi_allo_thesmoi": req.body.field_19_apodosi_allo_thesmoi }, { "field_19_apodosi_allo_oikonomia": req.body.field_19_apodosi_allo_oikonomia }, { "field_19_apodosi_allo_kinonia": req.body.field_19_apodosi_allo_kinonia }, { "field_19_apodosi_allo_perivallon": req.body.field_19_apodosi_allo_perivallon }, { "field_19_apodosi_allo_nisiwtika": req.body.field_19_apodosi_allo_nisiwtika }])
 
     //------------------------------------------------------------------------------//
-    //add row to ekthesi model, map values from req.body & set foreign key equal to session username to get author 
-    let res_data = await database.ekthesi.create(req.body);
-    req.session.form_id = res_data.id;
-    
+
     let req_body = req.body;//assign req.body to variable
     let keys = Object.keys(req_body);//get keys 
     let field_14_arthro = [];
@@ -297,94 +405,4 @@ exports.create_update_form = (async function (req, res, next) {
             field_32_xronodiagramma.push({ temp: value });
         }
     }
-    //console.log("field_29_diatakseis_rythmisis: " + field_29_diatakseis_rythmisis);
-    var author = req.session.username;
-    await database.ekthesi.update({
-        author: author, field_14_arthro: field_14_arthro, field_14_stoxos: field_14_stoxos, field_17_onoma: field_17_onoma, field_17_epitheto: field_17_epitheto, field_17_idiotita: field_17_idiotita, field_29_diatakseis_rythmisis: field_29_diatakseis_rythmisis, field_29_yfistamenes_diatakseis: field_29_yfistamenes_diatakseis, field_30_diatakseis_katargisi: field_30_diatakseis_katargisi, field_30_katargoumenes_diatakseis: field_30_katargoumenes_diatakseis,
-        field_31_sxetiki_diataksi: field_31_sxetiki_diataksi, field_31_synarmodia_ypoyrgeia: field_31_synarmodia_ypoyrgeia, field_31_antikeimeno_synarmodiotitas: field_31_antikeimeno_synarmodiotitas, field_32_eksousiodotiki_diataksi: field_32_eksousiodotiki_diataksi, field_32_eidos_praksis: field_32_eidos_praksis, field_32_armodio_ypoyrgeio: field_32_armodio_ypoyrgeio, field_32_antikeimeno: field_32_antikeimeno, field_32_xronodiagramma: field_32_xronodiagramma        
-    },
-        {
-            where: {
-                id: res_data.id
-            }
-    })
-    //console.log(res_data)
-
-    //map variables to model's fields
-    let rythmiseis_data = await database.rythmiseis.create({
-        auksisi_esodwn: auksisi_esodwn, meiwsi_dapanwn: meiwsi_dapanwn, eksikonomisi_xronou: eksikonomisi_xronou, apodotikotita: apodotikotita, amesa_allo: amesa_allo,
-        veltiwsi_ypiresiwn: veltiwsi_ypiresiwn, metaxirisi_politwn: metaxirisi_politwn, diafania_thesmwn: diafania_thesmwn, diaxirisi_kindynwn: diaxirisi_kindynwn, emmesa_allo: emmesa_allo,
-        proetimasia: proetimasia, ypodomi: ypodomi, kinitikotita: kinitikotita, emplekomenoi: emplekomenoi, efarmogi_allo: efarmogi_allo, apodosi_diaxirisis: apodosi_diaxirisis, ektelesi: ektelesi, apodosi_kostos: apodosi_kostos, apodosi_allo: apodosi_allo, rythmisiId: res_data.id
-    })
-
-    let field_9_data = await database.field_9.create({
-        symvaseis: symvaseis, sse_diamesolavisi: sse_diamesolavisi, sse_diaitisia: sse_diaitisia, mesos_xronos_mesolavisis: mesos_xronos_mesolavisis, mesos_xronos_diaitisias: mesos_xronos_diaitisias, diarkeia_sse: diarkeia_sse, wres_ergasias: wres_ergasias, ameivomenes_yperwries: ameivomenes_yperwries, atyximata: atyximata,
-        ypsos_syntaksewn: ypsos_syntaksewn, ypsos_eisforwn: ypsos_eisforwn, ilikia_syntaksiodotisis: ilikia_syntaksiodotisis, aponomi_syntaksis: aponomi_syntaksis, syntaksiodotiki_dapani: syntaksiodotiki_dapani, prosfyges_syntaksis: prosfyges_syntaksis,
-        anergia: anergia, makroxronia_anergoi: makroxronia_anergoi, anergia_newn: anergia_newn, anergia_gynaikwn: anergia_gynaikwn, anergia_ana_perifereia: anergia_ana_perifereia, anergia_morfwsi: anergia_morfwsi, deiktis_apasxolisis: deiktis_apasxolisis, meriki_apasxolisi: meriki_apasxolisi, symvasi_orismenoy_xronoy: symvasi_orismenoy_xronoy,
-        kathestws_ftwxeias: kathestws_ftwxeias, sterisi_vasikwn_agathwn: sterisi_vasikwn_agathwn, noikokyria_ektaktes_anagkes: noikokyria_ektaktes_anagkes, epidomata_dapani: epidomata_dapani, paidia_se_orfanotrofeia: paidia_se_orfanotrofeia, astegoi_sitisi: astegoi_sitisi, proswrini_katoikia: proswrini_katoikia, kostos_frontidas: kostos_frontidas,
-        astheneis: astheneis, paidiki_thnisimotita: paidiki_thnisimotita, dapanes_ygeias: dapanes_ygeias, dapanes_farmakwn: dapanes_farmakwn, arithmos_iatrwn_ana_1000_katoikous: arithmos_iatrwn_ana_1000_katoikous, arithmos_klinwn_ana_1000_katoikous: arithmos_klinwn_ana_1000_katoikous, diarkeia_epeigousas_nosileias: diarkeia_epeigousas_nosileias, eidikes_nosileutikes_ypiresies: eidikes_nosileutikes_ypiresies, anamoni_asthenwn: anamoni_asthenwn, arithmos_nosileiwn_ana_1000_katoikous: arithmos_nosileiwn_ana_1000_katoikous, arithmos_klinwn_ana_ypiresia: arithmos_klinwn_ana_ypiresia,
-        apasxolisi_fylwn_synolika: apasxolisi_fylwn_synolika, apasxolisi_fylwn_perifereia: apasxolisi_fylwn_perifereia, apasxolisi_fylwn_oikonomia: apasxolisi_fylwn_oikonomia, apasxolisi_fylwn_ilikia: apasxolisi_fylwn_ilikia, anergia_fylwn_synolika: anergia_fylwn_synolika, anergia_fylwn_perifereia: anergia_fylwn_perifereia, anergia_fylwn_oikonomia: anergia_fylwn_oikonomia, anergia_fylwn_ilikia: anergia_fylwn_ilikia, autoapasxoloymenoi_fylo: autoapasxoloymenoi_fylo, ergodotes_fylo: ergodotes_fylo, ds_fylo: ds_fylo, symvoulia_fylo: symvoulia_fylo,
-        aitimata_asyloy: aitimata_asyloy, metanasteytikes_roes: metanasteytikes_roes, apelaseis: apelaseis, monades_filoksenias: monades_filoksenias, filoksenia_paravatikotita: filoksenia_paravatikotita,
-        dimosioi_ypalliloi: dimosioi_ypalliloi, monimoi_metaklitoi: monimoi_metaklitoi, analogia_ypallilwn: analogia_ypallilwn, prosvasi_internet: prosvasi_internet, intranet: intranet, analogia_ypologistwn: analogia_ypologistwn, istoselides: istoselides, kentra_pliroforisis: kentra_pliroforisis, eksypiretisi_ypiresies: eksypiretisi_ypiresies, kostos_proswpikou: kostos_proswpikou, kostos_diaxirisis_proswpikou: kostos_diaxirisis_proswpikou,
-        drastes_adikimata: drastes_adikimata, adikimata_poinikoy_kwdika: adikimata_poinikoy_kwdika, diapraxthenta_adikimata: diapraxthenta_adikimata, etisia_statistika: etisia_statistika, adikimata_paranomi_eisodos: adikimata_paranomi_eisodos, syxnotita_egklimatwn: syxnotita_egklimatwn, eksixniasmena_egklimata: eksixniasmena_egklimata, ergazomenoi_asfaleia: ergazomenoi_asfaleia, katoikoi_ana_astynomiko: katoikoi_ana_astynomiko, analogia_astynomikwn_ana_1000_katoikoys: analogia_astynomikwn_ana_1000_katoikoys, dapanes_astynomias: dapanes_astynomias, poroi_antimetwpisis: poroi_antimetwpisis,
-        arithmos_diaforwn: arithmos_diaforwn, dioikitikes_periptwseis: dioikitikes_periptwseis, xronos_epilysis_ypothesewn: xronos_epilysis_ypothesewn, ekdosi_apofasewn: ekdosi_apofasewn, mo_ypotheswn_dikasti: mo_ypotheswn_dikasti, akyrwsi_apofasewn: akyrwsi_apofasewn, ekswdikastikos_symvivasmos: ekswdikastikos_symvivasmos, enallaktiki_epilysi_diaforwn: enallaktiki_epilysi_diaforwn, nomiki_prostasia: nomiki_prostasia, kostos_prosfygis: kostos_prosfygis, ilektroniki_ypovoli_dikografwn: ilektroniki_ypovoli_dikografwn, diekperaiwsi_ypothesewn: diekperaiwsi_ypothesewn, poines_se_xrima: poines_se_xrima, kostos_swfronismou: kostos_swfronismou, analogia_fylakwn_kratoumenwn: analogia_fylakwn_kratoumenwn,
-        pagkosmia_antagwnistikotita: pagkosmia_antagwnistikotita, ependyseis: ependyseis, ameses_ependyseis: ameses_ependyseis, nees_epixeiriseis: nees_epixeiriseis, kleistes_epixeiriseis: kleistes_epixeiriseis, dioikitiko_kostos: dioikitiko_kostos, mx_systasis_epixeirisis: mx_systasis_epixeirisis,
-        atmosfairiki_rypansi: atmosfairiki_rypansi, viologikoi_katharismoi: viologikoi_katharismoi, katallhles_aktes: katallhles_aktes, katallilotita_diktyoy_ydreysis: katallilotita_diktyoy_ydreysis, xrisi_aporrimmatwn: xrisi_aporrimmatwn, aporrimmata_xyta: aporrimmata_xyta, katastrofi_dasikwn_ektasewn: katastrofi_dasikwn_ektasewn, anadaswseis: anadaswseis, prostateuomenes_perioxes: prostateuomenes_perioxes, proypologismos_prostasias_perivallontos: proypologismos_prostasias_perivallontos, katanalwsi_energeias_kata_kefali: katanalwsi_energeias_kata_kefali, katanalwsi_energeias_ana_morfi: katanalwsi_energeias_ana_morfi, katanalwsi_energeias_apo_ananewsimes_piges: katanalwsi_energeias_apo_ananewsimes_piges, meiwsi_ekpompwn_thermokipioy: meiwsi_ekpompwn_thermokipioy,
-        allos_deiktis1: allos_deiktis1, allos_deiktis2: allos_deiktis2, allos_deiktis3: allos_deiktis3, allos_deiktis4: allos_deiktis4, allos_deiktis5: allos_deiktis5, field9Id: res_data.id
-    })
-
-    res.send({redirect: "../user_views/history"});
-});
-
-var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, './public/uploads/')
-    },
-    filename: function (req, file, cb) {
-        cb(null, Date.now() + '-' + file.originalname)//Date().toLocaleString("el-GR", { timeZone: "Europe/Athens" })
-    }
-})
-
-var upload = multer({ storage: storage }).fields([{ name: 'field_21_upload', maxCount: 10 }, { name: 'field_23_upload', maxCount: 10 }, { name: 'field_36_upload', maxCount: 10 }]);
-
-exports.upload_files = (upload, async function (req, res, next) {
-    let field21 = [];
-    let field23 = [];
-    let field36 = [];
-    try {
-
-        const file = req.files;
-        if (file.field_21_upload) {
-            for (i in file.field_21_upload) {
-                field21.push(file.field_21_upload[i].filename)
-            }
-            console.log("field21: " + field21);
-            // const error = new Error('Please upload a file')
-            // error.httpStatusCode = 400
-            // return next(error)
-
-        }
-        if (file.field_23_upload) {
-            for (i in file.field_23_upload) {
-                field23.push(file.field_23_upload[i].filename)
-                console.log(file.field_23_upload[i].path);
-            }
-            console.log("field23: " + field23);
-        }
-        if (file.field_36_upload) {
-            for (i in file.field_36_upload) {
-                field36.push(file.field_36_upload[i].filename)
-            }
-            console.log("field36: " + field36);
-        }
-    } catch (e) {
-        console.log("Error message: " + e.message);
-    }
-    console.log(req.body);
-
-    console.log("files: " + req.files);
-    console.log("field23: " + req.files.field_23_upload);
-    req.body.author_id = "1";
-    console.log("field23_obj_vals: " + Object.values(req.files));
-    console.log("field23: " + Object.values(req.files.field_23_upload[0]));
-});
+}
