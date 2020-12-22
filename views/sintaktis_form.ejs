@@ -17,15 +17,7 @@
         <br>
         <input type="button" name="back" class="back" value="Πίσω" />
         <br><br>
-        <form enctype="multipart/form-data">
-            <% if( typeof errors !== "undefined") {
-                for (i in errors) {%>
-                <div class="alert alert-danger alert-dismissible">
-                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    <strong><%= errors[i].msg%></strong> 
-                  </div>
-            <%  }
-               } %>    
+        <form enctype="multipart/form-data">            
 
             <input type="hidden" id="typos_analysis" name="typos_analysis" value="<%= analysis %>">
             <input type="hidden" id="status_ekthesis" name="status_ekthesis" value="Σε σύνταξη">
@@ -981,9 +973,8 @@
                 console.log(error);
             },
             success: function (data) {
-                window.location = data.redirect
                 //console.log(data);
-                //window.location.href = "/user_views/history";
+                window.location.href = "/user_views/history";
             },
             type: 'POST'
         });

@@ -1,208 +1,239 @@
 <%- include('../partials/head.ejs') %>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
-<script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+    <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 
-<div class="MuiContainer-root jss110 MuiContainer-maxWidthLg">
-    <div class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-4">
-        <form>
-            <br><br>
-            <input type="button" name="back" class="back" value="Πίσω" />
-            <br><br>
-            <h1>Επεξεργασία στοιχείων χρήστη</h1>
-            <br>
+    <div class="MuiContainer-root jss110 MuiContainer-maxWidthLg">
+        <div class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-4">
+            <form>
+                <br><br>
+                <input type="button" name="back" class="back" value="Πίσω" />
+                <br><br>
+                <h1>Επεξεργασία στοιχείων χρήστη</h1>
+                <br>
 
-            <div class="form-group">
-                <label for="fname">Όνομα χρήστη:</label>
-                <input type="text" size="20" id="fname" name="fname" placeholder="Όνομα χρήστη" required minlength="5"
-                    value="<%= data.fname %>" />
-            </div>
-            <hr>
+                <div class="form-group">
+                    <label for="fname">Όνομα χρήστη:</label>
+                    <input type="text" size="20" id="fname" name="fname" placeholder="Όνομα χρήστη" required
+                        minlength="5" value="<%= data.fname %>" />
+                </div>
+                <hr>
 
-            <div class="form-group">
-                <label for="lname">Επώνυμο χρήστη:</label>
-                <input type="text" size="20" id="lname" name="lname" placeholder="Επώνυμο χρήστη" required minlength="5"
-                    value="<%= data.lname %>" />
-            </div>
-            <hr>
+                <div class="form-group">
+                    <label for="lname">Επώνυμο χρήστη:</label>
+                    <input type="text" size="20" id="lname" name="lname" placeholder="Επώνυμο χρήστη" required
+                        minlength="5" value="<%= data.lname %>" />
+                </div>
+                <hr>
 
-            <div class="form-group">
-                <label for="username">Username χρήστη:</label>
-                <input type="text" size="20" id="username" name="username" placeholder="Username" required minlength="5"
-                    value="<%= data.username %>" />
-            </div>
-            <hr>
+                <div class="form-group">
+                    <label for="username">Username χρήστη:</label>
+                    <input type="text" size="20" id="username" name="username" placeholder="Username" required
+                        minlength="5" value="<%= data.username %>" />
+                </div>
+                <hr>
 
-            <div class="form-group">
-                <label for="password">Κωδικός πρόσβασης χρήστη:</label>
-                <input type="password" size="20" id="password" name="password" placeholder="*****" minlength="8" />
-            </div>
+                <div class="form-group">
+                    <label for="password">Κωδικός πρόσβασης χρήστη:</label>
+                    <input type="password" size="20" id="password" name="password" placeholder="********"
+                        minlength="8" />
+                </div>
 
-            <div class="form-group">
-                <label for="password">Επανάληψη κωδικού πρόσβασης χρήστη:</label>
-                <input type="password" size="20" id="repeat_password" name="repeat_password" minlength="8"
-                    placeholder="*****" />
-            </div>
-            <hr>
+                <div class="form-group">
+                    <label for="password">Νέος κωδικός πρόσβασης:</label>
+                    <input type="password" size="20" id="new_password" name="new_password" minlength="8"
+                        placeholder="********" />
+                </div>
 
-            <div class="form-group">
-                <label for="ypoyrgeio">Υπουργείο:</label>
-                <input type="text" size="20" id="ypoyrgeio" name="ypoyrgeio" placeholder="Υπουργείο" required 
-                    value="<%= data.ypoyrgeio %>" />
-            </div>
-            <hr>
+                <div class="form-group">
+                    <label for="password">Επανάληψη κωδικού πρόσβασης χρήστη:</label>
+                    <input type="password" size="20" id="password_repeat" name="password_repeat" minlength="8"
+                        placeholder="********" />
+                    <div id="msg"></div>
+                </div>
 
-            <div class="checkbox-group form-group row">
-                <label for="rolos" class="col-sm-2 col-form-label">Ρόλος: </label>
-                <select id="rolos" name="rolos" class="col-sm-2 form-control" required>
-                    <option value="" selected disabled>Eπιλογή</option>
-                    <option value="Συντάκτης επισπεύδοντος Υπουργείου">Συντάκτης επισπεύδοντος Υπουργείου</option>
-                    <option value="Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων">Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων</option>
-                    <option value="Βουλευτής" >Βουλευτής</option>
-                    <option value="Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)" >Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)</option>
-                    <option value="Γενικό Λογιστήριο του Κράτους" >Γενικό Λογιστήριο του Κράτους</option>
-                    <option value="Επιτροπή Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)" >Επιτροπή Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)</option>
-                    <option value="Γραφείο Καλής Νομοθέτησης (ΓΓΝΚΘ)" >Γραφείο Καλής Νομοθέτησης (ΓΓΝΚΘ)</option>
-                    <option value="Διεύθυνση Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)" >Διεύθυνση Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)</option>
-                    <option value="Γενικός Γραμματέας Νομικών και Κοινοβουλευτικών Θεμάτων" >Γενικός Γραμματέας Νομικών και Κοινοβουλευτικών Θεμάτων</option>
-                    <option value="Βουλή" >Βουλή</option>
-                </select>
-            </div>
-            <br>
-            <hr>
+                <hr>
 
-            <div class="checkbox-group form-group row">
-                <label for="dikaiwmata_diaxeirisis" class="col-sm-8 col-form-label">Ο χρήστης έχει δικαιώματα διαχείρισης:</label>
-                <input class="col-sm-2 form-check-input position-static" type="checkbox" id="dikaiwmata_diaxeirisis" name="dikaiwmata_diaxeirisis" value="1"/>
-                <input type="hidden" name="dikaiwmata_diaxeirisis" id="dikaiwmata_diaxeirisis_hidden" value="0" />
-            </div>
-            <hr>
+                <div class="form-group">
+                    <label for="ypoyrgeio">Υπουργείο:</label>
+                    <input type="text" size="20" id="ypoyrgeio" name="ypoyrgeio" placeholder="Υπουργείο" required
+                        value="<%= data.ypoyrgeio %>" />
+                </div>
+                <hr>
+
+                <div class="checkbox-group form-group row">
+                    <label for="rolos" class="col-sm-2 col-form-label">Ρόλος: </label>
+                    <select id="rolos" name="rolos" class="col-sm-2 form-control" required>
+                        <option value="" selected disabled>Eπιλογή</option>
+                        <option value="Συντάκτης επισπεύδοντος Υπουργείου">Συντάκτης επισπεύδοντος Υπουργείου</option>
+                        <option value="Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων">Αρμόδιος
+                            επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων</option>
+                        <option value="Βουλευτής">Βουλευτής</option>
+                        <option value="Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)">Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)</option>
+                        <option value="Γενικό Λογιστήριο του Κράτους">Γενικό Λογιστήριο του Κράτους</option>
+                        <option value="Επιτροπή Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)">
+                            Επιτροπή Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)</option>
+                        <option value="Γραφείο Καλής Νομοθέτησης (ΓΓΝΚΘ)">Γραφείο Καλής Νομοθέτησης (ΓΓΝΚΘ)</option>
+                        <option value="Διεύθυνση Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)">Διεύθυνση Νομοπαρασκευαστικής
+                            Διαδικασίας (ΓΓΝΚΘ)</option>
+                        <option value="Γενικός Γραμματέας Νομικών και Κοινοβουλευτικών Θεμάτων">Γενικός Γραμματέας
+                            Νομικών και Κοινοβουλευτικών Θεμάτων</option>
+                        <option value="Βουλή">Βουλή</option>
+                    </select>
+                </div>
+                <br>
+                <hr>
+
+                <div class="checkbox-group form-group row">
+                    <label for="dikaiwmata_diaxeirisis" class="col-sm-8 col-form-label">Ο χρήστης έχει δικαιώματα
+                        διαχείρισης:</label>
+                    <input class="col-sm-2 form-check-input position-static" type="checkbox" id="dikaiwmata_diaxeirisis"
+                        name="dikaiwmata_diaxeirisis" value="1" />
+                    <input type="hidden" name="dikaiwmata_diaxeirisis" id="dikaiwmata_diaxeirisis_hidden" value="0" />
+                </div>
+                <hr>
 
 
-            <button id="delete_user" class="btn float-right" type="button"><img src="/img/delete.png"
-                    width="30px"></button>
-            <br>
-            <input type="submit" id="edit_submit" name="edit_submit" class="action-button float-right"
-                value="Επεξεργασία" />
+                <button id="delete_user" class="btn float-right" type="button"><img src="/img/delete.png"
+                        width="30px"></button>
+                <br>
+                <input type="submit" id="edit_submit" name="edit_submit" class="action-button float-right"
+                    value="Επεξεργασία" />
 
-        </form>
+            </form>
+        </div>
     </div>
-</div>
 
-<%- include('../partials/footer.ejs') %>
-</div>
+    <%- include('../partials/footer.ejs') %>
+        </div>
 
-<style>
-    body {
-        font-family: Arial, Helvetica, sans-serif;
-        background-color: white;
-    }
+        <style>
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+                background-color: white;
+            }
 
-    * {
-        box-sizing: border-box;
-    }
+            * {
+                box-sizing: border-box;
+            }
 
-    /* Add padding to containers */
-    .container {
-        padding: 16px;
-        background-color: black;
-    }
+            /* Add padding to containers */
+            .container {
+                padding: 16px;
+                background-color: black;
+            }
 
-    /* Full-width input fields */
-    input[type=text],
-    input[type=password] {
-        width: 140%;
-        padding: 15px;
-        margin: 5px 0 22px 0;
-        display: inline-block;
-        border: 2px solid #ccc;
-        border-radius: 4px;
-        background: #f1f1f1;
-    }
+            /* Full-width input fields */
+            input[type=text],
+            input[type=password] {
+                width: 140%;
+                padding: 15px;
+                margin: 5px 0 22px 0;
+                display: inline-block;
+                border: 2px solid #ccc;
+                border-radius: 4px;
+                background: #f1f1f1;
+            }
 
-    input[type=text]:focus,
-    input[type=password]:focus {
-        background-color: #ddd;
-        outline: none;
-    }
+            input[type=text]:focus,
+            input[type=password]:focus {
+                background-color: #ddd;
+                outline: none;
+            }
 
-    /* Overwrite default styles of hr */
-    hr {
-        border: 1px solid #f1f1f1;
-        margin-bottom: 25px;
-    }
+            /* Overwrite default styles of hr */
+            hr {
+                border: 1px solid #f1f1f1;
+                margin-bottom: 25px;
+            }
 
-    .checkbox-group {
-        display: flex;
-        align-items: center;
-    }
+            .checkbox-group {
+                display: flex;
+                align-items: center;
+            }
 
-    .action-button,
-    .back {
-        font-size: 16px;
-    }
-</style>
+            .action-button,
+            .back {
+                font-size: 16px;
+            }
+        </style>
 
-<script>
+        <script>
 
-    var username = $("#username").val();
-    $("#delete_user").on("click", function (ev) {
-        ev.preventDefault();
-        var answer = window.confirm("Διαγραφή χρήστη;");
-        if (answer) {
-            $.ajax({
-                url: '/user_views/edit_user/' + username,
-                data: $(this).serialize(),
-                error: function (error) {
-                    console.log(error)
-                },
-                success: function (data) {
-                    window.location = data.redirect;
-                },
-                type: 'DELETE'
+            var username = $("#username").val();
+            $("#delete_user").on("click", function (ev) {
+                ev.preventDefault();
+                var answer = window.confirm("Διαγραφή χρήστη;");
+                if (answer) {
+                    $.ajax({
+                        url: '/user_views/edit_user/' + username,
+                        data: $(this).serialize(),
+                        error: function (error) {
+                            console.log(error)
+                        },
+                        success: function (data) {
+                            window.location = data.redirect;
+                        },
+                        type: 'DELETE'
+                    });
+                }
+
             });
-        }
 
-    });
+            $("form").on("submit", function (ev) {
+                ev.preventDefault();
+                if ($("#dikaiwmata_diaxeirisis").prop('checked')) {
+                    $("#dikaiwmata_diaxeirisis_hidden").prop('disabled', true);
+                }
+                if ($("#password_repeat").val() != $("#new_password").val()) {
+                    ev.preventDefault();
+                } else {
+                    console.log($(this).serialize())
+                    $.ajax({
+                        url: '/user_views/edit_user/' + username,
+                        data: $(this).serialize(),
+                        error: function (error) {
+                            console.log(error)
+                        },
+                        success: function (data) {
+                            console.log("USER WAS UPDATED!")
+                            window.location = data.redirect
+                        },
+                        type: 'PUT'
+                    });
+                }
 
-    $("form").on("submit", function (ev) {
-        ev.preventDefault();
-        if ($("#dikaiwmata_diaxeirisis").prop('checked')){
-            $("#dikaiwmata_diaxeirisis_hidden").prop('disabled', true);
-        }
-        console.log($(this).serialize())
-        $.ajax({
-            url: '/user_views/edit_user/' + username,
-            data: $(this).serialize(),
-            error: function (error) {
-                console.log(error)
-            },
-            success: function (data) {
-                console.log("USER WAS UPDATED!")
-                window.location = data.redirect
-            },
-            type: 'PUT'
-        });
-    });
-    $(".back").on("click", function (ev) {
-        window.location.href = "/user_views/search_user";
-    });
+            });
+            $(".back").on("click", function (ev) {
+                window.location.href = "/user_views/search_user";
+            });
 
-    function setDropdown(role) {
-        let dropdownElement = document.getElementById(role);
-        dropdownElement.value = "<%= data.rolos %>"
-    }
-    setDropdown("rolos");
+            function setDropdown(role) {
+                let dropdownElement = document.getElementById(role);
+                dropdownElement.value = "<%= data.rolos %>"
+            }
+            setDropdown("rolos");
 
-    $(document).ready(function () {
-        if ("<%= data.dikaiwmata_diaxeirisis %>" === "1") {
-            $("#dikaiwmata_diaxeirisis").prop('checked', true);
-        } 
-        console.log("data val: <%= data.dikaiwmata_diaxeirisis %>")
-    });
-     
+            $(document).ready(function () {
+                if ("<%= data.dikaiwmata_diaxeirisis %>" === "1") {
+                    $("#dikaiwmata_diaxeirisis").prop('checked', true);
+                }
+
+                $("#password_repeat").keyup(function () {
+                    passwordsMatch();
+                });
+            });
+
+            function passwordsMatch() {
+                if ($("#password_repeat").val() != $("#new_password").val()) {
+                    $("#msg").html("Οι κωδικοί δεν ταιριάζουν.").css("color", "red");
+                } else {
+                    $("#msg").html("Οι κωδικοί ταιριάζουν.").css("color", "green");
+                }
+            }
+
     //implement on check true-false values for checkbox
-    
+
 
     // $("#dikaiwmata_diaxeirisis").on("change",function(ev){
     //     this.value = this.checked ?'true':'false';
@@ -218,7 +249,7 @@
     // unchecked chckbx workaround
     // <input type="hidden"   name="dikaiwmata_diaxeirisis" value="false" />
     // <input type="checkbox" name="dikaiwmata_diaxeirisis" value="true" />
-</script>
-</body>
+        </script>
+        </body>
 
-</html>
+        </html>
