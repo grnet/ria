@@ -2,6 +2,7 @@ const { Sequelize, Model, DataTypes } = require('sequelize');
 const { applyAssoc } = require('../models/associations.js');
 const csv = require('csv-parser')
 const fs = require('fs');
+const { parse } = require('path');
 
 //create a .sqlite file for database
 //const sequelize = new Sequelize('sqlite::memory:');
@@ -22,7 +23,12 @@ const fs = require('fs');
 // //connect to db 
 // const sequelize = new Sequelize({ database: results, username: results, password: results, dialect: 'mysql', host: results, port: results });
 //const sequelize = new Sequelize({ database:results[0].value, username:results[1].value, password:results[2].value, dialect: 'mysql', host:results[4].value, port:results[5].value });
-const sequelize = new Sequelize({ database: 'riadbtest', username: 'riaapp', password: 'GH!ojid63EE', dialect: 'mysql', host: '83.212.76.128', port: 2306 });
+
+//read credentials from file
+let dbCreds = fs.readFileSync('./db_creds.json');
+dbCreds = JSON.parse(dbCreds)//fs returns string values
+
+const sequelize = new Sequelize({ database: dbCreds.database, username: dbCreds.username, password: dbCreds.password, dialect: dbCreds.dialect, host: dbCreds.host, port: dbCreds.port });
 
 const db = {};
 

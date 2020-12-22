@@ -47,7 +47,7 @@
                                 καταχώρηση</label>
                             <div class="col-sm-4">
                                 <input type="text" class="form-control" id="initial_submit" name="initial_submit"
-                                    value="<%= data.initial_submit %>">
+                                    value="<%= data.initial_submit %>" readonly>
                             </div>
                         </div>
                         <br>
@@ -58,7 +58,7 @@
                                 ενημέρωση</label>
                             <div class="col-sm-4">
                                 <input type="text" class="form-control" id="last_updated" name="last_updated"
-                                    value="<%= data.last_updated %>">
+                                    value="<%= data.last_updated %>" readonly>
                             </div>
                         </div>
                         <br>
@@ -883,9 +883,10 @@
 
         <script>
             var answer;
-            var ekthesi_id = '<%= data.id %>'
+            var ekthesi_id = "<%= data.id %>";
             var role = "<%= rolos%>";
-            var analysis = '<%= data.typos_analysis %>'
+            var analysis = "<%= data.typos_analysis %>";
+            var pdf_exists = "<%= pdf_exists %>";
             console.log(ekthesi_id);
             console.log("session id: " + sessionStorage.getItem("referer"));
             //prevent user from going to a different form through url   
@@ -980,18 +981,17 @@
             $(".export-pdf").on("click", function (ev) {
                 ev.preventDefault();
                 var title = $("#title").val()
-                blob = new Blob();
+                //blob = new Blob();
                 console.log($("form").serialize())
                 $.ajax({
                     url: '/form_a/' + ekthesi_id,
                     data: $("form").serialize(),
                     error: function (error) {
-                        alert("Σφάλμα κατά τη δημιουργία του PDF.");
                         console.log(error)
                     },
                     success: function (data) {
-                        alert("To PDF δημιουργήθηκε επιτυχώς.");
-                        console.log(data)
+                        //console.log(data)
+                        $("#pdf_download").show();
                     },
                     type: 'POST'
                 })
@@ -1001,58 +1001,48 @@
             });
 
             $(document).ready(function () {
-                //default when loading page
-                console.log('ekp: ' + "<%= data.ekpedeusi_politismos %>")
+
+                if (pdf_exists == "true") {
+                    $("#pdf_download").show();
+                } else {
+                    $("#pdf_download").hide();
+                }
+
                 if("<%= data.ekpedeusi_politismos %>" ) {
                     $('#ekpedeusi_politismos').prop( "checked", true );
-                    $("#ekpedeusi_politismos input:checkbox").prop('value', 'on')
-                } //else {
-                //     $("#ekpedeusi_politismos input:checkbox").prop('value', 'off')
-                // }
-                console.log('ekp: ' + $('#ekpedeusi_politismos').val())
-                if (document.getElementById('forologiki_politiki').checked) {
+                    $("#politismos_table").show();
+                    $("#ekpaideysi_table").show();
+                }
+                
+                if("<%= data.forologiki_politiki %>" ) {
+                    $('#forologiki_politiki').prop( "checked", true );
                     $("#oikonomia_table").show();
                     $("#forologia_table").show();
                     $("#ergasiakes_sxeseis_table").show();
-                } else {
-                    $("#oikonomia_table").hide();
-                    $("#forologia_table").hide();
-                    $("#ergasiakes_sxeseis_table").hide();
                 }
 
-                if (document.getElementById('koinoniki_politiki').checked) {
+                if("<%= data.koinoniki_politiki %>" ) {
+                    $('#koinoniki_politiki').prop( "checked", true );
                     $("#apasxolisi_table").show();
                     $("#koinwniki_asfalisi_table").show();
                     $("#koinwniki_pronoia_table").show();
                     $("#ygeia_table").show();
                     $("#isotita_fylwn_table").show();
                     $("#metanasteytiki_prosfygiki_politiki_table").show();
-                } else {
-                    $("#apasxolisi_table").hide();
-                    $("#koinwniki_asfalisi_table").hide();
-                    $("#koinwniki_pronoia_table").hide();
-                    $("#ygeia_table").hide();
-                    $("#isotita_fylwn_table").hide();
-                    $("#metanasteytiki_prosfygiki_politiki_table").hide()
                 }
 
-                if (document.getElementById('dimosia_dioikisi').checked) {
-                    $("#dimosia_dioikisi_table").show();
+                if("<%= data.dimosia_dioikisi %>" ) {
+                    $('#dimosia_dioikisi').prop( "checked", true );
+                    $$("#dimosia_dioikisi_table").show();
                     $("#dimosia_asfaleia_table").show();
                     $("#dikaiosini_table").show();
-                } else {
-                    $("#dimosia_dioikisi_table").hide();
-                    $("#dimosia_asfaleia_table").hide();
-                    $("#dikaiosini_table").hide();
                 }
 
-                if (document.getElementById('anaptiksi').checked) {
+                if("<%= data.anaptiksi %>" ) {
+                    $('#anaptiksi').prop( "checked", true );
                     $("#ependytiki_drastiriotita_table").show();
                     $("#perivallon_energeia_table").show();
-                } else {
-                    $("#ependytiki_drastiriotita_table").hide();
-                    $("#perivallon_energeia_table").hide();
-                }
+                }                                                             
 
                 if ($('input[name=status_ekthesis]').val() == "Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους") {
                     $("#ekthesi_glk").prop('checked', true);
@@ -1617,7 +1607,7 @@
                     $("#ependytiki_drastiriotita_table").show();
                     $("#perivallon_energeia_table").show();
                 }
-            })
+            })            
 
             function optionalFields(fieldId) {
                 $(fieldId).prop('disabled', true);//find and disable field, button or fieldset
@@ -1732,7 +1722,7 @@
                 $.each(fields, function(key, field) {        
                     if ($(field).hasClass('required')){
                         console.log($(field).prop('name') +' is required')
-                        if ($(field).value ==null) {        
+                        if ($(field).prop('name') == null) {        
                             $(field).focus();
                             alert($(field).prop('name') +' is required');
                             validationFlag = false;

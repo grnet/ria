@@ -1,0 +1,8 @@
+{
+    "database": "riadbtest",
+    "host": "83.212.76.128",
+    "port": "2306",
+    "dialect": "mysql",
+    "username": "",
+    "password": ""
+}

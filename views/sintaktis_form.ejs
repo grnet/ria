@@ -933,7 +933,7 @@
     function wordsCounter(fieldId, spanId, wordlimit, event) {
         Countable.on(document.getElementById(fieldId), counter => {
             if (counter.words >= wordlimit) {
-                event.preventDefault();//if word limit is reached prevent typing
+                event.preventDefault();//if word limit is reached prevent typing by preventing next event
             }
             //console.log(counter);
             document.getElementById(spanId).innerHTML = counter.words.toString();
@@ -966,7 +966,11 @@
         ev.preventDefault();
         initializeAnalysis("#typos_analysis");
         var fd = new FormData($("form").get(0));
-        console.log(fd)
+        console.log(fd)                        
+        var checkbox = $("form").find("input[type=checkbox]:not(:checked)");//find all unchecked checkboxes 
+        $.each(checkbox, function(key, chckbx) {
+            fd.append($(chckbx).prop('name'), $(chckbx).value='' )//append to fd without value 
+        });
         //console.log('my file: '+ document.getElementById("field_23_upload").files[0].name);
         $.ajax({
             url: '/create/<%= analysis %>',

@@ -16,7 +16,8 @@ var upload = multer({ storage: storage }).fields([{ name: 'field_21_upload', max
 
 routes.get('/:entry_id', async (req, res, next) => {
 
-    try {
+    try {       
+
         const results = [];
 
         var readCSV = fs.createReadStream('public/csvs/tooltips.csv')
@@ -35,9 +36,25 @@ routes.get('/:entry_id', async (req, res, next) => {
             id: req.params.entry_id
         }, include: [{ model: database.rythmiseis }, { model: database.field_9 }]
     })
+    pdf_name = entry.title + '.pdf';
+    pdf_name = pdf_name.replace(/\s+/g, '');
+    var pdf_exists;
+    try {
+        if(fs.existsSync('./public/pdf_exports/' + pdf_name)) {                      
+        
+            console.log("The file exists.");
+            pdf_exists = true;
+        } else {
+            console.log("The file does not exist.");
+            pdf_exists = false;
+        }        
+    } catch (err) {
+        console.log(err)
+    }
+    console.log(pdf_exists);
     if (entry && entry.dataValues && readCSV) {
         req.session.ekthesi_id = req.params.entry_id;
-        res.render("form_a", { data: entry.dataValues, rolos: req.session.rolos, tooltips: readCSV });
+        res.render("form_a", { data: entry.dataValues, rolos: req.session.rolos, tooltips: readCSV, pdf_exists:pdf_exists });
     } else {
         res.status(404).send("Not found")
     }
@@ -453,6 +470,16 @@ routes.post('/:entry_id', async (req, res, next) => {
     //res.header('content-type', 'application/pdf');
     //res.download(pdf_name);
 
+    try {
+        if(fs.existsSync('./public/pdf_exports/' + pdf_name)) {                      
+            res.sendStatus(200);
+        } else {
+            res.sendStatus(500);
+
+        }        
+    } catch (err) {
+        console.log(err)
+    }
 })
 
 routes.put('/:entry_id', upload, async function (req, res, next) {
