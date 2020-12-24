@@ -489,22 +489,22 @@ routes.put('/:entry_id', upload,
     [check('title', 'Title is required').notEmpty(),
     check('epispeudon_foreas', 'Epispeudon foreas is required').notEmpty(),
     //  check(body(), 'req.body is empty!!!').notEmpty()
-    body('field_10_amesi_comments').if(body('field_10_amesi').exists()).notEmpty().withMessage('Εάν είναι άμεση, εξηγήστε.'),
-    body('field_10_emmesi_comments').if(body('field_10_emmesi').exists()).notEmpty().withMessage('Εάν είναι έμμεση, εξηγήστε.'),
+    body('field_10_amesi_comments').if(body('field_10_amesi').notEmpty()).notEmpty().withMessage('Εάν είναι άμεση, εξηγήστε.'),
+    body('field_10_emmesi_comments').if(body('field_10_emmesi').notEmpty()).notEmpty().withMessage('Εάν είναι έμμεση, εξηγήστε.'),
     body('field_11_comments')
-        .if(body('field_10_emmesi').exists())//if user checked field_10_amesi
-        .if(body('field_10_amesi').exists())//or if user checked field_10_emmesi
+        .if(body('field_10_emmesi').notEmpty())//if user checked field_10_amesi
+        .if(body('field_10_amesi').notEmpty())//or if user checked field_10_emmesi
         .notEmpty().withMessage('Το πεδίο 11 είναι υποχρεωτικό.'),//field_11 must be filled in      
-    body('field_12_comments').if(body('field_10_emmesi').exists()).if(body('field_10_amesi').exists()).notEmpty().withMessage('Το πεδίο 12 είναι υποχρεωτικό.'),
-    body('field_13_comments').if(body('field_10_emmesi').exists()).if(body('field_10_amesi').exists()).notEmpty().withMessage('Το πεδίο 13 είναι υποχρεωτικό.'),
+    body('field_12_comments').if(body('field_10_emmesi').notEmpty()).if(body('field_10_amesi').notEmpty()).notEmpty().withMessage('Το πεδίο 12 είναι υποχρεωτικό.'),
+    body('field_13_comments').if(body('field_10_emmesi').notEmpty()).if(body('field_10_amesi').notEmpty()).notEmpty().withMessage('Το πεδίο 13 είναι υποχρεωτικό.'),
 
-    body('field_34').if(body('field_33').exists()).notEmpty().withMessage('Το πεδίο 34 είναι υποχρεωτικό.'),
-    body('field_35').if(body('field_33').exists()).notEmpty().withMessage('Το πεδίο 35 είναι υποχρεωτικό.'),
-    body('field_36').if(body('field_33').exists()).notEmpty().withMessage('Το πεδίο 36 είναι υποχρεωτικό.'),
-    body('field_37').if(body('field_33').exists()).notEmpty().withMessage('Το πεδίο 37 είναι υποχρεωτικό.'),
-    body('field_38').if(body('field_33').exists()).notEmpty().withMessage('Το πεδίο 38 είναι υποχρεωτικό.'),
-    body('field_39').if(body('field_33').exists()).notEmpty().withMessage('Το πεδίο 39 είναι υποχρεωτικό.'),
-    body('field_40').if(body('field_33').exists()).notEmpty().withMessage('Το πεδίο 40 είναι υποχρεωτικό.'),
+    body('field_34').if(body('field_33').notEmpty()).notEmpty().withMessage('Το πεδίο 34 είναι υποχρεωτικό.'),
+    body('field_35').if(body('field_33').notEmpty()).notEmpty().withMessage('Το πεδίο 35 είναι υποχρεωτικό.'),
+    body('field_36').if(body('field_33').notEmpty()).notEmpty().withMessage('Το πεδίο 36 είναι υποχρεωτικό.'),
+    body('field_37').if(body('field_33').notEmpty()).notEmpty().withMessage('Το πεδίο 37 είναι υποχρεωτικό.'),
+    body('field_38').if(body('field_33').notEmpty()).notEmpty().withMessage('Το πεδίο 38 είναι υποχρεωτικό.'),
+    body('field_39').if(body('field_33').notEmpty()).notEmpty().withMessage('Το πεδίο 39 είναι υποχρεωτικό.'),
+    body('field_40').if(body('field_33').notEmpty()).notEmpty().withMessage('Το πεδίο 40 είναι υποχρεωτικό.'),
     ],
     async function (req, res, next) {
         let ekthesi_id = req.params.entry_id;
@@ -893,7 +893,7 @@ routes.put('/:entry_id', upload,
                 if (!ekthesi) {
                     res.status(404).send("Error in updating ekthesi.");
                 } else {
-                    res.send({ redirect: "./user_views/history" });
+                    res.send({ redirect: "../user_views/history" });
                 }
             } catch (e) {
                 console.log(e);

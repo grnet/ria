@@ -40,7 +40,7 @@ routes.get('/:analysis', function (req, res, next) {
 });
 //routes.post('/', form_create.upload_files, form_submit.create_update_form
 
-routes.post('/:analysis', upload, async function (req, res, next) {
+routes.post('/:analysis', upload, [check('title', 'Title is required').notEmpty()], async function (req, res, next) {
 
     // const errors = validationResult(req);
     // if (!errors.isEmpty()) { // if array exists

@@ -19,7 +19,6 @@
         <br><br>
         <form enctype="multipart/form-data">            
 
-            <input type="hidden" id="typos_analysis" name="typos_analysis" value="<%= analysis %>">
             <input type="hidden" id="status_ekthesis" name="status_ekthesis" value="Σε σύνταξη">
 
             <fieldset id="arxiki" name="arxiki">
@@ -37,15 +36,18 @@
                 <hr>
 
                 <div class="form-group row">
+                    <label for="typos_analysis" class="col-sm-6 col-form-label required">Τύπος ανάλυσης</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="typos_analysis" name="typos_analysis" readonly>
+                    </div>                    
+                </div>
+                <br>
+                <hr>
+
+                <div class="form-group row">
                     <label for="initial_submit" class="col-sm-6 col-form-label required">Αρχική καταχώρηση</label>
                     <div class="col-sm-4">
                         <input type="text" class="form-control" id="initial_submit" name="initial_submit" readonly>
-                    </div>
-                    <div><img src="/img/information.png" id="tooltip_img2" aria-describedby="tooltip_img2" width="30px"
-                            onmouseover="tooltipEvents('tooltip_img2', 'tooltip2')">
-                        <div id="tooltip2" role="tooltip">Συμπληρώνεται αυτόματα
-                            <div class="arrow" data-popper-arrow></div>
-                        </div>
                     </div>
                 </div>
                 <br>
@@ -57,12 +59,6 @@
                         <textarea class="form-control" id="epispeudon_foreas" name="epispeudon_foreas" rows="3"
                             placeholder="Επισπεύδον Υπουργείο ή Βουλευτής"></textarea>
                     </div>
-                    <div><img src="/img/information.png" id="tooltip_img3" aria-describedby="tooltip_img3" width="30px"
-                            onmouseover="tooltipEvents('tooltip_img3', 'tooltip3')">
-                        <div id="tooltip3" role="tooltip">Επισπεύδον Υπουργείο ή Βουλευτής
-                            <div class="arrow" data-popper-arrow></div>
-                        </div>
-                    </div>
                 </div>
 
                 <hr>
@@ -72,12 +68,6 @@
                     <div class="col-sm-4">
                         <textarea class="form-control" id="rythmisi_pou_afora" name="rythmisi_pou_afora" rows="3"
                             placeholder="Ρύθμιση"></textarea>
-                    </div>
-                    <div><img src="/img/information.png" id="tooltip_img4" aria-describedby="tooltip_img4" width="30px"
-                            onmouseover="tooltipEvents('tooltip_img4', 'tooltip4')">
-                        <div id="tooltip4" role="tooltip">Αν δεν αφορά κάποια ρύθμιση, το πεδίο παραμένει κενό
-                            <div class="arrow" data-popper-arrow></div>
-                        </div>
                     </div>
                 </div>
 
@@ -89,25 +79,13 @@
                         <textarea class="form-control" id="stoixeia_epikoinwnias" name="stoixeia_epikoinwnias" rows="3"
                             placeholder="E-mail, κινητό, γραφείο κ.ο.κ"></textarea>
                     </div>
-                    <div><img src="/img/information.png" id="tooltip_img5" aria-describedby="tooltip_img5" width="30px"
-                            onmouseover="tooltipEvents('tooltip_img5', 'tooltip5')">
-                        <div id="tooltip5" role="tooltip">E-mail, κινητό, γραφείο κ.ο.κ
-                            <div class="arrow" data-popper-arrow></div>
-                        </div>
-                    </div>
                 </div>
 
                 <br>
                 <hr>
                 <div>
                     <p>Επιλέξατε από τον παρακάτω κατάλογο τον τομέα ή τους τομείς νομοθέτησης στους οποίους αφορούν οι
-                        βασικές διατάξεις της αξιολογούμενης ρύθμισης:
-                        <img src="/img/information.png" id="tooltip_img6" aria-describedby="tooltip_img6" width="30px"
-                            onmouseover="tooltipEvents('tooltip_img6', 'tooltip6')">
-                    <div id="tooltip6" role="tooltip">Ανάλογα με τις επιλογές σας εμφανίζονται οι αντίστοιχοι πίνακες
-                        στο πεδίο "Ειδικότεροι στόχοι ανάλογα με τον τομέα νομοθέτησης"
-                        <div class="arrow" data-popper-arrow></div>
-                    </div>
+                        βασικές διατάξεις της αξιολογούμενης ρύθμισης: 
                     </p>
 
                 </div>
@@ -598,95 +576,17 @@
         font-size: 16px;
     }
 
-    #tooltip {
-        background: #333;
+    .tooltip_icon{
+        
         color: white;
         font-weight: bold;
-        padding: 4px 8px;
         font-size: 13px;
         border-radius: 4px;
-        display: none;
-
     }
 
-    #tooltip[data-show] {
+    .tooltip_icon[data-show] {
         display: block;
-    }
-
-    #tooltip2 {
-        background: #333;
-        color: white;
-        font-weight: bold;
-        padding: 4px 8px;
-        font-size: 13px;
-        border-radius: 4px;
-        display: none;
-
-    }
-
-    #tooltip2[data-show] {
-        display: block;
-    }
-
-    #tooltip3 {
-        background: #333;
-        color: white;
-        font-weight: bold;
-        padding: 4px 8px;
-        font-size: 13px;
-        border-radius: 4px;
-        display: none;
-
-    }
-
-    #tooltip3[data-show] {
-        display: block;
-    }
-
-    #tooltip4 {
-        background: #333;
-        color: white;
-        font-weight: bold;
-        padding: 4px 8px;
-        font-size: 13px;
-        border-radius: 4px;
-        display: none;
-
-    }
-
-    #tooltip4[data-show] {
-        display: block;
-    }
-
-    #tooltip5 {
-        background: #333;
-        color: white;
-        font-weight: bold;
-        padding: 4px 8px;
-        font-size: 13px;
-        border-radius: 4px;
-        display: none;
-
-    }
-
-    #tooltip5[data-show] {
-        display: block;
-    }
-
-    #tooltip6 {
-        background: #333;
-        color: white;
-        font-weight: bold;
-        padding: 4px 8px;
-        font-size: 13px;
-        border-radius: 4px;
-        display: none;
-
-    }
-
-    #tooltip6[data-show] {
-        display: block;
-    }
+    }   
 
     .arrow,
     .arrow::before {
@@ -702,51 +602,11 @@
         background: #333;
     }
 
-    #tooltip[data-popper-placement^='top']>.arrow {
+    .tooltip_text[data-popper-placement^='top']>.arrow {
         bottom: -4px;
     }
 
-    #tooltip[data-popper-placement^='bottom']>.arrow {
-        top: -4px;
-    }
-
-    #tooltip2[data-popper-placement^='top']>.arrow {
-        bottom: -4px;
-    }
-
-    #tooltip2[data-popper-placement^='bottom']>.arrow {
-        top: -4px;
-    }
-
-    #tooltip3[data-popper-placement^='top']>.arrow {
-        bottom: -4px;
-    }
-
-    #tooltip3[data-popper-placement^='bottom']>.arrow {
-        top: -4px;
-    }
-
-    #tooltip4[data-popper-placement^='top']>.arrow {
-        bottom: -4px;
-    }
-
-    #tooltip4[data-popper-placement^='bottom']>.arrow {
-        top: -4px;
-    }
-
-    #tooltip5[data-popper-placement^='top']>.arrow {
-        bottom: -4px;
-    }
-
-    #tooltip5[data-popper-placement^='bottom']>.arrow {
-        top: -4px;
-    }
-
-    #tooltip6[data-popper-placement^='top']>.arrow {
-        bottom: -4px;
-    }
-
-    #tooltip6[data-popper-placement^='bottom']>.arrow {
+    .tooltip_text[data-popper-placement^='bottom']>.arrow {
         top: -4px;
     }
 
@@ -934,7 +794,7 @@
     
     $("form").on("submit", function (ev) {
         ev.preventDefault();
-        initializeAnalysis("#typos_analysis");
+        //initializeAnalysis("#typos_analysis");
         onSubmitStatus();
         var fd = new FormData($("form").get(0));
         // console.log('heyhey my val: '+ document.getElementById("field_23_upload").files[0].name);
@@ -956,7 +816,6 @@
 
     $(".save_temporarily").on("click", function (ev) {
         ev.preventDefault();
-        initializeAnalysis("#typos_analysis");
         var fd = new FormData($("form").get(0));
         console.log(fd)                        
         var checkbox = $("form").find("input[type=checkbox]:not(:checked)");//find all unchecked checkboxes 
@@ -1012,30 +871,30 @@
             $('input[name=status_ekthesis]').val("Σε σύνταξη");
         }
     })
-
-    function initializeAnalysis(analysis) {
+    var analysis = "<%= analysis%>";
+    console.log(analysis);
         //console.log("init val " + $(analysis).val());
-        if ($(analysis).val() == ':sxedio_nomou') {
-            $(analysis).prop('value', 'Σχέδιο νόμου');
-        } else if ($(analysis).val() == ':prosxedio_nomou') {
-            $(analysis).prop('value', 'Προσχέδιο νόμου');
-        } else if ($(analysis).val() == ':kateythintiries_grammes') {
-            $(analysis).prop('value', 'Κατευθυντήριες γραμμές');
-        } else if ($(analysis).val() == ':epeigon_katepeigon') {
-            $(analysis).prop('value', 'Επείγον ή κατεπείγον νομοσχέδιο');
-        } else if ($(analysis).val() == ':diethneis_symvaseis') {
-            $(analysis).prop('value', 'Διεθνείς συμβάσεις');
-        } else if ($(analysis).val() == ':tropologies_upourgwn') {
-            $(analysis).prop('value', 'Τροπολογίες Υπουργών');
-        } else if ($(analysis).val() == ':protasi_nomou') {
-            $(analysis).prop('value', 'Πρόταση νόμου');
-        } else if ($(analysis).val() == ':tropologies_vouleutwn') {
-            $(analysis).prop('value', 'Τροπολογίες Βουλευτών');
+        if (analysis == ':sxedio_nomou') {
+            $("#typos_analysis").prop('value', 'Σχέδιο νόμου');
+        } else if (analysis == ':prosxedio_nomou') {
+            $("#typos_analysis").prop('value', 'Προσχέδιο νόμου');
+        } else if (analysis == ':kateythintiries_grammes') {
+            $("#typos_analysis").prop('value', 'Κατευθυντήριες γραμμές');
+        } else if (analysis == ':epeigon_katepeigon') {
+            $("#typos_analysis").prop('value', 'Επείγον ή κατεπείγον νομοσχέδιο');
+        } else if (analysis == ':diethneis_symvaseis') {
+            $("#typos_analysis").prop('value', 'Διεθνείς συμβάσεις');
+        } else if (analysis == ':tropologies_upourgwn') {
+            $("#typos_analysis").prop('value', 'Τροπολογίες Υπουργών');
+        } else if (analysis == ':protasi_nomou') {
+            $("#typos_analysis").prop('value', 'Πρόταση νόμου');
+        } else if (analysis == ':tropologies_vouleutwn') {
+            $("#typos_analysis").prop('value', 'Τροπολογίες Βουλευτών');
         }
         // console.log("1" + analysis);
         // console.log("2" + $(analysis));
         // console.log("3" + $(analysis).val());
-    }
+    
 
     function getFullDate(fieldId) {
         $(fieldId).prop("value", new Date().toLocaleString("el-GR", { timeZone: "Europe/Athens" }));
@@ -1044,7 +903,6 @@
     //init_submit date - will be updated when actually submitted
     getFullDate("#initial_submit");
 
-    var analysis = "<%= analysis%>";
     var role = "<%= rolos%>";
     function optionalFields(fieldId) {
         $(fieldId).prop('disabled', true);//find and disable field, button or fieldset
@@ -1400,10 +1258,10 @@
         table32RowIndex--;
     });
 
-    function tooltipEvents(imgId, tooltipId) {
+    function tooltipEvents(imgId, tooltipClass) {
         const img = document.querySelector( '#' + imgId);
-        const tooltip = document.querySelector( '#' + tooltipId);
-
+        const tooltip = document.querySelector( '.' + tooltipClass);
+        //console.log(img);
         let popperInstance = null;
 
         function create() {
@@ -1615,51 +1473,48 @@
     // $('fieldset').find('[required]').each(function() {
     // //your code here
     // })
-    addTooltip('#title');    
+    addTooltip('title');    
     function addTooltip (fieldID) {
-        console.log('field: '+fieldID)
-        var parentDiv = $(fieldID).parent().closest('div');
+        var parentDiv = $("#"+fieldID).parent().closest('div');
         var parentDiv = $(parentDiv).parent().closest('div');
         options = `<div>
-                        <img src="/img/information.png" width="30px" id="${fieldID}_tooltip_img" aria-describedby="${fieldID}_tooltip_img" 
-                            onmouseover="tooltipEvents('${fieldID}_tooltip_img', 'tooltip')" >
-                        <div id="${fieldID}_tooltip" role="tooltip">
-                            <div class="arrow" data-popper-arrow></div>
+                        <img src="/img/information.png"  id="${fieldID}_tooltip_img" aria-describedby="${fieldID}_tooltip_img" 
+                            onmouseover="tooltipEvents('${fieldID}_tooltip_img', 'tooltip_text'); setTooltip('${fieldID}_tooltip_div','${fieldID}');"
+                            onmouseout="removeTooltip('${fieldID}_tooltip_div')" class="tooltip_icon" width="30px">
+                        <div id="${fieldID}_tooltip_div" class="tooltip_text" role="tooltip">                            
                         </div>
                     </div>`;
-        parentDiv.append(options);
 
+        parentDiv.append(options);
     }    
 
-    var tooltips = '<%= tooltips %>';
-    function setTooltip (fieldId) {
-        var fieldId = fieldId.substring(1)//remove 1st character
-                             .replace(/\\'/g, "\\'")
-                             .replace(/\\"/g, '\\"')
-                             .replace(/\\&/g, "\\&")
-                             .replace(/\\r/g, "\\r")
-                             .replace(/\\t/g, "\\t")
-                             .replace(/\\b/g, "\\b")
-                             .replace(/\\f/g, "\\f");
-        tooltips = tooltips.replace(/&#34;/g, '"')
-                           .replace(/[\u0000-\u0019]+/g,"")//replace html for double quotes
-        tooltips = JSON.parse(tooltips)//parse to JSON obj 
-        console.log(tooltips[0])
+    function removeTooltip (divID) {
+        $("#"+divID).empty();
 
-        //console.log(tooltips)
-        //console.log('fieldid: ' + fieldId);     
-        // var index = Object.keys(tooltips).indexOf(fieldId); 
-        // console.log('index: ' + index)      
+    }
+
+    //<div class="arrow" data-popper-arrow ></div>
+    function setTooltip (divID,fieldId) {
+        //var fieldId = fieldId.substring(1)//remove 1st character if #fieldID is passed as parameter
+        var tooltips = '<%= tooltips %>';
+        tooltips = tooltips.replace(/&#34;/g, '"')//replace html for double quotes
+                           .replace(/[\u0000-\u0019]+/g,"")
+                           .replace(/\\'/g, "\\'")
+                           .replace(/\\"/g, '\\"')
+                           .replace(/\\&/g, "\\&")
+                           .replace(/\\r/g, "\\r")
+                           .replace(/\\t/g, "\\t")
+                           .replace(/\\b/g, "\\b")
+                           .replace(/\\f/g, "\\f");
+        tooltips = JSON.parse(tooltips)//parse to JSON obj 
+        var tooltip;
         for (i in tooltips) {
             if (tooltips[i].fieldId == fieldId) {
-                console.log('FOUND IT!!' + tooltips[i].tooltipText)
-                fieldId =  tooltips[i].tooltipText;
+                tooltip =  tooltips[i].tooltipText;
+                $("#"+divID).html((tooltip));
             }
-        }   
-        return fieldId;     
+        }           
     }
-    //setTooltip('#title');    
-    //$('#title').prop('required',true);
     
     var current_fs, next_fs, previous_fs; //fieldsets
 
