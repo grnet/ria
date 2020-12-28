@@ -4,9 +4,10 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
             integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        <script src="https://unpkg.com/@popperjs/core@2"></script>
+        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
             integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-            crossorigin="anonymous"></script>
+            crossorigin="anonymous"></script>-->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
@@ -17,7 +18,7 @@
         <br>
         <input type="button" name="back" class="back" value="Πίσω" />
         <br><br>
-        <form enctype="multipart/form-data">            
+        <form enctype="multipart/form-data">
 
             <input type="hidden" id="status_ekthesis" name="status_ekthesis" value="Σε σύνταξη">
 
@@ -29,7 +30,7 @@
                     <label for="title" class="col-sm-6 col-form-label required">Τίτλος αξιολογούμενης ρύθμισης</label>
                     <div class="col-sm-4">
                         <input type="text" class="form-control" id="title" name="title">
-                    </div>           
+                    </div>
                 </div>
 
                 <br>
@@ -39,7 +40,7 @@
                     <label for="typos_analysis" class="col-sm-6 col-form-label required">Τύπος ανάλυσης</label>
                     <div class="col-sm-4">
                         <input type="text" class="form-control" id="typos_analysis" name="typos_analysis" readonly>
-                    </div>                    
+                    </div>
                 </div>
                 <br>
                 <hr>
@@ -84,8 +85,9 @@
                 <br>
                 <hr>
                 <div>
-                    <p>Επιλέξατε από τον παρακάτω κατάλογο τον τομέα ή τους τομείς νομοθέτησης στους οποίους αφορούν οι
-                        βασικές διατάξεις της αξιολογούμενης ρύθμισης: 
+                    <p id="tomeis_nomothetisis">Επιλέξατε από τον παρακάτω κατάλογο τον τομέα ή τους τομείς νομοθέτησης
+                        στους οποίους αφορούν οι
+                        βασικές διατάξεις της αξιολογούμενης ρύθμισης:
                     </p>
 
                 </div>
@@ -150,7 +152,8 @@
                 <br>
 
                 <div class="form-group">
-                    <label for="field_1" class="required">1. Ποιο ζήτημα αντιμετωπίζει η αξιολογούμενη ρύθμιση;</label>
+                    <label for="field_1" class="required">1. Ποιο ζήτημα αντιμετωπίζει η αξιολογούμενη
+                        ρύθμιση;</label>
                     <textarea class="form-control" id="field_1" name="field_1" rows="3"
                         onkeypress="wordsCounter('field_1','words1',100, event)"
                         onpaste="wordsCounter('field_1','words1',100, event)"></textarea>
@@ -423,147 +426,149 @@
 
             <%- include('fill_form/field_9.ejs') %>
 
-            <fieldset id="digital_governance">
-                <h2>Ψηφιακή διακυβέρνηση</h2>
-                <br>
+                <fieldset id="digital_governance">
+                    <h2>Ψηφιακή διακυβέρνηση</h2>
+                    <br>
 
-                <div class="checkbox-group form-group row">
-                    <label class="col-sm-8 col-form-label required">10. Σε περίπτωση που προβλέπεται η χρήση
-                        πληροφοριακού συστήματος, ποια θα είναι η συμβολή αυτού στην επίτευξη των στόχων της
-                        αξιολογούμενης ρύθμισης: </label>
-                </div>
+                    <div class="checkbox-group form-group row">
+                        <label class="col-sm-8 col-form-label required">10. Σε περίπτωση που προβλέπεται η χρήση
+                            πληροφοριακού συστήματος, ποια θα είναι η συμβολή αυτού στην επίτευξη των στόχων της
+                            αξιολογούμενης ρύθμισης: </label>
+                    </div>
 
-                <div class="checkbox-group form-group row">
-                    <div class="col-2"></div>
-                    <label class="col-3 col-form-label">ΑΜΕΣΗ</label>
-                    <input class="col-2 form-check-input position-static" type="checkbox" id="field_10_amesi"
-                        name="field_10_amesi" value="field_10_amesi">
-                </div>
-                <div id="amesi_wrap" class="form-group" style="display:none;">
-                    <label for="field_10_amesi_comments " class="required">Εάν είναι άμεση, εξηγήστε:</label>
-                    <textarea class="form-control" id="field_10_amesi_comments" name="field_10_amesi_comments" rows="3"
-                        onkeypress="wordsCounter('field_10_amesi_comments','words10_1',150, event)"
-                        onpaste="wordsCounter('field_10_amesi_comments','words10_1',150, event)"></textarea>
-                    <p style="float: right;">Λέξεις: <span id="words10_1"></span> /150</p>
-                </div>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <label class="col-3 col-form-label">ΑΜΕΣΗ</label>
+                        <input class="col-2 form-check-input position-static" type="checkbox" id="field_10_amesi"
+                            name="field_10_amesi" value="field_10_amesi">
+                    </div>
+                    <div id="amesi_wrap" class="form-group" style="display:none;">
+                        <label for="field_10_amesi_comments " class="required">Εάν είναι άμεση, εξηγήστε:</label>
+                        <textarea class="form-control" id="field_10_amesi_comments" name="field_10_amesi_comments"
+                            rows="3" onkeypress="wordsCounter('field_10_amesi_comments','words10_1',150, event)"
+                            onpaste="wordsCounter('field_10_amesi_comments','words10_1',150, event)"></textarea>
+                        <p style="float: right;">Λέξεις: <span id="words10_1"></span> /150</p>
+                    </div>
 
-                <div class="checkbox-group form-group row">
-                    <div class="col-2"></div>
-                    <label class="col-3 col-form-label">ΕΜΜΕΣΗ</label>
-                    <input class="col-2 form-check-input position-static" type="checkbox" id="field_10_emmesi" name="field_10_emmesi"
-                        value="field_10_emmesi">
-                </div>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <label class="col-3 col-form-label">ΕΜΜΕΣΗ</label>
+                        <input class="col-2 form-check-input position-static" type="checkbox" id="field_10_emmesi"
+                            name="field_10_emmesi" value="field_10_emmesi">
+                    </div>
 
-                <div id="emesi_wrap" class="form-group" style="display:none;">
-                    <label for="field_10_emesi_comments " class="required">Εάν είναι έμμεση, εξηγήστε:</label>
-                    <textarea class="form-control" id="field_10_emesi_comments" name="field_10_emmesi_comments" rows="3"
-                        onkeypress="wordsCounter('field_10_emmesi_comments','words10_2',150, event)"
-                        onpaste="wordsCounter('field_10_emmesi_comments','words10_2',150, event)"></textarea>
-                    <p style="float: right;">Λέξεις: <span id="words10_2"></span> /150</p>
-                </div>
-                <hr>
+                    <div id="emesi_wrap" class="form-group" style="display:none;">
+                        <label for="field_10_emesi_comments " class="required">Εάν είναι έμμεση, εξηγήστε:</label>
+                        <textarea class="form-control" id="field_10_emesi_comments" name="field_10_emmesi_comments"
+                            rows="3" onkeypress="wordsCounter('field_10_emmesi_comments','words10_2',150, event)"
+                            onpaste="wordsCounter('field_10_emmesi_comments','words10_2',150, event)"></textarea>
+                        <p style="float: right;">Λέξεις: <span id="words10_2"></span> /150</p>
+                    </div>
+                    <hr>
 
-                <div class="checkbox-group form-group row">
-                    <label for="field_11" class="col-sm-8 col-form-label required">11. Το προβλεπόμενο πληροφοριακό
-                        σύστημα είναι συμβατό με την εκάστοτε ψηφιακή στρατηγική της χώρας (Βίβλος Ψηφιακού
-                        Μετασχηματισμού);</label>
-                    <select id="field_11" name="field_11" class="col-sm-2 form-control">
-                        <option selected disabled>Eπιλογή</option>
-                        <option value="Ναι">Ναι</option>
-                        <option value="Όχι">Όχι</option>
-                    </select>
-                </div>
+                    <div class="checkbox-group form-group row">
+                        <label for="field_11" class="col-sm-8 col-form-label required">11. Το προβλεπόμενο πληροφοριακό
+                            σύστημα είναι συμβατό με την εκάστοτε ψηφιακή στρατηγική της χώρας (Βίβλος Ψηφιακού
+                            Μετασχηματισμού);</label>
+                        <select id="field_11" name="field_11" class="col-sm-2 form-control">
+                            <option selected disabled>Eπιλογή</option>
+                            <option value="Ναι">Ναι</option>
+                            <option value="Όχι">Όχι</option>
+                        </select>
+                    </div>
 
-                <div id="field_11_wrap" class="form-group" style="display:none;">
-                    <label for="field_11_comments " class="required">Εξηγήστε</label>
-                    <textarea class="form-control" name="field_11_comments" id="field_11_comments" rows="3"
-                        onkeypress="wordsCounter('field_11_comments','words11',100, event)"
-                        onpaste="wordsCounter('field_11_comments','words11',100, event)"></textarea>
-                    <p style="float: right;">Λέξεις: <span id="words11"></span> /100</p>
-                </div>
-                <hr>
+                    <div id="field_11_wrap" class="form-group" style="display:none;">
+                        <label for="field_11_comments " class="required">Εξηγήστε</label>
+                        <textarea class="form-control" name="field_11_comments" id="field_11_comments" rows="3"
+                            onkeypress="wordsCounter('field_11_comments','words11',100, event)"
+                            onpaste="wordsCounter('field_11_comments','words11',100, event)"></textarea>
+                        <p style="float: right;">Λέξεις: <span id="words11"></span> /100</p>
+                    </div>
+                    <hr>
 
-                <div class="checkbox-group form-group row">
-                    <label for="field_12" class="col-sm-8 col-form-label required">12. Διασφαλίζεται η
-                        διαλειτουργικότητα του εν λόγω πληροφοριακού συστήματος με άλλα υφιστάμενα συστήματα;</label>
-                    <select id="field_12" name="field_12" class="col-sm-2 form-control">
-                        <option selected disabled>Eπιλογή</option>
-                        <option value="Ναι">Ναι</option>
-                        <option value="Όχι">Όχι</option>
-                    </select>
-                </div>
+                    <div class="checkbox-group form-group row">
+                        <label for="field_12" class="col-sm-8 col-form-label required">12. Διασφαλίζεται η
+                            διαλειτουργικότητα του εν λόγω πληροφοριακού συστήματος με άλλα υφιστάμενα
+                            συστήματα;</label>
+                        <select id="field_12" name="field_12" class="col-sm-2 form-control">
+                            <option selected disabled>Eπιλογή</option>
+                            <option value="Ναι">Ναι</option>
+                            <option value="Όχι">Όχι</option>
+                        </select>
+                    </div>
 
-                <div id="field_12_wrap" class="form-group " style="display:none;">
-                    <label for="field_12_comments " class="required">Αναφέρατε ποια είναι αυτά τα συστήματα:</label>
-                    <textarea class="form-control" name="field_12_comments" id="field_12_comments" rows="3"
-                        onkeypress="wordsCounter('field_12_comments','words12',100, event)"
-                        onpaste="wordsCounter('field_12_comments','words12',100, event)"></textarea>
-                    <p style="float: right;">Λέξεις: <span id="words12"></span> /100</p>
-                </div>
-                <hr>
+                    <div id="field_12_wrap" class="form-group " style="display:none;">
+                        <label for="field_12_comments " class="required">Αναφέρατε ποια είναι αυτά τα συστήματα:</label>
+                        <textarea class="form-control" name="field_12_comments" id="field_12_comments" rows="3"
+                            onkeypress="wordsCounter('field_12_comments','words12',100, event)"
+                            onpaste="wordsCounter('field_12_comments','words12',100, event)"></textarea>
+                        <p style="float: right;">Λέξεις: <span id="words12"></span> /100</p>
+                    </div>
+                    <hr>
 
-                <div class="checkbox-group form-group row">
-                    <label for="field_13" class="col-sm-8 col-form-label required">13. Έχει προηγηθεί μελέτη
-                        βιωσιμότητας του προβλεπόμενου πληροφοριακού συστήματος;</label>
-                    <select id="field_13" name="field_13" class="col-sm-2 form-control">
-                        <option selected disabled>Eπιλογή</option>
-                        <option value="Ναι">Ναι</option>
-                        <option value="Όχι">Όχι</option>
-                    </select>
-                </div>
+                    <div class="checkbox-group form-group row">
+                        <label for="field_13" class="col-sm-8 col-form-label required">13. Έχει προηγηθεί μελέτη
+                            βιωσιμότητας του προβλεπόμενου πληροφοριακού συστήματος;</label>
+                        <select id="field_13" name="field_13" class="col-sm-2 form-control">
+                            <option selected disabled>Eπιλογή</option>
+                            <option value="Ναι">Ναι</option>
+                            <option value="Όχι">Όχι</option>
+                        </select>
+                    </div>
 
-                <div id="field_13_wrap" class="form-group" style="display:none;">
-                    <label for="field_13_comments " class="required">Εξηγήστε</label>
-                    <textarea class="form-control" name="field_13_comments" id="field_13_comments" rows="3"
-                        onkeypress="wordsCounter('field_13_comments','words13',100, event)"
-                        onpaste="wordsCounter('field_13_comments','words13',100, event)"></textarea>
-                    <p style="float: right;">Λέξεις: <span id="words13"></span> /100</p>
-                </div>
+                    <div id="field_13_wrap" class="form-group" style="display:none;">
+                        <label for="field_13_comments " class="required">Εξηγήστε</label>
+                        <textarea class="form-control" name="field_13_comments" id="field_13_comments" rows="3"
+                            onkeypress="wordsCounter('field_13_comments','words13',100, event)"
+                            onpaste="wordsCounter('field_13_comments','words13',100, event)"></textarea>
+                        <p style="float: right;">Λέξεις: <span id="words13"></span> /100</p>
+                    </div>
 
-                <input type="button" name="previous" class="previous action-button-previous"
-                    value="Προηγούμενα πεδία" />
-                <input type="button" name="next" class="next action-button" value="Επόμενα πεδία" />
-            </fieldset>
+                    <input type="button" name="previous" class="previous action-button-previous"
+                        value="Προηγούμενα πεδία" />
+                    <input type="button" name="next" class="next action-button" value="Επόμενα πεδία" />
+                </fieldset>
 
-            <fieldset id="kat_arthro_analusi" class="table-14">
-                <h2>Κατ’ άρθρο ανάλυση αξιολογούμενης ρύθμισης</h2>
-                <br>
-                <table class="table " id="field_14_table">
-                    <thead class="thead ">
-                        <tr>
-                            <th colspan="2"><label id="table_14_label" class="table-14-label required">14.Σύνοψη στόχων
-                                    κάθε άρθρου</label></th>
-                        </tr>
-                        <tr>
-                            <th colspan="1">Άρθρο</th>
-                            <th colspan="1">Στόχος</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tbody_14">
+                <fieldset id="kat_arthro_analusi" class="table-14">
+                    <h2>Κατ’ άρθρο ανάλυση αξιολογούμενης ρύθμισης</h2>
+                    <br>
+                    <table class="table " id="field_14_table">
+                        <thead class="thead ">
+                            <tr>
+                                <th colspan="2"><label id="table_14_label" class="table-14-label required">14.Σύνοψη
+                                        στόχων
+                                        κάθε άρθρου</label></th>
+                            </tr>
+                            <tr>
+                                <th colspan="1">Άρθρο</th>
+                                <th colspan="1">Στόχος</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody_14">
 
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
 
-                <input type="button" id="add_row_table_14" name="add_row_table_14" class="float-right"
-                    value="Επιπλέον σειρά" />
+                    <input type="button" id="add_row_table_14" name="add_row_table_14" class="float-right"
+                        value="Επιπλέον σειρά" />
 
-                <br><br><br>
-                <input type="button" name="previous" class="previous action-button-previous"
-                    value="Προηγούμενα πεδία" />
-                <input type="button" name="next" class="next action-button" value="Επόμενη φόρμα" />
-            </fieldset>
+                    <br><br><br>
+                    <input type="button" name="previous" class="previous action-button-previous"
+                        value="Προηγούμενα πεδία" />
+                    <input type="button" name="next" class="next action-button" value="Επόμενη φόρμα" />
+                </fieldset>
 
-            <%- include('fill_form/fill_form_b.ejs') %>
-            <%- include('fill_form/fill_form_c.ejs') %>
-            <%- include('fill_form/fill_form_d.ejs') %>
-            <%- include('fill_form/fill_form_e.ejs') %>
-            <%- include('fill_form/fill_form_f.ejs') %>
-            <%- include('fill_form/fill_form_g.ejs') %>
-            <%- include('fill_form/fill_form_h.ejs') %>
+                <%- include('fill_form/fill_form_b.ejs') %>
+                    <%- include('fill_form/fill_form_c.ejs') %>
+                        <%- include('fill_form/fill_form_d.ejs') %>
+                            <%- include('fill_form/fill_form_e.ejs') %>
+                                <%- include('fill_form/fill_form_f.ejs') %>
+                                    <%- include('fill_form/fill_form_g.ejs') %>
+                                        <%- include('fill_form/fill_form_h.ejs') %>
 
-            <br>
-            <input type="button" name="save_temporarily" class="save_temporarily float-right"
-                value="Προσωρινή αποθήκευση" />
+                                            <br>
+                                            <input type="button" name="save_temporarily"
+                                                class="save_temporarily float-right" value="Προσωρινή αποθήκευση" />
         </form>
 
     </div>
@@ -571,308 +576,339 @@
 <%- include('sidebar.ejs') %>
 
 
-<style>
-    .exit {
-        font-size: 16px;
-    }
-
-    .tooltip_icon{
-        
-        color: white;
-        font-weight: bold;
-        font-size: 13px;
-        border-radius: 4px;
-    }
-
-    .tooltip_icon[data-show] {
-        display: block;
-    }   
-
-    .arrow,
-    .arrow::before {
-        position: absolute;
-        width: 8px;
-        height: 8px;
-        z-index: -1;
-    }
-
-    .arrow::before {
-        content: '';
-        transform: rotate(45deg);
-        background: #333;
-    }
-
-    .tooltip_text[data-popper-placement^='top']>.arrow {
-        bottom: -4px;
-    }
-
-    .tooltip_text[data-popper-placement^='bottom']>.arrow {
-        top: -4px;
-    }
-
-    table {
-        border: 1px solid black;
-        width: 100%;
-        padding: 20px;
-        text-align: left;
-    }
-
-    table th {
-        background-color: grey;
-        text-align: center;
-        padding: 10px;
-    }
-
-    table td {
-        border: 1px dotted black;
-    }
-
-    li.active {
-        border-color: blue;
-        border-width: 1px;
-        border-style: dashed;
-    }
-
-    .arxiki_menu {
-        display: none
-    }
-
-    .arxiki_list:hover .arxiki_menu {
-        display: initial
-    }
-
-    .aitiologiki_menu {
-        display: none
-    }
-
-    .aitiologiki_list:hover .aitiologiki_menu {
-        display: initial
-    }
-
-    .ekthesi_syntagmatos_menu {
-        display: none
-    }
-
-    .ekthesi_syntagmatos_list:hover .ekthesi_syntagmatos_menu {
-        display: initial
-    }
-
-    .eidiki_ekthesi_menu {
-        display: none
-    }
-
-    .eidiki_ekthesi_list:hover .eidiki_ekthesi_menu {
-        display: initial
-    }
-
-    .ekthesi_genikwn_synepeiwn_menu {
-        display: none
-    }
-
-    .ekthesi_genikwn_synepeiwn_list:hover .ekthesi_genikwn_synepeiwn_menu {
-        display: initial
-    }
-
-    .ekthesi_diavouleusis_menu {
-        display: none
-    }
-
-    .ekthesi_diavouleusis_list:hover .ekthesi_diavouleusis_menu {
-        display: initial
-    }
-
-    .ekthesi_nomimotitas_menu {
-        display: none
-    }
-
-    .ekthesi_nomimotitas_list:hover .ekthesi_nomimotitas_menu {
-        display: initial
-    }
-
-    .pinakas_tropopoioymenwn_katargoymenwn_diataksewn_menu {
-        display: none
-    }
-
-    .pinakas_tropopoioymenwn_katargoymenwn_diataksewn_list:hover .pinakas_tropopoioymenwn_katargoymenwn_diataksewn_menu {
-        display: initial
-    }
-
-    .ekthesi_efarmogis_rythmisis_menu {
-        display: none
-    }
-
-    .ekthesi_efarmogis_rythmisis_list:hover .ekthesi_efarmogis_rythmisis_menu {
-        display: initial
-    }
-
-    .flex-form-group {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-    }
-
-    .flex-form-group .wrap {
-        min-width: 8em;
-        margin: 4px;
-        /* to add gap between rows */
-    }
-
-    fieldset {
-        position: relative;
-    }
-
-    fieldset:not(:first-of-type) {
-        display: none;
-    }
-
-    .explain_text {
-        font-size: 12px;
-    }
-
-    .checkbox-group {
-        display: flex;
-        align-items: center;
-    }
-
-    .form-check-input {
-        margin-top: 0px;
-    }
-
-    label {
-        font-weight: 700;
-    }
-
-    .parent {
-        display: flex;
-        flex-wrap: wrap;
-    }
-
-    .child {
-        flex: 1 0 21%;
-        /* explanation below */
-        margin: 5px;
-        height: 100px;
-        background-color: blue;
-    }
-
-    form label.required:after {
-        color: red;
-        content: " *";
-    }
-</style>
-
-
-<script>
-    (function ($) {
-        var $root = $('html, body');
-        $('a.menu').click(function () {
-            var href = $.attr(this, 'href');
-            current_fs = $("fieldset:visible");
-            $(".progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
-            next_fs = $(href);
-            //hide the current fieldset with style
-            current_fs.hide();
-            //show the next fieldset
-            next_fs.show();
-            $(".progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
-
-            return false;
-        });
-
-    }(jQuery));
-
-    //count & limit words
-    function wordsCounter(fieldId, spanId, wordlimit, event) {
-        Countable.on(document.getElementById(fieldId), counter => {
-            if (counter.words >= wordlimit) {
-                event.preventDefault();//if word limit is reached prevent typing by preventing next event
-            }
-            //console.log(counter);
-            document.getElementById(spanId).innerHTML = counter.words.toString();
-        })
-    }
-    
-    $("form").on("submit", function (ev) {
-        ev.preventDefault();
-        //initializeAnalysis("#typos_analysis");
-        onSubmitStatus();
-        var fd = new FormData($("form").get(0));
-        // console.log('heyhey my val: '+ document.getElementById("field_23_upload").files[0].name);
-        $.ajax({
-            url: '/create',
-            data: fd,
-            contentType: false,
-            processData: false,
-            error: function (error) {
-                console.log(error);
-            },
-            success: function (data) {
-                console.log(data);
-                //window.location.href = "/user_views/history";
-            },
-            type: 'POST'
-        });
-    })
-
-    $(".save_temporarily").on("click", function (ev) {
-        ev.preventDefault();
-        var fd = new FormData($("form").get(0));
-        console.log(fd)                        
-        var checkbox = $("form").find("input[type=checkbox]:not(:checked)");//find all unchecked checkboxes 
-        $.each(checkbox, function(key, chckbx) {
-            fd.append($(chckbx).prop('name'), $(chckbx).value='' )//append to fd without value 
-        });
-        //console.log('my file: '+ document.getElementById("field_23_upload").files[0].name);
-        $.ajax({
-            url: '/create/<%= analysis %>',
-            data: fd,
-            contentType: false,
-            processData: false,
-            error: function (error) {
-                console.log(error);
-            },
-            success: function (data) {
-                //console.log(data);
-                window.location.href = "/user_views/history";
-            },
-            type: 'POST'
-        });
-    })
-
-    $(".back").on("click", function (ev) {
-        window.location.href = "/user_views/history";
-    })
-    function onSubmitStatus() {
-        if ($("#ekthesi_glk").prop("checked")) {
-            $("#status_ekthesis_drp").val("Σε σύνταξη");
-            alert("Για την ανάλυση εκκρεμεί ο έλεγχος του Γενικού Λογιστηρίου του Κράτους που έχετε ζητήσει. Επικοινωνήστε με το Γενικό Λογιστήριο του Κράτους για να τον ολοκληρώσει ή ενημερώστε τον αρμόδιο του Υπουργείου σας για να το επιλύσει.");
-            ev.preventDefault();
-        } else {
-            if ($('input[name=status_ekthesis]').val("Σε σύνταξη") || $('input[name=status_ekthesis]').val("Επιμελημένη")) {
-                $('input[name=status_ekthesis]').val("Ολοκληρώθηκε");
-                //console.log($('input[name=status_ekthesis]').val());
-            }
+    <style>
+        /* .content_div {
+            width: 90%;
+            overflow: hidden;
+            float: left;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
         }
-    }
 
-    $("#ekthesi_glk").on("click", function (ev) {
-        if (this.checked) {
-            answer = window.confirm("Με την ενέργειά σας αυτή η έκθεση θα αποσταλλεί στο Γενικό Λογιστήριο του κράτους. Συνέχεια;");
-            if (answer) {
-                $("#status_ekthesis").val("Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους");
-                if (role == "Συντάκτης επισπεύδοντος Υπουργείου") {
-                    $(this).prop('disabled', true);
+        .tootltip_div {
+            width: 10%;
+            overflow: hidden;
+            float: right;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        } */
+
+        .exit {
+            font-size: 16px;
+        }
+
+        .tooltip_text[data-show] {
+            display: block;
+        }
+
+        .tooltip_text {
+
+            background: #333;
+            color: white;
+            font-weight: bold;
+            padding: 4px 8px;
+            font-size: 13px;
+            border-radius: 4px;
+            width: 50%;
+            display: none;
+
+        }
+
+        #arrow,
+        #arrow::before {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            z-index: -1;
+        }
+
+        #arrow::before {
+            content: '';
+            transform: rotate(45deg);
+            background: #333;
+        }
+
+        #tooltip[data-popper-placement^='top']>#arrow {
+            bottom: -4px;
+        }
+
+        #tooltip[data-popper-placement^='bottom']>#arrow {
+            top: -4px;
+        }
+
+        #tooltip[data-popper-placement^='left']>#arrow {
+            right: -4px;
+        }
+
+        #tooltip[data-popper-placement^='right']>#arrow {
+            left: -4px;
+        }
+
+        table {
+            border: 1px solid black;
+            width: 100%;
+            padding: 20px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: grey;
+            text-align: center;
+            padding: 10px;
+        }
+
+        table td {
+            border: 1px dotted black;
+        }
+
+        li.active {
+            border-color: blue;
+            border-width: 1px;
+            border-style: dashed;
+        }
+
+        .arxiki_menu {
+            display: none
+        }
+
+        .arxiki_list:hover .arxiki_menu {
+            display: initial
+        }
+
+        .aitiologiki_menu {
+            display: none
+        }
+
+        .aitiologiki_list:hover .aitiologiki_menu {
+            display: initial
+        }
+
+        .ekthesi_syntagmatos_menu {
+            display: none
+        }
+
+        .ekthesi_syntagmatos_list:hover .ekthesi_syntagmatos_menu {
+            display: initial
+        }
+
+        .eidiki_ekthesi_menu {
+            display: none
+        }
+
+        .eidiki_ekthesi_list:hover .eidiki_ekthesi_menu {
+            display: initial
+        }
+
+        .ekthesi_genikwn_synepeiwn_menu {
+            display: none
+        }
+
+        .ekthesi_genikwn_synepeiwn_list:hover .ekthesi_genikwn_synepeiwn_menu {
+            display: initial
+        }
+
+        .ekthesi_diavouleusis_menu {
+            display: none
+        }
+
+        .ekthesi_diavouleusis_list:hover .ekthesi_diavouleusis_menu {
+            display: initial
+        }
+
+        .ekthesi_nomimotitas_menu {
+            display: none
+        }
+
+        .ekthesi_nomimotitas_list:hover .ekthesi_nomimotitas_menu {
+            display: initial
+        }
+
+        .pinakas_tropopoioymenwn_katargoymenwn_diataksewn_menu {
+            display: none
+        }
+
+        .pinakas_tropopoioymenwn_katargoymenwn_diataksewn_list:hover .pinakas_tropopoioymenwn_katargoymenwn_diataksewn_menu {
+            display: initial
+        }
+
+        .ekthesi_efarmogis_rythmisis_menu {
+            display: none
+        }
+
+        .ekthesi_efarmogis_rythmisis_list:hover .ekthesi_efarmogis_rythmisis_menu {
+            display: initial
+        }
+
+        .flex-form-group {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .flex-form-group .wrap {
+            min-width: 8em;
+            margin: 4px;
+            /* to add gap between rows */
+        }
+
+        fieldset {
+            position: relative;
+        }
+
+        fieldset:not(:first-of-type) {
+            display: none;
+        }
+
+        .explain_text {
+            font-size: 12px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+        }
+
+        .form-check-input {
+            margin-top: 0px;
+        }
+
+        label {
+            font-weight: 700;
+        }
+
+        .parent {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .child {
+            flex: 1 0 21%;
+            /* explanation below */
+            margin: 5px;
+            height: 100px;
+            background-color: blue;
+        }
+
+        form label.required:after {
+            color: red;
+            content: " *";
+        }
+    </style>
+
+
+    <script>
+        (function ($) {
+            var $root = $('html, body');
+            $('a.menu').click(function () {
+                var href = $.attr(this, 'href');
+                current_fs = $("fieldset:visible");
+                $(".progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+                next_fs = $(href);
+                //hide the current fieldset with style
+                current_fs.hide();
+                //show the next fieldset
+                next_fs.show();
+                $(".progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+                return false;
+            });
+
+        }(jQuery));
+
+        //count & limit words
+        function wordsCounter(fieldId, spanId, wordlimit, event) {
+            Countable.on(document.getElementById(fieldId), counter => {
+                if (counter.words >= wordlimit) {
+                    event.preventDefault();//if word limit is reached prevent typing by preventing next event
+                }
+                //console.log(counter);
+                document.getElementById(spanId).innerHTML = counter.words.toString();
+            })
+        }
+
+        $("form").on("submit", function (ev) {
+            ev.preventDefault();
+            //initializeAnalysis("#typos_analysis");
+            onSubmitStatus();
+            var fd = new FormData($("form").get(0));
+            // console.log('heyhey my val: '+ document.getElementById("field_23_upload").files[0].name);
+            $.ajax({
+                url: '/create',
+                data: fd,
+                contentType: false,
+                processData: false,
+                error: function (error) {
+                    console.log(error);
+                },
+                success: function (data) {
+                    console.log(data);
+                    //window.location.href = "/user_views/history";
+                },
+                type: 'POST'
+            });
+        })
+
+        $(".save_temporarily").on("click", function (ev) {
+            ev.preventDefault();
+            var fd = new FormData($("form").get(0));
+            console.log(fd)
+            var checkbox = $("form").find("input[type=checkbox]:not(:checked)");//find all unchecked checkboxes 
+            $.each(checkbox, function (key, chckbx) {
+                fd.append($(chckbx).prop('name'), $(chckbx).value = '')//append to fd without value 
+            });
+            //console.log('my file: '+ document.getElementById("field_23_upload").files[0].name);
+            $.ajax({
+                url: '/create/<%= analysis %>',
+                data: fd,
+                contentType: false,
+                processData: false,
+                error: function (error) {
+                    console.log(error);
+                },
+                success: function (data) {
+                    //console.log(data);
+                    window.location.href = "/user_views/history";
+                },
+                type: 'POST'
+            });
+        })
+
+        $(".back").on("click", function (ev) {
+            window.location.href = "/user_views/history";
+        })
+        function onSubmitStatus() {
+            if ($("#ekthesi_glk").prop("checked")) {
+                $("#status_ekthesis_drp").val("Σε σύνταξη");
+                alert("Για την ανάλυση εκκρεμεί ο έλεγχος του Γενικού Λογιστηρίου του Κράτους που έχετε ζητήσει. Επικοινωνήστε με το Γενικό Λογιστήριο του Κράτους για να τον ολοκληρώσει ή ενημερώστε τον αρμόδιο του Υπουργείου σας για να το επιλύσει.");
+                ev.preventDefault();
+            } else {
+                if ($('input[name=status_ekthesis]').val("Σε σύνταξη") || $('input[name=status_ekthesis]').val("Επιμελημένη")) {
+                    $('input[name=status_ekthesis]').val("Ολοκληρώθηκε");
+                    //console.log($('input[name=status_ekthesis]').val());
                 }
             }
-            else {
-                $(this).prop('checked', false);
-            }
-        } else {
-            $('input[name=status_ekthesis]').val("Σε σύνταξη");
         }
-    })
-    var analysis = "<%= analysis%>";
-    console.log(analysis);
+
+        $("#ekthesi_glk").on("click", function (ev) {
+            if (this.checked) {
+                answer = window.confirm("Με την ενέργειά σας αυτή η έκθεση θα αποσταλλεί στο Γενικό Λογιστήριο του κράτους. Συνέχεια;");
+                if (answer) {
+                    $("#status_ekthesis").val("Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους");
+                    if (role == "Συντάκτης επισπεύδοντος Υπουργείου") {
+                        $(this).prop('disabled', true);
+                    }
+                }
+                else {
+                    $(this).prop('checked', false);
+                }
+            } else {
+                $('input[name=status_ekthesis]').val("Σε σύνταξη");
+            }
+        })
+        var analysis = "<%= analysis%>";
+        console.log(analysis);
         //console.log("init val " + $(analysis).val());
         if (analysis == ':sxedio_nomou') {
             $("#typos_analysis").prop('value', 'Σχέδιο νόμου');
@@ -894,120 +930,120 @@
         // console.log("1" + analysis);
         // console.log("2" + $(analysis));
         // console.log("3" + $(analysis).val());
-    
 
-    function getFullDate(fieldId) {
-        $(fieldId).prop("value", new Date().toLocaleString("el-GR", { timeZone: "Europe/Athens" }));
-        //console.log($(fieldId).val());
-    }
-    //init_submit date - will be updated when actually submitted
-    getFullDate("#initial_submit");
 
-    var role = "<%= rolos%>";
-    function optionalFields(fieldId) {
-        $(fieldId).prop('disabled', true);//find and disable field, button or fieldset
-        //console.log((fieldId));
-    };
-
-    function enableFields(fieldId) {
-        $(fieldId).prop('disabled', false);//find and enable field or button
-        //console.log((fieldId));
-    };
-
-    function optionalFieldsClassRemoval(fieldLabel, className) {
-        var items = document.getElementsByClassName(fieldLabel);
-        for (var i = 0; i < items.length; i++) {
-            $(items[i]).removeClass(className);//remove required class from label
+        function getFullDate(fieldId) {
+            $(fieldId).prop("value", new Date().toLocaleString("el-GR", { timeZone: "Europe/Athens" }));
+            //console.log($(fieldId).val());
         }
-    };
+        //init_submit date - will be updated when actually submitted
+        getFullDate("#initial_submit");
 
-    function addLabelClass(fieldLabel, className) {
-        $(fieldLabel).addClass(className);//remove required class from label
-    };
+        var role = "<%= rolos%>";
+        function optionalFields(fieldId) {
+            $(fieldId).prop('disabled', true);//find and disable field, button or fieldset
+            //console.log((fieldId));
+        };
 
-    
+        function enableFields(fieldId) {
+            $(fieldId).prop('disabled', false);//find and enable field or button
+            //console.log((fieldId));
+        };
 
-    //console.log("analysis-> "+analysis); // log analysis type
-    if (analysis == ":kateythintiries_grammes") {
-        optionalFields(".mostly-optional :input");
-        optionalFields(".optional :input");
-        optionalFields(".table-14 :input");
-        enableFields(".create-new");
+        function optionalFieldsClassRemoval(fieldLabel, className) {
+            var items = document.getElementsByClassName(fieldLabel);
+            for (var i = 0; i < items.length; i++) {
+                $(items[i]).removeClass(className);//remove required class from label
+            }
+        };
+
+        function addLabelClass(fieldLabel, className) {
+            $(fieldLabel).addClass(className);//remove required class from label
+        };
+
+
+
+        //console.log("analysis-> "+analysis); // log analysis type
+        if (analysis == ":kateythintiries_grammes") {
+            optionalFields(".mostly-optional :input");
+            optionalFields(".optional :input");
+            optionalFields(".table-14 :input");
+            enableFields(".create-new");
+            enableFields(".next");
+            enableFields(".previous");
+
+            optionalFieldsClassRemoval("mostly-optional-label", "required");
+            optionalFieldsClassRemoval("optional-label", "required");
+            optionalFieldsClassRemoval("table-14-label", "required");
+
+        } else if (analysis == ":prosxedio_nomou") {
+            optionalFields(".mostly-optional :input");
+            optionalFieldsClassRemoval("mostly-optional-label", "required");
+
+        } else if (analysis == ":epeigon_katepeigon" || analysis == ":diethneis_symvaseis" || analysis == ":tropologies_upourgwn") {
+            optionalFields(".field-22 :input");
+            optionalFields(".optional :input");
+            enableFields(".create-new");
+            enableFields(".next");
+            enableFields(".previous");
+
+            optionalFieldsClassRemoval("field-22-label", "required");
+            optionalFieldsClassRemoval("optional-label", "required");
+
+
+        } else if (analysis == ":tropologies_vouleutwn" || analysis == ":protasi_nomou") {
+            optionalFields(".field-18 :input");
+            optionalFields(".field-19 :input");
+            optionalFields(".field-20 :input");
+            optionalFields(".field-21 :input");
+            optionalFields(".field-22 :input");
+            optionalFields(".field-24 :input");
+            optionalFields(".field-25 :input");
+            optionalFields(".field-26 :input");
+            optionalFields(".field-27 :input");
+            optionalFields(".field-28 :input");
+
+            optionalFields(".optional :input");
+            enableFields(".table-31 :input");
+            enableFields(".table-32 :input");
+            enableFields(".create-new");
+            enableFields(".next");
+            enableFields(".previous");
+
+            optionalFieldsClassRemoval("field-18-label", "required");
+            optionalFieldsClassRemoval("field-19-label", "required");
+            optionalFieldsClassRemoval("field-20-label", "required");
+            optionalFieldsClassRemoval("field-21-label", "required");
+            optionalFieldsClassRemoval("field-22-label", "required");
+            optionalFieldsClassRemoval("field-24-label", "required");
+            optionalFieldsClassRemoval("field-25-label", "required");
+            optionalFieldsClassRemoval("field-26-label", "required");
+            optionalFieldsClassRemoval("field-27-label", "required");
+            optionalFieldsClassRemoval("field-28-label", "required");
+            optionalFieldsClassRemoval("optional-label", "required");
+            addLabelClass(".table-31-label", "required");
+            addLabelClass(".table-32-label", "required");
+        }
+        //these fields are by default disabled
+        optionalFields(".glk :input");
+        optionalFields(".glk :input");
         enableFields(".next");
         enableFields(".previous");
+        enableFields("#ekthesi_glk");
 
-        optionalFieldsClassRemoval("mostly-optional-label", "required");
-        optionalFieldsClassRemoval("optional-label", "required");
-        optionalFieldsClassRemoval("table-14-label", "required");
+        //console.log($("#status_ekthesis").val());
 
-    } else if (analysis == ":prosxedio_nomou") {
-        optionalFields(".mostly-optional :input");
-        optionalFieldsClassRemoval("mostly-optional-label", "required");
+        //if (role == 'Επιτροπή Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)') { }
 
-    } else if (analysis == ":epeigon_katepeigon" || analysis == ":diethneis_symvaseis" || analysis == ":tropologies_upourgwn") {
-        optionalFields(".field-22 :input");
-        optionalFields(".optional :input");
-        enableFields(".create-new");
-        enableFields(".next");
-        enableFields(".previous");
+        //row counter
+        var table14RowIndex = 0;
 
-        optionalFieldsClassRemoval("field-22-label", "required");
-        optionalFieldsClassRemoval("optional-label", "required");
-
-
-    } else if (analysis == ":tropologies_vouleutwn" || analysis == ":protasi_nomou") {
-        optionalFields(".field-18 :input");
-        optionalFields(".field-19 :input");
-        optionalFields(".field-20 :input");
-        optionalFields(".field-21 :input");
-        optionalFields(".field-22 :input");
-        optionalFields(".field-24 :input");
-        optionalFields(".field-25 :input");
-        optionalFields(".field-26 :input");
-        optionalFields(".field-27 :input");
-        optionalFields(".field-28 :input");
-
-        optionalFields(".optional :input");
-        enableFields(".table-31 :input");
-        enableFields(".table-32 :input");
-        enableFields(".create-new");
-        enableFields(".next");
-        enableFields(".previous");
-
-        optionalFieldsClassRemoval("field-18-label", "required");
-        optionalFieldsClassRemoval("field-19-label", "required");
-        optionalFieldsClassRemoval("field-20-label", "required");
-        optionalFieldsClassRemoval("field-21-label", "required");
-        optionalFieldsClassRemoval("field-22-label", "required");
-        optionalFieldsClassRemoval("field-24-label", "required");
-        optionalFieldsClassRemoval("field-25-label", "required");
-        optionalFieldsClassRemoval("field-26-label", "required");
-        optionalFieldsClassRemoval("field-27-label", "required");
-        optionalFieldsClassRemoval("field-28-label", "required");
-        optionalFieldsClassRemoval("optional-label", "required");
-        addLabelClass(".table-31-label", "required");
-        addLabelClass(".table-32-label", "required");
-    }
-    //these fields are by default disabled
-    optionalFields(".glk :input");
-    optionalFields(".glk :input");
-    enableFields(".next");
-    enableFields(".previous");
-    enableFields("#ekthesi_glk");
-
-    //console.log($("#status_ekthesis").val());
-
-    //if (role == 'Επιτροπή Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)') { }
-
-    //row counter
-    var table14RowIndex = 0;
-
-    // jQuery button click event for table 14 to add a row
-    $("#add_row_table_14").on("click", function () {
-        //append adds row to table body with id 'tbody_14'
-        //line 604 creates unique id for the line, which will later be used for deletion
-        //also adding a delete icon for each row 
-        $('#tbody_14').append(`
+        // jQuery button click event for table 14 to add a row
+        $("#add_row_table_14").on("click", function () {
+            //append adds row to table body with id 'tbody_14'
+            //line 604 creates unique id for the line, which will later be used for deletion
+            //also adding a delete icon for each row 
+            $('#tbody_14').append(`
         <tr id="R${++table14RowIndex}"> 
             <td> 
                 <textarea class="form-control" id="field_14_arthro${table14RowIndex}" name="field_14_arthro${table14RowIndex}" placeholder="Άρθρο" rows="1" onkeypress="wordsCounter('field_14_arthro${table14RowIndex}','words14_${table14RowIndex}',50, event)" onpaste="wordsCounter('field_14_arthro${table14RowIndex}','words14_${table14RowIndex}',50, event)"></textarea>
@@ -1018,50 +1054,50 @@
                 <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
             </td>    
         </tr>`
-        );
-    });
-
-    // jQuery button click event to remove a row 
-    $('#tbody_14').on('click', '.remove', function () {
-
-        // Getting all the rows close to the one to be removed 
-        var child = $(this).closest('tr').nextAll();
-
-        // Iterating across all the rows  
-        // obtained to change the index 
-        child.each(function () {
-
-            // Getting <tr> id
-            var id = $(this).attr('id');
-
-            // Gets row number from <tr> id
-            var row_num = parseInt(id.substring(1));
-
-            //Getting index
-            var idx = $(this).children('.row-index');
-
-            // Modifying row index
-            idx.html(`Row ${row_num - 1}`);
-
-            // Modifying row id
-            $(this).attr('id', `R${row_num - 1}`);
+            );
         });
 
-        // Removing the current row. 
-        $(this).closest('tr').remove();
+        // jQuery button click event to remove a row 
+        $('#tbody_14').on('click', '.remove', function () {
 
-        // Decreasing the total number of rows by 1. 
-        table14RowIndex--;
-    });
+            // Getting all the rows close to the one to be removed 
+            var child = $(this).closest('tr').nextAll();
 
-    var table17RowIndex = 0;
+            // Iterating across all the rows  
+            // obtained to change the index 
+            child.each(function () {
 
-    // jQuery button click event for table 14 to add a row
-    $("#add_row_table_17").on("click", function () {
-        //append adds row to table body with id 'tbody_14'
-        //line 604 creates unique id for the line, which will later be used for deletion
-        //also adding a delete icon for each row 
-        $('#tbody_17').append(`
+                // Getting <tr> id
+                var id = $(this).attr('id');
+
+                // Gets row number from <tr> id
+                var row_num = parseInt(id.substring(1));
+
+                //Getting index
+                var idx = $(this).children('.row-index');
+
+                // Modifying row index
+                idx.html(`Row ${row_num - 1}`);
+
+                // Modifying row id
+                $(this).attr('id', `R${row_num - 1}`);
+            });
+
+            // Removing the current row. 
+            $(this).closest('tr').remove();
+
+            // Decreasing the total number of rows by 1. 
+            table14RowIndex--;
+        });
+
+        var table17RowIndex = 0;
+
+        // jQuery button click event for table 14 to add a row
+        $("#add_row_table_17").on("click", function () {
+            //append adds row to table body with id 'tbody_14'
+            //line 604 creates unique id for the line, which will later be used for deletion
+            //also adding a delete icon for each row 
+            $('#tbody_17').append(`
         <tr id="R${++table17RowIndex}">  
             <td> 
                 <textarea class="form-control" id="field_17_onoma${table17RowIndex}" name="field_17_onoma${table17RowIndex}" placeholder="Όνομα" rows="1"></textarea> 
@@ -1074,48 +1110,48 @@
                 <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
             </td> 
         </tr>`
-        );
-        //console.log(table17RowIndex)
-    });
-
-    // jQuery button click event to remove a row 
-    $('#tbody_17').on('click', '.remove', function () {
-
-        // Getting all the rows close to the one to be removed 
-        var child = $(this).closest('tr').nextAll();
-
-        // Iterating across all the rows  
-        // obtained to change the index 
-        child.each(function () {
-
-            // Getting <tr> id
-            var id = $(this).attr('id');
-
-            // Gets row number from <tr> id
-            var row_num = parseInt(id.substring(1));
-
-            //Getting index
-            var idx = $(this).children('.row-index');
-
-            // Modifying row index
-            idx.html(`Row ${row_num - 1}`);
-
-            // Modifying row id
-            $(this).attr('id', `R${row_num - 1}`);
+            );
+            //console.log(table17RowIndex)
         });
 
-        // Removing the current row. 
-        $(this).closest('tr').remove();
+        // jQuery button click event to remove a row 
+        $('#tbody_17').on('click', '.remove', function () {
 
-        // Decreasing the total number of rows by 1. 
-        table17RowIndex--;
-    });
+            // Getting all the rows close to the one to be removed 
+            var child = $(this).closest('tr').nextAll();
+
+            // Iterating across all the rows  
+            // obtained to change the index 
+            child.each(function () {
+
+                // Getting <tr> id
+                var id = $(this).attr('id');
+
+                // Gets row number from <tr> id
+                var row_num = parseInt(id.substring(1));
+
+                //Getting index
+                var idx = $(this).children('.row-index');
+
+                // Modifying row index
+                idx.html(`Row ${row_num - 1}`);
+
+                // Modifying row id
+                $(this).attr('id', `R${row_num - 1}`);
+            });
+
+            // Removing the current row. 
+            $(this).closest('tr').remove();
+
+            // Decreasing the total number of rows by 1. 
+            table17RowIndex--;
+        });
 
 
-    var table29RowIndex = 0;
-    $("#add_row_table_29").on("click", function () {
+        var table29RowIndex = 0;
+        $("#add_row_table_29").on("click", function () {
 
-        $('#tbody_29').append(`
+            $('#tbody_29').append(`
         <tr id="R${++table29RowIndex}"> 
             <td> 
                 <textarea class="form-control" id="field_29_diatakseis_rythmisis${table29RowIndex}" name="field_29_diatakseis_rythmisis${table29RowIndex}" placeholder="Διατάξεις αξιολογούμενης ρύθμισης" rows="1"></textarea>
@@ -1125,30 +1161,30 @@
                 <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
             </td>    
         </tr>`
-        );
-    });
-
-    $('#tbody_29').on('click', '.remove', function () {
-
-        var child = $(this).closest('tr').nextAll();
-
-        child.each(function () {
-
-            var id = $(this).attr('id');
-            var row_num = parseInt(id.substring(1));
-            var idx = $(this).children('.row-index');
-            idx.html(`Row ${row_num - 1}`);
-            $(this).attr('id', `R${row_num - 1}`);
+            );
         });
 
-        $(this).closest('tr').remove();
-        table29RowIndex--;
-    });
+        $('#tbody_29').on('click', '.remove', function () {
 
-    var table30RowIndex = 0;
-    $("#add_row_table_30").on("click", function () {
+            var child = $(this).closest('tr').nextAll();
 
-        $('#tbody_30').append(`
+            child.each(function () {
+
+                var id = $(this).attr('id');
+                var row_num = parseInt(id.substring(1));
+                var idx = $(this).children('.row-index');
+                idx.html(`Row ${row_num - 1}`);
+                $(this).attr('id', `R${row_num - 1}`);
+            });
+
+            $(this).closest('tr').remove();
+            table29RowIndex--;
+        });
+
+        var table30RowIndex = 0;
+        $("#add_row_table_30").on("click", function () {
+
+            $('#tbody_30').append(`
         <tr id="R${++table30RowIndex}"> 
             <td> 
                 <textarea class="form-control" id="field_30_diatakseis_katargisi${table30RowIndex}" name="field_30_diatakseis_katargisi${table30RowIndex}" placeholder="Διατάξεις αξιολογούμενης ρύθμισης που προβλέπουν κατάργηση" rows="2"></textarea>
@@ -1158,30 +1194,30 @@
                 <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
             </td>    
         </tr>`
-        );
-    });
-
-    $('#tbody_30').on('click', '.remove', function () {
-
-        var child = $(this).closest('tr').nextAll();
-
-        child.each(function () {
-
-            var id = $(this).attr('id');
-            var row_num = parseInt(id.substring(1));
-            var idx = $(this).children('.row-index');
-            idx.html(`Row ${row_num - 1}`);
-            $(this).attr('id', `R${row_num - 1}`);
+            );
         });
 
-        $(this).closest('tr').remove();
-        table30RowIndex--;
-    });
+        $('#tbody_30').on('click', '.remove', function () {
 
-    var table31RowIndex = 0;
-    $("#add_row_table_31").on("click", function () {
+            var child = $(this).closest('tr').nextAll();
 
-        $('#tbody_31').append(`
+            child.each(function () {
+
+                var id = $(this).attr('id');
+                var row_num = parseInt(id.substring(1));
+                var idx = $(this).children('.row-index');
+                idx.html(`Row ${row_num - 1}`);
+                $(this).attr('id', `R${row_num - 1}`);
+            });
+
+            $(this).closest('tr').remove();
+            table30RowIndex--;
+        });
+
+        var table31RowIndex = 0;
+        $("#add_row_table_31").on("click", function () {
+
+            $('#tbody_31').append(`
         <tr id="R${++table31RowIndex}"> 
             <td> 
                 <textarea class="form-control" id="field_31_sxetiki_diataksi${table31RowIndex}" name="field_31_sxetiki_diataksi${table31RowIndex}" placeholder="Σχετική διάταξη αξιολογούμενης ρύθμισης" rows="2" onkeypress="wordsCounter('field_31_sxetiki_diataksi${table31RowIndex}','words31_${table31RowIndex}',50, event)" onpaste="wordsCounter('field_31_sxetiki_diataksi${table31RowIndex}','words31_${table31RowIndex}',50, event)"></textarea>
@@ -1195,30 +1231,30 @@
                 <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
             </td>    
         </tr>`
-        );
-    });
-
-    $('#tbody_31').on('click', '.remove', function () {
-
-        var child = $(this).closest('tr').nextAll();
-
-        child.each(function () {
-
-            var id = $(this).attr('id');
-            var row_num = parseInt(id.substring(1));
-            var idx = $(this).children('.row-index');
-            idx.html(`Row ${row_num - 1}`);
-            $(this).attr('id', `R${row_num - 1}`);
+            );
         });
 
-        $(this).closest('tr').remove();
-        table31RowIndex--;
-    });
+        $('#tbody_31').on('click', '.remove', function () {
 
-    var table32RowIndex = 0;
-    $("#add_row_table_32").on("click", function () {
+            var child = $(this).closest('tr').nextAll();
 
-        $('#tbody_32').append(`
+            child.each(function () {
+
+                var id = $(this).attr('id');
+                var row_num = parseInt(id.substring(1));
+                var idx = $(this).children('.row-index');
+                idx.html(`Row ${row_num - 1}`);
+                $(this).attr('id', `R${row_num - 1}`);
+            });
+
+            $(this).closest('tr').remove();
+            table31RowIndex--;
+        });
+
+        var table32RowIndex = 0;
+        $("#add_row_table_32").on("click", function () {
+
+            $('#tbody_32').append(`
         <tr id="R${++table32RowIndex}"> 
             <td> 
                 <textarea class="form-control" id="field_32_eksousiodotiki_diataksi${table32RowIndex}" name="field_32_eksousiodotiki_diataksi${table32RowIndex}" placeholder="Εξουσιοδοτική διάταξη" rows="4"></textarea>
@@ -1238,317 +1274,370 @@
                 <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
             </td>    
         </tr>`
-        );
-    });
-
-    $('#tbody_32').on('click', '.remove', function () {
-
-        var child = $(this).closest('tr').nextAll();
-
-        child.each(function () {
-
-            var id = $(this).attr('id');
-            var row_num = parseInt(id.substring(1));
-            var idx = $(this).children('.row-index');
-            idx.html(`Row ${row_num - 1}`);
-            $(this).attr('id', `R${row_num - 1}`);
+            );
         });
 
-        $(this).closest('tr').remove();
-        table32RowIndex--;
-    });
+        $('#tbody_32').on('click', '.remove', function () {
 
-    function tooltipEvents(imgId, tooltipClass) {
-        const img = document.querySelector( '#' + imgId);
-        const tooltip = document.querySelector( '.' + tooltipClass);
-        //console.log(img);
-        let popperInstance = null;
+            var child = $(this).closest('tr').nextAll();
 
-        function create() {
-            popperInstance = Popper.createPopper(img, tooltip, {
-                modifiers: [
-                    {
-                        name: 'offset',
-                        options: {
-                            offset: [0, 5],
+            child.each(function () {
+
+                var id = $(this).attr('id');
+                var row_num = parseInt(id.substring(1));
+                var idx = $(this).children('.row-index');
+                idx.html(`Row ${row_num - 1}`);
+                $(this).attr('id', `R${row_num - 1}`);
+            });
+
+            $(this).closest('tr').remove();
+            table32RowIndex--;
+        });
+
+        function tooltipEvents(imgId, tooltipClass) {
+            const img = document.querySelector('#' + imgId);
+            const tooltip = document.querySelector('#' + tooltipClass);
+            //console.log(img);
+            let popperInstance = null;
+
+            function create() {
+                popperInstance = Popper.createPopper(img, tooltip, {
+                    modifiers: [
+                        {
+                            name: 'offset',
+                            options: {
+                                offset: [0, 8],
+                            },
                         },
-                    },
-                ],
+                    ],
+                });
+            }
+
+            function destroy() {
+                if (popperInstance) {
+                    popperInstance.destroy();
+                    popperInstance = null;
+                }
+            }
+
+            function show() {
+                tooltip.setAttribute('data-show', '');
+                create();
+            }
+
+            function hide() {
+                tooltip.removeAttribute('data-show');
+                destroy();
+            }
+
+            const showEvents = ['mouseenter', 'focus'];
+            const hideEvents = ['mouseleave', 'blur'];
+
+            showEvents.forEach(event => {
+                img.addEventListener(event, show);
+            });
+
+            hideEvents.forEach(event => {
+                img.addEventListener(event, hide);
             });
         }
 
-        function destroy() {
-            if (popperInstance) {
-                popperInstance.destroy();
-                popperInstance = null;
+        $("#ekpedeusi_politismos").click(function (ev) {
+            if (this.checked) {
+                $("#politismos_table").show();
+                $("#ekpaideysi_table").show();
+                $(this).prop('value', 'true');
+            } else {
+                $("#politismos_table").hide();
+                $("#ekpaideysi_table").hide();
+                $(this).prop('value', 'false');
             }
+        })
+
+        $("#forologiki_politiki").click(function (ev) {
+            if (this.checked) {
+                $("#oikonomia_table").show();
+                $("#forologia_table").show();
+                $("#ergasiakes_sxeseis_table").show();
+            } else {
+                $("#oikonomia_table").hide();
+                $("#forologia_table").hide();
+                $("#ergasiakes_sxeseis_table").hide();
+            }
+        })
+
+        $("#koinoniki_politiki").click(function (ev) {
+            if (this.checked) {
+                $("#apasxolisi_table").show();
+                $("#koinwniki_asfalisi_table").show();
+                $("#koinwniki_pronoia_table").show();
+                $("#ygeia_table").show();
+                $("#isotita_fylwn_table").show();
+                $("#metanasteytiki_prosfygiki_politiki_table").show();
+            } else {
+                $("#apasxolisi_table").hide();
+                $("#koinwniki_asfalisi_table").hide();
+                $("#koinwniki_pronoia_table").hide();
+                $("#ygeia_table").hide();
+                $("#isotita_fylwn_table").hide();
+                $("#metanasteytiki_prosfygiki_politiki_table").hide();
+            }
+        })
+
+        $("#dimosia_dioikisi").click(function (ev) {
+            if (this.checked) {
+                $("#dimosia_dioikisi_table").show();
+                $("#dimosia_asfaleia_table").show();
+                $("#dikaiosini_table").show();
+            } else {
+                $("#dimosia_dioikisi_table").hide();
+                $("#dimosia_asfaleia_table").hide();
+                $("#dikaiosini_table").hide();
+            }
+        })
+
+        $("#anaptiksi").click(function (ev) {
+            if (this.checked) {
+                $("#ependytiki_drastiriotita_table").show();
+                $("#perivallon_energeia_table").show();
+            } else {
+                $("#ependytiki_drastiriotita_table").hide();
+                $("#perivallon_energeia_table").hide();
+            }
+        })
+
+        $("#field_10_emmesi").on("change", function (ev) {
+            $("#emesi_wrap").toggle();
+        })
+
+        $("#field_10_amesi").on("change", function (ev) {
+            $("#amesi_wrap").toggle();
+        })
+
+        $("#field_25_dikaio").on("change", function (ev) {
+            $("#dikaio_wrap").toggle();
+        })
+
+        $("#field_25_kanonismos").on("change", function (ev) {
+            $("#kanonismos_wrap").toggle();
+        })
+
+        $("#field_25_odigia").on("change", function (ev) {
+            $("#odigia_wrap").toggle();
+        })
+
+        $("#field_25_apofasi").on("change", function (ev) {
+            $("#apofasi_wrap").toggle();
+        })
+
+        $("#field_26_antrwpina_dikaiwmata").on("change", function (ev) {
+            $("#antrwpina_dikaiwmata_wrap").toggle();
+        })
+
+        $("#field_26_symvaseis").on("change", function (ev) {
+            $("#symvaseis_wrap").toggle();
+        })
+
+        $("#field_27_dikastirio").on("change", function (ev) {
+            $("#dikastirio_wrap").toggle();
+        })
+
+        $("#field_27_arxi").on("change", function (ev) {
+            $("#arxi_wrap").toggle();
+        })
+
+        $("#field_28_nomologia").on("change", function (ev) {
+            $("#nomologia_wrap").toggle();
+        })
+
+        $("#field_28_nomologia_dikaiwmatwn_anthrwpou").on("change", function (ev) {
+            $("#nomologia_dikaiwmatwn_anthrwpou_wrap").toggle();
+        })
+
+        $("#field_28_alla_dikastiria").on("change", function (ev) {
+            $("#alla_dikastiria_wrap").toggle();
+        })
+
+        $("#field_4").on("click", function (ev) {
+            if ($(this).val() == "Ναι") {
+                $("#field_4_wrap").show();
+            } else {
+                $("#field_4_wrap").hide();
+            }
+        })
+
+        $("#field_6").on("change", function (ev) {
+            if ($(this).val() == "Ναι") {
+                $("#field_6_wrap").show();
+            } else {
+                $("#field_6_wrap").hide();
+            }
+        })
+
+        $("#field_11").on("change", function (ev) {
+            if ($(this).val() == "Ναι") {
+                $("#field_11_wrap").show();
+            } else {
+                $("#field_11_wrap").hide();
+            }
+        })
+
+        $("#field_12").on("change", function (ev) {
+            if ($(this).val() == "Ναι") {
+                $("#field_12_wrap").show();
+            } else {
+                $("#field_12_wrap").hide();
+            }
+        })
+
+        $("#field_13").on("change", function (ev) {
+            if ($(this).val() == "Ναι") {
+                $("#field_13_wrap").show();
+            } else {
+                $("#field_13_wrap").hide();
+            }
+        })
+
+        $("#field_36").on("change", function (ev) {
+            if ($(this).val() == "Ναι") {
+                $("#field_36_wrap").show();
+            } else {
+                $("#field_36_wrap").hide();
+            }
+        })
+
+        // $('fieldset').find('[required]').each(function() {
+        // //your code here
+        // })
+        addTooltip('title');
+        addTooltip('initial_submit');
+        addTooltip('last_updated');
+        addTooltip('epispeudon_foreas');
+        addTooltip('rythmisi_pou_afora');
+        addTooltip('stoixeia_epikoinwnias');
+        addTooltip('tomeis_nomothetisis');
+        addTooltip('ekpedeusi_politismos');
+        addTooltip('eksoteriki_politiki');
+        addTooltip('forologiki_politiki');
+        addTooltip('koinoniki_politiki');
+        addTooltip('dimosia_dioikisi');
+        addTooltip('anaptiksi');
+        addTooltip('field_1');
+        addTooltip('field_2');
+        addTooltip('field_3');
+        addTooltip('field_4');
+        addTooltip('field_4_1');
+        addTooltip('field_5_1');
+        addTooltip('field_5_2');
+        addTooltip('field_5_3');
+        addTooltip('field_6');
+        addTooltip('field_6_1');
+        addTooltip('field_6_2');
+        addTooltip('field_6_3');
+        //addTooltip('field_7_wrap');
+        addTooltip('field_8_1');
+        addTooltip('field_8_2');
+        addTooltipByClass('index_label');
+        addTooltipByClass('index_five');
+
+
+        // addTooltip('title');
+        // addTooltip('title');
+
+        //for rows in csv call function        
+
+        function addTooltip(fieldID) {
+            var parentDiv = $("#" + fieldID).closest('div.form-group');
+            var tooltip = `<div class="tooltip_div" >
+                            <img src="/img/information.png"  id="${fieldID}_tooltip_img" aria-describedby="${fieldID}_tooltip_img" 
+                                onmouseover="tooltipEvents('${fieldID}_tooltip_img', '${fieldID}_tooltip_div'); setTooltip('${fieldID}_tooltip_div','${fieldID}');"
+                                onmouseout="removeTooltip('${fieldID}_tooltip_div')" class="tooltip_icon" width="30px" >
+                            <div id="${fieldID}_tooltip_div" class="tooltip_text" role="tooltip">     
+                                <div id="arrow" class="tooltip_text" data-popper-arrow></div>
+                            </div>
+                        </div>`;
+            parentDiv.append(tooltip);
         }
 
-        function show() {
-            tooltip.setAttribute('data-show', '');
-            create();
+        function addTooltipByClass(fieldID) {
+            var parentDiv = $("." + fieldID);
+            parentDiv.each(function (index) {
+                var tooltip = `<div class="tooltip_div" >
+                            <img src="/img/information.png"  id="${fieldID}_tooltip_img_${index}" aria-describedby="${fieldID}_tooltip_img" 
+                                onmouseover="tooltipEvents('${fieldID}_tooltip_img_${index}', '${fieldID}_tooltip_div_${index}'); setTooltip('${fieldID}_tooltip_div_${index}','${fieldID}');"
+                                onmouseout="removeTooltip('${fieldID}_tooltip_div_${index}')" class="tooltip_icon" width="30px" >
+                            <div id="${fieldID}_tooltip_div_${index}" class="tooltip_text" role="tooltip">                                     
+                            </div>
+                        </div>`; 
+                $(this).append(tooltip);          
+            });
+            //alert(parentDiv.html())
+            
+            //alert(tooltip)
         }
 
-        function hide() {
-            tooltip.removeAttribute('data-show');
-            destroy();
+
+        function removeTooltip(divID) {
+            $("#" + divID).empty();
+
         }
 
-        const showEvents = ['mouseenter', 'focus'];
-        const hideEvents = ['mouseleave', 'blur'];
-
-        showEvents.forEach(event => {
-            img.addEventListener(event, show);
-        });
-
-        hideEvents.forEach(event => {
-            img.addEventListener(event, hide);
-        });
-    }
-
-    $("#ekpedeusi_politismos").click(function (ev) {
-        if (this.checked) {
-            $("#politismos_table").show();
-            $("#ekpaideysi_table").show();
-            $(this).prop('value', 'true');
-        } else {
-            $("#politismos_table").hide();
-            $("#ekpaideysi_table").hide();
-            $(this).prop('value', 'false');
-        }
-    })
-
-    $("#forologiki_politiki").click(function (ev) {
-        if (this.checked) {
-            $("#oikonomia_table").show();
-            $("#forologia_table").show();
-            $("#ergasiakes_sxeseis_table").show();
-        } else {
-            $("#oikonomia_table").hide();
-            $("#forologia_table").hide();
-            $("#ergasiakes_sxeseis_table").hide();
-        }
-    })
-
-    $("#koinoniki_politiki").click(function (ev) {
-        if (this.checked) {
-            $("#apasxolisi_table").show();
-            $("#koinwniki_asfalisi_table").show();
-            $("#koinwniki_pronoia_table").show();
-            $("#ygeia_table").show();
-            $("#isotita_fylwn_table").show();
-            $("#metanasteytiki_prosfygiki_politiki_table").show();
-        } else {
-            $("#apasxolisi_table").hide();
-            $("#koinwniki_asfalisi_table").hide();
-            $("#koinwniki_pronoia_table").hide();
-            $("#ygeia_table").hide();
-            $("#isotita_fylwn_table").hide();
-            $("#metanasteytiki_prosfygiki_politiki_table").hide();
-        }
-    })
-
-    $("#dimosia_dioikisi").click(function (ev) {
-        if (this.checked) {
-            $("#dimosia_dioikisi_table").show();
-            $("#dimosia_asfaleia_table").show();
-            $("#dikaiosini_table").show();
-        } else {
-            $("#dimosia_dioikisi_table").hide();
-            $("#dimosia_asfaleia_table").hide();
-            $("#dikaiosini_table").hide();
-        }
-    })
-
-    $("#anaptiksi").click(function (ev) {
-        if (this.checked) {
-            $("#ependytiki_drastiriotita_table").show();
-            $("#perivallon_energeia_table").show();
-        } else {
-            $("#ependytiki_drastiriotita_table").hide();
-            $("#perivallon_energeia_table").hide();
-        }
-    })
-
-    $("#field_10_emmesi").on("change", function (ev) {
-        $("#emesi_wrap").toggle();
-    })
-
-    $("#field_10_amesi").on("change", function (ev) {
-        $("#amesi_wrap").toggle();
-    })
-
-    $("#field_25_dikaio").on("change", function (ev) {
-        $("#dikaio_wrap").toggle();
-    })
-
-    $("#field_25_kanonismos").on("change", function (ev) {
-        $("#kanonismos_wrap").toggle();
-    })
-
-    $("#field_25_odigia").on("change", function (ev) {
-        $("#odigia_wrap").toggle();
-    })
-
-    $("#field_25_apofasi").on("change", function (ev) {
-        $("#apofasi_wrap").toggle();
-    })
-
-    $("#field_26_antrwpina_dikaiwmata").on("change", function (ev) {
-        $("#antrwpina_dikaiwmata_wrap").toggle();
-    })
-
-    $("#field_26_symvaseis").on("change", function (ev) {
-        $("#symvaseis_wrap").toggle();
-    })
-
-    $("#field_27_dikastirio").on("change", function (ev) {
-        $("#dikastirio_wrap").toggle();
-    })
-
-    $("#field_27_arxi").on("change", function (ev) {
-        $("#arxi_wrap").toggle();
-    })
-
-    $("#field_28_nomologia").on("change", function (ev) {
-        $("#nomologia_wrap").toggle();
-    })
-
-    $("#field_28_nomologia_dikaiwmatwn_anthrwpou").on("change", function (ev) {
-        $("#nomologia_dikaiwmatwn_anthrwpou_wrap").toggle();
-    })
-
-    $("#field_28_alla_dikastiria").on("change", function (ev) {
-        $("#alla_dikastiria_wrap").toggle();
-    })
-
-    $("#field_4").on("click", function (ev) {
-        if ($(this).val() == "Ναι") {
-            $("#field_4_wrap").show();
-        } else {
-            $("#field_4_wrap").hide();
-        }
-    })
-
-    $("#field_6").on("change", function (ev) {
-        if ($(this).val() == "Ναι") {
-            $("#field_6_wrap").show();
-        } else {
-            $("#field_6_wrap").hide();
-        }
-    })
-
-    $("#field_11").on("change", function (ev) {
-        if ($(this).val() == "Ναι") {
-            $("#field_11_wrap").show();
-        } else {
-            $("#field_11_wrap").hide();
-        }
-    })
-
-    $("#field_12").on("change", function (ev) {
-        if ($(this).val() == "Ναι") {
-            $("#field_12_wrap").show();
-        } else {
-            $("#field_12_wrap").hide();
-        }
-    })
-
-    $("#field_13").on("change", function (ev) {
-        if ($(this).val() == "Ναι") {
-            $("#field_13_wrap").show();
-        } else {
-            $("#field_13_wrap").hide();
-        }
-    })
-
-    $("#field_36").on("change", function (ev) {
-        if ($(this).val() == "Ναι") {
-            $("#field_36_wrap").show();
-        } else {
-            $("#field_36_wrap").hide();
-        }
-    })
-
-    // $('fieldset').find('[required]').each(function() {
-    // //your code here
-    // })
-    addTooltip('title');    
-    function addTooltip (fieldID) {
-        var parentDiv = $("#"+fieldID).parent().closest('div');
-        var parentDiv = $(parentDiv).parent().closest('div');
-        options = `<div>
-                        <img src="/img/information.png"  id="${fieldID}_tooltip_img" aria-describedby="${fieldID}_tooltip_img" 
-                            onmouseover="tooltipEvents('${fieldID}_tooltip_img', 'tooltip_text'); setTooltip('${fieldID}_tooltip_div','${fieldID}');"
-                            onmouseout="removeTooltip('${fieldID}_tooltip_div')" class="tooltip_icon" width="30px">
-                        <div id="${fieldID}_tooltip_div" class="tooltip_text" role="tooltip">                            
-                        </div>
-                    </div>`;
-
-        parentDiv.append(options);
-    }    
-
-    function removeTooltip (divID) {
-        $("#"+divID).empty();
-
-    }
-
-    //<div class="arrow" data-popper-arrow ></div>
-    function setTooltip (divID,fieldId) {
-        //var fieldId = fieldId.substring(1)//remove 1st character if #fieldID is passed as parameter
         var tooltips = '<%= tooltips %>';
         tooltips = tooltips.replace(/&#34;/g, '"')//replace html for double quotes
-                           .replace(/[\u0000-\u0019]+/g,"")
-                           .replace(/\\'/g, "\\'")
-                           .replace(/\\"/g, '\\"')
-                           .replace(/\\&/g, "\\&")
-                           .replace(/\\r/g, "\\r")
-                           .replace(/\\t/g, "\\t")
-                           .replace(/\\b/g, "\\b")
-                           .replace(/\\f/g, "\\f");
+            .replace(/[\u0000-\u0019]+/g, "")
+            .replace(/\\'/g, "\\'")
+            .replace(/\\"/g, '\\"')
+            .replace(/\\&/g, "\\&")
+            .replace(/\\r/g, "\\r")
+            .replace(/\\t/g, "\\t")
+            .replace(/\\b/g, "\\b")
+            .replace(/\\f/g, "\\f");
         tooltips = JSON.parse(tooltips)//parse to JSON obj 
-        var tooltip;
-        for (i in tooltips) {
-            if (tooltips[i].fieldId == fieldId) {
-                tooltip =  tooltips[i].tooltipText;
-                $("#"+divID).html((tooltip));
+        function setTooltip(divID, fieldId) {
+            //var fieldId = fieldId.substring(1)//remove 1st character if #fieldID is passed as parameter
+
+            var tooltip;
+            for (i in tooltips) {
+                if (tooltips[i].fieldId == fieldId) {
+                    tooltip = tooltips[i].tooltipText;
+                    $("#" + divID).html((tooltip));
+                }
             }
-        }           
-    }
-    
-    var current_fs, next_fs, previous_fs; //fieldsets
-
-
-    $(".next").click(function () {
-        current_fs = $(this).parent();
-        next_fs = $(this).parent().next();
-
-        //activate next step on progressbar using the index of next_fs
-        $(".progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
-
-        //show the next fieldset
-        next_fs.show();
-        //hide the current fieldset with style
-        current_fs.hide();
-    });
-
-    $(".previous").click(function () {
-        current_fs = $(this).parent();
-        previous_fs = $(this).parent().prev();
-
-        //de-activate current step on progressbar
-        $(".progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
-        //add class "active" if it doesn't exist 
-        if (!$(previous_fs).hasClass("active")) {
-            $(".progressbar li").eq($("fieldset").index(previous_fs)).addClass("active");
         }
-        //show the previous fieldset
-        previous_fs.show();
-        //hide the current fieldset with style
-        current_fs.hide();
-    });
 
-    $(".submit").click(function () {
-        return false;
-    })
-</script>
+        var current_fs, next_fs, previous_fs; //fieldsets
+
+
+        $(".next").click(function () {
+            current_fs = $(this).parent();
+            next_fs = $(this).parent().next();
+
+            //activate next step on progressbar using the index of next_fs
+            $(".progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+            //show the next fieldset
+            next_fs.show();
+            //hide the current fieldset with style
+            current_fs.hide();
+        });
+
+        $(".previous").click(function () {
+            current_fs = $(this).parent();
+            previous_fs = $(this).parent().prev();
+
+            //de-activate current step on progressbar
+            $(".progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+            //add class "active" if it doesn't exist 
+            if (!$(previous_fs).hasClass("active")) {
+                $(".progressbar li").eq($("fieldset").index(previous_fs)).addClass("active");
+            }
+            //show the previous fieldset
+            previous_fs.show();
+            //hide the current fieldset with style
+            current_fs.hide();
+        });
+
+        $(".submit").click(function () {
+            return false;
+        })
+    </script>

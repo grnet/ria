@@ -22,7 +22,7 @@ routes.get('/:analysis', function (req, res, next) {
         var results = [];
         const valid_errors = req.session.errors;
         req.session.errors = null;
-        fs.createReadStream('./public/csvs/ASR_LabelsTooltips.csv')
+        fs.createReadStream('./public/csvs/ASR_Tooltips.csv')
             .pipe(csv())
             .on('data', (data) => results.push(data))
             .on('end', () => {
