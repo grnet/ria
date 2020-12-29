@@ -535,13 +535,13 @@
                     <table class="table " id="field_14_table">
                         <thead class="thead ">
                             <tr>
-                                <th colspan="2"><label id="table_14_label" class="table-14-label required">14.Σύνοψη
+                                <th colspan="2"><div class="table-cell index_fourteen"><label id="table_14_label" class="table-14-label required"></div>14.Σύνοψη
                                         στόχων
                                         κάθε άρθρου</label></th>
                             </tr>
                             <tr>
-                                <th colspan="1">Άρθρο</th>
-                                <th colspan="1">Στόχος</th>
+                                <th colspan="1">Άρθρο<div class="table-cell index_article"></div></th>
+                                <th colspan="1">Στόχος<div class="table-cell index_goal"></div></th>
                             </tr>
                         </thead>
                         <tbody id="tbody_14">
@@ -1509,45 +1509,34 @@
         // $('fieldset').find('[required]').each(function() {
         // //your code here
         // })
-        addTooltip('title');
-        addTooltip('initial_submit');
-        addTooltip('last_updated');
-        addTooltip('epispeudon_foreas');
-        addTooltip('rythmisi_pou_afora');
-        addTooltip('stoixeia_epikoinwnias');
-        addTooltip('tomeis_nomothetisis');
-        addTooltip('ekpedeusi_politismos');
-        addTooltip('eksoteriki_politiki');
-        addTooltip('forologiki_politiki');
-        addTooltip('koinoniki_politiki');
-        addTooltip('dimosia_dioikisi');
-        addTooltip('anaptiksi');
-        addTooltip('field_1');
-        addTooltip('field_2');
-        addTooltip('field_3');
-        addTooltip('field_4');
-        addTooltip('field_4_1');
-        addTooltip('field_5_1');
-        addTooltip('field_5_2');
-        addTooltip('field_5_3');
-        addTooltip('field_6');
-        addTooltip('field_6_1');
-        addTooltip('field_6_2');
-        addTooltip('field_6_3');
-        //addTooltip('field_7_wrap');
-        addTooltip('field_8_1');
-        addTooltip('field_8_2');
-        addTooltipByClass('index_label');
-        addTooltipByClass('index_five');
+        
+        // addTooltipByClass('index_label');
+        // addTooltipByClass('index_five');
 
-
-        // addTooltip('title');
-        // addTooltip('title');
+        var tooltips = '<%= tooltips %>';
+        tooltips = tooltips.replace(/&#34;/g, '"')//replace html for double quotes
+            .replace(/[\u0000-\u0019]+/g, "")
+            .replace(/\\'/g, "\\'")
+            .replace(/\\"/g, '\\"')
+            .replace(/\\&/g, "\\&")
+            .replace(/\\r/g, "\\r")
+            .replace(/\\t/g, "\\t")
+            .replace(/\\b/g, "\\b")
+            .replace(/\\f/g, "\\f");
+        tooltips = JSON.parse(tooltips)//parse to JSON obj
 
         //for rows in csv call function        
+        
+        for (i in tooltips) {
+            
+            if (tooltips[i].fieldId) {
+                addTooltip(tooltips[i].fieldId);
+            }            
+        }
 
         function addTooltip(fieldID) {
-            var parentDiv = $("#" + fieldID).closest('div.form-group');
+            console.log(fieldID)
+            var parentDiv = $('#' + fieldID).closest('div.form-group');
             var tooltip = `<div class="tooltip_div" >
                             <img src="/img/information.png"  id="${fieldID}_tooltip_img" aria-describedby="${fieldID}_tooltip_img" 
                                 onmouseover="tooltipEvents('${fieldID}_tooltip_img', '${fieldID}_tooltip_div'); setTooltip('${fieldID}_tooltip_div','${fieldID}');"
@@ -1581,18 +1570,7 @@
             $("#" + divID).empty();
 
         }
-
-        var tooltips = '<%= tooltips %>';
-        tooltips = tooltips.replace(/&#34;/g, '"')//replace html for double quotes
-            .replace(/[\u0000-\u0019]+/g, "")
-            .replace(/\\'/g, "\\'")
-            .replace(/\\"/g, '\\"')
-            .replace(/\\&/g, "\\&")
-            .replace(/\\r/g, "\\r")
-            .replace(/\\t/g, "\\t")
-            .replace(/\\b/g, "\\b")
-            .replace(/\\f/g, "\\f");
-        tooltips = JSON.parse(tooltips)//parse to JSON obj 
+         
         function setTooltip(divID, fieldId) {
             //var fieldId = fieldId.substring(1)//remove 1st character if #fieldID is passed as parameter
 
