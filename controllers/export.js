@@ -2,11 +2,8 @@ const fs = require('fs');
 
 exports.exportPDF = (async function (req, res, next) {
 
-    var data = req.body;
-    //console.log(data)   
-
-    let req_body = req.body;//assign req.body to variable
-    let keys = Object.keys(req_body);//get keys 
+    let data = req.body;//assign req.body to variable
+    let keys = Object.keys(data);//get keys 
     let field_14_arthro = [];
     let field_14_stoxos = [];
     let field_17_onoma = [];
@@ -28,11 +25,11 @@ exports.exportPDF = (async function (req, res, next) {
     for (i in keys) {//iterate through keys
         // console.log(i + " " + keys[i])
         if (keys[i].includes("field_14_arthro")) {
-            value = req_body[keys[i]];//get value from pair
+            value = data[keys[i]];//get value from pair
             key = keys[i];//get key 
             field_14_arthro.push({ key: value });
         } else if (keys[i].includes("field_14_stoxos")) {
-            value = req_body[keys[i]];
+            value = data[keys[i]];
             key = keys[i];
             field_14_stoxos.push({ key: value });
         }
@@ -135,6 +132,8 @@ exports.exportPDF = (async function (req, res, next) {
                 { text: data.field_8_1 + "\n\n" },
                 { text: '8.2 μακροπρόθεσμοι: \n\n', decoration: 'underline' },
                 { text: data.field_8_2 + "\n\n" },
+                { text: '9. Ειδικότεροι στόχοι ανάλογα με τον τομέα νομοθέτησης \n\n', decoration: 'underline' },
+                exportTables9(data,keys),
                 createTableFieldNine('ΑΛΛΟΙ ΠΡΟΤΕΙΝΟΜΕΝΟΙ ΔΕΙΚΤΕΣ', req.body.allos_deiktis1, req.body.allos_deiktis1_year1, req.body.allos_deiktis1_year2, req.body.allos_deiktis1_year3, req.body.allos_deiktis1_year4, req.body.allos_deiktis1_year5, '654', '84684'),
                 { text: "\n\n" },
                 { text: '10. Σε περίπτωση που προβλέπεται η χρήση πληροφοριακού συστήματος, ποια θα είναι η συμβολή αυτού στην επίτευξη των στόχων της αξιολογούμενης ρύθμισης: \n\n', decoration: 'underline' },
@@ -193,7 +192,7 @@ exports.exportPDF = (async function (req, res, next) {
                 // }
 
                 //buildTableBody(field_14_arthro, field_14_stoxos)
-
+                { text: '18. Οφέλη αξιολογούμενης ρύθμισης \n\n', decoration: 'underline' },
                 createCheckBoxTable('ΟΦΕΛΗ ΡΥΘΜΙΣΗΣ', 'ΑΜΕΣΑ', 'Αύξηση εσόδων', req.body.field_18_amesa_esoda_thesmoi, req.body.field_18_amesa_esoda_oikonomia, req.body.field_18_amesa_esoda_kinonia, req.body.field_18_amesa_esoda_perivallon, req.body.field_18_amesa_esoda_nisiwtika),
 
                 {
@@ -339,29 +338,26 @@ function createCheckBoxTable(tableHeader, tableGroup, rowName, val1, val2, val3,
     var rows = [];
     var checked = [];    
     //rows.push([tableHeader, tableGroup, rowName]);
-    rows.push(['#', 'ΘΕΣΜΟΙ', 'ΟΙΚΟΝΟΜΙΑ', 'ΚΟΙΝΩΝΙΑ', 'ΠΕΡΙΒΑΛΛΟΝ', 'ΝΗΣΙΩΤΙΚΟΤΗΤΑ']);
+    rows.push(['#', 'ΘΕΣΜΟΙ ΔΗΜΟΣΙΑ ΔΙΟΙΚΗΣΗ, ΔΙΑΦΑΝΕΙΑ', 'ΑΓΟΡΑ, ΟΙΚΟΝΟΜΙΑ, ΑΝΤΑΓΩΝΙΣΜΟΣ', 'ΚΟΙΝΩΝΙΑ & ΚΟΙΝΩΝΙΚΕΣ ΟΜΑΔΕΣ', 'ΦΥΣΙΚΟ, ΑΣΤΙΚΟ ΚΑΙ ΠΟΛΙΤΙΣΤΙΚΟ ΠΕΡΙΒΑΛΛΟΝ', 'ΝΗΣΙΩΤΙΚΟΤΗΤΑ']);
     
     for (var i in params) {        
-        if (params[i]) {
+        if (params[i]) { //if checkbox is checked
             console.log(params[i])
             checked.push('√')
         } else {
             checked.push('X')
         }
     }    
-    checked.unshift(rowName)
-    console.log(checked)
-    
+    checked.unshift(rowName);//rowName as 1st element     
     if (checked && checked.length) {
-        rows.push(checked);
+        rows.push(checked);//push whole row 
     }
     console.log(rows)
-    //rows.push([ rowName ,['έτος 1: '+val1, 'έτος 2: '+val2, 'έτος 3: '+val3, 'έτος 4: '+val4, 'έτος 5: '+val5], val6, val7]);
 
     var table = {
         //layout: 'lightHorizontalLines',
         table: {
-            headerRows: 0,
+            headerRows: 1,
             body: rows,
             widths: ['*', '*', '*', '*', '*', '*']
             // styles: {
@@ -372,4 +368,34 @@ function createCheckBoxTable(tableHeader, tableGroup, rowName, val1, val2, val3,
         }    
     }
     return table;
+}
+
+function exportTables9 (data,keys) {
+    var table = [];
+    var row = [];
+    var prefix;
+    for (var i in keys) {
+
+        if (keys[i].includes('_header')) {
+            row.push(data[keys[i]]);//might get duplicates?
+        }
+
+        if (keys[i].includes('_label')) {
+            if (row) {
+                table.push([row]);//found header, hence a new table. Push row to table and then empty. 
+                row = [];
+            }
+            prefix = keys[i].split('_label');
+            prefix = prefix.slice(0,-1);//remove last character, a comma produced by split()
+        }
+
+        if (prefix) {
+            if (keys[i].includes(prefix)) {//group same row elements
+                row.push([data[keys[i]]]);  
+            }
+        }                
+    }
+    console.log( table[0]);
+    console.log( table[1]);
+    console.log('prefix: '+prefix);
 }
