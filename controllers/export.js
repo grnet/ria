@@ -133,8 +133,8 @@ exports.exportPDF = (async function (req, res, next) {
                 { text: '8.2 μακροπρόθεσμοι: \n\n', decoration: 'underline' },
                 { text: data.field_8_2 + "\n\n" },
                 { text: '9. Ειδικότεροι στόχοι ανάλογα με τον τομέα νομοθέτησης \n\n', decoration: 'underline' },
-                exportTables9(data,keys),
-                createTableFieldNine('ΑΛΛΟΙ ΠΡΟΤΕΙΝΟΜΕΝΟΙ ΔΕΙΚΤΕΣ', req.body.allos_deiktis1, req.body.allos_deiktis1_year1, req.body.allos_deiktis1_year2, req.body.allos_deiktis1_year3, req.body.allos_deiktis1_year4, req.body.allos_deiktis1_year5, '654', '84684'),
+                exportTables9(data, keys),
+                //createTableFieldNine('ΑΛΛΟΙ ΠΡΟΤΕΙΝΟΜΕΝΟΙ ΔΕΙΚΤΕΣ', req.body.allos_deiktis1, req.body.allos_deiktis1_year1, req.body.allos_deiktis1_year2, req.body.allos_deiktis1_year3, req.body.allos_deiktis1_year4, req.body.allos_deiktis1_year5, '654', '84684'),
                 { text: "\n\n" },
                 { text: '10. Σε περίπτωση που προβλέπεται η χρήση πληροφοριακού συστήματος, ποια θα είναι η συμβολή αυτού στην επίτευξη των στόχων της αξιολογούμενης ρύθμισης: \n\n', decoration: 'underline' },
                 {
@@ -315,9 +315,11 @@ function createTable(header1, header2, article, goal) {
     return table;
 }
 
-function createTableFieldNine(tableGroup, tableName, val1, val2, val3, val4, val5, val6, val7) {
+function createTableFieldNine( tableName, val1, val2, val3, val4, val5, val6, val7, tableGroup) {
     var rows = [];
-    rows.push([tableGroup, 'Εξέλιξη την τελευταία 5ετία', 'Πρόσφατα στοιχεία', 'Επιδιωκόμενος στόχος (3ετία)']);
+    if (tableGroup) {
+        rows.push([tableGroup, 'Εξέλιξη την τελευταία 5ετία', 'Πρόσφατα στοιχεία', 'Επιδιωκόμενος στόχος (3ετία)']);
+    }
     rows.push([tableName, ['έτος 1: ' + val1, 'έτος 2: ' + val2, 'έτος 3: ' + val3, 'έτος 4: ' + val4, 'έτος 5: ' + val5], val6, val7]);
 
     var table = {
@@ -334,20 +336,19 @@ function createTableFieldNine(tableGroup, tableName, val1, val2, val3, val4, val
 
 function createCheckBoxTable(tableHeader, tableGroup, rowName, val1, val2, val3, val4, val5) {
     var params = [val1, val2, val3, val4, val5]
-    
+
     var rows = [];
-    var checked = [];    
+    var checked = [];
     //rows.push([tableHeader, tableGroup, rowName]);
     rows.push(['#', 'ΘΕΣΜΟΙ ΔΗΜΟΣΙΑ ΔΙΟΙΚΗΣΗ, ΔΙΑΦΑΝΕΙΑ', 'ΑΓΟΡΑ, ΟΙΚΟΝΟΜΙΑ, ΑΝΤΑΓΩΝΙΣΜΟΣ', 'ΚΟΙΝΩΝΙΑ & ΚΟΙΝΩΝΙΚΕΣ ΟΜΑΔΕΣ', 'ΦΥΣΙΚΟ, ΑΣΤΙΚΟ ΚΑΙ ΠΟΛΙΤΙΣΤΙΚΟ ΠΕΡΙΒΑΛΛΟΝ', 'ΝΗΣΙΩΤΙΚΟΤΗΤΑ']);
-    
-    for (var i in params) {        
+
+    for (var i in params) {
         if (params[i]) { //if checkbox is checked
-            console.log(params[i])
             checked.push('√')
         } else {
             checked.push('X')
         }
-    }    
+    }
     checked.unshift(rowName);//rowName as 1st element     
     if (checked && checked.length) {
         rows.push(checked);//push whole row 
@@ -365,37 +366,36 @@ function createCheckBoxTable(tableHeader, tableGroup, rowName, val1, val2, val3,
             //         alignment: 'center'
             //     },
             // }    
-        }    
+        }
     }
     return table;
 }
 
-function exportTables9 (data,keys) {
+function exportTables9(data, keys) {
     var table = [];
     var row = [];
     var prefix;
     for (var i in keys) {
 
-        if (keys[i].includes('_header')) {
-            row.push(data[keys[i]]);//might get duplicates?
-        }
-
-        if (keys[i].includes('_label')) {
+        if (keys[i].includes('_label')) {//label acts as a row separator
             if (row) {
-                table.push([row]);//found header, hence a new table. Push row to table and then empty. 
+                table.push([row]);//found label, hence a new row. Push row to table and then empty. 
                 row = [];
             }
             prefix = keys[i].split('_label');
-            prefix = prefix.slice(0,-1);//remove last character, a comma produced by split()
+            prefix = prefix.slice(0, -1);//remove last character, a comma produced by split()
         }
-
+        //TODO: ALGORITH THAT PUSHES TABLE GROUP AT THE END OF THE ROW
         if (prefix) {
-            if (keys[i].includes(prefix)) {//group same row elements
-                row.push([data[keys[i]]]);  
+            if (keys[i].includes(prefix) && (keys[i].includes('_label') == false)) {//push elements which don't include '_label', else an extra empty element is added to row           
+                row.push(data[keys[i]]);
             }
-        }                
+        }
     }
-    console.log( table[0]);
-    console.log( table[1]);
-    console.log('prefix: '+prefix);
+    // for(i in table) {
+    //     createTableFieldNine(table[i]);
+    // }
+    console.log(table);
+    //console.log( table[1]);
+    console.log('prefix: ' + prefix);
 }

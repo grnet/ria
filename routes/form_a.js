@@ -104,15 +104,14 @@ routes.put('/:entry_id', upload,
             //next();
 
             try {
-                console.log("req.body: " + Object.keys(req.body) + Object.values(req.body));
-                console.log("status: " + req.body.status_ekthesis);
-                console.log("ekpedeusi_politismos: " + req.body.ekpedeusi_politismos);
+                //console.log("req.body: " + Object.keys(req.body) + Object.values(req.body));
+                //console.log("status: " + req.body.status_ekthesis);
+                //console.log("ekpedeusi_politismos: " + req.body.ekpedeusi_politismos);
                 let ekthesi = await database.ekthesi.update(req.body, {
                     where: {
                         id: ekthesi_id
-                    }, include: [{ model: database.rythmiseis }, { model: database.field_9 }], returning: true, plain: true
+                    }
                 })
-
                 let field21 = [];
                 let field23 = [];
                 let field36 = [];
@@ -294,8 +293,6 @@ routes.put('/:entry_id', upload,
                 allos_deiktis3 = JSON.stringify([{ "allos_deiktis3": req.body.allos_deiktis3 }, { "allos_deiktis3_year1": req.body.allos_deiktis3_year1 }, { "allos_deiktis3_year2": req.body.allos_deiktis3_year2 }, { "allos_deiktis3_year3": req.body.allos_deiktis3_year3 }, { "allos_deiktis3_year4": req.body.allos_deiktis3_year4 }, { "allos_deiktis3_year5": req.body.allos_deiktis3_year5 }, { "allos_deiktis3_prosfata_stoixeia": req.body.allos_deiktis3_prosfata_stoixeia }, { "allos_deiktis3_epidiwkomenos_stoxos": req.body.allos_deiktis3_epidiwkomenos_stoxos }])
                 allos_deiktis4 = JSON.stringify([{ "allos_deiktis4": req.body.allos_deiktis4 }, { "allos_deiktis4_year1": req.body.allos_deiktis4_year1 }, { "allos_deiktis4_year2": req.body.allos_deiktis4_year2 }, { "allos_deiktis4_year3": req.body.allos_deiktis4_year3 }, { "allos_deiktis4_year4": req.body.allos_deiktis4_year4 }, { "allos_deiktis4_year5": req.body.allos_deiktis4_year5 }, { "allos_deiktis4_prosfata_stoixeia": req.body.allos_deiktis4_prosfata_stoixeia }, { "allos_deiktis4_epidiwkomenos_stoxos": req.body.allos_deiktis4_epidiwkomenos_stoxos }])
                 allos_deiktis5 = JSON.stringify([{ "allos_deiktis5": req.body.allos_deiktis5 }, { "allos_deiktis5_year1": req.body.allos_deiktis5_year1 }, { "allos_deiktis5_year2": req.body.allos_deiktis5_year2 }, { "allos_deiktis5_year3": req.body.allos_deiktis5_year3 }, { "allos_deiktis5_year4": req.body.allos_deiktis5_year4 }, { "allos_deiktis5_year5": req.body.allos_deiktis5_year5 }, { "allos_deiktis5_prosfata_stoixeia": req.body.allos_deiktis5_prosfata_stoixeia }, { "allos_deiktis5_epidiwkomenos_stoxos": req.body.allos_deiktis5_epidiwkomenos_stoxos }])
-                //console.log("allos_deiktis1: " + allos_deiktis1)
-
 
                 //grouping each value of each row of table 18 
                 let auksisi_esodwn = JSON.stringify([{ "field_18_amesa_esoda_thesmoi": req.body.field_18_amesa_esoda_thesmoi }, { "field_18_amesa_esoda_oikonomia": req.body.field_18_amesa_esoda_oikonomia }, { "field_18_amesa_esoda_kinonia": req.body.field_18_amesa_esoda_kinonia }, { "field_18_amesa_esoda_perivallon": req.body.field_18_amesa_esoda_perivallon }, { "field_18_amesa_esoda_nisiwtika": req.body.field_18_amesa_esoda_nisiwtika }])
@@ -342,91 +339,91 @@ routes.put('/:entry_id', upload,
                 let field_32_armodio_ypoyrgeio = [];
                 let field_32_antikeimeno = [];
                 let field_32_xronodiagramma = [];
-                let value, temp;
+                let value, key;
                 for (i in keys) {//iterate through keys
                     // console.log(i + " " + keys[i])
                     if (keys[i].includes("field_14_arthro")) {
                         //console.log("FOUND ROW "+keys[i]);
                         value = req_body[keys[i]];//get value from pair
                         //console.log(" FOUND val "+value);
-                        temp = keys[i];//get key 
-                        field_14_arthro.push({ temp: value });
+                        key = keys[i];//get key 
+                        field_14_arthro.push({ key: value });
                     } else if (keys[i].includes("field_14_stoxos")) {
                         value = req_body[keys[i]];
-                        temp = keys[i];
-                        field_14_stoxos.push({ temp: value });
+                        key = keys[i];
+                        field_14_stoxos.push({ key: value });
                     } else if (keys[i].includes("field_17_onoma")) {
                         value = req_body[keys[i]];
-                        temp = keys[i];
-                        field_17_onoma.push({ temp: value });
+                        key = keys[i];
+                        field_17_onoma.push({ key: value });
                     } else if (keys[i].includes("field_17_epitheto")) {
                         value = req_body[keys[i]];
-                        temp = keys[i];
-                        field_17_epitheto.push({ temp: value });
+                        key = keys[i];
+                        field_17_epitheto.push({ key: value });
                     } else if (keys[i].includes("field_17_idiotita")) {
                         value = req_body[keys[i]];
-                        temp = keys[i];
-                        field_17_idiotita.push({ temp: value });
+                        key = keys[i];
+                        field_17_idiotita.push({ key: value });
                     } else if (keys[i].includes("field_29_diatakseis_rythmisis")) {
                         console.log("FOUND ROW " + keys[i]);
                         value = req_body[keys[i]];
-                        temp = keys[i];
-                        field_29_diatakseis_rythmisis.push({ temp: value });
+                        key = keys[i];
+                        field_29_diatakseis_rythmisis.push({ key: value });
                     } else if (keys[i].includes("field_29_yfistamenes_diatakseis")) {
                         console.log("FOUND ROW " + keys[i]);
                         value = req_body[keys[i]];
-                        temp = keys[i];
-                        field_29_yfistamenes_diatakseis.push({ temp: value });
+                        key = keys[i];
+                        field_29_yfistamenes_diatakseis.push({ key: value });
                     } else if (keys[i].includes("field_30_diatakseis_katargisi")) {
                         console.log("FOUND ROW " + keys[i]);
                         value = req_body[keys[i]];
-                        temp = keys[i];
-                        field_30_diatakseis_katargisi.push({ temp: value });
+                        key = keys[i];
+                        field_30_diatakseis_katargisi.push({ key: value });
                     } else if (keys[i].includes("field_30_katargoumenes_diatakseis")) {
                         console.log("FOUND ROW " + keys[i]);
                         value = req_body[keys[i]];
-                        temp = keys[i];
-                        field_30_katargoumenes_diatakseis.push({ temp: value });
+                        key = keys[i];
+                        field_30_katargoumenes_diatakseis.push({ key: value });
                     } else if (keys[i].includes("field_31_sxetiki_diataksi")) {
                         console.log("FOUND ROW " + keys[i]);
                         value = req_body[keys[i]];
-                        temp = keys[i];
-                        field_31_sxetiki_diataksi.push({ temp: value });
+                        key = keys[i];
+                        field_31_sxetiki_diataksi.push({ key: value });
                     } else if (keys[i].includes("field_31_synarmodia_ypoyrgeia")) {
                         console.log("FOUND ROW " + keys[i]);
                         value = req_body[keys[i]];
-                        temp = keys[i];
-                        field_31_synarmodia_ypoyrgeia.push({ temp: value });
+                        key = keys[i];
+                        field_31_synarmodia_ypoyrgeia.push({ key: value });
                     } else if (keys[i].includes("field_31_antikeimeno_synarmodiotitas")) {
                         console.log("FOUND ROW " + keys[i]);
                         value = req_body[keys[i]];
-                        temp = keys[i];
-                        field_31_antikeimeno_synarmodiotitas.push({ temp: value });
+                        key = keys[i];
+                        field_31_antikeimeno_synarmodiotitas.push({ key: value });
                     } else if (keys[i].includes("field_32_eksousiodotiki_diataksi")) {
                         console.log("FOUND ROW " + keys[i]);
                         value = req_body[keys[i]];
-                        temp = keys[i];
-                        field_32_eksousiodotiki_diataksi.push({ temp: value });
+                        key = keys[i];
+                        field_32_eksousiodotiki_diataksi.push({ key: value });
                     } else if (keys[i].includes("field_32_eidos_praksis")) {
                         console.log("FOUND ROW " + keys[i]);
                         value = req_body[keys[i]];
-                        temp = keys[i];
-                        field_32_eidos_praksis.push({ temp: value });
+                        key = keys[i];
+                        field_32_eidos_praksis.push({ key: value });
                     } else if (keys[i].includes("field_32_armodio_ypoyrgeio")) {
                         console.log("FOUND ROW " + keys[i]);
                         value = req_body[keys[i]];
-                        temp = keys[i];
-                        field_32_armodio_ypoyrgeio.push({ temp: value });
+                        key = keys[i];
+                        field_32_armodio_ypoyrgeio.push({ key: value });
                     } else if (keys[i].includes("field_32_antikeimeno")) {
                         console.log("FOUND ROW " + keys[i]);
                         value = req_body[keys[i]];
-                        temp = keys[i];
-                        field_32_antikeimeno.push({ temp: value });
+                        key = keys[i];
+                        field_32_antikeimeno.push({ key: value });
                     } else if (keys[i].includes("field_32_xronodiagramma")) {
                         console.log("FOUND ROW " + keys[i]);
                         value = req_body[keys[i]];
-                        temp = keys[i];
-                        field_32_xronodiagramma.push({ temp: value });
+                        key = keys[i];
+                        field_32_xronodiagramma.push({ key: value });
                     }
                 }
                 //console.log("field_29_diatakseis_rythmisis: " + field_29_diatakseis_rythmisis);
@@ -439,21 +436,21 @@ routes.put('/:entry_id', upload,
                     {
                         where: {
                             id: ekthesi_id
-                        }, include: [{ model: database.rythmiseis }, { model: database.field_9 }], returning: true, plain: true
+                        }
                     })
 
                 //map variables to model's fields
-                let rythmiseis_data = await database.rythmiseis.update({
+                await database.rythmiseis.update({
                     auksisi_esodwn: auksisi_esodwn, meiwsi_dapanwn: meiwsi_dapanwn, eksikonomisi_xronou: eksikonomisi_xronou, apodotikotita: apodotikotita, amesa_allo: amesa_allo,
                     veltiwsi_ypiresiwn: veltiwsi_ypiresiwn, metaxirisi_politwn: metaxirisi_politwn, diafania_thesmwn: diafania_thesmwn, diaxirisi_kindynwn: diaxirisi_kindynwn, emmesa_allo: emmesa_allo,
                     proetimasia: proetimasia, ypodomi: ypodomi, kinitikotita: kinitikotita, emplekomenoi: emplekomenoi, efarmogi_allo: efarmogi_allo, apodosi_diaxirisis: apodosi_diaxirisis, ektelesi: ektelesi, apodosi_kostos: apodosi_kostos, apodosi_allo: apodosi_allo
                 }, {
                     where: {
-                        id: ekthesi_id
-                    }, include: [{ model: database.ekthesi }], returning: true, plain: true
+                        rythmisiId: ekthesi_id
+                    }
                 })
 
-                let field_9_data = await database.field_9.update({
+                await database.field_9.update({
                     symvaseis: symvaseis, sse_diamesolavisi: sse_diamesolavisi, sse_diaitisia: sse_diaitisia, mesos_xronos_mesolavisis: mesos_xronos_mesolavisis, mesos_xronos_diaitisias: mesos_xronos_diaitisias, diarkeia_sse: diarkeia_sse, wres_ergasias: wres_ergasias, ameivomenes_yperwries: ameivomenes_yperwries, atyximata: atyximata,
                     ypsos_syntaksewn: ypsos_syntaksewn, ypsos_eisforwn: ypsos_eisforwn, ilikia_syntaksiodotisis: ilikia_syntaksiodotisis, aponomi_syntaksis: aponomi_syntaksis, syntaksiodotiki_dapani: syntaksiodotiki_dapani, prosfyges_syntaksis: prosfyges_syntaksis,
                     anergia: anergia, makroxronia_anergoi: makroxronia_anergoi, anergia_newn: anergia_newn, anergia_gynaikwn: anergia_gynaikwn, anergia_ana_perifereia: anergia_ana_perifereia, anergia_morfwsi: anergia_morfwsi, deiktis_apasxolisis: deiktis_apasxolisis, meriki_apasxolisi: meriki_apasxolisi, symvasi_orismenoy_xronoy: symvasi_orismenoy_xronoy,
@@ -466,12 +463,14 @@ routes.put('/:entry_id', upload,
                     arithmos_diaforwn: arithmos_diaforwn, dioikitikes_periptwseis: dioikitikes_periptwseis, xronos_epilysis_ypothesewn: xronos_epilysis_ypothesewn, ekdosi_apofasewn: ekdosi_apofasewn, mo_ypotheswn_dikasti: mo_ypotheswn_dikasti, akyrwsi_apofasewn: akyrwsi_apofasewn, ekswdikastikos_symvivasmos: ekswdikastikos_symvivasmos, enallaktiki_epilysi_diaforwn: enallaktiki_epilysi_diaforwn, nomiki_prostasia: nomiki_prostasia, kostos_prosfygis: kostos_prosfygis, ilektroniki_ypovoli_dikografwn: ilektroniki_ypovoli_dikografwn, diekperaiwsi_ypothesewn: diekperaiwsi_ypothesewn, poines_se_xrima: poines_se_xrima, kostos_swfronismou: kostos_swfronismou, analogia_fylakwn_kratoumenwn: analogia_fylakwn_kratoumenwn,
                     pagkosmia_antagwnistikotita: pagkosmia_antagwnistikotita, ependyseis: ependyseis, ameses_ependyseis: ameses_ependyseis, nees_epixeiriseis: nees_epixeiriseis, kleistes_epixeiriseis: kleistes_epixeiriseis, dioikitiko_kostos: dioikitiko_kostos, mx_systasis_epixeirisis: mx_systasis_epixeirisis,
                     atmosfairiki_rypansi: atmosfairiki_rypansi, viologikoi_katharismoi: viologikoi_katharismoi, katallhles_aktes: katallhles_aktes, katallilotita_diktyoy_ydreysis: katallilotita_diktyoy_ydreysis, xrisi_aporrimmatwn: xrisi_aporrimmatwn, aporrimmata_xyta: aporrimmata_xyta, katastrofi_dasikwn_ektasewn: katastrofi_dasikwn_ektasewn, anadaswseis: anadaswseis, prostateuomenes_perioxes: prostateuomenes_perioxes, proypologismos_prostasias_perivallontos: proypologismos_prostasias_perivallontos, katanalwsi_energeias_kata_kefali: katanalwsi_energeias_kata_kefali, katanalwsi_energeias_ana_morfi: katanalwsi_energeias_ana_morfi, katanalwsi_energeias_apo_ananewsimes_piges: katanalwsi_energeias_apo_ananewsimes_piges, meiwsi_ekpompwn_thermokipioy: meiwsi_ekpompwn_thermokipioy,
-                    allos_deiktis1: allos_deiktis1, allos_deiktis2: allos_deiktis2, allos_deiktis3: allos_deiktis3, allos_deiktis4: allos_deiktis4, allos_deiktis5: allos_deiktis5,
+                    allos_deiktis1: allos_deiktis1, allos_deiktis2: allos_deiktis2, allos_deiktis3: allos_deiktis3, allos_deiktis4: allos_deiktis4, allos_deiktis5: allos_deiktis5
                 }, {
                     where: {
-                        id: ekthesi_id
-                    }, include: [{ model: database.ekthesi }], returning: true, plain: true
+                        field9Id: ekthesi_id              
+                    }
                 })
+                console.log("allos_deiktis1: " + allos_deiktis1)
+
                 //console.log(req.sessionID)
 
                 //console.log(ekthesi.dataValues)

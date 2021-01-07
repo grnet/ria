@@ -38,8 +38,7 @@
                         <h2>Αρχική σελίδα</h2>
                         <br>
 
-                        <input type="button" name="convert" class="convert" style="float: right;" value="Αντιγραφή"
-                            style="display: none;" />
+                        <input type="button" name="convert" class="convert" style="float: right;" value="Μετατροπή"/>
                         <br><br>
                         <div class="form-group row">
                             <label for="title" class="required col-sm-6 col-form-label">Τίτλος αξιολογούμενης ρύθμισης</label>
@@ -763,6 +762,10 @@
                 border: 1px dotted black;
             }
 
+            .convert {
+                display: none;
+            }
+
             li.active {
                 border-color: blue;
                 border-width: 1px;
@@ -989,7 +992,7 @@
             });
 
             $('.convert').on("click", function (ev) {
-                answer = window.confirm("Αντιγραφή;");
+                answer = window.confirm("Μετατροπή;");
                 if (answer) {
                     convertAnalysis("#typos_analysis");
                     createNewForm(ev);
@@ -1070,7 +1073,8 @@
                     $(".return-to-author").hide();
                 }
 
-                if (role == "Επιτροπή Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)" || role == "Γραφείο Καλής Νομοθέτησης (ΓΓΝΚΘ)" || role == "Διεύθυνση Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)" || role == "Γενικός Γραμματέας Νομικών και Κοινοβουλευτικών Θεμάτων") {
+                //if still buggy change '===' to '=='
+                if (role === "Επιτροπή Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)" || role === "Γραφείο Καλής Νομοθέτησης (ΓΓΝΚΘ)" || role === "Διεύθυνση Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)" || role === "Γενικός Γραμματέας Νομικών και Κοινοβουλευτικών Θεμάτων") {
                     optionalFields(".create-new");
                     $("#egkrisi_genikou_grammatea").show();
                     $("#egkrisi_dieuthinsis_nomoparaskeyastikis").show();
@@ -1078,7 +1082,8 @@
                     $("#egkrisi_aksiologisis_nomoparaskeyastikis").show();
                 }
 
-                if (role == "Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)" && ($("#typos_analysis").val() == 'Προσχέδιο νόμου' || $("#typos_analysis").val() == 'Κατευθυντήριες γραμμές')) {
+                console.log(role);
+                if (role === "Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)" && ($("#typos_analysis").val() == 'Προσχέδιο νόμου' || $("#typos_analysis").val() == 'Κατευθυντήριες γραμμές')) {
                     $(".convert").show();
                     enableFields(".convert")
                 } else {
@@ -1753,7 +1758,7 @@
                 return validationFlag;
             }
 
-            function setValuesField9(inputAsJSON, var0, var1, var2, var3, var4, var5, var6) {
+            function setValuesField9(inputAsJSON, var0, var1, var2, var3, var4, var5, var6, var7) {
                 inputAsJSON = inputAsJSON.replace(/&#34;/g, '"');//replace html code for double quotes
                 //console.log("JSON: " + inputAsJSON);
                 //console.log(var1)
@@ -1768,6 +1773,9 @@
                 $(var4).val(Object.values(parsed[keys[4]]));
                 $(var5).val(Object.values(parsed[keys[5]]));
                 $(var6).val(Object.values(parsed[keys[6]]));
+                if(var7) {
+                    $(var7).val(Object.values(parsed[keys[7]]));
+                }
             };
 
             setValuesField9("<%=data.field_9.dataValues.atmosfairiki_rypansi%>", ("#atmosfairiki_rypansi_year1"), ("#atmosfairiki_rypansi_year2"), ("#atmosfairiki_rypansi_year3"), ("#atmosfairiki_rypansi_year4"), ("#atmosfairiki_rypansi_year5"), ("#atmosfairiki_rypansi_prosfata_stoixeia"), ("#atmosfairiki_rypansi_epidiwkomenos_stoxos"));
@@ -1900,6 +1908,12 @@
             setValuesField9("<%=data.field_9.dataValues.wres_ergasias%>", ("#wres_ergasias_year1"), ("#wres_ergasias_year2"), ("#wres_ergasias_year3"), ("#wres_ergasias_year4"), ("#wres_ergasias_year5"), ("#wres_ergasias_prosfata_stoixeia"), ("#wres_ergasias_epidiwkomenos_stoxos"));
             setValuesField9("<%=data.field_9.dataValues.ameivomenes_yperwries%>", ("#ameivomenes_yperwries_year1"), ("#ameivomenes_yperwries_year2"), ("#ameivomenes_yperwries_year3"), ("#ameivomenes_yperwries_year4"), ("#ameivomenes_yperwries_year5"), ("#ameivomenes_yperwries_prosfata_stoixeia"), ("#ameivomenes_yperwries_epidiwkomenos_stoxos"));
             setValuesField9("<%=data.field_9.dataValues.atyximata%>", ("#atyximata_year1"), ("#atyximata_year2"), ("#atyximata_year3"), ("#atyximata_year4"), ("#atyximata_year5"), ("#atyximata_prosfata_stoixeia"), ("#atyximata_epidiwkomenos_stoxos"));            
+            //allos_deiktis
+            setValuesField9("<%=data.field_9.dataValues.allos_deiktis1%>", ("#allos_deiktis1") ,("#allos_deiktis1_year1"), ("#allos_deiktis1_year2"), ("#allos_deiktis1_year3"), ("#allos_deiktis1_year4"), ("#allos_deiktis1_year5"), ("#allos_deiktis1_prosfata_stoixeia"), ("#allos_deiktis1_epidiwkomenos_stoxos"));
+            setValuesField9("<%=data.field_9.dataValues.allos_deiktis2%>", ("#allos_deiktis2") ,("#allos_deiktis2_year1"), ("#allos_deiktis2_year2"), ("#allos_deiktis2_year3"), ("#allos_deiktis2_year4"), ("#allos_deiktis2_year5"), ("#allos_deiktis2_prosfata_stoixeia"), ("#allos_deiktis2_epidiwkomenos_stoxos"));
+            setValuesField9("<%=data.field_9.dataValues.allos_deiktis3%>", ("#allos_deiktis3") ,("#allos_deiktis3_year1"), ("#allos_deiktis3_year2"), ("#allos_deiktis3_year3"), ("#allos_deiktis3_year4"), ("#allos_deiktis3_year5"), ("#allos_deiktis3_prosfata_stoixeia"), ("#allos_deiktis3_epidiwkomenos_stoxos"));
+            setValuesField9("<%=data.field_9.dataValues.allos_deiktis4%>", ("#allos_deiktis4") ,("#allos_deiktis4_year1"), ("#allos_deiktis4_year2"), ("#allos_deiktis4_year3"), ("#allos_deiktis4_year4"), ("#allos_deiktis4_year5"), ("#allos_deiktis4_prosfata_stoixeia"), ("#allos_deiktis4_epidiwkomenos_stoxos"));
+            setValuesField9("<%=data.field_9.dataValues.allos_deiktis5%>", ("#allos_deiktis5") ,("#allos_deiktis5_year1"), ("#allos_deiktis5_year2"), ("#allos_deiktis5_year3"), ("#allos_deiktis5_year4"), ("#allos_deiktis5_year5"), ("#allos_deiktis5_prosfata_stoixeia"), ("#allos_deiktis5_epidiwkomenos_stoxos"));
 
             var current_fs, next_fs, previous_fs; //fieldsets
 

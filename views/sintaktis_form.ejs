@@ -210,6 +210,7 @@
             <fieldset id="anagkaiotita_rythmisis_2">
                 <h2>Η αναγκαιότητα της αξιολογούμενης ρύθμισης (ii)</h2>
                 <label>5. Γιατί δεν είναι δυνατό να αντιμετωπιστεί στο πλαίσιο της υφιστάμενης νομοθεσίας:</label>
+                <div class="index_field_5"></div>
                 <div class="form-group">
                     <label for="field_5_1" class="required">5.1 με αλλαγή προεδρικού διατάγματος, υπουργικής απόφασης ή
                         άλλης κανονιστικής πράξης;</label>
@@ -256,22 +257,28 @@
                 </div>
 
                 <div id="field_6_wrap" class="form-group" style="display:none;">
-                    <label for="field_6_1" class="required">6.1 Σε άλλη/ες χώρα/ες της Ε.Ε. ή του ΟΟΣΑ:</label>
-                    <textarea class="form-control" id="field_6_1" name="field_6_1" rows="3"
-                        onkeypress="wordsCounter('field_6_1','words6_1',150, event)"
-                        onpaste="wordsCounter('field_6_1','words6_1',150, event)"></textarea>
-                    <p style="float: right;">Λέξεις: <span id="words6_1"></span> /150</p>
+                    <div class="form-group">
+                        <label for="field_6_1" class="required">6.1 Σε άλλη/ες χώρα/ες της Ε.Ε. ή του ΟΟΣΑ:</label>
+                        <textarea class="form-control" id="field_6_1" name="field_6_1" rows="3"
+                            onkeypress="wordsCounter('field_6_1','words6_1',150, event)"
+                            onpaste="wordsCounter('field_6_1','words6_1',150, event)"></textarea>
+                        <p style="float: right;">Λέξεις: <span id="words6_1"></span> /150</p>
+                    </div>
                     <br>
-                    <label for="field_6_2" class="required">6.2 Σε όργανα της Ε.Ε.:</label>
-                    <textarea class="form-control" id="field_6_2" name="field_6_2" rows="3"
-                        onkeypress="wordsCounter('field_6_2','words6_2',150, event)"
-                        onpaste="wordsCounter('field_6_2','words6_2',150, event)"></textarea>
-                    <p style="float: right;">Λέξεις: <span id="words6_2"></span> /150</p>
-                    <label for="field_6_3" class="required">6.3 Σε διεθνείς οργανισμούς:</label>
-                    <textarea class="form-control" id="field_6_3" name="field_6_3" rows="3"
-                        onkeypress="wordsCounter('field_6_3','words6_3',150, event)"
-                        onpaste="wordsCounter('field_6_3','words6_3',150, event)"></textarea>
-                    <p style="float: right;">Λέξεις: <span id="words6_3"></span> /150</p>
+                    <div class="form-group">
+                        <label for="field_6_2" class="required">6.2 Σε όργανα της Ε.Ε.:</label>
+                        <textarea class="form-control" id="field_6_2" name="field_6_2" rows="3"
+                            onkeypress="wordsCounter('field_6_2','words6_2',150, event)"
+                            onpaste="wordsCounter('field_6_2','words6_2',150, event)"></textarea>
+                        <p style="float: right;">Λέξεις: <span id="words6_2"></span> /150</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="field_6_3" class="required">6.3 Σε διεθνείς οργανισμούς:</label>
+                        <textarea class="form-control" id="field_6_3" name="field_6_3" rows="3"
+                            onkeypress="wordsCounter('field_6_3','words6_3',150, event)"
+                            onpaste="wordsCounter('field_6_3','words6_3',150, event)"></textarea>
+                        <p style="float: right;">Λέξεις: <span id="words6_3"></span> /150</p>
+                    </div>    
                 </div>
                 <input type="button" name="previous" class="previous action-button-previous"
                     value="Προηγούμενα πεδία" />
@@ -283,7 +290,8 @@
                 <br>
                 <div id="field_7_wrap">
                     <label class="col-form-label required">7. Σημειώστε ποιοι από τους στόχους βιώσιμης ανάπτυξης των
-                        Ηνωμένων Εθνών επιδιώκονται με την αξιολογούμενη ρύθμιση</label>
+                        Ηνωμένων Εθνών επιδιώκονται με την αξιολογούμενη ρύθμιση</label><div class="index_goals"></div>
+                    <br>
                     <div class="flex-form-group form-group">
                         <div class="wrap">
                             <input id="goal_1" class="checkbox-inline" type="checkbox" name="field_7_goal_1"
@@ -401,7 +409,7 @@
                     </div>
                 </div>
                 <hr>
-                <label>8. Ποιοι είναι οι στόχοι της αξιολογούμενης ρύθμισης;</label>
+                <label>8. Ποιοι είναι οι στόχοι της αξιολογούμενης ρύθμισης;</label><div class="index_field_8"></div>
                 <div class="form-group">
                     <label for="field_8_1" class="required">8.1 βραχυπρόθεσμοι: </label>
                     <textarea class="form-control" id="field_8_1" name="field_8_1" rows="3"
@@ -432,7 +440,7 @@
                     <div class="checkbox-group form-group row">
                         <label class="col-sm-8 col-form-label required">10. Σε περίπτωση που προβλέπεται η χρήση
                             πληροφοριακού συστήματος, ποια θα είναι η συμβολή αυτού στην επίτευξη των στόχων της
-                            αξιολογούμενης ρύθμισης: </label>
+                            αξιολογούμενης ρύθμισης: </label> <div class="index_field_10"></div>
                     </div>
 
                     <div class="checkbox-group form-group row">
@@ -457,8 +465,8 @@
                     </div>
 
                     <div id="emesi_wrap" class="form-group" style="display:none;">
-                        <label for="field_10_emesi_comments " class="required">Εάν είναι έμμεση, εξηγήστε:</label>
-                        <textarea class="form-control" id="field_10_emesi_comments" name="field_10_emmesi_comments"
+                        <label for="field_10_emmesi_comments " class="required">Εάν είναι έμμεση, εξηγήστε:</label>
+                        <textarea class="form-control" id="field_10_emmesi_comments" name="field_10_emmesi_comments"
                             rows="3" onkeypress="wordsCounter('field_10_emmesi_comments','words10_2',150, event)"
                             onpaste="wordsCounter('field_10_emmesi_comments','words10_2',150, event)"></textarea>
                         <p style="float: right;">Λέξεις: <span id="words10_2"></span> /150</p>
@@ -534,7 +542,7 @@
                     <table class="table " id="field_14_table">
                         <thead class="thead ">
                             <tr>
-                                <th colspan="2"><label id="table_14_label" class="table-14-label required">14.Σύνοψη στόχων κάθε άρθρου</label></label><div class="table-cell index_fourteen"></div></th>
+                                <th colspan="2"><label id="table_14_label" class="table-14-label required">14.Σύνοψη στόχων κάθε άρθρου</label><div class="table-cell index_14"></div></th>
                             </tr>
                             <tr>
                                 <th colspan="1">Άρθρο<div class="table-cell index_article"></div></th>
@@ -563,9 +571,8 @@
                                     <%- include('fill_form/fill_form_g.ejs') %>
                                         <%- include('fill_form/fill_form_h.ejs') %>
 
-                                            <br>
-                                            <input type="button" name="save_temporarily"
-                                                class="save_temporarily float-right" value="Προσωρινή αποθήκευση" />
+                <br>
+                <input type="button" name="save_temporarily" class="save_temporarily float-right" value="Προσωρινή αποθήκευση" />
         </form>
 
     </div>
