@@ -315,13 +315,14 @@ function createTable(header1, header2, article, goal) {
     return table;
 }
 
-function createTableFieldNine( tableName, val1, val2, val3, val4, val5, val6, val7, tableGroup) {
+function createTableFieldNine( table) {
     var rows = [];
-    if (tableGroup) {
-        rows.push([tableGroup, 'Εξέλιξη την τελευταία 5ετία', 'Πρόσφατα στοιχεία', 'Επιδιωκόμενος στόχος (3ετία)']);
+    var years = ['έτος 1: ' + table[1], 'έτος 2: ' + table[2], 'έτος 3: ' + table[3], 'έτος 4: ' + table[4], 'έτος 5: ' + table[5]];
+    if (table[8]) {
+        rows.push([{text:table[8], alignment:'center', fillColor:'#87CEEB', bold:true}, {text:'Εξέλιξη την τελευταία 5ετία', alignment:'center', fillColor:'#87CEEB', bold:true}, {text:'Πρόσφατα στοιχεία', alignment:'center', fillColor:'#87CEEB', bold:true}, {text:'Επιδιωκόμενος στόχος (3ετία)', alignment:'center', fillColor:'#87CEEB', bold:true}]);
     }
-    rows.push([tableName, ['έτος 1: ' + val1, 'έτος 2: ' + val2, 'έτος 3: ' + val3, 'έτος 4: ' + val4, 'έτος 5: ' + val5], val6, val7]);
-
+    rows.push([table[0], years , table[6], table[7]]);
+    console.log(rows)
     var table = {
         //layout: 'lightHorizontalLines',
         table: {
@@ -375,27 +376,35 @@ function exportTables9(data, keys) {
     var table = [];
     var row = [];
     var prefix;
+    var tables = [];
     for (var i in keys) {
 
         if (keys[i].includes('_label')) {//label acts as a row separator
-            if (row) {
-                table.push([row]);//found label, hence a new row. Push row to table and then empty. 
+            if (row.length) {
+                if (row.length == 9) {
+                    row.push(row.shift());
+                    console.log('shifted row: '+row)
+                }                 
+                table.push(row);//found label, hence a new row. Push row to table and then empty. 
                 row = [];
             }
             prefix = keys[i].split('_label');
             prefix = prefix.slice(0, -1);//remove last character, a comma produced by split()
         }
-        //TODO: ALGORITH THAT PUSHES TABLE GROUP AT THE END OF THE ROW
         if (prefix) {
-            if (keys[i].includes(prefix) && (keys[i].includes('_label') == false)) {//push elements which don't include '_label', else an extra empty element is added to row           
+            //if (keys[i].includes(prefix) && (keys[i].includes('_label') == false)) {//push elements which don't include '_label', else an extra empty element is added to row           
+            if (keys[i].includes(prefix) && keys[i]) {
                 row.push(data[keys[i]]);
             }
         }
     }
-    // for(i in table) {
-    //     createTableFieldNine(table[i]);
-    // }
-    console.log(table);
+    for(i in table) {
+        console.log(i+": "+table[i])
+        //TODO: CALL FUNCTION WITH 9 PARAMS  
+        tables.push(createTableFieldNine(table[i]));
+    }
+    console.log(tables);
     //console.log( table[1]);
     console.log('prefix: ' + prefix);
+    return tables;
 }

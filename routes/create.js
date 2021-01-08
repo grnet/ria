@@ -26,7 +26,6 @@ routes.get('/:analysis', function (req, res, next) {
             .pipe(csv())
             .on('data', (data) => results.push(data))
             .on('end', () => {
-                console.log(results);
                 results = JSON.stringify(results)
                 //console.log('strngf: '+results);
                 // results = JSON.parse(results)
