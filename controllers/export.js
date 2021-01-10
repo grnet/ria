@@ -375,26 +375,34 @@ function createCheckBoxTable(tableHeader, tableGroup, rowName, val1, val2, val3,
 function exportTables9(data, keys) {
     var table = [];
     var row = [];
-    var prefix;
+    var prefix, header;
     var tables = [];
     for (var i in keys) {
 
         if (keys[i].includes('_label')) {//label acts as a row separator
             if (row.length) {
-                if (row.length == 9) {
-                    row.push(row.shift());
-                    console.log('shifted row: '+row)
-                }                 
+                if (header) {
+                    row.push(header);
+                }
+                // if (row.length == 9) {
+                //     row.push(row.shift());
+                //     console.log('shifted row: '+row)
+                // }                 
                 table.push(row);//found label, hence a new row. Push row to table and then empty. 
                 row = [];
+                header = null;
             }
             prefix = keys[i].split('_label');
             prefix = prefix.slice(0, -1);//remove last character, a comma produced by split()
         }
         if (prefix) {
             //if (keys[i].includes(prefix) && (keys[i].includes('_label') == false)) {//push elements which don't include '_label', else an extra empty element is added to row           
-            if (keys[i].includes(prefix) && keys[i]) {
-                row.push(data[keys[i]]);
+            if (keys[i].includes(prefix) && data[keys[i]]) {
+                if (keys[i].includes('_header')) {
+                    header = data[keys[i]];
+                } else {
+                    row.push(data[keys[i]]);
+                }                
             }
         }
     }
