@@ -383,20 +383,15 @@ function exportTables9(data, keys) {
             if (row.length) {
                 if (header) {
                     row.push(header);
-                }
-                // if (row.length == 9) {
-                //     row.push(row.shift());
-                //     console.log('shifted row: '+row)
-                // }                 
+                    header = null;
+                }                
                 table.push(row);//found label, hence a new row. Push row to table and then empty. 
                 row = [];
-                header = null;
             }
             prefix = keys[i].split('_label');
             prefix = prefix.slice(0, -1);//remove last character, a comma produced by split()
         }
         if (prefix) {
-            //if (keys[i].includes(prefix) && (keys[i].includes('_label') == false)) {//push elements which don't include '_label', else an extra empty element is added to row           
             if (keys[i].includes(prefix) && data[keys[i]]) {
                 if (keys[i].includes('_header')) {
                     header = data[keys[i]];
@@ -411,7 +406,7 @@ function exportTables9(data, keys) {
         //TODO: CALL FUNCTION WITH 9 PARAMS  
         tables.push(createTableFieldNine(table[i]));
     }
-    console.log(tables);
+    console.log(table);
     //console.log( table[1]);
     console.log('prefix: ' + prefix);
     return tables;
