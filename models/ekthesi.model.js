@@ -81,7 +81,6 @@ module.exports = (sequelize, DataTypes) => {
         field_15_sxedio_nomou: DataTypes.TEXT,
         field_15_rythmiseis: DataTypes.TEXT,
 
-        field_16: DataTypes.TEXT,
         field_16_kratikos_proypologismos: DataTypes.TEXT,
         field_16_proypologismos_forea: DataTypes.TEXT,
         field_16_genikos_onoma: DataTypes.TEXT,

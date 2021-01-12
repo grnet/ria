@@ -1518,7 +1518,7 @@
         // addTooltipByClass('index_five');
 
         var tooltips = '<%= tooltips %>';
-        tooltips = tooltips.replace(/&#34;/g, '"')//replace html for double quotes
+        tooltips = tooltips.replace(/&#34;/g, '"')
             .replace(/[\u0000-\u0019]+/g, "")
             .replace(/\\'/g, "\\'")
             .replace(/\\"/g, '\\"')
@@ -1543,7 +1543,6 @@
         }
 
         function addTooltip(fieldID) {
-            console.log(fieldID)
             var parentDiv = $('#' + fieldID).closest('div.form-group');
             var tooltip = `<div class="tooltip_div" >
                             <img src="/img/information.png"  id="${fieldID}_tooltip_img" aria-describedby="${fieldID}_tooltip_img" 
@@ -1562,16 +1561,8 @@
                             <div id="${fieldID}_tooltip_div_${index}" class="tooltip_text" role="tooltip"></div>
                         </div>`; 
                 $(this).append(tooltip);          
-            });
-            //alert(parentDiv.html())
-            
-            //alert(tooltip)
+            });            
         }
-
-        // function removeTooltip(divID) {
-        //     $("#" + divID).empty();
-
-        // }
          
         function setTooltip(divID, fieldId) {
             //var fieldId = fieldId.substring(1)//remove 1st character if #fieldID is passed as parameter

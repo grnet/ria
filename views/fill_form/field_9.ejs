@@ -2,7 +2,7 @@
 
     <h5><label class="required">Ειδικότεροι στόχοι ανάλογα με τον τομέα νομοθέτησης (πεδίο 9)</label><div class="index_field_9"></div></h5>
 
-    <table class="table" id="ekpaideysi_table" style="display: none;">
+    <table class="table ekpaideysi-politismos" id="ekpaideysi_table" style="display: none;">
         <thead class="thead">
             <tr>
                 <th colspan="1">ΕΚΠΑΙΔΕΥΣΗ <div class="table-cell index_label"></div></th>
@@ -24,8 +24,8 @@
                     <input type="text" size="10" name="ergasia_apofoitwn_year4" id="ergasia_apofoitwn_year4" />
                     <input type="text" size="10" name="ergasia_apofoitwn_year5" id="ergasia_apofoitwn_year5" />
                 </td>
-                <td><textarea class="form-control" name="ergasia_apofoitwn_prosfata_stoixeia" id="ergasia_apofoitwn_prosfata_stoixeia" rows="7" style="vertical-align: middle"></textarea></td>
-                <td><textarea class="form-control" name="ergasia_apofoitwn_epidiwkomenos_stoxos" id="ergasia_apofoitwn_epidiwkomenos_stoxos" rows="7" style="vertical-align: middle"></textarea></td>
+                <td><textarea class="form-control" name="ergasia_apofoitwn_prosfata_stoixeia" id="ergasia_apofoitwn_prosfata_stoixeia" rows="7"></textarea></td>
+                <td><textarea class="form-control" name="ergasia_apofoitwn_epidiwkomenos_stoxos" id="ergasia_apofoitwn_epidiwkomenos_stoxos" rows="7"></textarea></td>
             </tr>
             <tr>
                 <th colspan="1">Αριθμός πιστοποιημένων Πανεπιστημιακών σχολών (ISO κλπ)</th>
@@ -34,8 +34,8 @@
                     <input type="text" size="10" id="pistopoiimenes_sxoles_year3" name="pistopoiimenes_sxoles_year3" placeholder="έτος 3" />
                     <input type="text" size="10" id="pistopoiimenes_sxoles_year4" name="pistopoiimenes_sxoles_year4" placeholder="έτος 4" />
                     <input type="text" size="10" id="pistopoiimenes_sxoles_year5" name="pistopoiimenes_sxoles_year5" placeholder="έτος 5" /></td>
-                <td><input type="text" id="pistopoiimenes_sxoles_prosfata_stoixeia" name="pistopoiimenes_sxoles_prosfata_stoixeia" size="10" /></td>
-                <td><input type="text" id="pistopoiimenes_sxoles_epidiwkomenos_stoxos" name="pistopoiimenes_sxoles_epidiwkomenos_stoxos" size="10" /></td>
+                <td><textarea class="form-control" id="pistopoiimenes_sxoles_prosfata_stoixeia" name="pistopoiimenes_sxoles_prosfata_stoixeia" size="10" rows="7"></textarea></td>
+                <td><textarea class="form-control" id="pistopoiimenes_sxoles_epidiwkomenos_stoxos" name="pistopoiimenes_sxoles_epidiwkomenos_stoxos" size="10" rows="7"></textarea></td>
             </tr>
             <tr>
                 <th colspan="1">Αριθμός συμμετοχών σε προγράμματα Έρευνας, Τεχνολογίας & Καινοτομίας (διεθνή & εθνικά), ανά Πανεπιστημιακή Σχολή</th>
@@ -44,8 +44,8 @@
                     <input type="text" size="10" id="ereunites_panepistimiwn_year3" name="ereunites_panepistimiwn_year3" placeholder="έτος 3" />
                     <input type="text" size="10" id="ereunites_panepistimiwn_year4" name="ereunites_panepistimiwn_year4" placeholder="έτος 4" />
                     <input type="text" size="10" id="ereunites_panepistimiwn_year5" name="ereunites_panepistimiwn_year5" placeholder="έτος 5" /></td>
-                <td><input type="text" id="ereunites_panepistimiwn_prosfata_stoixeia" name="ereunites_panepistimiwn_prosfata_stoixeia" size="10" /></td>
-                <td><input type="text" id="ereunites_panepistimiwn_epidiwkomenos_stoxos" name="ereunites_panepistimiwn_epidiwkomenos_stoxos" size="10" /></td>
+                <td><textarea class="form-control" id="ereunites_panepistimiwn_prosfata_stoixeia" name="ereunites_panepistimiwn_prosfata_stoixeia" size="10" rows="7"></textarea></td>
+                <td><textarea class="form-control" id="ereunites_panepistimiwn_epidiwkomenos_stoxos" name="ereunites_panepistimiwn_epidiwkomenos_stoxos" size="10" rows="7"></textarea></td>
             </tr>
             <tr>
                 <th colspan="1">Αριθμός έργων/μελετών που έχουν ανατεθεί από τον ιδιωτικό τομέα, ανά Πανεπιστημιακή / Τεχνολογική Σχολή</th>
@@ -195,7 +195,7 @@
         </tbody>
     </table>
 
-    <table class="table" id="politismos_table" style="display: none;">
+    <table class="table ekpaideysi-politismos" id="politismos_table" style="display: none;">
         <thead class="thead">
             <tr>
                 <th colspan="1">ΠΟΛΙΤΙΣΜΟΣ<div class="table-cell index_label"></div></th>
@@ -291,7 +291,7 @@
 
     <br>
 
-    <table class="table" id="oikonomia_table" style="display: none;">
+    <table class="table oikonomia" id="oikonomia_table" style="display: none;">
         <thead class="thead">
             <tr>
                 <th colspan="1">ΟΙΚΟΝΟΜΙΑ<div class="table-cell index_label"></div></th>
@@ -375,7 +375,7 @@
         </tbody>
     </table>
 
-    <table class="table" id="forologia_table" style="display: none;">
+    <table class="table oikonomia" id="forologia_table" style="display: none;">
         <thead class="thead">
             <tr>
                 <th colspan="1">ΦΟΡΟΛΟΓΙΑ<div class="table-cell index_label"></div></th>
@@ -439,7 +439,7 @@
         </tbody>
     </table>
 
-    <table class="table" id="ergasiakes_sxeseis_table" style="display: none;">
+    <table class="table oikonomia" id="ergasiakes_sxeseis_table" style="display: none;">
         <thead class="thead">
             <tr>
                 <th colspan="1">ΕΡΓΑΣΙΑΚΕΣ ΣΧΕΣΕΙΣ<div class="table-cell index_label"></div></th>
@@ -545,7 +545,7 @@
 
     <br>
 
-    <table class="table" id="apasxolisi_table" style="display: none;">
+    <table class="table koinoniki-politiki" id="apasxolisi_table" style="display: none;">
         <thead class="thead">
             <tr>
                 <th colspan="1">ΑΠΑΣΧΟΛΗΣΗ<div class="table-cell index_label"></div></th>
@@ -649,7 +649,7 @@
         </tbody>
     </table>
 
-    <table class="table" id="koinwniki_asfalisi_table" style="display: none;">
+    <table class="table koinoniki-politiki" id="koinoniki_asfalisi_table" style="display: none;">
         <thead class="thead">
             <tr>
                 <th colspan="1">ΚΟΙΝΩΝΙΚΗ ΑΣΦΑΛΙΣΗ<div class="table-cell index_label"></div></th>
@@ -723,7 +723,7 @@
         </tbody>
     </table>
 
-    <table class="table" id="koinwniki_pronoia_table" style="display: none;">
+    <table class="table koinoniki-politiki" id="koinoniki_pronoia_table" style="display: none;">
         <thead class="thead">
             <tr>
                 <th colspan="1">ΚΟΙΝΩΝΙΚΗ ΠΡΟΝΟΙΑ<div class="table-cell index_label"></div></th>
@@ -817,7 +817,7 @@
         </tbody>
     </table>
 
-    <table class="table" id="ygeia_table" style="display: none;">
+    <table class="table koinoniki-politiki" id="ygeia_table" style="display: none;">
         <thead class="thead">
             <tr>
                 <th colspan="1">ΥΓΕΙΑ<div class="table-cell index_label"></div></th>
@@ -941,7 +941,7 @@
         </tbody>
     </table>
 
-    <table class="table" id="isotita_fylwn_table" style="display: none;">
+    <table class="table koinoniki-politiki" id="isotita_fylwn_table" style="display: none;">
         <thead class="thead">
             <tr>
                 <th colspan="1">ΙΣΟΤΗΤΑ ΦΥΛΩΝ<div class="table-cell index_label"></div></th>
@@ -1081,7 +1081,7 @@
         </tbody>
     </table>
 
-    <table class="table" id="metanasteytiki_prosfygiki_politiki_table" style="display: none;">
+    <table class="table koinoniki-politiki" id="metanasteytiki_prosfygiki_politiki_table" style="display: none;">
         <thead class="thead">
             <tr>
                 <th colspan="1">ΜΕΤΑΝΑΣΤΕΥΤΙΚΗ-ΠΡΟΣΦΥΓΙΚΗ ΠΟΛΙΤΙΚΗ<div class="table-cell index_label"></div></th>
@@ -1146,7 +1146,7 @@
 
     <br>
 
-    <table class="table" id="dimosia_dioikisi_table" style="display: none;">
+    <table class="table dimosia-dioikisi" id="dimosia_dioikisi_table" style="display: none;">
         <thead class="thead">
             <tr>
                 <th colspan="1">ΔΗΜΟΣΙΑ ΔΙΟΙΚΗΣΗ<div class="table-cell index_label"></div></th>
@@ -1160,7 +1160,7 @@
                 <th colspan="1">Αριθμός δημοσίων υπαλλήλων</th>
                 <td><input type="text" size="10" id="dimosioi_ypalliloi_year1" name="dimosioi_ypalliloi_year1" placeholder="έτος 1" />
                     <input type="text" size="10" id="dimosioi_ypalliloi_year2" name="dimosioi_ypalliloi_year2" placeholder="έτος 2" />
-                    <input type="text" size="10" id="dimosioi_ypalliloi_year3" name="dimosioi_ypalliloi_year2" placeholder="έτος 3" />
+                    <input type="text" size="10" id="dimosioi_ypalliloi_year3" name="dimosioi_ypalliloi_year3" placeholder="έτος 3" />
                     <input type="text" size="10" id="dimosioi_ypalliloi_year4" name="dimosioi_ypalliloi_year4" placeholder="έτος 4" />
                     <input type="text" size="10" id="dimosioi_ypalliloi_year5" name="dimosioi_ypalliloi_year5" placeholder="έτος 5" /></td>
                 <td><input type="text" id="dimosioi_ypalliloi_prosfata_stoixeia" name="dimosioi_ypalliloi_prosfata_stoixeia" size="10" /> </td>
@@ -1269,7 +1269,7 @@
         </tbody>
     </table>
 
-    <table class="table" id="dimosia_asfaleia_table" style="display: none;">
+    <table class="table dimosia-dioikisi" id="dimosia_asfaleia_table" style="display: none;">
         <thead class="thead">
             <tr>
                 <th colspan="1">ΔΗΜΟΣΙΑ ΑΣΦΑΛΕΙΑ<div class="table-cell index_label"></div></th> 
@@ -1402,7 +1402,7 @@
         </tbody>
     </table>
 
-    <table class="table" id="dikaiosini_table" style="display: none;">
+    <table class="table dimosia-dioikisi" id="dikaiosini_table" style="display: none;">
         <thead class="thead">
             <tr>
                 <th colspan="1">ΔΙΚΑΙΟΣΥΝΗ<div class="table-cell index_label"></div></th> 
@@ -1583,7 +1583,7 @@
 
     <br>
 
-    <table class="table" id="ependytiki_drastiriotita_table" style="display: none;">
+    <table class="table anaptiksi" id="ependytiki_drastiriotita_table" style="display: none;">
         <thead class="thead">
             <tr>
                 <th colspan="1">ΕΠΙΧΕΙΡΗΜΑΤΙΚΗ/ΕΠΕΝΔΥΤΙΚΗ ΔΡΑΣΤΗΡΙΟΤΗΤΑ<div class="table-cell index_label"></div></th> 
@@ -1674,7 +1674,7 @@
         </tbody>
     </table>
 
-    <table class="table" id="perivallon_energeia_table" style="display: none;">
+    <table class="table anaptiksi" id="perivallon_energeia_table" style="display: none;">
         <thead class="thead">
             <tr>
                 <th colspan="1">ΠΕΡΙΒΑΛΛΟΝ – ΕΝΕΡΓΕΙΑ<div class="table-cell index_label"></div></th> 

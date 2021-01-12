@@ -4,7 +4,8 @@ const fs = require('fs');
 let pdf_export = require('../controllers/export');
 const csv = require('csv-parser')
 const { body, check, validationResult } = require('express-validator');
-var multer = require('multer')
+var multer = require('multer');
+const { title } = require('process');
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'public/uploads/')
@@ -40,6 +41,16 @@ routes.get('/:entry_id', async (req, res, next) => {
             id: req.params.entry_id
         }, include: [{ model: database.rythmiseis }, { model: database.field_9 }]
     })
+    let rythmiseis = await database.rythmiseis.findOne({
+        where: {
+            id: req.params.entry_id
+        }
+    })
+    let field_9 = await database.field_9.findOne({
+        where: {
+            id: req.params.entry_id
+        }
+    })
     pdf_name = entry.title + '.pdf';
     pdf_name = pdf_name.replace(/\s+/g, '');
     var pdf_exists;
@@ -55,10 +66,10 @@ routes.get('/:entry_id', async (req, res, next) => {
     } catch (err) {
         console.log(err)
     }
-    console.log(pdf_exists);
-    if (entry && entry.dataValues && readCSV) {
+  
+    if (entry && entry.dataValues && field_9 && field_9.dataValues && rythmiseis && rythmiseis.dataValues && readCSV) {
         req.session.ekthesi_id = req.params.entry_id;
-        res.render("form_a", { data: entry.dataValues, rolos: req.session.rolos, tooltips: readCSV, pdf_exists: pdf_exists, errors: validation_errors });
+        res.render("form_a", { data: entry.dataValues, staticTables:field_9.dataValues, checkboxTables:rythmiseis.dataValues, rolos: req.session.rolos, tooltips: readCSV, pdf_exists: pdf_exists, errors: validation_errors });
     } else {
         res.status(404).send("Not found")
     }
@@ -71,8 +82,15 @@ routes.post('/:entry_id', pdf_export.exportPDF) //router calls controller to han
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 routes.put('/:entry_id', upload,
-    [check('title', 'Title is required').notEmpty(),
-    check('epispeudon_foreas', 'Epispeudon foreas is required').notEmpty(),
+    [check('title', 'Ο τίτλος είναι υποχρεωτικός.').notEmpty(),
+    check('title').custom( async(value) => {
+        var title = await database.ekthesi.count({ where: {title: value}})//count tables which have given title 
+        console.log(title)
+        if (title > 1) {//title already exists
+            return Promise.reject('Υπάρχει ήδη ανάλυση με αυτόν τον τίτλο.');
+        }
+    }),
+    check('epispeudon_foreas', 'Ο επισπεύδον φορέας είναι υποχρεωτικός.').notEmpty(),
     //  check(body(), 'req.body is empty!!!').notEmpty()
     body('field_10_amesi_comments').if(body('field_10_amesi').notEmpty()).notEmpty().withMessage('Εάν είναι άμεση, εξηγήστε.'),
     body('field_10_emmesi_comments').if(body('field_10_emmesi').notEmpty()).notEmpty().withMessage('Εάν είναι έμμεση, εξηγήστε.'),
@@ -97,7 +115,6 @@ routes.put('/:entry_id', upload,
         if (!errors.isEmpty()) { // if array exists
             console.log(errors);
             req.session.errors = errors.array();
-            //res.render("create",{ data:data, analysis: req.params.analysis, rolos: req.session.rolos, errors: errors.array() });
             res.send({ redirect: "../form_a/" + ekthesi_id });
         } else {
             console.log('no errors');
@@ -144,6 +161,7 @@ routes.put('/:entry_id', upload,
                 } catch (e) {
                     console.log("Error message: " + e.message);
                 }
+                console.log(req.body)
                 //groupings for field9
                 //ergasiakes_sxeseis_table
                 let symvaseis = JSON.stringify([{ "symvaseis_year1": req.body.symvaseis_year1 }, { "symvaseis_year2": req.body.symvaseis_year2 }, { "symvaseis_year3": req.body.symvaseis_year3 }, { "symvaseis_year4": req.body.symvaseis_year4 }, { "symvaseis_year5": req.body.symvaseis_year5 }, { "symvaseis_prosfata_stoixeia": req.body.symvaseis_prosfata_stoixeia }, { "symvaseis_epidiwkomenos_stoxos": req.body.symvaseis_epidiwkomenos_stoxos }])
@@ -293,7 +311,7 @@ routes.put('/:entry_id', upload,
                 allos_deiktis3 = JSON.stringify([{ "allos_deiktis3": req.body.allos_deiktis3 }, { "allos_deiktis3_year1": req.body.allos_deiktis3_year1 }, { "allos_deiktis3_year2": req.body.allos_deiktis3_year2 }, { "allos_deiktis3_year3": req.body.allos_deiktis3_year3 }, { "allos_deiktis3_year4": req.body.allos_deiktis3_year4 }, { "allos_deiktis3_year5": req.body.allos_deiktis3_year5 }, { "allos_deiktis3_prosfata_stoixeia": req.body.allos_deiktis3_prosfata_stoixeia }, { "allos_deiktis3_epidiwkomenos_stoxos": req.body.allos_deiktis3_epidiwkomenos_stoxos }])
                 allos_deiktis4 = JSON.stringify([{ "allos_deiktis4": req.body.allos_deiktis4 }, { "allos_deiktis4_year1": req.body.allos_deiktis4_year1 }, { "allos_deiktis4_year2": req.body.allos_deiktis4_year2 }, { "allos_deiktis4_year3": req.body.allos_deiktis4_year3 }, { "allos_deiktis4_year4": req.body.allos_deiktis4_year4 }, { "allos_deiktis4_year5": req.body.allos_deiktis4_year5 }, { "allos_deiktis4_prosfata_stoixeia": req.body.allos_deiktis4_prosfata_stoixeia }, { "allos_deiktis4_epidiwkomenos_stoxos": req.body.allos_deiktis4_epidiwkomenos_stoxos }])
                 allos_deiktis5 = JSON.stringify([{ "allos_deiktis5": req.body.allos_deiktis5 }, { "allos_deiktis5_year1": req.body.allos_deiktis5_year1 }, { "allos_deiktis5_year2": req.body.allos_deiktis5_year2 }, { "allos_deiktis5_year3": req.body.allos_deiktis5_year3 }, { "allos_deiktis5_year4": req.body.allos_deiktis5_year4 }, { "allos_deiktis5_year5": req.body.allos_deiktis5_year5 }, { "allos_deiktis5_prosfata_stoixeia": req.body.allos_deiktis5_prosfata_stoixeia }, { "allos_deiktis5_epidiwkomenos_stoxos": req.body.allos_deiktis5_epidiwkomenos_stoxos }])
-
+                console.log(allos_deiktis5)
                 //grouping each value of each row of table 18 
                 let auksisi_esodwn = JSON.stringify([{ "field_18_amesa_esoda_thesmoi": req.body.field_18_amesa_esoda_thesmoi }, { "field_18_amesa_esoda_oikonomia": req.body.field_18_amesa_esoda_oikonomia }, { "field_18_amesa_esoda_kinonia": req.body.field_18_amesa_esoda_kinonia }, { "field_18_amesa_esoda_perivallon": req.body.field_18_amesa_esoda_perivallon }, { "field_18_amesa_esoda_nisiwtika": req.body.field_18_amesa_esoda_nisiwtika }])
                 let meiwsi_dapanwn = JSON.stringify([{ "field_18_amesa_dapanes_thesmoi": req.body.field_18_amesa_dapanes_thesmoi }, { "field_18_amesa_dapanes_oikonomia": req.body.field_18_amesa_dapanes_oikonomia }, { "field_18_amesa_dapanes_kinonia": req.body.field_18_amesa_dapanes_kinonia }, { "field_18_amesa_dapanes_perivallon": req.body.field_18_amesa_dapanes_perivallon }, { "field_18_amesa_dapanes_nisiwtika": req.body.field_18_amesa_dapanes_nisiwtika }])
@@ -469,11 +487,7 @@ routes.put('/:entry_id', upload,
                         field9Id: ekthesi_id              
                     }
                 })
-                console.log("allos_deiktis1: " + allos_deiktis1)
 
-                //console.log(req.sessionID)
-
-                //console.log(ekthesi.dataValues)
                 if (!ekthesi) {
                     res.status(404).send("Error in updating ekthesi.");
                 } else {

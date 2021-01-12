@@ -51,6 +51,24 @@ exports.exportPDF = (async function (req, res, next) {
 
         pageSize: 'A2',
         watermark: { text: 'test watermark', color: 'blue', opacity: 0.3, bold: true, italics: false },
+        styles: {
+            headerStyle: {
+                fontSize: 17,
+                alignment: 'left',
+                decoration: 'underline',
+            },
+            labelStyle: {
+                fontSize: 15,
+                alignment: 'left',
+                decoration: 'underline'
+            },
+            textStyle: {
+                fontSize: 13,
+                alignment: 'left'
+
+            },
+        },
+
         content: [
             [
                 {
@@ -133,7 +151,7 @@ exports.exportPDF = (async function (req, res, next) {
                 { text: '8.2 μακροπρόθεσμοι: \n\n', decoration: 'underline' },
                 { text: data.field_8_2 + "\n\n" },
                 { text: '9. Ειδικότεροι στόχοι ανάλογα με τον τομέα νομοθέτησης \n\n', decoration: 'underline' },
-                exportTables9(data, keys),
+                //exportStaticTables(data, keys),
                 //createTableFieldNine('ΑΛΛΟΙ ΠΡΟΤΕΙΝΟΜΕΝΟΙ ΔΕΙΚΤΕΣ', req.body.allos_deiktis1, req.body.allos_deiktis1_year1, req.body.allos_deiktis1_year2, req.body.allos_deiktis1_year3, req.body.allos_deiktis1_year4, req.body.allos_deiktis1_year5, '654', '84684'),
                 { text: "\n\n" },
                 { text: '10. Σε περίπτωση που προβλέπεται η χρήση πληροφοριακού συστήματος, ποια θα είναι η συμβολή αυτού στην επίτευξη των στόχων της αξιολογούμενης ρύθμισης: \n\n', decoration: 'underline' },
@@ -167,45 +185,103 @@ exports.exportPDF = (async function (req, res, next) {
                 { text: data.field_13_comments + "\n\n" },
 
                 { text: '14. Σύνοψη στόχων κάθε άρθρου \n\n', decoration: 'underline' },
+                createDynamicTable('Άρθρο', 'Στόχος', field_14_arthro, field_14_stoxos), //create table for field 14                
 
-                createTable('Άρθρο', 'Στόχος', field_14_arthro, field_14_stoxos), //create table for field 14
-                // createTable('Άρθρο','Στόχος',field_14_arthro, field_14_stoxos), //create table for field 29
-                // createTable('Άρθρο','Στόχος',field_14_arthro, field_14_stoxos), //create table for field 30
-                // createTable('Άρθρο','Στόχος',field_14_arthro, field_14_stoxos), //create table for field 31
-                // createTable('Άρθρο','Στόχος',field_14_arthro, field_14_stoxos), //create table for field 32
-
-
-                // layout: 'lightHorizontalLines', // optional
-                // table: {
-                //     // headers are automatically repeated if the table spans over multiple pages
-                //     // you can declare how many rows should be treated as headers
-                //     headerRows: 2,
-                //     widths: ['*', '*'],
-
-                //     body: [
-                //         ['Άρθρο', 'Στόχος'],
-                //         [
-                //             buildTableBody(field_14_arthro,['key','value'])                                
-                //         ]
-                //         //[buildTableBody(field_14_arthro, field_14_stoxos)]
-                //     ]
-                // }
-
-                //buildTableBody(field_14_arthro, field_14_stoxos)
-                { text: '18. Οφέλη αξιολογούμενης ρύθμισης \n\n', decoration: 'underline' },
-                createCheckBoxTable('ΟΦΕΛΗ ΡΥΘΜΙΣΗΣ', 'ΑΜΕΣΑ', 'Αύξηση εσόδων', req.body.field_18_amesa_esoda_thesmoi, req.body.field_18_amesa_esoda_oikonomia, req.body.field_18_amesa_esoda_kinonia, req.body.field_18_amesa_esoda_perivallon, req.body.field_18_amesa_esoda_nisiwtika),
+                // { text: '18. Οφέλη αξιολογούμενης ρύθμισης \n\n', decoration: 'underline' },
+                // createCheckBoxTable('ΟΦΕΛΗ ΡΥΘΜΙΣΗΣ', 'ΑΜΕΣΑ', 'Αύξηση εσόδων', req.body.field_18_amesa_esoda_thesmoi, req.body.field_18_amesa_esoda_oikonomia, req.body.field_18_amesa_esoda_kinonia, req.body.field_18_amesa_esoda_perivallon, req.body.field_18_amesa_esoda_nisiwtika),
 
                 {
-                    text: 'Έκθεση ΓΛΚ',
-                    style: 'header',
-                    fontSize: 17,
+                    text: 'Έκθεση Γενικού Λογιστηρίου του Κράτους (άρθρο 75 παρ. 1 ή 2 του Συντάγματος)',
+                    style: 'headerStyle',
                     tocItem: true,
                     tocStyle: { bold: true },
-                    decoration: 'underline',
                     tocMargin: [20, 0, 0, 0],
                     pageBreak: 'before'
                 },
-                'TODO: get glk data',
+                { text: 'Έκθεση Γενικού Λογιστηρίου του Κράτους \n\n\n\n', style: 'labelStyle' },
+
+                { text: 'Στο σχέδιο νόμου του Υπουργείου \n\n', style: 'textStyle' },
+                { text: data.field_15_ypoyrgeio + "\n\n", style: 'textStyle' },
+                { text: 'ή επί τροπολογίας στο σχέδιο νόμου του Υπουργείου: \n\n', style: 'textStyle' },
+                { text: data.field_15_sxedio_nomou + "\n\n", style: 'textStyle' },
+                { text: '15.Συνοπτική ανάλυση των άρθρων της αξιολογούμενης ρύθμισης \n\n', style: 'labelStyle' },
+                { text: data.field_15_sxedio_nomou + "\n\n" },
+
+                { text: '16.Οικονομικά αποτελέσματα επί του Κρατικού Προϋπολογισμού ή/και επί του προϋπολογισμού του/των αρμόδιου/ων φορέα/ων \n\n\n\n', style: 'labelStyle' },
+                { text: 'Από τις προτεινόμενες διατάξεις προκαλούνται τα ακόλουθα οικονομικά αποτελέσματα: \n\n', style: 'textStyle' },
+                { text: 'Επί του Κρατικού Προϋπολογισμού \n\n', style: 'textStyle' },
+                { text: data.field_16_kratikos_proypologismos + "\n\n", style: 'textStyle' },
+                { text: 'Επί του Προϋπολογισμού του/των αρμόδιου/ων φορέα/ων \n\n', style: 'textStyle' },
+                { text: data.field_16_proypologismos_forea + "\n\n", style: 'textStyle' },
+                { text: 'Ο/Η ΥΠΟΓΡΑΦΩΝ/ΟΥΣΑ ΓΕΝΙΚΟΣ/Η ΔΙΕΥΘΥΝΤΗΣ/ΡΙΑ (Όνομα Επώνυμο Ιδιότητα) \n\n', style: 'labelStyle' },
+                {
+                    table: {
+
+                        headerRows: 1,
+                        widths: [ '*', '*', '*' ],
+                
+                        body: [
+                          [ 'Όνομα', 'Επώνυμο', 'Ιδιότητα' ],
+                          [{ text: data.field_16_genikos_onoma, style:'textStyle'}, { text: data.field_16_genikos_epitheto, style:'textStyle'}, { text: data.field_16_genikos_idiototita, style:'textStyle'} ],
+                          
+                        ]
+                      }
+                },
+
+                {
+                    text: 'Γ. Ειδική Έκθεση (άρθρο 75 παρ. 3 του Συντάγματος)',
+                    style: 'headerStyle',
+                    tocItem: true,
+                    tocStyle: { bold: true },
+                    tocMargin: [20, 0, 0, 0],
+                    pageBreak: 'before'
+                },
+
+                { text: 'Στο σχέδιο νόμου του Υπουργείου \n\n', style: 'textStyle' },
+                { text: data.field_17_ypoyrgeio + "\n\n", style: 'textStyle' },
+                { text: 'ή επί τροπολογίας στο σχέδιο νόμου του Υπουργείου: \n\n', style: 'textStyle' },
+                { text: data.field_17_sxedio_nomou + "\n\n", style: 'textStyle' },
+                { text: '17.Οικονομικά αποτελέσματα \n\n', style: 'labelStyle' },
+                { text: data.field_17_oikonomika_apotelesmata + "\n\n\n\n" },
+                
+                //TODO: FIELDS 18-21!!!
+
+                {
+                    text: 'Ε. Έκθεση διαβούλευσης',
+                    style: 'headerStyle',
+                    tocItem: true,
+                    tocStyle: { bold: true },
+                    tocMargin: [20, 0, 0, 0],
+                    pageBreak: 'before'
+                },
+
+                { text: '22.Διαβούλευση κατά τη διάρκεια της νομοπαρασκευαστικής διαδικασίας από την έναρξη κατάρτισης της αξιολογούμενης ρύθμισης μέχρι την υπογραφή από τους συναρμόδιους Υπουργούς \n\n', style: 'labelStyle' },
+                { text: 'Συνεργασία με άλλα υπουργεία / υπηρεσίες \n\n', style: 'textStyle' },
+                { text: data.field_22_sinergasia_ypoyrgeiwn + "\n\n", style: 'textStyle' },
+                { text: 'Συνεργασία με κοινωνικούς φορείς / Ανεξάρτητες Αρχές \n\n', style: 'textStyle' },
+                { text: data.field_22_sinergasia_forewn_arxwn + "\n\n", style: 'textStyle' },
+                { text: 'Διεθνής διαβούλευση \n\n', style: 'textStyle' },
+                { text: data.field_22_diethnis_diavouleusi + "\n\n", style: 'textStyle' },
+
+                { text: '23.Σχόλια στο πλαίσιο της διαβούλευσης μέσω της ηλεκτρονικής πλατφόρμας www.opengov.gr (ηλεκτρονική επισύναψη της έκθεσης) \n\n', style: 'labelStyle' },
+                //TODO: field23 uploads
+                { text: 'Επί των γενικών αρχών («επί της αρχής») της αξιολογούμενης ρύθμιση \n\n', style: 'textStyle' },
+                { text: 'Αριθμός συμμετασχόντων \n\n', style: 'textStyle' },
+                { text: data.field_23_arxes_symmetasxontes + "\n\n", style: 'textStyle' },
+                { text: 'Σχόλια που υιοθετήθηκαν \n\n', style: 'textStyle' },
+                { text: data.field_23_arxes_sxolia_yiothetithikan + "\n\n", style: 'textStyle' },
+                { text: 'Σχόλια που δεν υιοθετήθηκαν \n\n', style: 'textStyle' },
+                { text: data.field_23_arxes_sxolia_den_yiothetithikan + "\n\n", style: 'textStyle' },
+
+                { text: data.field_23_arthra_symmetasxontes + "\n\n", style: 'textStyle' },
+                { text: 'Επί των άρθρων της αξιολογούμενης ρύθμισης \n\n', style: 'textStyle' },
+                { text: 'Αριθμός συμμετασχόντων \n\n', style: 'textStyle' },
+                { text: data.field_23_arthra_sxolia_yiothetithikan + "\n\n", style: 'textStyle' },
+                { text: 'Σχόλια που υιοθετήθηκαν \n\n', style: 'textStyle' },
+                { text: data.field_23_arthra_sxolia_den_yiothetithikan + "\n\n", style: 'textStyle' },
+                { text: 'Σχόλια που δεν υιοθετήθηκαν \n\n', style: 'textStyle' },
+                { text: data.field_22_sinergasia_forewn_arxwn + "\n\n", style: 'textStyle' },
+
                 {
                     text: 'Υπογράφοντες \n\n',
                     style: 'header',
@@ -236,25 +312,6 @@ exports.exportPDF = (async function (req, res, next) {
                             fontSize: 17,
                         }]
                 },
-
-                // {
-                //     ul: [
-
-                //         {
-                //             toc: {
-                //                 id: 'mainToc',
-                //                 title: { text: 'ITEM 1', style: 'header' }
-                //             }
-                //         },
-                //         {
-                //             toc: {
-                //                 id: 'subToc',
-                //                 title: { text: 'ITEM 2', style: 'header' },
-                //                 pageBreak:'after'
-                //             }
-                //         },
-                //     ]
-                // },                
             ]
         ]
     };
@@ -295,7 +352,7 @@ function setPdfImage(fieldName) {
     }
 }
 
-function createTable(header1, header2, article, goal) {
+function createDynamicTable(header1, header2, article, goal) {
     var rows = [];
     rows.push(['#', header1, header2]);
 
@@ -315,13 +372,13 @@ function createTable(header1, header2, article, goal) {
     return table;
 }
 
-function createTableFieldNine( table) {
+function createStaticTable(table) {
     var rows = [];
     var years = ['έτος 1: ' + table[1], 'έτος 2: ' + table[2], 'έτος 3: ' + table[3], 'έτος 4: ' + table[4], 'έτος 5: ' + table[5]];
     if (table[8]) {
-        rows.push([{text:table[8], alignment:'center', fillColor:'#87CEEB', bold:true}, {text:'Εξέλιξη την τελευταία 5ετία', alignment:'center', fillColor:'#87CEEB', bold:true}, {text:'Πρόσφατα στοιχεία', alignment:'center', fillColor:'#87CEEB', bold:true}, {text:'Επιδιωκόμενος στόχος (3ετία)', alignment:'center', fillColor:'#87CEEB', bold:true}]);
+        rows.push([{ text: table[8], alignment: 'center', fillColor: '#87CEEB', bold: true }, { text: 'Εξέλιξη την τελευταία 5ετία', alignment: 'center', fillColor: '#87CEEB', bold: true }, { text: 'Πρόσφατα στοιχεία', alignment: 'center', fillColor: '#87CEEB', bold: true }, { text: 'Επιδιωκόμενος στόχος (3ετία)', alignment: 'center', fillColor: '#87CEEB', bold: true }]);
     }
-    rows.push([table[0], years , table[6], table[7]]);
+    rows.push([table[0], years, table[6], table[7]]);
     console.log(rows)
     var table = {
         //layout: 'lightHorizontalLines',
@@ -330,7 +387,6 @@ function createTableFieldNine( table) {
             widths: ['*', '*', '*', '*'],
             body: rows
         }
-
     }
     return table;
 }
@@ -372,7 +428,7 @@ function createCheckBoxTable(tableHeader, tableGroup, rowName, val1, val2, val3,
     return table;
 }
 
-function exportTables9(data, keys) {
+function exportStaticTables(data, keys) {
     var table = [];
     var row = [];
     var prefix, header;
@@ -384,7 +440,7 @@ function exportTables9(data, keys) {
                 if (header) {
                     row.push(header);
                     header = null;
-                }                
+                }
                 table.push(row);//found label, hence a new row. Push row to table and then empty. 
                 row = [];
             }
@@ -397,14 +453,14 @@ function exportTables9(data, keys) {
                     header = data[keys[i]];
                 } else {
                     row.push(data[keys[i]]);
-                }                
+                }
             }
         }
     }
-    for(i in table) {
-        console.log(i+": "+table[i])
+    for (i in table) {
+        console.log(i + ": " + table[i])
         //TODO: CALL FUNCTION WITH 9 PARAMS  
-        tables.push(createTableFieldNine(table[i]));
+        tables.push(createStaticTable(table[i]));
     }
     console.log(table);
     //console.log( table[1]);
