@@ -834,21 +834,23 @@
 
         $("form").on("submit", function (ev) {
             ev.preventDefault();
-            //initializeAnalysis("#typos_analysis");
             onSubmitStatus();
             var fd = new FormData($("form").get(0));
+            var checkbox = $("form").find("input[type=checkbox]:not(:checked)");//find all unchecked checkboxes 
+            $.each(checkbox, function (key, chckbx) {
+                fd.append($(chckbx).prop('name'), $(chckbx).value = '')//append to fd without value 
+            });
             // console.log('heyhey my val: '+ document.getElementById("field_23_upload").files[0].name);
             $.ajax({
-                url: '/create',
+                url: '/create/<%= analysis %>',
                 data: fd,
                 contentType: false,
                 processData: false,
                 error: function (error) {
                     console.log(error);
                 },
-                success: function (data) {
-                    console.log(data);
-                    //window.location.href = "/user_views/history";
+                success: function (data) {                    
+                    window.location.href = "/user_views/history";
                 },
                 type: 'POST'
             });

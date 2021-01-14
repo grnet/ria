@@ -41,16 +41,16 @@ routes.get('/:entry_id', async (req, res, next) => {
             id: req.params.entry_id
         }, include: [{ model: database.rythmiseis }, { model: database.field_9 }]
     })
-    let rythmiseis = await database.rythmiseis.findOne({
-        where: {
-            id: req.params.entry_id
-        }
-    })
-    let field_9 = await database.field_9.findOne({
-        where: {
-            id: req.params.entry_id
-        }
-    })
+    // let rythmiseis = await database.rythmiseis.findOne({
+    //     where: {
+    //         id: req.params.entry_id
+    //     }
+    // })
+    // let field_9 = await database.field_9.findOne({
+    //     where: {
+    //         id: req.params.entry_id
+    //     }
+    // })
     pdf_name = entry.title + '.pdf';
     pdf_name = pdf_name.replace(/\s+/g, '');
     var pdf_exists;
@@ -66,10 +66,11 @@ routes.get('/:entry_id', async (req, res, next) => {
     } catch (err) {
         console.log(err)
     }
-  
-    if (entry && entry.dataValues && field_9 && field_9.dataValues && rythmiseis && rythmiseis.dataValues && readCSV) {
+//    if (entry && entry.dataValues && field_9 && field_9.dataValues && rythmiseis && rythmiseis.dataValues && readCSV) {
+//      res.render("form_a", { data: entry.dataValues, staticTables:field_9.dataValues, checkboxTables:rythmiseis.dataValues, rolos: req.session.rolos, tooltips: readCSV, pdf_exists: pdf_exists, errors: validation_errors });
+    if (entry && entry.dataValues) {
         req.session.ekthesi_id = req.params.entry_id;
-        res.render("form_a", { data: entry.dataValues, staticTables:field_9.dataValues, checkboxTables:rythmiseis.dataValues, rolos: req.session.rolos, tooltips: readCSV, pdf_exists: pdf_exists, errors: validation_errors });
+        res.render("form_a", { data: entry.dataValues, rolos: req.session.rolos, pdf_exists: pdf_exists, errors: validation_errors });
     } else {
         res.status(404).send("Not found")
     }
@@ -447,7 +448,7 @@ routes.put('/:entry_id', upload,
                 //console.log("field_29_diatakseis_rythmisis: " + field_29_diatakseis_rythmisis);
                 var author = req.session.username;
                 await database.ekthesi.update({
-                    author: author, field_14_arthro: field_14_arthro, field_14_stoxos: field_14_stoxos, field_17_onoma: field_17_onoma, field_17_epitheto: field_17_epitheto, field_17_idiotita: field_17_idiotita, field_29_diatakseis_rythmisis: field_29_diatakseis_rythmisis, field_29_yfistamenes_diatakseis: field_29_yfistamenes_diatakseis, field_30_diatakseis_katargisi: field_30_diatakseis_katargisi, field_30_katargoumenes_diatakseis: field_30_katargoumenes_diatakseis,
+                    field_14_arthro: field_14_arthro, field_14_stoxos: field_14_stoxos, field_17_onoma: field_17_onoma, field_17_epitheto: field_17_epitheto, field_17_idiotita: field_17_idiotita, field_29_diatakseis_rythmisis: field_29_diatakseis_rythmisis, field_29_yfistamenes_diatakseis: field_29_yfistamenes_diatakseis, field_30_diatakseis_katargisi: field_30_diatakseis_katargisi, field_30_katargoumenes_diatakseis: field_30_katargoumenes_diatakseis,
                     field_31_sxetiki_diataksi: field_31_sxetiki_diataksi, field_31_synarmodia_ypoyrgeia: field_31_synarmodia_ypoyrgeia, field_31_antikeimeno_synarmodiotitas: field_31_antikeimeno_synarmodiotitas, field_32_eksousiodotiki_diataksi: field_32_eksousiodotiki_diataksi, field_32_eidos_praksis: field_32_eidos_praksis, field_32_armodio_ypoyrgeio: field_32_armodio_ypoyrgeio, field_32_antikeimeno: field_32_antikeimeno, field_32_xronodiagramma: field_32_xronodiagramma,
                     field_21_upload: field21, field_23_upload: field23, field_36_upload: field36
                 },
