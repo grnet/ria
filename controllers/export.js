@@ -89,7 +89,7 @@ exports.exportPDF = (async function (req, res, next) {
                 {
                     text: "\n\n" + 'Τίτλος αξιολογούμενης ρύθμισης: ' + data.title + "\n\n" + 'Ονοματεπώνυμο συγγραφέα: ' + req.session.lname + ' ' + req.session.fname + "\n\n" +
                         'Αρχική καταχώρηση: ' + data.initial_submit + "\n\n" + 'Τελευταία ενημέρωση: ' + data.last_updated + "\n\n" +
-                        'Επισπεύδον φορέας: ' + data.epispeudon_foreas + "\n\n" + 'Ρύθμιση την οποία αφορά: ' + data.rythmisi_pou_afora + "\n\n" + 'Στοιχεία επικοινωνίας: ' + data.stoixeia_epikoinwnias + "\n\n"
+                        'Επισπεύδων φορέας: ' + data.epispeudon_foreas + "\n\n" + 'Ρύθμιση την οποία αφορά: ' + data.rythmisi_pou_afora + "\n\n" + 'Στοιχεία επικοινωνίας: ' + data.stoixeia_epikoinwnias + "\n\n"
                 }, //, pageBreak:'after',                                    
 
                 {
@@ -281,6 +281,60 @@ exports.exportPDF = (async function (req, res, next) {
                 { text: data.field_23_arthra_sxolia_den_yiothetithikan + "\n\n", style: 'textStyle' },
                 { text: 'Σχόλια που δεν υιοθετήθηκαν \n\n', style: 'textStyle' },
                 { text: data.field_22_sinergasia_forewn_arxwn + "\n\n", style: 'textStyle' },
+
+                {
+                    text: 'Στ. Έκθεση νομιμότητας',
+                    style: 'headerStyle',
+                    tocItem: true,
+                    tocStyle: { bold: true },
+                    tocMargin: [20, 0, 0, 0],
+                    pageBreak: 'before'
+                },
+
+                { text: '24.Συναφείς συνταγματικές διατάξεις \n\n', style: 'labelStyle' },
+                { text: data.field_24 + "\n\n", style: 'textStyle' },
+
+                { text: '25.Ενωσιακό δίκαιο \n\n', style: 'labelStyle' },
+                { text: 'Πρωτογενές ενωσιακό δίκαιο (συμπεριλαμβανομένου του Χάρτη Θεμελιωδών Δικαιωμάτων) \n\n', style: 'textStyle' },
+                { text: data.field_25_dikaio_comment + "\n\n", style: 'textStyle' },
+                { text: 'Κανονισμός \n\n', style: 'textStyle' },
+                { text: data.field_25_kanonismos_comment + "\n\n", style: 'textStyle' },
+                { text: 'Οδηγία \n\n', style: 'textStyle' },
+                { text: data.field_25_odigia_comment + "\n\n", style: 'textStyle' },
+                { text: 'Απόφαση \n\n', style: 'textStyle' },
+                { text: data.field_25_apofasi_comment + "\n\n", style: 'textStyle' },
+
+                { text: '26.Συναφείς διατάξεις διεθνών συνθηκών ή συμφωνιών \n\n', style: 'textStyle' },
+                { text: 'Ευρωπαϊκή Σύμβαση των Δικαιωμάτων του Ανθρώπου \n\n', style: 'textStyle' },
+                { text: data.field_26_antrwpina_dikaiwmata_comment + "\n\n", style: 'textStyle' },
+                { text: 'Διεθνείς συμβάσεις \n\n', style: 'textStyle' },
+                { text: data.field_26_symvaseis_comment + "\n\n", style: 'textStyle' },
+
+                { text: '27.Συναφής νομολογία των ανωτάτων και άλλων εθνικών δικαστηρίων, καθώς και αποφάσεις των Ανεξάρτητων Αρχών \n\n', style: 'textStyle' },
+                { text: 'Ανώτατο ή άλλο εθνικό δικαστήριο  \n\n', style: 'textStyle' },
+                { text: data.field_27_dikastirio_comment + "\n\n", style: 'textStyle' },
+                { text: 'Ανεξάρτητη Αρχή \n\n', style: 'textStyle' },
+                { text: data.field_27_arxi_comment + "\n\n", style: 'textStyle' },
+
+                { text: '28.Συναφής ευρωπαϊκή και διεθνής νομολογία \n\n', style: 'textStyle' },
+                { text: 'Νομολογία Δικαστηρίου Ε.Ε.  \n\n', style: 'textStyle' },
+                { text: data.field_28_nomologia_comment + "\n\n", style: 'textStyle' },
+                { text: 'Νομολογία Ευρωπαϊκού Δικαστηρίου Δικαιωμάτων του Ανθρώπου \n\n', style: 'textStyle' },
+                { text: data.field_28_nomologia_dikaiwmatwn_anthrwpou_comment + "\n\n", style: 'textStyle' },
+                { text: 'Άλλα ευρωπαϊκά ή διεθνή δικαστήρια ή διαιτητικά όργανα \n\n', style: 'textStyle' },
+                { text: data.field_28_alla_dikastiria_comment + "\n\n", style: 'textStyle' },
+
+                //TODO: TABLES 29,30,31,32
+
+
+                {
+                    text: 'Η. Έκθεση εφαρμογής της ρύθμισης',
+                    style: 'headerStyle',
+                    tocItem: true,
+                    tocStyle: { bold: true },
+                    tocMargin: [20, 0, 0, 0],
+                    pageBreak: 'before'
+                },
 
                 {
                     text: 'Υπογράφοντες \n\n',
