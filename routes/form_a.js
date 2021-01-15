@@ -21,26 +21,27 @@ routes.get('/:entry_id', async (req, res, next) => {
 
     const validation_errors = req.session.errors;
     req.session.errors = null;
-    try {
+    // try {
 
-        const results = [];
+    //     const results = [];
 
-        var readCSV = fs.createReadStream('public/csvs/tooltips.csv')
-            .pipe(csv())
-            .on('data', (data) => results.push(data))
-            .on('end', () => {
-                console.log(results);
-            });
+    //     var readCSV = fs.createReadStream('public/csvs/tooltips.csv')
+    //         .pipe(csv())
+    //         .on('data', (data) => results.push(data))
+    //         .on('end', () => {
+    //             console.log(results);
+    //         });
 
-    } catch (err) {
-        console.log('Csv error: ' + err)
-    }
+    // } catch (err) {
+    //     console.log('Csv error: ' + err)
+    // }
 
     let entry = await database.ekthesi.findOne({
         where: {
             id: req.params.entry_id
         }, include: [{ model: database.rythmiseis }, { model: database.field_9 }]
     })
+    console.log(entry)
     // let rythmiseis = await database.rythmiseis.findOne({
     //     where: {
     //         id: req.params.entry_id
@@ -67,10 +68,11 @@ routes.get('/:entry_id', async (req, res, next) => {
         console.log(err)
     }
 //    if (entry && entry.dataValues && field_9 && field_9.dataValues && rythmiseis && rythmiseis.dataValues && readCSV) {
-//      res.render("form_a", { data: entry.dataValues, staticTables:field_9.dataValues, checkboxTables:rythmiseis.dataValues, rolos: req.session.rolos, tooltips: readCSV, pdf_exists: pdf_exists, errors: validation_errors });
+//      res.render("form_a", { data: entry.dataValues, staticTables:field_9.dataValues, checkboxTables:rythmiseis.dataValues, rolos: req.session.rolos, tooltips: readCSV, pdf_exists: pdf_exists, errors: validation_errors });  
+
     if (entry && entry.dataValues) {
         req.session.ekthesi_id = req.params.entry_id;
-        res.render("form_a", { data: entry.dataValues, rolos: req.session.rolos, pdf_exists: pdf_exists, errors: validation_errors });
+        res.render("form_a", { data: entry.dataValues, rolos: req.session.rolos, pdf_exists: pdf_exists });
     } else {
         res.status(404).send("Not found")
     }
@@ -84,15 +86,15 @@ routes.post('/:entry_id', pdf_export.exportPDF) //router calls controller to han
 
 routes.put('/:entry_id', upload,
     [check('title', 'Ο τίτλος είναι υποχρεωτικός.').notEmpty(),
-    check('title').custom( async(value) => {
+     check('title').custom( async(value) => {
         var title = await database.ekthesi.count({ where: {title: value}})//count tables which have given title 
         console.log(title)
         if (title > 1) {//title already exists
             return Promise.reject('Υπάρχει ήδη ανάλυση με αυτόν τον τίτλο.');
         }
     }),
-    check('epispeudon_foreas', 'Ο επισπεύδον φορέας είναι υποχρεωτικός.').notEmpty(),
-    //  check(body(), 'req.body is empty!!!').notEmpty()
+     check('epispeudon_foreas', 'Ο επισπεύδων φορέας είναι υποχρεωτικός.').notEmpty(),
+
     body('field_10_amesi_comments').if(body('field_10_amesi').notEmpty()).notEmpty().withMessage('Εάν είναι άμεση, εξηγήστε.'),
     body('field_10_emmesi_comments').if(body('field_10_emmesi').notEmpty()).notEmpty().withMessage('Εάν είναι έμμεση, εξηγήστε.'),
     body('field_11_comments')
@@ -112,11 +114,11 @@ routes.put('/:entry_id', upload,
     ],
     async function (req, res, next) {
         let ekthesi_id = req.params.entry_id;
+        console.log(req.body);
         const errors = validationResult(req);
         if (!errors.isEmpty()) { // if array exists
             console.log(errors);
-            req.session.errors = errors.array();
-            res.send({ redirect: "../form_a/" + ekthesi_id });
+            return res.status(422).json(errors.array());
         } else {
             console.log('no errors');
             //next();

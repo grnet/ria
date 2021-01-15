@@ -815,7 +815,7 @@
                 //show the next fieldset
                 next_fs.show();
                 $(".progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
-
+                window.scrollTo(0,0);
                 return false;
             });
 
@@ -1608,6 +1608,7 @@
             previous_fs.show();
             //hide the current fieldset with style
             current_fs.hide();
+            window.scrollTo(0,0);
         });
 
         $(".submit").click(function () {
