@@ -19,8 +19,6 @@ var upload = multer({ storage: storage }).fields([{ name: 'field_21_upload', max
 
 routes.get('/:entry_id', async (req, res, next) => {
 
-    const validation_errors = req.session.errors;
-    req.session.errors = null;
     // try {
 
     //     const results = [];
@@ -39,19 +37,19 @@ routes.get('/:entry_id', async (req, res, next) => {
     let entry = await database.ekthesi.findOne({
         where: {
             id: req.params.entry_id
-        }, include: [{ model: database.rythmiseis }, { model: database.field_9 }]
+        }//, include: [{ model: database.rythmiseis }, { model: database.field_9 }]
     })
     console.log(entry)
-    // let rythmiseis = await database.rythmiseis.findOne({
-    //     where: {
-    //         id: req.params.entry_id
-    //     }
-    // })
-    // let field_9 = await database.field_9.findOne({
-    //     where: {
-    //         id: req.params.entry_id
-    //     }
-    // })
+    let rythmiseis = await database.rythmiseis.findOne({
+        where: {
+            id: req.params.entry_id
+        }
+    })
+    let field_9 = await database.field_9.findOne({
+        where: {
+            id: req.params.entry_id
+        }
+    })
     pdf_name = entry.title + '.pdf';
     pdf_name = pdf_name.replace(/\s+/g, '');
     var pdf_exists;
@@ -67,12 +65,10 @@ routes.get('/:entry_id', async (req, res, next) => {
     } catch (err) {
         console.log(err)
     }
-//    if (entry && entry.dataValues && field_9 && field_9.dataValues && rythmiseis && rythmiseis.dataValues && readCSV) {
-//      res.render("form_a", { data: entry.dataValues, staticTables:field_9.dataValues, checkboxTables:rythmiseis.dataValues, rolos: req.session.rolos, tooltips: readCSV, pdf_exists: pdf_exists, errors: validation_errors });  
-
-    if (entry && entry.dataValues) {
+    console.log(field_9.dataValues)
+    if (entry && entry.dataValues && field_9 && field_9.dataValues && rythmiseis && rythmiseis.dataValues) {
         req.session.ekthesi_id = req.params.entry_id;
-        res.render("form_a", { data: entry.dataValues, rolos: req.session.rolos, pdf_exists: pdf_exists });
+        res.render("form_a", { data: entry.dataValues, staticTables:field_9.dataValues, checkboxTables:rythmiseis.dataValues, rolos: req.session.rolos, pdf_exists: pdf_exists });  
     } else {
         res.status(404).send("Not found")
     }
@@ -85,40 +81,39 @@ routes.post('/:entry_id', pdf_export.exportPDF) //router calls controller to han
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 routes.put('/:entry_id', upload,
-    [check('title', 'Ο τίτλος είναι υποχρεωτικός.').notEmpty(),
-     check('title').custom( async(value) => {
-        var title = await database.ekthesi.count({ where: {title: value}})//count tables which have given title 
-        console.log(title)
-        if (title > 1) {//title already exists
-            return Promise.reject('Υπάρχει ήδη ανάλυση με αυτόν τον τίτλο.');
-        }
-    }),
-     check('epispeudon_foreas', 'Ο επισπεύδων φορέας είναι υποχρεωτικός.').notEmpty(),
+    // [check('title', 'Ο τίτλος είναι υποχρεωτικός.').notEmpty(),
+    //  check('title').custom( async(value) => {
+    //     var title = await database.ekthesi.count({ where: {title: value}})//count tables which have given title 
+    //     console.log(title)
+    //     if (title > 1) {//title already exists
+    //         return Promise.reject('Υπάρχει ήδη ανάλυση με αυτόν τον τίτλο.');
+    //     }
+    // }),
+    //  check('epispeudon_foreas', 'Ο επισπεύδων φορέας είναι υποχρεωτικός.').notEmpty(),
 
-    body('field_10_amesi_comments').if(body('field_10_amesi').notEmpty()).notEmpty().withMessage('Εάν είναι άμεση, εξηγήστε.'),
-    body('field_10_emmesi_comments').if(body('field_10_emmesi').notEmpty()).notEmpty().withMessage('Εάν είναι έμμεση, εξηγήστε.'),
-    body('field_11_comments')
-        .if(body('field_10_emmesi').notEmpty())//if user checked field_10_amesi
-        .if(body('field_10_amesi').notEmpty())//or if user checked field_10_emmesi
-        .notEmpty().withMessage('Το πεδίο 11 είναι υποχρεωτικό.'),//field_11 must be filled in      
-    body('field_12_comments').if(body('field_10_emmesi').notEmpty()).if(body('field_10_amesi').notEmpty()).notEmpty().withMessage('Το πεδίο 12 είναι υποχρεωτικό.'),
-    body('field_13_comments').if(body('field_10_emmesi').notEmpty()).if(body('field_10_amesi').notEmpty()).notEmpty().withMessage('Το πεδίο 13 είναι υποχρεωτικό.'),
+    // body('field_10_amesi_comments').if(body('field_10_amesi').notEmpty()).notEmpty().withMessage('Εάν είναι άμεση, εξηγήστε.'),
+    // body('field_10_emmesi_comments').if(body('field_10_emmesi').notEmpty()).notEmpty().withMessage('Εάν είναι έμμεση, εξηγήστε.'),
+    // body('field_11_comments')
+    //     .if(body('field_10_emmesi').notEmpty())//if user checked field_10_amesi
+    //     .if(body('field_10_amesi').notEmpty())//or if user checked field_10_emmesi
+    //     .notEmpty().withMessage('Το πεδίο 11 είναι υποχρεωτικό.'),//field_11 must be filled in      
+    // body('field_12_comments').if(body('field_10_emmesi').notEmpty()).if(body('field_10_amesi').notEmpty()).notEmpty().withMessage('Το πεδίο 12 είναι υποχρεωτικό.'),
+    // body('field_13_comments').if(body('field_10_emmesi').notEmpty()).if(body('field_10_amesi').notEmpty()).notEmpty().withMessage('Το πεδίο 13 είναι υποχρεωτικό.'),
 
-    body('field_34').if(body('field_33').notEmpty()).notEmpty().withMessage('Το πεδίο 34 είναι υποχρεωτικό.'),
-    body('field_35').if(body('field_33').notEmpty()).notEmpty().withMessage('Το πεδίο 35 είναι υποχρεωτικό.'),
-    body('field_36').if(body('field_33').notEmpty()).notEmpty().withMessage('Το πεδίο 36 είναι υποχρεωτικό.'),
-    body('field_37').if(body('field_33').notEmpty()).notEmpty().withMessage('Το πεδίο 37 είναι υποχρεωτικό.'),
-    body('field_38').if(body('field_33').notEmpty()).notEmpty().withMessage('Το πεδίο 38 είναι υποχρεωτικό.'),
-    body('field_39').if(body('field_33').notEmpty()).notEmpty().withMessage('Το πεδίο 39 είναι υποχρεωτικό.'),
-    body('field_40').if(body('field_33').notEmpty()).notEmpty().withMessage('Το πεδίο 40 είναι υποχρεωτικό.'),
-    ],
+    // body('field_34').if(body('field_33').notEmpty()).notEmpty().withMessage('Το πεδίο 34 είναι υποχρεωτικό.'),
+    // body('field_35').if(body('field_33').notEmpty()).notEmpty().withMessage('Το πεδίο 35 είναι υποχρεωτικό.'),
+    // body('field_36').if(body('field_33').notEmpty()).notEmpty().withMessage('Το πεδίο 36 είναι υποχρεωτικό.'),
+    // body('field_37').if(body('field_33').notEmpty()).notEmpty().withMessage('Το πεδίο 37 είναι υποχρεωτικό.'),
+    // body('field_38').if(body('field_33').notEmpty()).notEmpty().withMessage('Το πεδίο 38 είναι υποχρεωτικό.'),
+    // body('field_39').if(body('field_33').notEmpty()).notEmpty().withMessage('Το πεδίο 39 είναι υποχρεωτικό.'),
+    // body('field_40').if(body('field_33').notEmpty()).notEmpty().withMessage('Το πεδίο 40 είναι υποχρεωτικό.'),
+    // ],
     async function (req, res, next) {
         let ekthesi_id = req.params.entry_id;
-        console.log(req.body);
         const errors = validationResult(req);
         if (!errors.isEmpty()) { // if array exists
             console.log(errors);
-            return res.status(422).json(errors.array());
+            //return res.status(422).json(errors.array());
         } else {
             console.log('no errors');
             //next();
@@ -167,7 +162,7 @@ routes.put('/:entry_id', upload,
                 console.log(req.body)
                 //groupings for field9
                 //ergasiakes_sxeseis_table
-                let symvaseis = JSON.stringify([{ "symvaseis_year1": req.body.symvaseis_year1 }, { "symvaseis_year2": req.body.symvaseis_year2 }, { "symvaseis_year3": req.body.symvaseis_year3 }, { "symvaseis_year4": req.body.symvaseis_year4 }, { "symvaseis_year5": req.body.symvaseis_year5 }, { "symvaseis_prosfata_stoixeia": req.body.symvaseis_prosfata_stoixeia }, { "symvaseis_epidiwkomenos_stoxos": req.body.symvaseis_epidiwkomenos_stoxos }])
+                let symvaseis = JSON.stringify([{ "symvaseis_year1": req.body.symvaseis_year1} , {"symvaseis_year2": req.body.symvaseis_year2} , {"symvaseis_year3": req.body.symvaseis_year3} , {"symvaseis_year4": req.body.symvaseis_year4} , {"symvaseis_year5": req.body.symvaseis_year5} , {"symvaseis_prosfata_stoixeia": req.body.symvaseis_prosfata_stoixeia} , {"symvaseis_epidiwkomenos_stoxos": req.body.symvaseis_epidiwkomenos_stoxos }])
                 let sse_diamesolavisi = JSON.stringify([{ "sse_diamesolavisi_year1": req.body.sse_diamesolavisi_year1 }, { "sse_diamesolavisi_year2": req.body.sse_diamesolavisi_year2 }, { "sse_diamesolavisi_year3": req.body.sse_diamesolavisi_year3 }, { "sse_diamesolavisi_year4": req.body.sse_diamesolavisi_year4 }, { "sse_diamesolavisi_year5": req.body.sse_diamesolavisi_year5 }, { "sse_diamesolavisi_prosfata_stoixeia": req.body.sse_diamesolavisi_prosfata_stoixeia }, { "sse_diamesolavisi_epidiwkomenos_stoxos": req.body.sse_diamesolavisi_epidiwkomenos_stoxos }])
                 let sse_diaitisia = JSON.stringify([{ "sse_diaitisia_year1": req.body.sse_diaitisia_year1 }, { "sse_diaitisia_year2": req.body.sse_diaitisia_year2 }, { "sse_diaitisia_year3": req.body.sse_diaitisia_year3 }, { "sse_diaitisia_year4": req.body.sse_diaitisia_year4 }, { "sse_diaitisia_year5": req.body.sse_diaitisia_year5 }, { "sse_diaitisia_prosfata_stoixeia": req.body.sse_diaitisia_prosfata_stoixeia }, { "sse_diaitisia_epidiwkomenos_stoxos": req.body.sse_diaitisia_epidiwkomenos_stoxos }])
                 let mesos_xronos_mesolavisis = JSON.stringify([{ "mesos_xronos_mesolavisis_year1": req.body.mesos_xronos_mesolavisis_year1 }, { "mesos_xronos_mesolavisis_year2": req.body.mesos_xronos_mesolavisis_year2 }, { "mesos_xronos_mesolavisis_year3": req.body.mesos_xronos_mesolavisis_year3 }, { "mesos_xronos_mesolavisis_year4": req.body.mesos_xronos_mesolavisis_year4 }, { "mesos_xronos_mesolavisis_year5": req.body.mesos_xronos_mesolavisis_year5 }, { "mesos_xronos_mesolavisis_prosfata_stoixeia": req.body.mesos_xronos_mesolavisis_prosfata_stoixeia }, { "mesos_xronos_mesolavisis_epidiwkomenos_stoxos": req.body.mesos_xronos_mesolavisis_epidiwkomenos_stoxos }])

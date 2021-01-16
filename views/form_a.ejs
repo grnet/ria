@@ -18,13 +18,13 @@
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/countable/3.0.1/Countable.min.js"></script>
 
                     <br>
-                    <input type="button" name="back" class="back" value="Πίσω" />
+                    <input type="button" name="back" class="back" value="Επιστροφή" />
                     <br><br>
                     <form id="edit_form" enctype="multipart/form-data">
 
                         <div id="errors" style="display: none;">
                             <!--Display validation errors here-->
-                            <div class="alert alert-danger" >
+                            <div class="alert alert-danger">
                                 <ul id="alerts"></ul>
                             </div>
                         </div>
@@ -87,8 +87,8 @@
                                 <label for="epispeudon_foreas required" class="col-sm-6 col-form-label">Επισπεύδων
                                     φορέας</label>
                                 <div class="col-sm-4">
-                                    <textarea class="form-control" id="epispeudon_foreas"
-                                        name="epispeudon_foreas" rows="3"><%= data.epispeudon_foreas %></textarea>
+                                    <textarea class="form-control" id="epispeudon_foreas" name="epispeudon_foreas"
+                                        rows="3"><%= data.epispeudon_foreas %></textarea>
                                 </div>
                             </div>
                             <hr>
@@ -97,9 +97,8 @@
                                 <label for="rythmisi_pou_afora" class="col-sm-6 col-form-label">Ρύθμιση την οποία
                                     αφορά</label>
                                 <div class="col-sm-4">
-                                    <textarea class="form-control" id="rythmisi_pou_afora"
-                                        name="rythmisi_pou_afora" rows="3"
-                                        placeholder="Ρύθμιση"><%= data.rythmisi_pou_afora %></textarea>
+                                    <textarea class="form-control" id="rythmisi_pou_afora" name="rythmisi_pou_afora"
+                                        rows="3" placeholder="Ρύθμιση"><%= data.rythmisi_pou_afora %></textarea>
                                 </div>
                             </div>
 
@@ -130,32 +129,32 @@
                             <div class="checkbox-group form-group row">
                                 <label for="eksoteriki_politiki" class="col-sm-8 col-form-label">ΕΘΝΙΚΗ ΑΜΥΝΑ -
                                     ΕΞΩΤΕΡΙΚΗ ΠΟΛΙΤΙΚΗ<sup>2</sup></label>
-                                    <input class="col-sm-2 form-check-input position-static" type="checkbox"
-                                            id="eksoteriki_politiki" name="eksoteriki_politiki" >
+                                <input class="col-sm-2 form-check-input position-static" type="checkbox"
+                                    id="eksoteriki_politiki" name="eksoteriki_politiki">
                             </div>
                             <div class="checkbox-group form-group row">
                                 <label for="forologiki_politiki" class="col-sm-8 col-form-label">ΟΙΚΟΝΟΜΙΚΗ /
                                     ΔΗΜΟΣΙΟΝΟΜΙΚΗ / ΦΟΡΟΛΟΓΙΚΗ ΠΟΛΙΤΙΚΗ<sup>3</sup></label>
-                                    <input class="col-sm-2 form-check-input position-static" type="checkbox"
-                                        id="forologiki_politiki" name="forologiki_politiki" >
+                                <input class="col-sm-2 form-check-input position-static" type="checkbox"
+                                    id="forologiki_politiki" name="forologiki_politiki">
                             </div>
                             <div class="checkbox-group form-group row">
                                 <label for="koinoniki_politiki" class="col-sm-8 col-form-label">ΚΟΙΝΩΝΙΚΗ
-                                    ΠΟΛΙΤΙΚΗ<sup>4</sup></label>                                
-                                    <input class="col-sm-2 form-check-input position-static" type="checkbox"
-                                        id="koinoniki_politiki" name="koinoniki_politiki" >
+                                    ΠΟΛΙΤΙΚΗ<sup>4</sup></label>
+                                <input class="col-sm-2 form-check-input position-static" type="checkbox"
+                                    id="koinoniki_politiki" name="koinoniki_politiki">
                             </div>
                             <div class="checkbox-group form-group row">
                                 <label for="dimosia_dioikisi" class="col-sm-8 col-form-label">ΔΗΜΟΣΙΑ ΔΙΟΙΚΗΣΗ - ΔΗΜΟΣΙΑ
                                     ΤΑΞΗ - ΔΙΚΑΙΟΣΥΝΗ<sup>5</sup></label>
-                                    <input class="col-sm-2 form-check-input position-static" type="checkbox"
-                                        id="dimosia_dioikisi" name="dimosia_dioikisi">
+                                <input class="col-sm-2 form-check-input position-static" type="checkbox"
+                                    id="dimosia_dioikisi" name="dimosia_dioikisi">
                             </div>
                             <div class="checkbox-group form-group row">
                                 <label for="anaptiksi" class="col-sm-8 col-form-label">ΑΝΑΠΤΥΞΗ - ΕΠΕΝΔΥΤΙΚΗ
                                     ΔΡΑΣΤΗΡΙΟΤΗΤΑ<sup>6</sup></label>
-                                    <input class="col-sm-2 form-check-input position-static" type="checkbox"
-                                        id="anaptiksi" name="anaptiksi">
+                                <input class="col-sm-2 form-check-input position-static" type="checkbox" id="anaptiksi"
+                                    name="anaptiksi">
 
                             </div>
                             <input type="button" name="next" class="next action-button" value="Επόμενα πεδία" />
@@ -224,12 +223,13 @@
                             <h2>Η αναγκαιότητα της αξιολογούμενης ρύθμισης</h2>
                             <br>
                             <div class="checkbox-group form-group row">
-                                <label for="field_4" class="required col-sm-8 col-form-label">4. Το εν λόγω ζήτημα έχει αντιμετωπιστεί με νομοθετική ρύθμιση στο παρελθόν;</label>
-                                    <select id="field_4" name="field_4" class="col-sm-2 form-control">
-                                        <option selected disabled>Eπιλογή</option>
-                                        <option value="Ναι">Ναι</option>
-                                        <option value="Όχι">Όχι</option>
-                                    </select>
+                                <label for="field_4" class="required col-sm-8 col-form-label">4. Το εν λόγω ζήτημα έχει
+                                    αντιμετωπιστεί με νομοθετική ρύθμιση στο παρελθόν;</label>
+                                <select id="field_4" name="field_4" class="col-sm-2 form-control">
+                                    <option selected disabled>Eπιλογή</option>
+                                    <option value="Ναι">Ναι</option>
+                                    <option value="Όχι">Όχι</option>
+                                </select>
                             </div>
 
                             <div id="field_4_wrap" class="form-group" style="display:none;">
@@ -289,13 +289,14 @@
                             <h2>Συναφείς πρακτικές</h2>
                             <br>
                             <div class="checkbox-group form-group row">
-                                <label for="field_6" class="required col-sm-8 col-form-label">6. Έχετε λάβει υπόψη συναφείς
+                                <label for="field_6" class="required col-sm-8 col-form-label">6. Έχετε λάβει υπόψη
+                                    συναφείς
                                     πρακτικές;</label>
-                                    <select id="field_6" name="field_6" class="col-sm-2 form-control">
-                                        <option selected disabled>Eπιλογή</option>
-                                        <option value="Ναι">Ναι</option>
-                                        <option value="Όχι">Όχι</option>
-                                    </select>
+                                <select id="field_6" name="field_6" class="col-sm-2 form-control">
+                                    <option selected disabled>Eπιλογή</option>
+                                    <option value="Ναι">Ναι</option>
+                                    <option value="Όχι">Όχι</option>
+                                </select>
                             </div>
 
                             <div id="field_6_wrap" class="form-group" style="display:none;">
@@ -600,16 +601,12 @@
 
                                 <div class="checkbox-group form-group row">
                                     <label for="field_11" class="col-sm-8 col-form-label">11. Το προβλεπόμενο
-                                        πληροφοριακό
-                                        σύστημα είναι συμβατό με την εκάστοτε ψηφιακή στρατηγική της χώρας (Βίβλος
-                                        Ψηφιακού
-                                        Μετασχηματισμού);</label>
+                                        πληροφοριακό σύστημα είναι συμβατό με την εκάστοτε ψηφιακή στρατηγική της χώρας
+                                        (Βίβλος Ψηφιακού Μετασχηματισμού);</label>
                                     <select id="field_11" name="field_11" class="col-sm-2 form-control">
-                                        <% if (data.field_11=="Ναι" ) { %>
-                                            <option value="Ναι">Ναι</option>
-                                            <% }else { %>
-                                                <option value="Όχι">Όχι</option>
-                                                <% } %>
+                                        <option selected disabled>Eπιλογή</option>
+                                        <option value="Ναι">Ναι</option>
+                                        <option value="Όχι">Όχι</option>
                                     </select>
                                 </div>
 
@@ -624,14 +621,12 @@
 
                                 <div class="checkbox-group form-group row">
                                     <label for="field_12" class="col-sm-8 col-form-label">12. Διασφαλίζεται η
-                                        διαλειτουργικότητα
-                                        του εν λόγω πληροφοριακού συστήματος με άλλα υφιστάμενα συστήματα;</label>
+                                        διαλειτουργικότητα του εν λόγω πληροφοριακού συστήματος με άλλα υφιστάμενα
+                                        συστήματα;</label>
                                     <select id="field_12" name="field_12" class="col-sm-2 form-control">
-                                        <% if (data.field_12=="Ναι" ) { %>
-                                            <option value="Ναι">Ναι</option>
-                                            <% }else { %>
-                                                <option value="Όχι">Όχι</option>
-                                                <% } %>
+                                        <option selected disabled>Eπιλογή</option>
+                                        <option value="Ναι">Ναι</option>
+                                        <option value="Όχι">Όχι</option>
                                     </select>
                                 </div>
 
@@ -646,14 +641,11 @@
 
                                 <div class="checkbox-group form-group row">
                                     <label for="field_13" class="col-sm-8 col-form-label">13. Έχει προηγηθεί μελέτη
-                                        βιωσιμότητας
-                                        του προβλεπόμενου πληροφοριακού συστήματος;</label>
+                                        βιωσιμότητας του προβλεπόμενου πληροφοριακού συστήματος;</label>
                                     <select id="field_13" name="field_13" class="col-sm-2 form-control">
-                                        <% if (data.field_13=="Ναι" ) { %>
-                                            <option value="Ναι">Ναι</option>
-                                            <% }else { %>
-                                                <option value="Όχι">Όχι</option>
-                                                <% } %>
+                                        <option selected disabled>Eπιλογή</option>
+                                        <option value="Ναι">Ναι</option>
+                                        <option value="Όχι">Όχι</option>
                                     </select>
                                 </div>
 
@@ -697,7 +689,7 @@
                                                         rows="1"><%= Object.values(data.field_14_arthro[i]) %></textarea>
                                                 </td>
                                                 <td>
-                                                    <textarea class="form-control" placeholder="Υφιστάμενες διατάξεις"
+                                                    <textarea class="form-control" placeholder="Στόχος"
                                                         id="field_14_stoxos<%=i%>" name="field_14_stoxos<%=i%>"
                                                         rows="1"><%= Object.values(data.field_14_stoxos[i]) %></textarea>
                                                     <button class="btn remove float-right" type="button"><img
@@ -721,11 +713,10 @@
 
                             <%- include('view_form/view_form_b.ejs') %>
                                 <%- include('view_form/view_form_c.ejs') %>
-                                    <%- include('view_form/view_form_d.ejs') %>
-                                        <%- include('view_form/view_form_e.ejs') %>
-                                            <%- include('view_form/view_form_f.ejs') %>
-                                                <%- include('view_form/view_form_g.ejs') %>
-                                                    <%- include('view_form/view_form_h.ejs') %>
+                                    <%- include('view_form/view_form_e.ejs') %>
+                                        <%- include('view_form/view_form_f.ejs') %>
+                                            <%- include('view_form/view_form_g.ejs') %>
+                                                <%- include('view_form/view_form_h.ejs') %>
 
                     </form>
                     <input type="button" name="save_temporarily" class="save_temporarily float-right"
@@ -908,8 +899,8 @@
                     var role = "<%= rolos%>";
                     var analysis = "<%= data.typos_analysis %>";
                     var pdf_exists = "<%= pdf_exists %>";
-                    var dataKeys = "<%= Object.keys(data) %>"
-                    var dataVals = "<%= Object.values(data) %>";
+                    // var dataKeys = "<%= Object.keys(data) %>"
+                    // var dataVals = "<%= Object.values(data) %>";
                     console.log(ekthesi_id);
                     console.log("session id: " + sessionStorage.getItem("referer"));
                     //prevent user from going to a different form through url   
@@ -940,20 +931,20 @@
                             contentType: false,
                             processData: false,
                             error: function (data) {
-                                var errors = JSON.parse(data.responseText);
-                                $('#errors').show();
-                                var alerts = '';
-                                for (i in errors) {
-                                    console.log(errors[i].msg)
-                                    alerts += "<li>" + errors[i].msg + "</li>";
-                                }
-                                if ($(this).val() === '') {
-                                    $(this).addClass("focused");
-                                    flag = false;
-                                }
-                                $('#alerts').empty();
-                                $('#alerts').html(alerts);
-                                window.scrollTo(0, 0);
+                                // var errors = JSON.parse(data.responseText);
+                                // $('#errors').show();
+                                // var alerts = '';
+                                // for (i in errors) {
+                                //     console.log(errors[i].msg)
+                                //     alerts += "<li>" + errors[i].msg + "</li>";
+                                // }
+                                // if ($(this).val() === '') {
+                                //     $(this).addClass("focused");
+                                //     flag = false;
+                                // }
+                                // $('#alerts').empty();
+                                // $('#alerts').html(alerts);
+                                // window.scrollTo(0, 0);
                                 console.log(errors)
                             },
                             success: function (data) {
@@ -987,15 +978,15 @@
                     }
 
                     $(".save_temporarily").on("click", function (ev) {
-                        var validationFlag;
-                        validationFlag = validateRequiredFields(validationFlag);
-                        console.log('validationFlag: ' + validationFlag)
-                        if (validationFlag) {
-                            updateForm(ev);
-                        } else {
-                            ev.preventDefault();
-                        }
-
+                        // var validationFlag;
+                        // validationFlag = validateRequiredFields(validationFlag);
+                        // console.log('validationFlag: ' + validationFlag)
+                        // if (validationFlag) {
+                        //     updateForm(ev);
+                        // } else {
+                        //     ev.preventDefault();
+                        // }
+                        updateForm(ev);
                     });
 
                     $(".return-to-author").on("click", function (ev) {
@@ -1098,7 +1089,7 @@
                             $("#ekthesi_glk").prop('checked', true);
                         }
 
-                        if ( $("#status_ekthesis").val() !== "Σε σύνταξη" && role === "Συντάκτης επισπεύδοντος Υπουργείου") {
+                        if ($("#status_ekthesis").val() !== "Σε σύνταξη" && role === "Συντάκτης επισπεύδοντος Υπουργείου") {
                             $("form").prop("disable", true);
                             enableFields(".next");
                             enableFields(".previous");
@@ -1616,6 +1607,53 @@
                             $("#field_13_wrap").show();
                         }
                     })
+
+                    $(function (ev) {
+                        if ($("#field_36").val() == "Ναι") {
+                            $("#field_36_wrap").show();
+                        }
+                    })
+
+                    $("#field_4").on("click", function (ev) {
+                        if ($(this).val() == "Ναι") {
+                            $("#field_4_wrap").show();
+                        } else {
+                            $("#field_4_wrap").hide();
+                        }
+                    })
+
+                    $("#field_6").on("change", function (ev) {
+                        if ($(this).val() == "Ναι") {
+                            $("#field_6_wrap").show();
+                        } else {
+                            $("#field_6_wrap").hide();
+                        }
+                    })
+
+                    $("#field_11").on("change", function (ev) {
+                        if ($(this).val() == "Ναι") {
+                            $("#field_11_wrap").show();
+                        } else {
+                            $("#field_11_wrap").hide();
+                        }
+                    })
+
+                    $("#field_12").on("change", function (ev) {
+                        if ($(this).val() == "Ναι") {
+                            $("#field_12_wrap").show();
+                        } else {
+                            $("#field_12_wrap").hide();
+                        }
+                    })
+
+                    $("#field_13").on("change", function (ev) {
+                        if ($(this).val() == "Ναι") {
+                            $("#field_13_wrap").show();
+                        } else {
+                            $("#field_13_wrap").hide();
+                        }
+                    })
+
                     $("#field_36").on("change", function (ev) {
                         if ($(this).val() == "Ναι") {
                             $("#field_36_wrap").show();
@@ -1786,23 +1824,28 @@
                         enableFields(".previous");
                     }
 
-                    $(".close").on("click", function(){
+                    $(".close").on("click", function () {
                         $("#errors").hide();
                     })
 
+                    var data = '<%= JSON.stringify(data) %>'
+                    data = data.replace(/&#34;/g, '"');
+                    data = JSON.parse(data);
                     var selects = $("form").find("select");
-                    console.log('selects: ' + selects)
                     $.each(selects, function (key, field) {
                         setDropdown(selects[key].name);
                     })
 
-                    //console.log("AAAAA "+"<%= Object.keys(data) %>")
                     function setDropdown(elem) {
-
-                        let dropdownElement = $("#"+elem);
-                        console.log(dataVals[elem])
-                        // console.log(dropdownElement)
-                        // console.log(dropdownElement.value)
+                        for (key in data) {
+                            if (elem === key) {
+                                if (data[key] === null) {
+                                    $("#" + elem).val($("#" + elem + " option:first").val());
+                                } else {
+                                    $("#" + elem).val(data[key]);
+                                }
+                            }
+                        }
                     }
 
                     //check if required fields are empty
@@ -1810,10 +1853,9 @@
                         $('#alerts').empty();
                         validationFlag = true;
                         var validField9 = true;
-                        var errors; 
+                        var errors;
                         //review
                         var textareas = $("form").find("textarea");//find all textareas            
-                        console.log(textareas)
                         $.each(textareas, function (key, field) {
                             //if ($(this).parent().find('label').hasClass('required') && $(this).prop('disabled',false)){                                                       
                             if ($(this).parent().find("label").hasClass("required")) {//if label nearest textarea is required, add class to textfield
@@ -1835,18 +1877,18 @@
                             if ($("#errors").prop("hide", true)) {
                                 $("#errors").show();
                                 window.scrollTo(0, 0);
-                            }                                                        
+                            }
                         }
 
                         if ($("#ekpedeusi_politismos").prop("checked", true)) {
                             validField9 = focusElement($(".ekpaideysi-politismos :input"), validField9);
-                        }                         
+                        }
                         if ($("#forologiki_politiki").prop("checked", true)) {
                             validField9 = focusElement($(".oikonomia :input"), validField9);
                         }
                         if ($("#koinoniki_politiki").prop("checked", true)) {
                             validField9 = focusElement($(".koinoniki-politiki :input"), validField9);
-                        } 
+                        }
                         if ($("#dimosia_dioikisi").prop("checked", true)) {
                             validField9 = focusElement($(".dimosia-dioikisi :input"), validField9);
                         }
@@ -1854,7 +1896,7 @@
                             validField9 = focusElement($(".ependyseis :input"), validField9);
                         }
                         console.log(validField9)
-                        if (!validField9) { 
+                        if (!validField9) {
                             validationFlag = validField9;
                             $("#alerts").append("<li> Υπάρχουν κενά πεδία στους πίνακες του πεδίου 9. </li>");
                             if ($("#errors").prop("hide", true)) {
@@ -1866,16 +1908,30 @@
                     }
 
                     function focusElement(indexClass, flag) {
-                        console.log(indexClass)
                         indexClass.each(function () {
                             if ($(this).val() === '') {
                                 $(this).addClass("focused");
                                 flag = false;
                             }
-                        })                        
+                        })
                         return flag;
                     }
 
+                    var staticTables = '<%- JSON.stringify(staticTables) %>';
+                    console.log(staticTables);
+                    staticTables = JSON.parse(staticTables)
+                    //myObj = '{ "name": "John", "age": 30, "cars": [ { "name": "Ford", "models": ["Fiesta", "Focus", "Mustang"] }, { "name": "BMW", "models": ["320", "X3", "X5"] }, { "name": "Fiat", "models": ["500", "Panda"] }]}'
+                    // console.log(JSON.parse(myObj))
+                    // var smvs = '<%- staticTables.symvaseis %>';
+
+                    //staticTables = staticTables.replace(/&#34;/g, '"');
+                    //staticTables = JSON.parse(staticTables)    
+
+                    console.log(staticTables[0]);
+
+
+
+                    //populate field 9
                     function setValuesField9(inputAsJSON, var0, var1, var2, var3, var4, var5, var6, var7) {
                         inputAsJSON = inputAsJSON.replace(/&#34;/g, '"');//replace html code for double quotes
                         //console.log("JSON: " + inputAsJSON);
@@ -1896,141 +1952,7 @@
                         }
                     };
 
-                    setValuesField9("<%=data.field_9.dataValues.atmosfairiki_rypansi%>", ("#atmosfairiki_rypansi_year1"), ("#atmosfairiki_rypansi_year2"), ("#atmosfairiki_rypansi_year3"), ("#atmosfairiki_rypansi_year4"), ("#atmosfairiki_rypansi_year5"), ("#atmosfairiki_rypansi_prosfata_stoixeia"), ("#atmosfairiki_rypansi_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.viologikoi_katharismoi%>", ("#viologikoi_katharismoi_year1"), ("#viologikoi_katharismoi_year2"), ("#viologikoi_katharismoi_year3"), ("#viologikoi_katharismoi_year4"), ("#viologikoi_katharismoi_year5"), ("#viologikoi_katharismoi_prosfata_stoixeia"), ("#viologikoi_katharismoi_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.katallhles_aktes%>", ("#katallhles_aktes_year1"), ("#katallhles_aktes_year2"), ("#katallhles_aktes_year3"), ("#katallhles_aktes_year4"), ("#katallhles_aktes_year5"), ("#katallhles_aktes_prosfata_stoixeia"), ("#katallhles_aktes_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.katallilotita_diktyoy_ydreysis%>", ("#katallilotita_diktyoy_ydreysis_year1"), ("#katallilotita_diktyoy_ydreysis_year2"), ("#katallilotita_diktyoy_ydreysis_year3"), ("#katallilotita_diktyoy_ydreysis_year4"), ("#katallilotita_diktyoy_ydreysis_year5"), ("#katallilotita_diktyoy_ydreysis_prosfata_stoixeia"), ("#katallilotita_diktyoy_ydreysis_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.xrisi_aporrimmatwn%>", ("#xrisi_aporrimmatwn_year1"), ("#xrisi_aporrimmatwn_year2"), ("#xrisi_aporrimmatwn_year3"), ("#xrisi_aporrimmatwn_year4"), ("#xrisi_aporrimmatwn_year5"), ("#xrisi_aporrimmatwn_prosfata_stoixeia"), ("#xrisi_aporrimmatwn_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.aporrimmata_xyta%>", ("#aporrimmata_xyta_year1"), ("#aporrimmata_xyta_year2"), ("#aporrimmata_xyta_year3"), ("#aporrimmata_xyta_year4"), ("#aporrimmata_xyta_year5"), ("#aporrimmata_xyta_prosfata_stoixeia"), ("#aporrimmata_xyta_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.katastrofi_dasikwn_ektasewn%>", ("#katastrofi_dasikwn_ektasewn_year1"), ("#katastrofi_dasikwn_ektasewn_year2"), ("#katastrofi_dasikwn_ektasewn_year3"), ("#katastrofi_dasikwn_ektasewn_year4"), ("#katastrofi_dasikwn_ektasewn_year5"), ("#katastrofi_dasikwn_ektasewn_prosfata_stoixeia"), ("#katastrofi_dasikwn_ektasewn_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.prostateuomenes_perioxes%>", ("#prostateuomenes_perioxes_year1"), ("#prostateuomenes_perioxes_year2"), ("#prostateuomenes_perioxes_year3"), ("#prostateuomenes_perioxes_year4"), ("#prostateuomenes_perioxes_year5"), ("#prostateuomenes_perioxes_prosfata_stoixeia"), ("#prostateuomenes_perioxes_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.anadaswseis%>", ("#anadaswseis_year1"), ("#anadaswseis_year2"), ("#anadaswseis_year3"), ("#anadaswseis_year4"), ("#anadaswseis_year5"), ("#anadaswseis_prosfata_stoixeia"), ("#anadaswseis_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.proypologismos_prostasias_perivallontos%>", ("#proypologismos_prostasias_perivallontos_year1"), ("#proypologismos_prostasias_perivallontos_year2"), ("#proypologismos_prostasias_perivallontos_year3"), ("#proypologismos_prostasias_perivallontos_year4"), ("#proypologismos_prostasias_perivallontos_year5"), ("#proypologismos_prostasias_perivallontos_prosfata_stoixeia"), ("#proypologismos_prostasias_perivallontos_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.katanalwsi_energeias_kata_kefali%>", ("#katanalwsi_energeias_kata_kefali_year1"), ("#katanalwsi_energeias_kata_kefali_year2"), ("#katanalwsi_energeias_kata_kefali_year3"), ("#katanalwsi_energeias_kata_kefali_year4"), ("#katanalwsi_energeias_kata_kefali_year5"), ("#katanalwsi_energeias_kata_kefali_prosfata_stoixeia"), ("#katanalwsi_energeias_kata_kefali_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.katanalwsi_energeias_ana_morfi%>", ("#katanalwsi_energeias_ana_morfi_year1"), ("#katanalwsi_energeias_ana_morfi_year2"), ("#katanalwsi_energeias_ana_morfi_year3"), ("#katanalwsi_energeias_ana_morfi_year4"), ("#katanalwsi_energeias_ana_morfi_year5"), ("#katanalwsi_energeias_ana_morfi_prosfata_stoixeia"), ("#katanalwsi_energeias_ana_morfi_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.katanalwsi_energeias_apo_ananewsimes_piges%>", ("#katanalwsi_energeias_apo_ananewsimes_piges_year1"), ("#katanalwsi_energeias_apo_ananewsimes_piges_year2"), ("#katanalwsi_energeias_apo_ananewsimes_piges_year3"), ("#katanalwsi_energeias_apo_ananewsimes_piges_year4"), ("#katanalwsi_energeias_apo_ananewsimes_piges_year5"), ("#katanalwsi_energeias_apo_ananewsimes_piges_prosfata_stoixeia"), ("#katanalwsi_energeias_apo_ananewsimes_piges_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.meiwsi_ekpompwn_thermokipioy%>", ("#meiwsi_ekpompwn_thermokipioy_year1"), ("#meiwsi_ekpompwn_thermokipioy_year2"), ("#meiwsi_ekpompwn_thermokipioy_year3"), ("#meiwsi_ekpompwn_thermokipioy_year4"), ("#meiwsi_ekpompwn_thermokipioy_year5"), ("#meiwsi_ekpompwn_thermokipioy_prosfata_stoixeia"), ("#meiwsi_ekpompwn_thermokipioy_epidiwkomenos_stoxos"));
 
-                    setValuesField9("<%=data.field_9.dataValues.pagkosmia_antagwnistikotita%>", ("#pagkosmia_antagwnistikotita_year1"), ("#pagkosmia_antagwnistikotita_year2"), ("#pagkosmia_antagwnistikotita_year3"), ("#pagkosmia_antagwnistikotita_year4"), ("#pagkosmia_antagwnistikotita_year5"), ("#pagkosmia_antagwnistikotita_prosfata_stoixeia"), ("#pagkosmia_antagwnistikotita_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.ependyseis%>", ("#ependyseis_year1"), ("#ependyseis_year2"), ("#ependyseis_year3"), ("#ependyseis_year4"), ("#ependyseis_year5"), ("#ependyseis_prosfata_stoixeia"), ("#ependyseis_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.ameses_ependyseis%>", ("#ameses_ependyseis_year1"), ("#ameses_ependyseis_year2"), ("#ameses_ependyseis_year3"), ("#ameses_ependyseis_year4"), ("#ameses_ependyseis_year5"), ("#ameses_ependyseis_prosfata_stoixeia"), ("#ameses_ependyseis_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.nees_epixeiriseis%>", ("#nees_epixeiriseis_year1"), ("#nees_epixeiriseis_year2"), ("#nees_epixeiriseis_year3"), ("#nees_epixeiriseis_year4"), ("#nees_epixeiriseis_year5"), ("#nees_epixeiriseis_prosfata_stoixeia"), ("#nees_epixeiriseis_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.kleistes_epixeiriseis%>", ("#kleistes_epixeiriseis_year1"), ("#kleistes_epixeiriseis_year2"), ("#kleistes_epixeiriseis_year3"), ("#kleistes_epixeiriseis_year4"), ("#kleistes_epixeiriseis_year5"), ("#kleistes_epixeiriseis_prosfata_stoixeia"), ("#kleistes_epixeiriseis_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.dioikitiko_kostos%>", ("#dioikitiko_kostos_year1"), ("#dioikitiko_kostos_year2"), ("#dioikitiko_kostos_year3"), ("#dioikitiko_kostos_year4"), ("#dioikitiko_kostos_year5"), ("#dioikitiko_kostos_prosfata_stoixeia"), ("#dioikitiko_kostos_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.mx_systasis_epixeirisis%>", ("#mx_systasis_epixeirisis_year1"), ("#mx_systasis_epixeirisis_year2"), ("#mx_systasis_epixeirisis_year3"), ("#mx_systasis_epixeirisis_year4"), ("#mx_systasis_epixeirisis_year5"), ("#mx_systasis_epixeirisis_prosfata_stoixeia"), ("#mx_systasis_epixeirisis_epidiwkomenos_stoxos"));
-
-                    setValuesField9("<%=data.field_9.dataValues.arithmos_diaforwn%>", ("#arithmos_diaforwn_year1"), ("#arithmos_diaforwn_year2"), ("#arithmos_diaforwn_year3"), ("#arithmos_diaforwn_year4"), ("#arithmos_diaforwn_year5"), ("#arithmos_diaforwn_prosfata_stoixeia"), ("#arithmos_diaforwn_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.dioikitikes_periptwseis%>", ("#dioikitikes_periptwseis_year1"), ("#dioikitikes_periptwseis_year2"), ("#dioikitikes_periptwseis_year3"), ("#dioikitikes_periptwseis_year4"), ("#dioikitikes_periptwseis_year5"), ("#dioikitikes_periptwseis_prosfata_stoixeia"), ("#dioikitikes_periptwseis_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.xronos_epilysis_ypothesewn%>", ("#xronos_epilysis_ypothesewn_year1"), ("#xronos_epilysis_ypothesewn_year2"), ("#xronos_epilysis_ypothesewn_year3"), ("#xronos_epilysis_ypothesewn_year4"), ("#xronos_epilysis_ypothesewn_year5"), ("#xronos_epilysis_ypothesewn_prosfata_stoixeia"), ("#xronos_epilysis_ypothesewn_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.ekdosi_apofasewn%>", ("#ekdosi_apofasewn_year1"), ("#ekdosi_apofasewn_year2"), ("#ekdosi_apofasewn_year3"), ("#ekdosi_apofasewn_year4"), ("#ekdosi_apofasewn_year5"), ("#ekdosi_apofasewn_prosfata_stoixeia"), ("#ekdosi_apofasewn_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.mo_ypotheswn_dikasti%>", ("#mo_ypotheswn_dikasti_year1"), ("#mo_ypotheswn_dikasti_year2"), ("#mo_ypotheswn_dikasti_year3"), ("#mo_ypotheswn_dikasti_year4"), ("#mo_ypotheswn_dikasti_year5"), ("#mo_ypotheswn_dikasti_prosfata_stoixeia"), ("#mo_ypotheswn_dikasti_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.akyrwsi_apofasewn%>", ("#akyrwsi_apofasewn_year1"), ("#akyrwsi_apofasewn_year2"), ("#akyrwsi_apofasewn_year3"), ("#akyrwsi_apofasewn_year4"), ("#akyrwsi_apofasewn_year5"), ("#akyrwsi_apofasewn_prosfata_stoixeia"), ("#akyrwsi_apofasewn_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.ekswdikastikos_symvivasmos%>", ("#ekswdikastikos_symvivasmos_year1"), ("#ekswdikastikos_symvivasmos_year2"), ("#ekswdikastikos_symvivasmos_year3"), ("#ekswdikastikos_symvivasmos_year4"), ("#ekswdikastikos_symvivasmos_year5"), ("#ekswdikastikos_symvivasmos_prosfata_stoixeia"), ("#ekswdikastikos_symvivasmos_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.enallaktiki_epilysi_diaforwn%>", ("#enallaktiki_epilysi_diaforwn_year1"), ("#enallaktiki_epilysi_diaforwn_year2"), ("#enallaktiki_epilysi_diaforwn_year3"), ("#enallaktiki_epilysi_diaforwn_year4"), ("#enallaktiki_epilysi_diaforwn_year5"), ("#enallaktiki_epilysi_diaforwn_prosfata_stoixeia"), ("#enallaktiki_epilysi_diaforwn_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.nomiki_prostasia%>", ("#nomiki_prostasia_year1"), ("#nomiki_prostasia_year2"), ("#nomiki_prostasia_year3"), ("#nomiki_prostasia_year4"), ("#nomiki_prostasia_year5"), ("#nomiki_prostasia_prosfata_stoixeia"), ("#nomiki_prostasia_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.kostos_prosfygis%>", ("#kostos_prosfygis_year1"), ("#kostos_prosfygis_year2"), ("#kostos_prosfygis_year3"), ("#kostos_prosfygis_year4"), ("#kostos_prosfygis_year5"), ("#kostos_prosfygis_prosfata_stoixeia"), ("#kostos_prosfygis_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.ilektroniki_ypovoli_dikografwn%>", ("#ilektroniki_ypovoli_dikografwn_year1"), ("#ilektroniki_ypovoli_dikografwn_year2"), ("#ilektroniki_ypovoli_dikografwn_year3"), ("#ilektroniki_ypovoli_dikografwn_year4"), ("#ilektroniki_ypovoli_dikografwn_year5"), ("#ilektroniki_ypovoli_dikografwn_prosfata_stoixeia"), ("#ilektroniki_ypovoli_dikografwn_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.diekperaiwsi_ypothesewn%>", ("#diekperaiwsi_ypothesewn_year1"), ("#diekperaiwsi_ypothesewn_year2"), ("#diekperaiwsi_ypothesewn_year3"), ("#diekperaiwsi_ypothesewn_year4"), ("#diekperaiwsi_ypothesewn_year5"), ("#diekperaiwsi_ypothesewn_prosfata_stoixeia"), ("#diekperaiwsi_ypothesewn_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.poines_se_xrima%>", ("#poines_se_xrima_year1"), ("#poines_se_xrima_year2"), ("#poines_se_xrima_year3"), ("#poines_se_xrima_year4"), ("#poines_se_xrima_year5"), ("#poines_se_xrima_prosfata_stoixeia"), ("#poines_se_xrima_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.kostos_swfronismou%>", ("#kostos_swfronismou_year1"), ("#kostos_swfronismou_year2"), ("#kostos_swfronismou_year3"), ("#kostos_swfronismou_year4"), ("#kostos_swfronismou_year5"), ("#kostos_swfronismou_prosfata_stoixeia"), ("#kostos_swfronismou_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.analogia_fylakwn_kratoumenwn%>", ("#analogia_fylakwn_kratoumenwn_year1"), ("#analogia_fylakwn_kratoumenwn_year2"), ("#analogia_fylakwn_kratoumenwn_year3"), ("#analogia_fylakwn_kratoumenwn_year4"), ("#analogia_fylakwn_kratoumenwn_year5"), ("#analogia_fylakwn_kratoumenwn_prosfata_stoixeia"), ("#analogia_fylakwn_kratoumenwn_epidiwkomenos_stoxos"));
-
-                    setValuesField9("<%=data.field_9.dataValues.drastes_adikimata%>", ("#drastes_adikimata_year1"), ("#drastes_adikimata_year2"), ("#drastes_adikimata_year3"), ("#drastes_adikimata_year4"), ("#drastes_adikimata_year5"), ("#drastes_adikimata_prosfata_stoixeia"), ("#drastes_adikimata_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.adikimata_poinikoy_kwdika%>", ("#adikimata_poinikoy_kwdika_year1"), ("#adikimata_poinikoy_kwdika_year2"), ("#adikimata_poinikoy_kwdika_year3"), ("#adikimata_poinikoy_kwdika_year4"), ("#adikimata_poinikoy_kwdika_year5"), ("#adikimata_poinikoy_kwdika_prosfata_stoixeia"), ("#adikimata_poinikoy_kwdika_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.diapraxthenta_adikimata%>", ("#diapraxthenta_adikimata_year1"), ("#diapraxthenta_adikimata_year2"), ("#diapraxthenta_adikimata_year3"), ("#diapraxthenta_adikimata_year4"), ("#diapraxthenta_adikimata_year5"), ("#diapraxthenta_adikimata_prosfata_stoixeia"), ("#diapraxthenta_adikimata_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.etisia_statistika%>", ("#etisia_statistika_year1"), ("#etisia_statistika_year2"), ("#etisia_statistika_year3"), ("#etisia_statistika_year4"), ("#etisia_statistika_year5"), ("#etisia_statistika_prosfata_stoixeia"), ("#etisia_statistika_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.adikimata_paranomi_eisodos%>", ("#adikimata_paranomi_eisodos_year1"), ("#adikimata_paranomi_eisodos_year2"), ("#adikimata_paranomi_eisodos_year3"), ("#adikimata_paranomi_eisodos_year4"), ("#adikimata_paranomi_eisodos_year5"), ("#adikimata_paranomi_eisodos_prosfata_stoixeia"), ("#adikimata_paranomi_eisodos_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.syxnotita_egklimatwn%>", ("#syxnotita_egklimatwn_year1"), ("#syxnotita_egklimatwn_year2"), ("#syxnotita_egklimatwn_year3"), ("#syxnotita_egklimatwn_year4"), ("#syxnotita_egklimatwn_year5"), ("#syxnotita_egklimatwn_prosfata_stoixeia"), ("#syxnotita_egklimatwn_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.eksixniasmena_egklimata%>", ("#eksixniasmena_egklimata_year1"), ("#eksixniasmena_egklimata_year2"), ("#eksixniasmena_egklimata_year3"), ("#eksixniasmena_egklimata_year4"), ("#eksixniasmena_egklimata_year5"), ("#eksixniasmena_egklimata_prosfata_stoixeia"), ("#eksixniasmena_egklimata_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.ergazomenoi_asfaleia%>", ("#ergazomenoi_asfaleia_year1"), ("#ergazomenoi_asfaleia_year2"), ("#ergazomenoi_asfaleia_year3"), ("#ergazomenoi_asfaleia_year4"), ("#ergazomenoi_asfaleia_year5"), ("#ergazomenoi_asfaleia_prosfata_stoixeia"), ("#ergazomenoi_asfaleia_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.katoikoi_ana_astynomiko%>", ("#katoikoi_ana_astynomiko_year1"), ("#katoikoi_ana_astynomiko_year2"), ("#katoikoi_ana_astynomiko_year3"), ("#katoikoi_ana_astynomiko_year4"), ("#katoikoi_ana_astynomiko_year5"), ("#katoikoi_ana_astynomiko_prosfata_stoixeia"), ("#katoikoi_ana_astynomiko_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.analogia_astynomikwn_ana_1000_katoikoys%>", ("#analogia_astynomikwn_ana_1000_katoikoys_year1"), ("#analogia_astynomikwn_ana_1000_katoikoys_year2"), ("#analogia_astynomikwn_ana_1000_katoikoys_year3"), ("#analogia_astynomikwn_ana_1000_katoikoys_year4"), ("#analogia_astynomikwn_ana_1000_katoikoys_year5"), ("#analogia_astynomikwn_ana_1000_katoikoys_prosfata_stoixeia"), ("#analogia_astynomikwn_ana_1000_katoikoys_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.dapanes_astynomias%>", ("#dapanes_astynomias_year1"), ("#dapanes_astynomias_year2"), ("#dapanes_astynomias_year3"), ("#dapanes_astynomias_year4"), ("#dapanes_astynomias_year5"), ("#dapanes_astynomias_prosfata_stoixeia"), ("#dapanes_astynomias_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.poroi_antimetwpisis%>", ("#poroi_antimetwpisis_year1"), ("#poroi_antimetwpisis_year2"), ("#poroi_antimetwpisis_year3"), ("#poroi_antimetwpisis_year4"), ("#poroi_antimetwpisis_year5"), ("#poroi_antimetwpisis_prosfata_stoixeia"), ("#poroi_antimetwpisis_epidiwkomenos_stoxos"));
-
-                    setValuesField9("<%=data.field_9.dataValues.dimosioi_ypalliloi%>", ("#dimosioi_ypalliloi_year1"), ("#dimosioi_ypalliloi_year2"), ("#dimosioi_ypalliloi_year3"), ("#dimosioi_ypalliloi_year4"), ("#dimosioi_ypalliloi_year5"), ("#dimosioi_ypalliloi_prosfata_stoixeia"), ("#dimosioi_ypalliloi_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.monimoi_metaklitoi%>", ("#monimoi_metaklitoi_year1"), ("#monimoi_metaklitoi_year2"), ("#monimoi_metaklitoi_year3"), ("#monimoi_metaklitoi_year4"), ("#monimoi_metaklitoi_year5"), ("#monimoi_metaklitoi_prosfata_stoixeia"), ("#monimoi_metaklitoi_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.analogia_ypallilwn%>", ("#analogia_ypallilwn_year1"), ("#analogia_ypallilwn_year2"), ("#analogia_ypallilwn_year3"), ("#analogia_ypallilwn_year4"), ("#analogia_ypallilwn_year5"), ("#analogia_ypallilwn_prosfata_stoixeia"), ("#analogia_ypallilwn_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.prosvasi_internet%>", ("#prosvasi_internet_year1"), ("#prosvasi_internet_year2"), ("#prosvasi_internet_year3"), ("#prosvasi_internet_year4"), ("#prosvasi_internet_year5"), ("#prosvasi_internet_prosfata_stoixeia"), ("#prosvasi_internet_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.intranet%>", ("#intranet_year1"), ("#intranet_year2"), ("#intranet_year3"), ("#intranet_year4"), ("#intranet_year5"), ("#intranet_prosfata_stoixeia"), ("#intranet_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.analogia_ypologistwn%>", ("#analogia_ypologistwn_year1"), ("#analogia_ypologistwn_year2"), ("#analogia_ypologistwn_year3"), ("#analogia_ypologistwn_year4"), ("#analogia_ypologistwn_year5"), ("#analogia_ypologistwn_prosfata_stoixeia"), ("#analogia_ypologistwn_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.istoselides%>", ("#istoselides_year1"), ("#istoselides_year2"), ("#istoselides_year3"), ("#istoselides_year4"), ("#istoselides_year5"), ("#istoselides_prosfata_stoixeia"), ("#istoselides_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.kentra_pliroforisis%>", ("#kentra_pliroforisis_year1"), ("#kentra_pliroforisis_year2"), ("#kentra_pliroforisis_year3"), ("#kentra_pliroforisis_year4"), ("#kentra_pliroforisis_year5"), ("#kentra_pliroforisis_prosfata_stoixeia"), ("#kentra_pliroforisis_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.eksypiretisi_ypiresies%>", ("#eksypiretisi_ypiresies_year1"), ("#eksypiretisi_ypiresies_year2"), ("#eksypiretisi_ypiresies_year3"), ("#eksypiretisi_ypiresies_year4"), ("#eksypiretisi_ypiresies_year5"), ("#eksypiretisi_ypiresies_prosfata_stoixeia"), ("#eksypiretisi_ypiresies_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.kostos_proswpikou%>", ("#kostos_proswpikou_year1"), ("#kostos_proswpikou_year2"), ("#kostos_proswpikou_year3"), ("#kostos_proswpikou_year4"), ("#kostos_proswpikou_year5"), ("#kostos_proswpikou_prosfata_stoixeia"), ("#kostos_proswpikou_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.kostos_diaxirisis_proswpikou%>", ("#kostos_diaxirisis_proswpikou_year1"), ("#kostos_diaxirisis_proswpikou_year2"), ("#kostos_diaxirisis_proswpikou_year3"), ("#kostos_diaxirisis_proswpikou_year4"), ("#kostos_diaxirisis_proswpikou_year5"), ("#kostos_diaxirisis_proswpikou_prosfata_stoixeia"), ("#kostos_diaxirisis_proswpikou_epidiwkomenos_stoxos"));
-
-                    setValuesField9("<%=data.field_9.dataValues.aitimata_asyloy%>", ("#aitimata_asyloy_year1"), ("#aitimata_asyloy_year2"), ("#aitimata_asyloy_year3"), ("#aitimata_asyloy_year4"), ("#aitimata_asyloy_year5"), ("#aitimata_asyloy_prosfata_stoixeia"), ("#aitimata_asyloy_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.metanasteytikes_roes%>", ("#metanasteytikes_roes_year1"), ("#metanasteytikes_roes_year2"), ("#metanasteytikes_roes_year3"), ("#metanasteytikes_roes_year4"), ("#metanasteytikes_roes_year5"), ("#metanasteytikes_roes_prosfata_stoixeia"), ("#metanasteytikes_roes_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.apelaseis%>", ("#apelaseis_year1"), ("#apelaseis_year2"), ("#apelaseis_year3"), ("#apelaseis_year4"), ("#apelaseis_year5"), ("#apelaseis_prosfata_stoixeia"), ("#apelaseis_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.monades_filoksenias%>", ("#monades_filoksenias_year1"), ("#monades_filoksenias_year2"), ("#monades_filoksenias_year3"), ("#monades_filoksenias_year4"), ("#monades_filoksenias_year5"), ("#monades_filoksenias_prosfata_stoixeia"), ("#monades_filoksenias_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.filoksenia_paravatikotita%>", ("#filoksenia_paravatikotita_year1"), ("#filoksenia_paravatikotita_year2"), ("#filoksenia_paravatikotita_year3"), ("#filoksenia_paravatikotita_year4"), ("#filoksenia_paravatikotita_year5"), ("#filoksenia_paravatikotita_prosfata_stoixeia"), ("#filoksenia_paravatikotita_epidiwkomenos_stoxos"));
-
-                    setValuesField9("<%=data.field_9.dataValues.apasxolisi_fylwn_synolika%>", ("#apasxolisi_fylwn_synolika_year1"), ("#apasxolisi_fylwn_synolika_year2"), ("#apasxolisi_fylwn_synolika_year3"), ("#apasxolisi_fylwn_synolika_year4"), ("#apasxolisi_fylwn_synolika_year5"), ("#apasxolisi_fylwn_synolika_prosfata_stoixeia"), ("#apasxolisi_fylwn_synolika_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.apasxolisi_fylwn_perifereia%>", ("#apasxolisi_fylwn_perifereia_year1"), ("#apasxolisi_fylwn_perifereia_year2"), ("#apasxolisi_fylwn_perifereia_year3"), ("#apasxolisi_fylwn_perifereia_year4"), ("#apasxolisi_fylwn_perifereia_year5"), ("#apasxolisi_fylwn_perifereia_prosfata_stoixeia"), ("#apasxolisi_fylwn_perifereia_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.apasxolisi_fylwn_oikonomia%>", ("#apasxolisi_fylwn_oikonomia_year1"), ("#apasxolisi_fylwn_oikonomia_year2"), ("#apasxolisi_fylwn_oikonomia_year3"), ("#apasxolisi_fylwn_oikonomia_year4"), ("#apasxolisi_fylwn_oikonomia_year5"), ("#apasxolisi_fylwn_oikonomia_prosfata_stoixeia"), ("#apasxolisi_fylwn_oikonomia_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.apasxolisi_fylwn_ilikia%>", ("#apasxolisi_fylwn_ilikia_year1"), ("#apasxolisi_fylwn_ilikia_year2"), ("#apasxolisi_fylwn_ilikia_year3"), ("#apasxolisi_fylwn_ilikia_year4"), ("#apasxolisi_fylwn_ilikia_year5"), ("#apasxolisi_fylwn_ilikia_prosfata_stoixeia"), ("#apasxolisi_fylwn_ilikia_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.anergia_fylwn_synolika%>", ("#anergia_fylwn_synolika_year1"), ("#anergia_fylwn_synolika_year2"), ("#anergia_fylwn_synolika_year3"), ("#anergia_fylwn_synolika_year4"), ("#anergia_fylwn_synolika_year5"), ("#anergia_fylwn_synolika_prosfata_stoixeia"), ("#anergia_fylwn_synolika_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.anergia_fylwn_perifereia%>", ("#anergia_fylwn_perifereia_year1"), ("#anergia_fylwn_perifereia_year2"), ("#anergia_fylwn_perifereia_year3"), ("#anergia_fylwn_perifereia_year4"), ("#anergia_fylwn_perifereia_year5"), ("#anergia_fylwn_perifereia_prosfata_stoixeia"), ("#anergia_fylwn_perifereia_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.anergia_fylwn_oikonomia%>", ("#anergia_fylwn_oikonomia_year1"), ("#anergia_fylwn_oikonomia_year2"), ("#anergia_fylwn_oikonomia_year3"), ("#anergia_fylwn_oikonomia_year4"), ("#anergia_fylwn_oikonomia_year5"), ("#anergia_fylwn_oikonomia_prosfata_stoixeia"), ("#anergia_fylwn_oikonomia_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.anergia_fylwn_ilikia%>", ("#anergia_fylwn_ilikia_year1"), ("#anergia_fylwn_ilikia_year2"), ("#anergia_fylwn_ilikia_year3"), ("#anergia_fylwn_ilikia_year4"), ("#anergia_fylwn_ilikia_year5"), ("#anergia_fylwn_ilikia_prosfata_stoixeia"), ("#anergia_fylwn_ilikia_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.autoapasxoloymenoi_fylo%>", ("#autoapasxoloymenoi_fylo_year1"), ("#autoapasxoloymenoi_fylo_year2"), ("#autoapasxoloymenoi_fylo_year3"), ("#autoapasxoloymenoi_fylo_year4"), ("#autoapasxoloymenoi_fylo_year5"), ("#autoapasxoloymenoi_fylo_prosfata_stoixeia"), ("#autoapasxoloymenoi_fylo_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.ergodotes_fylo%>", ("#ergodotes_fylo_year1"), ("#ergodotes_fylo_year2"), ("#ergodotes_fylo_year3"), ("#ergodotes_fylo_year4"), ("#ergodotes_fylo_year5"), ("#ergodotes_fylo_prosfata_stoixeia"), ("#ergodotes_fylo_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.ds_fylo%>", ("#ds_fylo_year1"), ("#ds_fylo_year2"), ("#ds_fylo_year3"), ("#ds_fylo_year4"), ("#ds_fylo_year5"), ("#ds_fylo_prosfata_stoixeia"), ("#ds_fylo_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.symvoulia_fylo%>", ("#symvoulia_fylo_year1"), ("#symvoulia_fylo_year2"), ("#symvoulia_fylo_year3"), ("#symvoulia_fylo_year4"), ("#symvoulia_fylo_year5"), ("#symvoulia_fylo_prosfata_stoixeia"), ("#symvoulia_fylo_epidiwkomenos_stoxos"));
-
-                    setValuesField9("<%=data.field_9.dataValues.astheneis%>", ("#astheneis_year1"), ("#astheneis_year2"), ("#astheneis_year3"), ("#astheneis_year4"), ("#astheneis_year5"), ("#astheneis_prosfata_stoixeia"), ("#astheneis_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.paidiki_thnisimotita%>", ("#paidiki_thnisimotita_year1"), ("#paidiki_thnisimotita_year2"), ("#paidiki_thnisimotita_year3"), ("#paidiki_thnisimotita_year4"), ("#paidiki_thnisimotita_year5"), ("#paidiki_thnisimotita_prosfata_stoixeia"), ("#paidiki_thnisimotita_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.dapanes_ygeias%>", ("#dapanes_ygeias_year1"), ("#dapanes_ygeias_year2"), ("#dapanes_ygeias_year3"), ("#dapanes_ygeias_year4"), ("#dapanes_ygeias_year5"), ("#dapanes_ygeias_prosfata_stoixeia"), ("#dapanes_ygeias_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.dapanes_farmakwn%>", ("#dapanes_farmakwn_year1"), ("#dapanes_farmakwn_year2"), ("#dapanes_farmakwn_year3"), ("#dapanes_farmakwn_year4"), ("#dapanes_farmakwn_year5"), ("#dapanes_farmakwn_prosfata_stoixeia"), ("#dapanes_farmakwn_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.arithmos_iatrwn_ana_1000_katoikous%>", ("#arithmos_iatrwn_ana_1000_katoikous_year1"), ("#arithmos_iatrwn_ana_1000_katoikous_year2"), ("#arithmos_iatrwn_ana_1000_katoikous_year3"), ("#arithmos_iatrwn_ana_1000_katoikous_year4"), ("#arithmos_iatrwn_ana_1000_katoikous_year5"), ("#arithmos_iatrwn_ana_1000_katoikous_prosfata_stoixeia"), ("#arithmos_iatrwn_ana_1000_katoikous_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.arithmos_klinwn_ana_1000_katoikous%>", ("#arithmos_klinwn_ana_1000_katoikous_year1"), ("#arithmos_klinwn_ana_1000_katoikous_year2"), ("#arithmos_klinwn_ana_1000_katoikous_year3"), ("#arithmos_klinwn_ana_1000_katoikous_year4"), ("#arithmos_klinwn_ana_1000_katoikous_year5"), ("#arithmos_klinwn_ana_1000_katoikous_prosfata_stoixeia"), ("#arithmos_klinwn_ana_1000_katoikous_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.diarkeia_epeigousas_nosileias%>", ("#diarkeia_epeigousas_nosileias_year1"), ("#diarkeia_epeigousas_nosileias_year2"), ("#diarkeia_epeigousas_nosileias_year3"), ("#diarkeia_epeigousas_nosileias_year4"), ("#diarkeia_epeigousas_nosileias_year5"), ("#diarkeia_epeigousas_nosileias_prosfata_stoixeia"), ("#diarkeia_epeigousas_nosileias_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.eidikes_nosileutikes_ypiresies%>", ("#eidikes_nosileutikes_ypiresies_year1"), ("#eidikes_nosileutikes_ypiresies_year2"), ("#eidikes_nosileutikes_ypiresies_year3"), ("#eidikes_nosileutikes_ypiresies_year4"), ("#eidikes_nosileutikes_ypiresies_year5"), ("#eidikes_nosileutikes_ypiresies_prosfata_stoixeia"), ("#eidikes_nosileutikes_ypiresies_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.anamoni_asthenwn%>", ("#anamoni_asthenwn_year1"), ("#anamoni_asthenwn_year2"), ("#anamoni_asthenwn_year3"), ("#anamoni_asthenwn_year4"), ("#anamoni_asthenwn_year5"), ("#anamoni_asthenwn_prosfata_stoixeia"), ("#anamoni_asthenwn_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.arithmos_nosileiwn_ana_1000_katoikous%>", ("#arithmos_nosileiwn_ana_1000_katoikous_year1"), ("#arithmos_nosileiwn_ana_1000_katoikous_year2"), ("#arithmos_nosileiwn_ana_1000_katoikous_year3"), ("#arithmos_nosileiwn_ana_1000_katoikous_year4"), ("#arithmos_nosileiwn_ana_1000_katoikous_year5"), ("#arithmos_nosileiwn_ana_1000_katoikous_prosfata_stoixeia"), ("#arithmos_nosileiwn_ana_1000_katoikous_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.arithmos_klinwn_ana_ypiresia%>", ("#arithmos_klinwn_ana_ypiresia_year1"), ("#arithmos_klinwn_ana_ypiresia_year2"), ("#arithmos_klinwn_ana_ypiresia_year3"), ("#arithmos_klinwn_ana_ypiresia_year4"), ("#arithmos_klinwn_ana_ypiresia_year5"), ("#arithmos_klinwn_ana_ypiresia_prosfata_stoixeia"), ("#arithmos_klinwn_ana_ypiresia_epidiwkomenos_stoxos"));
-                    //koinoniki_pronoia_table
-                    setValuesField9("<%=data.field_9.dataValues.kathestws_ftwxeias%>", ("#kathestws_ftwxeias_year1"), ("#kathestws_ftwxeias_year2"), ("#kathestws_ftwxeias_year3"), ("#kathestws_ftwxeias_year4"), ("#kathestws_ftwxeias_year5"), ("#kathestws_ftwxeias_prosfata_stoixeia"), ("#kathestws_ftwxeias_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.sterisi_vasikwn_agathwn%>", ("#sterisi_vasikwn_agathwn_year1"), ("#sterisi_vasikwn_agathwn_year2"), ("#sterisi_vasikwn_agathwn_year3"), ("#sterisi_vasikwn_agathwn_year4"), ("#sterisi_vasikwn_agathwn_year5"), ("#sterisi_vasikwn_agathwn_prosfata_stoixeia"), ("#sterisi_vasikwn_agathwn_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.noikokyria_ektaktes_anagkes%>", ("#noikokyria_ektaktes_anagkes_year1"), ("#noikokyria_ektaktes_anagkes_year2"), ("#noikokyria_ektaktes_anagkes_year3"), ("#noikokyria_ektaktes_anagkes_year4"), ("#noikokyria_ektaktes_anagkes_year5"), ("#noikokyria_ektaktes_anagkes_prosfata_stoixeia"), ("#noikokyria_ektaktes_anagkes_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.epidomata_dapani%>", ("#epidomata_dapani_year1"), ("#epidomata_dapani_year2"), ("#epidomata_dapani_year3"), ("#epidomata_dapani_year4"), ("#epidomata_dapani_year5"), ("#epidomata_dapani_prosfata_stoixeia"), ("#epidomata_dapani_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.paidia_se_orfanotrofeia%>", ("#paidia_se_orfanotrofeia_year1"), ("#paidia_se_orfanotrofeia_year2"), ("#paidia_se_orfanotrofeia_year3"), ("#paidia_se_orfanotrofeia_year4"), ("#paidia_se_orfanotrofeia_year5"), ("#paidia_se_orfanotrofeia_prosfata_stoixeia"), ("#paidia_se_orfanotrofeia_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.astegoi_sitisi%>", ("#astegoi_sitisi_year1"), ("#astegoi_sitisi_year2"), ("#astegoi_sitisi_year3"), ("#astegoi_sitisi_year4"), ("#astegoi_sitisi_year5"), ("#astegoi_sitisi_prosfata_stoixeia"), ("#astegoi_sitisi_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.proswrini_katoikia%>", ("#proswrini_katoikia_year1"), ("#proswrini_katoikia_year2"), ("#proswrini_katoikia_year3"), ("#proswrini_katoikia_year4"), ("#proswrini_katoikia_year5"), ("#proswrini_katoikia_prosfata_stoixeia"), ("#proswrini_katoikia_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.kostos_frontidas%>", ("#kostos_frontidas_year1"), ("#kostos_frontidas_year2"), ("#kostos_frontidas_year3"), ("#kostos_frontidas_year4"), ("#kostos_frontidas_year5"), ("#kostos_frontidas_prosfata_stoixeia"), ("#kostos_frontidas_epidiwkomenos_stoxos"));
-                    //koinoniki_asfalisi_table
-                    setValuesField9("<%=data.field_9.dataValues.ypsos_syntaksewn%>", ("#ypsos_syntaksewn_year1"), ("#ypsos_syntaksewn_year2"), ("#ypsos_syntaksewn_year3"), ("#ypsos_syntaksewn_year4"), ("#ypsos_syntaksewn_year5"), ("#ypsos_syntaksewn_prosfata_stoixeia"), ("#ypsos_syntaksewn_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.ypsos_eisforwn%>", ("#ypsos_eisforwn_year1"), ("#ypsos_eisforwn_year2"), ("#ypsos_eisforwn_year3"), ("#ypsos_eisforwn_year4"), ("#ypsos_eisforwn_year5"), ("#ypsos_eisforwn_prosfata_stoixeia"), ("#ypsos_eisforwn_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.ilikia_syntaksiodotisis%>", ("#ilikia_syntaksiodotisis_year1"), ("#ilikia_syntaksiodotisis_year2"), ("#ilikia_syntaksiodotisis_year3"), ("#ilikia_syntaksiodotisis_year4"), ("#ilikia_syntaksiodotisis_year5"), ("#ilikia_syntaksiodotisis_prosfata_stoixeia"), ("#ilikia_syntaksiodotisis_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.aponomi_syntaksis%>", ("#aponomi_syntaksis_year1"), ("#aponomi_syntaksis_year2"), ("#aponomi_syntaksis_year3"), ("#aponomi_syntaksis_year4"), ("#aponomi_syntaksis_year5"), ("#aponomi_syntaksis_prosfata_stoixeia"), ("#aponomi_syntaksis_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.syntaksiodotiki_dapani%>", ("#syntaksiodotiki_dapani_year1"), ("#syntaksiodotiki_dapani_year2"), ("#syntaksiodotiki_dapani_year3"), ("#syntaksiodotiki_dapani_year4"), ("#syntaksiodotiki_dapani_year5"), ("#syntaksiodotiki_dapani_prosfata_stoixeia"), ("#syntaksiodotiki_dapani_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.prosfyges_syntaksis%>", ("#prosfyges_syntaksis_year1"), ("#prosfyges_syntaksis_year2"), ("#prosfyges_syntaksis_year3"), ("#prosfyges_syntaksis_year4"), ("#prosfyges_syntaksis_year5"), ("#prosfyges_syntaksis_prosfata_stoixeia"), ("#prosfyges_syntaksis_epidiwkomenos_stoxos"));
-                    //apasxolisi_table
-                    setValuesField9("<%=data.field_9.dataValues.anergia%>", ("#anergia_year1"), ("#anergia_year2"), ("#anergia_year3"), ("#anergia_year4"), ("#anergia_year5"), ("#anergia_prosfata_stoixeia"), ("#anergia_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.makroxronia_anergoi%>", ("#makroxronia_anergoi_year1"), ("#makroxronia_anergoi_year2"), ("#makroxronia_anergoi_year3"), ("#makroxronia_anergoi_year4"), ("#makroxronia_anergoi_year5"), ("#makroxronia_anergoi_prosfata_stoixeia"), ("#makroxronia_anergoi_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.anergia_newn%>", ("#anergia_newn_year1"), ("#anergia_newn_year2"), ("#anergia_newn_year3"), ("#anergia_newn_year4"), ("#anergia_newn_year5"), ("#anergia_newn_prosfata_stoixeia"), ("#anergia_newn_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.anergia_gynaikwn%>", ("#anergia_gynaikwn_year1"), ("#anergia_gynaikwn_year2"), ("#anergia_gynaikwn_year3"), ("#anergia_gynaikwn_year4"), ("#anergia_gynaikwn_year5"), ("#anergia_gynaikwn_prosfata_stoixeia"), ("#anergia_gynaikwn_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.anergia_ana_perifereia%>", ("#anergia_ana_perifereia_year1"), ("#anergia_ana_perifereia_year2"), ("#anergia_ana_perifereia_year3"), ("#anergia_ana_perifereia_year4"), ("#anergia_ana_perifereia_year5"), ("#anergia_ana_perifereia_prosfata_stoixeia"), ("#anergia_ana_perifereia_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.anergia_morfwsi%>", ("#anergia_morfwsi_year1"), ("#anergia_morfwsi_year2"), ("#anergia_morfwsi_year3"), ("#anergia_morfwsi_year4"), ("#anergia_morfwsi_year5"), ("#anergia_morfwsi_prosfata_stoixeia"), ("#anergia_morfwsi_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.deiktis_apasxolisis%>", ("#deiktis_apasxolisis_year1"), ("#deiktis_apasxolisis_year2"), ("#deiktis_apasxolisis_year3"), ("#deiktis_apasxolisis_year4"), ("#deiktis_apasxolisis_year5"), ("#deiktis_apasxolisis_prosfata_stoixeia"), ("#deiktis_apasxolisis_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.meriki_apasxolisi%>", ("#meriki_apasxolisi_year1"), ("#meriki_apasxolisi_year2"), ("#meriki_apasxolisi_year3"), ("#meriki_apasxolisi_year4"), ("#meriki_apasxolisi_year5"), ("#meriki_apasxolisi_prosfata_stoixeia"), ("#meriki_apasxolisi_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.symvasi_orismenoy_xronoy%>", ("#symvasi_orismenoy_xronoy_year1"), ("#symvasi_orismenoy_xronoy_year2"), ("#symvasi_orismenoy_xronoy_year3"), ("#symvasi_orismenoy_xronoy_year4"), ("#symvasi_orismenoy_xronoy_year5"), ("#symvasi_orismenoy_xronoy_prosfata_stoixeia"), ("#symvasi_orismenoy_xronoy_epidiwkomenos_stoxos"));
-                    //ergasiakes_sxeseis_table
-                    setValuesField9("<%=data.field_9.dataValues.symvaseis%>", ("#symvaseis_year1"), ("#symvaseis_year2"), ("#symvaseis_year3"), ("#symvaseis_year4"), ("#symvaseis_year5"), ("#symvaseis_prosfata_stoixeia"), ("#symvaseis_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.sse_diamesolavisi%>", ("#sse_diamesolavisi_year1"), ("#sse_diamesolavisi_year2"), ("#sse_diamesolavisi_year3"), ("#sse_diamesolavisi_year4"), ("#sse_diamesolavisi_year5"), ("#sse_diamesolavisi_prosfata_stoixeia"), ("#sse_diamesolavisi_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.sse_diaitisia%>", ("#sse_diaitisia_year1"), ("#sse_diaitisia_year2"), ("#sse_diaitisia_year3"), ("#sse_diaitisia_year4"), ("#sse_diaitisia_year5"), ("#sse_diaitisia_prosfata_stoixeia"), ("#sse_diaitisia_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.mesos_xronos_mesolavisis%>", ("#mesos_xronos_mesolavisis_year1"), ("#mesos_xronos_mesolavisis_year2"), ("#mesos_xronos_mesolavisis_year3"), ("#mesos_xronos_mesolavisis_year4"), ("#mesos_xronos_mesolavisis_year5"), ("#mesos_xronos_mesolavisis_prosfata_stoixeia"), ("#mesos_xronos_mesolavisis_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.mesos_xronos_diaitisias%>", ("#mesos_xronos_diaitisias_year1"), ("#mesos_xronos_diaitisias_year2"), ("#mesos_xronos_diaitisias_year3"), ("#mesos_xronos_diaitisias_year4"), ("#mesos_xronos_diaitisias_year5"), ("#mesos_xronos_diaitisias_prosfata_stoixeia"), ("#mesos_xronos_diaitisias_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.diarkeia_sse%>", ("#diarkeia_sse_year1"), ("#diarkeia_sse_year2"), ("#diarkeia_sse_year3"), ("#diarkeia_sse_year4"), ("#diarkeia_sse_year5"), ("#diarkeia_sse_prosfata_stoixeia"), ("#diarkeia_sse_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.wres_ergasias%>", ("#wres_ergasias_year1"), ("#wres_ergasias_year2"), ("#wres_ergasias_year3"), ("#wres_ergasias_year4"), ("#wres_ergasias_year5"), ("#wres_ergasias_prosfata_stoixeia"), ("#wres_ergasias_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.ameivomenes_yperwries%>", ("#ameivomenes_yperwries_year1"), ("#ameivomenes_yperwries_year2"), ("#ameivomenes_yperwries_year3"), ("#ameivomenes_yperwries_year4"), ("#ameivomenes_yperwries_year5"), ("#ameivomenes_yperwries_prosfata_stoixeia"), ("#ameivomenes_yperwries_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.atyximata%>", ("#atyximata_year1"), ("#atyximata_year2"), ("#atyximata_year3"), ("#atyximata_year4"), ("#atyximata_year5"), ("#atyximata_prosfata_stoixeia"), ("#atyximata_epidiwkomenos_stoxos"));
-                    //allos_deiktis
-                    setValuesField9("<%=data.field_9.dataValues.allos_deiktis1%>", ("#allos_deiktis1"), ("#allos_deiktis1_year1"), ("#allos_deiktis1_year2"), ("#allos_deiktis1_year3"), ("#allos_deiktis1_year4"), ("#allos_deiktis1_year5"), ("#allos_deiktis1_prosfata_stoixeia"), ("#allos_deiktis1_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.allos_deiktis2%>", ("#allos_deiktis2"), ("#allos_deiktis2_year1"), ("#allos_deiktis2_year2"), ("#allos_deiktis2_year3"), ("#allos_deiktis2_year4"), ("#allos_deiktis2_year5"), ("#allos_deiktis2_prosfata_stoixeia"), ("#allos_deiktis2_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.allos_deiktis3%>", ("#allos_deiktis3"), ("#allos_deiktis3_year1"), ("#allos_deiktis3_year2"), ("#allos_deiktis3_year3"), ("#allos_deiktis3_year4"), ("#allos_deiktis3_year5"), ("#allos_deiktis3_prosfata_stoixeia"), ("#allos_deiktis3_epidiwkomenos_stoxos"));
-                    setValuesField9("<%=data.field_9.dataValues.allos_deiktis4%>", ("#allos_deiktis4"), ("#allos_deiktis4_year1"), ("#allos_deiktis4_year2"), ("#allos_deiktis4_year3"), ("#allos_deiktis4_year4"), ("#allos_deiktis4_year5"), ("#allos_deiktis4_prosfata_stoixeia"), ("#allos_deiktis4_epidiwkomenos_stoxos"));
 
 
 
