@@ -10,9 +10,9 @@
         <thead class="thead">
             
             <tr>
-                <th colspan="1">Σχετική διάταξη αξιολογούμενης ρύθμισης</th>
-                <th colspan="1">Συναρμόδια Υπουργεία – Συναρμόδιες υπηρεσίες / φορείς</th>
-                <th colspan="1">Αντικείμενο συναρμοδιότητας</th>
+                <th colspan="1">Σχετική διάταξη αξιολογούμενης ρύθμισης<div class="index_sxetiki_diataksi"></div></th>
+                <th colspan="1">Συναρμόδια Υπουργεία – Συναρμόδιες υπηρεσίες / φορείς<div class="index_foreis"></div></th>
+                <th colspan="1">Αντικείμενο συναρμοδιότητας<div class="index31_antikeimeno"></div></th>
             </tr>
         </thead>
         <tbody id="tbody_31">
@@ -61,11 +61,11 @@
         <thead class="thead">
             
             <tr>
-                <th colspan="1">Εξουσιοδοτική διάταξη</th>
-                <th colspan="1">Είδος πράξης</th>
-                <th colspan="1">Αρμόδιο ή επισπεύδον Υπουργείο ή υπηρεσία</th>
-                <th colspan="1">Αντικείμενο</th>
-                <th colspan="1">Χρονοδιάγραμμα (ενδεικτική ή αποκλειστική προθεσμία)</th>
+                <th colspan="1">Εξουσιοδοτική διάταξη<div class="index_eksousiodotiki_diataksi"></div></th>
+                <th colspan="1">Είδος πράξης<div class="index_eidos_praksis"></div></th>
+                <th colspan="1">Αρμόδιο ή επισπεύδον Υπουργείο ή υπηρεσία<div class="index_armodio_upourgeio"></div></th>
+                <th colspan="1">Αντικείμενο<div class="index32_antikeimeno"></div></th>
+                <th colspan="1">Χρονοδιάγραμμα (ενδεικτική ή αποκλειστική προθεσμία)<div class="index_xronodiagramma"></div></th>
             </tr>
         </thead>
         <tbody id="tbody_32">
@@ -186,7 +186,7 @@
 
 </fieldset>
 
-<fieldset id="stoixeia_etairias" >
+<fieldset id="stoixeia_etairias" class="optional">
 
     <label>Στοιχεία νέου νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας υπηρεσίας</label>
     <div class="form-group">
@@ -223,7 +223,7 @@
     </div>    
     <br>
 
-    <div class="checkbox-group form-group row ggnkth" >
+    <div class="checkbox-group form-group row ggnkth" style="display: none;">
         <label for="egkrisi_aksiologisis_nomoparaskeyastikis" class="col-sm-8 col-form-label">Έγκριση της Επιτροπής
             Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)</label>
         <% if(data.egkrisi_aksiologisis_nomoparaskeyastikis){ %>
@@ -236,7 +236,7 @@
             name="egkrisi_aksiologisis_nomoparaskeyastikis" value="egkrisi_aksiologisis_nomoparaskeyastikis">
         <% } %>
     </div>
-    <div class="checkbox-group form-group row ggnkth">
+    <div class="checkbox-group form-group row ggnkth" style="display: none;">
         <label for="egkrisi_kalis_nomothetisis" class="col-sm-8 col-form-label">Έγκριση Γραφείου Καλής Νομοθέτησης
             (ΓΓΝΚΘ)</label>
         <% if(data.egkrisi_kalis_nomothetisis){ %>
@@ -248,7 +248,7 @@
             id="egkrisi_kalis_nomothetisis" name="egkrisi_kalis_nomothetisis" value="egkrisi_kalis_nomothetisis">
         <% } %>
     </div>
-    <div class="checkbox-group form-group row ggnkth">
+    <div class="checkbox-group form-group row ggnkth" style="display: none;">
         <label for="egkrisi_dieuthinsis_nomoparaskeyastikis" class="col-sm-8 col-form-label">Έγκριση Διεύθυνσης
             Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)</label>
         <% if(data.egkrisi_dieuthinsis_nomoparaskeyastikis){ %>
@@ -261,7 +261,7 @@
             value="egkrisi_dieuthinsis_nomoparaskeyastikis">
         <% } %>
     </div>
-    <div class="checkbox-group form-group row ggnkth">
+    <div class="checkbox-group form-group row ggnkth" style="display: none;">
         <label for="egkrisi_genikou_grammatea" class="col-sm-8 col-form-label">Έγκριση Γενικού Γραμματέα Νομικών και
             Κοινοβουλευτικών Θεμάτων </label>
         <% if(data.egkrisi_genikou_grammatea){ %>

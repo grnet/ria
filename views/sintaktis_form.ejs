@@ -15,7 +15,7 @@
         <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
 
         <br>
-        <input type="button" name="back" class="back" value="Επιστροφή" />
+        <input type="button" name="back" class="back" value="Πίσω" />
         <br><br>
         <form enctype="multipart/form-data">
 
@@ -447,7 +447,7 @@
                         <div class="col-2"></div>
                         <label class="col-3 col-form-label">ΑΜΕΣΗ</label>
                         <input class="col-2 form-check-input position-static" type="checkbox" id="field_10_amesi"
-                            name="field_10_amesi" value="field_10_amesi">
+                            name="field_10_amesi" >
                     </div>
                     <div id="amesi_wrap" class="form-group" style="display:none;">
                         <label for="field_10_amesi_comments " class="required">Εάν είναι άμεση, εξηγήστε:</label>
@@ -461,7 +461,7 @@
                         <div class="col-2"></div>
                         <label class="col-3 col-form-label">ΕΜΜΕΣΗ</label>
                         <input class="col-2 form-check-input position-static" type="checkbox" id="field_10_emmesi"
-                            name="field_10_emmesi" value="field_10_emmesi">
+                            name="field_10_emmesi" >
                     </div>
 
                     <div id="emesi_wrap" class="form-group" style="display:none;">
@@ -974,16 +974,22 @@
             optionalFields(".mostly-optional :input");
             optionalFields(".optional :input");
             optionalFields(".table-14 :input");
+            optionalFields(".table-29 :input");
+            optionalFields(".table-30 :input");
             enableFields(".create-new");
             enableFields(".next");
             enableFields(".previous");
 
             optionalFieldsClassRemoval("mostly-optional-label", "required");
             optionalFieldsClassRemoval("optional-label", "required");
+            optionalFieldsClassRemoval("field-23-label", "required");
             optionalFieldsClassRemoval("table-14-label", "required");
+            optionalFieldsClassRemoval("table-29-label", "required");
+            optionalFieldsClassRemoval("table-30-label", "required");
 
         } else if (analysis == ":prosxedio_nomou") {
             optionalFields(".mostly-optional :input");
+            optionalFieldsClassRemoval("field-23-label", "required");
             optionalFieldsClassRemoval("mostly-optional-label", "required");
 
         } else if (analysis == ":epeigon_katepeigon" || analysis == ":diethneis_symvaseis" || analysis == ":tropologies_upourgwn") {
@@ -994,6 +1000,7 @@
             enableFields(".previous");
 
             optionalFieldsClassRemoval("field-22-label", "required");
+            optionalFieldsClassRemoval("field-23-label", "required");
             optionalFieldsClassRemoval("optional-label", "required");
 
 
@@ -1008,10 +1015,10 @@
             optionalFields(".field-26 :input");
             optionalFields(".field-27 :input");
             optionalFields(".field-28 :input");
+            optionalFields(".table-31 :input");
+            optionalFields(".table-32 :input");
 
             optionalFields(".optional :input");
-            enableFields(".table-31 :input");
-            enableFields(".table-32 :input");
             enableFields(".create-new");
             enableFields(".next");
             enableFields(".previous");
@@ -1021,14 +1028,16 @@
             optionalFieldsClassRemoval("field-20-label", "required");
             optionalFieldsClassRemoval("field-21-label", "required");
             optionalFieldsClassRemoval("field-22-label", "required");
-            optionalFieldsClassRemoval("field-24-label", "required");
+            optionalFieldsClassRemoval("field-23-label", "required");
+            optionalFieldsClassRemoval("field-24-label", "required");            
             optionalFieldsClassRemoval("field-25-label", "required");
             optionalFieldsClassRemoval("field-26-label", "required");
             optionalFieldsClassRemoval("field-27-label", "required");
             optionalFieldsClassRemoval("field-28-label", "required");
+            optionalFieldsClassRemoval("table-31-label", "required");
+            optionalFieldsClassRemoval("table-32-label", "required");
             optionalFieldsClassRemoval("optional-label", "required");
-            addLabelClass(".table-31-label", "required");
-            addLabelClass(".table-32-label", "required");
+
         }
         //these fields are by default disabled
         optionalFields(".glk :input");
