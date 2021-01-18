@@ -2057,7 +2057,21 @@
                         }
                     };
 
-
+                    var staticTables = '<%= JSON.stringify(staticTables) %>'                    
+                    // data = data.replace(/&#34;/g, '"');
+                    // data = JSON.parse(data);
+                    staticTables = staticTables.replace(/\\n/g, "\\n")  
+                                .replace(/&#34;/g, '"')
+                                .replace(/\\'/g, "\\'")
+                                .replace(/\\"/g, '\\"')
+                                .replace(/\\&/g, "\\&")
+                                .replace(/\\r/g, "\\r")
+                                .replace(/\\t/g, "\\t")
+                                .replace(/\\b/g, "\\b")
+                                .replace(/\\f/g, "\\f");
+                    console.log(staticTables);  
+                    staticTables = JSON.parse(staticTables)                              
+                    console.log('ststc0: '+Object.values(staticTables.symvaseis[0]));///:DDD  
 
 
 
