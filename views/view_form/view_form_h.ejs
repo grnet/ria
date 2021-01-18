@@ -226,56 +226,32 @@
     <div class="checkbox-group form-group row ggnkth" style="display: none;">
         <label for="egkrisi_aksiologisis_nomoparaskeyastikis" class="col-sm-8 col-form-label">Έγκριση της Επιτροπής
             Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)</label>
-        <% if(data.egkrisi_aksiologisis_nomoparaskeyastikis){ %>
         <input class="col-sm-2 form-check-input position-static egkrisi_aksiologisis_nomoparaskeyastikis"
-            type="checkbox" id="egkrisi_aksiologisis_nomoparaskeyastikis"
-            name="egkrisi_aksiologisis_nomoparaskeyastikis" value="egkrisi_aksiologisis_nomoparaskeyastikis" checked>
-        <% }else{ %>
-        <input class="col-sm-2 form-check-input position-static egkrisi_aksiologisis_nomoparaskeyastikis"
-            type="checkbox" id="egkrisi_aksiologisis_nomoparaskeyastikis"
-            name="egkrisi_aksiologisis_nomoparaskeyastikis" value="egkrisi_aksiologisis_nomoparaskeyastikis">
-        <% } %>
+            type="checkbox" id="egkrisi_aksiologisis_nomoparaskeyastikis" name="egkrisi_aksiologisis_nomoparaskeyastikis">
     </div>
     <div class="checkbox-group form-group row ggnkth" style="display: none;">
         <label for="egkrisi_kalis_nomothetisis" class="col-sm-8 col-form-label">Έγκριση Γραφείου Καλής Νομοθέτησης
             (ΓΓΝΚΘ)</label>
-        <% if(data.egkrisi_kalis_nomothetisis){ %>
         <input class="col-sm-2 form-check-input position-static egkrisi_kalis_nomothetisis" type="checkbox"
-            id="egkrisi_kalis_nomothetisis" name="egkrisi_kalis_nomothetisis" value="egkrisi_kalis_nomothetisis"
-            checked>
-        <% }else{ %>
-        <input class="col-sm-2 form-check-input position-static egkrisi_kalis_nomothetisis" type="checkbox"
-            id="egkrisi_kalis_nomothetisis" name="egkrisi_kalis_nomothetisis" value="egkrisi_kalis_nomothetisis">
-        <% } %>
+            id="egkrisi_kalis_nomothetisis" name="egkrisi_kalis_nomothetisis">
     </div>
     <div class="checkbox-group form-group row ggnkth" style="display: none;">
         <label for="egkrisi_dieuthinsis_nomoparaskeyastikis" class="col-sm-8 col-form-label">Έγκριση Διεύθυνσης
             Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)</label>
-        <% if(data.egkrisi_dieuthinsis_nomoparaskeyastikis){ %>
         <input class="col-sm-2 form-check-input position-static egkrisi_dieuthinsis_nomoparaskeyastikis" type="checkbox"
-            id="egkrisi_dieuthinsis_nomoparaskeyastikis" name="egkrisi_dieuthinsis_nomoparaskeyastikis"
-            value="egkrisi_dieuthinsis_nomoparaskeyastikis" checked>
-        <% }else{ %>
-        <input class="col-sm-2 form-check-input position-static egkrisi_dieuthinsis_nomoparaskeyastikis" type="checkbox"
-            id="egkrisi_dieuthinsis_nomoparaskeyastikis" name="egkrisi_dieuthinsis_nomoparaskeyastikis"
-            value="egkrisi_dieuthinsis_nomoparaskeyastikis">
-        <% } %>
+            id="egkrisi_dieuthinsis_nomoparaskeyastikis" name="egkrisi_dieuthinsis_nomoparaskeyastikis">
     </div>
     <div class="checkbox-group form-group row ggnkth" style="display: none;">
         <label for="egkrisi_genikou_grammatea" class="col-sm-8 col-form-label">Έγκριση Γενικού Γραμματέα Νομικών και
             Κοινοβουλευτικών Θεμάτων </label>
-        <% if(data.egkrisi_genikou_grammatea){ %>
         <input class="col-sm-2 form-check-input position-static egkrisi_genikou_grammatea" type="checkbox"
-            id="egkrisi_genikou_grammatea" name="egkrisi_genikou_grammatea" value="egkrisi_genikou_grammatea" checked>
-        <% }else{ %>
-        <input class="col-sm-2 form-check-input position-static egkrisi_genikou_grammatea" type="checkbox"
-            id="egkrisi_genikou_grammatea" name="egkrisi_genikou_grammatea" value="egkrisi_genikou_grammatea">
-        <% } %>
+            id="egkrisi_genikou_grammatea" name="egkrisi_genikou_grammatea">
+        
     </div>
     <br>
     
     <% var pdf_name = data.title.replace(/\s+/g, ''); %>
-    <p id="pdf_download" style="display: none;">Το τελευταίο αποθηκευμένο PDF βρίσκεται <a href="/pdf_exports/<%=pdf_name%>.pdf">εδώ</a>.
+    <p id="pdf_download" class="pdf-download action-button" style="display: none;">Το τελευταίο αποθηκευμένο PDF βρίσκεται <a href="/pdf_exports/<%=pdf_name%>.pdf">εδώ</a>.
     </p>
 
     <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενα πεδία" />

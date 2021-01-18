@@ -1061,11 +1061,12 @@
             $('#tbody_14').append(`
         <tr id="R${++table14RowIndex}"> 
             <td> 
-                <textarea class="form-control" id="field_14_arthro${table14RowIndex}" name="field_14_arthro${table14RowIndex}" placeholder="Άρθρο" rows="1" onkeypress="wordsCounter('field_14_arthro${table14RowIndex}','words14_${table14RowIndex}',50, event)" onpaste="wordsCounter('field_14_arthro${table14RowIndex}','words14_${table14RowIndex}',50, event)"></textarea>
-                <p style="float: right;">Λέξεις: <span id="words14_${table14RowIndex}" ></span> /50</p>                                            
+                <textarea class="form-control" id="field_14_arthro${table14RowIndex}" name="field_14_arthro${table14RowIndex}" placeholder="Άρθρο" rows="1" ></textarea>                                                           
             </td> 
             <td> 
-                <textarea class="form-control" id="field_14_stoxos${table14RowIndex}" name="field_14_stoxos${table14RowIndex}" placeholder="Στόχος" rows="1"></textarea>
+                <textarea class="form-control" id="field_14_stoxos${table14RowIndex}" name="field_14_stoxos${table14RowIndex}" placeholder="Στόχος" rows="1" onkeypress="wordsCounter('field_14_stoxos${table14RowIndex}','words14_${table14RowIndex}',50, event)" onpaste="wordsCounter('field_14_stoxos${table14RowIndex}','words14_${table14RowIndex}',50, event)"></textarea>
+                <p style="float: right;">Λέξεις: <span id="words14_${table14RowIndex}" ></span> /50</p> 
+                <br>
                 <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
             </td>    
         </tr>`

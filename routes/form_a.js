@@ -8,7 +8,7 @@ var multer = require('multer');
 const { title } = require('process');
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'public/uploads/')
+        cb(null, './public/uploads/')
     },
     filename: function (req, file, cb) {
         cb(null, Date.now() + '-' + file.originalname)//Date().toLocaleString("el-GR", { timeZone: "Europe/Athens" })
@@ -159,7 +159,9 @@ routes.put('/:entry_id', upload,
                 } catch (e) {
                     console.log("Error message: " + e.message);
                 }
+                console.log('MUH BOD MUH RULLLLES ;) ');
                 console.log(req.body)
+                console.log("status ekth: "+req.body.status_ekthesis)
                 //groupings for field9
                 //ergasiakes_sxeseis_table
                 let symvaseis = JSON.stringify([{ "symvaseis_year1": req.body.symvaseis_year1} , {"symvaseis_year2": req.body.symvaseis_year2} , {"symvaseis_year3": req.body.symvaseis_year3} , {"symvaseis_year4": req.body.symvaseis_year4} , {"symvaseis_year5": req.body.symvaseis_year5} , {"symvaseis_prosfata_stoixeia": req.body.symvaseis_prosfata_stoixeia} , {"symvaseis_epidiwkomenos_stoxos": req.body.symvaseis_epidiwkomenos_stoxos }])
