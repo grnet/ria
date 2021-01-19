@@ -896,8 +896,6 @@
                     var role = "<%= rolos%>";
                     var analysis = "<%= data.typos_analysis %>";
                     var pdf_exists = "<%= pdf_exists %>";
-                    console.log(ekthesi_id);
-                    console.log("session id: " + sessionStorage.getItem("referer"));
                     //prevent user from going to a different form through url   
                     if (sessionStorage.getItem("referer") != ekthesi_id) {
                         window.location.href = "/user_views/history"
@@ -910,11 +908,8 @@
                     //TODO: update to FormData
                     function updateForm(ev) {
                         ev.preventDefault();
-                        console.log($("#field_25_odigia").val())
-                        //console.log($("form").serialize())
                         var fd = new FormData($("form").get(0));
                         var checkbox = $("form").find("input[type=checkbox]:not(:checked)");//find all unchecked checkboxes 
-                        //console.log(checkbox);                
                         $.each(checkbox, function (key, chckbx) {
                             fd.append($(chckbx).prop('name'), $(chckbx).value = '')//append to fd without value 
                         });
@@ -939,10 +934,8 @@
                                 // $('#alerts').empty();
                                 // $('#alerts').html(alerts);
                                 // window.scrollTo(0, 0);
-                                console.log(errors)
                             },
                             success: function (data) {
-                                console.log(data)
                                 //window.location.href = "/user_views/history"
                                 window.location = data.redirect
                             },
@@ -964,7 +957,6 @@
                                 console.log(error);
                             },
                             success: function (data) {
-                                console.log(data);
                                 window.location.href = "/user_views/history";
                             },
                             type: 'POST'
@@ -1004,7 +996,6 @@
                         ev.preventDefault();
                         var title = $("#title").val()
                         //blob = new Blob();
-                        console.log($("form").serialize())
                         $.ajax({
                             url: '/form_a/' + ekthesi_id,
                             data: $("form").serialize(),
@@ -1012,7 +1003,6 @@
                                 console.log(error)
                             },
                             success: function (data) {
-                                //console.log(data)
                                 $("#pdf_download").show();
                             },
                             type: 'POST'
@@ -1190,18 +1180,15 @@
                             $(".ggnkth").show();
                         }       
 
-                        console.log(role);
                         if (role === "Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)" && ($("#typos_analysis").val() == 'Προσχέδιο νόμου' || $("#typos_analysis").val() == 'Κατευθυντήριες γραμμές')) {
                             $(".convert").show();
                             enableFields(".convert")
                         } 
-                        // console.log($("#typos_analysis").val())
                         //init_submit date - will be updated when actually submitted
                         if ($("#last_updated").val() == '') {
                             getFullDate("#last_updated");
                         }
                     });
-                    // console.log($('input[name=status_ekthesis]').val());
 
                     //count & limit words
                     function wordsCounter(fieldId, spanId, wordlimit, event) {
@@ -1209,32 +1196,27 @@
                             if (counter.words >= wordlimit) {
                                 event.preventDefault();//if word limit is reached prevent typing
                             }
-                            //console.log(counter);
                             document.getElementById(spanId).innerHTML = counter.words.toString();
                         })
                     }
 
                     function onSubmitStatus() {
-                        // console.log(role);
                         if (role == "Συντάκτης επισπεύδοντος Υπουργείου") {
                             if ($("#ekthesi_glk").prop("checked")) {
                                 alert("Για την ανάλυση εκκρεμεί ο έλεγχος του Γενικού Λογιστηρίου του Κράτους που έχετε ζητήσει. Επικοινωνήστε με το Γενικό Λογιστήριο του Κράτους για να το ολοκληρώσει ή ενημερώστε τον αρμόδιο του Υπουργείου σας για να το επιλύσει (εφόσον δε χρειάζεται η έκθεση του Γενικού Λογιστηρίου του Κράτους).");
                             } else {
                                 if ($('input[name=status_ekthesis]').val("Σε σύνταξη") || $('input[name=status_ekthesis]').val("Επιμελημένη")) {
                                     $('input[name=status_ekthesis]').val("Ολοκληρώθηκε");
-                                    console.log($('input[name=status_ekthesis]').val());
                                 }
                             }
                         } else if (role === "Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων" || role === "Βουλευτής") {
                             $('input[name=status_ekthesis]').val("Οριστικοποιήθηκε");
-                            // console.log($('input[name=status_ekthesis]').val());
                             if ($("#ekthesi_glk").checked) {
                                 $("#ekthesi_glk").prop('checked', false);
                             }
                         } else if (role === "Επιτροπή Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)" || role === "Γραφείο Καλής Νομοθέτησης (ΓΓΝΚΘ)" || role === "Διεύθυνση Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)" || role === "Γενικός Γραμματέας Νομικών και Κοινοβουλευτικών Θεμάτων") {
                             if ($("#egkrisi_aksiologisis_nomoparaskeyastikis").prop("checked") && $("#egkrisi_kalis_nomothetisis").prop("checked") && $("#egkrisi_dieuthinsis_nomoparaskeyastikis").prop("checked") && $("#egkrisi_genikou_grammatea").prop("checked")) {
                                 $('input[name=status_ekthesis]').val("Προς Δημοσίευση");//might not be needed   
-                                // console.log("all 4 are checked")
                             }
                         }
                     }
@@ -1251,12 +1233,10 @@
                     function convertAnalysis() {
                         if (analysis == 'Κατευθυντήριες γραμμές') {
                             $("#typos_analysis").prop('value', 'Προσχέδιο νόμου');
-                            // console.log( $("#title").val())
                             $("#title").prop('value', 'Αντίγραφο - ' + $("#title").val());
                         } else if (analysis == 'Προσχέδιο νόμου') {
                             $("#typos_analysis").prop('value', 'Σχέδιο νόμου');
                             $("#title").prop('value', 'Αντίγραφο - ' + $("#title").val());
-                            // console.log( $("#title").val())
                             // $("#title").prop('value', $("#title").val() + ' - Πρώην ' + $(analysis).val());
                         }
                     }
@@ -1294,7 +1274,6 @@
                                     + "στον Αρμόδιο Συντάκτη ή στο Αρμόδιο Υπουργείο. Θέλετε να συνεχίσετε;");
                                 if (answer) {
                                     $("#status_ekthesis").val("Επιμελημένη");
-                                    console.log($("#status_ekthesis").val());
                                     updateForm(ev); //once unchecked form is submitted/updated 
                                 } else {
                                     $("#ekthesi_glk").prop('checked', true);
@@ -1313,19 +1292,7 @@
                                 $('input[name=status_ekthesis]').val("<%= data.status_ekthesis%>");
                             }
                         }
-                        //console.log($('input[name=status_ekthesis]').val());
                     });
-
-                    //count & limit words
-                    function wordsCounter(fieldId, spanId, wordlimit, event) {
-                        Countable.on(document.getElementById(fieldId), counter => {
-                            if (counter.words >= wordlimit) {
-                                event.preventDefault();//if word limit is reached prevent typing
-                            }
-                            //console.log(counter);
-                            document.getElementById(spanId).innerHTML = counter.words.toString();
-                        })
-                    }
 
                     //row counter
                     var table14RowIndex;
@@ -2069,10 +2036,8 @@
                                 .replace(/\\t/g, "\\t")
                                 .replace(/\\b/g, "\\b")
                                 .replace(/\\f/g, "\\f");
-                    console.log(staticTables);  
                     staticTables = JSON.parse(staticTables);
                     var tableInputs= $('#eidikoteroi_stoxoi_analogws_tomea :input[type=hidden]');
-                    console.log(tableInputs)
                     //console.log('ststc0: '+Object.values(staticTables.symvaseis[0]));///:DDD  
                     var prefix;
                     $.each(tableInputs, function (key, field) {
@@ -2080,34 +2045,18 @@
                         if (name.includes('_label')) {//label acts as a row separator                        
                             prefix = name.split('_label');
                             prefix = prefix.slice(0, -1);//remove last character, a comma produced by split()
-                            prefix= prefix.toString()
-                            console.log('prefix ' + prefix)
-                            console.log(staticTables[prefix])
+                            prefix= prefix.toString();
                         }
                         if (prefix) {
                             $.each(staticTables[prefix], function (key, field) {
                                 var inputName = Object.keys(field).toString();
                                 // inputName = inputName.toString();
                                 var inputValue = Object.values(field);
-                                $("input[name='"+inputName+"']").prop("value", inputValue);
-                                
+                                $("input[name='"+inputName+"']").prop("value", inputValue);                                
                             });
-                        }
-                        
-                        // if (prefix) {
-                        //     if (staticTables.prefix) {
-                        //         console.log((staticTables.prefix[name]))
-                        //         $(this).prop("value",staticTables.prefix[name])
-                        //     }
-                        // }                        
+                        }                      
                     });
                     prefix = 'symvaseis';
-                    console.log('last prefix ' + prefix)
-                    console.log(staticTables.prefix)
-                    console.log(staticTables)
-
-
-
 
                     var current_fs, next_fs, previous_fs; //fieldsets
 

@@ -42,12 +42,12 @@ routes.get('/:entry_id', async (req, res, next) => {
     console.log(entry)
     let rythmiseis = await database.rythmiseis.findOne({
         where: {
-            id: req.params.entry_id
+            rythmisiId: req.params.entry_id
         }
     })
     let field_9 = await database.field_9.findOne({
         where: {
-            id: req.params.entry_id
+            field9Id: req.params.entry_id
         }
     })
     pdf_name = entry.title + '.pdf';
