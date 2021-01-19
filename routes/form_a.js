@@ -39,7 +39,7 @@ routes.get('/:entry_id', async (req, res, next) => {
             id: req.params.entry_id
         }//, include: [{ model: database.rythmiseis }, { model: database.field_9 }]
     })
-    console.log(entry)
+
     let rythmiseis = await database.rythmiseis.findOne({
         where: {
             rythmisiId: req.params.entry_id

@@ -887,6 +887,7 @@
                     .focused {
                         border: solid 1px red;
                     }
+                    
                 </style>
 
 
@@ -1874,7 +1875,13 @@
 
                     }
 
-                    
+                    if ($("#status_ekthesis").val() != "Σε σύνταξη" && role === "Συντάκτης επισπεύδοντος Υπουργείου") {
+                            console.log('this hould be disabled...')
+                            optionalFields("#edit_form :input");
+                            enableFields(".next");
+                            enableFields(".previous");
+                            //enableFields(".create-new");
+                    }
 
                     if (role === "Γενικό Λογιστήριο του Κράτους") {
                         
@@ -1906,7 +1913,7 @@
                     })
 
                     var data = '<%= JSON.stringify(data) %>'
-                    data = data.replace(/&#34;/g, '"');
+                    data = data.replace(/&#34;/g, '"').replace(/\r?\n|\r/g, '');//replave html double quotes and \n if present in json
                     data = JSON.parse(data);
                     var selects = $("form").find("select");
                     $.each(selects, function (key, field) {
@@ -2018,9 +2025,8 @@
                         }
                     };
 
-                    var staticTables = '<%= JSON.stringify(staticTables) %>'                    
-                    // data = data.replace(/&#34;/g, '"');
-                    // data = JSON.parse(data);
+                    var staticTables = '<%= JSON.stringify(staticTables) %>'    
+                    console.log(staticTables)                
                     if (staticTables) {
                         staticTables = staticTables.replace(/\\n/g, "\\n")  
                                 .replace(/&#34;/g, '"')
@@ -2030,7 +2036,8 @@
                                 .replace(/\\r/g, "\\r")
                                 .replace(/\\t/g, "\\t")
                                 .replace(/\\b/g, "\\b")
-                                .replace(/\\f/g, "\\f");
+                                .replace(/\\f/g, "\\f")
+                                .replace(/\\n/g, '');
                         staticTables = JSON.parse(staticTables);
                         var tableInputs= $('#eidikoteroi_stoxoi_analogws_tomea :input[type=hidden]');
                         //console.log('ststc0: '+Object.values(staticTables.symvaseis[0]));///:DDD  
