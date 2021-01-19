@@ -83,7 +83,6 @@ routes.post('/:analysis', upload, [check('title', 'Title is required').notEmpty(
     } catch (e) {
         console.log("Error message: " + e.message);
     }
-    console.log(req.body);
     //console.log("files: " + req.files);
     //console.log("field23: " + req.files.field_23_upload);
     //req.body.author_id="1";

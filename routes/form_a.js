@@ -65,7 +65,6 @@ routes.get('/:entry_id', async (req, res, next) => {
     } catch (err) {
         console.log(err)
     }
-    console.log(field_9.dataValues)
     if (entry && entry.dataValues && field_9 && field_9.dataValues && rythmiseis && rythmiseis.dataValues) {
         req.session.ekthesi_id = req.params.entry_id;
         res.render("form_a", { data: entry.dataValues, staticTables:field_9.dataValues, checkboxTables:rythmiseis.dataValues, rolos: req.session.rolos, pdf_exists: pdf_exists });  
