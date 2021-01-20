@@ -191,7 +191,6 @@
                     console.log(error)
                 },
                 success: function (data) {
-                    console.log("USER WAS UPDATED!")
                     window.location = data.redirect
                 },
                 type: 'PUT'
@@ -205,12 +204,12 @@
 
     function setDropdown(role) {
         let dropdownElement = document.getElementById(role);
-        dropdownElement.value = "<%= data.rolos %>"
+        dropdownElement.value = "<%= user.rolos %>"
     }
     setDropdown("rolos");
 
     $(document).ready(function () {
-        if ("<%= data.dikaiwmata_diaxeirisis %>" === "1") {
+        if ("<%= user.dikaiwmata_diaxeirisis %>" === "1") {
             $("#dikaiwmata_diaxeirisis").prop('checked', true);
         }
 

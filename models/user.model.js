@@ -11,13 +11,15 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
         },    
         password: DataTypes.STRING,
-        rolos: DataTypes.BOOLEAN,
-        dikaiwmata_diaxeirisis: DataTypes.BOOLEAN,
+        rolos: DataTypes.STRING,
+        dikaiwmata_diaxeirisis: DataTypes.STRING,
         ypoyrgeio: DataTypes.STRING,
         isLoggedIn: DataTypes.BOOLEAN,
         
-    }, {   
-        freezeTableName: true //table name same as model name
-    });
+    },
+    //  {   
+    //  freezeTableName: true //table name same as model name
+    // }
+    );
     return user;
 }
