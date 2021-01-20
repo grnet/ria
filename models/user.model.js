@@ -17,9 +17,9 @@ module.exports = (sequelize, DataTypes) => {
         isLoggedIn: DataTypes.BOOLEAN,
         
     },
-    //  {   
-    //  freezeTableName: true //table name same as model name
-    // }
+     {   
+     freezeTableName: true //table name same as model name
+    }
     );
     return user;
 }
