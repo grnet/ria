@@ -183,8 +183,8 @@ routes.put('/:entry_id', upload,
                 }
 
                 //findone where id:param.id [then] find common fields between table and record [then] update record{record[table[0]]:table[0]}
-                console.log('updating f9...');
-                console.log( await database.field_9.update( {table:{allos_deiktis1:table[0]}}, {
+                console.log(table[0]);
+                console.log( await database.field_9.update( {allos_deiktis1:[table[0]]}, {
                     where: {
                         field9Id: ekthesi_id              
                     }
