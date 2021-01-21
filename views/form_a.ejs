@@ -1715,7 +1715,7 @@
                     })
 
                     $("#ekpedeusi_politismos").on('change', function (ev) {
-                        if ($(this).checked) {
+                        if (this.checked) {
                             $("#politismos_table").show();
                             $("#ekpaideysi_table").show();
                             $(".ekpaideysi-politismos :input").prop('disabled', false);
@@ -1726,18 +1726,21 @@
                         }
                     })
 
-                    $("#forologiki_politiki").click(function (ev) {
+                    $("#forologiki_politiki").on('change',function (ev) {
                         if (this.checked) {
                             $("#oikonomia_table").show();
                             $("#forologia_table").show();
                             $("#ergasiakes_sxeseis_table").show();
                             $(".oikonomia :input").prop('disabled', false);
                         } else {
+                            $("#oikonomia_table").hide();
+                            $("#forologia_table").hide();
+                            $("#ergasiakes_sxeseis_table").hide();
                             $(".oikonomia :input").prop('disabled', true);
                         }
                     })
 
-                    $("#koinoniki_politiki").click(function (ev) {
+                    $("#koinoniki_politiki").on('change',function (ev) {
                         if (this.checked) {
                             $("#apasxolisi_table").show();
                             $("#koinoniki_asfalisi_table").show();
@@ -1747,27 +1750,38 @@
                             $("#metanasteytiki_prosfygiki_politiki_table").show();
                             $(".koinoniki-politiki :input").prop('disabled', false);
                         } else {
+                            $("#apasxolisi_table").hide();
+                            $("#koinoniki_asfalisi_table").hide();
+                            $("#koinoniki_pronoia_table").hide();
+                            $("#ygeia_table").hide();
+                            $("#isotita_fylwn_table").hide();
+                            $("#metanasteytiki_prosfygiki_politiki_table").hide();
                             $(".koinoniki-politiki :input").prop('disabled', true);
                         }
                     })
 
-                    $("#dimosia_dioikisi").click(function (ev) {
+                    $("#dimosia_dioikisi").on('change',function (ev) {
                         if (this.checked) {
                             $("#dimosia_dioikisi_table").show();
                             $("#dimosia_asfaleia_table").show();
                             $("#dikaiosini_table").show();
                             $(".dimosia-dioikisi :input").prop('disabled', false);
                         } else {
+                            $("#dimosia_dioikisi_table").hide();
+                            $("#dimosia_asfaleia_table").hide();
+                            $("#dikaiosini_table").hide();
                             $(".dimosia-dioikisi :input").prop('disabled', true);
                         }
                     })
                     //console.log("<%=Object.keys(data)%>")
-                    $("#anaptiksi").click(function (ev) {
+                    $("#anaptiksi").on('change',function (ev) {
                         if (this.checked) {
                             $("#ependytiki_drastiriotita_table").show();
                             $("#perivallon_energeia_table").show();
                             $(".ependyseis :input").prop('disabled', false);
                         } else {
+                            $("#ependytiki_drastiriotita_table").hide();
+                            $("#perivallon_energeia_table").hide();
                             $(".ependyseis :input").prop('disabled', true);
                         }
                     })
@@ -2038,7 +2052,7 @@
                                 .replace(/\\f/g, "\\f")
                                 .replace(/\\n/g, '');
                         staticTables = JSON.parse(staticTables);
-                        console.log(staticTables)                
+                        console.log(staticTables);
                         var tableInputs= $('#eidikoteroi_stoxoi_analogws_tomea :input[type=hidden]');
                         //console.log('ststc0: '+Object.values(staticTables.symvaseis[0]));///:DDD  
                         var prefix;

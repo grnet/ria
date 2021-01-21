@@ -169,7 +169,7 @@ exports.exportPDF = (async function (req, res, next) {
                 { text: data.field_8_2 + '\n\n' },
                 { text: '9. Ειδικότεροι στόχοι ανάλογα με τον τομέα νομοθέτησης ', decoration: 'underline' },
                 { text: '\n\n' },
-                //exportStaticTables(data, keys),
+                exportStaticTables(data, keys),
                 //createTableFieldNine('ΑΛΛΟΙ ΠΡΟΤΕΙΝΟΜΕΝΟΙ ΔΕΙΚΤΕΣ', req.body.allos_deiktis1, req.body.allos_deiktis1_year1, req.body.allos_deiktis1_year2, req.body.allos_deiktis1_year3, req.body.allos_deiktis1_year4, req.body.allos_deiktis1_year5, '654', '84684'),
                 { text: '\n\n' },
                 { text: '10. Σε περίπτωση που προβλέπεται η χρήση πληροφοριακού συστήματος, ποια θα είναι η συμβολή αυτού στην επίτευξη των στόχων της αξιολογούμενης ρύθμισης:', decoration: 'underline' },
@@ -255,14 +255,14 @@ exports.exportPDF = (async function (req, res, next) {
                     table: {
 
                         headerRows: 1,
-                        widths: [ '*', '*', '*' ],
-                
+                        widths: ['*', '*', '*'],
+
                         body: [
-                          [ 'Όνομα', 'Επώνυμο', 'Ιδιότητα' ],
-                          [{ text: data.field_16_genikos_onoma, style:'textStyle'}, { text: data.field_16_genikos_epitheto, style:'textStyle'}, { text: data.field_16_genikos_idiototita, style:'textStyle'} ],
-                          
+                            ['Όνομα', 'Επώνυμο', 'Ιδιότητα'],
+                            [{ text: data.field_16_genikos_onoma, style: 'textStyle' }, { text: data.field_16_genikos_epitheto, style: 'textStyle' }, { text: data.field_16_genikos_idiototita, style: 'textStyle' }],
+
                         ]
-                      }
+                    }
                 },
 
                 {
@@ -283,7 +283,7 @@ exports.exportPDF = (async function (req, res, next) {
                 { text: '17.Οικονομικά αποτελέσματα ', style: 'labelStyle' },
                 { text: '\n\n' },
                 { text: data.field_17_oikonomika_apotelesmata + '\n\n' },
-                
+
                 //TODO: FIELDS 18-21!!!
 
                 {
@@ -564,22 +564,24 @@ function exportStaticTables(data, keys) {
             prefix = prefix.slice(0, -1);//remove last character, a comma produced by split()
         }
         if (prefix) {
-            if (keys[i].includes(prefix) && data[keys[i]]) {
+            if (keys[i].includes(prefix)) {
                 if (keys[i].includes('_header')) {
                     header = data[keys[i]];
-                } else {
+                } else if (data[keys[i]]) {
                     row.push(data[keys[i]]);
+                } else {
+                    row.push('-');
                 }
             }
         }
     }
-    for (i in table) {
-        console.log(i + ': ' + table[i])
-        //TODO: CALL FUNCTION WITH 9 PARAMS  
-        tables.push(createStaticTable(table[i]));
+        for (i in table) {
+            console.log(i + ': ' + table[i])
+            //TODO: CALL FUNCTION WITH 9 PARAMS  
+            tables.push(createStaticTable(table[i]));
+        }
+        console.log(table);
+        //console.log( table[1]);
+        console.log('prefix: ' + prefix);
+        return tables;
     }
-    console.log(table);
-    //console.log( table[1]);
-    console.log('prefix: ' + prefix);
-    return tables;
-}
