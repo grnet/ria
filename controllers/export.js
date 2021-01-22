@@ -22,16 +22,121 @@ exports.exportPDF = (async function (req, res, next) {
     let field_32_antikeimeno = [];
     let field_32_xronodiagramma = [];
     let value, key;
+    var table = [];
+    var row = [];
+    var prefix, header, secondHeader;
     for (i in keys) {//iterate through keys
         // console.log(i + " " + keys[i])
         if (keys[i].includes("field_14_arthro")) {
             value = data[keys[i]];//get value from pair
             key = keys[i];//get key 
-            field_14_arthro.push({ key: value });
+            field_14_arthro.push({ [key]: value });
         } else if (keys[i].includes("field_14_stoxos")) {
             value = data[keys[i]];
             key = keys[i];
-            field_14_stoxos.push({ key: value });
+            field_14_stoxos.push({ [key]: value });
+        } else if (keys[i].includes("field_17_onoma")) {
+            value = data[keys[i]];
+            key = keys[i];
+            field_17_onoma.push({ [key]: value });
+        } else if (keys[i].includes("field_17_epitheto")) {
+            value = data[keys[i]];
+            key = keys[i];
+            field_17_epitheto.push({ [key]: value });
+        } else if (keys[i].includes("field_17_idiotita")) {
+            value = data[keys[i]];
+            key = keys[i];
+            field_17_idiotita.push({ [key]: value });
+        } else if (keys[i].includes("field_29_diatakseis_rythmisis")) {
+            console.log("FOUND ROW " + keys[i]);
+            value = data[keys[i]];
+            key = keys[i];
+            field_29_diatakseis_rythmisis.push({ [key]: value });
+        } else if (keys[i].includes("field_29_yfistamenes_diatakseis")) {
+            console.log("FOUND ROW " + keys[i]);
+            value = data[keys[i]];
+            key = keys[i];
+            field_29_yfistamenes_diatakseis.push({ [key]: value });
+        } else if (keys[i].includes("field_30_diatakseis_katargisi")) {
+            console.log("FOUND ROW " + keys[i]);
+            value = data[keys[i]];
+            key = keys[i];
+            field_30_diatakseis_katargisi.push({ [key]: value });
+        } else if (keys[i].includes("field_30_katargoumenes_diatakseis")) {
+            console.log("FOUND ROW " + keys[i]);
+            value = data[keys[i]];
+            key = keys[i];
+            field_30_katargoumenes_diatakseis.push({ [key]: value });
+        } else if (keys[i].includes("field_31_sxetiki_diataksi")) {
+            console.log("FOUND ROW " + keys[i]);
+            value = data[keys[i]];
+            key = keys[i];
+            field_31_sxetiki_diataksi.push({ [key]: value });
+        } else if (keys[i].includes("field_31_synarmodia_ypoyrgeia")) {
+            console.log("FOUND ROW " + keys[i]);
+            value = data[keys[i]];
+            key = keys[i];
+            field_31_synarmodia_ypoyrgeia.push({ [key]: value });
+        } else if (keys[i].includes("field_31_antikeimeno_synarmodiotitas")) {
+            console.log("FOUND ROW " + keys[i]);
+            value = data[keys[i]];
+            key = keys[i];
+            field_31_antikeimeno_synarmodiotitas.push({ [key]: value });
+        } else if (keys[i].includes("field_32_eksousiodotiki_diataksi")) {
+            console.log("FOUND ROW " + keys[i]);
+            value = data[keys[i]];
+            key = keys[i];
+            field_32_eksousiodotiki_diataksi.push({ [key]: value });
+        } else if (keys[i].includes("field_32_eidos_praksis")) {
+            console.log("FOUND ROW " + keys[i]);
+            value = data[keys[i]];
+            key = keys[i];
+            field_32_eidos_praksis.push({ [key]: value });
+        } else if (keys[i].includes("field_32_armodio_ypoyrgeio")) {
+            console.log("FOUND ROW " + keys[i]);
+            value = data[keys[i]];
+            key = keys[i];
+            field_32_armodio_ypoyrgeio.push({ [key]: value });
+        } else if (keys[i].includes("field_32_antikeimeno")) {
+            console.log("FOUND ROW " + keys[i]);
+            value = data[keys[i]];
+            key = keys[i];
+            field_32_antikeimeno.push({ [key]: value });
+        } else if (keys[i].includes("field_32_xronodiagramma")) {
+            console.log("FOUND ROW " + keys[i]);
+            value = data[keys[i]];
+            key = keys[i];
+            field_32_xronodiagramma.push({ [key]: value });
+        }
+        if (keys[i].includes('_label')) {//label acts as a row separator
+            if (row.length) {
+                if (header) {
+                    row.push(header);
+                    header = null;
+                    console.log(secondHeader)
+                }
+                if (secondHeader) {
+                    row.push(secondHeader);
+                    secondHeader = null;
+                }
+                table.push(row);//found label, hence a new row. Push row to table and then empty. 
+                row = [];
+            }
+            prefix = keys[i].split('_label');
+            prefix = prefix.slice(0, -1);//remove last character, a comma produced by split()
+        }
+        if (prefix) {
+            if (keys[i].includes(prefix)) {
+                if (keys[i].includes('_header')) {//field is table's header
+                    header = data[keys[i]];
+                } else if (keys[i].includes('_secondHeader')) {//field is table's header
+                    secondHeader = data[keys[i]];
+                } else if (data[keys[i]]) {
+                    row.push(data[keys[i]]);
+                } else {
+                    row.push('-');//value is undefined
+                }
+            }
         }
     }
 
@@ -169,7 +274,7 @@ exports.exportPDF = (async function (req, res, next) {
                 { text: data.field_8_2 + '\n\n' },
                 { text: '9. Ειδικότεροι στόχοι ανάλογα με τον τομέα νομοθέτησης ', decoration: 'underline' },
                 { text: '\n\n' },
-                exportStaticTables(data, keys),
+                exportStaticTables(table),
                 //createTableFieldNine('ΑΛΛΟΙ ΠΡΟΤΕΙΝΟΜΕΝΟΙ ΔΕΙΚΤΕΣ', req.body.allos_deiktis1, req.body.allos_deiktis1_year1, req.body.allos_deiktis1_year2, req.body.allos_deiktis1_year3, req.body.allos_deiktis1_year4, req.body.allos_deiktis1_year5, '654', '84684'),
                 { text: '\n\n' },
                 { text: '10. Σε περίπτωση που προβλέπεται η χρήση πληροφοριακού συστήματος, ποια θα είναι η συμβολή αυτού στην επίτευξη των στόχων της αξιολογούμενης ρύθμισης:', decoration: 'underline' },
@@ -213,7 +318,7 @@ exports.exportPDF = (async function (req, res, next) {
 
                 { text: '14. Σύνοψη στόχων κάθε άρθρου ', decoration: 'underline' },
                 { text: '\n\n' },
-                createDynamicTable('Άρθρο', 'Στόχος', field_14_arthro, field_14_stoxos), //create table for field 14                
+                createDynamicTwoColumnTable( 'Άρθρο', 'Στόχος', field_14_arthro, field_14_stoxos), //create table for field 14                
 
                 // { text: '18. Οφέλη αξιολογούμενης ρύθμισης \n\n', decoration: 'underline' },
                 // createCheckBoxTable('ΟΦΕΛΗ ΡΥΘΜΙΣΗΣ', 'ΑΜΕΣΑ', 'Αύξηση εσόδων', req.body.field_18_amesa_esoda_thesmoi, req.body.field_18_amesa_esoda_oikonomia, req.body.field_18_amesa_esoda_kinonia, req.body.field_18_amesa_esoda_perivallon, req.body.field_18_amesa_esoda_nisiwtika),
@@ -386,8 +491,24 @@ exports.exportPDF = (async function (req, res, next) {
                 { text: '\n\n' },
                 { text: data.field_28_alla_dikastiria_comment + '\n\n', style: 'textStyle' },
 
-                //TODO: TABLES 29,30,31,32
 
+                {
+                    text: 'Ζ. Πίνακας τροποποιούμενων ή καταργούμενων διατάξεων',
+                    style: 'headerStyle',
+                    tocItem: true,
+                    tocStyle: { bold: true },
+                    tocMargin: [20, 0, 0, 0],
+                    pageBreak: 'before'
+                },
+
+                { text: '29.Τροποποίηση – αντικατάσταση – συμπλήρωση διατάξεων', style: 'labelStyle' },
+                { text: '\n\n' },
+                createDynamicTwoColumnTable('Διατάξεις αξιολογούμενης ρύθμισης', 'Υφιστάμενες διατάξεις', field_29_diatakseis_rythmisis, field_29_yfistamenes_diatakseis),
+                { text: '\n\n' },
+                { text: '30.Κατάργηση διατάξεων', style: 'labelStyle' },
+                { text: '\n\n' },
+                createDynamicTwoColumnTable('Διατάξεις αξιολογούμενης ρύθμισης που προβλέπουν κατάργηση', 'Καταργούμενες διατάξεις', field_30_diatakseis_katargisi, field_30_katargoumenes_diatakseis),
+                { text: '\n\n' },
 
                 {
                     text: 'Η. Έκθεση εφαρμογής της ρύθμισης',
@@ -397,6 +518,15 @@ exports.exportPDF = (async function (req, res, next) {
                     tocMargin: [20, 0, 0, 0],
                     pageBreak: 'before'
                 },
+
+                { text: '31.Συναρμοδιότητα Υπουργείων / υπηρεσιών / φορέων', style: 'labelStyle' },
+                { text: '\n\n' },
+                createDynamicFiveColumnTable('Σχετική διάταξη αξιολογούμενης ρύθμισης', 'Συναρμόδια Υπουργεία – Συναρμόδιες υπηρεσίες / φορείς', 'Αντικείμενο συναρμοδιότητας', field_31_sxetiki_diataksi, field_31_synarmodia_ypoyrgeia, field_31_antikeimeno_synarmodiotitas),
+                { text: '\n\n' },
+                { text: '32.Έκδοση κανονιστικών πράξεων και εγκυκλίων', style: 'labelStyle' },
+                { text: '\n\n' },
+                createDynamicFiveColumnTable('Εξουσιοδοτική διάταξη', 'Είδος πράξης', 'Αρμόδιο ή επισπεύδον Υπουργείο ή υπηρεσία', 'Αντικείμενο', 'Χρονοδιάγραμμα (ενδεικτική ή αποκλειστική προθεσμία)',field_32_eksousiodotiki_diataksi, field_32_eidos_praksis, field_32_armodio_ypoyrgeio, field_32_antikeimeno, field_32_xronodiagramma),
+                { text: '\n\n' },
 
                 {
                     text: 'Υπογράφοντες \n\n',
@@ -468,39 +598,51 @@ function setPdfImage(fieldName) {
     }
 }
 
-function createDynamicTable(header1, header2, article, goal) {
+function createDynamicTwoColumnTable(header1, header2, val1, val2) {
     var rows = [];
-    rows.push(['#', header1, header2]);
+    rows.push([{ text: header1, alignment: 'center', bold: true }, { text: header2, alignment: 'center', bold: true }]);
 
-    for (var i in article) {
-        rows.push([i, article[i].key, goal[i].key]);
+    for (var i in val1) {
+        rows.push([ Object.values(val1[i]) , Object.values(val2[i])]);
     }
-    console.log(rows)
     var table = {
-        //layout: 'lightHorizontalLines',
+        table: {
+            headerRows: 1,
+            widths: ['*', '*'],
+            body: rows
+        }
+    }
+    return table;
+}
+
+function createDynamicThreeColumnTable(header1, header2, header3, val1, val2, val3) {
+    var rows = [];
+    rows.push([{ text: header1, alignment: 'center', bold: true }, { text: header2, alignment: 'center', bold: true }, { text: header3, alignment: 'center', bold: true }]);//push headers
+
+    for (var i in val1) {
+        rows.push([ Object.values(val1[i]) , Object.values(val2[i]), Object.values(val3[i])]);//push values
+    }
+    var table = {
         table: {
             headerRows: 1,
             widths: ['*', '*', '*'],
             body: rows
         }
-
     }
     return table;
 }
 
-function createStaticTable(table) {
+function createDynamicFiveColumnTable(header1, header2, header3, header4, header5, val1, val2, val3, val4, val5) {
     var rows = [];
-    var years = ['έτος 1: ' + table[1], 'έτος 2: ' + table[2], 'έτος 3: ' + table[3], 'έτος 4: ' + table[4], 'έτος 5: ' + table[5]];
-    if (table[8]) {
-        rows.push([{ text: table[8], alignment: 'center', fillColor: '#87CEEB', bold: true }, { text: 'Εξέλιξη την τελευταία 5ετία', alignment: 'center', fillColor: '#87CEEB', bold: true }, { text: 'Πρόσφατα στοιχεία', alignment: 'center', fillColor: '#87CEEB', bold: true }, { text: 'Επιδιωκόμενος στόχος (3ετία)', alignment: 'center', fillColor: '#87CEEB', bold: true }]);
+    rows.push([{ text: header1, alignment: 'center', bold: true }, { text: header2, alignment: 'center', bold: true }, { text: header3, alignment: 'center', bold: true }, { text: header4, alignment: 'center', bold: true }, { text: header5, alignment: 'center', bold: true }]);//push headers
+    console.log(val4)
+    for (var i in val1) {
+        rows.push([ Object.values(val1[i]) , Object.values(val2[i]), Object.values(val3[i]), Object.values(val4[i]), Object.values(val5[i])]);//push values
     }
-    rows.push([table[0], years, table[6], table[7]]);
-    console.log(rows)
     var table = {
-        //layout: 'lightHorizontalLines',
         table: {
             headerRows: 1,
-            widths: ['*', '*', '*', '*'],
+            widths: ['*', '*', '*', '*', '*'],
             body: rows
         }
     }
@@ -544,44 +686,37 @@ function createCheckBoxTable(tableHeader, tableGroup, rowName, val1, val2, val3,
     return table;
 }
 
-function exportStaticTables(data, keys) {
-    var table = [];
-    var row = [];
-    var prefix, header;
-    var tables = [];
-    for (var i in keys) {
+function createStaticTable(table) {
+    var rows = [];
+    var years = ['έτος 1: ' + table[1], 'έτος 2: ' + table[2], 'έτος 3: ' + table[3], 'έτος 4: ' + table[4], 'έτος 5: ' + table[5]];
+    if (table[8]) {
+        rows.push([{ text: table[8], alignment: 'center', fillColor: '#87CEEB', bold: true }, { text: 'Εξέλιξη την τελευταία 5ετία', alignment: 'center', fillColor: '#87CEEB', bold: true }, { text: 'Πρόσφατα στοιχεία', alignment: 'center', fillColor: '#87CEEB', bold: true }, { text: 'Επιδιωκόμενος στόχος (3ετία)', alignment: 'center', fillColor: '#87CEEB', bold: true }]);
+    }
+    if (table[9]) {
+        rows.push([{ text: table[9], colSpan: 4, alignment: 'center', bold: true }]);
+    }
+    rows.push([table[0], years, table[6], table[7]]);
+    console.log(rows)
+    var table = {
+        //layout: 'lightHorizontalLines',
+        table: {
+            headerRows: 1,
+            widths: ['*', '*', '*', '*'],
+            body: rows
+        }
+    }
+    return table;
+}
 
-        if (keys[i].includes('_label')) {//label acts as a row separator
-            if (row.length) {
-                if (header) {
-                    row.push(header);
-                    header = null;
-                }
-                table.push(row);//found label, hence a new row. Push row to table and then empty. 
-                row = [];
-            }
-            prefix = keys[i].split('_label');
-            prefix = prefix.slice(0, -1);//remove last character, a comma produced by split()
-        }
-        if (prefix) {
-            if (keys[i].includes(prefix)) {
-                if (keys[i].includes('_header')) {
-                    header = data[keys[i]];
-                } else if (data[keys[i]]) {
-                    row.push(data[keys[i]]);
-                } else {
-                    row.push('-');
-                }
-            }
-        }
+function exportStaticTables(table) {
+
+    var tables = [];
+    for (i in table) {
+        console.log(i + ': ' + table[i])
+        //TODO: CALL FUNCTION WITH 9 PARAMS  
+        tables.push(createStaticTable(table[i]));
     }
-        for (i in table) {
-            console.log(i + ': ' + table[i])
-            //TODO: CALL FUNCTION WITH 9 PARAMS  
-            tables.push(createStaticTable(table[i]));
-        }
-        console.log(table);
-        //console.log( table[1]);
-        console.log('prefix: ' + prefix);
-        return tables;
-    }
+    console.log(table);
+    //console.log( table[1]);
+    return tables;
+}

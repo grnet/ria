@@ -17,10 +17,10 @@
                 for (var i = 0; i < data.field_29_diatakseis_rythmisis.length; i++) { %>
             <tr id="table_29_row<%=i%>">
                 <td> 
-                    <textarea class="form-control" id="field_29_diatakseis_rythmisis<%=i%>" name="field_29_diatakseis_rythmisis" placeholder="Διατάξεις αξιολογούμενης ρύθμισης<%=i%>" rows="1"><%= Object.values(data.field_29_diatakseis_rythmisis[i]) %></textarea>
+                    <textarea class="form-control" id="field_29_diatakseis_rythmisis<%=i%>" name="field_29_diatakseis_rythmisis<%=i%>" placeholder="Διατάξεις αξιολογούμενης ρύθμισης" rows="1"><%= Object.values(data.field_29_diatakseis_rythmisis[i]) %></textarea>
                 </td> 
                 <td> 
-                    <textarea class="form-control" id="field_29_yfistamenes_diatakseis<%=i%>" name="field_29_yfistamenes_diatakseis" placeholder="Υφιστάμενες διατάξεις<%=i%>" rows="1"><%= Object.values(data.field_29_yfistamenes_diatakseis[i]) %></textarea>
+                    <textarea class="form-control" id="field_29_yfistamenes_diatakseis<%=i%>" name="field_29_yfistamenes_diatakseis<%=i%>" placeholder="Υφιστάμενες διατάξεις" rows="1"><%= Object.values(data.field_29_yfistamenes_diatakseis[i]) %></textarea>
                     <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
                 </td>
             </tr>    

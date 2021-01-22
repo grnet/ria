@@ -8,6 +8,51 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
+
+        //ekpaideysi_table
+        // ergasia_apofoitwn: DataTypes.JSON,
+        // pistopoiimenes_sxoles: DataTypes.JSON,
+        // ereunites_panepistimiwn: DataTypes.JSON,
+        // erga_ana_sxoli: DataTypes.JSON,
+        // dapani_ana_foititi: DataTypes.JSON,
+        // enilikes_ekpaideusi: DataTypes.JSON,
+        // analfavitoi: DataTypes.JSON,
+        // egkatalipsi_sxoleioy: DataTypes.JSON,
+        // ereunites_panepistimiwn: DataTypes.JSON,
+        // diapolitistika_sxoleia: DataTypes.JSON,
+        // allodapoi_mathites: DataTypes.JSON,
+        // oloimera_apogeymatina: DataTypes.JSON,
+        // mesos_oros_kathigitwn: DataTypes.JSON,
+        // mesos_oros_ypologistwn: DataTypes.JSON,
+        // enisxytiki_ekpaideysi: DataTypes.JSON,
+        // dapani_ana_mathiti: DataTypes.JSON,
+
+        // //politismos_table
+        // anaskafes: DataTypes.JSON,
+        // anaskafes_posa: DataTypes.JSON,
+        // anaskafes_pistwseis: DataTypes.JSON,
+        // anaskafes_kiriksi: DataTypes.JSON,
+        // anaskafes_apallotriwseis: DataTypes.JSON,
+        // dapanes_ergwn_mnimeia: DataTypes.JSON,
+        // dapanes_ergwn_ktiria: DataTypes.JSON,
+        // vivliothikes: DataTypes.JSON,
+
+        // //oikonomia_table
+        // aep: DataTypes.JSON,
+        // metavoli_aep: DataTypes.JSON,
+        // isozygio_synallagwn: DataTypes.JSON,
+        // isozygio_kyvernisis: DataTypes.JSON,
+        // xreos_kyvernisis: DataTypes.JSON,
+        // prwtogenes_pleonasma: DataTypes.JSON,
+        // deiktes_timwn_katanalwti: DataTypes.JSON,
+
+        // //forologia_table
+        // forologika_esoda: DataTypes.JSON,
+        // analogia_forologias: DataTypes.JSON,
+        // posa_forwn: DataTypes.JSON,
+        // posa_elegxwn: DataTypes.JSON,
+        // akyrwsi_foroy_prostimou: DataTypes.JSON,
+
         //ergasiakes_sxeseis_table
         symvaseis: DataTypes.JSON,
         sse_diamesolavisi: DataTypes.JSON,

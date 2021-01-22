@@ -19,41 +19,28 @@ var upload = multer({ storage: storage }).fields([{ name: 'field_21_upload', max
 
 routes.get('/:entry_id', async (req, res, next) => {
 
-    // try {
-
-    //     const results = [];
-
-    //     var readCSV = fs.createReadStream('public/csvs/tooltips.csv')
-    //         .pipe(csv())
-    //         .on('data', (data) => results.push(data))
-    //         .on('end', () => {
-    //             console.log(results);
-    //         });
-
-    // } catch (err) {
-    //     console.log('Csv error: ' + err)
-    // }
-
-    let entry = await database.ekthesi.findOne({
-        where: {
-            id: req.params.entry_id
-        }//, include: [{ model: database.rythmiseis }, { model: database.field_9 }]
-    })
-
-    let rythmiseis = await database.rythmiseis.findOne({
-        where: {
-            rythmisiId: req.params.entry_id
-        }
-    })
-    let field_9 = await database.field_9.findOne({
-        where: {
-            field9Id: req.params.entry_id
-        }
-    })
-    pdf_name = entry.title + '.pdf';
-    pdf_name = pdf_name.replace(/\s+/g, '');
-    var pdf_exists;
     try {
+        let entry = await database.ekthesi.findOne({
+            where: {
+                id: req.params.entry_id
+            }//, include: [{ model: database.rythmiseis }, { model: database.field_9 }]
+        });
+    
+        let rythmiseis = await database.rythmiseis.findOne({
+            where: {
+                rythmisiId: req.params.entry_id
+            }
+        });
+        let field_9 = await database.field_9.findOne({
+            where: {
+                field9Id: req.params.entry_id
+            }
+        });
+
+        pdf_name = entry.title + '.pdf';
+        pdf_name = pdf_name.replace(/\s+/g, '');
+        var pdf_exists;
+        var results = [];
         if (fs.existsSync('./public/pdf_exports/' + pdf_name)) {
 
             console.log("The file exists.");
@@ -62,14 +49,22 @@ routes.get('/:entry_id', async (req, res, next) => {
             console.log("The file does not exist.");
             pdf_exists = false;
         }
+        if (entry && entry.dataValues && field_9 && field_9.dataValues && rythmiseis && rythmiseis.dataValues) {
+        
+        } else {
+            res.status(404).send("Not found")
+        }    
+        fs.createReadStream('./public/csvs/ASR_Tooltips.csv')
+            .pipe(csv())
+            .on('data', (data) => results.push(data))
+            .on('end', () => {
+                console.log(results)
+                results = JSON.stringify(results);
+                req.session.ekthesi_id = req.params.entry_id;
+                res.render("form_a", { data: entry.dataValues, staticTables:field_9.dataValues, checkboxTables:rythmiseis.dataValues, rolos: req.session.rolos, pdf_exists: pdf_exists, tooltips: results });  
+            });
     } catch (err) {
-        console.log(err)
-    }
-    if (entry && entry.dataValues && field_9 && field_9.dataValues && rythmiseis && rythmiseis.dataValues) {
-        req.session.ekthesi_id = req.params.entry_id;
-        res.render("form_a", { data: entry.dataValues, staticTables:field_9.dataValues, checkboxTables:rythmiseis.dataValues, rolos: req.session.rolos, pdf_exists: pdf_exists });  
-    } else {
-        res.status(404).send("Not found")
+        console.log('error: ' + err)
     }
 });
 
@@ -181,7 +176,7 @@ routes.put('/:entry_id', upload,
                         }                        
                     }                        
                 }
-
+                //not optimal - review
                 for (i in table) {
                     await database.field_9.update( table[i], {
                         where: {

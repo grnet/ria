@@ -673,6 +673,7 @@
                                                     στόχων κάθε άρθρου</label></th>
                                         </tr>
                                         <tr>
+                                            
                                             <th colspan="1">Άρθρο</th>
                                             <th colspan="1">Στόχος</th>
                                         </tr>
@@ -682,8 +683,7 @@
                                         <% if( data.field_14_arthro && data.field_14_arthro.length ){ for (var i=0; i <
                                             data.field_14_arthro.length; i++) { %>
                                             <tr id="table_14_row<%=i%>">
-                                                <input type="hidden" name="atmosfairiki_rypansi_label"
-                                                    value="14.Σύνοψη στόχων κάθε άρθρου" />
+                                                
                                                 <td><textarea class="form-control" id="field_14_arthro<%=i%>"
                                                         name="field_14_arthro<%=i%>" placeholder="Άρθρο"
                                                         rows="1"><%= Object.values(data.field_14_arthro[i]) %></textarea>
@@ -712,12 +712,12 @@
                             </fieldset>
 
                             <%- include('view_form/view_form_b.ejs') %>
-                            <%- include('view_form/view_form_c.ejs') %>
-                            <%- include('fill_form/fill_form_d.ejs') %>
-                            <%- include('view_form/view_form_e.ejs') %>
-                            <%- include('view_form/view_form_f.ejs') %>
-                            <%- include('view_form/view_form_g.ejs') %>
-                            <%- include('view_form/view_form_h.ejs') %>
+                                <%- include('view_form/view_form_c.ejs') %>
+                                    <%- include('fill_form/fill_form_d.ejs') %>
+                                        <%- include('view_form/view_form_e.ejs') %>
+                                            <%- include('view_form/view_form_f.ejs') %>
+                                                <%- include('view_form/view_form_g.ejs') %>
+                                                    <%- include('view_form/view_form_h.ejs') %>
 
                     </form>
                     <input type="button" name="save_temporarily" class="save_temporarily float-right"
@@ -754,6 +754,39 @@
                         border-color: blue;
                         border-width: 1px;
                         border-style: dashed;
+                    }
+
+                    .tooltip_text[data-show] {
+                        display: block;
+                    }
+
+                    .tooltip_text {
+
+                        background: #333;
+                        color: white;
+                        font-weight: bold;
+                        padding: 4px 8px;
+                        font-size: 13px;
+                        border-radius: 4px;
+                        /* width: 50%; */
+                        display: none;
+
+                    }
+
+                    #tooltip[data-popper-placement^='top']>#arrow {
+                        bottom: -4px;
+                    }
+
+                    #tooltip[data-popper-placement^='bottom']>#arrow {
+                        top: -4px;
+                    }
+
+                    #tooltip[data-popper-placement^='left']>#arrow {
+                        right: -4px;
+                    }
+
+                    #tooltip[data-popper-placement^='right']>#arrow {
+                        left: -4px;
                     }
 
                     .arxiki_menu {
@@ -887,7 +920,6 @@
                     .focused {
                         border: solid 1px red;
                     }
-                    
                 </style>
 
 
@@ -905,7 +937,7 @@
                     $("form").on("submit", function (ev) {
                         onSubmitStatus();
                         updateForm(ev);
-                    })                    
+                    })
                     //TODO: update to FormData
                     function updateForm(ev) {
                         ev.preventDefault();
@@ -1072,64 +1104,64 @@
 
                         if ("<%= data.field_10_amesi %>") {
                             $('#field_10_amesi').prop("checked", true);
-                            $("#amesi_wrap").toggle();                            
+                            $("#amesi_wrap").toggle();
                         }
 
                         if ("<%= data.field_10_emmesi %>") {
                             $('#field_10_emmesi').prop("checked", true);
-                            $("#emmesi_wrap").toggle();                            
+                            $("#emmesi_wrap").toggle();
                         }
 
                         if ("<%= data.field_25_dikaio %>") {
                             $('#field_25_dikaio').prop("checked", true);
-                            $("#dikaio_wrap").toggle();                            
+                            $("#dikaio_wrap").toggle();
                         }
 
                         if ("<%= data.field_25_kanonismos %>") {
                             $('#field_25_kanonismos').prop("checked", true);
-                            $("#kanonismos_wrap").toggle();                            
+                            $("#kanonismos_wrap").toggle();
                         }
 
                         if ("<%= data.field_25_odigia %>") {
                             $('#field_25_odigia').prop("checked", true);
-                            $("#odigia_wrap").toggle();                            
+                            $("#odigia_wrap").toggle();
                         }
 
                         if ("<%= data.field_25_apofasi %>") {
                             $('#field_25_apofasi').prop("checked", true);
-                            $("#apofasi_wrap").toggle();                            
+                            $("#apofasi_wrap").toggle();
                         }
 
                         if ("<%= data.field_26_antrwpina_dikaiwmata %>") {
                             $('#field_26_antrwpina_dikaiwmata').prop("checked", true);
-                            $("#antrwpina_dikaiwmata_wrap").toggle();                            
+                            $("#antrwpina_dikaiwmata_wrap").toggle();
                         }
 
                         if ("<%= data.field_26_symvaseis %>") {
                             $('#field_26_symvaseis').prop("checked", true);
-                            $("#symvaseis_wrap").toggle();                            
+                            $("#symvaseis_wrap").toggle();
                         }
 
                         if ("<%= data.field_27_dikastirio %>") {
                             $('#field_27_dikastirio').prop("checked", true);
-                            $("#dikastirio_wrap").toggle();                            
+                            $("#dikastirio_wrap").toggle();
                         }
 
                         if ("<%= data.field_27_arxi %>") {
                             $('#field_27_arxi').prop("checked", true);
-                            $("#arxi_wrap").toggle();                            
+                            $("#arxi_wrap").toggle();
                         }
                         if ("<%= data.field_28_nomologia %>") {
                             $('#field_28_nomologia').prop("checked", true);
-                            $("#nomologia_wrap").toggle();                            
+                            $("#nomologia_wrap").toggle();
                         }
                         if ("<%= data.field_28_nomologia_dikaiwmatwn_anthrwpou %>") {
                             $('#field_28_nomologia_dikaiwmatwn_anthrwpou').prop("checked", true);
-                            $("#nomologia_dikaiwmatwn_anthrwpou_wrap").toggle();                            
+                            $("#nomologia_dikaiwmatwn_anthrwpou_wrap").toggle();
                         }
                         if ("<%= data.field_28_alla_dikastiria %>") {
                             $('#field_28_alla_dikastiria').prop("checked", true);
-                            $("#alla_dikastiria_wrap").toggle();                            
+                            $("#alla_dikastiria_wrap").toggle();
                         }
 
                         if ("<%= data.egkrisi_aksiologisis_nomoparaskeyastikis %>") {
@@ -1154,10 +1186,10 @@
 
                         if ($("#status_ekthesis").val() == "Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους") {
                             $("#ekthesi_glk").prop('checked', true);
-                            if (role === "Συντάκτης επισπεύδοντος Υπουργείου" ) {
+                            if (role === "Συντάκτης επισπεύδοντος Υπουργείου") {
                                 $("#ekthesi_glk").prop('disabled', true);
-                            }                            
-                        }                                                
+                            }
+                        }
 
                         if (role != 'Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων') {
                             $(".return-to-author").hide();
@@ -1179,12 +1211,12 @@
 
                         if (role === "Επιτροπή Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)" || role === "Γραφείο Καλής Νομοθέτησης (ΓΓΝΚΘ)" || role === "Διεύθυνση Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)" || role === "Γενικός Γραμματέας Νομικών και Κοινοβουλευτικών Θεμάτων") {
                             $(".ggnkth").show();
-                        }       
+                        }
 
                         if (role === "Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)" && ($("#typos_analysis").val() == 'Προσχέδιο νόμου' || $("#typos_analysis").val() == 'Κατευθυντήριες γραμμές')) {
                             $(".convert").show();
                             enableFields(".convert")
-                        } 
+                        }
                         //init_submit date - will be updated when actually submitted
                         if ($("#last_updated").val() == '') {
                             getFullDate("#last_updated");
@@ -1224,10 +1256,10 @@
 
                     function submitVisibility() {
                         if ($("#egkrisi_aksiologisis_nomoparaskeyastikis").prop("checked") && $("#egkrisi_kalis_nomothetisis").prop("checked") && $("#egkrisi_dieuthinsis_nomoparaskeyastikis").prop("checked") && $("#egkrisi_genikou_grammatea").prop("checked")) {
-                            $(".create-new").prop("disabled",false)
+                            $(".create-new").prop("disabled", false)
 
                         } else {
-                            $(".create-new").prop("disabled",true)
+                            $(".create-new").prop("disabled", true)
                         }
                     }
 
@@ -1252,18 +1284,18 @@
 
                     $("#egkrisi_aksiologisis_nomoparaskeyastikis").on("change", function () {
                         submitVisibility();
-                    });                          
+                    });
 
                     $("#egkrisi_kalis_nomothetisis").on("change", function () {
                         submitVisibility();
-                    });    
-                    
+                    });
+
                     $("#egkrisi_dieuthinsis_nomoparaskeyastikis").on("change", function () {
                         submitVisibility();
-                    });   
+                    });
                     $("#egkrisi_genikou_grammatea").on("change", function () {
                         submitVisibility();
-                    });   
+                    });
 
                     $("#ekthesi_glk").on("change", function (ev) {
                         //actions to take when ΓΛΚ checks checkbox
@@ -1726,7 +1758,7 @@
                         }
                     })
 
-                    $("#forologiki_politiki").on('change',function (ev) {
+                    $("#forologiki_politiki").on('change', function (ev) {
                         if (this.checked) {
                             $("#oikonomia_table").show();
                             $("#forologia_table").show();
@@ -1740,7 +1772,7 @@
                         }
                     })
 
-                    $("#koinoniki_politiki").on('change',function (ev) {
+                    $("#koinoniki_politiki").on('change', function (ev) {
                         if (this.checked) {
                             $("#apasxolisi_table").show();
                             $("#koinoniki_asfalisi_table").show();
@@ -1760,7 +1792,7 @@
                         }
                     })
 
-                    $("#dimosia_dioikisi").on('change',function (ev) {
+                    $("#dimosia_dioikisi").on('change', function (ev) {
                         if (this.checked) {
                             $("#dimosia_dioikisi_table").show();
                             $("#dimosia_asfaleia_table").show();
@@ -1774,7 +1806,7 @@
                         }
                     })
                     //console.log("<%=Object.keys(data)%>")
-                    $("#anaptiksi").on('change',function (ev) {
+                    $("#anaptiksi").on('change', function (ev) {
                         if (this.checked) {
                             $("#ependytiki_drastiriotita_table").show();
                             $("#perivallon_energeia_table").show();
@@ -1817,7 +1849,7 @@
                         enableFields(".create-new");
                         enableFields(".next");
                         enableFields(".previous");
-                        $("#egkrisi_aksiologisis_nomoparaskeyastikis, #egkrisi_kalis_nomothetisis, #egkrisi_dieuthinsis_nomoparaskeyastikis, #egkrisi_genikou_grammatea").prop('disabled',false);
+                        $("#egkrisi_aksiologisis_nomoparaskeyastikis, #egkrisi_kalis_nomothetisis, #egkrisi_dieuthinsis_nomoparaskeyastikis, #egkrisi_genikou_grammatea").prop('disabled', false);
                         $("#pdf_download").prop("disabled", false);
                         $(".export-pdf").prop("disabled", false);
                         $(".return-to-author").prop("disabled", false);
@@ -1840,7 +1872,7 @@
                         enableFields(".create-new");
                         enableFields(".next");
                         enableFields(".previous");
-                        $("#egkrisi_aksiologisis_nomoparaskeyastikis, #egkrisi_kalis_nomothetisis, #egkrisi_dieuthinsis_nomoparaskeyastikis, #egkrisi_genikou_grammatea").prop('disabled',false);
+                        $("#egkrisi_aksiologisis_nomoparaskeyastikis, #egkrisi_kalis_nomothetisis, #egkrisi_dieuthinsis_nomoparaskeyastikis, #egkrisi_genikou_grammatea").prop('disabled', false);
                         $("#pdf_download").prop("disabled", false);
                         $(".export-pdf").prop("disabled", false);
                         $(".return-to-author").prop("disabled", false);
@@ -1867,7 +1899,7 @@
                         enableFields(".create-new");
                         enableFields(".next");
                         enableFields(".previous");
-                        $("#egkrisi_aksiologisis_nomoparaskeyastikis, #egkrisi_kalis_nomothetisis, #egkrisi_dieuthinsis_nomoparaskeyastikis, #egkrisi_genikou_grammatea").prop('disabled',false);
+                        $("#egkrisi_aksiologisis_nomoparaskeyastikis, #egkrisi_kalis_nomothetisis, #egkrisi_dieuthinsis_nomoparaskeyastikis, #egkrisi_genikou_grammatea").prop('disabled', false);
                         $("#pdf_download").prop("disabled", false);
                         $(".export-pdf").prop("disabled", false);
                         $(".return-to-author").prop("disabled", false);
@@ -1878,7 +1910,7 @@
                         optionalFieldsClassRemoval("field-21-label", "required");
                         optionalFieldsClassRemoval("field-22-label", "required");
                         optionalFieldsClassRemoval("field-23-label", "required");
-                        optionalFieldsClassRemoval("field-24-label", "required");            
+                        optionalFieldsClassRemoval("field-24-label", "required");
                         optionalFieldsClassRemoval("field-25-label", "required");
                         optionalFieldsClassRemoval("field-26-label", "required");
                         optionalFieldsClassRemoval("field-27-label", "required");
@@ -1890,23 +1922,23 @@
                     }
 
                     if ($("#status_ekthesis").val() != "Σε σύνταξη" && role === "Συντάκτης επισπεύδοντος Υπουργείου") {
-                            console.log('this hould be disabled...')
-                            optionalFields("#edit_form :input");
-                            enableFields(".next");
-                            enableFields(".previous");
-                            //enableFields(".create-new");
+                        console.log('this hould be disabled...')
+                        optionalFields("#edit_form :input");
+                        enableFields(".next");
+                        enableFields(".previous");
+                        //enableFields(".create-new");
                     }
 
                     if (role === "Γενικό Λογιστήριο του Κράτους") {
-                        
+
                         optionalFields("#edit_form :input:not([type=hidden])");
                         $(".ekpaideysi-politismos :input").prop('disabled', true);
                         $(".oikonomia :input").prop('disabled', true);
                         $(".koinoniki-politiki :input").prop('disabled', true);
                         $(".dimosia-dioikisi :input").prop('disabled', true);
-                        $(".ependyseis :input").prop('disabled', true);                        
+                        $(".ependyseis :input").prop('disabled', true);
                         $("#status_ekthesis").prop(('disabled', false));
-                        console.log('status of stat: '+$("#status_ekthesis").prop(('disabled')));
+                        console.log('status of stat: ' + $("#status_ekthesis").prop(('disabled')));
 
                         enableFields(".glk :input");
                         enableFields(".next");
@@ -1921,6 +1953,114 @@
                         enableFields(".next");
                         enableFields(".previous");
                     }
+
+                    function tooltipEvents(imgId, tooltipClass) {
+                        const img = document.querySelector('#' + imgId);
+                        const tooltip = document.querySelector('#' + tooltipClass);
+                        //console.log(img);
+                        let popperInstance = null;
+
+                        function create() {
+                            popperInstance = Popper.createPopper(img, tooltip, {
+                                modifiers: [
+                                    {
+                                        name: 'offset',
+                                        options: {
+                                            offset: [0, 8],
+                                        },
+                                    },
+                                ],
+                            });
+                        }
+
+                        function destroy() {
+                            if (popperInstance) {
+                                popperInstance.destroy();
+                                popperInstance = null;
+                            }
+                        }
+
+                        function show() {
+                            tooltip.setAttribute('data-show', '');
+                            create();
+                        }
+
+                        function hide() {
+                            tooltip.removeAttribute('data-show');
+                            destroy();
+                        }
+
+                        const showEvents = ['mouseenter', 'focus'];
+                        const hideEvents = ['mouseleave', 'blur'];
+
+                        showEvents.forEach(event => {
+                            img.addEventListener(event, show);
+                        });
+
+                        hideEvents.forEach(event => {
+                            img.addEventListener(event, hide);
+                        });
+                    }
+
+                    var tooltips = '<%= tooltips %>';
+                    tooltips = tooltips.replace(/&#34;/g, '"')
+                        .replace(/[\u0000-\u0019]+/g, "")
+                        .replace(/\\'/g, "\\'")
+                        .replace(/\\"/g, '\\"')
+                        .replace(/\\&/g, "\\&")
+                        .replace(/\\r/g, "\\r")
+                        .replace(/\\t/g, "\\t")
+                        .replace(/\\b/g, "\\b")
+                        .replace(/\\f/g, "\\f");
+                    tooltips = JSON.parse(tooltips)//parse to JSON obj
+
+                    //for rows in csv call function        
+
+                    for (i in tooltips) {
+                        var fieldId = tooltips[i].fieldId
+                        if (fieldId) {
+                            if ($("." + fieldId).length > 0) {
+                                addTooltipByClass(fieldId);
+                            } else {
+                                addTooltip(tooltips[i].fieldId);
+                            }
+                        }
+                    }
+
+                    function addTooltip(fieldID) {
+                        var parentDiv = $('#' + fieldID).closest('div.form-group');
+                        var tooltip = `<div class="tooltip_div" >
+                            <img src="/img/information.png"  id="${fieldID}_tooltip_img" aria-describedby="${fieldID}_tooltip_img" 
+                                onmouseover="tooltipEvents('${fieldID}_tooltip_img', '${fieldID}_tooltip_div'); setTooltip('${fieldID}_tooltip_div','${fieldID}');" width="20px" >
+                            <div id="${fieldID}_tooltip_div" class="tooltip_text" role="tooltip"></div>
+                        </div>`;
+                        parentDiv.append(tooltip);
+                    }
+
+                    function addTooltipByClass(fieldID) {
+                        var parentDiv = $("." + fieldID);
+                        parentDiv.each(function (index) {
+                            var tooltip = `<div class="tooltip_div" >
+                            <img src="/img/information.png"  id="${fieldID}_tooltip_img_${index}" aria-describedby="${fieldID}_tooltip_img" 
+                                onmouseover="tooltipEvents('${fieldID}_tooltip_img_${index}', '${fieldID}_tooltip_div_${index}'); setTooltip('${fieldID}_tooltip_div_${index}','${fieldID}');" width="20px" >
+                            <div id="${fieldID}_tooltip_div_${index}" class="tooltip_text" role="tooltip"></div>
+                        </div>`;
+                            $(this).append(tooltip);
+                        });
+                    }
+
+                    function setTooltip(divID, fieldId) {
+                        //var fieldId = fieldId.substring(1)//remove 1st character if #fieldID is passed as parameter
+
+                        var tooltip;
+                        for (i in tooltips) {
+                            if (tooltips[i].fieldId == fieldId) {
+                                tooltip = tooltips[i].tooltipText;
+                                $("#" + divID).html((tooltip));
+                            }
+                        }
+                    }
+
 
                     $(".close").on("click", function () {
                         $("#errors").hide();
@@ -2039,42 +2179,42 @@
                         }
                     };
 
-                    var staticTables = '<%= JSON.stringify(staticTables) %>'    
+                    var staticTables = '<%= JSON.stringify(staticTables) %>'
                     if (staticTables) {
-                        staticTables = staticTables.replace(/\\n/g, "\\n")  
-                                .replace(/&#34;/g, '"')
-                                .replace(/\\'/g, "\\'")
-                                .replace(/\\"/g, '\\"')
-                                .replace(/\\&/g, "\\&")
-                                .replace(/\\r/g, "\\r")
-                                .replace(/\\t/g, "\\t")
-                                .replace(/\\b/g, "\\b")
-                                .replace(/\\f/g, "\\f")
-                                .replace(/\\n/g, '');
+                        staticTables = staticTables.replace(/\\n/g, "\\n")
+                            .replace(/&#34;/g, '"')
+                            .replace(/\\'/g, "\\'")
+                            .replace(/\\"/g, '\\"')
+                            .replace(/\\&/g, "\\&")
+                            .replace(/\\r/g, "\\r")
+                            .replace(/\\t/g, "\\t")
+                            .replace(/\\b/g, "\\b")
+                            .replace(/\\f/g, "\\f")
+                            .replace(/\\n/g, '');
                         staticTables = JSON.parse(staticTables);
                         console.log(staticTables);
-                        var tableInputs= $('#eidikoteroi_stoxoi_analogws_tomea :input[type=hidden]');
+                        var tableInputs = $('#eidikoteroi_stoxoi_analogws_tomea :input[type=hidden]');
                         //console.log('ststc0: '+Object.values(staticTables.symvaseis[0]));///:DDD  
                         var prefix;
                         $.each(tableInputs, function (key, field) {
-                            var name= $(this).prop('name');
-                            if (name.includes('_label')) {                        
+                            var name = $(this).prop('name');
+                            if (name.includes('_label')) {
                                 prefix = name.split('_label');
                                 prefix = prefix.slice(0, -1);//remove last character, a comma produced by split()
-                                prefix= prefix.toString();
+                                prefix = prefix.toString();
                             }
                             if (prefix) {
                                 $.each(staticTables[prefix], function (key, field) {
                                     var inputName = Object.keys(field).toString();
                                     // inputName = inputName.toString();
                                     var inputValue = Object.values(field);
-                                    $("input[name='"+inputName+"']").prop("value", inputValue);                                
+                                    $("input[name='" + inputName + "']").prop("value", inputValue);
                                 });
-                            }                      
+                            }
                         });
                     }
-                    
-                    
+
+
 
                     var current_fs, next_fs, previous_fs; //fieldsets
 
