@@ -118,32 +118,44 @@
                             <p>Επιλέξατε από τον παρακάτω κατάλογο τον τομέα ή τους τομείς νομοθέτησης στους οποίους
                                 αφορούν
                                 οι βασικές διατάξεις της αξιολογούμενης ρύθμισης:
-                                <div class="index_tomeis"></div>
+                            <div class="index_tomeis"></div>
                             </p>
                             <div class="checkbox-group form-group row">
-                                <label for="ekpedeusi_politismos" class="col-sm-8 col-form-label">ΕΚΠΑΙΔΕΥΣΗ - ΠΟΛΙΤΙΣΜΟΣ</label>
-                                <input class="col-sm-2 form-check-input position-static" name="ekpedeusi_politismos" type="checkbox" id="ekpedeusi_politismos">
+                                <label for="ekpedeusi_politismos" class="col-sm-8 col-form-label">ΕΚΠΑΙΔΕΥΣΗ -
+                                    ΠΟΛΙΤΙΣΜΟΣ</label>
+                                <input class="col-sm-2 form-check-input position-static" name="ekpedeusi_politismos"
+                                    type="checkbox" id="ekpedeusi_politismos">
                             </div>
 
                             <div class="checkbox-group form-group row">
-                                <label for="eksoteriki_politiki" class="col-sm-8 col-form-label">ΕΘΝΙΚΗ ΑΜΥΝΑ - ΕΞΩΤΕΡΙΚΗ ΠΟΛΙΤΙΚΗ</label>
-                                <input class="col-sm-2 form-check-input position-static" type="checkbox" id="eksoteriki_politiki" name="eksoteriki_politiki">
+                                <label for="eksoteriki_politiki" class="col-sm-8 col-form-label">ΕΘΝΙΚΗ ΑΜΥΝΑ -
+                                    ΕΞΩΤΕΡΙΚΗ ΠΟΛΙΤΙΚΗ</label>
+                                <input class="col-sm-2 form-check-input position-static" type="checkbox"
+                                    id="eksoteriki_politiki" name="eksoteriki_politiki">
                             </div>
                             <div class="checkbox-group form-group row">
-                                <label for="forologiki_politiki" class="col-sm-8 col-form-label">ΟΙΚΟΝΟΜΙΚΗ / ΔΗΜΟΣΙΟΝΟΜΙΚΗ / ΦΟΡΟΛΟΓΙΚΗ ΠΟΛΙΤΙΚΗ</label>
-                                <input class="col-sm-2 form-check-input position-static" type="checkbox" id="forologiki_politiki" name="forologiki_politiki">
+                                <label for="forologiki_politiki" class="col-sm-8 col-form-label">ΟΙΚΟΝΟΜΙΚΗ /
+                                    ΔΗΜΟΣΙΟΝΟΜΙΚΗ / ΦΟΡΟΛΟΓΙΚΗ ΠΟΛΙΤΙΚΗ</label>
+                                <input class="col-sm-2 form-check-input position-static" type="checkbox"
+                                    id="forologiki_politiki" name="forologiki_politiki">
                             </div>
                             <div class="checkbox-group form-group row">
-                                <label for="koinoniki_politiki" class="col-sm-8 col-form-label">ΚΟΙΝΩΝΙΚΗ ΠΟΛΙΤΙΚΗ</label>
-                                <input class="col-sm-2 form-check-input position-static" type="checkbox" id="koinoniki_politiki" name="koinoniki_politiki">
+                                <label for="koinoniki_politiki" class="col-sm-8 col-form-label">ΚΟΙΝΩΝΙΚΗ
+                                    ΠΟΛΙΤΙΚΗ</label>
+                                <input class="col-sm-2 form-check-input position-static" type="checkbox"
+                                    id="koinoniki_politiki" name="koinoniki_politiki">
                             </div>
                             <div class="checkbox-group form-group row">
-                                <label for="dimosia_dioikisi" class="col-sm-8 col-form-label">ΔΗΜΟΣΙΑ ΔΙΟΙΚΗΣΗ - ΔΗΜΟΣΙΑ ΤΑΞΗ - ΔΙΚΑΙΟΣΥΝΗ</label>
-                                <input class="col-sm-2 form-check-input position-static" type="checkbox" id="dimosia_dioikisi" name="dimosia_dioikisi">
+                                <label for="dimosia_dioikisi" class="col-sm-8 col-form-label">ΔΗΜΟΣΙΑ ΔΙΟΙΚΗΣΗ - ΔΗΜΟΣΙΑ
+                                    ΤΑΞΗ - ΔΙΚΑΙΟΣΥΝΗ</label>
+                                <input class="col-sm-2 form-check-input position-static" type="checkbox"
+                                    id="dimosia_dioikisi" name="dimosia_dioikisi">
                             </div>
                             <div class="checkbox-group form-group row">
-                                <label for="anaptiksi" class="col-sm-8 col-form-label">ΑΝΑΠΤΥΞΗ - ΕΠΕΝΔΥΤΙΚΗ ΔΡΑΣΤΗΡΙΟΤΗΤΑ</label>
-                                <input class="col-sm-2 form-check-input position-static" type="checkbox" id="anaptiksi" name="anaptiksi">
+                                <label for="anaptiksi" class="col-sm-8 col-form-label">ΑΝΑΠΤΥΞΗ - ΕΠΕΝΔΥΤΙΚΗ
+                                    ΔΡΑΣΤΗΡΙΟΤΗΤΑ</label>
+                                <input class="col-sm-2 form-check-input position-static" type="checkbox" id="anaptiksi"
+                                    name="anaptiksi">
                             </div>
                             <input type="button" name="next" class="next action-button" value="Επόμενα πεδία" />
 
@@ -269,23 +281,29 @@
                             </div>
 
                             <div id="field_6_wrap" class="form-group" style="display:none;">
-                                <label class="required" for="field_6_1">6.1 Σε άλλη/ες χώρα/ες της Ε.Ε. ή του
-                                    ΟΟΣΑ:</label>
-                                <textarea class="form-control" id="field_6_1" name="field_6_1" rows="3"
-                                    onkeypress="wordsCounter('field_6_1','words6_1',150, event)"
-                                    onpaste="wordsCounter('field_6_1','words6_1',150, event)"><%= data.field_6_1 %></textarea>
-                                <p style="float: right;">Λέξεις: <span id="words6_1"></span> /150</p>
+                                <div class="form-group">
+                                    <label class="required" for="field_6_1">6.1 Σε άλλη/ες χώρα/ες της Ε.Ε. ή του
+                                        ΟΟΣΑ:</label>
+                                    <textarea class="form-control" id="field_6_1" name="field_6_1" rows="3"
+                                        onkeypress="wordsCounter('field_6_1','words6_1',150, event)"
+                                        onpaste="wordsCounter('field_6_1','words6_1',150, event)"><%= data.field_6_1 %></textarea>
+                                    <p style="float: right;">Λέξεις: <span id="words6_1"></span> /150</p>
+                                </div>
                                 <br>
-                                <label for="field_6_2">6.2 Σε όργανα της Ε.Ε.:</label>
-                                <textarea class="form-control" id="field_6_2" name="field_6_2"
-                                    onkeypress="wordsCounter('field_6_2','words6_2',150, event)"
-                                    onpaste="wordsCounter('field_6_2','words6_2',150, event)"><%= data.field_6_2 %></textarea>
-                                <p style="float: right;">Λέξεις: <span id="words6_2"></span> /150</p>
-                                <label for="field_6_3">6.3 Σε διεθνείς οργανισμούς:</label>
-                                <textarea class="form-control" id="field_6_3" name="field_6_3" rows="3"
-                                    onkeypress="wordsCounter('field_6_3','words6_3',150, event)"
-                                    onpaste="wordsCounter('field_6_3','words6_3',150, event)"><%= data.field_6_3 %></textarea>
-                                <p style="float: right;">Λέξεις: <span id="words6_3"></span> /150</p>
+                                <div class="form-group">
+                                    <label for="field_6_2">6.2 Σε όργανα της Ε.Ε.:</label>
+                                    <textarea class="form-control" id="field_6_2" name="field_6_2"
+                                        onkeypress="wordsCounter('field_6_2','words6_2',150, event)"
+                                        onpaste="wordsCounter('field_6_2','words6_2',150, event)"><%= data.field_6_2 %></textarea>
+                                    <p style="float: right;">Λέξεις: <span id="words6_2"></span> /150</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="field_6_3">6.3 Σε διεθνείς οργανισμούς:</label>
+                                    <textarea class="form-control" id="field_6_3" name="field_6_3" rows="3"
+                                        onkeypress="wordsCounter('field_6_3','words6_3',150, event)"
+                                        onpaste="wordsCounter('field_6_3','words6_3',150, event)"><%= data.field_6_3 %></textarea>
+                                    <p style="float: right;">Λέξεις: <span id="words6_3"></span> /150</p>
+                                </div>
                             </div>
                             <input type="button" name="previous" class="previous action-button-previous"
                                 value="Προηγούμενα πεδία" />
@@ -298,6 +316,7 @@
                             <div id="field_7_wrap">
                                 <label class="col-form-label">7. Σημειώστε ποιοι από τους στόχους βιώσιμης ανάπτυξης των
                                     Ηνωμένων Εθνών επιδιώκονται με την αξιολογούμενη ρύθμιση</label>
+                                <div class="index_goals"></div>
                                 <div class="flex-form-group form-group">
                                     <div class="wrap">
                                         <% if(data.field_7_goal_1){ %>
@@ -501,7 +520,7 @@
                             </div>
                             <hr>
 
-                            <label>8. Ποιοι είναι οι στόχοι της αξιολογούμενης ρύθμισης;</label>
+                            <label>8. Ποιοι είναι οι στόχοι της αξιολογούμενης ρύθμισης;</label><div class="index_field_8"></div>
                             <div class="form-group">
                                 <label for="field_8_1" class="required">8.1 βραχυπρόθεσμοι: </label>
                                 <textarea class="form-control" id="field_8_1" name="field_8_1" rows="3"
@@ -530,7 +549,8 @@
                                 <br>
 
                                 <div class="checkbox-group form-group row ">
-                                    <label class="col-sm-8 col-form-label digital-gov-label">10. Σε περίπτωση που προβλέπεται η χρήση
+                                    <label class="col-sm-8 col-form-label digital-gov-label">10. Σε περίπτωση που
+                                        προβλέπεται η χρήση
                                         πληροφοριακού συστήματος, ποια θα είναι η συμβολή αυτού στην επίτευξη των στόχων
                                         της
                                         αξιολογούμενης ρύθμισης: </label>
@@ -543,7 +563,8 @@
                                         id="field_10_amesi" name="field_10_amesi">
                                 </div>
                                 <div id="amesi_wrap" class="form-group digital_gov" style="display:none;">
-                                    <label for="field_10_amesi_comments" class="digital-gov-label">Εάν είναι άμεση, εξηγήστε:</label>
+                                    <label for="field_10_amesi_comments" class="digital-gov-label">Εάν είναι άμεση,
+                                        εξηγήστε:</label>
                                     <textarea class="form-control" id="field_10_amesi_comments"
                                         name="field_10_amesi_comments" rows="3"
                                         onkeypress="wordsCounter('field_10_amesi_comments','words10_1',150, event)"
@@ -559,7 +580,8 @@
                                 </div>
 
                                 <div id="emesi_wrap" class="form-group digital_gov" style="display:none;">
-                                    <label for="field_10_emmesi_comments" class="digital-gov-label">Εάν είναι έμμεση, εξηγήστε:</label>
+                                    <label for="field_10_emmesi_comments" class="digital-gov-label">Εάν είναι έμμεση,
+                                        εξηγήστε:</label>
                                     <textarea class="form-control" id="field_10_emmesi_comments"
                                         name="field_10_emmesi_comments" rows="3"
                                         onkeypress="wordsCounter('field_10_emmesi_comments','words10_2',150, event)"
@@ -600,7 +622,8 @@
                                 </div>
 
                                 <div id="field_12_wrap" class="form-group digital_gov" style="display:none;">
-                                    <label for="field_12_comments" class="digital-gov-label">Αναφέρατε ποια είναι αυτά τα συστήματα:</label>
+                                    <label for="field_12_comments" class="digital-gov-label">Αναφέρατε ποια είναι αυτά
+                                        τα συστήματα:</label>
                                     <textarea class="form-control" name="field_12_comments" id="field_12_comments"
                                         rows="3" onkeypress="wordsCounter('field_12_comments','words12',100, event)"
                                         onpaste="wordsCounter('field_12_comments','words12',100, event)"><%= data.field_12_comments %></textarea>
@@ -637,14 +660,12 @@
                                 <table class="table" id="field_14_table">
                                     <thead class="thead">
                                         <tr>
-                                            <th colspan="2"><label id="table_14_label"
-                                                    class="table-14-label required">14.Σύνοψη
-                                                    στόχων κάθε άρθρου</label></th>
+                                            <th colspan="2"><label id="table_14_label" class="table-14-label required">14.Σύνοψη στόχων κάθε άρθρου<div class="table-cell index_14"></div></label></th>
                                         </tr>
                                         <tr>
-                                            
-                                            <th colspan="1">Άρθρο</th>
-                                            <th colspan="1">Στόχος</th>
+
+                                            <th colspan="1">Άρθρο<div class="table-cell index_article"></div></th>
+                                            <th colspan="1">Στόχος<div class="table-cell index_goal"></div></th>
                                         </tr>
                                     </thead>
                                     <tbody id="tbody_14">
@@ -652,7 +673,7 @@
                                         <% if( data.field_14_arthro && data.field_14_arthro.length ){ for (var i=0; i <
                                             data.field_14_arthro.length; i++) { %>
                                             <tr id="table_14_row<%=i%>">
-                                                
+
                                                 <td><textarea class="form-control" id="field_14_arthro<%=i%>"
                                                         name="field_14_arthro<%=i%>" placeholder="Άρθρο"
                                                         rows="1"><%= Object.values(data.field_14_arthro[i]) %></textarea>
@@ -1008,10 +1029,10 @@
                         $.each(spans, function (key, field) {
                             var txtarea = $(this).closest('p').siblings('textarea');
                             if (txtarea) {//if span has a textarea sibling
-                                wordsCounter(txtarea.prop('id'),$(this).prop('id'));//count words
-                            }                            
-                        });                        
-                        
+                                wordsCounter(txtarea.prop('id'), $(this).prop('id'));//count words
+                            }
+                        });
+
                         requiredLegalistics("#field_33");//set initial state for fields 33-40
 
                         if ("<%= data.ekpedeusi_politismos %>") {
@@ -1075,7 +1096,7 @@
                             $('#field_10_emmesi').prop("checked", true);
                             $("#emmesi_wrap").toggle();
                             requiredDigitalGov("#field_10_emmesi");
-                        }                        
+                        }
 
                         if ("<%= data.field_25_dikaio %>") {
                             $('#field_25_dikaio').prop("checked", true);
@@ -1307,11 +1328,11 @@
                         $('#tbody_14').append(`
                  <tr id="table_14_row${++table14RowIndex}"> 
                 <td> 
-                    <textarea class="form-control" id="field_14_arthro${table14RowIndex}" name="field_14_arthro${table14RowIndex}" placeholder="Άρθρο" rows="1" onkeypress="wordsCounter('field_14_arthro${table14RowIndex}','words14_${table14RowIndex}',50, event)" onpaste="wordsCounter('field_14_arthro${table14RowIndex}','words14_${table14RowIndex}',50, event)"></textarea>
-                    <p style="float: right;">Λέξεις: <span id="words14_${table14RowIndex}" ></span> /50</p>               
+                    <textarea class="form-control" id="field_14_arthro${table14RowIndex}" name="field_14_arthro${table14RowIndex}" placeholder="Άρθρο" rows="1" onkeypress="wordsCounter('field_14_arthro${table14RowIndex}','words14_${table14RowIndex}',50, event)" onpaste="wordsCounter('field_14_arthro${table14RowIndex}','words14_${table14RowIndex}',50, event)"></textarea>                                   
                 </td>    
                 <td> 
                     <textarea class="form-control" id="field_14_stoxos${table14RowIndex}" name="field_14_stoxos${table14RowIndex}" placeholder="Στόχος" rows="1"></textarea>
+                    <p style="float: right;">Λέξεις: <span id="words14_${table14RowIndex}" ></span> /50</p>
                     <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
                 </td>    
                 </tr>`
@@ -1573,11 +1594,11 @@
                         table32RowIndex--;
                     });
 
-                    
+
 
                     $("#field_10_emmesi").on("change", function (ev) {
                         requiredDigitalGov("#field_10_emmesi");
-                        $("#emesi_wrap").toggle();                        
+                        $("#emesi_wrap").toggle();
                     })
 
                     $("#field_10_amesi").on("change", function (ev) {
@@ -1968,9 +1989,9 @@
                             img.addEventListener(event, hide);
                         });
                     }
-                    
-                    function requiredDigitalGov (field) {
-                        if($(field).prop("checked")) {
+
+                    function requiredDigitalGov(field) {
+                        if ($(field).prop("checked")) {
                             enableFields($('.digital_gov :input'));
                             addLabelClass($('.digital_gov'));
                             $('.digital-gov-label').addClass('required');
@@ -1979,12 +2000,12 @@
                             $('.digital-gov-label').removeClass('required')
                         }
                     }
-                    
-                    function requiredLegalistics (field) {
-                        
-                        let spaceLess = $(field).val().replace(/^\s+|\s+$/g,"");//replace white space
-                        if(spaceLess) {
-                            enableFields($('.legalistic :input'));                
+
+                    function requiredLegalistics(field) {
+
+                        let spaceLess = $(field).val().replace(/^\s+|\s+$/g, "");//replace white space
+                        if (spaceLess) {
+                            enableFields($('.legalistic :input'));
                             $('.legalistic-label').addClass('required');
                         } else {
                             optionalFields($('.legalistic :input'));
@@ -2199,7 +2220,7 @@
                                 });
                             }
                         });
-                    }                
+                    }
 
                     var current_fs, next_fs, previous_fs; //fieldsets
 

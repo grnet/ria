@@ -156,7 +156,14 @@ routes.put('/:entry_id', upload,
                 let prefix, elemValue;
                 let row = [];
                 let table = [];
+                let tables = [];
                 for (var elem in req.body) {
+                    //FOUND SOLUTION FOR MULTIPLE UPDATES!
+                    // if (elem.includes('_header')) {
+                    //     if (table.length) {                             
+                    //         tables.push(table);
+                    //     }
+                    // }
                     if (elem.includes('_label')) {
                         if (row.length) { 
                             console.log(row);
@@ -175,7 +182,7 @@ routes.put('/:entry_id', upload,
                         }                        
                     }                        
                 }
-                //not optimal - review
+                //not optimal - review ---> iterate for tables ---> max 17 updates
                 for (i in table) {
                     await database.field_9.update( table[i], {
                         where: {
@@ -183,12 +190,7 @@ routes.put('/:entry_id', upload,
                         }
                     })
                 }
-                
-                
-
-                //groupings for field9
-                //ergasiakes_sxeseis_table
-                
+                                
                 //grouping each value of each row of table 18 
                 let auksisi_esodwn =  [{ "field_18_amesa_esoda_thesmoi": req.body.field_18_amesa_esoda_thesmoi }, { "field_18_amesa_esoda_oikonomia": req.body.field_18_amesa_esoda_oikonomia }, { "field_18_amesa_esoda_kinonia": req.body.field_18_amesa_esoda_kinonia }, { "field_18_amesa_esoda_perivallon": req.body.field_18_amesa_esoda_perivallon }, { "field_18_amesa_esoda_nisiwtika": req.body.field_18_amesa_esoda_nisiwtika }] 
                 let meiwsi_dapanwn =  [{ "field_18_amesa_dapanes_thesmoi": req.body.field_18_amesa_dapanes_thesmoi }, { "field_18_amesa_dapanes_oikonomia": req.body.field_18_amesa_dapanes_oikonomia }, { "field_18_amesa_dapanes_kinonia": req.body.field_18_amesa_dapanes_kinonia }, { "field_18_amesa_dapanes_perivallon": req.body.field_18_amesa_dapanes_perivallon }, { "field_18_amesa_dapanes_nisiwtika": req.body.field_18_amesa_dapanes_nisiwtika }] 

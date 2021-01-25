@@ -198,7 +198,7 @@ exports.exportPDF = (async function (req, res, next) {
                 }, //, pageBreak:'after',                                    
 
                 {
-                    text: 'Αιτολογική έκθεση',
+                    text: 'Α. Αιτολογική έκθεση',
                     style: 'header',
                     fontSize: 17,
                     tocItem: true,
@@ -331,15 +331,15 @@ exports.exportPDF = (async function (req, res, next) {
                     tocMargin: [20, 0, 0, 0],
                     pageBreak: 'before'
                 },
-                { text: 'Έκθεση Γενικού Λογιστηρίου του Κράτους ', style: 'labelStyle' },
+                { text: 'Β. Έκθεση Γενικού Λογιστηρίου του Κράτους (άρθρο 75 παρ. 1 ή 2 του Συντάγματος) ', style: 'labelStyle' },
                 { text: '\n\n\n\n' },
 
-                { text: 'Στο σχέδιο νόμου του Υπουργείου ', style: 'textStyle' },
-                { text: '\n\n' },
-                { text: data.field_15_ypoyrgeio + '\n\n', style: 'textStyle' },
-                { text: 'ή επί τροπολογίας στο σχέδιο νόμου του Υπουργείου: ', style: 'textStyle' },
+                { text: 'Στο σχέδιο νόμου ή στην τροπολογία επί του σχεδίου νόμου', style: 'textStyle' },
                 { text: '\n\n' },
                 { text: data.field_15_sxedio_nomou + '\n\n', style: 'textStyle' },
+                { text: 'του Υπουργείου: ', style: 'textStyle' },
+                { text: '\n\n' },
+                { text: data.field_15_ypoyrgeio + '\n\n', style: 'textStyle' },
                 { text: '15.Συνοπτική ανάλυση των άρθρων της αξιολογούμενης ρύθμισης ', style: 'labelStyle' },
                 { text: '\n\n' },
                 { text: data.field_15_sxedio_nomou + '\n\n' },
@@ -354,7 +354,7 @@ exports.exportPDF = (async function (req, res, next) {
                 { text: 'Επί του Προϋπολογισμού του/των αρμόδιου/ων φορέα/ων ', style: 'textStyle' },
                 { text: '\n\n' },
                 { text: data.field_16_proypologismos_forea + '\n\n', style: 'textStyle' },
-                { text: 'Ο/Η ΥΠΟΓΡΑΦΩΝ/ΟΥΣΑ ΓΕΝΙΚΟΣ/Η ΔΙΕΥΘΥΝΤΗΣ/ΡΙΑ (Όνομα Επώνυμο Ιδιότητα) ', style: 'labelStyle' },
+                { text: 'Ο/Η ΥΠΟΓΡΑΦΩΝ/ΟΥΣΑ ΓΕΝΙΚΟΣ/Η ΔΙΕΥΘΥΝΤΗΣ/ΡΙΑ (Όνομα Επώνυμο Ημερομηνία) ', style: 'labelStyle' },
                 { text: '\n\n' },
                 {
                     table: {
@@ -364,7 +364,7 @@ exports.exportPDF = (async function (req, res, next) {
 
                         body: [
                             ['Όνομα', 'Επώνυμο', 'Ιδιότητα'],
-                            [{ text: data.field_16_genikos_onoma, style: 'textStyle' }, { text: data.field_16_genikos_epitheto, style: 'textStyle' }, { text: data.field_16_genikos_idiototita, style: 'textStyle' }],
+                            [{ text: data.field_16_genikos_onoma, style: 'textStyle' }, { text: data.field_16_genikos_epitheto, style: 'textStyle' }, { text: data.field_16_genikos_date, style: 'textStyle' }],
 
                         ]
                     }
@@ -379,12 +379,12 @@ exports.exportPDF = (async function (req, res, next) {
                     pageBreak: 'before'
                 },
 
-                { text: 'Στο σχέδιο νόμου του Υπουργείου ', style: 'textStyle' },
-                { text: '\n\n' },
-                { text: data.field_17_ypoyrgeio + '\n\n', style: 'textStyle' },
-                { text: 'ή επί τροπολογίας στο σχέδιο νόμου του Υπουργείου: ', style: 'textStyle' },
+                { text: 'Στο σχέδιο νόμου ή στην τροπολογία επί του σχεδίου νόμου', style: 'textStyle' },
                 { text: '\n\n' },
                 { text: data.field_17_sxedio_nomou + '\n\n', style: 'textStyle' },
+                { text: 'του Υπουργείου: ', style: 'textStyle' },
+                { text: '\n\n' },
+                { text: data.field_17_ypoyrgeio + '\n\n', style: 'textStyle' },
                 { text: '17.Οικονομικά αποτελέσματα ', style: 'labelStyle' },
                 { text: '\n\n' },
                 { text: data.field_17_oikonomika_apotelesmata + '\n\n' },
@@ -521,12 +521,41 @@ exports.exportPDF = (async function (req, res, next) {
 
                 { text: '31.Συναρμοδιότητα Υπουργείων / υπηρεσιών / φορέων', style: 'labelStyle' },
                 { text: '\n\n' },
-                createDynamicFiveColumnTable('Σχετική διάταξη αξιολογούμενης ρύθμισης', 'Συναρμόδια Υπουργεία – Συναρμόδιες υπηρεσίες / φορείς', 'Αντικείμενο συναρμοδιότητας', field_31_sxetiki_diataksi, field_31_synarmodia_ypoyrgeia, field_31_antikeimeno_synarmodiotitas),
+                createDynamicThreeColumnTable('Σχετική διάταξη αξιολογούμενης ρύθμισης', 'Συναρμόδια Υπουργεία – Συναρμόδιες υπηρεσίες / φορείς', 'Αντικείμενο συναρμοδιότητας', field_31_sxetiki_diataksi, field_31_synarmodia_ypoyrgeia, field_31_antikeimeno_synarmodiotitas),
                 { text: '\n\n' },
                 { text: '32.Έκδοση κανονιστικών πράξεων και εγκυκλίων', style: 'labelStyle' },
                 { text: '\n\n' },
-                //createDynamicFiveColumnTable('Εξουσιοδοτική διάταξη', 'Είδος πράξης', 'Αρμόδιο ή επισπεύδον Υπουργείο ή υπηρεσία', 'Αντικείμενο', 'Χρονοδιάγραμμα (ενδεικτική ή αποκλειστική προθεσμία)',field_32_eksousiodotiki_diataksi, field_32_eidos_praksis, field_32_armodio_ypoyrgeio, field_32_antikeimeno, field_32_xronodiagramma),
+                createDynamicFiveColumnTable('Εξουσιοδοτική διάταξη', 'Είδος πράξης', 'Αρμόδιο ή επισπεύδον Υπουργείο ή υπηρεσία', 'Αντικείμενο', 'Χρονοδιάγραμμα (ενδεικτική ή αποκλειστική προθεσμία)',field_32_eksousiodotiki_diataksi, field_32_eidos_praksis, field_32_armodio_ypoyrgeio, field_32_antikeimeno, field_32_xronodiagramma),
+                { text: '\n\n\n\n' },
+
+                { text: 'Ανάγκη σύστασης νέου νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας υπηρεσίας', style: 'labelStyle' },
                 { text: '\n\n' },
+                { text: '33.Ποιες διατάξεις της αξιολογούμενης ρύθμισης προβλέπουν τη σύσταση νέου νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας υπηρεσίας;', style: 'textStyle' },
+                { text: '\n\n' },
+                { text: data.field_33 + '\n\n', style: 'textStyle' },
+                { text: '34.Γιατί προτείνεται η σύσταση αυτού του νέου οργάνου και δεν επαρκούν οι υφιστάμενες διοικητικές δομές για να επιτευχθεί ο στόχος της αξιολογούμενης ρύθμισης;', style: 'textStyle' },
+                { text: '\n\n' },
+                { text: data.field_34 + '\n\n', style: 'textStyle' },
+                { text: '35.Χρόνος έναρξης λειτουργίας του νέου οργάνου: ', style: 'textStyle' },
+                { text: '\n\n' },
+                { text: data.field_35 + '\n\n', style: 'textStyle' },
+                { text: '36. Έχει γίνει η σχετική οικονομοτεχνική μελέτη αναφορικά με τη σύσταση του νέου οργάνου; ', style: 'textStyle' },
+                { text: '\n\n' },
+                { text: data.field_36 + '\n\n', style: 'textStyle' },
+                { text: 'Στοιχεία νέου νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας υπηρεσίας', style: 'labelStyle' },
+                { text: '\n\n' },
+                { text: '37.Επωνυμία ή ονομασία και νομική μορφή', style: 'textStyle' },
+                { text: '\n\n' },
+                { text: data.field_37 + '\n\n', style: 'textStyle' },
+                { text: '38.Χώρος λειτουργίας του νέου οργάνου', style: 'textStyle' },
+                { text: '\n\n' },
+                { text: data.field_38 + '\n\n', style: 'textStyle' },
+                { text: '39.Διασφάλιση επαρκούς υλικοτεχνικού & ηλεκτρονικού εξοπλισμού', style: 'textStyle' },
+                { text: '\n\n' },
+                { text: data.field_39 + '\n\n', style: 'textStyle' },
+                { text: '40.Τρόπος στελέχωσης του νέου οργάνου', style: 'textStyle' },
+                { text: '\n\n' },
+                { text: data.field_40 + '\n\n', style: 'textStyle' },
 
                 {
                     text: 'Υπογράφοντες \n\n',
