@@ -7,16 +7,16 @@
     </div>
     <br>
     <div class="form-group">
-        <label id="field_15_ypoyrgeio_label" for="field_15_ypoyrgeio" class="mostly-optional-label required">Στο σχέδιο νόμου του Υπουργείου</label>
-        <textarea class="form-control" id="field_15_ypoyrgeio" name="field_15_ypoyrgeio" rows="1"  ><%= data.field_15_ypoyrgeio %></textarea>
+        <label id="field_15_sxedio_nomou_label" for="field_15_sxedio_nomou" class="mostly-optional-label required">Στο σχέδιο νόμου ή στην τροπολογία επί του σχεδίου νόμου</label>
+        <textarea class="form-control" id="field_15_sxedio_nomou" name="field_15_sxedio_nomou" placeholder="Σχέδιο νόμου" rows="1"  ><%= data.field_15_sxedio_nomou %></textarea>
     </div>
     <div class="form-group">
-        <label id="field_15_sxedio_nomou_label" for="field_15_sxedio_nomou" class="mostly-optional-label required">ή επί τροπολογίας στο σχέδιο νόμου του Υπουργείου</label>
-        <textarea class="form-control" id="field_15_sxedio_nomou" name="field_15_sxedio_nomou" rows="1"  ><%= data.field_15_sxedio_nomou %></textarea>
+        <label id="field_15_ypoyrgeio_label" for="field_15_ypoyrgeio" class="mostly-optional-label required">του Υπουργείου</label>
+        <textarea class="form-control" id="field_15_ypoyrgeio" name="field_15_ypoyrgeio" rows="1" placeholder="Υπουργείο" ><%= data.field_15_ypoyrgeio %></textarea>
     </div>
     <div class="form-group">
         <h3><label id="field_15_rythmiseis_label" for="field_15_rythmiseis" class="mostly-optional-label required">15.Συνοπτική ανάλυση των άρθρων της αξιολογούμενης ρύθμισης</label></h3>
-        <textarea class="form-control" id="field_15_rythmiseis" name="field_15_rythmiseis" rows="5"  ><%= data.field_15_rythmiseis %></textarea>
+        <textarea class="form-control" id="field_15_rythmiseis" name="field_15_rythmiseis" rows="5" placeholder="Με τις διατάξεις του υπόψη νομοσχεδίου (ή τροπολογίας στο σχέδιο νόμου) ρυθμίζονται θέματα αρμοδιότητας του Υπουργείου" ><%= data.field_15_rythmiseis %></textarea>
     </div>
     <br>
     <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενη φόρμα"/>
@@ -48,7 +48,7 @@
             <tr>
                 <th colspan="1">Όνομα</th>
                 <th colspan="1">Επώνυμο</th>
-                <th colspan="1">Ιδιότητα</th>
+                <th colspan="1">Ημερομηνία</th>
            </tr>
         </thead>
         <tbody id="tbody_16">
@@ -60,7 +60,7 @@
                     <textarea class="form-control" id="field_16_genikos_epitheto" name="field_16_genikos_epitheto" placeholder="Επώνυμο" rows="1"><%= data.field_16_genikos_epitheto %></textarea> 
                 </td>
                 <td> 
-                    <textarea class="form-control" id="field_16_genikos_idiototita" name="field_16_genikos_idiototita" placeholder="Ιδιότητα" rows="1"><%= data.field_16_genikos_idiototita %></textarea> 
+                    <textarea class="form-control" id="field_16_genikos_date" name="field_16_genikos_date" placeholder="Ημερομηνία" rows="1"><%= data.field_16_genikos_date %></textarea> 
                 </td>
             </tr>
         </tbody>

@@ -4,9 +4,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
             integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-            crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
@@ -412,7 +410,7 @@
                     <br>
 
                     <div class="checkbox-group form-group row">
-                        <label class="col-sm-8 col-form-label required">10. Σε περίπτωση που προβλέπεται η χρήση
+                        <label class="col-sm-8 col-form-label digital-gov-label">10. Σε περίπτωση που προβλέπεται η χρήση
                             πληροφοριακού συστήματος, ποια θα είναι η συμβολή αυτού στην επίτευξη των στόχων της
                             αξιολογούμενης ρύθμισης: </label> <div class="index_field_10"></div>
                     </div>
@@ -423,8 +421,8 @@
                         <input class="col-2 form-check-input position-static" type="checkbox" id="field_10_amesi"
                             name="field_10_amesi" >
                     </div>
-                    <div id="amesi_wrap" class="form-group" style="display:none;">
-                        <label for="field_10_amesi_comments " class="required">Εάν είναι άμεση, εξηγήστε:</label>
+                    <div id="amesi_wrap" class="form-group digital_gov" style="display:none;">
+                        <label for="field_10_amesi_comments" class="digital-gov-label">Εάν είναι άμεση, εξηγήστε:</label>
                         <textarea class="form-control" id="field_10_amesi_comments" name="field_10_amesi_comments"
                             rows="3" onkeypress="wordsCounter('field_10_amesi_comments','words10_1',150, event)"
                             onpaste="wordsCounter('field_10_amesi_comments','words10_1',150, event)"></textarea>
@@ -438,8 +436,8 @@
                             name="field_10_emmesi" >
                     </div>
 
-                    <div id="emesi_wrap" class="form-group" style="display:none;">
-                        <label for="field_10_emmesi_comments " class="required">Εάν είναι έμμεση, εξηγήστε:</label>
+                    <div id="emesi_wrap" class="form-group digital_gov" style="display:none;">
+                        <label for="field_10_emmesi_comments" class="digital-gov-label">Εάν είναι έμμεση, εξηγήστε:</label>
                         <textarea class="form-control" id="field_10_emmesi_comments" name="field_10_emmesi_comments"
                             rows="3" onkeypress="wordsCounter('field_10_emmesi_comments','words10_2',150, event)"
                             onpaste="wordsCounter('field_10_emmesi_comments','words10_2',150, event)"></textarea>
@@ -447,8 +445,8 @@
                     </div>
                     <hr>
 
-                    <div class="checkbox-group form-group row">
-                        <label for="field_11" class="col-sm-8 col-form-label required">11. Το προβλεπόμενο πληροφοριακό
+                    <div class="checkbox-group form-group row digital_gov">
+                        <label for="field_11" class="digital-gov-label col-sm-8 col-form-label">11. Το προβλεπόμενο πληροφοριακό
                             σύστημα είναι συμβατό με την εκάστοτε ψηφιακή στρατηγική της χώρας (Βίβλος Ψηφιακού
                             Μετασχηματισμού);</label>
                         <select id="field_11" name="field_11" class="col-sm-2 form-control">
@@ -458,8 +456,8 @@
                         </select>
                     </div>
 
-                    <div id="field_11_wrap" class="form-group" style="display:none;">
-                        <label for="field_11_comments " class="required">Εξηγήστε</label>
+                    <div id="field_11_wrap" class="form-group digital_gov" style="display:none;">
+                        <label for="field_11_comments" class="digital-gov-label" >Εξηγήστε</label>
                         <textarea class="form-control" name="field_11_comments" id="field_11_comments" rows="3"
                             onkeypress="wordsCounter('field_11_comments','words11',100, event)"
                             onpaste="wordsCounter('field_11_comments','words11',100, event)"></textarea>
@@ -467,8 +465,8 @@
                     </div>
                     <hr>
 
-                    <div class="checkbox-group form-group row">
-                        <label for="field_12" class="col-sm-8 col-form-label required">12. Διασφαλίζεται η
+                    <div class="checkbox-group form-group row digital_gov">
+                        <label for="field_12" class="col-sm-8 col-form-label digital-gov-label">12. Διασφαλίζεται η
                             διαλειτουργικότητα του εν λόγω πληροφοριακού συστήματος με άλλα υφιστάμενα
                             συστήματα;</label>
                         <select id="field_12" name="field_12" class="col-sm-2 form-control">
@@ -478,8 +476,8 @@
                         </select>
                     </div>
 
-                    <div id="field_12_wrap" class="form-group " style="display:none;">
-                        <label for="field_12_comments " class="required">Αναφέρατε ποια είναι αυτά τα συστήματα:</label>
+                    <div id="field_12_wrap" class="form-group digital_gov" style="display:none;">
+                        <label for="field_12_comments" class="digital-gov-label">Αναφέρατε ποια είναι αυτά τα συστήματα:</label>
                         <textarea class="form-control" name="field_12_comments" id="field_12_comments" rows="3"
                             onkeypress="wordsCounter('field_12_comments','words12',100, event)"
                             onpaste="wordsCounter('field_12_comments','words12',100, event)"></textarea>
@@ -487,8 +485,8 @@
                     </div>
                     <hr>
 
-                    <div class="checkbox-group form-group row">
-                        <label for="field_13" class="col-sm-8 col-form-label required">13. Έχει προηγηθεί μελέτη
+                    <div class="checkbox-group form-group row digital_gov">
+                        <label for="field_13" class="col-sm-8 col-form-label digital-gov-label">13. Έχει προηγηθεί μελέτη
                             βιωσιμότητας του προβλεπόμενου πληροφοριακού συστήματος;</label>
                         <select id="field_13" name="field_13" class="col-sm-2 form-control">
                             <option selected disabled>Eπιλογή</option>
@@ -497,8 +495,8 @@
                         </select>
                     </div>
 
-                    <div id="field_13_wrap" class="form-group" style="display:none;">
-                        <label for="field_13_comments " class="required">Εξηγήστε</label>
+                    <div id="field_13_wrap" class="form-group digital_gov" style="display:none;">
+                        <label for="field_13_comments" class="digital-gov-label">Εξηγήστε</label>
                         <textarea class="form-control" name="field_13_comments" id="field_13_comments" rows="3"
                             onkeypress="wordsCounter('field_13_comments','words13',100, event)"
                             onpaste="wordsCounter('field_13_comments','words13',100, event)"></textarea>
@@ -586,28 +584,12 @@
             background: #333;
             color: white;
             font-weight: bold;
-            padding: 4px 8px;
+            padding: 4px;
             font-size: 13px;
             border-radius: 4px;
             /* width: 50%; */
             display: none;
 
-        }
-
-        #tooltip[data-popper-placement^='top']>#arrow {
-            bottom: -4px;
-        }
-
-        #tooltip[data-popper-placement^='bottom']>#arrow {
-            top: -4px;
-        }
-
-        #tooltip[data-popper-placement^='left']>#arrow {
-            right: -4px;
-        }
-
-        #tooltip[data-popper-placement^='right']>#arrow {
-            left: -4px;
         }
 
         table {
@@ -874,7 +856,6 @@
             }
         })
         var analysis = "<%= analysis%>";
-        console.log(analysis);
         //console.log("init val " + $(analysis).val());
         if (analysis == ':sxedio_nomou') {
             $("#typos_analysis").prop('value', 'Σχέδιο νόμου');
@@ -892,11 +873,7 @@
             $("#typos_analysis").prop('value', 'Πρόταση νόμου');
         } else if (analysis == ':tropologies_vouleutwn') {
             $("#typos_analysis").prop('value', 'Τροπολογίες Βουλευτών');
-        }
-        // console.log("1" + analysis);
-        // console.log("2" + $(analysis));
-        // console.log("3" + $(analysis).val());
-
+        }      
 
         function getFullDate(fieldId) {
             $(fieldId).prop("value", new Date().toLocaleString("el-GR", { timeZone: "Europe/Athens" }));
@@ -1382,11 +1359,16 @@
             }
         })
 
-        $("#field_10_emmesi").on("change", function (ev) {
+        requiredDigitalGov("#field_10_amesi");
+        requiredDigitalGov("#field_10_emmesi");
+
+        $("#field_10_emmesi").on("change", function (ev) {            
+            requiredDigitalGov("#field_10_emmesi");
             $("#emesi_wrap").toggle();
         })
 
-        $("#field_10_amesi").on("change", function (ev) {
+        $("#field_10_amesi").on("change", function (ev) {            
+            requiredDigitalGov("#field_10_amesi");
             $("#amesi_wrap").toggle();
         })
 
@@ -1541,6 +1523,28 @@
             }
         }
 
+        function requiredDigitalGov (field) {
+            if($(field).prop("checked")) {
+                enableFields($('.digital_gov :input'));
+                $('.digital-gov-label').addClass('required');
+            } else {
+                optionalFields($('.digital_gov :input'));
+                $('.digital-gov-label').removeClass('required')
+            }
+        }        
+        requiredLegalistics("#field_33");
+        function requiredLegalistics (field) {
+            
+            let spaceLess = $(field).val().replace(/^\s+|\s+$/g,"");//replace white space
+            if(spaceLess) {
+                enableFields($('.legalistic :input'));                
+                $('.legalistic-label').addClass('required');
+            } else {
+                optionalFields($('.legalistic :input'));
+                $('.legalistic-label').removeClass('required')
+            }
+        }
+        
         var current_fs, next_fs, previous_fs; //fieldsets
 
 

@@ -118,16 +118,16 @@
     <label>Ανάγκη σύστασης νέου νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας υπηρεσίας</label>
     <div class="form-group">
         <br>
-        <label for="field_33" class="required optional-label" id="field_33_label" >33.Ποιες διατάξεις της αξιολογούμενης ρύθμισης προβλέπουν τη σύσταση νέου
+        <label for="field_33" class="legalistic-label optional-label" id="field_33_label" >33.Ποιες διατάξεις της αξιολογούμενης ρύθμισης προβλέπουν τη σύσταση νέου
             νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας υπηρεσίας;</label>
         <textarea class="form-control" id="field_33" name="field_33" rows="5"
-            onkeypress="wordsCounter('field_33','words33',100, event)"
+            onkeyup="wordsCounter('field_33','words33',100, event), requiredLegalistics('#field_33')"
             onpaste="wordsCounter('field_33','words33',100, event)"><%= data.field_33 %></textarea>
         <p style="float: right;">Λέξεις: <span id="words33"></span> /100</p>
     </div>
 
-    <div class="form-group">
-        <label for="field_34" class="required optional-label" id="field_34_label">34.Γιατί προτείνεται η σύσταση αυτού του νέου οργάνου και δεν επαρκούν οι
+    <div class="form-group legalistic">
+        <label for="field_34" class="legalistic-label optional-label" id="field_34_label">34.Γιατί προτείνεται η σύσταση αυτού του νέου οργάνου και δεν επαρκούν οι
             υφιστάμενες διοικητικές δομές για να επιτευχθεί ο στόχος της αξιολογούμενης ρύθμισης;</label>
         <textarea class="form-control" id="field_34" name="field_34" rows="5"
             onkeypress="wordsCounter('field_34','words34',100, event)"
@@ -135,16 +135,16 @@
         <p style="float: right;">Λέξεις: <span id="words34"></span> /100</p>
     </div>
 
-    <div class="form-group">
-        <label for="field_35" class="required optional-label" id="field_35_label" >35.Χρόνος έναρξης λειτουργίας του νέου οργάνου:</label>
+    <div class="form-group legalistic">
+        <label for="field_35" class="legalistic-label optional-label" id="field_35_label" >35.Χρόνος έναρξης λειτουργίας του νέου οργάνου:</label>
         <textarea class="form-control" id="field_35" name="field_35" rows="5"
             onkeypress="wordsCounter('field_35','words35',50, event)"
             onpaste="wordsCounter('field_35','words35',50, event)"><%= data.field_35 %></textarea>
         <p style="float: right;">Λέξεις: <span id="words35"></span> /50</p>
     </div>
 
-    <div class="checkbox-group form-group row">
-        <label class="required optional-label" id="field_36_label" for="field_36" class="col-sm-8 col-form-label">36. Έχει γίνει η σχετική οικονομοτεχνική μελέτη αναφορικά με τη σύσταση
+    <div class="checkbox-group form-group row legalistic">
+        <label class="legalistic-label optional-label" id="field_36_label" for="field_36" class="col-sm-8 col-form-label">36. Έχει γίνει η σχετική οικονομοτεχνική μελέτη αναφορικά με τη σύσταση
             του νέου οργάνου;</label>
         <select id="field_36" name="field_36" class="col-sm-2 form-control">
             <option selected disabled>Eπιλογή</option>
@@ -153,7 +153,7 @@
         </select>
 
         <div id="field_36_wrap" class="form-group" style="display:none;">
-            <label for="field_36_upload" class="required optional-label" id="field_36_upload_label" >Εάν ΝΑΙ, να επισυναφθεί ηλεκτρονικά.</label>
+            <label for="field_36_upload" class="legalistic-label optional-label" id="field_36_upload_label" >Εάν ΝΑΙ, να επισυναφθεί ηλεκτρονικά.</label>
             <input type="file" id="field_36_upload" name="field_36_upload" accept=".pdf" multiple>
 
             <br>
@@ -189,33 +189,33 @@
 <fieldset id="stoixeia_etairias" class="optional">
 
     <label>Στοιχεία νέου νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας υπηρεσίας</label>
-    <div class="form-group">
+    <div class="form-group legalistic">
         <br>
-        <label for="field_37" class="required optional-label" id="field_37_label">37.Επωνυμία ή ονομασία και νομική μορφή</label>
+        <label for="field_37" class="legalistic-label optional-label" id="field_37_label">37.Επωνυμία ή ονομασία και νομική μορφή</label>
         <textarea class="form-control" id="field_37" name="field_37" rows="3"
             onkeypress="wordsCounter('field_37','words37',80, event)"
             onpaste="wordsCounter('field_37','words37',80, event)"><%= data.field_37 %></textarea>
         <p style="float: right;">Λέξεις: <span id="words37"></span> /80</p>
     </div>
 
-    <div class="form-group">
-        <label for="field_38" class="required optional-label" id="field_38_label" >38.Χώρος λειτουργίας του νέου οργάνου</label>
+    <div class="form-group legalistic">
+        <label for="field_38" class="legalistic-label optional-label" id="field_38_label" >38.Χώρος λειτουργίας του νέου οργάνου</label>
         <textarea class="form-control" id="field_38" name="field_38" rows="3"
             onkeypress="wordsCounter('field_38','words38',100, event)"
             onpaste="wordsCounter('field_38','words38',100, event)"><%= data.field_38 %></textarea>
         <p style="float: right;">Λέξεις: <span id="words38"></span> /100</p>
     </div>
 
-    <div class="form-group">
-        <label for="field_39" class="required optional-label" id="field_39_label" >39.Διασφάλιση επαρκούς υλικοτεχνικού & ηλεκτρονικού εξοπλισμού</label>
+    <div class="form-group legalistic">
+        <label for="field_39" class="legalistic-label optional-label" id="field_39_label" >39.Διασφάλιση επαρκούς υλικοτεχνικού & ηλεκτρονικού εξοπλισμού</label>
         <textarea class="form-control" id="field_39" name="field_39" rows="3"
             onkeypress="wordsCounter('field_39','words39',100, event)"
             onpaste="wordsCounter('field_39','words39',100, event)"><%= data.field_39 %></textarea>
         <p style="float: right;">Λέξεις: <span id="words39"></span> /100</p>
     </div>
 
-    <div class="form-group">
-        <label for="field_40" class="required optional-label" id="field_40_label" >40.Τρόπος στελέχωσης του νέου οργάνου</label>
+    <div class="form-group legalistic">
+        <label for="field_40" class="legalistic-label optional-label" id="field_40_label" >40.Τρόπος στελέχωσης του νέου οργάνου</label>
         <textarea class="form-control" id="field_40" name="field_40" rows="3"
             onkeypress="wordsCounter('field_40','words40',200, event)"
             onpaste="wordsCounter('field_40','words40',200, event)"><%= data.field_40 %></textarea>

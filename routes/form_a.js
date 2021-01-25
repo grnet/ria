@@ -58,7 +58,6 @@ routes.get('/:entry_id', async (req, res, next) => {
             .pipe(csv())
             .on('data', (data) => results.push(data))
             .on('end', () => {
-                console.log(results)
                 results = JSON.stringify(results);
                 req.session.ekthesi_id = req.params.entry_id;
                 res.render("form_a", { data: entry.dataValues, staticTables:field_9.dataValues, checkboxTables:rythmiseis.dataValues, rolos: req.session.rolos, pdf_exists: pdf_exists, tooltips: results });  
