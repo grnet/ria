@@ -324,15 +324,13 @@ exports.exportPDF = (async function (req, res, next) {
                 // createCheckBoxTable('ΟΦΕΛΗ ΡΥΘΜΙΣΗΣ', 'ΑΜΕΣΑ', 'Αύξηση εσόδων', req.body.field_18_amesa_esoda_thesmoi, req.body.field_18_amesa_esoda_oikonomia, req.body.field_18_amesa_esoda_kinonia, req.body.field_18_amesa_esoda_perivallon, req.body.field_18_amesa_esoda_nisiwtika),
 
                 {
-                    text: 'Έκθεση Γενικού Λογιστηρίου του Κράτους (άρθρο 75 παρ. 1 ή 2 του Συντάγματος)',
+                    text: 'Β. Έκθεση Γενικού Λογιστηρίου του Κράτους (άρθρο 75 παρ. 1 ή 2 του Συντάγματος)',
                     style: 'headerStyle',
                     tocItem: true,
                     tocStyle: { bold: true },
                     tocMargin: [20, 0, 0, 0],
                     pageBreak: 'before'
                 },
-                { text: 'Β. Έκθεση Γενικού Λογιστηρίου του Κράτους (άρθρο 75 παρ. 1 ή 2 του Συντάγματος) ', style: 'labelStyle' },
-                { text: '\n\n\n\n' },
 
                 { text: 'Στο σχέδιο νόμου ή στην τροπολογία επί του σχεδίου νόμου', style: 'textStyle' },
                 { text: '\n\n' },

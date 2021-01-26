@@ -776,7 +776,7 @@
 
         $("form").on("submit", function (ev) {
             ev.preventDefault();
-            onSubmitStatus();
+            onSubmitStatus(ev);
             var fd = new FormData($("form").get(0));
             var checkbox = $("form").find("input[type=checkbox]:not(:checked)");//find all unchecked checkboxes 
             $.each(checkbox, function (key, chckbx) {
@@ -826,7 +826,7 @@
         $(".back").on("click", function (ev) {
             window.location.href = "/user_views/history";
         })
-        function onSubmitStatus() {
+        function onSubmitStatus(ev) {
             if ($("#ekthesi_glk").prop("checked")) {
                 $("#status_ekthesis_drp").val("Σε σύνταξη");
                 alert("Για την ανάλυση εκκρεμεί ο έλεγχος του Γενικού Λογιστηρίου του Κράτους που έχετε ζητήσει. Επικοινωνήστε με το Γενικό Λογιστήριο του Κράτους για να τον ολοκληρώσει ή ενημερώστε τον αρμόδιο του Υπουργείου σας για να το επιλύσει.");
