@@ -1173,14 +1173,14 @@
             $('#tbody_31').append(`
         <tr id="R${++table31RowIndex}"> 
             <td> 
-                <textarea class="form-control" id="field_31_sxetiki_diataksi${table31RowIndex}" name="field_31_sxetiki_diataksi${table31RowIndex}" placeholder="Σχετική διάταξη αξιολογούμενης ρύθμισης" rows="2" onkeypress="wordsCounter('field_31_sxetiki_diataksi${table31RowIndex}','words31_${table31RowIndex}',50, event)" onpaste="wordsCounter('field_31_sxetiki_diataksi${table31RowIndex}','words31_${table31RowIndex}',50, event)"></textarea>
-                <p style="float: right;">Λέξεις: <span id="words31_${table31RowIndex}" ></span> /50</p>                                            
+                <textarea class="form-control" id="field_31_sxetiki_diataksi${table31RowIndex}" name="field_31_sxetiki_diataksi${table31RowIndex}" placeholder="Σχετική διάταξη αξιολογούμενης ρύθμισης" rows="2" ></textarea>                                                            
             </td> 
             <td> 
                 <textarea class="form-control" id="field_31_synarmodia_ypoyrgeia${table31RowIndex}" name="field_31_synarmodia_ypoyrgeia${table31RowIndex}" placeholder="Συναρμόδια Υπουργεία – Συναρμόδιες υπηρεσίες / φορείς" rows="2"></textarea>
             </td> 
             <td> 
-                <textarea class="form-control" id="field_31_antikeimeno_synarmodiotitas${table31RowIndex}" name="field_31_antikeimeno_synarmodiotitas${table31RowIndex}" placeholder="Αντικείμενο συναρμοδιότητας" rows="2"></textarea>
+                <textarea class="form-control" id="field_31_antikeimeno_synarmodiotitas${table31RowIndex}" name="field_31_antikeimeno_synarmodiotitas${table31RowIndex}" placeholder="Αντικείμενο συναρμοδιότητας" rows="2" onkeypress="wordsCounter('field_31_sxetiki_diataksi${table31RowIndex}','words31_${table31RowIndex}',50, event)" onpaste="wordsCounter('field_31_sxetiki_diataksi${table31RowIndex}','words31_${table31RowIndex}',50, event)"></textarea>
+                <p style="float: right;">Λέξεις: <span id="words31_${table31RowIndex}" ></span> /50</p>
                 <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
             </td>    
         </tr>`

@@ -1,4 +1,5 @@
 const fs = require('fs');
+const PDFMerger = require('pdf-merger-js');
 
 exports.exportPDF = (async function (req, res, next) {
 
@@ -140,6 +141,7 @@ exports.exportPDF = (async function (req, res, next) {
         }
     }
 
+
     var PdfPrinter = require('../node_modules/pdfmake/src/printer');
     // download default Roboto font from cdnjs.com
     fonts = {
@@ -154,7 +156,7 @@ exports.exportPDF = (async function (req, res, next) {
 
     var docDefinition = {
 
-        pageSize: 'A2',
+        pageSize: 'A4',//A2
         watermark: { text: 'test watermark', color: 'blue', opacity: 0.3, bold: true, italics: false },
         styles: {
             headerStyle: {
@@ -318,7 +320,7 @@ exports.exportPDF = (async function (req, res, next) {
 
                 { text: '14. Σύνοψη στόχων κάθε άρθρου ', decoration: 'underline' },
                 { text: '\n\n' },
-                createDynamicTwoColumnTable( 'Άρθρο', 'Στόχος', field_14_arthro, field_14_stoxos), //create table for field 14                
+                createDynamicTwoColumnTable('Άρθρο', 'Στόχος', field_14_arthro, field_14_stoxos), //create table for field 14                
 
                 // { text: '18. Οφέλη αξιολογούμενης ρύθμισης \n\n', decoration: 'underline' },
                 // createCheckBoxTable('ΟΦΕΛΗ ΡΥΘΜΙΣΗΣ', 'ΑΜΕΣΑ', 'Αύξηση εσόδων', req.body.field_18_amesa_esoda_thesmoi, req.body.field_18_amesa_esoda_oikonomia, req.body.field_18_amesa_esoda_kinonia, req.body.field_18_amesa_esoda_perivallon, req.body.field_18_amesa_esoda_nisiwtika),
@@ -523,7 +525,7 @@ exports.exportPDF = (async function (req, res, next) {
                 { text: '\n\n' },
                 { text: '32.Έκδοση κανονιστικών πράξεων και εγκυκλίων', style: 'labelStyle' },
                 { text: '\n\n' },
-                createDynamicFiveColumnTable('Εξουσιοδοτική διάταξη', 'Είδος πράξης', 'Αρμόδιο ή επισπεύδον Υπουργείο ή υπηρεσία', 'Αντικείμενο', 'Χρονοδιάγραμμα (ενδεικτική ή αποκλειστική προθεσμία)',field_32_eksousiodotiki_diataksi, field_32_eidos_praksis, field_32_armodio_ypoyrgeio, field_32_antikeimeno, field_32_xronodiagramma),
+                createDynamicFiveColumnTable('Εξουσιοδοτική διάταξη', 'Είδος πράξης', 'Αρμόδιο ή επισπεύδον Υπουργείο ή υπηρεσία', 'Αντικείμενο', 'Χρονοδιάγραμμα (ενδεικτική ή αποκλειστική προθεσμία)', field_32_eksousiodotiki_diataksi, field_32_eidos_praksis, field_32_armodio_ypoyrgeio, field_32_antikeimeno, field_32_xronodiagramma),
                 { text: '\n\n\n\n' },
 
                 { text: 'Ανάγκη σύστασης νέου νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας υπηρεσίας', style: 'labelStyle' },
@@ -588,20 +590,20 @@ exports.exportPDF = (async function (req, res, next) {
             ]
         ]
     };
-    //setPdfImage(data.field_7_goal_1, docDefinition);
-    // setPdfImage(data.field_7_goal_2, docDefinition);
-    // setPdfImage(data.field_7_goal_3, docDefinition);
-    // setPdfImage(data.field_7_goal_4, docDefinition);
     var pdfDoc = printer.createPdfKitDocument(docDefinition);
-    pdf_name = data.title + '.pdf';
+    var pdf_name = data.title + '.pdf';
     pdf_name = pdf_name.replace(/\s+/g, '');
 
     pdfDoc.pipe(fs.createWriteStream('./public/pdf_exports/' + pdf_name));
     pdfDoc.end();
-    //res.header('content-type', 'application/pdf');
-    //res.download(pdf_name);
+    await new Promise(resolve => setTimeout(resolve, 2000));//add some extra delay
 
     try {
+        var merger = new PDFMerger();
+        merger.add('./public/pdf_exports/' + pdf_name);
+        merger.add('/home/mariosven/Desktop/As I Lay Dying ( PDFDrive.com ).pdf');
+        merger.add('/home/mariosven/Desktop/jrc_channelling_government_digital_transformation_through_apis_online.pdf');        
+        await merger.save('merged.pdf'); //save under given name
         if (fs.existsSync('./public/pdf_exports/' + pdf_name)) {
             res.sendStatus(200);
         } else {
@@ -630,7 +632,7 @@ function createDynamicTwoColumnTable(header1, header2, val1, val2) {
     rows.push([{ text: header1, alignment: 'center', bold: true }, { text: header2, alignment: 'center', bold: true }]);
 
     for (var i in val1) {
-        rows.push([ Object.values(val1[i]) , Object.values(val2[i])]);
+        rows.push([Object.values(val1[i]), Object.values(val2[i])]);
     }
     var table = {
         table: {
@@ -647,7 +649,7 @@ function createDynamicThreeColumnTable(header1, header2, header3, val1, val2, va
     rows.push([{ text: header1, alignment: 'center', bold: true }, { text: header2, alignment: 'center', bold: true }, { text: header3, alignment: 'center', bold: true }]);//push headers
 
     for (var i in val1) {
-        rows.push([ Object.values(val1[i]) , Object.values(val2[i]), Object.values(val3[i])]);//push values
+        rows.push([Object.values(val1[i]), Object.values(val2[i]), Object.values(val3[i])]);//push values
     }
     var table = {
         table: {
@@ -664,7 +666,7 @@ function createDynamicFiveColumnTable(header1, header2, header3, header4, header
     rows.push([{ text: header1, alignment: 'center', bold: true }, { text: header2, alignment: 'center', bold: true }, { text: header3, alignment: 'center', bold: true }, { text: header4, alignment: 'center', bold: true }, { text: header5, alignment: 'center', bold: true }]);//push headers
     console.log(val4)
     for (var i in val1) {
-        rows.push([ Object.values(val1[i]) , Object.values(val2[i]), Object.values(val3[i]), Object.values(val4[i]), Object.values(val5[i])]);//push values
+        rows.push([Object.values(val1[i]), Object.values(val2[i]), Object.values(val3[i]), Object.values(val4[i]), Object.values(val5[i])]);//push values
     }
     var table = {
         table: {
@@ -747,3 +749,15 @@ function exportStaticTables(table) {
     //console.log( table[1]);
     return tables;
 }
+
+
+// (async () => {
+//     merger.add('pdf1.pdf');  //merge all pages. parameter is the path to file and filename.
+//     merger.add('pdf2.pdf', [2]); // merge only page 2
+//     merger.add('pdf2.pdf', [1, 3]); // merge the pages 1 and 3
+//     merger.add('pdf2.pdf', '4, 7, 8'); // merge the pages 4, 7 and 8
+//     merger.add('pdf3.pdf', '1 to 2'); //merge pages 1 to 2
+//     merger.add('pdf3.pdf', '3-4'); //merge pages 3 to 4
+
+//     await merger.save('merged.pdf'); //save under given name
+//   })();
