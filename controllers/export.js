@@ -1,8 +1,10 @@
 const fs = require('fs');
 const PDFMerger = require('pdf-merger-js');
+var multer = require('multer');
+
 
 exports.exportPDF = (async function (req, res, next) {
-
+    console.log(req.body);
     let data = req.body;//assign req.body to variable
     let keys = Object.keys(data);//get keys 
     let field_14_arthro = [];
@@ -23,9 +25,13 @@ exports.exportPDF = (async function (req, res, next) {
     let field_32_antikeimeno = [];
     let field_32_xronodiagramma = [];
     let value, key;
-    var table = [];
-    var row = [];
-    var prefix, header, secondHeader;
+    let table = [];
+    let row = [];
+    let prefix, header, secondHeader;
+    let cbxtable = [];
+    let cbxrow = [];
+    let cbxlabels = [];
+    let cbxprefix, cbxHeader, cbxsecondHeader;
     for (i in keys) {//iterate through keys
         // console.log(i + " " + keys[i])
         if (keys[i].includes("field_14_arthro")) {
@@ -114,7 +120,6 @@ exports.exportPDF = (async function (req, res, next) {
                 if (header) {
                     row.push(header);
                     header = null;
-                    console.log(secondHeader)
                 }
                 if (secondHeader) {
                     row.push(secondHeader);
@@ -139,9 +144,51 @@ exports.exportPDF = (async function (req, res, next) {
                 }
             }
         }
+
+        if (keys[i].includes('_cbxlabel')) {//gather all labels from tables with checkboxes
+            cbxprefix = keys[i].split('_cbxlabel');
+            cbxprefix = cbxprefix.slice(0, -1);//remove last character, a comma produced by split()
+            cbxlabels.push(cbxprefix);
+        }
     }
 
+    for (var i in cbxlabels) {
+        for (var j in keys) {            
 
+            if (keys[j].includes('_cbxlabel') && (keys[j].includes(cbxlabels[i]))) {//if label is target cbxlabel
+                if (cbxrow.length) {
+                    if (cbxHeader) {                        
+                        cbxrow.push(cbxHeader);
+                        cbxHeader = null;
+                    }
+                    if (cbxsecondHeader) {
+                        cbxrow.push(cbxsecondHeader);
+                        cbxsecondHeader = null;
+                    }
+                    cbxtable.push(cbxrow);
+                    cbxrow = [];
+                }
+            }
+
+            if (keys[j].includes(cbxlabels[i])) {
+                if (keys[j].includes('_cbxHeader')) {
+                    cbxHeader = data[keys[j]];
+                    console.log('header ' + cbxHeader);
+                } else if (keys[j].includes('_cbxsecondHeader')) {
+                    cbxsecondHeader = data[keys[j]];
+                    console.log('sheader ' + cbxsecondHeader);
+                } else if (keys[j].includes('_cbxlabel')) {
+                    cbxrow.push(data[keys[j]]);
+                } else if (data[keys[j]]) {
+                    cbxrow.push('√');
+                } else {
+                    cbxrow.push('X');//value is undefined
+                }
+
+            }
+        }
+    }
+    console.log(cbxtable);
     var PdfPrinter = require('../node_modules/pdfmake/src/printer');
     // download default Roboto font from cdnjs.com
     fonts = {
@@ -156,7 +203,7 @@ exports.exportPDF = (async function (req, res, next) {
 
     var docDefinition = {
 
-        pageSize: 'A4',//A2
+        pageSize: 'A3',//A4
         watermark: { text: 'test watermark', color: 'blue', opacity: 0.3, bold: true, italics: false },
         styles: {
             headerStyle: {
@@ -389,6 +436,18 @@ exports.exportPDF = (async function (req, res, next) {
                 { text: '\n\n' },
                 { text: data.field_17_oikonomika_apotelesmata + '\n\n' },
 
+                {
+                    text: 'Δ. Έκθεση γενικών συνεπειών',
+                    style: 'headerStyle',
+                    tocItem: true,
+                    tocStyle: { bold: true },
+                    tocMargin: [20, 0, 0, 0],
+                    pageBreak: 'before'
+                },
+
+                { text: '18.Οφέλη αξιολογούμενης ρύθμισης', style: 'labelStyle' },
+                { text: '\n\n' },
+                exportChckbxTables(cbxtable),
                 //TODO: FIELDS 18-21!!!
 
                 {
@@ -590,6 +649,7 @@ exports.exportPDF = (async function (req, res, next) {
             ]
         ]
     };
+
     var pdfDoc = printer.createPdfKitDocument(docDefinition);
     var pdf_name = data.title + '.pdf';
     pdf_name = pdf_name.replace(/\s+/g, '');
@@ -599,11 +659,11 @@ exports.exportPDF = (async function (req, res, next) {
     await new Promise(resolve => setTimeout(resolve, 2000));//add some extra delay
 
     try {
-        var merger = new PDFMerger();
-        merger.add('./public/pdf_exports/' + pdf_name);
-        merger.add('/home/mariosven/Desktop/As I Lay Dying ( PDFDrive.com ).pdf');
-        merger.add('/home/mariosven/Desktop/jrc_channelling_government_digital_transformation_through_apis_online.pdf');        
-        await merger.save('merged.pdf'); //save under given name
+        // var merger = new PDFMerger();
+        // merger.add('./public/pdf_exports/' + pdf_name);
+        // merger.add('/home/mariosven/Desktop/As I Lay Dying ( PDFDrive.com ).pdf');
+        // merger.add('/home/mariosven/Desktop/jrc_channelling_government_digital_transformation_through_apis_online.pdf');
+        // await merger.save('merged.pdf'); //save under given name
         if (fs.existsSync('./public/pdf_exports/' + pdf_name)) {
             res.sendStatus(200);
         } else {
@@ -664,7 +724,6 @@ function createDynamicThreeColumnTable(header1, header2, header3, val1, val2, va
 function createDynamicFiveColumnTable(header1, header2, header3, header4, header5, val1, val2, val3, val4, val5) {
     var rows = [];
     rows.push([{ text: header1, alignment: 'center', bold: true }, { text: header2, alignment: 'center', bold: true }, { text: header3, alignment: 'center', bold: true }, { text: header4, alignment: 'center', bold: true }, { text: header5, alignment: 'center', bold: true }]);//push headers
-    console.log(val4)
     for (var i in val1) {
         rows.push([Object.values(val1[i]), Object.values(val2[i]), Object.values(val3[i]), Object.values(val4[i]), Object.values(val5[i])]);//push values
     }
@@ -673,43 +732,6 @@ function createDynamicFiveColumnTable(header1, header2, header3, header4, header
             headerRows: 1,
             widths: ['*', '*', '*', '*', '*'],
             body: rows
-        }
-    }
-    return table;
-}
-
-function createCheckBoxTable(tableHeader, tableGroup, rowName, val1, val2, val3, val4, val5) {
-    var params = [val1, val2, val3, val4, val5]
-
-    var rows = [];
-    var checked = [];
-    //rows.push([tableHeader, tableGroup, rowName]);
-    rows.push(['#', 'ΘΕΣΜΟΙ ΔΗΜΟΣΙΑ ΔΙΟΙΚΗΣΗ, ΔΙΑΦΑΝΕΙΑ', 'ΑΓΟΡΑ, ΟΙΚΟΝΟΜΙΑ, ΑΝΤΑΓΩΝΙΣΜΟΣ', 'ΚΟΙΝΩΝΙΑ & ΚΟΙΝΩΝΙΚΕΣ ΟΜΑΔΕΣ', 'ΦΥΣΙΚΟ, ΑΣΤΙΚΟ ΚΑΙ ΠΟΛΙΤΙΣΤΙΚΟ ΠΕΡΙΒΑΛΛΟΝ', 'ΝΗΣΙΩΤΙΚΟΤΗΤΑ']);
-
-    for (var i in params) {
-        if (params[i]) { //if checkbox is checked
-            checked.push('√')
-        } else {
-            checked.push('X')
-        }
-    }
-    checked.unshift(rowName);//rowName as 1st element     
-    if (checked && checked.length) {
-        rows.push(checked);//push whole row 
-    }
-    console.log(rows)
-
-    var table = {
-        //layout: 'lightHorizontalLines',
-        table: {
-            headerRows: 1,
-            body: rows,
-            widths: ['*', '*', '*', '*', '*', '*']
-            // styles: {
-            //     tableHeader: {
-            //         alignment: 'center'
-            //     },
-            // }    
         }
     }
     return table;
@@ -725,7 +747,6 @@ function createStaticTable(table) {
         rows.push([{ text: table[9], colSpan: 4, alignment: 'center', bold: true }]);
     }
     rows.push([table[0], years, table[6], table[7]]);
-    console.log(rows)
     var table = {
         //layout: 'lightHorizontalLines',
         table: {
@@ -741,23 +762,58 @@ function exportStaticTables(table) {
 
     var tables = [];
     for (i in table) {
-        console.log(i + ': ' + table[i])
+        //console.log(i + ': ' + table[i])
         //TODO: CALL FUNCTION WITH 9 PARAMS  
         tables.push(createStaticTable(table[i]));
     }
-    console.log(table);
     //console.log( table[1]);
     return tables;
 }
 
 
-// (async () => {
-//     merger.add('pdf1.pdf');  //merge all pages. parameter is the path to file and filename.
-//     merger.add('pdf2.pdf', [2]); // merge only page 2
-//     merger.add('pdf2.pdf', [1, 3]); // merge the pages 1 and 3
-//     merger.add('pdf2.pdf', '4, 7, 8'); // merge the pages 4, 7 and 8
-//     merger.add('pdf3.pdf', '1 to 2'); //merge pages 1 to 2
-//     merger.add('pdf3.pdf', '3-4'); //merge pages 3 to 4
+function exportChckbxTables(table) {
 
-//     await merger.save('merged.pdf'); //save under given name
-//   })();
+    var tables = [];
+    for (i in table) {
+        //console.log(table[i]);
+        //console.log(i + ': ' + table[i])
+        //TODO: CALL FUNCTION WITH 9 PARAMS  
+        tables.push(createChckbxTable(table[i]));
+    }
+    //console.log( table[1]);
+    return tables;
+}
+
+function createChckbxTable(table) {
+    var rows = [];
+    var header=0;
+    if ( table[6]) { 
+        rows.push([{ text: table[6], fillColor: '#7bb661', alignment: 'center', bold: true, colSpan: 6 }, {text:''}, {text:''}, {text:''}, {text:''}, {text:''}]);
+        header++;
+    }
+    if ( table[7] ) {
+        rows.push([{ text: table[7], colSpan: 6, fillColor: '#7bb661', alignment: 'center', bold: true }, {text:''}, {text:''}, {text:''}, {text:''}, {text:''}]);        
+        header++;
+    }     
+    rows.push([{ text: '#', alignment: 'center', bold: true }, { text: 'ΘΕΣΜΟΙ, ΔΗΜΟΣΙΑ ΔΙΟΙΚΗΣΗ, ΔΙΑΦΑΝΕΙΑ', alignment: 'center', bold: true }, { text: 'ΑΓΟΡΑ, ΟΙΚΟΝΟΜΙΑ, ΑΝΤΑΓΩΝΙΣΜΟΣ', alignment: 'center', bold: true }, { text: 'ΚΟΙΝΩΝΙΑ & ΚΟΙΝΩΝΙΚΕΣ ΟΜΑΔΕΣ', alignment: 'center', bold: true }, { text: 'ΦΥΣΙΚΟ, ΑΣΤΙΚΟ ΚΑΙ ΠΟΛΙΤΙΣΤΙΚΟ ΠΕΡΙΒΑΛΛΟΝ', alignment: 'center', bold: true }, { text: 'ΝΗΣΙΩΤΙΚΟΤΗΤΑ', alignment: 'center', bold: true }]);
+    rows.push([{ text: table[0], alignment: 'center', bold: true }, { text:table[1], alignment: 'center' }, { text:table[2], alignment: 'center' }, { text:table[3], alignment: 'center' }, { text:table[4], alignment: 'center' }, { text:table[5], alignment: 'center' }]);
+    
+    var table = {
+        table: {
+            headerRows: header,
+            widths: ['*', '*', '*', '*', '*', '*'],
+            body: rows
+        }
+    }
+    
+    return table;
+}
+
+// var years = ['έτος 1: ' + table[1], 'έτος 2: ' + table[2], 'έτος 3: ' + table[3], 'έτος 4: ' + table[4], 'έτος 5: ' + table[5]];
+// if (table[8]) {
+//     rows.push([{ text: table[8], alignment: 'center', fillColor: '#87CEEB', bold: true }, { text: 'Εξέλιξη την τελευταία 5ετία', alignment: 'center', fillColor: '#87CEEB', bold: true }, { text: 'Πρόσφατα στοιχεία', alignment: 'center', fillColor: '#87CEEB', bold: true }, { text: 'Επιδιωκόμενος στόχος (3ετία)', alignment: 'center', fillColor: '#87CEEB', bold: true }]);
+// }
+// if (table[9]) {
+//     rows.push([{ text: table[9], colSpan: 4, alignment: 'center', bold: true }]);
+// }
+// rows.push([table[0], years, table[6], table[7]]);

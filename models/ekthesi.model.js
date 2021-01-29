@@ -1,5 +1,4 @@
 'use strict';
-const { ekthesi } = require("../services/database");
 
 module.exports = (sequelize, DataTypes) => {
     var ekthesi = sequelize.define('ekthesi', {

@@ -51,6 +51,7 @@ routes.post('/:analysis', upload, [check('title', 'Title is required').notEmpty(
     //     console.log('no errors');
     //     //next();
     // }
+
     let field21 = [];
     let field23 = [];
     let field36 = [];
@@ -264,10 +265,10 @@ routes.post('/:analysis', upload, [check('title', 'Title is required').notEmpty(
 
     //------------------------------------------------------------------------------//
     //add row to ekthesi model, map values from req.body & set foreign key equal to session username to get author 
-    let res_data = await database.ekthesi.create(req.body);
+    let res_data = await database.ekthesi.create(req.body);    
 
-    let req_body = req.body;//assign req.body to variable
-    let keys = Object.keys(req_body);//get keys 
+    let data = req.body;//assign req.body to variable
+    let keys = Object.keys(data);//get keys 
     let field_14_arthro = [];
     let field_14_stoxos = [];
     let field_17_onoma = [];
@@ -285,93 +286,96 @@ routes.post('/:analysis', upload, [check('title', 'Title is required').notEmpty(
     let field_32_armodio_ypoyrgeio = [];
     let field_32_antikeimeno = [];
     let field_32_xronodiagramma = [];
+    var jsonObj = []
     let value, temp;
     for (i in keys) {//iterate through keys
         // console.log(i + " " + keys[i])
         if (keys[i].includes("field_14_arthro")) {
             //console.log("FOUND ROW "+keys[i]);
-            value = req_body[keys[i]];//get value from pair
+            value = data[keys[i]];//get value from pair
             //console.log(" FOUND val "+value);
             temp = keys[i];//get key 
             field_14_arthro.push({ temp: value });
         } else if (keys[i].includes("field_14_stoxos")) {
-            value = req_body[keys[i]];
+            value = data[keys[i]];
             temp = keys[i];
             field_14_stoxos.push({ temp: value });
         } else if (keys[i].includes("field_17_onoma")) {
-            value = req_body[keys[i]];
+            value = data[keys[i]];
             temp = keys[i];
             field_17_onoma.push({ temp: value });
         } else if (keys[i].includes("field_17_epitheto")) {
-            value = req_body[keys[i]];
+            value = data[keys[i]];
             temp = keys[i];
             field_17_epitheto.push({ temp: value });
         } else if (keys[i].includes("field_17_idiotita")) {
-            value = req_body[keys[i]];
+            value = data[keys[i]];
             temp = keys[i];
             field_17_idiotita.push({ temp: value });
         } else if (keys[i].includes("field_29_diatakseis_rythmisis")) {
             console.log("FOUND ROW " + keys[i]);
-            value = req_body[keys[i]];
+            value = data[keys[i]];
             temp = keys[i];
             field_29_diatakseis_rythmisis.push({ temp: value });
         } else if (keys[i].includes("field_29_yfistamenes_diatakseis")) {
             console.log("FOUND ROW " + keys[i]);
-            value = req_body[keys[i]];
+            value = data[keys[i]];
             temp = keys[i];
             field_29_yfistamenes_diatakseis.push({ temp: value });
         } else if (keys[i].includes("field_30_diatakseis_katargisi")) {
             console.log("FOUND ROW " + keys[i]);
-            value = req_body[keys[i]];
+            value = data[keys[i]];
             temp = keys[i];
             field_30_diatakseis_katargisi.push({ temp: value });
         } else if (keys[i].includes("field_30_katargoumenes_diatakseis")) {
             console.log("FOUND ROW " + keys[i]);
-            value = req_body[keys[i]];
+            value = data[keys[i]];
             temp = keys[i];
             field_30_katargoumenes_diatakseis.push({ temp: value });
         } else if (keys[i].includes("field_31_sxetiki_diataksi")) {
             console.log("FOUND ROW " + keys[i]);
-            value = req_body[keys[i]];
+            value = data[keys[i]];
             temp = keys[i];
             field_31_sxetiki_diataksi.push({ temp: value });
         } else if (keys[i].includes("field_31_synarmodia_ypoyrgeia")) {
             console.log("FOUND ROW " + keys[i]);
-            value = req_body[keys[i]];
+            value = data[keys[i]];
             temp = keys[i];
             field_31_synarmodia_ypoyrgeia.push({ temp: value });
         } else if (keys[i].includes("field_31_antikeimeno_synarmodiotitas")) {
             console.log("FOUND ROW " + keys[i]);
-            value = req_body[keys[i]];
+            value = data[keys[i]];
             temp = keys[i];
             field_31_antikeimeno_synarmodiotitas.push({ temp: value });
         } else if (keys[i].includes("field_32_eksousiodotiki_diataksi")) {
             console.log("FOUND ROW " + keys[i]);
-            value = req_body[keys[i]];
+            value = data[keys[i]];
             temp = keys[i];
             field_32_eksousiodotiki_diataksi.push({ temp: value });
         } else if (keys[i].includes("field_32_eidos_praksis")) {
             console.log("FOUND ROW " + keys[i]);
-            value = req_body[keys[i]];
+            value = data[keys[i]];
             temp = keys[i];
             field_32_eidos_praksis.push({ temp: value });
         } else if (keys[i].includes("field_32_armodio_ypoyrgeio")) {
             console.log("FOUND ROW " + keys[i]);
-            value = req_body[keys[i]];
+            value = data[keys[i]];
             temp = keys[i];
             field_32_armodio_ypoyrgeio.push({ temp: value });
         } else if (keys[i].includes("field_32_antikeimeno")) {
             console.log("FOUND ROW " + keys[i]);
-            value = req_body[keys[i]];
+            value = data[keys[i]];
             temp = keys[i];
             field_32_antikeimeno.push({ temp: value });
         } else if (keys[i].includes("field_32_xronodiagramma")) {
             console.log("FOUND ROW " + keys[i]);
-            value = req_body[keys[i]];
+            value = data[keys[i]];
             temp = keys[i];
             field_32_xronodiagramma.push({ temp: value });
         }
+        jsonObj.push({[keys[i]]: data[keys[i]]});
     }
+    console.log(jsonObj)
     //console.log("field_29_diatakseis_rythmisis: " + field_29_diatakseis_rythmisis);
     var author = req.session.username;
     await database.ekthesi.update({
@@ -384,7 +388,8 @@ routes.post('/:analysis', upload, [check('title', 'Title is required').notEmpty(
                 id: res_data.id
             }
         })
-    //console.log(res_data)
+    data = JSON.stringify(data);
+    await database.audit.create({user:req.session.user, data:JSON.stringify(jsonObj), timestamp:req.body.initial_submit, action:req.method, auditId: res_data.id});
 
     //map variables to model's fields
     let rythmiseis_data = await database.rythmiseis.create({

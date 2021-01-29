@@ -1,5 +1,4 @@
-const {user } = require("../services/database");
-
+'use strict';
 module.exports = (sequelize, DataTypes) => {
     var user = sequelize.define('user', {
 

@@ -51,6 +51,10 @@ routes.post('/', [
                         req.session.username = user.username;//store his data to session variables
                         req.session.fname = user.fname;
                         req.session.lname = user.lname;
+                        user = user.fname + ' ' + user.lname;
+                        console.log('user: '+user);
+                        req.session.user = user;
+                        console.log('sess user: '+user);
                         req.session.dikaiwmata_diaxeirisis = user.dikaiwmata_diaxeirisis;
                         req.session.rolos = user.rolos;
                         if (user.dikaiwmata_diaxeirisis) {
