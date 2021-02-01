@@ -139,12 +139,13 @@ routes.put('/:entry_id', upload,
 
                     const file = req.files;
                     if (file.field_16_upload) {
-                        for (i in file.field_16_upload) {
+                        if (field16) {
+                            field16 = [];
+                        }
+                        for (i in file.field_16_upload) {                            
                             field16.push(file.field_16_upload[i].filename)
                         }
-                        console.log("field16: " + field16);
                     }
-                    console.log('MUH FILES ' + file.field_17_upload.filename);
                     if (file.field_17_upload) {
                         if (field17) {
                             field17 = [];
