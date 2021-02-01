@@ -14,7 +14,7 @@ var storage = multer.diskStorage({
     }
 })
 
-var upload = multer({ storage: storage }).fields([{ name: 'field_21_upload', maxCount: 10 }, { name: 'field_23_upload', maxCount: 10 }, { name: 'field_36_upload', maxCount: 10 }]);
+var upload = multer({ storage: storage }).fields([{ name: 'field_16_upload', maxCount: 1 }, { name: 'field_17_upload', maxCount: 1 } , { name: 'field_21_upload', maxCount: 10 }, { name: 'field_23_upload', maxCount: 10 }, { name: 'field_36_upload', maxCount: 10 }]);
 
 routes.get('/:analysis', function (req, res, next) {
 
@@ -52,12 +52,28 @@ routes.post('/:analysis', upload, [check('title', 'Title is required').notEmpty(
     //     //next();
     // }
 
+    let field16 = [];
+    let field17 = [];
     let field21 = [];
     let field23 = [];
     let field36 = [];
     try {
 
         const file = req.files;
+        console.log(file)
+        console.log("field17: " + file.field_17_upload);
+        if (file.field_16_upload) {
+            for (i in file.field_16_upload) {
+                field16.push(file.field_16_upload[i].filename)
+            }
+            console.log("field16: " + field16);
+        }
+        if (file.field_17_upload) {
+            for (i in file.field_17_upload) {
+                field17.push(file.field_17_upload[i].filename)
+            }
+            console.log("field17: " + field17);
+        }
         if (file.field_21_upload) {
             for (i in file.field_21_upload) {
                 field21.push(file.field_21_upload[i].filename)
@@ -381,7 +397,7 @@ routes.post('/:analysis', upload, [check('title', 'Title is required').notEmpty(
     await database.ekthesi.update({
         author: author, field_14_arthro: field_14_arthro, field_14_stoxos: field_14_stoxos, field_17_onoma: field_17_onoma, field_17_epitheto: field_17_epitheto, field_17_idiotita: field_17_idiotita, field_29_diatakseis_rythmisis: field_29_diatakseis_rythmisis, field_29_yfistamenes_diatakseis: field_29_yfistamenes_diatakseis, field_30_diatakseis_katargisi: field_30_diatakseis_katargisi, field_30_katargoumenes_diatakseis: field_30_katargoumenes_diatakseis,
         field_31_sxetiki_diataksi: field_31_sxetiki_diataksi, field_31_synarmodia_ypoyrgeia: field_31_synarmodia_ypoyrgeia, field_31_antikeimeno_synarmodiotitas: field_31_antikeimeno_synarmodiotitas, field_32_eksousiodotiki_diataksi: field_32_eksousiodotiki_diataksi, field_32_eidos_praksis: field_32_eidos_praksis, field_32_armodio_ypoyrgeio: field_32_armodio_ypoyrgeio, field_32_antikeimeno: field_32_antikeimeno, field_32_xronodiagramma: field_32_xronodiagramma,
-        field_21_upload: field21, field_23_upload: field23, field_36_upload: field36
+        field_21_upload: field21, field_23_upload: field23, field_36_upload: field36, field_16_upload:field16, field_17_upload:field17 
     },
         {
             where: {

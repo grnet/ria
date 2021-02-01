@@ -80,12 +80,14 @@ module.exports = (sequelize, DataTypes) => {
         field_15_sxedio_nomou: DataTypes.TEXT,
         field_15_rythmiseis: DataTypes.TEXT,
 
+        field_16_upload: DataTypes.JSON,
         field_16_kratikos_proypologismos: DataTypes.TEXT,
         field_16_proypologismos_forea: DataTypes.TEXT,
         field_16_genikos_onoma: DataTypes.TEXT,
         field_16_genikos_epitheto: DataTypes.TEXT,
         field_16_genikos_date: DataTypes.TEXT,
 
+        field_17_upload: DataTypes.JSON,
         field_17_ypoyrgeio: DataTypes.TEXT,
         field_17_sxedio_nomou: DataTypes.TEXT,
         field_17_oikonomika_apotelesmata: DataTypes.TEXT,

@@ -1025,6 +1025,59 @@
                         // });
                     });
 
+                    $("#glkPdfExport").on("click", function (ev) {
+                        ev.preventDefault();
+                        var fd = new FormData($("form").get(0));
+                        var checkbox = $("form").find("input[type=checkbox]:not(:checked)");//find all unchecked checkboxes 
+                        $.each(checkbox, function (key, chckbx) {
+                            fd.append($(chckbx).prop('name'), $(chckbx).value = '')//append to fd without value 
+                        });
+                        $.ajax({
+                            url: '/form_a/' + ekthesi_id +'/glk-export',
+                            //data: $("form").serialize(),
+                            data: fd,
+                            contentType: false,
+                            processData: false,
+                            error: function (error) {
+                                console.log(error)
+                            },
+                            success: function (data) {
+                                $("#glk_pdf_download").show();
+                            },
+                            type: 'POST'
+                        })
+                        //.then(function () {
+                        // return download(blob, title + ".pdf");//download pdf from browser
+                        // });
+                    });
+
+                    $("#pdfEconomicsExport").on("click", function (ev) {
+                        ev.preventDefault();
+                        var fd = new FormData($("form").get(0));
+                        var checkbox = $("form").find("input[type=checkbox]:not(:checked)");//find all unchecked checkboxes 
+                        $.each(checkbox, function (key, chckbx) {
+                            fd.append($(chckbx).prop('name'), $(chckbx).value = '')//append to fd without value 
+                        });
+                        $.ajax({
+                            url: '/form_a/' + ekthesi_id +'/section-c-export',
+                            //data: $("form").serialize(),
+                            data: fd,
+                            contentType: false,
+                            processData: false,
+                            error: function (error) {
+                                console.log(error)
+                            },
+                            success: function (data) {
+                                $("#economics_pdf_download").show();
+                            },
+                            type: 'POST'
+                        })
+                        //.then(function () {
+                        // return download(blob, title + ".pdf");//download pdf from browser
+                        // });
+                    });
+
+
                     $(document).ready(function () {
                         console.log(pdf_exists)
                         if (pdf_exists == true) {
@@ -1925,7 +1978,8 @@
 
                     if (role === "Γενικό Λογιστήριο του Κράτους") {
 
-                        optionalFields("#edit_form :input:not([type=hidden])");
+                        $("#edit_form :input").prop("readonly",true);
+                        //optionalFields("#edit_form :input:not([type=hidden])");
                         $(".ekpaideysi-politismos :input").prop('disabled', true);
                         $(".oikonomia :input").prop('disabled', true);
                         $(".koinoniki-politiki :input").prop('disabled', true);
@@ -1934,7 +1988,7 @@
                         $("#status_ekthesis").prop(('disabled', false));
                         console.log('status of stat: ' + $("#status_ekthesis").prop(('disabled')));
 
-                        enableFields(".glk :input");
+                        $(".glk :input").prop("readonly",false);
                         enableFields(".next");
                         enableFields(".previous");
                     } else if (role == "Βουλή") {
@@ -2083,13 +2137,7 @@
                         $("#errors").hide();
                     })
 
-                    var data = '<%= JSON.stringify(data) %>'
-                    data = data.replace(/&#34;/g, '"').replace(/\r?\n|\r/g, '');//replave html double quotes and \n if present in json
-                    data = JSON.parse(data);
-                    var selects = $("form").find("select");
-                    $.each(selects, function (key, field) {
-                        setDropdown(selects[key].name);
-                    })
+                    
 
                     function setDropdown(elem) {
                         for (key in data) {
@@ -2196,37 +2244,7 @@
                         }
                     };
 
-                    var staticTables = '<%= JSON.stringify(staticTables) %>';
-                    if (staticTables) {
-                        staticTables = staticTables.replace(/\\n/g, "\\n")
-                            .replace(/&#34;/g, '"')
-                            .replace(/\\'/g, "\\'")
-                            .replace(/\\"/g, '\\"')
-                            .replace(/\\&/g, "\\&")
-                            .replace(/\\r/g, "\\r")
-                            .replace(/\\t/g, "\\t")
-                            .replace(/\\b/g, "\\b")
-                            .replace(/\\f/g, "\\f")
-                            .replace(/\\n/g, '');
-                        staticTables = JSON.parse(staticTables);
-                        var tableInputs = $('#eidikoteroi_stoxoi_analogws_tomea :input[type=hidden]');
-                        var prefix;
-                        $.each(tableInputs, function (key, field) {
-                            var name = $(this).prop('name');
-                            if (name.includes('_label')) {
-                                prefix = name.split('_label');
-                                prefix = prefix.slice(0, -1);//remove last character, a comma produced by split()
-                                prefix = prefix.toString();
-                            }
-                            if (prefix) {
-                                $.each(staticTables[prefix], function (key, field) {
-                                    var inputName = Object.keys(field).toString();
-                                    var inputValue = Object.values(field);
-                                    $("input[name='" + inputName + "']").prop("value", inputValue);//set value to table cell
-                                });
-                            }
-                        });
-                    }
+                   
 
                     var current_fs, next_fs, previous_fs; //fieldsets
 

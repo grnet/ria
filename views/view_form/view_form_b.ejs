@@ -66,6 +66,42 @@
         </tbody>
       </table>
     <br>
+
+    <% var pdf_name = data.title.replace(/\s+/g, ''); %>
+    <p id="glk_pdf_download" class="glk-pdf-download action-button" style="display: none;">Το τελευταίο αποθηκευμένο PDF βρίσκεται <a href="/pdf_exports/glk_<%=pdf_name%>.pdf">εδώ</a>.
+    </p>  
+    <br><br>  
+
+    <input type="button" id="glkPdfExport" name="glkPdfExport" class="glk-export-pdf action-button-previous" style="float: right;"
+        value="Εξαγωγή σε PDF" />
+    <br><br>
+
+    <label class="field-16-label" id="field_16_upload_label" for="field_16_upload"><h3>Επισύναψη υπογεγραμμένου pdf </h3></label><div class="index_field21"></div>
+    <input type="file" class="required" id="field_16_upload" name="field_16_upload" accept=".pdf" > 
+    <br>  
+
+    <table id="uploads_16" class="display">
+        <thead>
+            <tr>
+                <th colspan="1">Προηγούμενες αναρτήσεις:</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <% if( data.field_16_upload && data.field_16_upload.length ) { for (var i=0; i< data.field_16_upload.length;i++) { %>
+                <tr>
+                    <td>
+                        <a href="/public/uploads/<%= data.field_16_upload[i] %> ">
+                            <%= data.field_16_upload[i] %>
+                        </a>
+                    </td>
+                </tr>
+                <% } }%>
+
+        </tbody>
+    </table>  
+
+    <br>
         <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενα πεδία"/>
         <input type="button" name="next" class="next action-button" value="Επόμενη φόρμα"/>
 </fieldset>
