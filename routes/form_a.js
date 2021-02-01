@@ -11,7 +11,7 @@ var storage = multer.diskStorage({
         cb(null, './public/uploads/')
     },
     filename: function (req, file, cb) {
-        cb(null, Date.now() + '-' + file.originalname)//Date().toLocaleString("el-GR", { timeZone: "Europe/Athens" })
+        cb(null, Date.now() + '_' + file.originalname)//Date().toLocaleString("el-GR", { timeZone: "Europe/Athens" })
     }
 })
 

@@ -35,10 +35,11 @@ app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded({ limit: '200mb', extended: true, parameterLimit: 3000 }));//change limit if too many parameters to be parsed
 app.use(cookieParser());
+// app.use("/pdf_exports", express.static(__dirname + 'public'));
+// app.use("/uploads", express.static(__dirname + 'public'));
+// app.use("/fonts", express.static(__dirname + 'public'));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use("/pdf_exports", express.static(__dirname + 'public'));
-app.use("/uploads", express.static(__dirname + 'public'));
-app.use("/fonts", express.static(__dirname + 'public'));
+
 //app.use(express.static(path.join(__dirname,'public/js')));
 
 app.use('/', homeRoute);

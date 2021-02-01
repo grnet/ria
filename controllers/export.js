@@ -845,10 +845,10 @@ exports.exportPDF = (async function (req, res, next) {
         var merger = new PDFMerger();
         merger.add('./public/pdf_exports/' + pdf_name);
         if (upld16) {
-            merger.add('./public/pdf_exports/' + upld16);
+            merger.add('./public/uploads/' + upld16);
         }
         if (upld17) {
-            merger.add('./public/pdf_exports/' + upld17);
+            merger.add('./public/uploads/' + upld17);
         }        
         await merger.save('./public/pdf_exports/'+pdf_name); //save under given name
         if (fs.existsSync('./public/pdf_exports/' + pdf_name)) {
