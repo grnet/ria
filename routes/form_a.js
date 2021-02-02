@@ -132,9 +132,9 @@ routes.put('/:entry_id', upload,
 
                 let field16 = entry.field_16_upload;
                 let field17 = entry.field_17_upload;
-                let field21 = [];
-                let field23 = [];
-                let field36 = [];
+                let field21 = entry.field_21_upload;
+                let field23 = entry.field_23_upload;
+                let field36 = entry.field_36_upload;
                 try {
 
                     const file = req.files;

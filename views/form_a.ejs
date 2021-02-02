@@ -1266,6 +1266,12 @@
                         if ($("#last_updated").val() == '') {
                             getFullDate("#last_updated");
                         }
+
+                        if ($('#uploads_36 tbody tr').length > 0) {
+                            $('#field_36').prop('selectedIndex',1);
+                            $('#uploads_36_wrap').show()
+                        }
+
                     });
 
                     //count & limit words
