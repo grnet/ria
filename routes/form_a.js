@@ -177,7 +177,7 @@ routes.put('/:entry_id', upload,
                     //if label push row into table. Constructing individual tables
                     if (elem.includes('_label')) {
                         if (row.length) {
-                            table.push({ [prefix]: row });
+                            table.push({ row: row });
                             row = [];
                         }
                         prefix = elem.split('_label');

@@ -2193,19 +2193,11 @@
                             .replace(/\\b/g, "\\b")
                             .replace(/\\f/g, "\\f")
                             .replace(/\\n/g, '');
-                        tables = JSON.parse(tables);
-                        //console.log(tables.static_tables[0].table[0].allos_deiktis1)
-                        //console.log(tables.checkbox_tables)
-                        //console.log(tables.checkbox_tables)
-                        var tableInputs = $('#eidikoteroi_stoxoi_analogws_tomea :input[type=hidden]');
-                        var checkboxes = $('#ofeli_rythmisis :input[type=checkbox], #kostos_rythmisis :input[type=checkbox], #kindynoi_rythmisis :input[type=checkbox]');
-                        var prefix;
-                          
+                        tables = JSON.parse(tables);                                            
+                        var prefix;                          
                               
                         for (var i in tables.checkbox_tables) {
-                            // console.log(tables.checkbox_tables[i].row[0])
                             for (var j in tables.checkbox_tables[i].row[0].checkbox) {
-                                //console.log(tables.checkbox_tables[i].row[0].checkbox[j]);
                                 var cbxname = (Object.keys(tables.checkbox_tables[i].row[0].checkbox[j]));//get key
                                 var cbxvalue = (Object.values(tables.checkbox_tables[i].row[0].checkbox[j]));//returns array
                                 if (cbxvalue[0]) {
@@ -2213,52 +2205,20 @@
                                 }                                
                             }                            
                         }                       
-                            // console.log('key ' + key)
-                            // console.log(name)
-                            // console.log(tables.checkbox_tables[0].row[key])
-                                
-
-                        $.each(tableInputs, function (key, field) {
-                            var name = $(this).prop('name');
-                            if (name.includes('_label')) {
-                                prefix = name.split('_label');
-                                prefix = prefix.slice(0, -1);//remove last character, a comma produced by split()
-                                prefix = prefix.toString();
-                            }
-                            if (prefix) {
-                                $.each(tables.static_tables.table, function (key, field) {
-                                    console.log(tables.static_tables[key].table[prefix])
-                                    var inputName = Object.keys(field).toString();
-                                    var inputValue = Object.values(field);
-                                    $("input[name='" + inputName + "']").prop("value", inputValue);//set value to table cell
-                                });
-                            }
-                        });
-                    }
-
-                    //populate field 9
-                    function setValuesField9(inputAsJSON, var0, var1, var2, var3, var4, var5, var6, var7) {
-                        inputAsJSON = inputAsJSON.replace(/&#34;/g, '"');//replace html code for double quotes
-                        //console.log("JSON: " + inputAsJSON);
-                        //console.log(var1)
-                        let parsed = JSON.parse(inputAsJSON);
-                        let keys = Object.keys(parsed);//get keys 
-                        //console.log("parsed: " + parsed);
-                        //console.log("keys: " + keys);
-                        $(var0).val(Object.values(parsed[keys[0]]));
-                        $(var1).val(Object.values(parsed[keys[1]]));
-                        $(var2).val(Object.values(parsed[keys[2]]));
-                        $(var3).val(Object.values(parsed[keys[3]]));
-                        $(var4).val(Object.values(parsed[keys[4]]));
-                        $(var5).val(Object.values(parsed[keys[5]]));
-                        $(var6).val(Object.values(parsed[keys[6]]));
-                        if (var7) {
-                            $(var7).val(Object.values(parsed[keys[7]]));
+                        
+                        for (var i in tables.static_tables) {
+                            for (var j in tables.static_tables[i].table) {
+                                for (var k in tables.static_tables[i].table[j].row) {        
+                                    var sttcname = (Object.keys(tables.static_tables[i].table[j].row[k]));//get key
+                                    var sttcvalue = (Object.values(tables.static_tables[i].table[j].row[k]));//returns array
+                                    if (sttcvalue[0]) {
+                                        $("input[name='" + sttcname + "']").prop("value",sttcvalue);//if value check target checkbox    
+                                    } 
+                                }                                                              
+                            }                            
                         }
-                    };
 
-                   
-
+                        
                     var current_fs, next_fs, previous_fs; //fieldsets
 
                     //adding traversing functions to sidemenu
