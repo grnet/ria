@@ -3,44 +3,50 @@
     <h2>Η. Έκθεση εφαρμογής της ρύθμισης</h2>
     <br>
 
-    <h4><label id="table_31_label" class="table-31-label optional-label required">31.Συναρμοδιότητα Υπουργείων / υπηρεσιών / φορέων</label></h4>
+    <h4><label id="table_31_label" class="table-31-label optional-label required">31.Συναρμοδιότητα Υπουργείων /
+            υπηρεσιών / φορέων</label></h4>
     <br>
 
     <table class="table" id="field_31_table">
         <thead class="thead">
-            
+
             <tr>
-                <th colspan="1">Σχετική διάταξη αξιολογούμενης ρύθμισης<div class="index_sxetiki_diataksi"></div></th>
-                <th colspan="1">Συναρμόδια Υπουργεία – Συναρμόδιες υπηρεσίες / φορείς<div class="index_foreis"></div></th>
-                <th colspan="1">Αντικείμενο συναρμοδιότητας<div class="index31_antikeimeno"></div></th>
+                <th colspan="1">Σχετική διάταξη αξιολογούμενης ρύθμισης<div class="index_sxetiki_diataksi"></div>
+                </th>
+                <th colspan="1">Συναρμόδια Υπουργεία – Συναρμόδιες υπηρεσίες / φορείς<div class="index_foreis"></div>
+                </th>
+                <th colspan="1">Αντικείμενο συναρμοδιότητας<div class="index31_antikeimeno"></div>
+                </th>
             </tr>
         </thead>
         <tbody id="tbody_31">
 
-            <%if(data.field_31_sxetiki_diataksi != null && data.field_31_sxetiki_diataksi.length != null ){
-              for (var i = 0; i < data.field_31_sxetiki_diataksi.length; i++) { %>
-            <tr id="table_31_row<%=i%>">
-                <td>
-                    <textarea class="form-control" id="field_31_sxetiki_diataksi<%=i%>"
-                        name="field_31_sxetiki_diataksi<%=i%>" placeholder="Σχετική διάταξη αξιολογούμενης ρύθμισης"
-                        rows="2"><%= Object.values(data.field_31_sxetiki_diataksi[i]) %></textarea>
-                </td>
-                <td>
-                    <textarea class="form-control" id="field_31_synarmodia_ypoyrgeia<%=i%>"
-                        name="field_31_synarmodia_ypoyrgeia<%=i%>"
-                        placeholder="Συναρμόδια Υπουργεία – Συναρμόδιες υπηρεσίες / φορείς"
-                        rows="2"><%= Object.values(data.field_31_synarmodia_ypoyrgeia[i]) %></textarea>
-                </td>
-                <td>
-                    <textarea class="form-control" id="field_31_antikeimeno_synarmodiotitas<%=i%>"
-                        name="field_31_antikeimeno_synarmodiotitas<%=i%>" placeholder="Αντικείμενο συναρμοδιότητας"
-                        rows="2"><%= Object.values(data.field_31_antikeimeno_synarmodiotitas[i]) %></textarea>
-                    <button class="btn remove float-right" type="button"><img src="/img/delete.png"
-                            width="20px"></button>
-                </td>
-            </tr>
-            <% }
-              } %>
+            <%if(data.field_31_sxetiki_diataksi !=null && data.field_31_sxetiki_diataksi.length !=null ){ for (var i=0;
+                i < data.field_31_sxetiki_diataksi.length; i++) { %>
+                <tr id="table_31_row<%=i%>">
+                    <td>
+                        <textarea class="form-control" id="field_31_sxetiki_diataksi<%=i%>"
+                            name="field_31_sxetiki_diataksi<%=i%>"
+                            rows="2"><%= Object.values(data.field_31_sxetiki_diataksi[i]) %></textarea>
+                    </td>
+                    <td>
+                        <textarea class="form-control" id="field_31_synarmodia_ypoyrgeia<%=i%>"
+                            name="field_31_synarmodia_ypoyrgeia<%=i%>"
+                            rows="2"><%= Object.values(data.field_31_synarmodia_ypoyrgeia[i]) %></textarea>
+                    </td>
+                    <td>
+                        <textarea class="form-control" id="field_31_antikeimeno_synarmodiotitas<%=i%>"
+                            name="field_31_antikeimeno_synarmodiotitas<%=i%>"
+                            onkeypress="wordsCounter('field_31_antikeimeno_synarmodiotitas<%=i%>','words31_<%=i%>',50, event)"
+                            onpaste="wordsCounter('field_31_antikeimeno_synarmodiotitas<%=i%>','words31_<%=i%>',50, event)"
+                            rows="2"><%= Object.values(data.field_31_antikeimeno_synarmodiotitas[i]) %></textarea>
+                        <p style="float: right;">Λέξεις: <span id="words31_<%=i%>"></span> /50</p>
+                        <br><br>
+                        <button class="btn remove float-right" type="button"><img src="/img/delete.png"
+                                width="20px"></button>
+                    </td>
+                </tr>
+                <% } } %>
 
         </tbody>
     </table>
@@ -54,55 +60,60 @@
 
 <fieldset id="ekdosi_egkukliwn" class="table-32 optional">
 
-    <h4><label id="table_32_label" class="table-32-label optional-label required">32.Έκδοση κανονιστικών πράξεων και εγκυκλίων</label></h4>
+    <h4><label id="table_32_label" class="table-32-label optional-label required">32.Έκδοση κανονιστικών πράξεων και
+            εγκυκλίων</label></h4>
     <br>
-    
+
     <table class="table" id="field_32_table">
         <thead class="thead">
-            
+
             <tr>
-                <th colspan="1">Εξουσιοδοτική διάταξη<div class="index_eksousiodotiki_diataksi"></div></th>
-                <th colspan="1">Είδος πράξης<div class="index_eidos_praksis"></div></th>
-                <th colspan="1">Αρμόδιο ή επισπεύδον Υπουργείο ή υπηρεσία<div class="index_armodio_upourgeio"></div></th>
-                <th colspan="1">Αντικείμενο<div class="index32_antikeimeno"></div></th>
-                <th colspan="1">Χρονοδιάγραμμα (ενδεικτική ή αποκλειστική προθεσμία)<div class="index_xronodiagramma"></div></th>
+                <th colspan="1">Εξουσιοδοτική διάταξη<div class="index_eksousiodotiki_diataksi"></div>
+                </th>
+                <th colspan="1">Είδος πράξης<div class="index_eidos_praksis"></div>
+                </th>
+                <th colspan="1">Αρμόδιο ή επισπεύδον Υπουργείο ή υπηρεσία<div class="index_armodio_upourgeio"></div>
+                </th>
+                <th colspan="1">Αντικείμενο<div class="index32_antikeimeno"></div>
+                </th>
+                <th colspan="1">Χρονοδιάγραμμα (ενδεικτική ή αποκλειστική προθεσμία)<div class="index_xronodiagramma">
+                    </div>
+                </th>
             </tr>
         </thead>
         <tbody id="tbody_32">
 
-            <% if(data.field_32_eksousiodotiki_diataksi != null && data.field_32_eksousiodotiki_diataksi.length != null ){
-                for (var i = 0; i < data.field_32_eksousiodotiki_diataksi.length; i++) { %>
-            <tr id="table_32_row<%=i%>">
-                <td>
-                    <textarea class="form-control" id="field_32_eksousiodotiki_diataksi<%=i%>"
-                        name="field_32_eksousiodotiki_diataksi<%=i%>" placeholder="Εξουσιοδοτική διάταξη"
-                        rows="4"><%= Object.values(data.field_32_eksousiodotiki_diataksi[i]) %></textarea>
-                </td>
-                <td>
-                    <textarea class="form-control" id="field_32_eidos_praksis<%=i%>" name="field_32_eidos_praksis<%=i%>"
-                        placeholder="Είδος πράξης"
-                        rows="4"><%= Object.values(data.field_32_eidos_praksis[i]) %></textarea>
-                </td>
-                <td>
-                    <textarea class="form-control" id="field_32_armodio_ypoyrgeio<%=i%>"
-                        name="field_32_armodio_ypoyrgeio<%=i%>" placeholder="Αρμόδιο ή επισπεύδον Υπουργείο ή υπηρεσία"
-                        rows="4"><%= Object.values(data.field_32_armodio_ypoyrgeio[i]) %></textarea>
-                </td>
-                <td>
-                    <textarea class="form-control" id="field_32_antikeimeno<%=i%>" name="field_32_antikeimeno<%=i%>"
-                        placeholder="Αντικείμενο" rows="4"><%= Object.values(data.field_32_antikeimeno[i]) %></textarea>
-                </td>
-                <td>
-                    <textarea class="form-control" id="field_32_xronodiagramma<%=i%>"
-                        name="field_32_xronodiagramma<%=i%>"
-                        placeholder="Χρονοδιάγραμμα (ενδεικτική ή αποκλειστική προθεσμία)"
-                        rows="4"><%= Object.values(data.field_32_xronodiagramma[i]) %></textarea>
-                    <button class="btn remove float-right" type="button"><img src="/img/delete.png"
-                            width="20px"></button>
-                </td>
-            </tr>
-            <% } 
-              } %>
+            <% if(data.field_32_eksousiodotiki_diataksi !=null && data.field_32_eksousiodotiki_diataksi.length !=null ){
+                for (var i=0; i < data.field_32_eksousiodotiki_diataksi.length; i++) { %>
+                <tr id="table_32_row<%=i%>">
+                    <td>
+                        <textarea class="form-control" id="field_32_eksousiodotiki_diataksi<%=i%>"
+                            name="field_32_eksousiodotiki_diataksi<%=i%>"
+                            rows="4"><%= Object.values(data.field_32_eksousiodotiki_diataksi[i]) %></textarea>
+                    </td>
+                    <td>
+                        <textarea class="form-control" id="field_32_eidos_praksis<%=i%>"
+                            name="field_32_eidos_praksis<%=i%>" 
+                            rows="4"><%= Object.values(data.field_32_eidos_praksis[i]) %></textarea>
+                    </td>
+                    <td>
+                        <textarea class="form-control" id="field_32_armodio_ypoyrgeio<%=i%>"
+                            name="field_32_armodio_ypoyrgeio<%=i%>"                            
+                            rows="4"><%= Object.values(data.field_32_armodio_ypoyrgeio[i]) %></textarea>
+                    </td>
+                    <td>
+                        <textarea class="form-control" id="field_32_antikeimeno<%=i%>" name="field_32_antikeimeno<%=i%>"
+                            rows="4"><%= Object.values(data.field_32_antikeimeno[i]) %></textarea>
+                    </td>
+                    <td>
+                        <textarea class="form-control" id="field_32_xronodiagramma<%=i%>"
+                            name="field_32_xronodiagramma<%=i%>"
+                            rows="4"><%= Object.values(data.field_32_xronodiagramma[i]) %></textarea>
+                        <button class="btn remove float-right" type="button"><img src="/img/delete.png"
+                                width="20px"></button>
+                    </td>
+                </tr>
+                <% } } %>
 
         </tbody>
     </table>
@@ -118,7 +129,8 @@
     <label>Ανάγκη σύστασης νέου νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας υπηρεσίας</label>
     <div class="form-group">
         <br>
-        <label for="field_33" class="legalistic-label optional-label" id="field_33_label" >33.Ποιες διατάξεις της αξιολογούμενης ρύθμισης προβλέπουν τη σύσταση νέου
+        <label for="field_33" class="legalistic-label optional-label" id="field_33_label">33.Ποιες διατάξεις της
+            αξιολογούμενης ρύθμισης προβλέπουν τη σύσταση νέου
             νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας υπηρεσίας;</label>
         <textarea class="form-control" id="field_33" name="field_33" rows="5"
             onkeyup="wordsCounter('field_33','words33',100, event), requiredLegalistics('#field_33')"
@@ -127,7 +139,8 @@
     </div>
 
     <div class="form-group legalistic">
-        <label for="field_34" class="legalistic-label optional-label" id="field_34_label">34.Γιατί προτείνεται η σύσταση αυτού του νέου οργάνου και δεν επαρκούν οι
+        <label for="field_34" class="legalistic-label optional-label" id="field_34_label">34.Γιατί προτείνεται η σύσταση
+            αυτού του νέου οργάνου και δεν επαρκούν οι
             υφιστάμενες διοικητικές δομές για να επιτευχθεί ο στόχος της αξιολογούμενης ρύθμισης;</label>
         <textarea class="form-control" id="field_34" name="field_34" rows="5"
             onkeypress="wordsCounter('field_34','words34',100, event)"
@@ -136,7 +149,8 @@
     </div>
 
     <div class="form-group legalistic">
-        <label for="field_35" class="legalistic-label optional-label" id="field_35_label" >35.Χρόνος έναρξης λειτουργίας του νέου οργάνου:</label>
+        <label for="field_35" class="legalistic-label optional-label" id="field_35_label">35.Χρόνος έναρξης λειτουργίας
+            του νέου οργάνου:</label>
         <textarea class="form-control" id="field_35" name="field_35" rows="5"
             onkeypress="wordsCounter('field_35','words35',50, event)"
             onpaste="wordsCounter('field_35','words35',50, event)"><%= data.field_35 %></textarea>
@@ -144,7 +158,8 @@
     </div>
 
     <div class="checkbox-group form-group row legalistic">
-        <label class="legalistic-label optional-label" id="field_36_label" for="field_36" class="col-sm-8 col-form-label">36. Έχει γίνει η σχετική οικονομοτεχνική μελέτη αναφορικά με τη σύσταση
+        <label class="legalistic-label optional-label" id="field_36_label" for="field_36"
+            class="col-sm-8 col-form-label">36. Έχει γίνει η σχετική οικονομοτεχνική μελέτη αναφορικά με τη σύσταση
             του νέου οργάνου;</label>
         <select id="field_36" name="field_36" class="col-sm-2 form-control">
             <option selected disabled>Eπιλογή</option>
@@ -153,7 +168,8 @@
         </select>
 
         <div id="field_36_wrap" class="form-group" style="display:none;">
-            <label for="field_36_upload" class="legalistic-label optional-label" id="field_36_upload_label" >Εάν ΝΑΙ, να επισυναφθεί ηλεκτρονικά.</label>
+            <label for="field_36_upload" class="legalistic-label optional-label" id="field_36_upload_label">Εάν ΝΑΙ, να
+                επισυναφθεί ηλεκτρονικά.</label>
             <input type="file" id="field_36_upload" name="field_36_upload" accept=".pdf" multiple>
 
             <br>
@@ -165,15 +181,16 @@
                 </thead>
                 <tbody>
 
-                    <% if( data.field_36_upload && data.field_36_upload.length) { 
-                        for (var i=0; i< data.field_36_upload.length;i++) {    %>
-                    <tr>
-                        <td>
-                            <a href="/public/uploads/<%= data.field_36_upload[i] %> "><%= data.field_36_upload[i] %></a>
-                        </td>
-                    </tr>
-                    <%  }
-                    }%>
+                    <% if( data.field_36_upload && data.field_36_upload.length) { for (var i=0; i<
+                        data.field_36_upload.length;i++) { %>
+                        <tr>
+                            <td>
+                                <a href="/public/uploads/<%= data.field_36_upload[i] %> ">
+                                    <%= data.field_36_upload[i] %>
+                                </a>
+                            </td>
+                        </tr>
+                        <% } }%>
 
                 </tbody>
             </table>
@@ -191,7 +208,8 @@
     <label>Στοιχεία νέου νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας υπηρεσίας</label>
     <div class="form-group legalistic">
         <br>
-        <label for="field_37" class="legalistic-label optional-label" id="field_37_label">37.Επωνυμία ή ονομασία και νομική μορφή</label>
+        <label for="field_37" class="legalistic-label optional-label" id="field_37_label">37.Επωνυμία ή ονομασία και
+            νομική μορφή</label>
         <textarea class="form-control" id="field_37" name="field_37" rows="3"
             onkeypress="wordsCounter('field_37','words37',80, event)"
             onpaste="wordsCounter('field_37','words37',80, event)"><%= data.field_37 %></textarea>
@@ -199,7 +217,8 @@
     </div>
 
     <div class="form-group legalistic">
-        <label for="field_38" class="legalistic-label optional-label" id="field_38_label" >38.Χώρος λειτουργίας του νέου οργάνου</label>
+        <label for="field_38" class="legalistic-label optional-label" id="field_38_label">38.Χώρος λειτουργίας του νέου
+            οργάνου</label>
         <textarea class="form-control" id="field_38" name="field_38" rows="3"
             onkeypress="wordsCounter('field_38','words38',100, event)"
             onpaste="wordsCounter('field_38','words38',100, event)"><%= data.field_38 %></textarea>
@@ -207,7 +226,8 @@
     </div>
 
     <div class="form-group legalistic">
-        <label for="field_39" class="legalistic-label optional-label" id="field_39_label" >39.Διασφάλιση επαρκούς υλικοτεχνικού & ηλεκτρονικού εξοπλισμού</label>
+        <label for="field_39" class="legalistic-label optional-label" id="field_39_label">39.Διασφάλιση επαρκούς
+            υλικοτεχνικού & ηλεκτρονικού εξοπλισμού</label>
         <textarea class="form-control" id="field_39" name="field_39" rows="3"
             onkeypress="wordsCounter('field_39','words39',100, event)"
             onpaste="wordsCounter('field_39','words39',100, event)"><%= data.field_39 %></textarea>
@@ -215,19 +235,21 @@
     </div>
 
     <div class="form-group legalistic">
-        <label for="field_40" class="legalistic-label optional-label" id="field_40_label" >40.Τρόπος στελέχωσης του νέου οργάνου</label>
+        <label for="field_40" class="legalistic-label optional-label" id="field_40_label">40.Τρόπος στελέχωσης του νέου
+            οργάνου</label>
         <textarea class="form-control" id="field_40" name="field_40" rows="3"
             onkeypress="wordsCounter('field_40','words40',200, event)"
             onpaste="wordsCounter('field_40','words40',200, event)"><%= data.field_40 %></textarea>
         <p style="float: right;">Λέξεις: <span id="words40"></span> /200</p>
-    </div>    
+    </div>
     <br>
 
     <div class="checkbox-group form-group row ggnkth" style="display: none;">
         <label for="egkrisi_aksiologisis_nomoparaskeyastikis" class="col-sm-8 col-form-label">Έγκριση της Επιτροπής
             Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)</label>
         <input class="col-sm-2 form-check-input position-static egkrisi_aksiologisis_nomoparaskeyastikis"
-            type="checkbox" id="egkrisi_aksiologisis_nomoparaskeyastikis" name="egkrisi_aksiologisis_nomoparaskeyastikis">
+            type="checkbox" id="egkrisi_aksiologisis_nomoparaskeyastikis"
+            name="egkrisi_aksiologisis_nomoparaskeyastikis">
     </div>
     <div class="checkbox-group form-group row ggnkth" style="display: none;">
         <label for="egkrisi_kalis_nomothetisis" class="col-sm-8 col-form-label">Έγκριση Γραφείου Καλής Νομοθέτησης
@@ -246,21 +268,23 @@
             Κοινοβουλευτικών Θεμάτων </label>
         <input class="col-sm-2 form-check-input position-static egkrisi_genikou_grammatea" type="checkbox"
             id="egkrisi_genikou_grammatea" name="egkrisi_genikou_grammatea">
-        
+
     </div>
     <br>
-    
-    <% var pdf_name = data.title.replace(/\s+/g, ''); %>
-    <p id="pdf_download" class="pdf-download action-button" style="display: none;">Το τελευταίο αποθηκευμένο PDF βρίσκεται <a href="/pdf_exports/<%=pdf_name%>.pdf">εδώ</a>.
-    </p>
 
-    <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενα πεδία" />
-    <br>
-    <input type="button" name="pdfExport" class="export-pdf action-button-previous" style="float: right;"
-        value="Εξαγωγή σε PDF" />
-    <br><br>
-    
-    <input type="submit" id="create_new" class="action-button create-new" value="Οριστική Αποθήκευση" />
-    <input type="submit" name="return_to_author" class="return-to-author action-button" value="Να γίνει Επανέλεγχος" />
+    <% var pdf_name=data.title.replace(/\s+/g, '' ); %>
+        <p id="pdf_download" class="pdf-download action-button" style="display: none;">Το τελευταίο αποθηκευμένο PDF
+            βρίσκεται <a href="/pdf_exports/<%=pdf_name%>.pdf">εδώ</a>.
+        </p>
+
+        <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενα πεδία" />
+        <br>
+        <input type="button" name="pdfExport" class="export-pdf action-button-previous" style="float: right;"
+            value="Εξαγωγή σε PDF" />
+        <br><br>
+
+        <input type="submit" id="create_new" class="action-button create-new" value="Οριστική Αποθήκευση" />
+        <input type="submit" name="return_to_author" class="return-to-author action-button"
+            value="Να γίνει Επανέλεγχος" />
 
 </fieldset>

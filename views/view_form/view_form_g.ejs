@@ -17,10 +17,13 @@
                 for (var i = 0; i < data.field_29_diatakseis_rythmisis.length; i++) { %>
             <tr id="table_29_row<%=i%>">
                 <td> 
-                    <textarea class="form-control" id="field_29_diatakseis_rythmisis<%=i%>" name="field_29_diatakseis_rythmisis<%=i%>" placeholder="Διατάξεις αξιολογούμενης ρύθμισης" rows="1"><%= Object.values(data.field_29_diatakseis_rythmisis[i]) %></textarea>
+                    <textarea class="form-control" id="field_29_diatakseis_rythmisis<%=i%>" name="field_29_diatakseis_rythmisis<%=i%>" onkeypress="wordsCounter('field_29_diatakseis_rythmisis<%=i%>','words29_diatakeis_rythm_<%=i%>')" onpaste="wordsCounter('field_29_diatakseis_rythmisis<%=i%>','words29_diatakeis_rythm_<%=i%>')" rows="1"><%= Object.values(data.field_29_diatakseis_rythmisis[i]) %></textarea>
+                    <p style="float: right;">Λέξεις: <span id="words29_diatakeis_rythm_<%=i%>" ></span></p>  
                 </td> 
                 <td> 
-                    <textarea class="form-control" id="field_29_yfistamenes_diatakseis<%=i%>" name="field_29_yfistamenes_diatakseis<%=i%>" placeholder="Υφιστάμενες διατάξεις" rows="1"><%= Object.values(data.field_29_yfistamenes_diatakseis[i]) %></textarea>
+                    <textarea class="form-control" id="field_29_yfistamenes_diatakseis<%=i%>" name="field_29_yfistamenes_diatakseis<%=i%>" onkeypress="wordsCounter('field_29_yfistamenes_diatakseis<%=i%>','words29_diatakeis_yfist_<%=i%>')" onpaste="wordsCounter('field_29_yfistamenes_diatakseis<%=i%>','words29_diatakeis_yfist_<%=i%>')" rows="1"><%= Object.values(data.field_29_yfistamenes_diatakseis[i]) %></textarea>
+                    <p style="float: right;">Λέξεις: <span id="words29_diatakeis_yfist_<%=i%>" ></span></p>   
+                    <br><br>
                     <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
                 </td>
             </tr>    
@@ -55,10 +58,13 @@
                 for (var i = 0; i < data.field_30_diatakseis_katargisi.length; i++) { %>
                 <tr id="table_30_row<%=i%>">
                     <td> 
-                        <textarea class="form-control" id="field_30_diatakseis_katargisi<%=i%>" name="field_30_diatakseis_katargisi<%=i%>" placeholder="Διατάξεις αξιολογούμενης ρύθμισης που προβλέπουν κατάργηση" rows="2"><%= Object.values(data.field_30_diatakseis_katargisi[i]) %></textarea>
+                        <textarea class="form-control" id="field_30_diatakseis_katargisi<%=i%>" name="field_30_diatakseis_katargisi<%=i%>" onkeypress="wordsCounter('field_30_diatakseis_katargisi$<%=i%>','words30_diatakeis_katarg_<%=i%>')" onpaste="wordsCounter('field_30_diatakseis_katargisi<%=i%>','words30_diatakeis_katarg_${table30RowIndex}')" rows="2"><%= Object.values(data.field_30_diatakseis_katargisi[i]) %></textarea>
+                        <p style="float: right;">Λέξεις: <span id="words30_diatakeis_katarg_<%=i%>" ></span></p>
                     </td> 
                     <td> 
-                        <textarea class="form-control" id="field_30_katargoumenes_diatakseis<%=i%>" name="field_30_katargoumenes_diatakseis<%=i%>" placeholder="Καταργούμενες διατάξεις" rows="2"><%= Object.values(data.field_30_katargoumenes_diatakseis[i]) %></textarea>
+                        <textarea class="form-control" id="field_30_katargoumenes_diatakseis<%=i%>" name="field_30_katargoumenes_diatakseis<%=i%>" onkeypress="wordsCounter('field_30_katargoumenes_diatakseis<%=i%>}','words30_diatakeis_katargoum_<%=i%>')" onpaste="wordsCounter('field_30_katargoumenes_diatakseis${table30RowIndex}','words30_diatakeis_katargoum_<%=i%>')" rows="2"><%= Object.values(data.field_30_katargoumenes_diatakseis[i]) %></textarea>
+                        <p style="float: right;">Λέξεις: <span id="words30_diatakeis_katargoum_<%=i%>" ></span></p>
+                        <br><br>
                         <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
                     </td>  
                 </tr>

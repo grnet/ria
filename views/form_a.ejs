@@ -674,15 +674,15 @@
                                             data.field_14_arthro.length; i++) { %>
                                             <tr id="table_14_row<%=i%>">
 
-                                                <td><textarea class="form-control" id="field_14_arthro<%=i%>"
-                                                        name="field_14_arthro<%=i%>" placeholder="Άρθρο"
+                                                <td><textarea class="form-control" id="field_14_arthro<%=i%>" name="field_14_arthro<%=i%>"
                                                         rows="1"><%= Object.values(data.field_14_arthro[i]) %></textarea>
                                                 </td>
                                                 <td>
-                                                    <textarea class="form-control" placeholder="Στόχος"
-                                                        id="field_14_stoxos<%=i%>" name="field_14_stoxos<%=i%>"
-                                                        rows="1"><%= Object.values(data.field_14_stoxos[i]) %></textarea>
-                                                    <button class="btn remove float-right" type="button"><img
+                                                    <textarea class="form-control"  id="field_14_stoxos<%=i%>" name="field_14_stoxos<%=i%>"
+                                                        rows="1" onkeypress="wordsCounter('field_14_stoxos<%=i%>','words14_<%=i%>',50, event)" onpaste="wordsCounter('field_14_stoxos<%=i%>','words14_<%=i%>',50, event)"><%= Object.values(data.field_14_stoxos[i]) %></textarea>
+                                                        <p style="float: right;">Λέξεις: <span id="words14_<%=i%>" ></span> /50</p>
+                                                        <br><br>
+                                                        <button class="btn remove float-right" type="button"><img
                                                             src="/img/delete.png" width="20px"></button>
                                                 </td>
 
@@ -1340,10 +1340,10 @@
                         $('#tbody_14').append(`
                  <tr id="table_14_row${++table14RowIndex}"> 
                 <td> 
-                    <textarea class="form-control" id="field_14_arthro${table14RowIndex}" name="field_14_arthro${table14RowIndex}" placeholder="Άρθρο" rows="1" onkeypress="wordsCounter('field_14_arthro${table14RowIndex}','words14_${table14RowIndex}',50, event)" onpaste="wordsCounter('field_14_arthro${table14RowIndex}','words14_${table14RowIndex}',50, event)"></textarea>                                   
+                    <textarea class="form-control" id="field_14_arthro${table14RowIndex}" name="field_14_arthro${table14RowIndex}" rows="1" ></textarea>                                   
                 </td>    
                 <td> 
-                    <textarea class="form-control" id="field_14_stoxos${table14RowIndex}" name="field_14_stoxos${table14RowIndex}" placeholder="Στόχος" rows="1"></textarea>
+                    <textarea class="form-control" id="field_14_stoxos${table14RowIndex}" name="field_14_stoxos${table14RowIndex}" onkeypress="wordsCounter('field_14_stoxos${table14RowIndex}','words14_${table14RowIndex}',50, event)" onpaste="wordsCounter('field_14_stoxos${table14RowIndex}','words14_${table14RowIndex}',50, event)" rows="1"></textarea>
                     <p style="float: right;">Λέξεις: <span id="words14_${table14RowIndex}" ></span> /50</p>
                     <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
                 </td>    
@@ -1451,10 +1451,13 @@
                         $('#tbody_29').append(`
                 <tr id="R${++table29RowIndex}"> 
                     <td> 
-                        <textarea class="form-control" id="field_29_diatakseis_rythmisis${table29RowIndex}" name="field_29_diatakseis_rythmisis${table29RowIndex}" placeholder="Διατάξεις αξιολογούμενης ρύθμισης" rows="1"></textarea>
+                        <textarea class="form-control" id="field_29_diatakseis_rythmisis${table29RowIndex}" name="field_29_diatakseis_rythmisis${table29RowIndex}" onkeypress="wordsCounter('field_29_diatakseis_rythmisis${table29RowIndex}','words29_diatakeis_rythm_${table29RowIndex}')" onpaste="wordsCounter('field_29_diatakseis_rythmisis${table29RowIndex}','words29_diatakeis_rythm_${table29RowIndex}')" rows="1"></textarea>
+                        <p style="float: right;">Λέξεις: <span id="words29_diatakeis_rythm_${table29RowIndex}" ></span></p>   
                     </td> 
                     <td> 
-                        <textarea class="form-control" id="field_29_yfistamenes_diatakseis${table29RowIndex}" name="field_29_yfistamenes_diatakseis${table29RowIndex}" placeholder="Υφιστάμενες διατάξεις" rows="1"></textarea>
+                        <textarea class="form-control" id="field_29_yfistamenes_diatakseis${table29RowIndex}" name="field_29_yfistamenes_diatakseis${table29RowIndex}" onkeypress="wordsCounter('field_29_yfistamenes_diatakseis${table29RowIndex}','words29_diatakeis_yfist_${table29RowIndex}')" onpaste="wordsCounter('field_29_yfistamenes_diatakseis${table29RowIndex}','words29_diatakeis_yfist_${table29RowIndex}')" rows="1"></textarea>
+                        <p style="float: right;">Λέξεις: <span id="words29_diatakeis_yfist_${table29RowIndex}" ></span></p>   
+                        <br><br>
                         <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
                     </td>    
                 </tr>`
@@ -1489,10 +1492,13 @@
                         $('#tbody_30').append(`
                 <tr id="R${++table30RowIndex}"> 
                     <td> 
-                        <textarea class="form-control" id="field_30_diatakseis_katargisi${table30RowIndex}" name="field_30_diatakseis_katargisi${table30RowIndex}" placeholder="Διατάξεις αξιολογούμενης ρύθμισης που προβλέπουν κατάργηση" rows="2"></textarea>
+                        <textarea class="form-control" id="field_30_diatakseis_katargisi${table30RowIndex}" name="field_30_diatakseis_katargisi${table30RowIndex}" onkeypress="wordsCounter('field_30_diatakseis_katargisi${table30RowIndex}','words30_diatakeis_katarg_${table30RowIndex}')" onpaste="wordsCounter('field_30_diatakseis_katargisi${table30RowIndex}','words30_diatakeis_katarg_${table30RowIndex}')" rows="2"></textarea>
+                        <p style="float: right;">Λέξεις: <span id="words30_diatakeis_katarg_${table30RowIndex}" ></span></p>
                     </td> 
                     <td> 
-                        <textarea class="form-control" id="field_30_katargoumenes_diatakseis${table30RowIndex}" name="field_30_katargoumenes_diatakseis${table30RowIndex}" placeholder="Καταργούμενες διατάξεις" rows="2"></textarea>
+                        <textarea class="form-control" id="field_30_katargoumenes_diatakseis${table30RowIndex}" name="field_30_katargoumenes_diatakseis${table30RowIndex}" onkeypress="wordsCounter('field_30_katargoumenes_diatakseis${table30RowIndex}','words30_diatakeis_katargoum_${table30RowIndex}')" onpaste="wordsCounter('field_30_katargoumenes_diatakseis${table30RowIndex}','words30_diatakeis_katargoum_${table30RowIndex}')" rows="2"></textarea>
+                        <p style="float: right;">Λέξεις: <span id="words30_diatakeis_katargoum_${table30RowIndex}" ></span></p>
+                        <br><br>
                         <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
                     </td>    
                 </tr>`
@@ -1527,14 +1533,15 @@
                         $('#tbody_31').append(`
             <tr id="R${++table31RowIndex}"> 
                 <td> 
-                    <textarea class="form-control" id="field_31_sxetiki_diataksi${table31RowIndex}" name="field_31_sxetiki_diataksi${table31RowIndex}" placeholder="Σχετική διάταξη αξιολογούμενης ρύθμισης" rows="2" onkeypress="wordsCounter('field_31_sxetiki_diataksi${table31RowIndex}','words31_${table31RowIndex}',50, event)" onpaste="wordsCounter('field_31_sxetiki_diataksi${table31RowIndex}','words31_${table31RowIndex}',50, event)"></textarea>
-                    <p style="float: right;">Λέξεις: <span id="words31_${table31RowIndex}" ></span> /50</p>   
+                    <textarea class="form-control" id="field_31_sxetiki_diataksi${table31RowIndex}" name="field_31_sxetiki_diataksi${table31RowIndex}" ></textarea>                    
                 </td> 
                 <td> 
-                    <textarea class="form-control" id="field_31_synarmodia_ypoyrgeia${table31RowIndex}" name="field_31_synarmodia_ypoyrgeia${table31RowIndex}" placeholder="Συναρμόδια Υπουργεία – Συναρμόδιες υπηρεσίες / φορείς" rows="2"></textarea>
+                    <textarea class="form-control" id="field_31_synarmodia_ypoyrgeia${table31RowIndex}" name="field_31_synarmodia_ypoyrgeia${table31RowIndex}" rows="2"></textarea>
                 </td> 
                 <td> 
-                    <textarea class="form-control" id="field_31_antikeimeno_synarmodiotitas${table31RowIndex}" name="field_31_antikeimeno_synarmodiotitas${table31RowIndex}" placeholder="Αντικείμενο συναρμοδιότητας" rows="2"></textarea>
+                    <textarea class="form-control" id="field_31_antikeimeno_synarmodiotitas${table31RowIndex}" name="field_31_antikeimeno_synarmodiotitas${table31RowIndex}" rows="2" onkeypress="wordsCounter('field_31_antikeimeno_synarmodiotitas${table31RowIndex}','words31_${table31RowIndex}',50, event)" onpaste="wordsCounter('field_31_antikeimeno_synarmodiotitas${table31RowIndex}','words31_${table31RowIndex}',50, event)"></textarea>
+                    <p style="float: right;">Λέξεις: <span id="words31_${table31RowIndex}" ></span> /50</p>
+                    <br><br>
                     <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
                 </td>    
             </tr>`
@@ -2217,8 +2224,8 @@
                                 }                                                              
                             }                            
                         }
+                    }    
 
-                        
                     var current_fs, next_fs, previous_fs; //fieldsets
 
                     //adding traversing functions to sidemenu
