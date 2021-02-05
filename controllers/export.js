@@ -1,249 +1,6 @@
 const fs = require('fs');
-const PDFMerger = require('pdf-merger-js');
 var multer = require('multer');
 let database = require('../services/database');
-
-exports.exportSectionCPDF = (async function (req, res, next) {
-    var PdfPrinter = require('../node_modules/pdfmake/src/printer');
-
-    let data = req.body;//assign req.body to variable
-    let keys = Object.keys(data);//get keys 
-    let field_17_onoma = [];
-    let field_17_epitheto = [];
-    let field_17_idiotita = [];
-    let value, key;
-
-    for (i in keys) {//iterate through keys
-        if (keys[i].includes("field_17_onoma")) {
-            value = data[keys[i]];
-            key = keys[i];
-            field_17_onoma.push({ [key]: value });
-        } else if (keys[i].includes("field_17_epitheto")) {
-            value = data[keys[i]];
-            key = keys[i];
-            field_17_epitheto.push({ [key]: value });
-        } else if (keys[i].includes("field_17_idiotita")) {
-            value = data[keys[i]];
-            key = keys[i];
-            field_17_idiotita.push({ [key]: value });
-        }
-    }
-    // download default Roboto font from cdnjs.com
-    fonts = {
-        Roboto: {
-            normal: 'public/fonts/Roboto-Regular.ttf',
-            bold: 'public/fonts/Roboto-Bold.ttf',
-            italics: 'public/fonts/Roboto-Italic.ttf',
-            medium: 'public/fonts/Roboto-Medium.ttf',
-        }
-    }
-    var printer = new PdfPrinter(fonts);
-
-    var docDefinition = {
-
-        pageSize: 'A4',//A4
-        //watermark: { text: 'test watermark', color: 'blue', opacity: 0.3, bold: true, italics: false },
-        styles: {
-            headerStyle: {
-                fontSize: 14,
-                alignment: 'left',
-                decoration: 'underline',
-            },
-            labelStyle: {
-                fontSize: 12,
-                alignment: 'left',
-                decoration: 'underline'
-            },
-            textStyle: {
-                fontSize: 10,
-                alignment: 'left'
-
-            },
-        },
-
-        content: [
-
-            {
-                toc: {
-                    title: { text: 'Πίνακας περιεχομένων', style: ['header', { bold: true }], fontSize: 18, decoration: 'underline', },
-                }
-            },
-            {
-                text: 'Γ. Ειδική Έκθεση (άρθρο 75 παρ. 3 του Συντάγματος)',
-                style: 'headerStyle',
-                tocItem: true,
-                tocStyle: { bold: true },
-                tocMargin: [20, 0, 0, 0],
-                pageBreak: 'before'
-            },
-
-            { text: 'Στο σχέδιο νόμου ή στην τροπολογία επί του σχεδίου νόμου', style: 'textStyle' },
-            { text: '\n\n' },
-            { text: data.field_17_sxedio_nomou + '\n\n', style: 'textStyle' },
-            { text: 'του Υπουργείου: ', style: 'textStyle' },
-            { text: '\n\n' },
-            { text: data.field_17_ypoyrgeio + '\n\n', style: 'textStyle' },
-            { text: '17.Οικονομικά αποτελέσματα ', style: 'labelStyle' },
-            { text: '\n\n' },
-            { text: data.field_17_oikonomika_apotelesmata + '\n\n' }, ,
-            { text: 'ΟΙ ΥΠΟΓΡΑΦΟΝΤΕΣ ΥΠΟΥΡΓΟΙ', style: 'labelStyle' },
-            createDynamicThreeColumnTable('Όνομα', 'Επώνυμο', 'Ιδιότητα', field_17_onoma, field_17_epitheto, field_17_idiotita),
-        ]
-    };
-
-    var pdfDoc = printer.createPdfKitDocument(docDefinition);
-    var pdf_name = 'Υπογραφές_Υπουργών_'+data.title + '.pdf';
-    pdf_name = pdf_name.replace(/\s+/g, '');
-
-    pdfDoc.pipe(fs.createWriteStream('./public/pdf_exports/' + pdf_name));
-    pdfDoc.end();
-    await new Promise(resolve => setTimeout(resolve, 2000));//add some extra delay
-
-    try {
-        if (fs.existsSync('./public/pdf_exports/' + pdf_name)) {
-            res.sendStatus(200);
-        } else {
-            res.sendStatus(500);
-
-        }
-    } catch (err) {
-        console.log(err)
-    }
-
-})
-
-exports.exportGLKPDF = (async function (req, res, next) {
-    let data = req.body;//assign req.body to variable
-    var PdfPrinter = require('../node_modules/pdfmake/src/printer');
-    // download default Roboto font from cdnjs.com
-    fonts = {
-        Roboto: {
-            normal: 'public/fonts/Roboto-Regular.ttf',
-            bold: 'public/fonts/Roboto-Bold.ttf',
-            italics: 'public/fonts/Roboto-Italic.ttf',
-            medium: 'public/fonts/Roboto-Medium.ttf',
-        }
-    }
-    var printer = new PdfPrinter(fonts);
-
-    var docDefinition = {
-
-        pageSize: 'A4',//A4
-        //watermark: { text: 'test watermark', color: 'blue', opacity: 0.3, bold: true, italics: false },
-        styles: {
-            headerStyle: {
-                fontSize: 14,
-                alignment: 'left',
-                decoration: 'underline',
-            },
-            labelStyle: {
-                fontSize: 12,
-                alignment: 'left',
-                decoration: 'underline'
-            },
-            textStyle: {
-                fontSize: 10,
-                alignment: 'left'
-
-            },
-        },
-
-        content: [
-
-            {
-                toc: {
-                    title: { text: 'Πίνακας περιεχομένων', style: ['header', { bold: true }], fontSize: 18, decoration: 'underline', },
-                }
-            },
-            {
-                text: 'Αρχική σελίδα',
-                style: 'header',
-                fontSize: 14,
-                tocItem: true,
-                tocStyle: { bold: true },
-                decoration: 'underline',
-                tocMargin: [20, 0, 0, 0],
-                pageBreak: 'before'
-            },
-            {
-                text: "\n\n" + 'Τίτλος αξιολογούμενης ρύθμισης: ' + data.title + "\n\n" + 'Ονοματεπώνυμο συγγραφέα: ' + req.session.lname + ' ' + req.session.fname + "\n\n" +
-                    'Αρχική καταχώρηση: ' + data.initial_submit + "\n\n" + 'Τελευταία ενημέρωση: ' + data.last_updated + "\n\n" +
-                    'Επισπεύδων φορέας: ' + data.epispeudon_foreas + "\n\n" + 'Ρύθμιση την οποία αφορά: ' + data.rythmisi_pou_afora + "\n\n" + 'Στοιχεία επικοινωνίας: ' + data.stoixeia_epikoinwnias + "\n\n", style: "textStyle"
-            },
-
-            {
-                text: 'Β. Έκθεση Γενικού Λογιστηρίου του Κράτους (άρθρο 75 παρ. 1 ή 2 του Συντάγματος)',
-                style: 'headerStyle',
-                tocItem: true,
-                tocStyle: { bold: true },
-                tocMargin: [20, 0, 0, 0],
-                pageBreak: 'before'
-            },
-
-            { text: 'Στο σχέδιο νόμου ή στην τροπολογία επί του σχεδίου νόμου', style: 'textStyle' },
-            { text: '\n\n' },
-            { text: data.field_15_sxedio_nomou + '\n\n', style: 'textStyle' },
-            { text: 'του Υπουργείου: ', style: 'textStyle' },
-            { text: '\n\n' },
-            { text: data.field_15_ypoyrgeio + '\n\n', style: 'textStyle' },
-            { text: '15.Συνοπτική ανάλυση των άρθρων της αξιολογούμενης ρύθμισης ', style: 'labelStyle' },
-            { text: '\n\n' },
-            { text: data.field_15_rythmiseis + '\n\n' },
-
-            { text: '16.Οικονομικά αποτελέσματα επί του Κρατικού Προϋπολογισμού ή/και επί του προϋπολογισμού του/των αρμόδιου/ων φορέα/ων ', style: 'labelStyle' },
-            { text: '\n\n' },
-            { text: 'Από τις προτεινόμενες διατάξεις προκαλούνται τα ακόλουθα οικονομικά αποτελέσματα: ', style: 'textStyle' },
-            { text: '\n\n' },
-            { text: 'Επί του Κρατικού Προϋπολογισμού ', style: 'textStyle' },
-            { text: '\n\n' },
-            { text: data.field_16_kratikos_proypologismos + '\n\n', style: 'textStyle' },
-            { text: 'Επί του Προϋπολογισμού του/των αρμόδιου/ων φορέα/ων ', style: 'textStyle' },
-            { text: '\n\n' },
-            { text: data.field_16_proypologismos_forea + '\n\n', style: 'textStyle' },
-            { text: 'Ο/Η ΥΠΟΓΡΑΦΩΝ/ΟΥΣΑ ΓΕΝΙΚΟΣ/Η ΔΙΕΥΘΥΝΤΗΣ/ΡΙΑ (Όνομα Επώνυμο Ημερομηνία) ', style: 'labelStyle' },
-            { text: '\n\n' },
-            {
-                table: {
-
-                    headerRows: 1,
-                    widths: ['*', '*', '*'],
-
-                    body: [
-                        ['Όνομα', 'Επώνυμο', 'Ιδιότητα'],
-                        [{ text: data.field_16_genikos_onoma, style: 'textStyle' }, { text: data.field_16_genikos_epitheto, style: 'textStyle' }, { text: data.field_16_genikos_date, style: 'textStyle' }],
-
-                    ]
-                }
-            },
-        ]
-    };
-
-    var pdfDoc = printer.createPdfKitDocument(docDefinition);
-    var pdf_name = 'glk_' + data.title + '.pdf';
-    pdf_name = pdf_name.replace(/\s+/g, '');
-
-    pdfDoc.pipe(fs.createWriteStream('./public/pdf_exports/' + pdf_name));
-    pdfDoc.end();
-    await new Promise(resolve => setTimeout(resolve, 2000));//add some extra delay
-
-    try {
-        // var merger = new PDFMerger();
-        // merger.add('./public/pdf_exports/' + pdf_name);
-        // merger.add('/home/mariosven/Desktop/As I Lay Dying ( PDFDrive.com ).pdf');
-        // merger.add('/home/mariosven/Desktop/jrc_channelling_government_digital_transformation_through_apis_online.pdf');
-        // await merger.save('merged.pdf'); //save under given name
-        if (fs.existsSync('./public/pdf_exports/' + pdf_name)) {
-            res.sendStatus(200);
-        } else {
-            res.sendStatus(500);
-
-        }
-    } catch (err) {
-        console.log(err)
-    }
-
-})
-
 
 exports.exportPDF = (async function (req, res, next) {
     let data = req.body;//assign req.body to variable
@@ -610,6 +367,72 @@ exports.exportPDF = (async function (req, res, next) {
                 { text: '\n\n' },
                 createDynamicTwoColumnTable('Άρθρο', 'Στόχος', field_14_arthro, field_14_stoxos), //create table for field 14                                
 
+                {
+                    text: 'Β. Έκθεση Γενικού Λογιστηρίου του Κράτους (άρθρο 75 παρ. 1 ή 2 του Συντάγματος)',
+                    style: 'headerStyle',
+                    tocItem: true,
+                    tocStyle: { bold: true },
+                    tocMargin: [20, 0, 0, 0],
+                    pageBreak: 'before'
+                },
+    
+                { text: 'Στο σχέδιο νόμου ή στην τροπολογία επί του σχεδίου νόμου', style: 'textStyle' },
+                { text: '\n\n' },
+                { text: data.field_15_sxedio_nomou + '\n\n', style: 'textStyle' },
+                { text: 'του Υπουργείου: ', style: 'textStyle' },
+                { text: '\n\n' },
+                { text: data.field_15_ypoyrgeio + '\n\n', style: 'textStyle' },
+                { text: '15.Συνοπτική ανάλυση των άρθρων της αξιολογούμενης ρύθμισης ', style: 'labelStyle' },
+                { text: '\n\n' },
+                { text: data.field_15_rythmiseis + '\n\n' },
+    
+                { text: '16.Οικονομικά αποτελέσματα επί του Κρατικού Προϋπολογισμού ή/και επί του προϋπολογισμού του/των αρμόδιου/ων φορέα/ων ', style: 'labelStyle' },
+                { text: '\n\n' },
+                { text: 'Από τις προτεινόμενες διατάξεις προκαλούνται τα ακόλουθα οικονομικά αποτελέσματα: ', style: 'textStyle' },
+                { text: '\n\n' },
+                { text: 'Επί του Κρατικού Προϋπολογισμού ', style: 'textStyle' },
+                { text: '\n\n' },
+                { text: data.field_16_kratikos_proypologismos + '\n\n', style: 'textStyle' },
+                { text: 'Επί του Προϋπολογισμού του/των αρμόδιου/ων φορέα/ων ', style: 'textStyle' },
+                { text: '\n\n' },
+                { text: data.field_16_proypologismos_forea + '\n\n', style: 'textStyle' },
+                { text: 'Ο/Η ΥΠΟΓΡΑΦΩΝ/ΟΥΣΑ ΓΕΝΙΚΟΣ/Η ΔΙΕΥΘΥΝΤΗΣ/ΡΙΑ (Όνομα Επώνυμο Ημερομηνία) ', style: 'labelStyle' },
+                { text: '\n\n' },
+                {
+                    table: {
+    
+                        headerRows: 1,
+                        widths: ['*', '*', '*'],
+    
+                        body: [
+                            ['Όνομα', 'Επώνυμο', 'Ιδιότητα'],
+                            [{ text: data.field_16_genikos_onoma, style: 'textStyle' }, { text: data.field_16_genikos_epitheto, style: 'textStyle' }, { text: data.field_16_genikos_date, style: 'textStyle' }],
+    
+                        ]
+                    }
+                },
+
+                {
+                    text: 'Γ. Ειδική Έκθεση (άρθρο 75 παρ. 3 του Συντάγματος)',
+                    style: 'headerStyle',
+                    tocItem: true,
+                    tocStyle: { bold: true },
+                    tocMargin: [20, 0, 0, 0],
+                    pageBreak: 'before'
+                },
+    
+                { text: 'Στο σχέδιο νόμου ή στην τροπολογία επί του σχεδίου νόμου', style: 'textStyle' },
+                { text: '\n\n' },
+                { text: data.field_17_sxedio_nomou + '\n\n', style: 'textStyle' },
+                { text: 'του Υπουργείου: ', style: 'textStyle' },
+                { text: '\n\n' },
+                { text: data.field_17_ypoyrgeio + '\n\n', style: 'textStyle' },
+                { text: '17.Οικονομικά αποτελέσματα ', style: 'labelStyle' },
+                { text: '\n\n' },
+                { text: data.field_17_oikonomika_apotelesmata + '\n\n' }, ,
+                { text: 'ΟΙ ΥΠΟΓΡΑΦΟΝΤΕΣ ΥΠΟΥΡΓΟΙ', style: 'labelStyle' },
+                createDynamicThreeColumnTable('Όνομα', 'Επώνυμο', 'Ιδιότητα', field_17_onoma, field_17_epitheto, field_17_idiotita),
+            
 
                 {
                     text: 'Δ. Έκθεση γενικών συνεπειών',
@@ -831,26 +654,9 @@ exports.exportPDF = (async function (req, res, next) {
 
     pdfDoc.pipe(fs.createWriteStream('./public/pdf_exports/' + pdf_name));
     pdfDoc.end();
-    await new Promise(resolve => setTimeout(resolve, 2000));//add some extra delay
-    let entry = await database.ekthesi.findOne({
-        where: {
-            id: req.params.entry_id
-        }//, include: [{ model: database.rythmiseis }, { model: database.field_9 }]
-    });
-    let upld16 = entry.field_16_upload;
-    let upld17 = entry.field_17_upload;
-    console.log(upld17);
-    console.log(upld16);
+
     try {
-        var merger = new PDFMerger();
-        merger.add('./public/pdf_exports/' + pdf_name);
-        if (upld16) {
-            merger.add('./public/uploads/' + upld16);
-        }
-        if (upld17) {
-            merger.add('./public/uploads/' + upld17);
-        }        
-        await merger.save('./public/pdf_exports/'+pdf_name); //save under given name
+
         if (fs.existsSync('./public/pdf_exports/' + pdf_name)) {
             res.sendStatus(200);
         } else {
@@ -979,10 +785,11 @@ function createChckbxTable(table) {
         header++;
     }
     if (table[7]) {
-        rows.push([{ text: table[7], colSpan: 6, fillColor: '#7bb661', alignment: 'center', bold: true }, { text: '' }, { text: '' }, { text: '' }, { text: '' }, { text: '' }]);
+        rows.push([{ text: table[7], colSpan: 6, fillColor: '#7bb661', alignment: 'center', bold: true }, { text: '' }, { text: '' }, { text: '' }, { text: '' }, { text: '' }]);        
+        rows.push([{ text: '#', alignment: 'center', bold: true }, { text: 'ΘΕΣΜΟΙ, ΔΗΜΟΣΙΑ ΔΙΟΙΚΗΣΗ, ΔΙΑΦΑΝΕΙΑ', alignment: 'center', bold: true }, { text: 'ΑΓΟΡΑ, ΟΙΚΟΝΟΜΙΑ, ΑΝΤΑΓΩΝΙΣΜΟΣ', alignment: 'center', bold: true }, { text: 'ΚΟΙΝΩΝΙΑ & ΚΟΙΝΩΝΙΚΕΣ ΟΜΑΔΕΣ', alignment: 'center', bold: true }, { text: 'ΦΥΣΙΚΟ, ΑΣΤΙΚΟ ΚΑΙ ΠΟΛΙΤΙΣΤΙΚΟ ΠΕΡΙΒΑΛΛΟΝ', alignment: 'center', bold: true }, { text: 'ΝΗΣΙΩΤΙΚΟΤΗΤΑ', alignment: 'center', bold: true }]);sssss
         header++;
     }
-    rows.push([{ text: '#', alignment: 'center', bold: true }, { text: 'ΘΕΣΜΟΙ, ΔΗΜΟΣΙΑ ΔΙΟΙΚΗΣΗ, ΔΙΑΦΑΝΕΙΑ', alignment: 'center', bold: true }, { text: 'ΑΓΟΡΑ, ΟΙΚΟΝΟΜΙΑ, ΑΝΤΑΓΩΝΙΣΜΟΣ', alignment: 'center', bold: true }, { text: 'ΚΟΙΝΩΝΙΑ & ΚΟΙΝΩΝΙΚΕΣ ΟΜΑΔΕΣ', alignment: 'center', bold: true }, { text: 'ΦΥΣΙΚΟ, ΑΣΤΙΚΟ ΚΑΙ ΠΟΛΙΤΙΣΤΙΚΟ ΠΕΡΙΒΑΛΛΟΝ', alignment: 'center', bold: true }, { text: 'ΝΗΣΙΩΤΙΚΟΤΗΤΑ', alignment: 'center', bold: true }]);
+    
     rows.push([{ text: table[0], alignment: 'center', bold: true }, { text: table[1], alignment: 'center' }, { text: table[2], alignment: 'center' }, { text: table[3], alignment: 'center' }, { text: table[4], alignment: 'center' }, { text: table[5], alignment: 'center' }]);
 
     var table = {

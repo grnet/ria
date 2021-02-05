@@ -15,8 +15,7 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 //models
 db.ekthesi = require("../models/ekthesi.model.js")(sequelize, Sequelize);
-db.rythmiseis = require("../models/rythmiseis.model.js")(sequelize, Sequelize);
-db.field_9 = require("../models/field_9.model.js")(sequelize, Sequelize);
+db.ekthesi_tables = require("../models/ekthesi_tables.model.js")(sequelize, Sequelize);
 db.user = require("../models/user.model.js")(sequelize, Sequelize);
 db.audit = require("../models/audit.model.js")(sequelize, Sequelize);
 

@@ -3,30 +3,28 @@
 //const { ekthesi, rythmiseis, field_9  } = require("../services/database"); if assocs not working uncommment
 
 function applyAssoc(sequelize) {
-	const { ekthesi, rythmiseis, field_9, user, audit } = sequelize.models;
+	const { ekthesi, ekthesi_tables, user, audit } = sequelize.models;
 
-	//establishing one to one association between ekthesi and rythmiseis
-	ekthesi.hasOne(rythmiseis, {
+	//establishing one to one association between ekthesi and ekthesi_tables models
+	ekthesi.hasOne(ekthesi_tables, {
 		sourceKey: 'id',
-		foreignKey: 'rythmisiId'});
-		rythmiseis.belongsTo(ekthesi, { foreignKey: 'rythmisiId', targetKey: 'id' });
+		foreignKey: 'ekthesi_tablesId'
+	});
+	ekthesi_tables.belongsTo(ekthesi, { foreignKey: 'ekthesi_tablesId', targetKey: 'id' });
 
-	//establishing one to one association between ekthesi and field_9 models
-	ekthesi.hasOne(field_9, {
-		sourceKey: 'id',
-		foreignKey: 'field9Id'});
-		field_9.belongsTo(ekthesi, { foreignKey: 'field9Id', targetKey: 'id' });
-	
 	//establishing one to many association between user and ekthesi models
 	user.hasMany(ekthesi, {
 		sourceKey: 'username',
-		foreignKey: 'author'});
-		ekthesi.belongsTo(user, { foreignKey: 'author', targetKey: 'username' });
+		foreignKey: 'author'
+	});
+	ekthesi.belongsTo(user, { foreignKey: 'author', targetKey: 'username' });
 
+	//establishing one to many association between ekthesi and audit models	
 	ekthesi.hasMany(audit, {
-			sourceKey: 'id',
-			foreignKey: 'auditId'});
-			audit.belongsTo(ekthesi, { foreignKey: 'auditId', targetKey: 'id' });	
+		sourceKey: 'id',
+		foreignKey: 'auditId'
+	});
+	audit.belongsTo(ekthesi, { foreignKey: 'auditId', targetKey: 'id' });
 
 }
 

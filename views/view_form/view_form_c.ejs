@@ -53,44 +53,6 @@
     <input type="button" id="add_row_table_17" name="add_row_table_17" class="float-right" value="Επιπλέον σειρά" />
     <br><br>
 
-    <% var pdf_name = data.title.replace(/\s+/g, ''); %>
-    <p id="economics_pdf_download" class="action-button" style="display: none;">Το τελευταίο αποθηκευμένο PDF βρίσκεται <a href="/pdf_exports/Υπογραφές_Υπουργών_<%=pdf_name%>.pdf">εδώ</a>.
-    </p>  
-    <br><br> 
-
-    <input type="button" id="pdfEconomicsExport" name="pdfEconomicsExport" style="float: right;"
-        value="Εξαγωγή σε PDF" />
-    <br><br>
-
-    <label class="field-17-label" id="field_17_upload_label" for="field_17_upload">
-        <h3>Επισύναψη υπογεγραμμένου pdf </h3>
-    </label>
-    <input type="file" class="required" id="field_17_upload" name="field_17_upload" accept=".pdf">
-
-    <table id="uploads_17" class="display">
-        <thead>
-            <tr>
-                <th colspan="1">Προηγούμενες αναρτήσεις:</th>
-            </tr>
-        </thead>
-        <tbody>
-
-            <% if( data.field_17_upload && data.field_17_upload.length ) { for (var i=0; i <
-                data.field_17_upload.length;i++) { %>
-                <tr>
-                    <td>
-                        <a href="/uploads/<%= data.field_17_upload[i] %> ">
-                            <%= data.field_17_upload[i] %>
-                        </a>
-                    </td>
-                </tr>
-                <% } }%>
-
-        </tbody>
-    </table>
-
-    <br>
-
     <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενα πεδία" />
     <input type="button" name="next" class="next action-button" value="Επόμενη φόρμα" />
 </fieldset>
