@@ -1006,11 +1006,12 @@
                         $.each(checkbox, function (key, chckbx) {
                             fd.append($(chckbx).prop('name'), $(chckbx).value = '')//append to fd without value 
                         });
+                        fd = JSON.stringify(Object.fromEntries(fd));
                         $.ajax({
                             url: '/form_a/' + ekthesi_id,
                             //data: $("form").serialize(),
                             data: fd,
-                            contentType: false,
+                            contentType: 'application/json',
                             processData: false,
                             error: function (error) {
                                 console.log(error)

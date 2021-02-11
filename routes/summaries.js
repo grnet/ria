@@ -1,7 +1,8 @@
 const routes = require('express').Router()
+const { authUser, authRole } = require('../controllers/auth');
 let database = require('../services/database')
 
-routes.get('/', async (req,res,next) =>{
+routes.get('/', authUser, authRole, async (req,res,next) =>{
     let entries = await database.ekthesi.count()
     let prosxedio = await database.ekthesi.count({ where: {typos_analysis: 'Προσχέδιο νόμου'}})
     let tropologies_vouleftwn = await database.ekthesi.count({ where: {typos_analysis: 'Τροπολογίες Βουλευτών'}})

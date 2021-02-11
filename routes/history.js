@@ -1,8 +1,9 @@
 const routes = require('express').Router()
 let database = require('../services/database')
 const { Op } = require("sequelize");
+const { authUser } = require('../controllers/auth');
 
-routes.get('/', async function (req, res, next) {
+routes.get('/', authUser, async function (req, res, next) {
     console.log(req.session.username)
     let user = await database.user.findOne({
         where: {

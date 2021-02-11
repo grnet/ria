@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
         rolos: DataTypes.STRING,
         dikaiwmata_diaxeirisis: DataTypes.STRING,
         ypoyrgeio: DataTypes.STRING,
-        isLoggedIn: DataTypes.BOOLEAN,
+        //isLoggedIn: DataTypes.BOOLEAN,
         
     },
      {   

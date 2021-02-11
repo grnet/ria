@@ -32,14 +32,14 @@ let memoryStore = new session.MemoryStore({checkPeriod: 86400000 }); //We will s
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.use(express.json());
+app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({ limit: '200mb', extended: true, parameterLimit: 3000 }));//change limit if too many parameters to be parsed
 app.use(cookieParser());
 // app.use("/pdf_exports", express.static(__dirname + 'public'));
 // app.use("/uploads", express.static(__dirname + 'public'));
 // app.use("/fonts", express.static(__dirname + 'public'));
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.disable('x-powered-by');
 //app.use(express.static(path.join(__dirname,'public/js')));
 
 app.use('/', homeRoute);

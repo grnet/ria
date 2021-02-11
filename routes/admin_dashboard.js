@@ -1,7 +1,8 @@
 const routes = require('express').Router()
+const { authUser, authRole } = require('../controllers/auth');
 let database = require('../services/database')
 
-routes.get('/', async (req,res,next) =>{
+routes.get('/', authUser, authRole, async (req,res,next) =>{
     let user = await database.user.findOne({where:{
         username: req.session.username
     }})

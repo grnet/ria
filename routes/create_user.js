@@ -1,12 +1,13 @@
 const routes = require('express').Router();
 let database = require("../services/database");
 const bcrypt = require('bcrypt');
+const { authUser, authRole } = require('../controllers/auth');
 
-routes.get('/', function(req,res,next){
+routes.get('/', authUser, authRole, function(req,res,next){
     res.render("user_views/create_user");
 });
 
-routes.post('/', async function(req,res,next){
+routes.post('/', authUser, authRole, async function(req,res,next){
     const userPassword = req.body.password;
     bcrypt.hash(userPassword, 10, async function(err, hash) {
         //add row to user model, map values from req.body

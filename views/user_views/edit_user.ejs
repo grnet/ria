@@ -46,7 +46,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="password">Επανάληψη κωδικού πρόσβασης χρήστη:</label>
+                    <label for="password">Επανάληψη νέου κωδικού πρόσβασης χρήστη:</label>
                     <input type="password" size="20" id="password_repeat" name="password_repeat" minlength="8"
                         placeholder="********" />
                     <div id="msg"></div>
@@ -54,14 +54,14 @@
 
                 <hr>
 
-                <div class="form-group">
+                <div class="form-group user-restricted">
                     <label for="ypoyrgeio">Υπουργείο:</label>
                     <input type="text" size="20" id="ypoyrgeio" name="ypoyrgeio" placeholder="Υπουργείο" required
                         value="<%= data.ypoyrgeio %>" />
                 </div>
                 <hr>
 
-                <div class="checkbox-group form-group row">
+                <div class="checkbox-group form-group row user-restricted">
                     <label for="rolos" class="col-sm-2 col-form-label">Ρόλος: </label>
                     <select id="rolos" name="rolos" class="col-sm-2 form-control" required>
                         <option value="" selected disabled>Eπιλογή</option>
@@ -84,7 +84,7 @@
                 <br>
                 <hr>
 
-                <div class="checkbox-group form-group row">
+                <div class="checkbox-group form-group row user-restricted">
                     <label for="dikaiwmata_diaxeirisis" class="col-sm-8 col-form-label">Ο χρήστης έχει δικαιώματα
                         διαχείρισης:</label>
                     <input class="col-sm-2 form-check-input position-static" type="checkbox" id="dikaiwmata_diaxeirisis"
@@ -215,8 +215,11 @@
             setDropdown("rolos");
 
             $(document).ready(function () {
-                if ("<%= data.dikaiwmata_diaxeirisis %>" === "1") {
+                if ("<%= data.dikaiwmata_diaxeirisis %>") {
                     $("#dikaiwmata_diaxeirisis").prop('checked', true);
+                } else {
+                    $(".user-restricted :input").prop('disabled', true);
+                    $("#dikaiwmata_diaxeirisis").hide();
                 }
 
                 $("#password_repeat").keyup(function () {
@@ -232,23 +235,6 @@
                 }
             }
 
-    //implement on check true-false values for checkbox
-
-
-    // $("#dikaiwmata_diaxeirisis").on("change",function(ev){
-    //     this.value = this.checked ?'true':'false';
-    //     console.log($(this).val())
-    //     if (this.value == true) {
-    //         $(this).prop('checked', true);
-    //     } else {
-    //         $(this).prop('checked', false);
-    //     }
-    //     console.log('onClick val: '+this.value)
-    // }).change();
-
-    // unchecked chckbx workaround
-    // <input type="hidden"   name="dikaiwmata_diaxeirisis" value="false" />
-    // <input type="checkbox" name="dikaiwmata_diaxeirisis" value="true" />
         </script>
         </body>
 

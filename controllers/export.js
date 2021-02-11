@@ -1,9 +1,10 @@
 const fs = require('fs');
-var multer = require('multer');
 let database = require('../services/database');
+let path = require('path')
 
 exports.exportPDF = (async function (req, res, next) {
     let data = req.body;//assign req.body to variable
+    console.log(data)
     let keys = Object.keys(data);//get keys 
     let field_14_arthro = [];
     let field_14_stoxos = [];
@@ -651,13 +652,16 @@ exports.exportPDF = (async function (req, res, next) {
     var pdfDoc = printer.createPdfKitDocument(docDefinition);
     var pdf_name = data.title + '.pdf';
     pdf_name = pdf_name.replace(/\s+/g, '');
-
-    pdfDoc.pipe(fs.createWriteStream('./public/pdf_exports/' + pdf_name));
+    var export_path = 'public/pdf_exports/';
+    var pdf_path = path.resolve(export_path,pdf_name);
+    pdf_path=path.resolve(export_path,pdf_name);
+    console.log(pdf_path)
+    pdfDoc.pipe(fs.createWriteStream(pdf_path));
     pdfDoc.end();
 
     try {
 
-        if (fs.existsSync('./public/pdf_exports/' + pdf_name)) {
+        if (fs.existsSync(pdf_path)) {
             res.sendStatus(200);
         } else {
             res.sendStatus(500);
@@ -786,7 +790,7 @@ function createChckbxTable(table) {
     }
     if (table[7]) {
         rows.push([{ text: table[7], colSpan: 6, fillColor: '#7bb661', alignment: 'center', bold: true }, { text: '' }, { text: '' }, { text: '' }, { text: '' }, { text: '' }]);        
-        rows.push([{ text: '#', alignment: 'center', bold: true }, { text: 'ΘΕΣΜΟΙ, ΔΗΜΟΣΙΑ ΔΙΟΙΚΗΣΗ, ΔΙΑΦΑΝΕΙΑ', alignment: 'center', bold: true }, { text: 'ΑΓΟΡΑ, ΟΙΚΟΝΟΜΙΑ, ΑΝΤΑΓΩΝΙΣΜΟΣ', alignment: 'center', bold: true }, { text: 'ΚΟΙΝΩΝΙΑ & ΚΟΙΝΩΝΙΚΕΣ ΟΜΑΔΕΣ', alignment: 'center', bold: true }, { text: 'ΦΥΣΙΚΟ, ΑΣΤΙΚΟ ΚΑΙ ΠΟΛΙΤΙΣΤΙΚΟ ΠΕΡΙΒΑΛΛΟΝ', alignment: 'center', bold: true }, { text: 'ΝΗΣΙΩΤΙΚΟΤΗΤΑ', alignment: 'center', bold: true }]);sssss
+        //rows.push([{ text: '#', alignment: 'center', bold: true }, { text: 'ΘΕΣΜΟΙ, ΔΗΜΟΣΙΑ ΔΙΟΙΚΗΣΗ, ΔΙΑΦΑΝΕΙΑ', alignment: 'center', bold: true }, { text: 'ΑΓΟΡΑ, ΟΙΚΟΝΟΜΙΑ, ΑΝΤΑΓΩΝΙΣΜΟΣ', alignment: 'center', bold: true }, { text: 'ΚΟΙΝΩΝΙΑ & ΚΟΙΝΩΝΙΚΕΣ ΟΜΑΔΕΣ', alignment: 'center', bold: true }, { text: 'ΦΥΣΙΚΟ, ΑΣΤΙΚΟ ΚΑΙ ΠΟΛΙΤΙΣΤΙΚΟ ΠΕΡΙΒΑΛΛΟΝ', alignment: 'center', bold: true }, { text: 'ΝΗΣΙΩΤΙΚΟΤΗΤΑ', alignment: 'center', bold: true }]);sssss
         header++;
     }
     

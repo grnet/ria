@@ -5,6 +5,7 @@ let pdf_export = require('../controllers/export');
 const csv = require('csv-parser')
 const { body, check, validationResult } = require('express-validator');
 var multer = require('multer');
+const { authUser } = require('../controllers/auth');
 //var getFields = multer();
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -17,8 +18,8 @@ var storage = multer.diskStorage({
 
 var upload = multer({ storage: storage }).fields([{ name: 'field_21_upload', maxCount: 10 }, { name: 'field_23_upload', maxCount: 10 }, { name: 'field_36_upload', maxCount: 10 }]);
 
-routes.get('/:entry_id', async (req, res, next) => {
-
+routes.get('/:entry_id', authUser, async (req, res, next) => {
+    
     try {
         let entry = await database.ekthesi.findOne({
             where: {
@@ -66,12 +67,12 @@ routes.get('/:entry_id', async (req, res, next) => {
 // routes.post('/:entry_id/glk-export', getFields.any(), pdf_export.exportGLKPDF)
 // routes.post('/:entry_id/section-c-export', getFields.any(), pdf_export.exportSectionCPDF)
 //routes.post('/:entry_id', getFields.any(), pdf_export.exportPDF) //router calls controller to handle the export
-routes.post('/:entry_id', pdf_export.exportPDF) //router calls controller to handle the export
+routes.post('/:entry_id', authUser, pdf_export.exportPDF) //router calls controller to handle the export
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-routes.put('/:entry_id', upload,
+routes.put('/:entry_id', authUser, upload,
     // [check('title', 'Ο τίτλος είναι υποχρεωτικός.').notEmpty(),
     //  check('title').custom( async(value) => {
     //     var title = await database.ekthesi.count({ where: {title: value}})//count tables which have given title 
@@ -100,27 +101,20 @@ routes.put('/:entry_id', upload,
     // body('field_40').if(body('field_33').notEmpty()).notEmpty().withMessage('Το πεδίο 40 είναι υποχρεωτικό.'),
     // ],
     async function (req, res, next) {
+        console.time()
         let ekthesi_id = req.params.entry_id;
         const errors = validationResult(req);
         if (!errors.isEmpty()) { // if array exists
             console.log(errors);
             //return res.status(422).json(errors.array());
         } else {
-            console.log('no errors');
-            //next();
 
-            try {
-
-                let ekthesi = await database.ekthesi.update(req.body, {
-                    where: {
-                        id: ekthesi_id
-                    }
-                });
+            try {                
 
                 let entry = await database.ekthesi.findOne({
                     where: {
                         id: req.params.entry_id
-                    }//, include: [{ model: database.rythmiseis }, { model: database.field_9 }]
+                    }
                 });
 
                 let field21 = entry.field_21_upload;
@@ -168,7 +162,6 @@ routes.put('/:entry_id', upload,
                 for (var elem in req.body) {
                     //if header push table into tables
                     if (elem.includes('_header')) {
-                        console.log
                         if (table.length) {
                             tables.push({table:table});
                             table = [];
@@ -198,7 +191,6 @@ routes.put('/:entry_id', upload,
                     }
 
                 }
-                console.log(cbxlabels)
                 for (var label in cbxlabels) {
                     for (var elem in req.body) {
 
@@ -223,16 +215,7 @@ routes.put('/:entry_id', upload,
                             } 
                          }
                     }
-                }
-                console.log(tables);
-                console.log(cbxtables);
-                await await database.ekthesi_tables.update({static_tables:tables, checkbox_tables:cbxtables}, {
-                    where: {
-                        ekthesi_tablesId: ekthesi_id
-                    }
-                });
-                //console.log(cbxtables[0].table[0].row[0].field_18_amesa_esoda_thesmoi); //:)
-                //console.log(cbxtables[0].row[0]);              
+                }                
                 
                 let field_14_arthro = [];
                 let field_14_stoxos = [];
@@ -323,20 +306,34 @@ routes.put('/:entry_id', upload,
                         field_32_xronodiagramma.push({ [key]: value });
                     }
                 }
-                //console.log("field_29_diatakseis_rythmisis: " + field_29_diatakseis_rythmisis);
-                var author = req.session.username;
+
+                let ekthesi = await database.ekthesi.update(req.body, {
+                    where: {
+                        id: ekthesi_id
+                    }
+                });
+
                 await database.ekthesi.update({
                     field_14_arthro: field_14_arthro, field_14_stoxos: field_14_stoxos, field_17_onoma: field_17_onoma, field_17_epitheto: field_17_epitheto, field_17_idiotita: field_17_idiotita, field_29_diatakseis_rythmisis: field_29_diatakseis_rythmisis, field_29_yfistamenes_diatakseis: field_29_yfistamenes_diatakseis, field_30_diatakseis_katargisi: field_30_diatakseis_katargisi, field_30_katargoumenes_diatakseis: field_30_katargoumenes_diatakseis,
                     field_31_sxetiki_diataksi: field_31_sxetiki_diataksi, field_31_synarmodia_ypoyrgeia: field_31_synarmodia_ypoyrgeia, field_31_antikeimeno_synarmodiotitas: field_31_antikeimeno_synarmodiotitas, field_32_eksousiodotiki_diataksi: field_32_eksousiodotiki_diataksi, field_32_eidos_praksis: field_32_eidos_praksis, field_32_armodio_ypoyrgeio: field_32_armodio_ypoyrgeio, field_32_antikeimeno: field_32_antikeimeno, field_32_xronodiagramma: field_32_xronodiagramma,
-                    field_21_upload: field21, field_23_upload: field23, field_36_upload: field36
-                },
-                    {
-                        where: {
-                            id: ekthesi_id
-                        }
-                    });
+                    field_21_upload: field21, field_23_upload: field23, field_36_upload: field36},
+                 {
+                    where: {
+                        id: ekthesi_id
+                    }
+                });
 
-                await database.audit.create({ user: req.session.fname+' '+req.session.lname, data: req.body, timestamp: req.body.last_updated, action: req.method, auditId: ekthesi_id });
+                await database.ekthesi_tables.update({static_tables:tables, checkbox_tables:cbxtables}, {
+                    where: {
+                        ekthesi_tablesId: ekthesi_id
+                    }
+                });
+                //console.log("field_29_diatakseis_rythmisis: " + field_29_diatakseis_rythmisis);
+                var author = req.session.fname+' '+req.session.lname;
+
+                await database.audit.create({ user: author, data: req.body, timestamp: req.body.last_updated, action: req.method, auditId: ekthesi_id });
+                
+                console.timeEnd();    
 
                 if (!ekthesi) {
                     res.status(404).send("Error in updating ekthesi.");

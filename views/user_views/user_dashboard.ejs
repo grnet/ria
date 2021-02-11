@@ -1,81 +1,85 @@
 <%- include('../partials/head.ejs') %>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
-<script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+  <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 
-<div class="MuiContainer-root jss110 MuiContainer-maxWidthLg">
-  <div class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-4">
-    <div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-8">
-      <br><br>
+  <div class="MuiContainer-root jss110 MuiContainer-maxWidthLg">
+    <div class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-4">
+      <div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-8">
+        <br><br>
 
-      <p class="MuiTypography-root jss211 MuiTypography-body1">
-        Ως χρήστης του συστήματος μπορείτε, επιλέγοντας τον αντίστοιχο σύνδεσμο, να: <br>
-        <ul>
-          <li>Διαχειριστείτε τα στοιχεία του προφίλ σας</li>
-          <li>Να ξεκινήσετε μια νέα έκθεση</li>
-          <li>Να δείτε τις καταχωρημένες εκθέσεις σε κάθε κατηγορία και να συνεχίσετε μια θεση που έχετε αποθηκεύσει προσωρινά</li>
-        </ul>
-      </p>
+        <% if( typeof errors !=="undefined" ) { for (i in errors) {%>
+          <div class="alert alert-danger alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>
+              <%= errors[i].msg%>
+            </strong>
+          </div>
+          <% } } %>
 
-      <%- include('../user_views/menus.ejs') %>
+            <p class="MuiTypography-root jss211 MuiTypography-body1">
+              Ως χρήστης του συστήματος μπορείτε, επιλέγοντας τον αντίστοιχο σύνδεσμο, να: <br>
+            <ul>
+              <li>Διαχειριστείτε τα στοιχεία του προφίλ σας</li>
+              <li>Να ξεκινήσετε μια νέα έκθεση</li>
+              <li>Να δείτε τις καταχωρημένες εκθέσεις σε κάθε κατηγορία και να συνεχίσετε μια θεση που έχετε αποθηκεύσει
+                προσωρινά</li>
+            </ul>
+            </p>
 
+            <%- include('../user_views/menus.ejs') %>
+
+      </div>
     </div>
   </div>
-</div>
-<br><br>
-<%- include('../partials/footer.ejs') %>
-</div>
+  <br><br>
+  <%- include('../partials/footer.ejs') %>
+    </div>
 
-<style>
+    <style>
+      a {
+        color: blue;
+      }
 
-    a {
-      color: blue;
-    }
-    
-    .exit{ font-size: 16px; }
-</style>
+      .exit {
+        font-size: 16px;
+      }
+    </style>
 
-<script>
-  $(".exit").on("click",function(ev){
-    
-    window.location.href="/login"
+    <script>
+      $(".exit").on("click", function (ev) {
 
-  })
+        window.location.href = "/login"
 
-  var user_dikaiwmata_diaxeirisis = "<%= user.dikaiwmata_diaxeirisis %>"
-    if(user_dikaiwmata_diaxeirisis) {
-      $("#admin_menu").show();
-      $("#user_menu").hide();
-    }
-    else {
+      })
+      
       $("#user_menu").show();
-      $("#admin_menu").hide();
-    }
 
-  var user_role = '<%= user.rolos %>';
-  if (user_role == 'Βουλευτής') {
-    document.getElementById("users_ekthesi").children[1].style.display = "none";
-    document.getElementById("users_ekthesi").children[2].style.display = "none";
-    document.getElementById("users_ekthesi").children[3].style.display = "none";
-    document.getElementById("users_ekthesi").children[4].style.display = "none";
-    document.getElementById("users_ekthesi").children[6].style.display = "none";    
-    document.getElementById("users_ekthesi").children[7].style.display = "none";    
-  } else if (user_role == 'Συντάκτης επισπεύδοντος Υπουργείου' || user_role == 'Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)') {
-      document.getElementById("users_ekthesi").children[5].style.display = "none";
-      document.getElementById("users_ekthesi").children[8].style.display = "none";
-  } else {
-      document.getElementById("users_ekthesi").children[0].style.display = "none";
-      document.getElementById("users_ekthesi").children[1].style.display = "none";
-      document.getElementById("users_ekthesi").children[2].style.display = "none";
-      document.getElementById("users_ekthesi").children[3].style.display = "none";
-      document.getElementById("users_ekthesi").children[4].style.display = "none";
-      document.getElementById("users_ekthesi").children[5].style.display = "none";
-      document.getElementById("users_ekthesi").children[6].style.display = "none";
-      document.getElementById("users_ekthesi").children[7].style.display = "none";
-      document.getElementById("users_ekthesi").children[8].style.display = "none";    
-  } 
 
-</script>
-</body>
+      var user_role = '<%= user.rolos %>';
+      if (user_role == 'Βουλευτής') {
+        document.getElementById("users_ekthesi").children[1].style.display = "none";
+        document.getElementById("users_ekthesi").children[2].style.display = "none";
+        document.getElementById("users_ekthesi").children[3].style.display = "none";
+        document.getElementById("users_ekthesi").children[4].style.display = "none";
+        document.getElementById("users_ekthesi").children[6].style.display = "none";
+        document.getElementById("users_ekthesi").children[7].style.display = "none";
+      } else if (user_role == 'Συντάκτης επισπεύδοντος Υπουργείου' || user_role == 'Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)') {
+        document.getElementById("users_ekthesi").children[5].style.display = "none";
+        document.getElementById("users_ekthesi").children[8].style.display = "none";
+      } else {
+        document.getElementById("users_ekthesi").children[0].style.display = "none";
+        document.getElementById("users_ekthesi").children[1].style.display = "none";
+        document.getElementById("users_ekthesi").children[2].style.display = "none";
+        document.getElementById("users_ekthesi").children[3].style.display = "none";
+        document.getElementById("users_ekthesi").children[4].style.display = "none";
+        document.getElementById("users_ekthesi").children[5].style.display = "none";
+        document.getElementById("users_ekthesi").children[6].style.display = "none";
+        document.getElementById("users_ekthesi").children[7].style.display = "none";
+        document.getElementById("users_ekthesi").children[8].style.display = "none";
+      }
 
-</html>
+    </script>
+    </body>
+
+    </html>

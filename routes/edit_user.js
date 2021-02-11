@@ -2,9 +2,10 @@ const routes = require('express').Router();
 let database = require('../services/database');
 const bcrypt = require('bcrypt');
 const { body, check, validationResult } = require('express-validator');
+const { authUser, authRole } = require('../controllers/auth');
 
 
-routes.get('/:username', async (req, res, next) => {
+routes.get('/:username', authUser, authRole, async (req, res, next) => {
 
     let user = await database.user.findOne({
         where: {
@@ -19,7 +20,7 @@ routes.get('/:username', async (req, res, next) => {
     }
 });
 
-routes.delete('/:username', async (req, res, next) => {
+routes.delete('/:username', authUser, authRole, async (req, res, next) => {
 
     let user = await database.user.findOne({ where: { username: req.params.username } })
 
@@ -33,7 +34,7 @@ routes.delete('/:username', async (req, res, next) => {
 });
 
 
-routes.put('/:username', async (req, res, next) => {
+routes.put('/:username', authUser, authRole, async (req, res, next) => {
 
     const userPassword = req.body.password;
     const newPassword = req.body.new_password;
