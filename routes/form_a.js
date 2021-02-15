@@ -18,7 +18,7 @@ var storage = multer.diskStorage({
 
 var upload = multer({ storage: storage }).fields([{ name: 'field_21_upload', maxCount: 10 }, { name: 'field_23_upload', maxCount: 10 }, { name: 'field_36_upload', maxCount: 10 }]);
 
-routes.get('/:entry_id', authUser, async (req, res, next) => {
+routes.get('/:entry_id',  async (req, res, next) => {
     
     try {
         let entry = await database.ekthesi.findOne({
@@ -64,11 +64,8 @@ routes.get('/:entry_id', authUser, async (req, res, next) => {
 });
 
 
-// routes.post('/:entry_id/glk-export', getFields.any(), pdf_export.exportGLKPDF)
-// routes.post('/:entry_id/section-c-export', getFields.any(), pdf_export.exportSectionCPDF)
-//routes.post('/:entry_id', getFields.any(), pdf_export.exportPDF) //router calls controller to handle the export
-routes.post('/:entry_id', authUser, pdf_export.exportPDF) //router calls controller to handle the export
-
+//routes.post('/:entry_id', authUser, pdf_export.exportPDF) //router calls controller to handle the export
+routes.post('/:entry_id', pdf_export.exportPDF) //router calls controller to handle the export
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 

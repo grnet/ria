@@ -1050,6 +1050,10 @@
                         } else {
                             $(".ekpaideysi-politismos :input").prop('disabled', true);
                         }
+                        console.log("eks pol + <%= data.eksoteriki_politiki %>")
+                        if ("<%= data.eksoteriki_politiki %>") {
+                            $('#eksoteriki_politiki').prop("checked", true);;
+                        }
 
                         if ("<%= data.forologiki_politiki %>") {
                             $('#forologiki_politiki').prop("checked", true);
