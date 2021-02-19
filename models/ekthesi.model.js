@@ -167,6 +167,8 @@ module.exports = (sequelize, DataTypes) => {
         egkrisi_kalis_nomothetisis:DataTypes.STRING,
         egkrisi_dieuthinsis_nomoparaskeyastikis:DataTypes.STRING,
         egkrisi_genikou_grammatea:DataTypes.STRING,
+
+        signed_pdf_upload: DataTypes.JSON,
     },{
         freezeTableName: true //table name same as model name
     });

@@ -2,6 +2,7 @@ const routes = require('express').Router()
 let database = require('../services/database')
 const { Op } = require("sequelize");
 const { authUser } = require('../controllers/auth');
+const { ekthesi } = require('../services/database');
 
 routes.get('/', authUser, async function (req, res, next) {
     console.log(req.session.username)
@@ -20,12 +21,10 @@ routes.get('/', authUser, async function (req, res, next) {
         })*/
         //for each different role we render different results
         if (user.rolos == "Συντάκτης επισπεύδοντος Υπουργείου") {
-            status = "Σε σύνταξη";
+            status = "Συντάσσεται";
             entries = await database.ekthesi.findAll({
                 where: {
-                    status_ekthesis: {
-                        [Op.or]: ["Σε σύνταξη", "Επιμελημένη"]
-                    },
+                    status_ekthesis: status,
                     '$user.ypoyrgeio$': user.ypoyrgeio //has to be from same ministry
                 }, include: [{ model: database.user }]
             })
@@ -33,39 +32,28 @@ routes.get('/', authUser, async function (req, res, next) {
             status = "Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους"
             entries = await database.ekthesi.findAll({
                 where: {
-                    status_ekthesis: status
-
+                    status_ekthesis: {
+                        [Op.or]: ["Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους", "Ολοκληρώθηκε"],                        
+                    },
+                    ekthesi_glk :{[Op.ne]: [null || ""]}
                 }, include: [{ model: database.user }]
             })
         } else if (user.rolos == "Βουλή") {
-            status = "Προς Δημοσίευση"
+            status = "Κατατέθηκε"
             entries = await database.ekthesi.findAll({
                 where: {
                     status_ekthesis: status
 
                 }, include: [{ model: database.user }]
             })
-        } else if (user.rolos == "Επιτροπή Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)" || user.rolos == "Γραφείο Καλής Νομοθέτησης (ΓΓΝΚΘ)" || user.rolos == "Διεύθυνση Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)" || user.rolos == "Γενικός Γραμματέας Νομικών και Κοινοβουλευτικών Θεμάτων") {
-            status = "Οριστικοποιήθηκε"
-            entries = await database.ekthesi.findAll({
-                where: {
-                    status_ekthesis: status
-
-                }, include: [{ model: database.user }]
-            })
+        } else if (user.rolos == "Επιτροπή Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)" || user.rolos == "Γραφείο Καλής Νομοθέτησης (ΓΓΝΚΘ)" || user.rolos == "Διεύθυνση Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)" || user.rolos == "Γενικός Γραμματέας Νομικών και Κοινοβουλευτικών Θεμάτων" || user.rolos == "Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)") {
+            entries = await database.ekthesi.findAll({include: database.user })
         } else if (user.rolos == "Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων") {
             entries = await database.ekthesi.findAll({
                 where: {
                     status_ekthesis: {
-                        [Op.or]: ["Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους", "Επιμελημένη", "Ολοκληρώθηκε"]
+                        [Op.or]: ["Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους", "Συντάσσεται"]
                     }, '$user.rolos$': {[Op.not]: ['Βουλευτής']}
-                }, include: [{ model: database.user }]
-            })
-            //same query as above, delete next lines
-        } else if (user.rolos == "Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)") {
-            entries = await database.ekthesi.findAll({
-                where: {
-                    status_ekthesis: "Οριστικοποιήθηκε"                    
                 }, include: [{ model: database.user }]
             })
         }

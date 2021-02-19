@@ -388,12 +388,8 @@ exports.exportPDF = (async function (req, res, next) {
                 { text: 'Επί του Προϋπολογισμού του/των αρμόδιου/ων φορέα/ων ', style: 'textStyle' },
                 { text: '\n\n' },
                 { text: data.field_16_proypologismos_forea + '\n\n', style: 'textStyle' },
-                { text: 'Ο/Η ΥΠΟΓΡΑΦΩΝ/ΟΥΣΑ ΓΕΝΙΚΟΣ/Η ΔΙΕΥΘΥΝΤΗΣ/ΡΙΑ (Όνομα Επώνυμο Ημερομηνία) ', style: 'labelStyle' },
+                { text: 'Ο/Η ΥΠΟΓΡΑΦΩΝ/ΟΥΣΑ ΓΕΝΙΚΟΣ/Η ΔΙΕΥΘΥΝΤΗΣ/ΡΙΑ', style: 'labelStyle' },
                 { text: '\n\n' },
-                {
-                    columns:
-                        [{ text: 'Όνομα' }, { text: 'Επώνυμο' }, { text: 'Ιδιότητα' }], columnGap: 20, width: '*'
-                },
                 {
                     columns:
                         [{ text: data.field_16_genikos_onoma, style: 'textStyle' }, { text: data.field_16_genikos_epitheto, style: 'textStyle' }, { text: data.field_16_genikos_date, style: 'textStyle' }],

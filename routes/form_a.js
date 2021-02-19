@@ -6,7 +6,6 @@ const csv = require('csv-parser')
 const { body, check, validationResult } = require('express-validator');
 var multer = require('multer');
 const { authUser } = require('../controllers/auth');
-//var getFields = multer();
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, './public/uploads/')
@@ -16,9 +15,9 @@ var storage = multer.diskStorage({
     }
 })
 
-var upload = multer({ storage: storage }).fields([{ name: 'field_21_upload', maxCount: 10 }, { name: 'field_23_upload', maxCount: 10 }, { name: 'field_36_upload', maxCount: 10 }]);
+var upload = multer({ storage: storage }).fields([{ name: 'field_21_upload', maxCount: 10 }, { name: 'field_23_upload', maxCount: 10 }, { name: 'field_36_upload', maxCount: 10 }, { name: 'signed_pdf_upload', maxCount: 1 }]);
 
-routes.get('/:entry_id',  async (req, res, next) => {
+routes.get('/:entry_id', authUser, async (req, res, next) => {
     
     try {
         let entry = await database.ekthesi.findOne({
@@ -65,7 +64,7 @@ routes.get('/:entry_id',  async (req, res, next) => {
 
 
 //routes.post('/:entry_id', authUser, pdf_export.exportPDF) //router calls controller to handle the export
-routes.post('/:entry_id', pdf_export.exportPDF) //router calls controller to handle the export
+routes.post('/:entry_id', authUser, pdf_export.exportPDF) //router calls controller to handle the export
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -117,6 +116,7 @@ routes.put('/:entry_id', authUser, upload,
                 let field21 = entry.field_21_upload;
                 let field23 = entry.field_23_upload;
                 let field36 = entry.field_36_upload;
+                let signed_pdf = entry.signed_pdf_upload;
                 try {
 
                     const file = req.files;                    
@@ -141,6 +141,13 @@ routes.put('/:entry_id', authUser, upload,
                             field36.push(file.field_36_upload[i].filename)
                         }
                     }
+                    if (file.signed_pdf_upload) {
+                        signed_pdf = [];
+                        for (i in file.signed_pdf_upload) {
+                            field36.push(file.signed_pdf_upload[i].filename)
+                        }
+                    }
+
                 } catch (e) {
                     console.log("Error message: " + e.message);
                 }
@@ -313,7 +320,7 @@ routes.put('/:entry_id', authUser, upload,
                 await database.ekthesi.update({
                     field_14_arthro: field_14_arthro, field_14_stoxos: field_14_stoxos, field_17_onoma: field_17_onoma, field_17_epitheto: field_17_epitheto, field_17_idiotita: field_17_idiotita, field_29_diatakseis_rythmisis: field_29_diatakseis_rythmisis, field_29_yfistamenes_diatakseis: field_29_yfistamenes_diatakseis, field_30_diatakseis_katargisi: field_30_diatakseis_katargisi, field_30_katargoumenes_diatakseis: field_30_katargoumenes_diatakseis,
                     field_31_sxetiki_diataksi: field_31_sxetiki_diataksi, field_31_synarmodia_ypoyrgeia: field_31_synarmodia_ypoyrgeia, field_31_antikeimeno_synarmodiotitas: field_31_antikeimeno_synarmodiotitas, field_32_eksousiodotiki_diataksi: field_32_eksousiodotiki_diataksi, field_32_eidos_praksis: field_32_eidos_praksis, field_32_armodio_ypoyrgeio: field_32_armodio_ypoyrgeio, field_32_antikeimeno: field_32_antikeimeno, field_32_xronodiagramma: field_32_xronodiagramma,
-                    field_21_upload: field21, field_23_upload: field23, field_36_upload: field36},
+                    field_21_upload: field21, field_23_upload: field23, field_36_upload: field36, signed_pdf_upload:signed_pdf},
                  {
                     where: {
                         id: ekthesi_id

@@ -17,7 +17,7 @@
         <br><br>
         <form enctype="multipart/form-data">
 
-            <input type="hidden" id="status_ekthesis" name="status_ekthesis" value="Σε σύνταξη">
+            <input type="hidden" id="status_ekthesis" name="status_ekthesis" value="Συντάσσεται">
 
             <fieldset id="arxiki" name="arxiki">
                 <h2>Αρχική σελίδα</h2>
@@ -806,7 +806,6 @@
             $.each(checkbox, function (key, chckbx) {
                 fd.append($(chckbx).prop('name'), $(chckbx).value = '')//append to fd without value 
             });
-            // console.log('heyhey my val: '+ document.getElementById("field_23_upload").files[0].name);
             $.ajax({
                 url: '/create/<%= analysis %>',
                 data: fd,
@@ -851,32 +850,27 @@
             window.location.href = "/user_views/history";
         })
         function onSubmitStatus(ev) {
-            if ($("#ekthesi_glk").prop("checked")) {
-                $("#status_ekthesis_drp").val("Σε σύνταξη");
+            if ($("#ekthesi_glk").prop("checked") && role === 'Συντάκτης επισπεύδοντος Υπουργείου') {
                 alert("Για την ανάλυση εκκρεμεί ο έλεγχος του Γενικού Λογιστηρίου του Κράτους που έχετε ζητήσει. Επικοινωνήστε με το Γενικό Λογιστήριο του Κράτους για να τον ολοκληρώσει ή ενημερώστε τον αρμόδιο του Υπουργείου σας για να το επιλύσει.");
                 ev.preventDefault();
             } else {
-                if ($('input[name=status_ekthesis]').val("Σε σύνταξη") || $('input[name=status_ekthesis]').val("Επιμελημένη")) {
-                    $('input[name=status_ekthesis]').val("Ολοκληρώθηκε");
-                    //console.log($('input[name=status_ekthesis]').val());
+                if ($('#status_ekthesis').val("Συντάσσεται")) {
+                    $('#status_ekthesis').val("Ολοκληρώθηκε");
                 }
             }
         }
 
-        $("#ekthesi_glk").on("click", function (ev) {
+        $("#ekthesi_glk").on("change", function (ev) {
             if (this.checked) {
                 answer = window.confirm("Με την ενέργειά σας αυτή η έκθεση θα αποσταλλεί στο Γενικό Λογιστήριο του κράτους. Συνέχεια;");
-                if (answer) {
-                    $("#status_ekthesis").val("Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους");
-                    if (role == "Συντάκτης επισπεύδοντος Υπουργείου") {
-                        $(this).prop('disabled', true);
-                    }
+                if (answer) {                    
+                    $("#status_ekthesis").val("Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους");                    
                 }
                 else {
                     $(this).prop('checked', false);
                 }
             } else {
-                $('input[name=status_ekthesis]').val("Σε σύνταξη");
+                $('input[name=status_ekthesis]').val("Συντάσσεται");
             }
         })
         var analysis = "<%= analysis%>";
@@ -1326,67 +1320,74 @@
             });
         }
 
-        $("#ekpedeusi_politismos").click(function (ev) {
+        $("#ekpedeusi_politismos").on('change', function (ev) {
             if (this.checked) {
                 $("#politismos_table").show();
                 $("#ekpaideysi_table").show();
-                $(this).prop('value', 'true');
+                $(".ekpaideysi-politismos :input").prop('disabled', false);
             } else {
                 $("#politismos_table").hide();
                 $("#ekpaideysi_table").hide();
-                $(this).prop('value', 'false');
+                $(".ekpaideysi-politismos :input").prop('disabled', true);
             }
         })
 
-        $("#forologiki_politiki").click(function (ev) {
+        $("#forologiki_politiki").on('change', function (ev) {
             if (this.checked) {
                 $("#oikonomia_table").show();
                 $("#forologia_table").show();
                 $("#ergasiakes_sxeseis_table").show();
+                $(".oikonomia :input").prop('disabled', false);
             } else {
                 $("#oikonomia_table").hide();
                 $("#forologia_table").hide();
                 $("#ergasiakes_sxeseis_table").hide();
+                $(".oikonomia :input").prop('disabled', true);
             }
         })
 
-        $("#koinoniki_politiki").click(function (ev) {
+        $("#koinoniki_politiki").on('change', function (ev) {
             if (this.checked) {
                 $("#apasxolisi_table").show();
-                $("#koinwniki_asfalisi_table").show();
-                $("#koinwniki_pronoia_table").show();
+                $("#koinoniki_asfalisi_table").show();
+                $("#koinoniki_pronoia_table").show();
                 $("#ygeia_table").show();
                 $("#isotita_fylwn_table").show();
                 $("#metanasteytiki_prosfygiki_politiki_table").show();
+                $(".koinoniki-politiki :input").prop('disabled', false);
             } else {
                 $("#apasxolisi_table").hide();
-                $("#koinwniki_asfalisi_table").hide();
-                $("#koinwniki_pronoia_table").hide();
+                $("#koinoniki_asfalisi_table").hide();
+                $("#koinoniki_pronoia_table").hide();
                 $("#ygeia_table").hide();
                 $("#isotita_fylwn_table").hide();
                 $("#metanasteytiki_prosfygiki_politiki_table").hide();
+                $(".koinoniki-politiki :input").prop('disabled', true);
             }
         })
 
-        $("#dimosia_dioikisi").click(function (ev) {
+        $("#dimosia_dioikisi").on('change', function (ev) {
             if (this.checked) {
                 $("#dimosia_dioikisi_table").show();
                 $("#dimosia_asfaleia_table").show();
                 $("#dikaiosini_table").show();
+                $(".dimosia-dioikisi :input").prop('disabled', false);
             } else {
                 $("#dimosia_dioikisi_table").hide();
                 $("#dimosia_asfaleia_table").hide();
                 $("#dikaiosini_table").hide();
+                $(".dimosia-dioikisi :input").prop('disabled', true);
             }
         })
-
-        $("#anaptiksi").click(function (ev) {
+        $("#anaptiksi").on('change', function (ev) {
             if (this.checked) {
                 $("#ependytiki_drastiriotita_table").show();
                 $("#perivallon_energeia_table").show();
+                $(".ependyseis :input").prop('disabled', false);
             } else {
                 $("#ependytiki_drastiriotita_table").hide();
                 $("#perivallon_energeia_table").hide();
+                $(".ependyseis :input").prop('disabled', true);
             }
         })
 
