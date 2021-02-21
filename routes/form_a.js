@@ -144,7 +144,7 @@ routes.put('/:entry_id', authUser, upload,
                     if (file.signed_pdf_upload) {
                         signed_pdf = [];
                         for (i in file.signed_pdf_upload) {
-                            field36.push(file.signed_pdf_upload[i].filename)
+                            signed_pdf.push(file.signed_pdf_upload[i].filename)
                         }
                     }
 

@@ -4,21 +4,6 @@ const { body, check, validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
 
 routes.get('/', async function (req, res, next) {
-    /*let logoutuser = await database.user.findOne({where:{
-        isLoggedIn: true
-    }})
-    if(logoutuser) {
-        console.log(logoutuser)
-        logoutuser.update({isLoggedIn: false})
-        console.log(logoutuser)
-        
-    }   */
-    //when logout api is implemented delete next rows
-    req.session.username = null;
-    req.session.fname = null;
-    req.session.lname = null;
-    req.session.dikaiwmata_diaxeirisis = null;
-    req.session.rolos = null;
     const valid_errors = req.session.errors;
     req.session.errors = null;
     res.render("login", { errors: valid_errors })

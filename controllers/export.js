@@ -633,6 +633,8 @@ exports.exportPDF = (async function (req, res, next) {
 
     var pdfDoc = printer.createPdfKitDocument(docDefinition);
     var pdf_name = data.title + '.pdf';
+    console.log(data.title)
+    console.log(data)
     pdf_name = pdf_name.replace(/\s+/g, '');
     var export_path = 'public/pdf_exports/';
     var pdf_path = path.resolve(export_path, pdf_name);
@@ -806,14 +808,14 @@ function createSignatories(fname, lname, position) {
             else if (fname[ i - 1]) {
                 signatories.push({
                     columns:
-                        [{ text: Object.values(fname[i - 1]) + '\n' + Object.values(lname[i - 1]) + '\n' + Object.values(position[i - 1]), style: 'signatoryStyle' },
-                        { text: Object.values(fname[i]) + '\n' + Object.values(lname[i]) + '\n' + Object.values(position[i]), style: 'signatoryStyle' }
+                        [{ text: Object.values(fname[i - 1]) + '\n' + Object.values(lname[i - 1]) + '\n\n\n' + Object.values(position[i - 1]), style: 'signatoryStyle', alignment: 'center', bold: true },
+                        { text: Object.values(fname[i]) + '\n' + Object.values(lname[i]) + '\n\n\n' + Object.values(position[i]), style: 'signatoryStyle', alignment: 'center', bold: true }
                         ], columnGap: 20, width: '*'
                 })
             } else {
                 signatories.push({
                     columns:
-                        [{ text: Object.values(fname[i]) + '\n' + Object.values(lname[i]) + '\n' + Object.values(position[i]), style: 'signatoryStyle' }], columnGap: 20, width: '*'
+                        [{ text: Object.values(fname[i]) + '\n' + Object.values(lname[i]) + '\n\n\n' + Object.values(position[i]), style: 'signatoryStyle', alignment: 'center', bold: true }], columnGap: 20, width: '*'
                 })
             }
             signatories.push({ text: '\n' })

@@ -185,7 +185,7 @@
                         data.field_36_upload.length;i++) { %>
                         <tr>
                             <td>
-                                <a href="/public/uploads/<%= data.field_36_upload[i] %> ">
+                                <a href="/uploads/<%= data.field_36_upload[i] %> ">
                                     <%= data.field_36_upload[i] %>
                                 </a>
                             </td>
@@ -274,15 +274,18 @@
 
     <div>
         <% var pdf_name=data.title.replace(/\s+/g, '' ); %>
-        <p id="pdf_download" class="pdf-download action-button" style="display: none;">Το τελευταίο αποθηκευμένο PDF
+            <p id="pdf_download" class="pdf-download action-button" style="display: none;">Το τελευταίο αποθηκευμένο PDF
                 βρίσκεται <a href="/pdf_exports/<%=pdf_name%>.pdf">εδώ</a>.
-        </p>
+            </p>
     </div>
 
     <div id="signed_pdf_div" style="display: none;">
-        <label for="signed_pdf_upload" class="signed-pdf optional-label" id="signed_pdf_upload_label">Επισύναψη υπογεγραμμένου pdf</label>
-        <br>
-        <input type="file" id="signed_pdf_upload" name="signed_pdf_upload" accept=".pdf" multiple>
+        <div id="upload_signed_pdf">
+            <label for="signed_pdf_upload" class="signed-pdf optional-label" id="signed_pdf_upload_label">Επισύναψη
+                υπογεγραμμένου pdf</label>
+            <br>
+            <input type="file" id="signed_pdf_upload" name="signed_pdf_upload" accept=".pdf">
+        </div>
 
         <br>
         <table id="signed_pdf" class="display:none">
@@ -297,7 +300,7 @@
                     data.signed_pdf_upload.length;i++) { %>
                     <tr>
                         <td>
-                            <a href="/public/uploads/<%= data.signed_pdf_upload[i] %> ">
+                            <a href="/uploads/<%= data.signed_pdf_upload[i] %> ">
                                 <%= data.signed_pdf_upload[i] %>
                             </a>
                         </td>
@@ -308,14 +311,14 @@
         </table>
         <br>
     </div>
-    
+
     <br>
     <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενα πεδία" />
     <br>
-    <input type="button" name="pdfExport" class="export-pdf action-button-previous" style="float: right;"
+    <input type="button" name="pdfExport" class="export-pdf action-button-export" style="float: right;"
         value="Εξαγωγή σε PDF" />
     <br><br>
 
-    <input type="submit" id="create_new" class="action-button create-new" value="Οριστική Αποθήκευση" />
+    <input type="submit" id="create_new" class="action-button-create create-new" value="Οριστική Αποθήκευση" />
 
 </fieldset>

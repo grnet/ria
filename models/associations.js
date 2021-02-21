@@ -8,23 +8,26 @@ function applyAssoc(sequelize) {
 	//establishing one to one association between ekthesi and ekthesi_tables models
 	ekthesi.hasOne(ekthesi_tables, {
 		sourceKey: 'id',
-		foreignKey: 'ekthesi_tablesId'
+		foreignKey: 'ekthesi_tablesId',
+		foreignKeyConstraint: true
 	});
-	ekthesi_tables.belongsTo(ekthesi, { foreignKey: 'ekthesi_tablesId', targetKey: 'id' });
+	ekthesi_tables.belongsTo(ekthesi, { foreignKey: 'ekthesi_tablesId', targetKey: 'id', foreignKeyConstraint: true });
 
 	//establishing one to many association between user and ekthesi models
 	user.hasMany(ekthesi, {
 		sourceKey: 'username',
-		foreignKey: 'author'
+		foreignKey: 'author',
+		foreignKeyConstraint: true
 	});
-	ekthesi.belongsTo(user, { foreignKey: 'author', targetKey: 'username' });
+	ekthesi.belongsTo(user, { foreignKey: 'author', targetKey: 'username', foreignKeyConstraint: true });
 
 	//establishing one to many association between ekthesi and audit models	
 	ekthesi.hasMany(audit, {
 		sourceKey: 'id',
-		foreignKey: 'auditId'
+		foreignKey: 'auditId',
+		foreignKeyConstraint: true
 	});
-	audit.belongsTo(ekthesi, { foreignKey: 'auditId', targetKey: 'id' });
+	audit.belongsTo(ekthesi, { foreignKey: 'auditId', targetKey: 'id', foreignKeyConstraint: true });
 
 }
 
