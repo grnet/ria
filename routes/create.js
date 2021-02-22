@@ -86,6 +86,7 @@ routes.post('/:analysis', authUser, upload, [check('title', 'Title is required')
     let cbxtable = [];
     let tables = [];
     let data = req.body;//assign req.body to variable
+    //      data = data.replace(/\\n/g, ''); // <--- Newlines are globally replaced with empty string
     let keys = Object.keys(data);//get keys 
     let cbxtables = [];
     //create json for  field 9 static tables

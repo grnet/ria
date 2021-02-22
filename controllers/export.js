@@ -597,44 +597,13 @@ exports.exportPDF = (async function (req, res, next) {
                 { text: '\n\n' },
                 { text: data.field_40 + '\n\n', style: 'textStyle' },
 
-                {
-                    text: 'Υπογράφοντες \n\n',
-                    style: 'header',
-                    fontSize: 17,
-                    tocItem: true,
-                    tocStyle: { bold: true },
-                    decoration: 'underline',
-                    tocMargin: [20, 0, 0, 0],
-                    pageBreak: 'before'
-                },
-                {
-                    columns: [
-                        {
-                            // auto-sized columns have their widths based on their content
-                            width: '*',
-                            text: 'Iraklis Varlamis',
-                            fontSize: 17,
-                        },
-                        {
-                            // auto-sized columns have their widths based on their content
-                            width: '*',
-                            text: 'Ioannis V. Psarras',
-                            fontSize: 17,
-                        },
-                        {
-                            width: '*',
-                            text: 'Marios T. Venetsianos',
-                            fontSize: 17,
-                        }]
-                },
+
             ]
         ]
     };
 
     var pdfDoc = printer.createPdfKitDocument(docDefinition);
     var pdf_name = data.title + '.pdf';
-    console.log(data.title)
-    console.log(data)
     pdf_name = pdf_name.replace(/\s+/g, '');
     var export_path = 'public/pdf_exports/';
     var pdf_path = path.resolve(export_path, pdf_name);
@@ -729,7 +698,6 @@ function createStaticTable(table) {
     var years = ['έτος 1: ' + table[1], 'έτος 2: ' + table[2], 'έτος 3: ' + table[3], 'έτος 4: ' + table[4], 'έτος 5: ' + table[5]];
 
     if (table[8]) {
-        console.log(table)
         rows.push([{ text: table[8], alignment: 'center', fillColor: '#87CEEB', bold: true }, { text: 'Εξέλιξη την τελευταία 5ετία', alignment: 'center', fillColor: '#87CEEB', bold: true }, { text: 'Πρόσφατα στοιχεία', alignment: 'center', fillColor: '#87CEEB', bold: true }, { text: 'Επιδιωκόμενος στόχος (3ετία)', alignment: 'center', fillColor: '#87CEEB', bold: true }]);
     }
     if (table[9]) {
@@ -797,45 +765,42 @@ function createChckbxTable(table) {
 
 function createSignatories(fname, lname, position) {
     var length = fname.length;
-    console.log('len ' + length)
     var signatories = [];
     if (length % 2 == 0) {
-        console.log('len zygos')
         for (var i = -1; i < length; i += 2) {
             if (i < 0) {
                 continue;
             }
-            else if (fname[ i - 1]) {
+            else if (fname[i - 1]) {
                 signatories.push({
                     columns:
-                        [{ text: Object.values(fname[i - 1]) + '\n' + Object.values(lname[i - 1]) + '\n\n\n' + Object.values(position[i - 1]), style: 'signatoryStyle', alignment: 'center', bold: true },
-                        { text: Object.values(fname[i]) + '\n' + Object.values(lname[i]) + '\n\n\n' + Object.values(position[i]), style: 'signatoryStyle', alignment: 'center', bold: true }
+                        [{ text: Object.values(fname[i - 1]) + '\n' + Object.values(lname[i - 1]) + '\n\n\n' + Object.values(position[i - 1]), style: 'signatoryStyle', alignment: 'center' },
+                        { text: Object.values(fname[i]) + '\n' + Object.values(lname[i]) + '\n\n\n' + Object.values(position[i]), style: 'signatoryStyle', alignment: 'center' }
                         ], columnGap: 20, width: '*'
                 })
             } else {
                 signatories.push({
                     columns:
-                        [{ text: Object.values(fname[i]) + '\n' + Object.values(lname[i]) + '\n\n\n' + Object.values(position[i]), style: 'signatoryStyle', alignment: 'center', bold: true }], columnGap: 20, width: '*'
+                        [{ text: Object.values(fname[i]) + '\n' + Object.values(lname[i]) + '\n\n\n' + Object.values(position[i]), style: 'signatoryStyle', alignment: 'center' }], columnGap: 20, width: '*'
                 })
             }
             signatories.push({ text: '\n' })
         }
     } else {
-        console.log('len monos')
         for (var i = 0; i < length; i += 2) {
-            console.log(i)
             if (fname[i - 1]) {
                 signatories.push({
                     columns:
-                        [{ text: Object.values(fname[i]) + '\n' + Object.values(lname[i]) + '\n' + Object.values(position[i]), style: 'signatoryStyle' },
-                        { text: Object.values(fname[i - 1]) + '\n' + Object.values(lname[i - 1]) + '\n' + Object.values(position[i - 1]), style: 'signatoryStyle' }], columnGap: 20, width: '*'
+                        [{ text: Object.values(fname[i - 1]) + '\n' + Object.values(lname[i - 1]) + '\n\n\n' + Object.values(position[i - 1]), style: 'signatoryStyle', alignment: 'center' },
+                         { text: Object.values(fname[i]) + '\n' + Object.values(lname[i]) + '\n\n\n' + Object.values(position[i]), style: 'signatoryStyle', alignment: 'center' },
+                        ], columnGap: 20, width: '*'
                 })
             } else {
                 signatories.push({
                     columns:
-                        [{ text: Object.values(fname[i]) + '\n' + Object.values(lname[i]) + '\n' + Object.values(position[i]), style: 'signatoryStyle' }], columnGap: 20, width: '*'
+                        [{ text: Object.values(fname[i]) + '\n' + Object.values(lname[i]) + '\n\n\n' + Object.values(position[i]), style: 'signatoryStyle', alignment: 'center' }], columnGap: 20, width: '*'
                 })
-            } 
+            }
             signatories.push({ text: '\n' })
         }
     }

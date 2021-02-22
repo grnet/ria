@@ -520,7 +520,8 @@
                             </div>
                             <hr>
 
-                            <label>8. Ποιοι είναι οι στόχοι της αξιολογούμενης ρύθμισης;</label><div class="index_field_8"></div>
+                            <label>8. Ποιοι είναι οι στόχοι της αξιολογούμενης ρύθμισης;</label>
+                            <div class="index_field_8"></div>
                             <div class="form-group">
                                 <label for="field_8_1" class="required">8.1 βραχυπρόθεσμοι: </label>
                                 <textarea class="form-control" id="field_8_1" name="field_8_1" rows="3"
@@ -660,12 +661,16 @@
                                 <table class="table" id="field_14_table">
                                     <thead class="thead">
                                         <tr>
-                                            <th colspan="2"><label id="table_14_label" class="table-14-label required">14.Σύνοψη στόχων κάθε άρθρου<div class="table-cell index_14"></div></label></th>
+                                            <th colspan="2"><label id="table_14_label"
+                                                    class="table-14-label required">14.Σύνοψη στόχων κάθε άρθρου<div
+                                                        class="table-cell index_14"></div></label></th>
                                         </tr>
                                         <tr>
 
-                                            <th colspan="1">Άρθρο<div class="table-cell index_article"></div></th>
-                                            <th colspan="1">Στόχος<div class="table-cell index_goal"></div></th>
+                                            <th colspan="1">Άρθρο<div class="table-cell index_article"></div>
+                                            </th>
+                                            <th colspan="1">Στόχος<div class="table-cell index_goal"></div>
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody id="tbody_14">
@@ -674,15 +679,19 @@
                                             data.field_14_arthro.length; i++) { %>
                                             <tr id="table_14_row<%=i%>">
 
-                                                <td><textarea class="form-control" id="field_14_arthro<%=i%>" name="field_14_arthro<%=i%>"
+                                                <td><textarea class="form-control" id="field_14_arthro<%=i%>"
+                                                        name="field_14_arthro<%=i%>"
                                                         rows="1"><%= Object.values(data.field_14_arthro[i]) %></textarea>
                                                 </td>
                                                 <td>
-                                                    <textarea class="form-control"  id="field_14_stoxos<%=i%>" name="field_14_stoxos<%=i%>"
-                                                        rows="1" onkeypress="wordsCounter('field_14_stoxos<%=i%>','words14_<%=i%>',50, event)" onpaste="wordsCounter('field_14_stoxos<%=i%>','words14_<%=i%>',50, event)"><%= Object.values(data.field_14_stoxos[i]) %></textarea>
-                                                        <p style="float: right;">Λέξεις: <span id="words14_<%=i%>" ></span> /50</p>
-                                                        <br><br>
-                                                        <button class="btn remove float-right" type="button"><img
+                                                    <textarea class="form-control" id="field_14_stoxos<%=i%>"
+                                                        name="field_14_stoxos<%=i%>" rows="1"
+                                                        onkeypress="wordsCounter('field_14_stoxos<%=i%>','words14_<%=i%>',50, event)"
+                                                        onpaste="wordsCounter('field_14_stoxos<%=i%>','words14_<%=i%>',50, event)"><%= Object.values(data.field_14_stoxos[i]) %></textarea>
+                                                    <p style="float: right;">Λέξεις: <span id="words14_<%=i%>"></span>
+                                                        /50</p>
+                                                    <br><br>
+                                                    <button class="btn remove float-right" type="button"><img
                                                             src="/img/delete.png" width="20px"></button>
                                                 </td>
 
@@ -980,7 +989,7 @@
                         //     ev.preventDefault();
                         // }
                         updateForm(ev);
-                    });                   
+                    });
 
                     $(".back").on("click", function (ev) {
                         window.location.href = "/user_views/history";//go to page that originally referred to current page
@@ -1020,7 +1029,7 @@
                         // return download(blob, title + ".pdf");//download pdf from browser
                         // });
                     });
-                  
+
                     $(document).ready(function () {
                         console.log(pdf_exists)
                         if (pdf_exists == true) {
@@ -1035,7 +1044,7 @@
                             }
                         });
 
-                        requiredLegalistics("#field_33");//set initial state for fields 33-40
+                        requiredLegalistics("#field_33");//set initial state for fields 33-40                        
 
                         if ("<%= data.ekpedeusi_politismos %>") {
                             $('#ekpedeusi_politismos').prop("checked", true);
@@ -1187,7 +1196,7 @@
                             $('#egkrisi_genikou_grammatea').prop("checked", true);
                             submitVisibility();
                         }
-                        
+
                         if ("<%= data.ekthesi_glk%>" || $("#status_ekthesis").val() === "Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους") {
                             $("#ekthesi_glk").prop('checked', true);
                         }
@@ -1213,7 +1222,7 @@
                             } else if ($("#status_ekthesis").val() === "Οριστικοποιήθηκε") {
                                 $(".ggnkth").show();
                                 $(".ggnkth input[type=checkbox]").prop("disabled", true);
-                            }        
+                            }
                         }
 
                         if (role === "Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)" && ($("#typos_analysis").val() == 'Προσχέδιο νόμου' || $("#typos_analysis").val() == 'Κατευθυντήριες γραμμές')) {
@@ -1226,9 +1235,17 @@
                         }
 
                         if ($('#uploads_36 tbody tr').length > 0) {
-                            $('#field_36').prop('selectedIndex',1);
+                            $('#field_36').prop('selectedIndex', 1);
                             $('#uploads_36_wrap').show()
                         }
+
+                        if ($('#status_ekthesis').val() === "Κατατέθηκε") {
+                        $("#edit_form :input").prop("disabled", true);
+                        $("#signed_pdf_div").show().prop("disabled", false);
+                        $("#upload_signed_pdf").show();
+                        $(".next").prop("disabled", false);
+                        $(".previous").prop("disabled", false);
+                    }
 
                     });
 
@@ -1248,22 +1265,22 @@
                             $('#status_ekthesis').val("Ολοκληρώθηκε");
                         } else if (role === "Επιτροπή Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)" || role === "Γραφείο Καλής Νομοθέτησης (ΓΓΝΚΘ)" || role === "Διεύθυνση Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)") {
                             if ($("#egkrisi_aksiologisis_nomoparaskeyastikis").prop("checked") && $("#egkrisi_kalis_nomothetisis").prop("checked") && $("#egkrisi_dieuthinsis_nomoparaskeyastikis").prop("checked") && $("#egkrisi_genikou_grammatea").prop("checked")) {
-                                $('#status_ekthesis').val("Οριστικοποιήθηκε");  
+                                $('#status_ekthesis').val("Οριστικοποιήθηκε");
                             }
                         } else if (role === "Γενικός Γραμματέας Νομικών και Κοινοβουλευτικών Θεμάτων") {
-                            if ($('#status_ekthesis').val() === "Οριστικοποιήθηκε" && ($("#signed_pdf tbody>tr").length >0)) {                                
-                                $('#status_ekthesis').val("Κατατέθηκε");  
+                            if ($('#status_ekthesis').val() === "Οριστικοποιήθηκε" && ($("#signed_pdf tbody>tr").length > 0)) {
+                                $('#status_ekthesis').val("Κατατέθηκε");
                                 console.log('am uagsdfihg')
-                            } else if ($("#egkrisi_aksiologisis_nomoparaskeyastikis").prop("checked") && $("#egkrisi_kalis_nomothetisis").prop("checked") && $("#egkrisi_dieuthinsis_nomoparaskeyastikis").prop("checked") && $("#egkrisi_genikou_grammatea").prop("checked")) { 
-                                $('#status_ekthesis').val("Οριστικοποιήθηκε");  
+                            } else if ($("#egkrisi_aksiologisis_nomoparaskeyastikis").prop("checked") && $("#egkrisi_kalis_nomothetisis").prop("checked") && $("#egkrisi_dieuthinsis_nomoparaskeyastikis").prop("checked") && $("#egkrisi_genikou_grammatea").prop("checked")) {
+                                $('#status_ekthesis').val("Οριστικοποιήθηκε");
                             }
-                            
+
                         }
                     }
 
                     if (role === "Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων" || role === "Βουλευτής") {
                         if ($('#status_ekthesis').val() === "Ολοκληρώθηκε") {
-                                $("#edit_form").prop("disabled", true);
+                            $("#edit_form").prop("disabled", true);
                         }
                     }
 
@@ -1275,30 +1292,23 @@
                         }
                     }
 
-                    if($('#status_ekthesis').val() === "Οριστικοποιήθηκε") {
-                        $("#edit_form :input").prop("readonly",true);
+                    if ($('#status_ekthesis').val() === "Οριστικοποιήθηκε") {
+                        $("#edit_form :input").prop("readonly", true);
                         //$("#edit_form :input[type=checkbox]").prop("disable",true);
                     }
-                    
-                    if($('#status_ekthesis').val() === "Κατατέθηκε") {
-                        $("#edit_form :input").prop("disabled",true);
-                        $("#signed_pdf_div").show().prop("disabled", false);
-                        $("upload_signed_pdf").show();
-                    }
-                    
 
-                    if ((role === "Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)" && $("#pdf_download").prop("hidden") ===false && $('#status_ekthesis').val()==="Οριστικοποιήθηκε") || ($('#status_ekthesis').val()==="Οριστικοποιήθηκε" && role === "Γενικός Γραμματέας Νομικών και Κοινοβουλευτικών Θεμάτων")) {
+                    if ((role === "Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)" && $("#pdf_download").prop("hidden") === false && $('#status_ekthesis').val() === "Οριστικοποιήθηκε") || ($('#status_ekthesis').val() === "Οριστικοποιήθηκε" && role === "Γενικός Γραμματέας Νομικών και Κοινοβουλευτικών Θεμάτων")) {
                         $("#signed_pdf_div").show();
                         $("#pdf_download").prop("disabled", false);
                         $("#signed_pdf_upload").prop("disabled", false);
                         $(".export-pdf").prop("disabled", false);
                         if ("<%= data.egkrisi_genikou_grammatea%>") {
                             $(".create-new").prop("disabled", false);
-                        }                        
+                        }
                         $(".next").prop("disabled", false);
                         $(".previous").prop("disabled", false);
                     }
-                                        
+
 
                     function convertAnalysis() {
                         if (analysis == 'Κατευθυντήριες γραμμές') {
@@ -1337,7 +1347,7 @@
                     $("#ekthesi_glk").on("change", function (ev) {
                         //actions to take when ΓΛΚ checks checkbox
                         if (role == "Γενικό Λογιστήριο του Κράτους") {
-                            if (!this.checked) {                                
+                            if (!this.checked) {
                                 answer = window.confirm("Με την ενέργειά σας αυτή η έκθεση θεωρείται ολοκληρωμένη από μεριά σας και επιστρέφει "
                                     + "στον Αρμόδιο Συντάκτη ή στο Αρμόδιο Υπουργείο. Θέλετε να συνεχίσετε;");
                                 if (answer) {
@@ -1351,13 +1361,14 @@
                             }
                         } else if (this.checked) {
                             answer = window.confirm("Με την ενέργειά σας αυτή η έκθεση θα αποσταλλεί στο Γενικό Λογιστήριο του κράτους. Συνέχεια;");
-                            if (answer) {                                
+                            if (answer) {
                                 $("#status_ekthesis").val("Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους");
                             } else {
                                 $("#status_ekthesis").val("<%= data.status_ekthesis%>");
                             }
                         }
                     });
+                    
 
                     //row counter
                     var table14RowIndex;
@@ -1891,7 +1902,7 @@
                         enableFields(".previous");
                         $("#egkrisi_aksiologisis_nomoparaskeyastikis, #egkrisi_kalis_nomothetisis, #egkrisi_dieuthinsis_nomoparaskeyastikis, #egkrisi_genikou_grammatea").prop('disabled', false);
                         $("#pdf_download").prop("disabled", false);
-                        $(".export-pdf").prop("disabled", false);                        
+                        $(".export-pdf").prop("disabled", false);
 
                         optionalFieldsClassRemoval("mostly-optional-label", "required");
                         optionalFieldsClassRemoval("optional-label", "required");
@@ -1959,17 +1970,17 @@
                     }
 
                     if (role === "Συντάκτης επισπεύδοντος Υπουργείου") {
-                        if ($("#status_ekthesis").val() != "Συντάσσεται") {                        
+                        if ($("#status_ekthesis").val() != "Συντάσσεται") {
                             optionalFields("#edit_form :input");
                             enableFields(".next");
                             enableFields(".previous");
                         }
                     }
-                    
+
 
                     if (role === "Γενικό Λογιστήριο του Κράτους") {
 
-                        $("#edit_form :input").prop("disabled",true);
+                        $("#edit_form :input").prop("disabled", true);
                         //optionalFields("#edit_form :input:not([type=hidden])");
                         $(".ekpaideysi-politismos :input").prop('disabled', true);
                         $(".oikonomia :input").prop('disabled', true);
@@ -1977,7 +1988,7 @@
                         $(".dimosia-dioikisi :input").prop('disabled', true);
                         $(".ependyseis :input").prop('disabled', true);
                         $("#status_ekthesis").prop(('disabled', false));
-                        $(".glk :input").prop("disabled",false);
+                        $(".glk :input").prop("disabled", false);
 
                         enableFields(".next");
                         enableFields(".previous");
@@ -2127,7 +2138,7 @@
                         $("#errors").hide();
                     })
 
-                    
+
 
                     function setDropdown(elem) {
                         for (key in data) {
@@ -2216,7 +2227,7 @@
                     var selects = $("form").find("select");
                     $.each(selects, function (key, field) {
                         setDropdown(selects[key].name);
-                    })   
+                    })
 
                     var tables = '<%= JSON.stringify(tables) %>';
                     if (tables) {
@@ -2230,31 +2241,31 @@
                             .replace(/\\b/g, "\\b")
                             .replace(/\\f/g, "\\f")
                             .replace(/\\n/g, '');
-                        tables = JSON.parse(tables);                                            
-                        var prefix;                          
-                              
+                        tables = JSON.parse(tables);
+                        var prefix;
+
                         for (var i in tables.checkbox_tables) {
                             for (var j in tables.checkbox_tables[i].row[0].checkbox) {
                                 var cbxname = (Object.keys(tables.checkbox_tables[i].row[0].checkbox[j]));//get key
                                 var cbxvalue = (Object.values(tables.checkbox_tables[i].row[0].checkbox[j]));//returns array
                                 if (cbxvalue[0]) {
-                                    $("input[name='" + cbxname + "']").prop("checked",true);//if value check target checkbox    
-                                }                                
-                            }                            
-                        }                       
-                        
+                                    $("input[name='" + cbxname + "']").prop("checked", true);//if value check target checkbox    
+                                }
+                            }
+                        }
+
                         for (var i in tables.static_tables) {
                             for (var j in tables.static_tables[i].table) {
-                                for (var k in tables.static_tables[i].table[j].row) {        
+                                for (var k in tables.static_tables[i].table[j].row) {
                                     var sttcname = (Object.keys(tables.static_tables[i].table[j].row[k]));//get key
                                     var sttcvalue = (Object.values(tables.static_tables[i].table[j].row[k]));//returns array
                                     if (sttcvalue[0]) {
-                                        $("input[name='" + sttcname + "']").prop("value",sttcvalue);//if value check target checkbox    
-                                    } 
-                                }                                                              
-                            }                            
+                                        $("input[name='" + sttcname + "']").prop("value", sttcvalue);//if value check target checkbox    
+                                    }
+                                }
+                            }
                         }
-                    }    
+                    }
 
                     var current_fs, next_fs, previous_fs; //fieldsets
 
