@@ -1040,6 +1040,7 @@
                     });
 
                     $(document).ready(function () {
+                        
                         console.log(pdf_exists)
                         if (pdf_exists == true) {
                             $("#pdf_download").show();
@@ -2280,7 +2281,7 @@
                     }
 
                     var data = '<%= JSON.stringify(data) %>'
-                    data = data.replace(/&#34;/g, '"').replace(/\r?\n|\r/g, '');//replave html double quotes and \n if present in json
+                    data = data.replace(/&#34;/g, '"').replace(/\r?\n|\r/g, '').replace(/\t+/g, "").replace(/^\s+|\s+$|\s+(?=\s)/g, "")//replave html double quotes, tabs, extra white space and \n if present in json
                     data = JSON.parse(data);
                     var selects = $("form").find("select");
                     $.each(selects, function (key, field) {
