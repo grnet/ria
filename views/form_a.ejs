@@ -1113,13 +1113,13 @@
 
                         if ("<%= data.field_10_amesi %>") {
                             $('#field_10_amesi').prop("checked", true);
-                            $("#amesi_wrap").toggle();
+                            $("#amesi_wrap").show();
                             requiredDigitalGov("#field_10_amesi");
                         }
 
                         if ("<%= data.field_10_emmesi %>") {
                             $('#field_10_emmesi').prop("checked", true);
-                            $("#emmesi_wrap").toggle();
+                            $("#emesi_wrap").show();
                             requiredDigitalGov("#field_10_emmesi");
                         }
 
@@ -2226,18 +2226,20 @@
                         $("#errors").hide();
                     })
 
-
-
-                    function setDropdown(elem) {
-                        for (key in data) {
-                            if (elem === key) {
-                                if (data[key] === null) {
-                                    $("#" + elem).val($("#" + elem + " option:first").val());
-                                } else {
-                                    $("#" + elem).val(data[key]);
-                                }
-                            }
-                        }
+                    function setDropdown() {
+                        var field4 = "<%= data.field_4%>"; 
+                        var field6 = "<%= data.field_6%>"; 
+                        var field11 = "<%= data.field_11%>"; 
+                        var field12 = "<%= data.field_12%>"; 
+                        var field13 = "<%= data.field_13%>"; 
+                        var field36 = "<%= data.field_36%>"; 
+                        $("#field_4").val(field4 ? field4:$("#field_4 option:first").val());
+                        $("#field_6").val(field6 ? field6:$("#field_6 option:first").val());
+                        $("#field_11").val(field11 ? field4:$("#field_11 option:first").val());
+                        $("#field_12").val(field12 ? field4:$("#field_12 option:first").val());
+                        $("#field_13").val(field13 ? field4:$("#field_13 option:first").val());
+                        $("#field_36").val(field36 ? field4:$("#field_36 option:first").val());
+                        
                     }
 
                     //check if required fields are empty
@@ -2309,13 +2311,8 @@
                         return flag;
                     }
 
-                    var data = '<%= JSON.stringify(data) %>'
-                    data = data.replace(/&#34;/g, '"').replace(/\r?\n|\r/g, '').replace(/\t+/g, "").replace(/^\s+|\s+$|\s+(?=\s)/g, "")//replave html double quotes, tabs, extra white space and \n if present in json
-                    data = JSON.parse(data);
-                    var selects = $("form").find("select");
-                    $.each(selects, function (key, field) {
-                        setDropdown(selects[key].name);
-                    })
+                    setDropdown();
+                    
 
                     var tables = '<%= JSON.stringify(tables) %>';
                     if (tables) {
