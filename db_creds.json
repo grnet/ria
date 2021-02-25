@@ -1,8 +1,8 @@
 {
-    "database": "",
+    "database": "riadb",
     "host": "83.212.76.128",
     "port": "2306",
     "dialect": "mysql",
-    "username": "",
-    "password": ""
+    "username": "riaapp",
+    "password": "GH!ojid63EE"
 }

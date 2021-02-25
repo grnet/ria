@@ -1174,18 +1174,47 @@
                             $('#field_28_alla_dikastiria').prop("checked", true);
                             $("#alla_dikastiria_wrap").toggle();
                         }
+                        var field_18 = `"<%= data.field_18_comments .replace(/&#34;/g, '"')
+                            .replace(/\\'/g, "\\'")
+                            .replace(/\\"/g, '\\"')
+                            .replace(/\\&/g, "\\&")
+                            .replace(/\\r/g, "\\r")
+                            .replace(/\\t/g, "\\t")
+                            .replace(/\\b/g, "\\b")
+                            .replace(/\\f/g, "\\f")
+                            .replace(/\\n/g, ''); %>";`
+                        field_18 = field_18
+                        if (field_18) {
+                            $('#field_18_comments').val(field_18);
+                        }                        
 
-                        if ("<%= data.field_18_comments %>") {
-                            $('#field_18_comments').val("<%= data.field_18_comments %>");
-                        }
+                        var field_19 = `"<%= data.field_19_comments .replace(/&#34;/g, '"')
+                            .replace(/\\'/g, "\\'")
+                            .replace(/\\"/g, '\\"')
+                            .replace(/\\&/g, "\\&")
+                            .replace(/\\r/g, "\\r")
+                            .replace(/\\t/g, "\\t")
+                            .replace(/\\b/g, "\\b")
+                            .replace(/\\f/g, "\\f")
+                            .replace(/\\n/g, ''); %>";`
+                        
+                        if (field_19) {
+                            $('#field_19_comments').val(field_19);
+                        }                        
 
-                        if ("<%= data.field_19_comments %>") {
-                            $('#field_19_comments').val("<%= data.field_19_comments %>");
-                        }
-
-                        if ("<%= data.field_20_comments %>") {
-                            $('#field_20_comments').val("<%= data.field_20_comments %>");
-                        }
+                        var field_20 = `"<%= data.field_20_comments .replace(/&#34;/g, '"')
+                            .replace(/\\'/g, "\\'")
+                            .replace(/\\"/g, '\\"')
+                            .replace(/\\&/g, "\\&")
+                            .replace(/\\r/g, "\\r")
+                            .replace(/\\t/g, "\\t")
+                            .replace(/\\b/g, "\\b")
+                            .replace(/\\f/g, "\\f")
+                            .replace(/\\n/g, ''); %>";`
+                        
+                        if (field_20) {
+                            $('#field_20_comments').val(field_20);
+                        }  
 
                         if ("<%= data.egkrisi_aksiologisis_nomoparaskeyastikis %>") {
                             $('#egkrisi_aksiologisis_nomoparaskeyastikis').prop("checked", true);
