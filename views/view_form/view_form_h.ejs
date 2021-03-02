@@ -103,7 +103,10 @@
                     </td>
                     <td>
                         <textarea class="form-control" id="field_32_antikeimeno<%=i%>" name="field_32_antikeimeno<%=i%>"
+                            onkeypress="wordsCounter('field_32_antikeimeno<%=i%>','words32_<%=i%>',50, event)"
+                            onpaste="wordsCounter('field_32_antikeimeno<%=i%>','words32_<%=i%>',50, event)"
                             rows="4"><%= Object.values(data.field_32_antikeimeno[i]) %></textarea>
+                            <p style="float: right;">Λέξεις: <span id="words32_<%=i%>"></span> /50</p>
                     </td>
                     <td>
                         <textarea class="form-control" id="field_32_xronodiagramma<%=i%>"

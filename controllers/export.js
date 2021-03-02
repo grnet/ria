@@ -3,8 +3,9 @@ let database = require('../services/database');
 let path = require('path');
 const { sign } = require('crypto');
 
-exports.exportPDF = (async function (req, res, next) {
+exports.exportPDF = (async function (req, res, next) {    
     let data = req.body;//assign req.body to variable
+    console.log(req.body)
     let keys = Object.keys(data);//get keys 
     let field_14_arthro = [];
     let field_14_stoxos = [];
@@ -370,13 +371,13 @@ exports.exportPDF = (async function (req, res, next) {
 
                 { text: 'Στο σχέδιο νόμου ή στην τροπολογία επί του σχεδίου νόμου', style: 'textStyle' },
                 { text: '\n\n' },
-                { text: data.field_15_sxedio_nomou + '\n\n', style: 'textStyle' },
+                { text: req.body.field_15_sxedio_nomou + '\n\n', style: 'textStyle' },
                 { text: 'του Υπουργείου: ', style: 'textStyle' },
                 { text: '\n\n' },
-                { text: data.field_15_ypoyrgeio + '\n\n', style: 'textStyle' },
+                { text: req.body.field_15_ypoyrgeio + '\n\n', style: 'textStyle' },
                 { text: '15.Συνοπτική ανάλυση των άρθρων της αξιολογούμενης ρύθμισης ', style: 'labelStyle' },
                 { text: '\n\n' },
-                { text: data.field_15_rythmiseis + '\n\n' },
+                { text: req.body.field_15_rythmiseis + '\n\n' },
 
                 { text: '16.Οικονομικά αποτελέσματα επί του Κρατικού Προϋπολογισμού ή/και επί του προϋπολογισμού του/των αρμόδιου/ων φορέα/ων ', style: 'labelStyle' },
                 { text: '\n\n' },
@@ -384,15 +385,15 @@ exports.exportPDF = (async function (req, res, next) {
                 { text: '\n\n' },
                 { text: 'Επί του Κρατικού Προϋπολογισμού ', style: 'textStyle' },
                 { text: '\n\n' },
-                { text: data.field_16_kratikos_proypologismos + '\n\n', style: 'textStyle' },
+                { text: req.body.field_16_kratikos_proypologismos + '\n\n', style: 'textStyle' },
                 { text: 'Επί του Προϋπολογισμού του/των αρμόδιου/ων φορέα/ων ', style: 'textStyle' },
                 { text: '\n\n' },
-                { text: data.field_16_proypologismos_forea + '\n\n', style: 'textStyle' },
+                { text: req.body.field_16_proypologismos_forea + '\n\n', style: 'textStyle' },
                 { text: 'Ο/Η ΥΠΟΓΡΑΦΩΝ/ΟΥΣΑ ΓΕΝΙΚΟΣ/Η ΔΙΕΥΘΥΝΤΗΣ/ΡΙΑ', style: 'labelStyle' },
                 { text: '\n\n' },
                 {
                     columns:
-                        [{ text: data.field_16_genikos_onoma, style: 'textStyle' }, { text: data.field_16_genikos_epitheto, style: 'textStyle' }, { text: data.field_16_genikos_date, style: 'textStyle' }],
+                        [{ text: req.body.field_16_genikos_onoma, style: 'textStyle' }, { text: req.body.field_16_genikos_epitheto, style: 'textStyle' }, { text: req.body.field_16_genikos_date, style: 'textStyle' }],
                     columnGap: 20, width: '*'
                 },
 

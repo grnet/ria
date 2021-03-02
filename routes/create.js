@@ -101,7 +101,7 @@ routes.post('/:analysis', authUser, upload, [check('title', 'Title is required')
         //if label push row into table. Constructing individual tables
         if (elem.includes('_label')) {
             if (row.length) {
-                table.push({ [prefix]: row });
+                table.push({ row: row });
                 row = [];
             }
             prefix = elem.split('_label');
@@ -134,7 +134,7 @@ routes.post('/:analysis', authUser, upload, [check('title', 'Title is required')
 
             if (elem.includes('_cbxlabel')) {
                 if (cbxrow.length) {
-                    cbxtable.push( {[cbxlabels[label]]: cbxrow });
+                    cbxtable.push( {checkbox: cbxrow });
                     cbxrow = [];
                 }
             }
@@ -146,7 +146,7 @@ routes.post('/:analysis', authUser, upload, [check('title', 'Title is required')
                 } 
              }
         }
-    }
+    } 
 
     await await database.ekthesi_tables.create({static_tables:tables, checkbox_tables:cbxtables, ekthesi_tablesId: res_data.id});
 

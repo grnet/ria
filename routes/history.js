@@ -27,7 +27,7 @@ routes.get('/', authUser, async function (req, res, next) {
             status = "Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους"
             entries = await database.ekthesi.findAll({
                 where: {
-                    [Op.or]: [
+                    [Op.and]: [
                         {
                             status_ekthesis: {
                                 [Op.or]: ["Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους", "Ολοκληρώθηκε"],
@@ -45,16 +45,16 @@ routes.get('/', authUser, async function (req, res, next) {
 
                 }, include: [{ model: database.user }], raw: true, nest: true
             })
-        } else if (user.rolos == "Επιτροπή Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)" || user.rolos == "Γραφείο Καλής Νομοθέτησης (ΓΓΝΚΘ)" || user.rolos == "Διεύθυνση Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)" || user.rolos == "Γενικός Γραμματέας Νομικών και Κοινοβουλευτικών Θεμάτων" || user.rolos == "Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)") {
+        } else {
             entries = await database.ekthesi.findAll({ include: database.user })
-        } else if (user.rolos == "Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων") {
-            entries = await database.ekthesi.findAll({
-                where: {
-                    status_ekthesis: {
-                        [Op.or]: ["Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους", "Συντάσσεται", "Ολοκληρώθηκε"]
-                    }, '$user.rolos$': { [Op.not]: ['Βουλευτής'] }
-                }, include: [{ model: database.user }], raw: true, nest: true
-            })
+        // } else if (user.rolos == "Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων") {
+        //     entries = await database.ekthesi.findAll({
+        //         where: {
+        //             status_ekthesis: {
+        //                 [Op.or]: ["Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους", "Συντάσσεται", "Ολοκληρώθηκε"]
+        //             }, '$user.rolos$': { [Op.not]: ['Βουλευτής'] }
+        //         }, include: [{ model: database.user }], raw: true, nest: true
+        //     })
         }
         console.timeEnd();
         res.render("user_views/history", { entries: entries, user: user });
