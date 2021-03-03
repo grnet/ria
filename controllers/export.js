@@ -1,11 +1,11 @@
 const fs = require('fs');
 let database = require('../services/database');
 let path = require('path');
-const { sign } = require('crypto');
+const PDFMerger = require('pdf-merger-js');
+//const { sign } = require('crypto');
 
 exports.exportPDF = (async function (req, res, next) {    
     let data = req.body;//assign req.body to variable
-    console.log(req.body)
     let keys = Object.keys(data);//get keys 
     let field_14_arthro = [];
     let field_14_stoxos = [];
@@ -598,21 +598,62 @@ exports.exportPDF = (async function (req, res, next) {
                 { text: '\n\n' },
                 { text: data.field_40 + '\n\n', style: 'textStyle' },
 
-
+                {
+                    text: 'Παράρτημα',
+                    style: 'headerStyle',
+                    tocItem: true,
+                    tocStyle: { bold: true },
+                    tocMargin: [20, 0, 0, 0],
+                    pageBreak: 'before'
+                },
             ]
         ]
     };
-
+    console.log(data.field_21_upload);
     var pdfDoc = printer.createPdfKitDocument(docDefinition);
-    var pdf_name = data.title + '.pdf';
-    pdf_name = pdf_name.replace(/\s+/g, '');
+    var pdf_name = data.pdf_name + '.pdf';
+    //pdf_name = pdf_name.replace(/\s+/g, '');
     var export_path = 'public/pdf_exports/';
     var pdf_path = path.resolve(export_path, pdf_name);
     pdf_path = path.resolve(export_path, pdf_name);
     pdfDoc.pipe(fs.createWriteStream(pdf_path));
     pdfDoc.end();
+    await new Promise(resolve => setTimeout(resolve, 1000));//add some extra delay
 
     try {
+        let entry = await database.ekthesi.findOne({
+            where: {
+                id: req.params.entry_id
+            }
+        });
+        var merger = new PDFMerger();
+        merger.add(pdf_path);
+        if (entry.dataValues.field_21_upload) {
+            for (i in entry.dataValues.field_21_upload) {
+                
+                merger.add('public/uploads/' + entry.field_21_upload[i]);                
+                
+            }    
+        }
+        if (entry.dataValues.field_23_upload) {
+            for (i in entry.dataValues.field_21_upload) {
+                
+                merger.add('public/uploads/' + entry.field_21_upload[i]);                
+                
+            }    
+        }
+        if (entry.dataValues.field_36_upload) {
+            for (i in entry.dataValues.field_21_upload) {
+                
+                merger.add('public/uploads/' + entry.field_21_upload[i]);                
+                
+            }    
+        }
+        await merger.save(pdf_path); //save under given name
+        // merger.add('./public/pdf_exports/' + pdf_name);
+        // merger.add('/home/mariosven/Desktop/As I Lay Dying ( PDFDrive.com ).pdf');
+        // merger.add('/home/mariosven/Desktop/jrc_channelling_government_digital_transformation_through_apis_online.pdf');        
+        // await merger.save('merged.pdf'); //save under given name
 
         if (fs.existsSync(pdf_path)) {
             res.sendStatus(200);

@@ -1008,47 +1008,56 @@
                     });
 
                     $(".export-pdf").on("click", function (ev) {
-                        ev.preventDefault();                        
-                        var dis_inputs = $("form").find("input:disabled");
-                        var textareas = $("form").find("textarea:disabled");//find all textareas            
-                        $.each(textareas, () => {
-                            $(textareas).prop("disabled", false);
-                        });//enable fields to be passed down to req.body to be exported
-                        $.each(dis_inputs, () => {
-                            $(dis_inputs).prop("disabled", false);
-                        });
-                        var fd = new FormData($("form").get(0));
-                        var checkbox = $("form").find("input[type=checkbox]:not(:checked)");//find all unchecked checkboxes 
-                        $.each(checkbox, function (key, chckbx) {
-                            fd.append($(chckbx).prop('name'), $(chckbx).value = '')//append to fd without value 
-                        });
-                        fd = JSON.stringify(Object.fromEntries(fd));
-                        $.ajax({
-                            url: '/form_a/' + ekthesi_id,
-                            //data: $("form").serialize(),
-                            data: fd,
-                            contentType: 'application/json',
-                            processData: false,
-                            error: function (error) {
-                                console.log(error);
-                                $.each(textareas, () => {
-                                $(textareas).prop("disabled", true);
-                                });//enable fields to be passed down to req.body to be exported
-                                $.each(dis_inputs, () => {
-                                    $(dis_inputs).prop("disabled", true);
-                                });
-                            },
-                            success: function (data) {
-                                $.each(textareas, () => {
-                                $(textareas).prop("disabled", true);
-                                });//enable fields to be passed down to req.body to be exported
-                                $.each(dis_inputs, () => {
-                                    $(dis_inputs).prop("disabled", true);
-                                });
-                                $("#pdf_download").show();
-                            },
-                            type: 'POST'
-                        })
+                        ev.preventDefault();     
+                        var pdf_name = prompt("Παρακαλώ εισάγετε το όνομα του PDF");
+                        if (pdf_name) {
+                            $("#pdf_name").val(pdf_name);                            
+                            var inputs = $("form").find("input:disabled");
+                            var textareas = $("form").find("textarea:disabled");//find all textareas            
+                            $.each(textareas, () => {
+                                $(textareas).prop("disabled", false);
+                            });//enable fields to be passed down to req.body to be exported
+                            $.each(inputs, () => {
+                                $(inputs).prop("disabled", false);
+                            });
+                            var fd = new FormData($("form").get(0));
+                            var checkbox = $("form").find("input[type=checkbox]:not(:checked)");//find all unchecked checkboxes 
+                            $.each(checkbox, function (key, chckbx) {
+                                fd.append($(chckbx).prop('name'), $(chckbx).value = '')//append to fd without value 
+                            });
+                            fd = JSON.stringify(Object.fromEntries(fd));
+                            $.ajax({
+                                url: '/form_a/' + ekthesi_id,
+                                //data: $("form").serialize(),
+                                data: fd,
+                                contentType: 'application/json',
+                                processData: false,
+                                error: function (error) {
+                                    console.log(error);
+                                    $.each(textareas, () => {
+                                    $(textareas).prop("disabled", true);
+                                    });//enable fields to be passed down to req.body to be exported
+                                    $.each(inputs, () => {
+                                        $(inputs).prop("disabled", true);
+                                    });
+                                },
+                                success: function (data) {
+                                    $.each(textareas, () => {
+                                    $(textareas).prop("disabled", true);
+                                    });//enable fields to be passed down to req.body to be exported
+                                    $.each(inputs, () => {
+                                        $(inputs).prop("disabled", true);
+                                    });        
+                                    $("#pdf_download").html(`Το τελευταίο αποθηκευμένο PDF
+                                    βρίσκεται <a href="/pdf_exports/${pdf_name}.pdf">εδώ</a>.`)
+                                    $("#pdf_download").show();
+                                },
+                                type: 'POST'
+                            })    
+                        } else if (pdf_name === "") {
+                            alert("Το όνομα του PDF δεν πρέπει να είναι κενό!")    
+                        }                       
+                        
                         //.then(function () {
                         // return download(blob, title + ".pdf");//download pdf from browser
                         // });
@@ -2318,13 +2327,10 @@
                         var prefix;
 
                         for (var i in tables.checkbox_tables) {
-                            console.log("step 1")
                             for (var j in tables.checkbox_tables[i].row[0].checkbox) {
-                                console.log("step 2")
                                 var cbxname = (Object.keys(tables.checkbox_tables[i].row[0].checkbox[j]));//get key
                                 var cbxvalue = (Object.values(tables.checkbox_tables[i].row[0].checkbox[j]));//returns array
                                 if (cbxvalue[0]) {
-                                    console.log("step 3")
                                     $("input[name='" + cbxname + "']").prop("checked", true);//if value check target checkbox    
                                 }
                             }
@@ -2333,10 +2339,10 @@
                         for (var i in tables.static_tables) {
                             for (var j in tables.static_tables[i].table) {
                                 for (var k in tables.static_tables[i].table[j].row) {
-                                    var sttcname = (Object.keys(tables.static_tables[i].table[j].row[k]));//get key
-                                    var sttcvalue = (Object.values(tables.static_tables[i].table[j].row[k]));//returns array
+                                    var sttcname = (Object.keys(tables.static_tables[i].table[j].row[k]));
+                                    var sttcvalue = (Object.values(tables.static_tables[i].table[j].row[k]));
                                     if (sttcvalue[0]) {
-                                        $("input[name='" + sttcname + "']").prop("value", sttcvalue);//if value check target checkbox    
+                                        $("input[name='" + sttcname + "']").prop("value", sttcvalue);    
                                     }
                                 }
                             }

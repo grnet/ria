@@ -276,9 +276,8 @@
     <br>
 
     <div>
-        <% var pdf_name=data.title.replace(/\s+/g, '' ); %>
-            <p id="pdf_download" class="pdf-download action-button" style="display: none;">Το τελευταίο αποθηκευμένο PDF
-                βρίσκεται <a href="/pdf_exports/<%=pdf_name%>.pdf">εδώ</a>.
+        <input type="hidden" name="pdf_name" id="pdf_name">
+            <p id="pdf_download" class="pdf-download action-button" style="display: none;">
             </p>
     </div>
 
