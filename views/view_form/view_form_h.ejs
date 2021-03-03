@@ -188,9 +188,8 @@
                         data.field_36_upload.length;i++) { %>
                         <tr>
                             <td>
-                                <a href="/uploads/<%= data.field_36_upload[i] %> ">
-                                    <%= data.field_36_upload[i] %>
-                                </a>
+                                <a href="/uploads/<%= data.field_36_upload[i] %> "><%= data.field_36_upload[i] %></a>
+                                <button class="btn remove-file float-right" type="button"><img src="/img/delete.png" width="20px"></button>
                             </td>
                         </tr>
                         <% } }%>
@@ -302,9 +301,7 @@
                     data.signed_pdf_upload.length;i++) { %>
                     <tr>
                         <td>
-                            <a href="/uploads/<%= data.signed_pdf_upload[i] %> ">
-                                <%= data.signed_pdf_upload[i] %>
-                            </a>
+                            <a href="/uploads/<%= data.signed_pdf_upload[i] %> "><%= data.signed_pdf_upload[i] %></a>                            
                         </td>
                     </tr>
                     <% } }%>

@@ -2349,6 +2349,30 @@
                         }
                     }
 
+                    // jQuery button click event to remove a file 
+                    $('#uploads_21, #uploads_23, #uploads_36').on('click', '.remove-file', function (ev) {
+                        ev.preventDefault();
+                        console.log("Button pressed!")
+                        $("#deleted_file").val($(this).closest('td').find('a').html());
+                        var bttn = $(this);
+                        if ($("#deleted_file").val()) {
+                            console.log("Bout to ajax call... ")
+                            $.ajax({                                
+                                url: '/form_a/' + ekthesi_id+'/delete_file',
+                                data: $("form").serialize(),                                
+                                error: function (error) {
+                                    console.log(error);
+                                },
+                                success: function (data) {
+                                    console.log(data)
+                                    console.log('hey '+$(this))
+                                    $(bttn).closest('tr').remove();
+                                },
+                                type: 'PUT'
+                            });
+                        }                
+                    });
+
                     var current_fs, next_fs, previous_fs; //fieldsets
 
                     //adding traversing functions to sidemenu

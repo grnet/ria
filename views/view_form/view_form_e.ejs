@@ -17,15 +17,15 @@
                 data.field_21_upload.length;i++) { %>
                 <tr>
                     <td>
-                        <a href="/uploads/<%= data.field_21_upload[i] %> ">
-                            <%= data.field_21_upload[i] %>
-                        </a>
-                    </td>
+                        <a href="/uploads/<%= data.field_21_upload[i] %> "><%= data.field_21_upload[i] %></a>
+                        <button class="btn remove-file float-right" type="button"><img src="/img/delete.png" width="20px"></button>
+                    </td>                    
                 </tr>
                 <% } }%>
 
         </tbody>
     </table>
+    <input type="hidden" id="deleted_file" name="deleted_file">
     <br>
     <div class="form-group">
         <label class="required field-21-label" id="field_21_comments_label" for="field_21_comments">Ειδική αιτιολογία σε
@@ -96,13 +96,12 @@
         </thead>
         <tbody>
 
-            <% if( data.field_23_upload && data.field_23_upload.length ) { for (var i=0; i<
-                data.field_23_upload.length;i++) { %>
+            <% if( data.field_23_upload && data.field_23_upload.length ) { 
+                for (var i=0; i < data.field_23_upload.length;i++) { %>
                 <tr>
                     <td>
-                        <a href="/uploads/<%= data.field_23_upload[i] %> ">
-                            <%= data.field_23_upload[i] %>
-                        </a>
+                        <a href="/uploads/<%= data.field_23_upload[i] %> "><%= data.field_23_upload[i] %></a>
+                        <button class="btn remove-file float-right" type="button"><img src="/img/delete.png" width="20px"></button>
                     </td>
                 </tr>
                 <% } }%>

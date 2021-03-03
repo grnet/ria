@@ -18,7 +18,7 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage }).fields([{ name: 'field_21_upload', maxCount: 10 }, { name: 'field_23_upload', maxCount: 10 }, { name: 'field_36_upload', maxCount: 10 }, { name: 'signed_pdf_upload', maxCount: 1 }]);
 
 routes.get('/:entry_id', authUser, async (req, res, next) => {
-    
+
     try {
         let entry = await database.ekthesi.findOne({
             where: {
@@ -55,7 +55,7 @@ routes.get('/:entry_id', authUser, async (req, res, next) => {
             .on('end', () => {
                 results = JSON.stringify(results);
                 req.session.ekthesi_id = req.params.entry_id;
-                res.render("form_a", { data: entry.dataValues, tables:ekthesi_tables.dataValues, rolos: req.session.rolos, pdf_exists: pdf_exists, tooltips: results });
+                res.render("form_a", { data: entry.dataValues, tables: ekthesi_tables.dataValues, rolos: req.session.rolos, pdf_exists: pdf_exists, tooltips: results });
             });
     } catch (err) {
         console.log('error: ' + err)
@@ -105,7 +105,7 @@ routes.put('/:entry_id', authUser, upload,
             //return res.status(422).json(errors.array());
         } else {
 
-            try {                
+            try {
 
                 let entry = await database.ekthesi.findOne({
                     where: {
@@ -119,7 +119,7 @@ routes.put('/:entry_id', authUser, upload,
                 let signed_pdf = entry.signed_pdf_upload;
                 try {
 
-                    const file = req.files;                    
+                    const file = req.files;
                     if (file.field_21_upload) {
                         for (i in file.field_21_upload) {
                             field21.push(file.field_21_upload[i].filename)
@@ -128,6 +128,7 @@ routes.put('/:entry_id', authUser, upload,
                         // const error = new Error('Please upload a file')
                         // error.httpStatusCode = 400
                         // return next(error)
+                        
 
                     }
                     if (file.field_23_upload) {
@@ -167,10 +168,10 @@ routes.put('/:entry_id', authUser, upload,
                     //if header push table into tables
                     if (elem.includes('_header')) {
                         if (table.length) {
-                            tables.push({table:table});
+                            tables.push({ table: table });
                             table = [];
                         }
-                    } 
+                    }
                     //if label push row into table. Constructing individual tables
                     if (elem.includes('_label')) {
                         if (row.length) {
@@ -200,14 +201,14 @@ routes.put('/:entry_id', authUser, upload,
 
                         if (elem.includes('_cbxHeader')) {
                             if (cbxtable.length) {
-                                cbxtables.push({row:cbxtable});
+                                cbxtables.push({ row: cbxtable });
                                 cbxtable = [];
                             }
-                        } 
+                        }
 
                         if (elem.includes('_cbxlabel')) {
                             if (cbxrow.length) {
-                                cbxtable.push( {checkbox: cbxrow });
+                                cbxtable.push({ checkbox: cbxrow });
                                 cbxrow = [];
                             }
                         }
@@ -216,11 +217,11 @@ routes.put('/:entry_id', authUser, upload,
                             elemValue = req.body[elem];
                             if (typeof elemValue != undefined) {
                                 cbxrow.push({ [elem]: elemValue });
-                            } 
-                         }
+                            }
+                        }
                     }
-                }                
-                
+                }
+
                 let field_14_arthro = [];
                 let field_14_stoxos = [];
                 let field_17_onoma = [];
@@ -320,24 +321,25 @@ routes.put('/:entry_id', authUser, upload,
                 await database.ekthesi.update({
                     field_14_arthro: field_14_arthro, field_14_stoxos: field_14_stoxos, field_17_onoma: field_17_onoma, field_17_epitheto: field_17_epitheto, field_17_idiotita: field_17_idiotita, field_29_diatakseis_rythmisis: field_29_diatakseis_rythmisis, field_29_yfistamenes_diatakseis: field_29_yfistamenes_diatakseis, field_30_diatakseis_katargisi: field_30_diatakseis_katargisi, field_30_katargoumenes_diatakseis: field_30_katargoumenes_diatakseis,
                     field_31_sxetiki_diataksi: field_31_sxetiki_diataksi, field_31_synarmodia_ypoyrgeia: field_31_synarmodia_ypoyrgeia, field_31_antikeimeno_synarmodiotitas: field_31_antikeimeno_synarmodiotitas, field_32_eksousiodotiki_diataksi: field_32_eksousiodotiki_diataksi, field_32_eidos_praksis: field_32_eidos_praksis, field_32_armodio_ypoyrgeio: field_32_armodio_ypoyrgeio, field_32_antikeimeno: field_32_antikeimeno, field_32_xronodiagramma: field_32_xronodiagramma,
-                    field_21_upload: field21, field_23_upload: field23, field_36_upload: field36, signed_pdf_upload:signed_pdf},
-                 {
-                    where: {
-                        id: ekthesi_id
-                    }
-                });
+                    field_21_upload: field21, field_23_upload: field23, field_36_upload: field36, signed_pdf_upload: signed_pdf
+                },
+                    {
+                        where: {
+                            id: ekthesi_id
+                        }
+                    });
 
-                await database.ekthesi_tables.update({static_tables:tables, checkbox_tables:cbxtables}, {
+                await database.ekthesi_tables.update({ static_tables: tables, checkbox_tables: cbxtables }, {
                     where: {
                         ekthesi_tablesId: ekthesi_id
                     }
                 });
                 //console.log("field_29_diatakseis_rythmisis: " + field_29_diatakseis_rythmisis);
-                var author = req.session.fname+' '+req.session.lname;
+                var author = req.session.fname + ' ' + req.session.lname;
 
                 await database.audit.create({ user: author, data: req.body, timestamp: req.body.last_updated, action: req.method, auditId: ekthesi_id });
-                
-                console.timeEnd();    
+
+                console.timeEnd();
 
                 if (!ekthesi) {
                     res.status(404).send("Error in updating ekthesi.");
@@ -349,5 +351,52 @@ routes.put('/:entry_id', authUser, upload,
             }
         }
     });
+
+routes.put('/:entry_id/delete_file', authUser, async (req, res, next) => {
+
+    let entry = await database.ekthesi.findOne({
+        where: {
+            id: req.params.entry_id
+        }
+    });
+    entry = entry.dataValues;
+    console.log(req.body.deleted_file)
+    if(entry.field_21_upload.indexOf(req.body.deleted_file)){
+        let index21 = entry.field_21_upload.indexOf(req.body.deleted_file)//find index of file to be deleted
+        entry.field_21_upload.splice(index21, 1)//delete position of index, count 1
+        await database.ekthesi.update({field_21_upload:entry.field_21_upload},{where: { id:entry.id }})
+    }else if (entry.field_23_upload.indexOf(req.body.deleted_file)) {
+        let index23 = entry.field_23_upload.indexOf(req.body.deleted_file)//find index of file to be deleted
+        entry.field_23_upload.splice(index23, 1)//delete position of index, count 1
+        await database.ekthesi.update({field_23_upload:entry.field_23_upload},{where: { id:entry.id }})
+    }else if (entry.field_36_upload.indexOf(req.body.deleted_file)) {
+        let index36 = entry.field_36_upload.indexOf(req.body.deleted_file)//find index of file to be deleted
+        entry.field_36_upload.splice(index36, 1)//delete position of index, count 1
+        await database.ekthesi.update({field_36_upload:entry.field_36_upload},{where: { id:entry.id }})
+    }   
+    
+    let filePath = 'public/uploads/' + req.body.deleted_file;
+    console.log(filePath)
+    try {
+        fs.unlink(filePath, async function (err) {
+            if (err && err.code == 'ENOENT') {
+                // file doens't exist
+                console.info("File doesn't exist, won't remove it.");
+                res.sendStatus(404);
+            } else if (err) {
+                // other errors, e.g. maybe we don't have enough permission
+                console.error("Error occurred while trying to remove file");
+                res.sendStatus(401);
+            } else {
+                console.info(`removed`);
+                res.sendStatus(200);
+            }
+        })
+    } catch (err) {
+        console.log(err)
+    }
+    
+});
+
 
 module.exports = routes;
