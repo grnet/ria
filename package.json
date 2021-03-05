@@ -1,12 +1,12 @@
 {
   "name": "regulatory_impact_analysis",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Dimitris Massaad",
+  "author": "Marios Venetsianos",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.0",
