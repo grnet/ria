@@ -169,7 +169,7 @@ exports.exportPDF = (async function (req, res, next) {
                 } else if (data[keys[j]]) {
                     cbxrow.push('√');
                 } else {
-                    cbxrow.push('X');//value is undefined
+                    cbxrow.push(' ');//value is undefined
                 }
 
             }
@@ -619,7 +619,7 @@ exports.exportPDF = (async function (req, res, next) {
     pdfDoc.pipe(fs.createWriteStream(pdf_path));
     pdfDoc.end();
     await new Promise(resolve => setTimeout(resolve, 1000));//add some extra delay
-
+    
     try {
         let entry = await database.ekthesi.findOne({
             where: {
@@ -636,16 +636,16 @@ exports.exportPDF = (async function (req, res, next) {
             }    
         }
         if (entry.dataValues.field_23_upload) {
-            for (i in entry.dataValues.field_21_upload) {
+            for (i in entry.dataValues.field_23_upload) {
                 
-                merger.add('public/uploads/' + entry.field_21_upload[i]);                
+                merger.add('public/uploads/' + entry.field_23_upload[i]);                
                 
             }    
         }
         if (entry.dataValues.field_36_upload) {
-            for (i in entry.dataValues.field_21_upload) {
+            for (i in entry.dataValues.field_36_upload) {
                 
-                merger.add('public/uploads/' + entry.field_21_upload[i]);                
+                merger.add('public/uploads/' + entry.field_36_upload[i]);                
                 
             }    
         }

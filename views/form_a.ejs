@@ -928,6 +928,10 @@
                     //TODO: update to FormData
                     function updateForm(ev) {
                         ev.preventDefault();
+                        var inputs = $("form").find("input:disabled");                            
+                        $.each(inputs, () => {
+                            $(inputs).prop("disabled", false);
+                        });
                         var fd = new FormData($("form").get(0));
                         var checkbox = $("form").find("input[type=checkbox]:not(:checked)");//find all unchecked checkboxes 
                         $.each(checkbox, function (key, chckbx) {
@@ -1020,6 +1024,11 @@
                             $.each(inputs, () => {
                                 $(inputs).prop("disabled", false);
                             });
+                            $("#ekpedeusi_politismos").prop("checked") ? $(".ekpaideysi-politismos :input").prop('disabled', false) : $(".ekpaideysi-politismos :input").prop('disabled', true)
+                            $("#forologiki_politiki").prop("checked") ? $(".oikonomia :input").prop('disabled', false) : $(".oikonomia :input").prop('disabled', true)
+                            $("#koinoniki_politiki").prop("checked") ? $(".koinoniki-politiki :input").prop('disabled', false) : $(".koinoniki-politiki :input").prop('disabled', true)
+                            $("#dimosia_dioikisi").prop("checked") ? $(".dimosia-dioikisi :input").prop('disabled', false) : $(".dimosia-dioikisi :input").prop('disabled', true)
+                            $("#anaptiksi").prop("checked") ? $(".ependyseis :input").prop('disabled', false) : $(".ependyseis :input").prop('disabled', true)                            
                             var fd = new FormData($("form").get(0));
                             var checkbox = $("form").find("input[type=checkbox]:not(:checked)");//find all unchecked checkboxes 
                             $.each(checkbox, function (key, chckbx) {
@@ -1275,6 +1284,48 @@
                             $('#uploads_36_wrap').show()
                         }
 
+                        setDropdown();
+                    
+
+                    var tables = '<%= JSON.stringify(tables) %>';
+                    if (tables) {
+                        tables = tables.replace(/\\n/g, "\\n")
+                            .replace(/&#34;/g, '"')
+                            .replace(/\\'/g, "\\'")
+                            .replace(/\\"/g, '\\"')
+                            .replace(/\\&/g, "\\&")
+                            .replace(/\\r/g, "\\r")
+                            .replace(/\\t/g, "\\t")
+                            .replace(/\\b/g, "\\b")
+                            .replace(/\\f/g, "\\f")
+                            .replace(/\\n/g, '');
+                        tables = JSON.parse(tables);
+                        var prefix;
+
+                        for (var i in tables.checkbox_tables) {
+                            for (var j in tables.checkbox_tables[i].row[0].checkbox) {
+                                var cbxname = (Object.keys(tables.checkbox_tables[i].row[0].checkbox[j]));//get key
+                                var cbxvalue = (Object.values(tables.checkbox_tables[i].row[0].checkbox[j]));//returns array
+                                if (cbxvalue[0]) {
+                                    $("input[name='" + cbxname + "']").prop("checked", true);//if value check target checkbox    
+                                }
+                            }
+                        }
+
+                        for (var i in tables.static_tables) {
+                            for (var j in tables.static_tables[i].table) {
+                                for (var k in tables.static_tables[i].table[j].row) {
+                                    var sttcname = (Object.keys(tables.static_tables[i].table[j].row[k]));
+                                    var sttcvalue = (Object.values(tables.static_tables[i].table[j].row[k]));
+                                    if (sttcvalue[0]) {
+                                        $("input[name='" + sttcname + "']").prop("value", sttcvalue);    
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+
                         if ($('#status_ekthesis').val() === "Κατατέθηκε") {
                         $("#edit_form :input").prop("disabled", true);
                         $("#signed_pdf_div").show().prop("disabled", false);
@@ -1294,7 +1345,7 @@
                             document.getElementById(spanId).innerHTML = counter.words.toString();
                         })
                     }
-                    console.log($("#signed_pdf tbody>tr").length)
+                    
                     function onSubmitStatus() {
 
                         if (role === "Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων" || role === "Βουλευτής") {
@@ -1304,9 +1355,10 @@
                                 $('#status_ekthesis').val("Οριστικοποιήθηκε");
                             }
                         } else if (role === "Γενικός Γραμματέας Νομικών και Κοινοβουλευτικών Θεμάτων") {
-                            if ($('#status_ekthesis').val() === "Οριστικοποιήθηκε" && ($("#signed_pdf tbody>tr").length > 0)) {
+                            if ($('#status_ekthesis').val() === "Οριστικοποιήθηκε" && ($("#signed_pdf tbody>tr").length > 0 || $('#signed_pdf_upload').get(0).files.length > 0)) {                                
+                                $('#status_ekthesis').prop("disabled", false);
                                 $('#status_ekthesis').val("Κατατέθηκε");
-                                console.log('am uagsdfihg')
+                                
                             } else if ($("#egkrisi_aksiologisis_nomoparaskeyastikis").prop("checked") && $("#egkrisi_kalis_nomothetisis").prop("checked") && $("#egkrisi_dieuthinsis_nomoparaskeyastikis").prop("checked") && $("#egkrisi_genikou_grammatea").prop("checked")) {
                                 $('#status_ekthesis').val("Οριστικοποιήθηκε");
                             }
@@ -1332,7 +1384,7 @@
                         $("#edit_form :input").prop("disabled", true);
                         //$("#edit_form :input[type=checkbox]").prop("disable",true);
                     }
-
+                    
                     if ((role === "Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)" && $("#pdf_download").prop("hidden") === false && $('#status_ekthesis').val() === "Οριστικοποιήθηκε") || ($('#status_ekthesis').val() === "Οριστικοποιήθηκε" && role === "Γενικός Γραμματέας Νομικών και Κοινοβουλευτικών Θεμάτων")) {
                         $("#signed_pdf_div").show();
                         $("#pdf_download").prop("disabled", false);
@@ -1946,6 +1998,7 @@
                         $("#egkrisi_aksiologisis_nomoparaskeyastikis, #egkrisi_kalis_nomothetisis, #egkrisi_dieuthinsis_nomoparaskeyastikis, #egkrisi_genikou_grammatea").prop('disabled', false);
                         $("#pdf_download").prop("disabled", false);
                         $(".export-pdf").prop("disabled", false);
+                        $("#signed_pdf_upload").prop("disabled", false);
                         
                         optionalFieldsClassRemoval("mostly-optional-label", "required");
                         optionalFieldsClassRemoval("optional-label", "required");
@@ -2035,6 +2088,7 @@
                         enableFields(".previous");
                         $("#egkrisi_aksiologisis_nomoparaskeyastikis, #egkrisi_kalis_nomothetisis, #egkrisi_dieuthinsis_nomoparaskeyastikis, #egkrisi_genikou_grammatea").prop('disabled', false);
                         $("#pdf_download").prop("disabled", false);
+                        $("#signed_pdf_upload").prop("disabled", false);
                         $(".export-pdf").prop("disabled", false);
 
                         optionalFieldsClassRemoval("field-18-label", "required");
@@ -2307,48 +2361,7 @@
                         })
                         return flag;
                     }
-
-                    setDropdown();
                     
-
-                    var tables = '<%= JSON.stringify(tables) %>';
-                    if (tables) {
-                        tables = tables.replace(/\\n/g, "\\n")
-                            .replace(/&#34;/g, '"')
-                            .replace(/\\'/g, "\\'")
-                            .replace(/\\"/g, '\\"')
-                            .replace(/\\&/g, "\\&")
-                            .replace(/\\r/g, "\\r")
-                            .replace(/\\t/g, "\\t")
-                            .replace(/\\b/g, "\\b")
-                            .replace(/\\f/g, "\\f")
-                            .replace(/\\n/g, '');
-                        tables = JSON.parse(tables);
-                        var prefix;
-
-                        for (var i in tables.checkbox_tables) {
-                            for (var j in tables.checkbox_tables[i].row[0].checkbox) {
-                                var cbxname = (Object.keys(tables.checkbox_tables[i].row[0].checkbox[j]));//get key
-                                var cbxvalue = (Object.values(tables.checkbox_tables[i].row[0].checkbox[j]));//returns array
-                                if (cbxvalue[0]) {
-                                    $("input[name='" + cbxname + "']").prop("checked", true);//if value check target checkbox    
-                                }
-                            }
-                        }
-
-                        for (var i in tables.static_tables) {
-                            for (var j in tables.static_tables[i].table) {
-                                for (var k in tables.static_tables[i].table[j].row) {
-                                    var sttcname = (Object.keys(tables.static_tables[i].table[j].row[k]));
-                                    var sttcvalue = (Object.values(tables.static_tables[i].table[j].row[k]));
-                                    if (sttcvalue[0]) {
-                                        $("input[name='" + sttcname + "']").prop("value", sttcvalue);    
-                                    }
-                                }
-                            }
-                        }
-                    }
-
                     // jQuery button click event to remove a file 
                     $('#uploads_21, #uploads_23, #uploads_36').on('click', '.remove-file', function (ev) {
                         ev.preventDefault();
