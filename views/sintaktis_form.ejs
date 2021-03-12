@@ -1153,6 +1153,62 @@
             table17RowIndex--;
         });
 
+        var ministersTableRowIndex = 0;
+
+        // jQuery button click event for table 14 to add a row
+        $("#add_row_ministers_table").on("click", function () {
+            //append adds row to table body with id 'tbody_14'
+            //line 604 creates unique id for the line, which will later be used for deletion
+            //also adding a delete icon for each row 
+            $('#tbody_ministers').append(`
+        <tr id="R${++ministersTableRowIndex}">  
+            <td> 
+                <textarea class="form-control" id="minister_name${ministersTableRowIndex}" name="minister_name${ministersTableRowIndex}" placeholder="Όνομα" rows="1"></textarea> 
+            </td>    
+            <td> 
+                <textarea class="form-control" id="minister_surname${ministersTableRowIndex}" name="minister_surname${ministersTableRowIndex}" placeholder="Επώνυμο" rows="1"></textarea>
+            </td> 
+            <td> 
+                <textarea class="form-control" id="ministry${ministersTableRowIndex}" name="ministry${ministersTableRowIndex}" placeholder="Ιδιότητα" rows="1"></textarea>
+                <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
+            </td> 
+        </tr>`
+            );
+        });
+
+        // jQuery button click event to remove a row 
+        $('#tbody_ministers').on('click', '.remove', function () {
+
+            // Getting all the rows close to the one to be removed 
+            var child = $(this).closest('tr').nextAll();
+
+            // Iterating across all the rows  
+            // obtained to change the index 
+            child.each(function () {
+
+                // Getting <tr> id
+                var id = $(this).attr('id');
+
+                // Gets row number from <tr> id
+                var row_num = parseInt(id.substring(1));
+
+                //Getting index
+                var idx = $(this).children('.row-index');
+
+                // Modifying row index
+                idx.html(`Row ${row_num - 1}`);
+
+                // Modifying row id
+                $(this).attr('id', `R${row_num - 1}`);
+            });
+
+            // Removing the current row. 
+            $(this).closest('tr').remove();
+
+            // Decreasing the total number of rows by 1. 
+            ministersTableRowIndex--;
+        });
+
 
         var table29RowIndex = 0;
         $("#add_row_table_29").on("click", function () {

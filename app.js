@@ -7,6 +7,7 @@ let cookieParser = require('cookie-parser');
 //app routes/endpoints
 let homeRoute = require('./routes/home')
 let loginRoute = require('./routes/login')
+let logoutRoute = require('./routes/logout')
 let createRoute = require('./routes/create')
 let form_aRoute = require('./routes/form_a')
 let database = require('./services/database')
@@ -43,7 +44,8 @@ app.disable('x-powered-by');
 //app.use(express.static(path.join(__dirname,'public/js')));
 
 app.use('/', homeRoute);
-app.use('/login', loginRoute);;
+app.use('/login', loginRoute);
+app.use('/logout', logoutRoute);
 app.use('/create', createRoute);
 app.use('/form_a', form_aRoute);
 app.use('/user_views/admin_dashboard', adminDashboardRoute);

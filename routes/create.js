@@ -155,6 +155,9 @@ routes.post('/:analysis', authUser, upload, [check('title', 'Title is required')
     let field_17_onoma = [];
     let field_17_epitheto = [];
     let field_17_idiotita = [];
+    let minister_surname = [];
+    let minister_name = [];
+    let ministry = [];
     let field_29_diatakseis_rythmisis = [];
     let field_29_yfistamenes_diatakseis = [];
     let field_30_diatakseis_katargisi = [];
@@ -191,6 +194,18 @@ routes.post('/:analysis', authUser, upload, [check('title', 'Title is required')
             value = data[keys[i]];
             temp = keys[i];
             field_17_idiotita.push({ temp: value });
+        }else if (keys[i].includes("minister_name")) {
+            value = data[keys[i]];
+            key = keys[i];
+            minister_name.push({ [key]: value });
+        }else if (keys[i].includes("minister_surname")) {
+            value = data[keys[i]];
+            key = keys[i];
+            minister_surname.push({ [key]: value });
+        }else if (keys[i].includes("ministry")) {
+            value = data[keys[i]];
+            key = keys[i];
+            ministry.push({ [key]: value });
         } else if (keys[i].includes("field_29_diatakseis_rythmisis")) {
             value = data[keys[i]];
             temp = keys[i];
@@ -242,9 +257,11 @@ routes.post('/:analysis', authUser, upload, [check('title', 'Title is required')
         }
         jsonObj.push({ [keys[i]]: data[keys[i]] });
     }
+
     var author = req.session.username;
     await database.ekthesi.update({
-        author: author, field_14_arthro: field_14_arthro, field_14_stoxos: field_14_stoxos, field_17_onoma: field_17_onoma, field_17_epitheto: field_17_epitheto, field_17_idiotita: field_17_idiotita, field_29_diatakseis_rythmisis: field_29_diatakseis_rythmisis, field_29_yfistamenes_diatakseis: field_29_yfistamenes_diatakseis, field_30_diatakseis_katargisi: field_30_diatakseis_katargisi, field_30_katargoumenes_diatakseis: field_30_katargoumenes_diatakseis,
+        author: author, field_14_arthro: field_14_arthro, field_14_stoxos: field_14_stoxos, field_17_onoma: field_17_onoma, field_17_epitheto: field_17_epitheto, field_17_idiotita: field_17_idiotita, minister_name:minister_name, minister_surname:minister_surname, ministry:ministry,
+        field_29_diatakseis_rythmisis: field_29_diatakseis_rythmisis, field_29_yfistamenes_diatakseis: field_29_yfistamenes_diatakseis, field_30_diatakseis_katargisi: field_30_diatakseis_katargisi, field_30_katargoumenes_diatakseis: field_30_katargoumenes_diatakseis,
         field_31_sxetiki_diataksi: field_31_sxetiki_diataksi, field_31_synarmodia_ypoyrgeia: field_31_synarmodia_ypoyrgeia, field_31_antikeimeno_synarmodiotitas: field_31_antikeimeno_synarmodiotitas, field_32_eksousiodotiki_diataksi: field_32_eksousiodotiki_diataksi, field_32_eidos_praksis: field_32_eidos_praksis, field_32_armodio_ypoyrgeio: field_32_armodio_ypoyrgeio, field_32_antikeimeno: field_32_antikeimeno, field_32_xronodiagramma: field_32_xronodiagramma,
         field_21_upload: field21, field_23_upload: field23, field_36_upload: field36
     },

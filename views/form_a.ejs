@@ -987,6 +987,21 @@
                         });
                     }
 
+                    $(".delete-analysis").on("click", function (ev) {
+                        ev.preventDefault();
+                        $.ajax({
+                            url: `/form_a/${ekthesi_id}/delete_analysis`,
+                            error: function (error) {
+                                console.log(error);
+                            },
+                            success: function (data) {
+                                window.location.href = "/user_views/history";
+                            },
+                            type: 'DELETE'
+                        });
+
+                    });    
+
                     $(".save_temporarily").on("click", function (ev) {
                         // var validationFlag;
                         // validationFlag = validateRequiredFields(validationFlag);
@@ -1516,64 +1531,82 @@
                         table14RowIndex--;
                     });
 
-                    var table17RowIndex = 0;
+                    var table17RowIndex;
+                    if ("data.field_17_onoma.length" != null) {
+                        var table17RowIndex = "<%=data.field_17_onoma.length %>"
+                    } else {
+                        table17RowIndex = 0;
+                    }
 
-                    // jQuery button click event for table 14 to add a row
                     $("#add_row_table_17").on("click", function () {
-                        //append adds row to table body with id 'tbody_14'
-                        //line 604 creates unique id for the line, which will later be used for deletion
-                        //also adding a delete icon for each row 
                         $('#tbody_17').append(`
-        <tr id="R${++table17RowIndex}">  
-            <td> 
-                <textarea class="form-control" id="field_17_onoma${table17RowIndex}" name="field_17_onoma${table17RowIndex}" placeholder="Όνομα" rows="1"></textarea> 
-            </td>    
-            <td> 
-                <textarea class="form-control" id="field_17_epitheto${table17RowIndex}" name="field_17_epitheto${table17RowIndex}" placeholder="Επώνυμο" rows="1"></textarea>
-            </td> 
-            <td> 
-                <textarea class="form-control" id="field_17_idiotita${table17RowIndex}" name="field_17_idiotita${table17RowIndex}" placeholder="Ιδιότητα" rows="1"></textarea>
-                <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
-            </td> 
-        </tr>`
+                            <tr id="R${++table17RowIndex}">  
+                                <td> 
+                                    <textarea class="form-control" id="field_17_onoma${table17RowIndex}" name="field_17_onoma${table17RowIndex}" placeholder="Όνομα" rows="1"></textarea> 
+                                </td>    
+                                <td> 
+                                    <textarea class="form-control" id="field_17_epitheto${table17RowIndex}" name="field_17_epitheto${table17RowIndex}" placeholder="Επώνυμο" rows="1"></textarea>
+                                </td> 
+                                <td> 
+                                    <textarea class="form-control" id="field_17_idiotita${table17RowIndex}" name="field_17_idiotita${table17RowIndex}" placeholder="Ιδιότητα" rows="1"></textarea>
+                                    <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
+                                </td> 
+                            </tr>`
                         );
-                        //console.log(table17RowIndex)
                     });
 
-                    // jQuery button click event to remove a row 
                     $('#tbody_17').on('click', '.remove', function () {
-
-                        // Getting all the rows close to the one to be removed 
                         var child = $(this).closest('tr').nextAll();
-
-                        // Iterating across all the rows  
-                        // obtained to change the index 
                         child.each(function () {
-
-                            // Getting <tr> id
                             var id = $(this).attr('id');
-
-                            // Gets row number from <tr> id
                             var row_num = parseInt(id.substring(1));
-
-                            //Getting index
                             var idx = $(this).children('.row-index');
-
-                            // Modifying row index
                             idx.html(`Row ${row_num - 1}`);
-
-                            // Modifying row id
                             $(this).attr('id', `R${row_num - 1}`);
                         });
-
-                        // Removing the current row. 
                         $(this).closest('tr').remove();
-
-                        // Decreasing the total number of rows by 1. 
                         table17RowIndex--;
                     });
 
-                    var table29RowIndex = 0;
+                    var ministersTableRowIndex;
+                    if ("data.minister_name.length" != null) {
+                        var ministersTableRowIndex = "<%=data.minister_name.length %>"
+                    } else {
+                        ministersTableRowIndex = 0;
+                    }
+
+                    $("#add_row_ministers_table").on("click", function () {
+                        $('#tbody_ministers').append(`
+                        <tr id="R${++ministersTableRowIndex}">  
+                            <td> 
+                                <textarea class="form-control" id="minister_name${ministersTableRowIndex}" name="minister_name${ministersTableRowIndex}" placeholder="Όνομα" rows="1"></textarea> 
+                            </td>    
+                            <td> 
+                                <textarea class="form-control" id="minister_surname${ministersTableRowIndex}" name="minister_surname${ministersTableRowIndex}" placeholder="Επώνυμο" rows="1"></textarea>
+                            </td> 
+                            <td> 
+                                <textarea class="form-control" id="ministry${ministersTableRowIndex}" name="ministry${ministersTableRowIndex}" placeholder="Ιδιότητα" rows="1"></textarea>
+                                <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
+                            </td> 
+                        </tr>`
+                        );
+                    });
+
+                    $('#tbody_ministers').on('click', '.remove', function () {
+
+                        var child = $(this).closest('tr').nextAll();
+                        child.each(function () {
+                            var id = $(this).attr('id');
+                            var row_num = parseInt(id.substring(1));
+                            var idx = $(this).children('.row-index');
+                            idx.html(`Row ${row_num - 1}`);
+                            $(this).attr('id', `R${row_num - 1}`);
+                        });
+                        $(this).closest('tr').remove();
+                        ministersTableRowIndex--;
+                    });
+
+                    var table29RowIndex;
                     if ("data.field_29_diatakseis_rythmisis.length" != null) {
                         var table29RowIndex = "<%=data.field_29_diatakseis_rythmisis.length %>"
                     } else {
@@ -1582,18 +1615,18 @@
                     $("#add_row_table_29").on("click", function () {
 
                         $('#tbody_29').append(`
-                <tr id="R${++table29RowIndex}"> 
-                    <td> 
-                        <textarea class="form-control" id="field_29_diatakseis_rythmisis${table29RowIndex}" name="field_29_diatakseis_rythmisis${table29RowIndex}" onkeypress="wordsCounter('field_29_diatakseis_rythmisis${table29RowIndex}','words29_diatakeis_rythm_${table29RowIndex}')" onpaste="wordsCounter('field_29_diatakseis_rythmisis${table29RowIndex}','words29_diatakeis_rythm_${table29RowIndex}')" rows="1"></textarea>
-                        <p style="float: right;">Λέξεις: <span id="words29_diatakeis_rythm_${table29RowIndex}" ></span></p>   
-                    </td> 
-                    <td> 
-                        <textarea class="form-control" id="field_29_yfistamenes_diatakseis${table29RowIndex}" name="field_29_yfistamenes_diatakseis${table29RowIndex}" onkeypress="wordsCounter('field_29_yfistamenes_diatakseis${table29RowIndex}','words29_diatakeis_yfist_${table29RowIndex}')" onpaste="wordsCounter('field_29_yfistamenes_diatakseis${table29RowIndex}','words29_diatakeis_yfist_${table29RowIndex}')" rows="1"></textarea>
-                        <p style="float: right;">Λέξεις: <span id="words29_diatakeis_yfist_${table29RowIndex}" ></span></p>   
-                        <br><br>
-                        <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
-                    </td>    
-                </tr>`
+                            <tr id="R${++table29RowIndex}"> 
+                                <td> 
+                                    <textarea class="form-control" id="field_29_diatakseis_rythmisis${table29RowIndex}" name="field_29_diatakseis_rythmisis${table29RowIndex}" onkeypress="wordsCounter('field_29_diatakseis_rythmisis${table29RowIndex}','words29_diatakeis_rythm_${table29RowIndex}')" onpaste="wordsCounter('field_29_diatakseis_rythmisis${table29RowIndex}','words29_diatakeis_rythm_${table29RowIndex}')" rows="1"></textarea>
+                                    <p style="float: right;">Λέξεις: <span id="words29_diatakeis_rythm_${table29RowIndex}" ></span></p>   
+                                </td> 
+                                <td> 
+                                    <textarea class="form-control" id="field_29_yfistamenes_diatakseis${table29RowIndex}" name="field_29_yfistamenes_diatakseis${table29RowIndex}" onkeypress="wordsCounter('field_29_yfistamenes_diatakseis${table29RowIndex}','words29_diatakeis_yfist_${table29RowIndex}')" onpaste="wordsCounter('field_29_yfistamenes_diatakseis${table29RowIndex}','words29_diatakeis_yfist_${table29RowIndex}')" rows="1"></textarea>
+                                    <p style="float: right;">Λέξεις: <span id="words29_diatakeis_yfist_${table29RowIndex}" ></span></p>   
+                                    <br><br>
+                                    <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
+                                </td>    
+                            </tr>`
                         );
                     });
 
@@ -1614,7 +1647,7 @@
                         table29RowIndex--;
                     });
 
-                    var table30RowIndex = 0;
+                    var table30RowIndex;
                     if ("data.field_30_diatakseis_katargisi.length" != null) {
                         var table30RowIndex = "<%=data.field_30_diatakseis_katargisi.length %>"
                     } else {
@@ -1623,18 +1656,18 @@
                     $("#add_row_table_30").on("click", function () {
 
                         $('#tbody_30').append(`
-                <tr id="R${++table30RowIndex}"> 
-                    <td> 
-                        <textarea class="form-control" id="field_30_diatakseis_katargisi${table30RowIndex}" name="field_30_diatakseis_katargisi${table30RowIndex}" onkeypress="wordsCounter('field_30_diatakseis_katargisi${table30RowIndex}','words30_diatakeis_katarg_${table30RowIndex}')" onpaste="wordsCounter('field_30_diatakseis_katargisi${table30RowIndex}','words30_diatakeis_katarg_${table30RowIndex}')" rows="2"></textarea>
-                        <p style="float: right;">Λέξεις: <span id="words30_diatakeis_katarg_${table30RowIndex}" ></span></p>
-                    </td> 
-                    <td> 
-                        <textarea class="form-control" id="field_30_katargoumenes_diatakseis${table30RowIndex}" name="field_30_katargoumenes_diatakseis${table30RowIndex}" onkeypress="wordsCounter('field_30_katargoumenes_diatakseis${table30RowIndex}','words30_diatakeis_katargoum_${table30RowIndex}')" onpaste="wordsCounter('field_30_katargoumenes_diatakseis${table30RowIndex}','words30_diatakeis_katargoum_${table30RowIndex}')" rows="2"></textarea>
-                        <p style="float: right;">Λέξεις: <span id="words30_diatakeis_katargoum_${table30RowIndex}" ></span></p>
-                        <br><br>
-                        <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
-                    </td>    
-                </tr>`
+                            <tr id="R${++table30RowIndex}"> 
+                                <td> 
+                                    <textarea class="form-control" id="field_30_diatakseis_katargisi${table30RowIndex}" name="field_30_diatakseis_katargisi${table30RowIndex}" onkeypress="wordsCounter('field_30_diatakseis_katargisi${table30RowIndex}','words30_diatakeis_katarg_${table30RowIndex}')" onpaste="wordsCounter('field_30_diatakseis_katargisi${table30RowIndex}','words30_diatakeis_katarg_${table30RowIndex}')" rows="2"></textarea>
+                                    <p style="float: right;">Λέξεις: <span id="words30_diatakeis_katarg_${table30RowIndex}" ></span></p>
+                                </td> 
+                                <td> 
+                                    <textarea class="form-control" id="field_30_katargoumenes_diatakseis${table30RowIndex}" name="field_30_katargoumenes_diatakseis${table30RowIndex}" onkeypress="wordsCounter('field_30_katargoumenes_diatakseis${table30RowIndex}','words30_diatakeis_katargoum_${table30RowIndex}')" onpaste="wordsCounter('field_30_katargoumenes_diatakseis${table30RowIndex}','words30_diatakeis_katargoum_${table30RowIndex}')" rows="2"></textarea>
+                                    <p style="float: right;">Λέξεις: <span id="words30_diatakeis_katargoum_${table30RowIndex}" ></span></p>
+                                    <br><br>
+                                    <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
+                                </td>    
+                            </tr>`
                         );
                     });
 
@@ -1655,7 +1688,7 @@
                         table30RowIndex--;
                     });
 
-                    var table31RowIndex = 0;
+                    var table31RowIndex;
                     if ("data.field_31_sxetiki_diataksi.length" != null) {
                         var table31RowIndex = "<%=data.field_31_sxetiki_diataksi.length %>"
                     } else {
@@ -1664,20 +1697,20 @@
                     $("#add_row_table_31").on("click", function () {
 
                         $('#tbody_31').append(`
-            <tr id="R${++table31RowIndex}"> 
-                <td> 
-                    <textarea class="form-control" id="field_31_sxetiki_diataksi${table31RowIndex}" name="field_31_sxetiki_diataksi${table31RowIndex}" ></textarea>                    
-                </td> 
-                <td> 
-                    <textarea class="form-control" id="field_31_synarmodia_ypoyrgeia${table31RowIndex}" name="field_31_synarmodia_ypoyrgeia${table31RowIndex}" rows="2"></textarea>
-                </td> 
-                <td> 
-                    <textarea class="form-control" id="field_31_antikeimeno_synarmodiotitas${table31RowIndex}" name="field_31_antikeimeno_synarmodiotitas${table31RowIndex}" rows="2" onkeypress="wordsCounter('field_31_antikeimeno_synarmodiotitas${table31RowIndex}','words31_${table31RowIndex}',50, event)" onpaste="wordsCounter('field_31_antikeimeno_synarmodiotitas${table31RowIndex}','words31_${table31RowIndex}',50, event)"></textarea>
-                    <p style="float: right;">Λέξεις: <span id="words31_${table31RowIndex}" ></span> /50</p>
-                    <br><br>
-                    <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
-                </td>    
-            </tr>`
+                            <tr id="R${++table31RowIndex}"> 
+                                <td> 
+                                    <textarea class="form-control" id="field_31_sxetiki_diataksi${table31RowIndex}" name="field_31_sxetiki_diataksi${table31RowIndex}" ></textarea>                    
+                                </td> 
+                                <td> 
+                                    <textarea class="form-control" id="field_31_synarmodia_ypoyrgeia${table31RowIndex}" name="field_31_synarmodia_ypoyrgeia${table31RowIndex}" rows="2"></textarea>
+                                </td> 
+                                <td> 
+                                    <textarea class="form-control" id="field_31_antikeimeno_synarmodiotitas${table31RowIndex}" name="field_31_antikeimeno_synarmodiotitas${table31RowIndex}" rows="2" onkeypress="wordsCounter('field_31_antikeimeno_synarmodiotitas${table31RowIndex}','words31_${table31RowIndex}',50, event)" onpaste="wordsCounter('field_31_antikeimeno_synarmodiotitas${table31RowIndex}','words31_${table31RowIndex}',50, event)"></textarea>
+                                    <p style="float: right;">Λέξεις: <span id="words31_${table31RowIndex}" ></span> /50</p>
+                                    <br><br>
+                                    <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
+                                </td>    
+                            </tr>`
                         );
                     });
 

@@ -63,4 +63,8 @@ routes.get('/', authUser, async function (req, res, next) {
     }
 });
 
+routes.delete('/', async (req, res ,next) => {
+    
+})
+
 module.exports = routes;

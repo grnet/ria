@@ -92,6 +92,10 @@ module.exports = (sequelize, DataTypes) => {
         field_17_onoma: DataTypes.JSON,
         field_17_epitheto: DataTypes.JSON,
         field_17_idiotita: DataTypes.JSON,
+
+        minister_name: DataTypes.JSON,
+        minister_surname: DataTypes.JSON,
+        ministry: DataTypes.JSON,
         
         field_18_comments: DataTypes.TEXT,
         field_19_comments: DataTypes.TEXT,

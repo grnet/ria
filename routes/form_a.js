@@ -128,7 +128,7 @@ routes.put('/:entry_id', authUser, upload,
                         // const error = new Error('Please upload a file')
                         // error.httpStatusCode = 400
                         // return next(error)
-                        
+
 
                     }
                     if (file.field_23_upload) {
@@ -227,6 +227,9 @@ routes.put('/:entry_id', authUser, upload,
                 let field_17_onoma = [];
                 let field_17_epitheto = [];
                 let field_17_idiotita = [];
+                let minister_surname = [];
+                let minister_name = [];
+                let ministry = [];
                 let field_29_diatakseis_rythmisis = [];
                 let field_29_yfistamenes_diatakseis = [];
                 let field_30_diatakseis_katargisi = [];
@@ -261,6 +264,18 @@ routes.put('/:entry_id', authUser, upload,
                         value = data[keys[i]];
                         key = keys[i];
                         field_17_idiotita.push({ [key]: value });
+                    } else if (keys[i].includes("minister_name")) {
+                        value = data[keys[i]];
+                        key = keys[i];
+                        minister_name.push({ [key]: value });
+                    } else if (keys[i].includes("minister_surname")) {
+                        value = data[keys[i]];
+                        key = keys[i];
+                        minister_surname.push({ [key]: value });
+                    } else if (keys[i].includes("ministry")) {
+                        value = data[keys[i]];
+                        key = keys[i];
+                        ministry.push({ [key]: value });
                     } else if (keys[i].includes("field_29_diatakseis_rythmisis")) {
                         value = data[keys[i]];
                         key = keys[i];
@@ -318,8 +333,10 @@ routes.put('/:entry_id', authUser, upload,
                     }
                 });
 
+                console.log(ministry+'\n'+minister_surname+'\n'+minister_name)
                 await database.ekthesi.update({
-                    field_14_arthro: field_14_arthro, field_14_stoxos: field_14_stoxos, field_17_onoma: field_17_onoma, field_17_epitheto: field_17_epitheto, field_17_idiotita: field_17_idiotita, field_29_diatakseis_rythmisis: field_29_diatakseis_rythmisis, field_29_yfistamenes_diatakseis: field_29_yfistamenes_diatakseis, field_30_diatakseis_katargisi: field_30_diatakseis_katargisi, field_30_katargoumenes_diatakseis: field_30_katargoumenes_diatakseis,
+                    field_14_arthro: field_14_arthro, field_14_stoxos: field_14_stoxos, field_17_onoma: field_17_onoma, field_17_epitheto: field_17_epitheto, field_17_idiotita: field_17_idiotita, minister_name: minister_name, minister_surname: minister_surname, ministry: ministry,
+                    field_29_diatakseis_rythmisis: field_29_diatakseis_rythmisis, field_29_yfistamenes_diatakseis: field_29_yfistamenes_diatakseis, field_30_diatakseis_katargisi: field_30_diatakseis_katargisi, field_30_katargoumenes_diatakseis: field_30_katargoumenes_diatakseis,
                     field_31_sxetiki_diataksi: field_31_sxetiki_diataksi, field_31_synarmodia_ypoyrgeia: field_31_synarmodia_ypoyrgeia, field_31_antikeimeno_synarmodiotitas: field_31_antikeimeno_synarmodiotitas, field_32_eksousiodotiki_diataksi: field_32_eksousiodotiki_diataksi, field_32_eidos_praksis: field_32_eidos_praksis, field_32_armodio_ypoyrgeio: field_32_armodio_ypoyrgeio, field_32_antikeimeno: field_32_antikeimeno, field_32_xronodiagramma: field_32_xronodiagramma,
                     field_21_upload: field21, field_23_upload: field23, field_36_upload: field36, signed_pdf_upload: signed_pdf
                 },
@@ -361,20 +378,7 @@ routes.put('/:entry_id/delete_file', authUser, async (req, res, next) => {
     });
     entry = entry.dataValues;
     console.log(req.body.deleted_file)
-    if(entry.field_21_upload.indexOf(req.body.deleted_file)){
-        let index21 = entry.field_21_upload.indexOf(req.body.deleted_file)//find index of file to be deleted
-        entry.field_21_upload.splice(index21, 1)//delete position of index, count 1
-        await database.ekthesi.update({field_21_upload:entry.field_21_upload},{where: { id:entry.id }})
-    }else if (entry.field_23_upload.indexOf(req.body.deleted_file)) {
-        let index23 = entry.field_23_upload.indexOf(req.body.deleted_file)//find index of file to be deleted
-        entry.field_23_upload.splice(index23, 1)//delete position of index, count 1
-        await database.ekthesi.update({field_23_upload:entry.field_23_upload},{where: { id:entry.id }})
-    }else if (entry.field_36_upload.indexOf(req.body.deleted_file)) {
-        let index36 = entry.field_36_upload.indexOf(req.body.deleted_file)//find index of file to be deleted
-        entry.field_36_upload.splice(index36, 1)//delete position of index, count 1
-        await database.ekthesi.update({field_36_upload:entry.field_36_upload},{where: { id:entry.id }})
-    }   
-    
+
     let filePath = 'public/uploads/' + req.body.deleted_file;
     console.log(filePath)
     try {
@@ -386,17 +390,35 @@ routes.put('/:entry_id/delete_file', authUser, async (req, res, next) => {
             } else if (err) {
                 // other errors, e.g. maybe we don't have enough permission
                 console.error("Error occurred while trying to remove file");
-                res.sendStatus(401);
+                res.sendStatus(403);
             } else {
                 console.info(`removed`);
+                if (entry.field_21_upload.indexOf(req.body.deleted_file)) {
+                    let index21 = entry.field_21_upload.indexOf(req.body.deleted_file)//find index of file to be deleted
+                    entry.field_21_upload.splice(index21, 1)//delete position of index, count 1
+                    await database.ekthesi.update({ field_21_upload: entry.field_21_upload }, { where: { id: entry.id } })
+                } else if (entry.field_23_upload.indexOf(req.body.deleted_file)) {
+                    let index23 = entry.field_23_upload.indexOf(req.body.deleted_file)//find index of file to be deleted
+                    entry.field_23_upload.splice(index23, 1)//delete position of index, count 1
+                    await database.ekthesi.update({ field_23_upload: entry.field_23_upload }, { where: { id: entry.id } })
+                } else if (entry.field_36_upload.indexOf(req.body.deleted_file)) {
+                    let index36 = entry.field_36_upload.indexOf(req.body.deleted_file)//find index of file to be deleted
+                    entry.field_36_upload.splice(index36, 1)//delete position of index, count 1
+                    await database.ekthesi.update({ field_36_upload: entry.field_36_upload }, { where: { id: entry.id } })
+                }
                 res.sendStatus(200);
             }
         })
     } catch (err) {
         console.log(err)
     }
-    
+
 });
 
+routes.delete('/:entry_id/delete_analysis', async function (req, res, next) {
+    console.log('gon delete now...')
+    let entry = await database.ekthesi.findOne({ where: { id: req.params.entry_id } })
+    entry ? entry.destroy().then(res.sendStatus(200)) : res.sendStatus(404);
+})
 
 module.exports = routes;

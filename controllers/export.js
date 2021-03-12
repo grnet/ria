@@ -12,6 +12,9 @@ exports.exportPDF = (async function (req, res, next) {
     let field_17_onoma = [];
     let field_17_epitheto = [];
     let field_17_idiotita = [];
+    let minister_surname = [];
+    let minister_name = [];
+    let ministry = [];
     let field_29_diatakseis_rythmisis = [];
     let field_29_yfistamenes_diatakseis = [];
     let field_30_diatakseis_katargisi = [];
@@ -53,6 +56,18 @@ exports.exportPDF = (async function (req, res, next) {
             value = data[keys[i]];
             key = keys[i];
             field_17_idiotita.push({ [key]: value });
+        }else if (keys[i].includes("minister_name")) {
+            value = data[keys[i]];
+            key = keys[i];
+            minister_name.push({ [key]: value });
+        }else if (keys[i].includes("minister_surname")) {
+            value = data[keys[i]];
+            key = keys[i];
+            minister_surname.push({ [key]: value });
+        }else if (keys[i].includes("ministry")) {
+            value = data[keys[i]];
+            key = keys[i];
+            ministry.push({ [key]: value });
         } else if (keys[i].includes("field_29_diatakseis_rythmisis")) {
             value = data[keys[i]];
             key = keys[i];
@@ -415,7 +430,7 @@ exports.exportPDF = (async function (req, res, next) {
                 { text: '17.Οικονομικά αποτελέσματα ', style: 'labelStyle' },
                 { text: '\n\n' },
                 { text: data.field_17_oikonomika_apotelesmata + '\n\n' }, ,
-                { text: 'ΟΙ ΥΠΟΓΡΑΦΟΝΤΕΣ ΥΠΟΥΡΓΟΙ', style: 'labelStyle' },
+                { text: 'ΤΑ ΕΠΙΣΠΕΥΔΟΝΤΑ ΥΠΟΥΡΓΕΙΑ', style: 'labelStyle' },
                 createSignatories(field_17_onoma, field_17_epitheto, field_17_idiotita),
 
 
@@ -599,6 +614,18 @@ exports.exportPDF = (async function (req, res, next) {
                 { text: data.field_40 + '\n\n', style: 'textStyle' },
 
                 {
+                    text: 'Υπογράφοντες Υπουργοί',
+                    style: 'headerStyle',
+                    tocItem: true,
+                    tocStyle: { bold: true },
+                    tocMargin: [20, 0, 0, 0],
+                    pageBreak: 'before'
+                },
+                {text: "\n\n"},
+                { text: 'ΟΙ ΥΠΟΥΡΓΟΙ', style: 'labelStyle' },
+                createSignatories(minister_name, minister_surname, ministry),
+
+                {
                     text: 'Παράρτημα',
                     style: 'headerStyle',
                     tocItem: true,
@@ -609,7 +636,7 @@ exports.exportPDF = (async function (req, res, next) {
             ]
         ]
     };
-    console.log(data.field_21_upload);
+    console.log(data.title);
     var pdfDoc = printer.createPdfKitDocument(docDefinition);
     var pdf_name = data.pdf_name + '.pdf';
     //pdf_name = pdf_name.replace(/\s+/g, '');

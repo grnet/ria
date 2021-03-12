@@ -1,90 +1,106 @@
 <%- include('../partials/head.ejs') %>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
-<script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+  <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 
-<div class="MuiContainer-root jss110 MuiContainer-maxWidthLg">
-  <div class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-4">
-    <div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-8">
-      <br><br>
-      <input type="button" name="back" class="back" value="Πίσω" />
-      <br><br>
-      <table id="data" class="display">
-        <thead>
-          <tr>
-            <th colspan="1">Όνομα</th>
-            <th colspan="1">Επώνυμο</th>
-            <th colspan="1">Username</th>
-            <th colspan="1">Ρόλος</th>
-            <th colspan="1">Υπουργείο</th>
-          </tr>
-        </thead>
-        <tbody>
+  <div class="MuiContainer-root jss110 MuiContainer-maxWidthLg">
+    <div class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-4">
+      <div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-8">
+        <br><br>
+        <input type="button" name="back" class="back" value="Πίσω" />
+        <br><br>
+        <table id="data" class="display">
+          <thead>
+            <tr>
+              <th>Όνομα</th>
+              <th>Επώνυμο</th>
+              <th>Username</th>
+              <th>Ρόλος</th>
+              <th>Υπουργείο</th>
+            </tr>
+          </thead>
+          <tbody>
 
-          <% for(var i=0; i<users.length; i++) {%>
-          <tr onclick="window.location.href='./edit_user/<%= users[i].username %>'">
-            <td style="text-align:center"><%= users[i].fname %></td>
-            <td style="text-align:center"><%= users[i].lname %></td>
-            <td style="text-align:center"><%= users[i].username %></td>
-            <td style="text-align:center"><%= users[i].rolos %></td>
-            <td style="text-align:center"><%= users[i].ypoyrgeio %></td>
-          </tr>
-          <% } %>
+            <% for(var i=0; i<users.length; i++) {%>
+              <tr onclick="window.location.href='./edit_user/<%= users[i].username %>'">
+                <td style="text-align:center">
+                  <%= users[i].fname %>
+                </td>
+                <td style="text-align:center">
+                  <%= users[i].lname %>
+                </td>
+                <td style="text-align:center">
+                  <%= users[i].username %>
+                </td>
+                <td style="text-align:center">
+                  <%= users[i].rolos %>
+                </td>
+                <td style="text-align:center">
+                  <%= users[i].ypoyrgeio %>
+                </td>
+              </tr>
+              <% } %>
 
-        </tbody>
-      </table>
-      <%- include('../user_views/menus.ejs') %>
+          </tbody>
+        </table>
+        <%- include('../user_views/menus.ejs') %>
+      </div>
+
     </div>
-    
   </div>
-</div>
-<%- include('../partials/footer.ejs') %>
-</div>
+  <%- include('../partials/footer.ejs') %>
+    </div>
 
-<style>
-  a {
-    color: blue;
-  }
+    <style>
+      a {
+        color: blue;
+      }
 
-  .exit, .back {
-    font-size: 16px;
-  }
-</style>
+      .display {
+        table-layout: fixed;
+        overflow-wrap: break-word;
+      }
 
-<script>
-  $(document).ready(function () {
-    $('#data').DataTable();
-  });
-  $(".back").on("click", function (ev) {
-    window.location.href = "/user_views/admin_dashboard";
-  })
-  $("#admin_menu").show();
+      .exit,
+      .back {
+        font-size: 16px;
+      }
+    </style>
 
-  var user_role = '<%= current_user %>';
-  console.log('user_role ' + user_role)
-  if (user_role == 'Βουλευτής') {
-    document.getElementById("admin_ekthesi").children[1].style.display = "none";
-    document.getElementById("admin_ekthesi").children[2].style.display = "none";
-    document.getElementById("admin_ekthesi").children[3].style.display = "none";
-    document.getElementById("admin_ekthesi").children[4].style.display = "none";
-    document.getElementById("admin_ekthesi").children[6].style.display = "none";
-    document.getElementById("admin_ekthesi").children[7].style.display = "none";
-  } else if (user_role == 'Συντάκτης επισπεύδοντος Υπουργείου' || user_role == 'Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)') {
-      document.getElementById("admin_ekthesi").children[5].style.display = "none";
-      document.getElementById("admin_ekthesi").children[8].style.display = "none";
-  } else {
-    document.getElementById("admin_ekthesi").children[0].style.display = "none";
-    document.getElementById("admin_ekthesi").children[1].style.display = "none";
-    document.getElementById("admin_ekthesi").children[2].style.display = "none";
-    document.getElementById("admin_ekthesi").children[3].style.display = "none";
-    document.getElementById("admin_ekthesi").children[4].style.display = "none";
-    document.getElementById("admin_ekthesi").children[5].style.display = "none";
-    document.getElementById("admin_ekthesi").children[6].style.display = "none";
-    document.getElementById("admin_ekthesi").children[7].style.display = "none";
-    document.getElementById("admin_ekthesi").children[8].style.display = "none";
-  } 
-  
-</script>
-</body>
+    <script>
+      $(document).ready(function () {
+        $('#data').DataTable();
+      });
+      $(".back").on("click", function (ev) {
+        window.location.href = "/user_views/admin_dashboard";
+      })
+      $("#admin_menu").show();
 
-</html>
+      var user_role = '<%= current_user %>';
+      console.log('user_role ' + user_role)
+      if (user_role == 'Βουλευτής') {
+        document.getElementById("admin_ekthesi").children[1].style.display = "none";
+        document.getElementById("admin_ekthesi").children[2].style.display = "none";
+        document.getElementById("admin_ekthesi").children[3].style.display = "none";
+        document.getElementById("admin_ekthesi").children[4].style.display = "none";
+        document.getElementById("admin_ekthesi").children[6].style.display = "none";
+        document.getElementById("admin_ekthesi").children[7].style.display = "none";
+      } else if (user_role == 'Συντάκτης επισπεύδοντος Υπουργείου' || user_role == 'Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)') {
+        document.getElementById("admin_ekthesi").children[5].style.display = "none";
+        document.getElementById("admin_ekthesi").children[8].style.display = "none";
+      } else {
+        document.getElementById("admin_ekthesi").children[0].style.display = "none";
+        document.getElementById("admin_ekthesi").children[1].style.display = "none";
+        document.getElementById("admin_ekthesi").children[2].style.display = "none";
+        document.getElementById("admin_ekthesi").children[3].style.display = "none";
+        document.getElementById("admin_ekthesi").children[4].style.display = "none";
+        document.getElementById("admin_ekthesi").children[5].style.display = "none";
+        document.getElementById("admin_ekthesi").children[6].style.display = "none";
+        document.getElementById("admin_ekthesi").children[7].style.display = "none";
+        document.getElementById("admin_ekthesi").children[8].style.display = "none";
+      }
+
+    </script>
+    </body>
+
+    </html>
