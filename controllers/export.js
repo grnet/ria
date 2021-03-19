@@ -429,8 +429,9 @@ exports.exportPDF = (async function (req, res, next) {
                 { text: data.field_17_ypoyrgeio + '\n\n', style: 'textStyle' },
                 { text: '17.Οικονομικά αποτελέσματα ', style: 'labelStyle' },
                 { text: '\n\n' },
-                { text: data.field_17_oikonomika_apotelesmata + '\n\n' }, ,
-                { text: 'ΤΑ ΕΠΙΣΠΕΥΔΟΝΤΑ ΥΠΟΥΡΓΕΙΑ', style: 'labelStyle' },
+                { text: data.field_17_oikonomika_apotelesmata + '\n\n\n' }, ,
+                { text: 'ΟΙ ΥΠΟΥΡΓΟΙ', style: 'labelStyle' },
+                {text: "\n\n"},
                 createSignatories(field_17_onoma, field_17_epitheto, field_17_idiotita),
 
 
@@ -614,7 +615,7 @@ exports.exportPDF = (async function (req, res, next) {
                 { text: data.field_40 + '\n\n', style: 'textStyle' },
 
                 {
-                    text: 'Υπογράφοντες Υπουργοί',
+                    text: 'ΟΙ ΥΠΟΥΡΓΟΙ',
                     style: 'headerStyle',
                     tocItem: true,
                     tocStyle: { bold: true },
@@ -622,7 +623,6 @@ exports.exportPDF = (async function (req, res, next) {
                     pageBreak: 'before'
                 },
                 {text: "\n\n"},
-                { text: 'ΟΙ ΥΠΟΥΡΓΟΙ', style: 'labelStyle' },
                 createSignatories(minister_name, minister_surname, ministry),
 
                 {
@@ -843,14 +843,14 @@ function createSignatories(fname, lname, position) {
             else if (fname[i - 1]) {
                 signatories.push({
                     columns:
-                        [{ text: Object.values(fname[i - 1]) + '\n' + Object.values(lname[i - 1]) + '\n\n\n' + Object.values(position[i - 1]), style: 'signatoryStyle', alignment: 'center' },
-                        { text: Object.values(fname[i]) + '\n' + Object.values(lname[i]) + '\n\n\n' + Object.values(position[i]), style: 'signatoryStyle', alignment: 'center' }
-                        ], columnGap: 20, width: '*'
+                        [{ text: Object.values(fname[i - 1]) + ' ' + Object.values(lname[i - 1]) + '\n\n\n\n\n' + Object.values(position[i - 1]), style: 'signatoryStyle', alignment: 'center' },
+                        { text: Object.values(fname[i]) + ' ' + Object.values(lname[i]) + '\n\n\n\n\n' + Object.values(position[i]), style: 'signatoryStyle', alignment: 'center' }
+                        ], columnGap: 15, width: '*'
                 })
             } else {
                 signatories.push({
                     columns:
-                        [{ text: Object.values(fname[i]) + '\n' + Object.values(lname[i]) + '\n\n\n' + Object.values(position[i]), style: 'signatoryStyle', alignment: 'center' }], columnGap: 20, width: '*'
+                        [{ text: Object.values(fname[i]) + ' ' + Object.values(lname[i]) + '\n\n\n\n\n' + Object.values(position[i]), style: 'signatoryStyle', alignment: 'center' }], columnGap: 15, width: '*'
                 })
             }
             signatories.push({ text: '\n' })
@@ -860,14 +860,14 @@ function createSignatories(fname, lname, position) {
             if (fname[i - 1]) {
                 signatories.push({
                     columns:
-                        [{ text: Object.values(fname[i - 1]) + '\n' + Object.values(lname[i - 1]) + '\n\n\n' + Object.values(position[i - 1]), style: 'signatoryStyle', alignment: 'center' },
-                         { text: Object.values(fname[i]) + '\n' + Object.values(lname[i]) + '\n\n\n' + Object.values(position[i]), style: 'signatoryStyle', alignment: 'center' },
-                        ], columnGap: 20, width: '*'
+                        [{ text: Object.values(fname[i - 1]) + ' ' + Object.values(lname[i - 1]) + '\n\n\n\n\n' + Object.values(position[i - 1]), style: 'signatoryStyle', alignment: 'center' },
+                         { text: Object.values(fname[i]) + ' ' + Object.values(lname[i]) + '\n\n\n\n\n' + Object.values(position[i]), style: 'signatoryStyle', alignment: 'center' },
+                        ], columnGap: 15, width: '*'
                 })
             } else {
                 signatories.push({
                     columns:
-                        [{ text: Object.values(fname[i]) + '\n' + Object.values(lname[i]) + '\n\n\n' + Object.values(position[i]), style: 'signatoryStyle', alignment: 'center' }], columnGap: 20, width: '*'
+                        [{ text: Object.values(fname[i]) + ' ' + Object.values(lname[i]) + '\n\n\n\n\n' + Object.values(position[i]), style: 'signatoryStyle', alignment: 'center' }], columnGap: 15, width: '*'
                 })
             }
             signatories.push({ text: '\n' })

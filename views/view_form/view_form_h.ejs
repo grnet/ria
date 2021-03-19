@@ -246,6 +246,46 @@
     </div>
     <br>
 
+    <hr>
+    <div>
+        <table class="table " id="ministers_table">
+            <thead class="thead ">
+                <tr>
+                    <th colspan="3"><label id="ministers_table_label">ΟΙ ΥΠΟΥΡΓΟΙ</label></th>
+                </tr>
+                <tr>
+                    <th colspan="1">Όνομα</th>
+                    <th colspan="1">Επώνυμο</th>
+                    <th colspan="1">Ιδιότητα</th>
+                </tr>
+            </thead>
+            <tbody id="tbody_ministers">
+    
+                <% if(data.minister_name !=null){ for (var i=0; i < data.minister_name.length; i++) { %>
+                    <tr id="ministers_table_row<%=i%>">
+                        <td>
+                            <textarea class="form-control" id="minister_name<%=i%>" name="minister_name<%=i%>"
+                                rows="4"><%= Object.values(data.minister_name[i]) %></textarea>
+                        </td>
+                        <td>
+                            <textarea class="form-control" id="minister_surname<%=i%>" name="minister_surname<%=i%>"
+                                rows="4"><%= Object.values(data.minister_surname[i]) %></textarea>
+                        </td>
+                        <td>
+                            <textarea class="form-control" id="ministry<%=i%>" name="ministry<%=i%>"
+                                rows="4"><%= Object.values(data.ministry[i]) %></textarea>
+                                <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
+                        </td>
+                    </tr>
+                    <% } } %>
+    
+            </tbody>
+        </table>
+        <br>
+        <input type="button" id="add_row_ministers_table" name="add_row_ministers_table" class="float-right" value="Επιπλέον σειρά" />
+        <br><br>
+    </div>
+
     <div class="checkbox-group form-group row ggnkth" style="display: none;">
         <label for="egkrisi_aksiologisis_nomoparaskeyastikis" class="col-sm-8 col-form-label">Έγκριση της Επιτροπής
             Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)</label>
