@@ -34,11 +34,7 @@
                         <fieldset id="arxiki">
 
                             <h2>Ανάλυση Συνεπειών Ρύθμισης</h2>
-                            <br>
-
-                            <input type="button" name="convert" class="convert" style="display: none; float: right;"
-                                value="Μετατροπή" />
-                            <br>
+                            <br>                                            
 
                             <div >
                                 <h4 id="subtitle"></h4>
@@ -47,6 +43,11 @@
                                 <br>
                                 <hr>
                             </div>
+
+                            <br>
+                            <input type="button" name="convert" class="convert" style="display: none; float: right;"
+                                value="Μετατροπή" />
+                            <br><br><br>
 
                             <div class="form-group row">
                                 <label for="title" class="required col-sm-6 col-form-label">Τίτλος αξιολογούμενης
@@ -935,8 +936,9 @@
                         var fd = new FormData($("form").get(0));
                         var checkbox = $("form").find("input[type=checkbox]:not(:checked)");//find all unchecked checkboxes 
                         $.each(checkbox, function (key, chckbx) {
-                            fd.append($(chckbx).prop('name'), $(chckbx).value = '')//append to fd without value 
+                            fd.append($(chckbx).prop('name'), $(chckbx).value = 'off')//append to fd without value 
                         });
+                        console.log(checkbox)
                         $.ajax({
                             url: '/form_a/' + ekthesi_id,
                             //data: $("form").serialize(),
@@ -966,14 +968,14 @@
                             type: 'PUT'
                         });
                     }
-                    //REVIEW -- IT BE BUGGY
+
                     function createNewForm(ev) {
                         ev.preventDefault();
                         getFullDate($("#initial_submit"));
                         getFullDate($("#last_updated"));
                         var fd = new FormData($("form").get(0));
                         $.ajax({
-                            url: '/create',
+                            url: `/create/${analysis}`,
                             data: fd,
                             contentType: false,
                             processData: false,
@@ -1089,7 +1091,6 @@
 
                     $(document).ready(function () {
                         
-                        console.log(pdf_exists)
                         if (pdf_exists == true) {
                             $("#pdf_download").show();
                         }
@@ -1104,7 +1105,6 @@
                         } else {
                             $(".ekpaideysi-politismos :input").prop('disabled', true);
                         }
-                        console.log("eks pol + <%= data.eksoteriki_politiki %>")
                         if ("<%= data.eksoteriki_politiki %>") {
                             $('#eksoteriki_politiki').prop("checked", true);;
                         }
@@ -1467,9 +1467,13 @@
                             if (answer) {
                                 $("#status_ekthesis").val("Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους");
                             } else {
-                                $("#status_ekthesis").val("<%= data.status_ekthesis%>");
+                                $("#status_ekthesis").val("<%= data.status_ekthesis %>");
                             }
+                        } else {
+                            $("#ekthesi_glk").prop('checked', false);
+                            $("#status_ekthesis").val("<%= data.status_ekthesis %>");//change hidden input's value
                         }
+                        console.log($("#status_ekthesis").val())
                     });
                     
 
@@ -2373,7 +2377,6 @@
                         if ($("#anaptiksi").prop("checked", true)) {
                             validField9 = focusElement($(".ependyseis :input"), validField9);
                         }
-                        console.log(validField9)
                         if (!validField9) {
                             validationFlag = validField9;
                             $("#alerts").append("<li> Υπάρχουν κενά πεδία στους πίνακες του πεδίου 9. </li>");
@@ -2398,11 +2401,9 @@
                     // jQuery button click event to remove a file 
                     $('#uploads_21, #uploads_23, #uploads_36').on('click', '.remove-file', function (ev) {
                         ev.preventDefault();
-                        console.log("Button pressed!")
                         $("#deleted_file").val($(this).closest('td').find('a').html());
                         var bttn = $(this);
                         if ($("#deleted_file").val()) {
-                            console.log("Bout to ajax call... ")
                             $.ajax({                                
                                 url: '/form_a/' + ekthesi_id+'/delete_file',
                                 data: $("form").serialize(),                                
@@ -2410,8 +2411,6 @@
                                     console.log(error);
                                 },
                                 success: function (data) {
-                                    console.log(data)
-                                    console.log('hey '+$(this))
                                     $(bttn).closest('tr').remove();
                                 },
                                 type: 'PUT'

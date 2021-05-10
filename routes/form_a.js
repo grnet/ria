@@ -415,7 +415,7 @@ routes.put('/:entry_id/delete_file', authUser, async (req, res, next) => {
 
 });
 
-routes.delete('/:entry_id/delete_analysis', async function (req, res, next) {
+routes.delete('/:entry_id/delete_analysis', authUser, async function (req, res, next) {
     console.log('gon delete now...')
     let entry = await database.ekthesi.findOne({ where: { id: req.params.entry_id } })
     entry ? entry.destroy().then(res.sendStatus(200)) : res.sendStatus(404);

@@ -4,7 +4,7 @@ let path = require('path');
 const PDFMerger = require('pdf-merger-js');
 //const { sign } = require('crypto');
 
-exports.exportPDF = (async function (req, res, next) {    
+exports.exportPDF = (async function (req, res, next) {
     let data = req.body;//assign req.body to variable
     let keys = Object.keys(data);//get keys 
     let field_14_arthro = [];
@@ -56,15 +56,15 @@ exports.exportPDF = (async function (req, res, next) {
             value = data[keys[i]];
             key = keys[i];
             field_17_idiotita.push({ [key]: value });
-        }else if (keys[i].includes("minister_name")) {
+        } else if (keys[i].includes("minister_name")) {
             value = data[keys[i]];
             key = keys[i];
             minister_name.push({ [key]: value });
-        }else if (keys[i].includes("minister_surname")) {
+        } else if (keys[i].includes("minister_surname")) {
             value = data[keys[i]];
             key = keys[i];
             minister_surname.push({ [key]: value });
-        }else if (keys[i].includes("ministry")) {
+        } else if (keys[i].includes("ministry")) {
             value = data[keys[i]];
             key = keys[i];
             ministry.push({ [key]: value });
@@ -143,7 +143,7 @@ exports.exportPDF = (async function (req, res, next) {
                     row.push(data[keys[i]]);
                 } else {
                     if (!keys[i].includes('_label')) {
-                        row.push('-');//value is undefined
+                        row.push(' ');//value is undefined
                     }
                 }
             }
@@ -263,76 +263,63 @@ exports.exportPDF = (async function (req, res, next) {
                     pageBreak: 'before'
                 },
                 { text: '\n\n' },
-                { text: '1. Ποιο ζήτημα αντιμετωπίζει η αξιολογούμενη ρύθμιση; ', decoration: 'underline', style: 'labelStyle' },
+                { text: '1. Ποιο ζήτημα αντιμετωπίζει η αξιολογούμενη ρύθμιση; ', style: 'labelStyle' },
                 { text: '\n\n' },
                 { text: data.field_1 + '\n\n', style: 'textStyle' }, //, pageBreak:'after',  
-                { text: '2. Γιατί αποτελεί πρόβλημα; ', decoration: 'underline', style: 'labelStyle' },
+                { text: '2. Γιατί αποτελεί πρόβλημα; ', style: 'labelStyle' },
                 { text: '\n\n' },
                 { text: data.field_2 + '\n\n', style: 'textStyle' },
-                { text: '3. Ποιους φορείς ή πληθυσμιακές ομάδες αφορά;', decoration: 'underline', style: 'labelStyle' },
+                { text: '3. Ποιους φορείς ή πληθυσμιακές ομάδες αφορά;', style: 'labelStyle' },
                 { text: '\n\n' },
                 { text: data.field_3 + '\n\n', style: 'textStyle' },
-                { text: '4. Το εν λόγω ζήτημα έχει αντιμετωπιστεί με νομοθετική ρύθμιση στο παρελθόν; ', decoration: 'underline', style: 'labelStyle' },
+                { text: '4. Το εν λόγω ζήτημα έχει αντιμετωπιστεί με νομοθετική ρύθμιση στο παρελθόν; ', style: 'labelStyle' },
                 { text: '\n\n' },
-                { text: data.field_4 + '\n\n', style: 'textStyle' },
-                { text: '4.1 Ποιο είναι το ισχύον νομικό πλαίσιο που ρυθμίζει το ζήτημα; \n\n', decoration: 'underline', style: 'labelStyle' },
+                valIsUndefined(data.field_4),
+                { text: '\n\n' },
+                { text: '4.1 Ποιο είναι το ισχύον νομικό πλαίσιο που ρυθμίζει το ζήτημα;', style: 'labelStyle' },
+                { text: '\n\n' },
                 { text: data.field_4_comments + '\n\n', style: 'textStyle' },
-                { text: '5. Γιατί δεν είναι δυνατό να αντιμετωπιστεί στο πλαίσιο της υφιστάμενης νομοθεσίας:', decoration: 'underline', style: 'labelStyle' },
+                { text: '5. Γιατί δεν είναι δυνατό να αντιμετωπιστεί στο πλαίσιο της υφιστάμενης νομοθεσίας:', style: 'labelStyle' },
                 { text: '\n\n' },
-                { text: '5.1 με αλλαγή προεδρικού διατάγματος, υπουργικής απόφασης ή άλλης κανονιστικής πράξης; ', decoration: 'underline', style: 'labelStyle' },
+                { text: '5.1 με αλλαγή προεδρικού διατάγματος, υπουργικής απόφασης ή άλλης κανονιστικής πράξης; ', style: 'labelStyle' },
                 { text: '\n\n' },
                 { text: data.field_5_1 + '\n\n', style: 'textStyle' },
                 { text: '5.2 με αλλαγή διοικητικής πρακτικής συμπεριλαμβανομένης της δυνατότητας νέας ερμηνευτικής προσέγγισης της υφιστάμενης νομοθεσίας; ', decoration: 'underline', style: 'labelStyle' },
                 { text: '\n\n' },
                 { text: data.field_5_2 + '\n\n', style: 'textStyle' },
-                { text: '5.3 με διάθεση περισσότερων ανθρώπινων και υλικών πόρων;', decoration: 'underline', style: 'labelStyle' },
+                { text: '5.3 με διάθεση περισσότερων ανθρώπινων και υλικών πόρων;', style: 'labelStyle' },
                 { text: '\n\n' },
                 { text: data.field_5_3 + '\n\n', style: 'textStyle' },
-                { text: '6. Έχετε λάβει υπόψη συναφείς πρακτικές; ', decoration: 'underline', style: 'labelStyle' },
+                { text: '6. Έχετε λάβει υπόψη συναφείς πρακτικές; ', style: 'labelStyle' },
                 { text: '\n\n' },
-                { text: data.field_6 + '\n\n', style: 'textStyle' },
-                { text: '6.1 Σε άλλη/ες χώρα/ες της Ε.Ε. ή του ΟΟΣΑ: ', decoration: 'underline', style: 'labelStyle' },
+                valIsUndefined(data.field_6),
+                { text: '\n\n' },
+                { text: '6.1 Σε άλλη/ες χώρα/ες της Ε.Ε. ή του ΟΟΣΑ: ', style: 'labelStyle' },
                 { text: '\n\n' },
                 { text: data.field_6_1 + '\n\n', style: 'textStyle' },
-                { text: '6.2 Σε όργανα της Ε.Ε.: ', decoration: 'underline', style: 'labelStyle' },
+                { text: '6.2 Σε όργανα της Ε.Ε.: ', style: 'labelStyle' },
                 { text: '\n\n' },
                 { text: data.field_6_2 + '\n\n', style: 'textStyle' },
                 { text: '\n\n' },
-                { text: '6.3 Σε διεθνείς οργανισμούς:', decoration: 'underline', style: 'labelStyle' },
+                { text: '6.3 Σε διεθνείς οργανισμούς:', style: 'labelStyle' },
                 { text: data.field_6_3 + '\n\n', style: 'textStyle' },
+                { text: '\n\n' },
                 { text: '7. Σημειώστε ποιοι από τους στόχους βιώσιμης ανάπτυξης των Ηνωμένων Εθνών επιδιώκονται με την αξιολογούμενη ρύθμιση:', decoration: 'underline', style: 'labelStyle' },
                 { text: '\n\n' },
-                {
-                    columns: [setPdfImage(data.field_7_goal_1), setPdfImage(data.field_7_goal_2), setPdfImage(data.field_7_goal_3), setPdfImage(data.field_7_goal_4), setPdfImage(data.field_7_goal_5)
-                    ], columnGap: 10
-                },
-                {
-                    columns: [setPdfImage(data.field_7_goal_6), setPdfImage(data.field_7_goal_7), setPdfImage(data.field_7_goal_8), setPdfImage(data.field_7_goal_9), setPdfImage(data.field_7_goal_10)
-                    ], columnGap: 10
-                },
-                {
-                    columns: [setPdfImage(data.field_7_goal_11), setPdfImage(data.field_7_goal_12), setPdfImage(data.field_7_goal_13), setPdfImage(data.field_7_goal_14), setPdfImage(data.field_7_goal_15)
-                    ], columnGap: 10
-                },
-                {
-                    columns: [setPdfImage(data.field_7_goal_16), setPdfImage(data.field_7_goal_17)
-                    ], columnGap: 10
-                },
-
-                { text: '8. Ποιοι είναι οι στόχοι της αξιολογούμενης ρύθμισης; ', decoration: 'underline', style: 'labelStyle' },
+                exportColumns(data),
                 { text: '\n\n' },
-                { text: '8.1 βραχυπρόθεσμοι: ', decoration: 'underline', style: 'labelStyle' },
+                { text: '8. Ποιοι είναι οι στόχοι της αξιολογούμενης ρύθμισης; ', style: 'labelStyle' },
+                { text: '\n\n' },
+                { text: '8.1 βραχυπρόθεσμοι: ', style: 'labelStyle' },
                 { text: '\n\n' },
                 { text: data.field_8_1 + '\n\n', style: 'textStyle' },
-                { text: '8.2 μακροπρόθεσμοι: ', decoration: 'underline', style: 'labelStyle' },
                 { text: '\n\n' },
                 { text: data.field_8_2 + '\n\n', style: 'textStyle' },
-                { text: '9. Ειδικότεροι στόχοι ανάλογα με τον τομέα νομοθέτησης ', decoration: 'underline' },
+                { text: '9. Ειδικότεροι στόχοι ανάλογα με τον τομέα νομοθέτησης ', style: 'labelStyle' },
                 { text: '\n\n' },
                 exportStaticTables(table),
-                //createTableFieldNine('ΑΛΛΟΙ ΠΡΟΤΕΙΝΟΜΕΝΟΙ ΔΕΙΚΤΕΣ', req.body.allos_deiktis1, req.body.allos_deiktis1_year1, req.body.allos_deiktis1_year2, req.body.allos_deiktis1_year3, req.body.allos_deiktis1_year4, req.body.allos_deiktis1_year5, '654', '84684'),
                 { text: '\n\n' },
-                { text: '10. Σε περίπτωση που προβλέπεται η χρήση πληροφοριακού συστήματος, ποια θα είναι η συμβολή αυτού στην επίτευξη των στόχων της αξιολογούμενης ρύθμισης:', decoration: 'underline' },
+                { text: '10. Σε περίπτωση που προβλέπεται η χρήση πληροφοριακού συστήματος, ποια θα είναι η συμβολή αυτού στην επίτευξη των στόχων της αξιολογούμενης ρύθμισης:', style: 'labelStyle' },
                 { text: '\n\n' },
                 {
                     columns: [
@@ -346,32 +333,35 @@ exports.exportPDF = (async function (req, res, next) {
                             text: data.field_10_emmesi
                         }]
                 },
-                { text: 'Εάν είναι άμεση, εξηγήστε: ', decoration: 'underline' },
+                { text: 'Εάν είναι άμεση, εξηγήστε: ', style: 'labelStyle' },
                 { text: '\n\n' },
                 { text: data.field_10_amesi_comments + '\n\n' },
-                { text: 'Εάν είναι έμμεση, εξηγήστε: ', decoration: 'underline' },
+                { text: 'Εάν είναι έμμεση, εξηγήστε: ', style: 'labelStyle' },
                 { text: '\n\n' },
                 { text: data.field_10_emmesi_comments + '\n\n' },
-                { text: '11. Το προβλεπόμενο πληροφοριακό σύστημα είναι συμβατό με την εκάστοτε ψηφιακή στρατηγική της χώρας (Βίβλος Ψηφιακού Μετασχηματισμού); ', decoration: 'underline' },
+                { text: '11. Το προβλεπόμενο πληροφοριακό σύστημα είναι συμβατό με την εκάστοτε ψηφιακή στρατηγική της χώρας (Βίβλος Ψηφιακού Μετασχηματισμού); ', style: 'labelStyle' },
                 { text: '\n\n' },
-                { text: data.field_11 + '\n\n' },
-                { text: 'Εξηγήστε: ', decoration: 'underline' },
+                valIsUndefined(data.field_11),
+                { text: '\n\n' },
+                { text: 'Εξηγήστε: ', style: 'labelStyle' },
                 { text: '\n\n' },
                 { text: data.field_11_comments + '\n\n' },
-                { text: '12. Διασφαλίζεται η διαλειτουργικότητα του εν λόγω πληροφοριακού συστήματος με άλλα υφιστάμενα συστήματα; ', decoration: 'underline' },
+                { text: '12. Διασφαλίζεται η διαλειτουργικότητα του εν λόγω πληροφοριακού συστήματος με άλλα υφιστάμενα συστήματα; ', style: 'labelStyle' },
                 { text: '\n\n' },
-                { text: data.field_12 + '\n\n' },
-                { text: 'Εξηγήστε: ', decoration: 'underline' },
+                valIsUndefined(data.field_12),
+                { text: '\n\n' },
+                { text: 'Εξηγήστε: ', style: 'labelStyle' },
                 { text: '\n\n' },
                 { text: data.field_12_comments + '\n\n' },
-                { text: '13. Έχει προηγηθεί μελέτη βιωσιμότητας του προβλεπόμενου πληροφοριακού συστήματος; ', decoration: 'underline' },
+                { text: '13. Έχει προηγηθεί μελέτη βιωσιμότητας του προβλεπόμενου πληροφοριακού συστήματος; ', style: 'labelStyle' },
                 { text: '\n\n' },
-                { text: data.field_13 + '\n\n' },
-                { text: 'Εξηγήστε: ', decoration: 'underline' },
+                valIsUndefined(data.field_13),
+                { text: '\n\n' },
+                { text: 'Εξηγήστε: ', style: 'labelStyle' },
                 { text: '\n\n' },
                 { text: data.field_13_comments + '\n\n' },
 
-                { text: '14. Σύνοψη στόχων κάθε άρθρου ', decoration: 'underline' },
+                { text: '14. Σύνοψη στόχων κάθε άρθρου ', style: 'labelStyle' },
                 { text: '\n\n' },
                 createDynamicTwoColumnTable('Άρθρο', 'Στόχος', field_14_arthro, field_14_stoxos), //create table for field 14                                
 
@@ -384,10 +374,10 @@ exports.exportPDF = (async function (req, res, next) {
                     pageBreak: 'before'
                 },
 
-                { text: 'Στο σχέδιο νόμου ή στην τροπολογία επί του σχεδίου νόμου', style: 'textStyle' },
+                { text: 'Στο σχέδιο νόμου ή στην τροπολογία επί του σχεδίου νόμου', style: 'labelStyle' },
                 { text: '\n\n' },
                 { text: req.body.field_15_sxedio_nomou + '\n\n', style: 'textStyle' },
-                { text: 'του Υπουργείου: ', style: 'textStyle' },
+                { text: 'του Υπουργείου: ', style: 'labelStyle' },
                 { text: '\n\n' },
                 { text: req.body.field_15_ypoyrgeio + '\n\n', style: 'textStyle' },
                 { text: '15.Συνοπτική ανάλυση των άρθρων της αξιολογούμενης ρύθμισης ', style: 'labelStyle' },
@@ -396,12 +386,12 @@ exports.exportPDF = (async function (req, res, next) {
 
                 { text: '16.Οικονομικά αποτελέσματα επί του Κρατικού Προϋπολογισμού ή/και επί του προϋπολογισμού του/των αρμόδιου/ων φορέα/ων ', style: 'labelStyle' },
                 { text: '\n\n' },
-                { text: 'Από τις προτεινόμενες διατάξεις προκαλούνται τα ακόλουθα οικονομικά αποτελέσματα: ', style: 'textStyle' },
+                { text: 'Από τις προτεινόμενες διατάξεις προκαλούνται τα ακόλουθα οικονομικά αποτελέσματα: ', style: 'labelStyle' },
                 { text: '\n\n' },
-                { text: 'Επί του Κρατικού Προϋπολογισμού ', style: 'textStyle' },
+                { text: 'Επί του Κρατικού Προϋπολογισμού ', style: 'labelStyle' },
                 { text: '\n\n' },
                 { text: req.body.field_16_kratikos_proypologismos + '\n\n', style: 'textStyle' },
-                { text: 'Επί του Προϋπολογισμού του/των αρμόδιου/ων φορέα/ων ', style: 'textStyle' },
+                { text: 'Επί του Προϋπολογισμού του/των αρμόδιου/ων φορέα/ων ', style: 'labelStyle' },
                 { text: '\n\n' },
                 { text: req.body.field_16_proypologismos_forea + '\n\n', style: 'textStyle' },
                 { text: 'Ο/Η ΥΠΟΓΡΑΦΩΝ/ΟΥΣΑ ΓΕΝΙΚΟΣ/Η ΔΙΕΥΘΥΝΤΗΣ/ΡΙΑ', style: 'labelStyle' },
@@ -421,17 +411,17 @@ exports.exportPDF = (async function (req, res, next) {
                     pageBreak: 'before'
                 },
 
-                { text: 'Στο σχέδιο νόμου ή στην τροπολογία επί του σχεδίου νόμου', style: 'textStyle' },
+                { text: 'Στο σχέδιο νόμου ή στην τροπολογία επί του σχεδίου νόμου', style: 'labelStyle' },
                 { text: '\n\n' },
                 { text: data.field_17_sxedio_nomou + '\n\n', style: 'textStyle' },
-                { text: 'του Υπουργείου: ', style: 'textStyle' },
+                { text: 'του Υπουργείου: ', style: 'labelStyle' },
                 { text: '\n\n' },
                 { text: data.field_17_ypoyrgeio + '\n\n', style: 'textStyle' },
                 { text: '17.Οικονομικά αποτελέσματα ', style: 'labelStyle' },
                 { text: '\n\n' },
-                { text: data.field_17_oikonomika_apotelesmata + '\n\n\n' }, ,
+                { text: data.field_17_oikonomika_apotelesmata + '\n\n\n', style: 'labelStyle' }, ,
                 { text: 'ΟΙ ΥΠΟΥΡΓΟΙ', style: 'labelStyle' },
-                {text: "\n\n"},
+                { text: "\n\n" },
                 createSignatories(field_17_onoma, field_17_epitheto, field_17_idiotita),
 
 
@@ -458,35 +448,34 @@ exports.exportPDF = (async function (req, res, next) {
                 },
 
                 { text: '22.Διαβούλευση κατά τη διάρκεια της νομοπαρασκευαστικής διαδικασίας από την έναρξη κατάρτισης της αξιολογούμενης ρύθμισης μέχρι την υπογραφή από τους συναρμόδιους Υπουργούς \n\n', style: 'labelStyle' },
-                { text: 'Συνεργασία με άλλα υπουργεία / υπηρεσίες \n\n', style: 'textStyle' },
+                { text: 'Συνεργασία με άλλα υπουργεία / υπηρεσίες \n\n', style: 'labelStyle' },
                 { text: data.field_22_sinergasia_ypoyrgeiwn + '\n\n', style: 'textStyle' },
-                { text: 'Συνεργασία με κοινωνικούς φορείς / Ανεξάρτητες Αρχές \n\n', style: 'textStyle' },
+                { text: 'Συνεργασία με κοινωνικούς φορείς / Ανεξάρτητες Αρχές \n\n', style: 'labelStyle' },
                 { text: data.field_22_sinergasia_forewn_arxwn + '\n\n', style: 'textStyle' },
-                { text: 'Διεθνής διαβούλευση \n\n', style: 'textStyle' },
+                { text: 'Διεθνής διαβούλευση \n\n', style: 'labelStyle' },
                 { text: data.field_22_diethnis_diavouleusi + '\n\n', style: 'textStyle' },
 
                 { text: '23.Σχόλια στο πλαίσιο της διαβούλευσης μέσω της ηλεκτρονικής πλατφόρμας www.opengov.gr (ηλεκτρονική επισύναψη της έκθεσης) \n\n', style: 'labelStyle' },
-                //TODO: field23 uploads
-                { text: 'Επί των γενικών αρχών («επί της αρχής») της αξιολογούμενης ρύθμιση ', style: 'textStyle' },
+                { text: 'Επί των γενικών αρχών («επί της αρχής») της αξιολογούμενης ρύθμιση ', style: 'labelStyle' },
                 { text: '\n\n' },
-                { text: 'Αριθμός συμμετασχόντων ', style: 'textStyle' },
+                { text: 'Αριθμός συμμετασχόντων ', style: 'labelStyle' },
                 { text: '\n\n' },
                 { text: data.field_23_arxes_symmetasxontes + '\n\n', style: 'textStyle' },
-                { text: 'Σχόλια που υιοθετήθηκαν ', style: 'textStyle' },
+                { text: 'Σχόλια που υιοθετήθηκαν ', style: 'labelStyle' },
                 { text: '\n\n' },
                 { text: data.field_23_arxes_sxolia_yiothetithikan + '\n\n', style: 'textStyle' },
-                { text: 'Σχόλια που δεν υιοθετήθηκαν ', style: 'textStyle' },
+                { text: 'Σχόλια που δεν υιοθετήθηκαν ', style: 'labelStyle' },
                 { text: '\n\n' },
                 { text: data.field_23_arxes_sxolia_den_yiothetithikan + '\n\n', style: 'textStyle' },
 
-                { text: 'Επί των άρθρων της αξιολογούμενης ρύθμισης \n\n', style: 'textStyle' },
-                { text: 'Αριθμός συμμετασχόντων ', style: 'textStyle' },
+                { text: 'Επί των άρθρων της αξιολογούμενης ρύθμισης \n\n', style: 'labelStyle' },
+                { text: 'Αριθμός συμμετασχόντων ', style: 'labelStyle' },
                 { text: '\n\n' },
                 { text: data.field_23_arthra_symmetasxontes + '\n\n', style: 'textStyle' },
-                { text: 'Σχόλια που υιοθετήθηκαν ', style: 'textStyle' },
+                { text: 'Σχόλια που υιοθετήθηκαν ', style: 'labelStyle' },
                 { text: '\n\n' },
                 { text: data.field_23_arthra_sxolia_yiothetithikan + '\n\n', style: 'textStyle' },
-                { text: 'Σχόλια που δεν υιοθετήθηκαν ', style: 'textStyle' },
+                { text: 'Σχόλια που δεν υιοθετήθηκαν ', style: 'labelStyle' },
                 { text: '\n\n' },
                 { text: data.field_23_arthra_sxolia_den_yiothetithikan + '\n\n', style: 'textStyle' },
 
@@ -505,46 +494,46 @@ exports.exportPDF = (async function (req, res, next) {
 
                 { text: '25.Ενωσιακό δίκαιο ', style: 'labelStyle' },
                 { text: '\n\n' },
-                { text: 'Πρωτογενές ενωσιακό δίκαιο (συμπεριλαμβανομένου του Χάρτη Θεμελιωδών Δικαιωμάτων) ', style: 'textStyle' },
+                { text: 'Πρωτογενές ενωσιακό δίκαιο (συμπεριλαμβανομένου του Χάρτη Θεμελιωδών Δικαιωμάτων) ', style: 'labelStyle' },
                 { text: '\n\n' },
                 { text: data.field_25_dikaio_comment + '\n\n', style: 'textStyle' },
-                { text: 'Κανονισμός ', style: 'textStyle' },
+                { text: 'Κανονισμός ', style: 'labelStyle' },
                 { text: '\n\n' },
                 { text: data.field_25_kanonismos_comment + '\n\n', style: 'textStyle' },
-                { text: 'Οδηγία ', style: 'textStyle' },
+                { text: 'Οδηγία ', style: 'labelStyle' },
                 { text: '\n\n' },
                 { text: data.field_25_odigia_comment + '\n\n', style: 'textStyle' },
-                { text: 'Απόφαση ', style: 'textStyle' },
+                { text: 'Απόφαση ', style: 'labelStyle' },
                 { text: '\n\n' },
                 { text: data.field_25_apofasi_comment + '\n\n', style: 'textStyle' },
 
-                { text: '26.Συναφείς διατάξεις διεθνών συνθηκών ή συμφωνιών ', style: 'textStyle' },
+                { text: '26.Συναφείς διατάξεις διεθνών συνθηκών ή συμφωνιών ', style: 'labelStyle' },
                 { text: '\n\n' },
-                { text: 'Ευρωπαϊκή Σύμβαση των Δικαιωμάτων του Ανθρώπου ', style: 'textStyle' },
+                { text: 'Ευρωπαϊκή Σύμβαση των Δικαιωμάτων του Ανθρώπου ', style: 'labelStyle' },
                 { text: '\n\n' },
                 { text: data.field_26_antrwpina_dikaiwmata_comment + '\n\n', style: 'textStyle' },
-                { text: 'Διεθνείς συμβάσεις ', style: 'textStyle' },
+                { text: 'Διεθνείς συμβάσεις ', style: 'labelStyle' },
                 { text: '\n\n' },
                 { text: data.field_26_symvaseis_comment + '\n\n', style: 'textStyle' },
 
-                { text: '27.Συναφής νομολογία των ανωτάτων και άλλων εθνικών δικαστηρίων, καθώς και αποφάσεις των Ανεξάρτητων Αρχών ', style: 'textStyle' },
+                { text: '27.Συναφής νομολογία των ανωτάτων και άλλων εθνικών δικαστηρίων, καθώς και αποφάσεις των Ανεξάρτητων Αρχών ', style: 'labelStyle' },
                 { text: '\n\n' },
-                { text: 'Ανώτατο ή άλλο εθνικό δικαστήριο  ', style: 'textStyle' },
+                { text: 'Ανώτατο ή άλλο εθνικό δικαστήριο  ', style: 'labelStyle' },
                 { text: '\n\n' },
                 { text: data.field_27_dikastirio_comment + '\n\n', style: 'textStyle' },
-                { text: 'Ανεξάρτητη Αρχή ', style: 'textStyle' },
+                { text: 'Ανεξάρτητη Αρχή ', style: 'labelStyle' },
                 { text: '\n\n' },
                 { text: data.field_27_arxi_comment + '\n\n', style: 'textStyle' },
 
-                { text: '28.Συναφής ευρωπαϊκή και διεθνής νομολογία', style: 'textStyle' },
+                { text: '28.Συναφής ευρωπαϊκή και διεθνής νομολογία', style: 'labelStyle' },
                 { text: '\n\n' },
-                { text: 'Νομολογία Δικαστηρίου Ε.Ε.', style: 'textStyle' },
+                { text: 'Νομολογία Δικαστηρίου Ε.Ε.', style: 'labelStyle' },
                 { text: '\n\n' },
                 { text: data.field_28_nomologia_comment + '\n\n', style: 'textStyle' },
-                { text: 'Νομολογία Ευρωπαϊκού Δικαστηρίου Δικαιωμάτων του Ανθρώπου', style: 'textStyle' },
+                { text: 'Νομολογία Ευρωπαϊκού Δικαστηρίου Δικαιωμάτων του Ανθρώπου', style: 'labelStyle' },
                 { text: '\n\n' },
                 { text: data.field_28_nomologia_dikaiwmatwn_anthrwpou_comment + '\n\n', style: 'textStyle' },
-                { text: 'Άλλα ευρωπαϊκά ή διεθνή δικαστήρια ή διαιτητικά όργανα ', style: 'textStyle' },
+                { text: 'Άλλα ευρωπαϊκά ή διεθνή δικαστήρια ή διαιτητικά όργανα ', style: 'labelStyle' },
                 { text: '\n\n' },
                 { text: data.field_28_alla_dikastiria_comment + '\n\n', style: 'textStyle' },
 
@@ -598,7 +587,8 @@ exports.exportPDF = (async function (req, res, next) {
                 { text: data.field_35 + '\n\n', style: 'textStyle' },
                 { text: '36. Έχει γίνει η σχετική οικονομοτεχνική μελέτη αναφορικά με τη σύσταση του νέου οργάνου; ', style: 'textStyle' },
                 { text: '\n\n' },
-                { text: data.field_36 + '\n\n', style: 'textStyle' },
+                valIsUndefined(data.field_36),
+                { text: '\n\n' },
                 { text: 'Στοιχεία νέου νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας υπηρεσίας', style: 'labelStyle' },
                 { text: '\n\n' },
                 { text: '37.Επωνυμία ή ονομασία και νομική μορφή', style: 'textStyle' },
@@ -622,7 +612,7 @@ exports.exportPDF = (async function (req, res, next) {
                     tocMargin: [20, 0, 0, 0],
                     pageBreak: 'before'
                 },
-                {text: "\n\n"},
+                { text: "\n\n" },
                 createSignatories(minister_name, minister_surname, ministry),
 
                 {
@@ -636,7 +626,6 @@ exports.exportPDF = (async function (req, res, next) {
             ]
         ]
     };
-    console.log(data.title);
     var pdfDoc = printer.createPdfKitDocument(docDefinition);
     var pdf_name = data.pdf_name + '.pdf';
     //pdf_name = pdf_name.replace(/\s+/g, '');
@@ -646,7 +635,7 @@ exports.exportPDF = (async function (req, res, next) {
     pdfDoc.pipe(fs.createWriteStream(pdf_path));
     pdfDoc.end();
     await new Promise(resolve => setTimeout(resolve, 1000));//add some extra delay
-    
+
     try {
         let entry = await database.ekthesi.findOne({
             where: {
@@ -657,24 +646,24 @@ exports.exportPDF = (async function (req, res, next) {
         merger.add(pdf_path);
         if (entry.dataValues.field_21_upload) {
             for (i in entry.dataValues.field_21_upload) {
-                
-                merger.add('public/uploads/' + entry.field_21_upload[i]);                
-                
-            }    
+
+                merger.add('public/uploads/' + entry.field_21_upload[i]);
+
+            }
         }
         if (entry.dataValues.field_23_upload) {
             for (i in entry.dataValues.field_23_upload) {
-                
-                merger.add('public/uploads/' + entry.field_23_upload[i]);                
-                
-            }    
+
+                merger.add('public/uploads/' + entry.field_23_upload[i]);
+
+            }
         }
         if (entry.dataValues.field_36_upload) {
             for (i in entry.dataValues.field_36_upload) {
-                
-                merger.add('public/uploads/' + entry.field_36_upload[i]);                
-                
-            }    
+
+                merger.add('public/uploads/' + entry.field_36_upload[i]);
+
+            }
         }
         await merger.save(pdf_path); //save under given name
         // merger.add('./public/pdf_exports/' + pdf_name);
@@ -694,17 +683,46 @@ exports.exportPDF = (async function (req, res, next) {
 
 })
 
+////////////////////////FUNCTIONS////////////////////////////////
 
-function setPdfImage(fieldName) {
+function valIsUndefined(val) {
+    let typeOfVal = typeof val === "undefined" ? {} : { text: val + '\n\n', style: 'textStyle' };
+    return (val);
+}
+
+function exportColumns(data) {
+    var columns = [];
+    columns.push( {
+        columns: [setGoalImage(data.field_7_goal_1, 'goal-1'), setGoalImage(data.field_7_goal_2, 'goal-2'), setGoalImage(data.field_7_goal_3, 'goal-3'), setGoalImage(data.field_7_goal_4, 'goal-4'), setGoalImage(data.field_7_goal_5, 'goal-5')
+        ], columnGap: 10
+    },
+    {
+        columns: [setGoalImage(data.field_7_goal_6, 'goal-6'), setGoalImage(data.field_7_goal_7, 'goal-7'), setGoalImage(data.field_7_goal_8, 'goal-8'), setGoalImage(data.field_7_goal_9, 'goal-9'), setGoalImage(data.field_7_goal_10, 'goal-10')
+        ], columnGap: 10
+    },
+    {
+        columns: [setGoalImage(data.field_7_goal_11, 'goal-11'), setGoalImage(data.field_7_goal_12, 'goal-12'), setGoalImage(data.field_7_goal_13, 'goal-13'), setGoalImage(data.field_7_goal_14, 'goal-14'), setGoalImage(data.field_7_goal_15, 'goal-15')
+        ], columnGap: 10
+    },
+    {
+        columns: [setGoalImage(data.field_7_goal_16, 'goal-16'), setGoalImage(data.field_7_goal_17, 'goal-17')
+        ], columnGap: 10
+    });
+    return columns;
+}
+
+function setGoalImage(fieldName,img) {
+
+    let image = `./public/img/gr-${img}.jpg`
     if (fieldName) {
         return ({
-            image: './public/img/gr-' + fieldName + '.jpg',
+            image: image,
             width: 100,
             height: 100
         });
     } else {
         return ({
-            image: './public/img/gr-goal-9.jpg',
+            image: image,
             width: 100,
             height: 100,
             opacity: 0.3
@@ -861,7 +879,7 @@ function createSignatories(fname, lname, position) {
                 signatories.push({
                     columns:
                         [{ text: Object.values(fname[i - 1]) + ' ' + Object.values(lname[i - 1]) + '\n\n\n\n\n' + Object.values(position[i - 1]), style: 'signatoryStyle', alignment: 'center' },
-                         { text: Object.values(fname[i]) + ' ' + Object.values(lname[i]) + '\n\n\n\n\n' + Object.values(position[i]), style: 'signatoryStyle', alignment: 'center' },
+                        { text: Object.values(fname[i]) + ' ' + Object.values(lname[i]) + '\n\n\n\n\n' + Object.values(position[i]), style: 'signatoryStyle', alignment: 'center' },
                         ], columnGap: 15, width: '*'
                 })
             } else {
