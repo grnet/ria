@@ -419,7 +419,7 @@ exports.exportPDF = (async function (req, res, next) {
                 { text: data.field_17_ypoyrgeio + '\n\n', style: 'textStyle' },
                 { text: '17.Οικονομικά αποτελέσματα ', style: 'labelStyle' },
                 { text: '\n\n' },
-                { text: data.field_17_oikonomika_apotelesmata + '\n\n\n', style: 'labelStyle' }, ,
+                { text: data.field_17_oikonomika_apotelesmata + '\n\n\n', style: 'textStyle' }, ,
                 { text: 'ΟΙ ΥΠΟΥΡΓΟΙ', style: 'labelStyle' },
                 { text: "\n\n" },
                 createSignatories(field_17_onoma, field_17_epitheto, field_17_idiotita),
@@ -725,7 +725,7 @@ function setGoalImage(fieldName,img) {
             image: image,
             width: 100,
             height: 100,
-            opacity: 0.3
+            opacity: 0.15
         });
     }
 }
