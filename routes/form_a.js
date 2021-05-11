@@ -333,7 +333,7 @@ routes.put('/:entry_id', authUser, upload,
                     }
                 });
 
-                console.log(ministry+'\n'+minister_surname+'\n'+minister_name)
+                console.log(ministry + '\n' + minister_surname + '\n' + minister_name)
                 await database.ekthesi.update({
                     field_14_arthro: field_14_arthro, field_14_stoxos: field_14_stoxos, field_17_onoma: field_17_onoma, field_17_epitheto: field_17_epitheto, field_17_idiotita: field_17_idiotita, minister_name: minister_name, minister_surname: minister_surname, ministry: ministry,
                     field_29_diatakseis_rythmisis: field_29_diatakseis_rythmisis, field_29_yfistamenes_diatakseis: field_29_yfistamenes_diatakseis, field_30_diatakseis_katargisi: field_30_diatakseis_katargisi, field_30_katargoumenes_diatakseis: field_30_katargoumenes_diatakseis,
@@ -379,9 +379,33 @@ routes.put('/:entry_id/delete_file', authUser, async (req, res, next) => {
     entry = entry.dataValues;
     console.log(req.body.deleted_file)
 
-    let filePath = 'public/uploads/' + req.body.deleted_file;
+    let filePath = `public/uploads/${req.body.deleted_file}`;
     console.log(filePath)
+    console.log(entry.id)
     try {
+
+        if (entry.field_21_upload.includes(req.body.deleted_file)) {
+            console.log('f21\n'+entry.field_21_upload.indexOf(req.body.deleted_file));
+            let index21 = entry.field_21_upload.indexOf(req.body.deleted_file)//find index of file to be deleted
+            entry.field_21_upload.splice(index21, 1)//delete position of index, count 1
+            console.log(entry.field_21_upload)
+            await database.ekthesi.update({ field_21_upload: entry.field_21_upload }, { where: { id: entry.id } })
+            console.log('11111')
+        } else if (entry.field_23_upload.includes(req.body.deleted_file)) {
+            console.log('f23\n'+entry.field_23_upload.indexOf(req.body.deleted_file));
+            let index23 = entry.field_23_upload.indexOf(req.body.deleted_file)//find index of file to be deleted
+            entry.field_23_upload.splice(index23, 1)//delete position of index, count 1
+            console.log(entry.field_23_upload)
+            await database.ekthesi.update({ field_23_upload: entry.field_23_upload }, { where: { id: entry.id } })
+            console.log('22222')
+        } else if (entry.field_36_upload.includes(req.body.deleted_file)) {
+            console.log('f36\n'+entry.field_36_upload.indexOf(req.body.deleted_file));
+            let index36 = entry.field_36_upload.indexOf(req.body.deleted_file)//find index of file to be deleted
+            entry.field_36_upload.splice(index36, 1)//delete position of index, count 1
+            console.log(entry.field_36_upload)
+            await database.ekthesi.update({ field_36_upload: entry.field_36_upload }, { where: { id: entry.id } })
+            console.log('33333')
+        }
         fs.unlink(filePath, async function (err) {
             if (err && err.code == 'ENOENT') {
                 // file doens't exist
@@ -393,19 +417,6 @@ routes.put('/:entry_id/delete_file', authUser, async (req, res, next) => {
                 res.sendStatus(403);
             } else {
                 console.info(`removed`);
-                if (entry.field_21_upload.indexOf(req.body.deleted_file)) {
-                    let index21 = entry.field_21_upload.indexOf(req.body.deleted_file)//find index of file to be deleted
-                    entry.field_21_upload.splice(index21, 1)//delete position of index, count 1
-                    await database.ekthesi.update({ field_21_upload: entry.field_21_upload }, { where: { id: entry.id } })
-                } else if (entry.field_23_upload.indexOf(req.body.deleted_file)) {
-                    let index23 = entry.field_23_upload.indexOf(req.body.deleted_file)//find index of file to be deleted
-                    entry.field_23_upload.splice(index23, 1)//delete position of index, count 1
-                    await database.ekthesi.update({ field_23_upload: entry.field_23_upload }, { where: { id: entry.id } })
-                } else if (entry.field_36_upload.indexOf(req.body.deleted_file)) {
-                    let index36 = entry.field_36_upload.indexOf(req.body.deleted_file)//find index of file to be deleted
-                    entry.field_36_upload.splice(index36, 1)//delete position of index, count 1
-                    await database.ekthesi.update({ field_36_upload: entry.field_36_upload }, { where: { id: entry.id } })
-                }
                 res.sendStatus(200);
             }
         })

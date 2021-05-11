@@ -936,9 +936,8 @@
                         var fd = new FormData($("form").get(0));
                         var checkbox = $("form").find("input[type=checkbox]:not(:checked)");//find all unchecked checkboxes 
                         $.each(checkbox, function (key, chckbx) {
-                            fd.append($(chckbx).prop('name'), $(chckbx).value = 'off')//append to fd without value 
+                            fd.append($(chckbx).prop('name'), $(chckbx).value = '')//append to fd without value 
                         });
-                        console.log(checkbox)
                         $.ajax({
                             url: '/form_a/' + ekthesi_id,
                             //data: $("form").serialize(),
@@ -1061,7 +1060,7 @@
                                 error: function (error) {
                                     console.log(error);
                                     $.each(textareas, () => {
-                                    $(textareas).prop("disabled", true);
+                                        $(textareas).prop("disabled", true);
                                     });//enable fields to be passed down to req.body to be exported
                                     $.each(inputs, () => {
                                         $(inputs).prop("disabled", true);
@@ -1069,7 +1068,7 @@
                                 },
                                 success: function (data) {
                                     $.each(textareas, () => {
-                                    $(textareas).prop("disabled", true);
+                                        $(textareas).prop("disabled", true);
                                     });//enable fields to be passed down to req.body to be exported
                                     $.each(inputs, () => {
                                         $(inputs).prop("disabled", true);
@@ -1338,6 +1337,15 @@
                                 }
                             }
                         }
+
+                        if (role === "Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων" || role === "Βουλευτής") {
+                            if ($('#status_ekthesis').val() === "Ολοκληρώθηκε") {
+                                $("#edit_form :input").prop("disabled", true);
+                                enableFields(".next");
+                                enableFields(".previous");                        
+                                $(".export-pdf").prop("disabled", false);
+                            }
+                        }
                     }
 
 
@@ -1380,13 +1388,7 @@
 
                         }
                     }
-
-                    if (role === "Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων" || role === "Βουλευτής") {
-                        if ($('#status_ekthesis').val() === "Ολοκληρώθηκε") {
-                            $("#edit_form").prop("disabled", true);
-                        }
-                    }
-
+                
                     function submitVisibility() {
                         if ($("#egkrisi_aksiologisis_nomoparaskeyastikis").prop("checked") && $("#egkrisi_kalis_nomothetisis").prop("checked") && $("#egkrisi_dieuthinsis_nomoparaskeyastikis").prop("checked") && $("#egkrisi_genikou_grammatea").prop("checked")) {
                             $(".create-new").prop("disabled", false);
@@ -2228,6 +2230,7 @@
                     }
 
                     function requiredDigitalGov(field) {
+                        //if ($(field).prop("checked") && $('#status_ekthesis').val() !== "Οριστικοποιήθηκε") {
                         if ($(field).prop("checked")) {
                             enableFields($('.digital_gov :input'));
                             addLabelClass($('.digital_gov'));
@@ -2412,6 +2415,7 @@
                                 },
                                 success: function (data) {
                                     $(bttn).closest('tr').remove();
+                                    location.reload(true);
                                 },
                                 type: 'PUT'
                             });
