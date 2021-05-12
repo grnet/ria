@@ -34,21 +34,23 @@
                         <fieldset id="arxiki">
 
                             <h2>Ανάλυση Συνεπειών Ρύθμισης</h2>
-                            <br>                                            
+                            <br>
 
-                            <div >
+                            <div>
                                 <h4 id="subtitle"></h4>
                                 <br>
                                 <p id="subtext"></p>
                                 <br>
                                 <hr>
                             </div>
-
+                            <br>
+                            <button class="btn delete-analysis float-right" style="float: right;" type="button"><img src="/img/delete.png" width="25px"></button>
                             <br>
                             <input type="button" name="convert" class="convert" style="display: none; float: right;"
                                 value="Μετατροπή" />
-                            <br><br><br>
-
+                            <br><br>
+                            
+                            <br>
                             <div class="form-group row">
                                 <label for="title" class="required col-sm-6 col-form-label">Τίτλος αξιολογούμενης
                                     ρύθμισης</label>
@@ -278,7 +280,8 @@
                             <h2>Συναφείς πρακτικές</h2>
                             <br>
                             <div class="checkbox-group form-group row">
-                                <label for="field_6" class="required col-sm-8 col-form-label">6. Έχετε λάβει υπόψη συναφείς πρακτικές;</label>
+                                <label for="field_6" class="required col-sm-8 col-form-label">6. Έχετε λάβει υπόψη
+                                    συναφείς πρακτικές;</label>
                                 <select id="field_6" name="field_6" class="col-sm-2 form-control">
                                     <option selected disabled>Eπιλογή</option>
                                     <option value="Ναι">Ναι</option>
@@ -694,7 +697,8 @@
                                                         name="field_14_stoxos<%=i%>" rows="1"
                                                         onkeypress="wordsCounter('field_14_stoxos<%=i%>','words14_<%=i%>', event)"
                                                         onpaste="wordsCounter('field_14_stoxos<%=i%>','words14_<%=i%>', event)"><%= Object.values(data.field_14_stoxos[i]) %></textarea>
-                                                    <p style="float: right;">Λέξεις: <span id="words14_<%=i%>"></span></p>
+                                                    <p style="float: right;">Λέξεις: <span id="words14_<%=i%>"></span>
+                                                    </p>
                                                     <br><br>
                                                     <button class="btn remove float-right" type="button"><img
                                                             src="/img/delete.png" width="20px"></button>
@@ -929,7 +933,7 @@
                     //TODO: update to FormData
                     function updateForm(ev) {
                         ev.preventDefault();
-                        var inputs = $("form").find("input:disabled");                            
+                        var inputs = $("form").find("input:disabled");
                         $.each(inputs, () => {
                             $(inputs).prop("disabled", false);
                         });
@@ -990,18 +994,20 @@
 
                     $(".delete-analysis").on("click", function (ev) {
                         ev.preventDefault();
-                        $.ajax({
-                            url: `/form_a/${ekthesi_id}/delete_analysis`,
-                            error: function (error) {
-                                console.log(error);
-                            },
-                            success: function (data) {
-                                window.location.href = "/user_views/history";
-                            },
-                            type: 'DELETE'
-                        });
-
-                    });    
+                        answer = window.confirm("Είστε σίγουροι ότι θέλετε να διαγράψετε την ανάλυση;");
+                        if (answer) {
+                            $.ajax({
+                                url: `/form_a/${ekthesi_id}/delete_analysis`,
+                                error: function (error) {
+                                    console.log(error);
+                                },
+                                success: function (data) {
+                                    window.location.href = "/user_views/history";
+                                },
+                                type: 'DELETE'
+                            });
+                        }
+                    });
 
                     $(".save_temporarily").on("click", function (ev) {
                         // var validationFlag;
@@ -1028,10 +1034,10 @@
                     });
 
                     $(".export-pdf").on("click", function (ev) {
-                        ev.preventDefault();     
+                        ev.preventDefault();
                         var pdf_name = prompt("Παρακαλώ εισάγετε το όνομα του PDF");
                         if (pdf_name) {
-                            $("#pdf_name").val(pdf_name);                            
+                            $("#pdf_name").val(pdf_name);
                             var inputs = $("form").find("input:disabled");
                             var textareas = $("form").find("textarea:disabled");//find all textareas            
                             $.each(textareas, () => {
@@ -1044,7 +1050,7 @@
                             $("#forologiki_politiki").prop("checked") ? $(".oikonomia :input").prop('disabled', false) : $(".oikonomia :input").prop('disabled', true)
                             $("#koinoniki_politiki").prop("checked") ? $(".koinoniki-politiki :input").prop('disabled', false) : $(".koinoniki-politiki :input").prop('disabled', true)
                             $("#dimosia_dioikisi").prop("checked") ? $(".dimosia-dioikisi :input").prop('disabled', false) : $(".dimosia-dioikisi :input").prop('disabled', true)
-                            $("#anaptiksi").prop("checked") ? $(".ependyseis :input").prop('disabled', false) : $(".ependyseis :input").prop('disabled', true)                            
+                            $("#anaptiksi").prop("checked") ? $(".ependyseis :input").prop('disabled', false) : $(".ependyseis :input").prop('disabled', true)
                             var fd = new FormData($("form").get(0));
                             var checkbox = $("form").find("input[type=checkbox]:not(:checked)");//find all unchecked checkboxes 
                             $.each(checkbox, function (key, chckbx) {
@@ -1072,24 +1078,24 @@
                                     });//enable fields to be passed down to req.body to be exported
                                     $.each(inputs, () => {
                                         $(inputs).prop("disabled", true);
-                                    });        
+                                    });
                                     $("#pdf_download").html(`Το τελευταίο αποθηκευμένο PDF
                                     βρίσκεται <a href="/pdf_exports/${pdf_name}.pdf">εδώ</a>.`)
                                     $("#pdf_download").show();
                                 },
                                 type: 'POST'
-                            })    
+                            })
                         } else if (pdf_name === "") {
-                            alert("Το όνομα του PDF δεν πρέπει να είναι κενό!")    
-                        }                       
-                        
+                            alert("Το όνομα του PDF δεν πρέπει να είναι κενό!")
+                        }
+
                         //.then(function () {
                         // return download(blob, title + ".pdf");//download pdf from browser
                         // });
                     });
 
                     $(document).ready(function () {
-                        
+
                         if (pdf_exists == true) {
                             $("#pdf_download").show();
                         }
@@ -1216,17 +1222,17 @@
                         var field_18 = `<%= data.field_18_comments%>`
                         if (field_18) {
                             $('#field_18_comments').val(field_18);
-                        }                        
+                        }
 
-                        var field_19 = `<%= data.field_19_comments %>`                        
+                        var field_19 = `<%= data.field_19_comments %>`
                         if (field_19) {
                             $('#field_19_comments').val(field_19);
-                        }                        
+                        }
 
-                        var field_20 = `<%= data.field_20_comments %>`                        
+                        var field_20 = `<%= data.field_20_comments %>`
                         if (field_20) {
                             $('#field_20_comments').val(field_20);
-                        }  
+                        }
 
                         var spans = $('span');//find all spans
                         $.each(spans, function (key, field) {
@@ -1292,61 +1298,59 @@
                         if ($("#last_updated").val() == '') {
                             getFullDate("#last_updated");
                         }
-
                         if ($('#uploads_36 tbody tr').length > 0) {
                             $('#field_36').prop('selectedIndex', 1);
                             $('#uploads_36_wrap').show()
                         }
 
                         setDropdown();
-                    
 
-                    var tables = '<%= JSON.stringify(tables) %>';
-                    if (tables) {
-                        tables = tables.replace(/\\n/g, "\\n")
-                            .replace(/&#34;/g, '"')
-                            .replace(/\\'/g, "\\'")
-                            .replace(/\\"/g, '\\"')
-                            .replace(/\\&/g, "\\&")
-                            .replace(/\\r/g, "\\r")
-                            .replace(/\\t/g, "\\t")
-                            .replace(/\\b/g, "\\b")
-                            .replace(/\\f/g, "\\f")
-                            .replace(/\\n/g, '');
-                        tables = JSON.parse(tables);
-                        var prefix;
+                        var tables = '<%= JSON.stringify(tables) %>';
+                        if (tables) {
+                            tables = tables.replace(/\\n/g, "\\n")
+                                .replace(/&#34;/g, '"')
+                                .replace(/\\'/g, "\\'")
+                                .replace(/\\"/g, '\\"')
+                                .replace(/\\&/g, "\\&")
+                                .replace(/\\r/g, "\\r")
+                                .replace(/\\t/g, "\\t")
+                                .replace(/\\b/g, "\\b")
+                                .replace(/\\f/g, "\\f")
+                                .replace(/\\n/g, '');
+                            tables = JSON.parse(tables);
+                            var prefix;
 
-                        for (var i in tables.checkbox_tables) {
-                            for (var j in tables.checkbox_tables[i].row[0].checkbox) {
-                                var cbxname = (Object.keys(tables.checkbox_tables[i].row[0].checkbox[j]));//get key
-                                var cbxvalue = (Object.values(tables.checkbox_tables[i].row[0].checkbox[j]));//returns array
-                                if (cbxvalue[0]) {
-                                    $("input[name='" + cbxname + "']").prop("checked", true);//if value check target checkbox    
-                                }
-                            }
-                        }
-
-                        for (var i in tables.static_tables) {
-                            for (var j in tables.static_tables[i].table) {
-                                for (var k in tables.static_tables[i].table[j].row) {
-                                    var sttcname = (Object.keys(tables.static_tables[i].table[j].row[k]));
-                                    var sttcvalue = (Object.values(tables.static_tables[i].table[j].row[k]));
-                                    if (sttcvalue[0]) {
-                                        $("input[name='" + sttcname + "']").prop("value", sttcvalue);    
+                            for (var i in tables.checkbox_tables) {
+                                for (var j in tables.checkbox_tables[i].row[0].checkbox) {
+                                    var cbxname = (Object.keys(tables.checkbox_tables[i].row[0].checkbox[j]));//get key
+                                    var cbxvalue = (Object.values(tables.checkbox_tables[i].row[0].checkbox[j]));//returns array
+                                    if (cbxvalue[0]) {
+                                        $("input[name='" + cbxname + "']").prop("checked", true);//if value check target checkbox    
                                     }
                                 }
                             }
-                        }
 
-                        if (role === "Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων" || role === "Βουλευτής") {
-                            if ($('#status_ekthesis').val() === "Ολοκληρώθηκε") {
-                                $("#edit_form :input").prop("disabled", true);
-                                enableFields(".next");
-                                enableFields(".previous");                        
-                                $(".export-pdf").prop("disabled", false);
+                            for (var i in tables.static_tables) {
+                                for (var j in tables.static_tables[i].table) {
+                                    for (var k in tables.static_tables[i].table[j].row) {
+                                        var sttcname = (Object.keys(tables.static_tables[i].table[j].row[k]));
+                                        var sttcvalue = (Object.values(tables.static_tables[i].table[j].row[k]));
+                                        if (sttcvalue[0]) {
+                                            $("input[name='" + sttcname + "']").prop("value", sttcvalue);
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (role === "Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων" || role === "Βουλευτής") {
+                                if ($('#status_ekthesis').val() === "Ολοκληρώθηκε") {
+                                    $("#edit_form :input").prop("disabled", true);
+                                    enableFields(".next");
+                                    enableFields(".previous");
+                                    $(".export-pdf").prop("disabled", false);
+                                }
                             }
                         }
-                    }
 
 
                         if ($('#status_ekthesis').val() === "Κατατέθηκε") {
@@ -1368,27 +1372,27 @@
                             document.getElementById(spanId).innerHTML = counter.words.toString();
                         })
                     }
-                    
+
                     function onSubmitStatus() {
 
-                        if (role === "Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων" || role === "Βουλευτής") {
+                        if ((role === "Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων" || role === "Βουλευτής") || (role === "Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)" && $('#status_ekthesis').val("Συντάσσεται"))) {
                             $('#status_ekthesis').val("Ολοκληρώθηκε");
                         } else if (role === "Επιτροπή Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)" || role === "Γραφείο Καλής Νομοθέτησης (ΓΓΝΚΘ)" || role === "Διεύθυνση Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)") {
                             if ($("#egkrisi_aksiologisis_nomoparaskeyastikis").prop("checked") && $("#egkrisi_kalis_nomothetisis").prop("checked") && $("#egkrisi_dieuthinsis_nomoparaskeyastikis").prop("checked") && $("#egkrisi_genikou_grammatea").prop("checked")) {
                                 $('#status_ekthesis').val("Οριστικοποιήθηκε");
                             }
                         } else if (role === "Γενικός Γραμματέας Νομικών και Κοινοβουλευτικών Θεμάτων") {
-                            if ($('#status_ekthesis').val() === "Οριστικοποιήθηκε" && ($("#signed_pdf tbody>tr").length > 0 || $('#signed_pdf_upload').get(0).files.length > 0)) {                                
+                            if ($('#status_ekthesis').val() === "Οριστικοποιήθηκε" && ($("#signed_pdf tbody>tr").length > 0 || $('#signed_pdf_upload').get(0).files.length > 0)) {
                                 $('#status_ekthesis').prop("disabled", false);
                                 $('#status_ekthesis').val("Κατατέθηκε");
-                                
+
                             } else if ($("#egkrisi_aksiologisis_nomoparaskeyastikis").prop("checked") && $("#egkrisi_kalis_nomothetisis").prop("checked") && $("#egkrisi_dieuthinsis_nomoparaskeyastikis").prop("checked") && $("#egkrisi_genikou_grammatea").prop("checked")) {
                                 $('#status_ekthesis').val("Οριστικοποιήθηκε");
                             }
 
                         }
                     }
-                
+
                     function submitVisibility() {
                         if ($("#egkrisi_aksiologisis_nomoparaskeyastikis").prop("checked") && $("#egkrisi_kalis_nomothetisis").prop("checked") && $("#egkrisi_dieuthinsis_nomoparaskeyastikis").prop("checked") && $("#egkrisi_genikou_grammatea").prop("checked")) {
                             $(".create-new").prop("disabled", false);
@@ -1397,11 +1401,19 @@
                         }
                     }
 
+                    if (role === "Συντάκτης επισπεύδοντος Υπουργείου") {
+                        if ($("#status_ekthesis").val() != "Συντάσσεται") {
+                            optionalFields("#edit_form :input");
+                            enableFields(".next");
+                            enableFields(".previous");
+                        }
+                    }
+
                     if ($('#status_ekthesis').val() === "Οριστικοποιήθηκε") {
                         $("#edit_form :input").prop("disabled", true);
                         //$("#edit_form :input[type=checkbox]").prop("disable",true);
                     }
-                    
+
                     if ((role === "Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)" && $("#pdf_download").prop("hidden") === false && $('#status_ekthesis').val() === "Οριστικοποιήθηκε") || ($('#status_ekthesis').val() === "Οριστικοποιήθηκε" && role === "Γενικός Γραμματέας Νομικών και Κοινοβουλευτικών Θεμάτων")) {
                         $("#signed_pdf_div").show();
                         $("#pdf_download").prop("disabled", false);
@@ -1424,6 +1436,9 @@
                             $("#title").prop('value', 'Αντίγραφο - ' + $("#title").val());
                             // $("#title").prop('value', $("#title").val() + ' - Πρώην ' + $(analysis).val());
                         }
+                        $("#status_ekthesis").val("Συντάσσεται");
+                        getFullDate($("#initial_submit"));
+                        getFullDate("#last_updated");
                     }
 
                     function getFullDate(fieldId) {
@@ -1477,7 +1492,7 @@
                         }
                         console.log($("#status_ekthesis").val())
                     });
-                    
+
 
                     //row counter
                     var table14RowIndex;
@@ -2019,7 +2034,7 @@
 
                     //console.log("analysis-> "+analysis); // log analysis type
                     if (analysis == "Κατευθυντήριες γραμμές") {
-                        
+
                         $("#subtitle").html("«Προκαταρκτική Ανάλυση Συνεπειών Ρύθμισης»");
                         $("#subtext").html(` Σύμφωνα με την παρ. 1 του άρθρου 63 του ν. 4622/2019 «Ο Υπουργός δύναται να υποβάλει στην Γενική Γραμματεία Νομικών και Κοινοβουλευτικών Θεμάτων: […] β) τις κατευθυντήριες γραμμές του σχεδίου νόμου μαζί με όποιο στοιχείο θεωρεί αναγκαίο να συμπεριληφθεί στην Ανάλυση Συνεπειών Ρύθμισης». <br>
                             Στο «εγχειρίδιο νομοπαρασκευαστικής μεθοδολογίας»  αναφέρεται ότι: <br>
@@ -2038,7 +2053,7 @@
                         $("#pdf_download").prop("disabled", false);
                         $(".export-pdf").prop("disabled", false);
                         $("#signed_pdf_upload").prop("disabled", false);
-                        
+
                         optionalFieldsClassRemoval("mostly-optional-label", "required");
                         optionalFieldsClassRemoval("optional-label", "required");
                         optionalFieldsClassRemoval("field-23-label", "required");
@@ -2059,24 +2074,24 @@
                         optionalFieldsClassRemoval("mostly-optional-label", "required");
 
                     } else if (analysis == "Επείγον ή κατεπείγον νομοσχέδιο" || analysis == "Διεθνείς συμβάσεις" || analysis == "Τροπολογίες Υπουργών") {
-                        
-                        switch(analysis) {
+
+                        switch (analysis) {
                             case "Επείγον ή κατεπείγον νομοσχέδιο":
                                 $("#subtitle").html("«Συνοπτική Ανάλυση Συνεπειών Ρύθμισης»");
                                 $("#subtext").html(`Σύμφωνα με την παρ. 3 του άρθρου 85 του Κανονισμού της Βουλής, εάν ένα νομοσχέδιο έχει χαρακτηρισθεί από την Κυβέρνηση ως επείγον ή κατεπείγον «απαιτείται να συνοδεύεται από συνοπτική Ανάλυση Συνεπειών Ρύθμισης που συμπεριλαμβάνει κατ’ ελάχιστον τις ανωτέρω ενότητες (α) και (ε), καθώς και στοιχεία από τις ενότητες (β) και (δ)», δηλαδή την αιτιολογική έκθεση και τον πίνακα τροποποιούμενων ή καταργούμενων διατάξεων, καθώς και στοιχεία της έκθεσης γενικών συνεπειών και της έκθεσης νομιμότητας. <br>
-                                    Επίσης, στην περίπτωση νομοσχεδίου που συνεπάγεται επιβάρυνση του κρατικού προϋπολογισμού (βλ. παρ. 5 του άρθρου 88 του Κανονισμού της Βουλής), η Ανάλυση Συνεπειών Ρύθμισης πρέπει να ενσωματώνει: «την έκθεση του άρθρου 75 παρ. 1 του Συντάγματος από το Γενικό Λογιστήριο του Κράτους, η οποία προσδιορίζει τη δημοσιονομική επίπτωση επί του Προϋπολογισμού από τις διατάξεις της ρύθμισης, όπως επίσης, ανάλογα με το περιεχόμενό του, α) την ειδική έκθεση του αρμόδιου Υπουργού και του Υπουργού Οικονομικών που προβλέπει το άρθρο 75 παρ. 3 του Συντάγματος και β) τη γνωμοδότηση του Ελεγκτικού Συνεδρίου που ορίζει το άρθρο 73 παρ. 2 του Συντάγματος.». `);            
-                            break;
+                                    Επίσης, στην περίπτωση νομοσχεδίου που συνεπάγεται επιβάρυνση του κρατικού προϋπολογισμού (βλ. παρ. 5 του άρθρου 88 του Κανονισμού της Βουλής), η Ανάλυση Συνεπειών Ρύθμισης πρέπει να ενσωματώνει: «την έκθεση του άρθρου 75 παρ. 1 του Συντάγματος από το Γενικό Λογιστήριο του Κράτους, η οποία προσδιορίζει τη δημοσιονομική επίπτωση επί του Προϋπολογισμού από τις διατάξεις της ρύθμισης, όπως επίσης, ανάλογα με το περιεχόμενό του, α) την ειδική έκθεση του αρμόδιου Υπουργού και του Υπουργού Οικονομικών που προβλέπει το άρθρο 75 παρ. 3 του Συντάγματος και β) τη γνωμοδότηση του Ελεγκτικού Συνεδρίου που ορίζει το άρθρο 73 παρ. 2 του Συντάγματος.». `);
+                                break;
                             case "Διεθνείς συμβάσεις":
                                 $("#subtitle").html("«Συνοπτική Ανάλυση Συνεπειών Ρύθμισης»");
                                 $("#subtext").html(`Προσθήκη εισαγωγικού κειμένου μετά τον νέο υπότιτλο: Η κύρωση μιας διεθνούς σύμβασης εμπίπτει στο πεδίο εφαρμογής των ειδικών νομοθετικών διαδικασιών (βλ. άρθρο 112 του Κανονισμού της Βουλής) και ως εκ τούτου, σύμφωνα με την παρ. 3 του άρθρου 85 του Κανονισμού της Βουλής, το κυρωτικό νομοσχέδιο «απαιτείται να συνοδεύεται από συνοπτική Ανάλυση Συνεπειών Ρύθμισης που συμπεριλαμβάνει κατ’ ελάχιστον τις ανωτέρω ενότητες (α) και (ε), καθώς και στοιχεία από τις ενότητες (β) και (δ)», δηλαδή την αιτιολογική έκθεση και τον πίνακα τροποποιούμενων ή καταργούμενων διατάξεων, καθώς και στοιχεία της έκθεσης γενικών συνεπειών και της έκθεσης νομιμότητας. <br>
                                     Επίσης, στην περίπτωση νομοσχεδίου που συνεπάγεται επιβάρυνση του κρατικού προϋπολογισμού (βλ. παρ. 5 του άρθρου 88 του Κανονισμού της Βουλής), η Ανάλυση Συνεπειών Ρύθμισης πρέπει να ενσωματώνει: «την έκθεση του άρθρου 75 παρ. 1 του Συντάγματος από το Γενικό Λογιστήριο του Κράτους, η οποία προσδιορίζει τη δημοσιονομική επίπτωση επί του Προϋπολογισμού από τις διατάξεις της ρύθμισης, όπως επίσης, ανάλογα με το περιεχόμενό του, α) την ειδική έκθεση του αρμόδιου Υπουργού και του Υπουργού Οικονομικών που προβλέπει το άρθρο 75 παρ. 3 του Συντάγματος και β) τη γνωμοδότηση του Ελεγκτικού Συνεδρίου που ορίζει το άρθρο 73 παρ. 2 του Συντάγματος.». `);
-                            break;
+                                break;
                             case "Τροπολογίες Υπουργών":
                                 $("#subtitle").html("«Συνοπτική Ανάλυση Συνεπειών Ρύθμισης»");
                                 $("#subtext").html(` Σύμφωνα με την παρ. 1 του άρθρου 62 του ν. 4622/2019 «Κάθε σχέδιο νόμου, προσθήκη ή τροπολογία, καθώς και κανονιστική απόφαση μείζονος οικονομικής ή κοινωνικής σημασίας, συνοδεύεται από Ανάλυση Συνεπειών Ρύθμισης (εφεξής Ανάλυση).».<br>
                                     Ειδικότερα, για τις τροπολογίες Υπουργών, στην παρ. 2 του άρθρου 88 του Κανονισμού της Βουλής προβλέπεται ότι συνοδεύονται από «σύντομη συνοπτική Ανάλυση Συνεπειών Ρύθμισης που συμπεριλαμβάνει κατ’ ελάχιστον τις ενότητες (α) και (ε), καθώς και στοιχεία από τις ενότητες (β) και (δ) της παρ. 3 του άρθρου 85», δηλαδή την αιτιολογική έκθεση και τον πίνακα τροποποιούμενων ή καταργούμενων διατάξεων, καθώς και στοιχεία της έκθεσης γενικών συνεπειών και της έκθεσης νομιμότητας. <br>
                                     Επίσης, σύμφωνα με την παρ. 5 του άρθρου 88 του Κανονισμού της Βουλής «Oι τρoπoλoγίες που συνεπάγονται επιβάρυνση του πρoϋπoλoγισμoύ του Κράτους διαβιβάζονται πριν από τη συζήτησή τoυς στo Γενικό Λoγιστήριo τoυ Kράτoυς, αν το ζητήσουν oι αρμόδιοι Yπoυργoί. Σ’ αυτήν την περίπτωση τo Γενικό Λογιστήριο τoυ Kράτoυς υπoχρεoύται να υποβάλει στη Boυλή την έκθεσή τoυ μέσα σε τρεις ημέρες από την παραλαβή τoυς. Mόνo αν η προθεσμία αυτή περάσει άπρακτη, oι τρoπoλoγίες μπoρoύν να συζητηθoύν και χωρίς την έκθεση.».`);
-                            break;
+                                break;
                         }
 
                         optionalFields(".field-22 :input");
@@ -2095,18 +2110,18 @@
 
                     } else if (analysis == "Τροπολογίες Βουλευτών" || analysis == "Πρόταση νόμου") {
 
-                        switch(analysis){
+                        switch (analysis) {
                             case "Τροπολογίες Βουλευτών":
                                 $("#subtitle").html("«Συνοπτική Ανάλυση Συνεπειών Ρύθμισης»");
                                 $("#subtext").html(`Σύμφωνα με την παρ. 1 του άρθρου 62 του ν. 4622/2019 «Κάθε σχέδιο νόμου, προσθήκη ή τροπολογία, καθώς και κανονιστική απόφαση μείζονος οικονομικής ή κοινωνικής σημασίας, συνοδεύεται από Ανάλυση Συνεπειών Ρύθμισης (εφεξής Ανάλυση).». <br>
                                     Ειδικότερα, για τις τροπολογίες Βουλευτών, στην παρ. 2 του άρθρου 88 του Κανονισμού της Βουλής προβλέπεται ότι συνοδεύονται «υποχρεωτικώς από συνοπτική Ανάλυση Συνεπειών Ρύθμισης, η οποία συμπεριλαμβάνει κατ’ ελάχιστον τις ενότητες (α) και (ε) της παρ. 3 του άρθρου 85», δηλαδή την αιτιολογική έκθεση και τον πίνακα τροποποιούμενων ή καταργούμενων διατάξεων.<br>
                                     Επίσης, σύμφωνα με την παρ. 5 του άρθρου 88 του Κανονισμού της Βουλής «Oι τρoπoλoγίες που συνεπάγονται επιβάρυνση του πρoϋπoλoγισμoύ του Κράτους διαβιβάζονται πριν από τη συζήτησή τoυς στo Γενικό Λoγιστήριo τoυ Kράτoυς, αν το ζητήσουν oι αρμόδιοι Yπoυργoί. Σ’ αυτήν την περίπτωση τo Γενικό Λογιστήριο τoυ Kράτoυς υπoχρεoύται να υποβάλει στη Boυλή την έκθεσή τoυ μέσα σε τρεις ημέρες από την παραλαβή τoυς. Mόνo αν η προθεσμία αυτή περάσει άπρακτη, oι τρoπoλoγίες μπoρoύν να συζητηθoύν και χωρίς την έκθεση.».`)
-                            break;
+                                break;
                             case "Πρόταση νόμου":
                                 $("#subtitle").html("«Συνοπτική Ανάλυση Συνεπειών Ρύθμισης»");
                                 $("#subtext").html(` Σύμφωνα με την παρ. 3 του άρθρου 85 του Κανονισμού της Βουλής «Οι προτάσεις νόμων συνοδεύονται υποχρεωτικώς από συνοπτική Ανάλυση Συνεπειών Ρύθμισης, η οποία συμπεριλαμβάνει κατ’ ελάχιστον τις ανωτέρω ενότητες (α) και (ε)», δηλαδή την αιτιολογική έκθεση και τον πίνακα τροποποιούμενων ή καταργούμενων διατάξεων. <br>
                                     Επίσης, σύμφωνα με την παρ. 6 του άρθρου 85 του Κανονισμού της Βουλής «Κάθε πρόταση νόμου διαβιβάζεται στους αρμόδιους Yπoυργoύς, που έχουν υποχρέωση να απαντούν αν αυτή υπάγεται ή όχι στους περιορισμούς τoυ άρθρου 73 παρ. 3 τoυ Συντάγματος, καθώς και στo Γενικό Λoγιστήριo τoυ Kράτoυς για τη σύνταξη της έκθεσης που oρίζει τo άρθρο 75 παρ. 1 τoυ Συντάγματος. To Γενικό Λoγιστήριo τoυ Kράτoυς υπoχρεoύται να υπoβάλει στη Boυλή τη σχετική έκθεση μέσα σε δεκαπέντε ημέρες από την παραλαβή της πρότασης νόμoυ. Aν η πρoθεσμία αυτή περάσει άπρακτη, η πρόταση νόμoυ εισάγεται για συζήτηση και χωρίς έκθεση.». `)
-                            break;                                    
+                                break;
                         }
 
                         optionalFields(".field-18 :input");
@@ -2147,13 +2162,7 @@
 
                     }
 
-                    if (role === "Συντάκτης επισπεύδοντος Υπουργείου") {
-                        if ($("#status_ekthesis").val() != "Συντάσσεται") {
-                            optionalFields("#edit_form :input");
-                            enableFields(".next");
-                            enableFields(".previous");
-                        }
-                    }
+
 
 
                     if (role === "Γενικό Λογιστήριο του Κράτους") {
@@ -2318,19 +2327,19 @@
                     })
 
                     function setDropdown() {
-                        var field4 = "<%= data.field_4%>"; 
-                        var field6 = "<%= data.field_6%>"; 
-                        var field11 = "<%= data.field_11%>"; 
-                        var field12 = "<%= data.field_12%>"; 
-                        var field13 = "<%= data.field_13%>"; 
-                        var field36 = "<%= data.field_36%>"; 
-                        $("#field_4").val(field4 ? field4:$("#field_4 option:first").val());
-                        $("#field_6").val(field6 ? field6:$("#field_6 option:first").val());
-                        $("#field_11").val(field11 ? field4:$("#field_11 option:first").val());
-                        $("#field_12").val(field12 ? field4:$("#field_12 option:first").val());
-                        $("#field_13").val(field13 ? field4:$("#field_13 option:first").val());
-                        $("#field_36").val(field36 ? field4:$("#field_36 option:first").val());
-                        
+                        var field4 = "<%= data.field_4%>";
+                        var field6 = "<%= data.field_6%>";
+                        var field11 = "<%= data.field_11%>";
+                        var field12 = "<%= data.field_12%>";
+                        var field13 = "<%= data.field_13%>";
+                        var field36 = "<%= data.field_36%>";
+                        $("#field_4").val(field4 ? field4 : $("#field_4 option:first").val());
+                        $("#field_6").val(field6 ? field6 : $("#field_6 option:first").val());
+                        $("#field_11").val(field11 ? field11 : $("#field_11 option:first").val());
+                        $("#field_12").val(field12 ? field12 : $("#field_12 option:first").val());
+                        $("#field_13").val(field13 ? field13 : $("#field_13 option:first").val());
+                        $("#field_36").val(field36 ? field36 : $("#field_36 option:first").val());
+
                     }
 
                     //check if required fields are empty
@@ -2400,16 +2409,16 @@
                         })
                         return flag;
                     }
-                    
+
                     // jQuery button click event to remove a file 
                     $('#uploads_21, #uploads_23, #uploads_36').on('click', '.remove-file', function (ev) {
                         ev.preventDefault();
                         $("#deleted_file").val($(this).closest('td').find('a').html());
                         var bttn = $(this);
                         if ($("#deleted_file").val()) {
-                            $.ajax({                                
-                                url: '/form_a/' + ekthesi_id+'/delete_file',
-                                data: $("form").serialize(),                                
+                            $.ajax({
+                                url: '/form_a/' + ekthesi_id + '/delete_file',
+                                data: $("form").serialize(),
                                 error: function (error) {
                                     console.log(error);
                                 },
@@ -2419,7 +2428,7 @@
                                 },
                                 type: 'PUT'
                             });
-                        }                
+                        }
                     });
 
                     var current_fs, next_fs, previous_fs; //fieldsets
@@ -2475,7 +2484,7 @@
 
                     $(".submit").click(function () {
                         return false;
-                    })            
+                    })
                 </script>
 
         </div>
