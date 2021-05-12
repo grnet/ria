@@ -44,12 +44,14 @@
                                 <hr>
                             </div>
                             <br>
-                            <button class="btn delete-analysis float-right" style="float: right;" type="button"><img src="/img/delete.png" width="25px"></button>
-                            <br>
                             <input type="button" name="convert" class="convert" style="display: none; float: right;"
                                 value="Μετατροπή" />
                             <br><br>
-                            
+                            <button class="btn delete-analysis float-right" style="float: right;" type="button"><img
+                                    src="/img/delete.png" width="25px"></button>
+                            <br><br>
+
+
                             <br>
                             <div class="form-group row">
                                 <label for="title" class="required col-sm-6 col-form-label">Τίτλος αξιολογούμενης
@@ -1106,7 +1108,9 @@
                             $('#ekpedeusi_politismos').prop("checked", true);
                             $("#politismos_table").show();
                             $("#ekpaideysi_table").show();
-                            $(".ekpaideysi-politismos :input").prop('disabled', false);
+                            if(!$('#ekpedeusi_politismos').prop("disabled")) {
+                                $(".ekpaideysi-politismos :input").prop('disabled', false);    
+                            }                            
                         } else {
                             $(".ekpaideysi-politismos :input").prop('disabled', true);
                         }
@@ -1119,7 +1123,9 @@
                             $("#oikonomia_table").show();
                             $("#forologia_table").show();
                             $("#ergasiakes_sxeseis_table").show();
-                            $(".oikonomia :input").prop('disabled', false);
+                            if(!$('#forologiki_politiki').prop("disabled")) {
+                                $(".oikonomia :input").prop('disabled', false);
+                            }
                         } else {
                             $(".oikonomia :input").prop('disabled', true);
                         }
@@ -1132,7 +1138,9 @@
                             $("#ygeia_table").show();
                             $("#isotita_fylwn_table").show();
                             $("#metanasteytiki_prosfygiki_politiki_table").show();
-                            $(".koinoniki-politiki :input").prop('disabled', false);
+                            if(!$('#koinoniki_politiki').prop("disabled")) {
+                                $(".koinoniki-politiki :input").prop('disabled', false);
+                            }                            
                         } else {
                             $(".koinoniki-politiki :input").prop('disabled', true);
                         }
@@ -1141,8 +1149,10 @@
                             $('#dimosia_dioikisi').prop("checked", true);
                             $("#dimosia_dioikisi_table").show();
                             $("#dimosia_asfaleia_table").show();
-                            $("#dikaiosini_table").show();
-                            $(".dimosia-dioikisi :input").prop('disabled', false);
+                            $("#dikaiosini_table").show();                            
+                            if(!$('#dimosia_dioikisi').prop("disabled")) {
+                                $(".dimosia-dioikisi :input").prop('disabled', false);
+                            }
                         } else {
                             $(".dimosia-dioikisi :input").prop('disabled', true);
                         }
@@ -1150,8 +1160,10 @@
                         if ("<%= data.anaptiksi %>") {
                             $('#anaptiksi').prop("checked", true);
                             $("#ependytiki_drastiriotita_table").show();
-                            $("#perivallon_energeia_table").show();
-                            $(".ependyseis :input").prop('disabled', false);
+                            $("#perivallon_energeia_table").show();                            
+                            if(!$('#anaptiksi').prop("disabled")) {
+                                $(".ependyseis :input").prop('disabled', false);
+                            }
                         } else {
                             $(".ependyseis :input").prop('disabled', true);
                         }
@@ -2241,9 +2253,13 @@
                     function requiredDigitalGov(field) {
                         //if ($(field).prop("checked") && $('#status_ekthesis').val() !== "Οριστικοποιήθηκε") {
                         if ($(field).prop("checked")) {
-                            enableFields($('.digital_gov :input'));
                             addLabelClass($('.digital_gov'));
                             $('.digital-gov-label').addClass('required');
+                            if ($(field).prop("disabled")) {
+                                optionalFields($('.digital_gov :input'));
+                            } else {
+                                enableFields($('.digital_gov :input'));
+                            }
                         } else {
                             optionalFields($('.digital_gov :input'));
                             $('.digital-gov-label').removeClass('required')
@@ -2254,8 +2270,12 @@
 
                         let spaceLess = $(field).val().replace(/^\s+|\s+$/g, "");//replace white space
                         if (spaceLess) {
-                            enableFields($('.legalistic :input'));
                             $('.legalistic-label').addClass('required');
+                            if ($(field).prop("disabled")) {
+                                optionalFields($('.legalistic :input'));
+                            } else {
+                                enableFields($('.legalistic :input'));
+                            }
                         } else {
                             optionalFields($('.legalistic :input'));
                             $('.legalistic-label').removeClass('required')
