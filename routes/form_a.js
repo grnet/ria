@@ -1,11 +1,12 @@
 const routes = require('express').Router()
 let database = require('../services/database');
 const fs = require('fs');
-let pdf_export = require('../controllers/export');
+let pdf_export = require('../middleware/export');
 const csv = require('csv-parser')
 const { body, check, validationResult } = require('express-validator');
 var multer = require('multer');
-const { authUser } = require('../controllers/auth');
+const { authUser } = require('../middleware/auth');
+const tables = require('../lib/tables');
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, './public/uploads/')
@@ -23,7 +24,7 @@ routes.get('/:entry_id', authUser, async (req, res, next) => {
         let entry = await database.ekthesi.findOne({
             where: {
                 id: req.params.entry_id
-            }//, include: [{ model: database.rythmiseis }, { model: database.field_9 }]
+            }//, include: [{ model: database.ekthesi_tables }] //join tables
         });
 
         let ekthesi_tables = await database.ekthesi_tables.findOne({
@@ -69,6 +70,7 @@ routes.post('/:entry_id', authUser, pdf_export.exportPDF) //router calls control
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 routes.put('/:entry_id', authUser, upload,
+    //VALIDATION RULES 
     // [check('title', 'Ο τίτλος είναι υποχρεωτικός.').notEmpty(),
     //  check('title').custom( async(value) => {
     //     var title = await database.ekthesi.count({ where: {title: value}})//count tables which have given title 
@@ -97,7 +99,6 @@ routes.put('/:entry_id', authUser, upload,
     // body('field_40').if(body('field_33').notEmpty()).notEmpty().withMessage('Το πεδίο 40 είναι υποχρεωτικό.'),
     // ],
     async function (req, res, next) {
-        console.time()
         let ekthesi_id = req.params.entry_id;
         const errors = validationResult(req);
         if (!errors.isEmpty()) { // if array exists
@@ -124,17 +125,11 @@ routes.put('/:entry_id', authUser, upload,
                         for (i in file.field_21_upload) {
                             field21.push(file.field_21_upload[i].filename)
                         }
-                        //console.log("field21: " + field21);
-                        // const error = new Error('Please upload a file')
-                        // error.httpStatusCode = 400
-                        // return next(error)
-
 
                     }
                     if (file.field_23_upload) {
                         for (i in file.field_23_upload) {
                             field23.push(file.field_23_upload[i].filename)
-                            //console.log(file.field_23_upload[i].path);
                         }
                     }
                     if (file.field_36_upload) {
@@ -153,179 +148,29 @@ routes.put('/:entry_id', authUser, upload,
                     console.log("Error message: " + e.message);
                 }
 
-                let prefix, elemValue, cbxprefix;
-                let cbxlabels = [];
-                let row = [];
-                let cbxrow = [];
-                let table = [];
-                let cbxtable = [];
-                let tables = [];
-                let data = req.body;//assign req.body to variable
-                let keys = Object.keys(data);//get keys 
-                let cbxtables = [];
-                //create json for  field 9 static tables
-                for (var elem in req.body) {
-                    //if header push table into tables
-                    if (elem.includes('_header')) {
-                        if (table.length) {
-                            tables.push({ table: table });
-                            table = [];
-                        }
-                    }
-                    //if label push row into table. Constructing individual tables
-                    if (elem.includes('_label')) {
-                        if (row.length) {
-                            table.push({ row: row });
-                            row = [];
-                        }
-                        prefix = elem.split('_label');
-                        prefix = prefix.slice(0, -1);
-                    } else if (elem.includes('_cbxlabel')) {//get all labels for checkbox tables
-                        cbxprefix = elem.split('_cbxlabel');
-                        cbxprefix = cbxprefix.slice(0, -1);
-                        cbxlabels.push(cbxprefix);
-                    }
-                    //push into row. Construct individual table rows
-                    if (!elem.includes('_label') && !elem.includes('_header') && !elem.includes('_secondHeader') && elem.includes(prefix)) {
-                        elemValue = req.body[elem];
-                        if (typeof elemValue != undefined) {
-                            row.push({ [elem]: elemValue });
-                        } else {
-                            row.push('');
-                        }
-                    }
+                let field_9 = tables.createStaticTable(req.body, '_header', '_label', '_secondHeader');//data for field_9 as json
+                let checkbox_tables = tables.createStaticTable(req.body, '_cbxHeader', '_cbxlabel', '_cbxsecondHeader');//data for fields 18-20 as json
 
-                }
-                for (var label in cbxlabels) {
-                    for (var elem in req.body) {
-
-                        if (elem.includes('_cbxHeader')) {
-                            if (cbxtable.length) {
-                                cbxtables.push({ row: cbxtable });
-                                cbxtable = [];
-                            }
-                        }
-
-                        if (elem.includes('_cbxlabel')) {
-                            if (cbxrow.length) {
-                                cbxtable.push({ checkbox: cbxrow });
-                                cbxrow = [];
-                            }
-                        }
-
-                        if (elem.includes(cbxlabels[label]) && !elem.includes('_cbxlabel') && !elem.includes('_cbxHeader') && !elem.includes('_cbxsecondHeader')) {
-                            elemValue = req.body[elem];
-                            if (typeof elemValue != undefined) {
-                                cbxrow.push({ [elem]: elemValue });
-                            }
-                        }
-                    }
-                }
-
-                let field_14_arthro = [];
-                let field_14_stoxos = [];
-                let field_17_onoma = [];
-                let field_17_epitheto = [];
-                let field_17_idiotita = [];
-                let minister_surname = [];
-                let minister_name = [];
-                let ministry = [];
-                let field_29_diatakseis_rythmisis = [];
-                let field_29_yfistamenes_diatakseis = [];
-                let field_30_diatakseis_katargisi = [];
-                let field_30_katargoumenes_diatakseis = [];
-                let field_31_sxetiki_diataksi = [];
-                let field_31_synarmodia_ypoyrgeia = [];
-                let field_31_antikeimeno_synarmodiotitas = [];
-                let field_32_eksousiodotiki_diataksi = [];
-                let field_32_eidos_praksis = [];
-                let field_32_armodio_ypoyrgeio = [];
-                let field_32_antikeimeno = [];
-                let field_32_xronodiagramma = [];
-                let value, key;
-                for (i in keys) {//iterate through keys
-                    if (keys[i].includes("field_14_arthro")) {
-                        value = data[keys[i]];//get value from pair
-                        key = keys[i];//get key 
-                        field_14_arthro.push({ [key]: value });
-                    } else if (keys[i].includes("field_14_stoxos")) {
-                        value = data[keys[i]];
-                        key = keys[i];
-                        field_14_stoxos.push({ [key]: value });
-                    } else if (keys[i].includes("field_17_onoma")) {
-                        value = data[keys[i]];
-                        key = keys[i];
-                        field_17_onoma.push({ [key]: value });
-                    } else if (keys[i].includes("field_17_epitheto")) {
-                        value = data[keys[i]];
-                        key = keys[i];
-                        field_17_epitheto.push({ [key]: value });
-                    } else if (keys[i].includes("field_17_idiotita")) {
-                        value = data[keys[i]];
-                        key = keys[i];
-                        field_17_idiotita.push({ [key]: value });
-                    } else if (keys[i].includes("minister_name")) {
-                        value = data[keys[i]];
-                        key = keys[i];
-                        minister_name.push({ [key]: value });
-                    } else if (keys[i].includes("minister_surname")) {
-                        value = data[keys[i]];
-                        key = keys[i];
-                        minister_surname.push({ [key]: value });
-                    } else if (keys[i].includes("ministry")) {
-                        value = data[keys[i]];
-                        key = keys[i];
-                        ministry.push({ [key]: value });
-                    } else if (keys[i].includes("field_29_diatakseis_rythmisis")) {
-                        value = data[keys[i]];
-                        key = keys[i];
-                        field_29_diatakseis_rythmisis.push({ [key]: value });
-                    } else if (keys[i].includes("field_29_yfistamenes_diatakseis")) {
-                        value = data[keys[i]];
-                        key = keys[i];
-                        field_29_yfistamenes_diatakseis.push({ [key]: value });
-                    } else if (keys[i].includes("field_30_diatakseis_katargisi")) {
-                        value = data[keys[i]];
-                        key = keys[i];
-                        field_30_diatakseis_katargisi.push({ [key]: value });
-                    } else if (keys[i].includes("field_30_katargoumenes_diatakseis")) {
-                        value = data[keys[i]];
-                        key = keys[i];
-                        field_30_katargoumenes_diatakseis.push({ [key]: value });
-                    } else if (keys[i].includes("field_31_sxetiki_diataksi")) {
-                        value = data[keys[i]];
-                        key = keys[i];
-                        field_31_sxetiki_diataksi.push({ [key]: value });
-                    } else if (keys[i].includes("field_31_synarmodia_ypoyrgeia")) {
-                        value = data[keys[i]];
-                        key = keys[i];
-                        field_31_synarmodia_ypoyrgeia.push({ [key]: value });
-                    } else if (keys[i].includes("field_31_antikeimeno_synarmodiotitas")) {
-                        value = data[keys[i]];
-                        key = keys[i];
-                        field_31_antikeimeno_synarmodiotitas.push({ [key]: value });
-                    } else if (keys[i].includes("field_32_eksousiodotiki_diataksi")) {
-                        value = data[keys[i]];
-                        key = keys[i];
-                        field_32_eksousiodotiki_diataksi.push({ [key]: value });
-                    } else if (keys[i].includes("field_32_eidos_praksis")) {
-                        value = data[keys[i]];
-                        key = keys[i];
-                        field_32_eidos_praksis.push({ [key]: value });
-                    } else if (keys[i].includes("field_32_armodio_ypoyrgeio")) {
-                        value = data[keys[i]];
-                        key = keys[i];
-                        field_32_armodio_ypoyrgeio.push({ [key]: value });
-                    } else if (keys[i].includes("field_32_antikeimeno")) {
-                        value = data[keys[i]];
-                        key = keys[i];
-                        field_32_antikeimeno.push({ [key]: value });
-                    } else if (keys[i].includes("field_32_xronodiagramma")) {
-                        value = data[keys[i]];
-                        key = keys[i];
-                        field_32_xronodiagramma.push({ [key]: value });
-                    }
-                }
+                let field_14_arthro = tables.createDynamicTable(req.body, keys, 'field_14_arthro');
+                let field_14_stoxos = tables.createDynamicTable(req.body, keys, 'field_14_stoxos');
+                let field_17_onoma = tables.createDynamicTable(req.body, keys, 'field_17_onoma');
+                let field_17_epitheto = tables.createDynamicTable(req.body, keys, 'field_17_epitheto');
+                let field_17_idiotita = tables.createDynamicTable(req.body, keys, 'field_17_idiotita');
+                let minister_surname = tables.createDynamicTable(req.body, keys, 'minister_surname');
+                let minister_name = tables.createDynamicTable(req.body, keys, 'minister_name');
+                let ministry = tables.createDynamicTable(req.body, keys, 'ministry');
+                let field_29_diatakseis_rythmisis = tables.createDynamicTable(req.body, keys, 'field_29_diatakseis_rythmisis');
+                let field_29_yfistamenes_diatakseis = tables.createDynamicTable(req.body, keys, 'field_29_yfistamenes_diatakseis');
+                let field_30_diatakseis_katargisi = tables.createDynamicTable(req.body, keys, 'field_30_diatakseis_katargisi');
+                let field_30_katargoumenes_diatakseis = tables.createDynamicTable(req.body, keys, 'field_30_katargoumenes_diatakseis');
+                let field_31_sxetiki_diataksi = tables.createDynamicTable(req.body, keys, 'field_31_sxetiki_diataksi');
+                let field_31_synarmodia_ypoyrgeia = tables.createDynamicTable(req.body, keys, 'field_31_synarmodia_ypoyrgeia');
+                let field_31_antikeimeno_synarmodiotitas = tables.createDynamicTable(req.body, keys, 'field_31_antikeimeno_synarmodiotitas');
+                let field_32_eksousiodotiki_diataksi = tables.createDynamicTable(req.body, keys, 'field_32_eksousiodotiki_diataksi');
+                let field_32_eidos_praksis = tables.createDynamicTable(req.body, keys, 'field_32_eidos_praksis');
+                let field_32_armodio_ypoyrgeio = tables.createDynamicTable(req.body, keys, 'field_32_armodio_ypoyrgeio');
+                let field_32_antikeimeno = tables.createDynamicTable(req.body, keys, 'field_32_antikeimeno');
+                let field_32_xronodiagramma = tables.createDynamicTable(req.body, keys, 'field_32_xronodiagramma');
 
                 let ekthesi = await database.ekthesi.update(req.body, {
                     where: {
@@ -333,7 +178,6 @@ routes.put('/:entry_id', authUser, upload,
                     }
                 });
 
-                console.log(ministry + '\n' + minister_surname + '\n' + minister_name)
                 await database.ekthesi.update({
                     field_14_arthro: field_14_arthro, field_14_stoxos: field_14_stoxos, field_17_onoma: field_17_onoma, field_17_epitheto: field_17_epitheto, field_17_idiotita: field_17_idiotita, minister_name: minister_name, minister_surname: minister_surname, ministry: ministry,
                     field_29_diatakseis_rythmisis: field_29_diatakseis_rythmisis, field_29_yfistamenes_diatakseis: field_29_yfistamenes_diatakseis, field_30_diatakseis_katargisi: field_30_diatakseis_katargisi, field_30_katargoumenes_diatakseis: field_30_katargoumenes_diatakseis,
@@ -346,12 +190,11 @@ routes.put('/:entry_id', authUser, upload,
                         }
                     });
 
-                await database.ekthesi_tables.update({ static_tables: tables, checkbox_tables: cbxtables }, {
+                await database.ekthesi_tables.update({ static_tables: field_9, checkbox_tables: checkbox_tables }, {
                     where: {
                         ekthesi_tablesId: ekthesi_id
                     }
                 });
-                //console.log("field_29_diatakseis_rythmisis: " + field_29_diatakseis_rythmisis);
                 var author = req.session.fname + ' ' + req.session.lname;
 
                 await database.audit.create({ user: author, data: req.body, timestamp: req.body.last_updated, action: req.method, auditId: ekthesi_id });
@@ -377,34 +220,22 @@ routes.put('/:entry_id/delete_file', authUser, async (req, res, next) => {
         }
     });
     entry = entry.dataValues;
-    console.log(req.body.deleted_file)
-
     let filePath = `public/uploads/${req.body.deleted_file}`;
-    console.log(filePath)
-    console.log(entry.id)
+
     try {
 
         if (entry.field_21_upload.includes(req.body.deleted_file)) {
-            console.log('f21\n'+entry.field_21_upload.indexOf(req.body.deleted_file));
             let index21 = entry.field_21_upload.indexOf(req.body.deleted_file)//find index of file to be deleted
             entry.field_21_upload.splice(index21, 1)//delete position of index, count 1
-            console.log(entry.field_21_upload)
             await database.ekthesi.update({ field_21_upload: entry.field_21_upload }, { where: { id: entry.id } })
-            console.log('11111')
         } else if (entry.field_23_upload.includes(req.body.deleted_file)) {
-            console.log('f23\n'+entry.field_23_upload.indexOf(req.body.deleted_file));
             let index23 = entry.field_23_upload.indexOf(req.body.deleted_file)//find index of file to be deleted
             entry.field_23_upload.splice(index23, 1)//delete position of index, count 1
-            console.log(entry.field_23_upload)
             await database.ekthesi.update({ field_23_upload: entry.field_23_upload }, { where: { id: entry.id } })
-            console.log('22222')
         } else if (entry.field_36_upload.includes(req.body.deleted_file)) {
-            console.log('f36\n'+entry.field_36_upload.indexOf(req.body.deleted_file));
             let index36 = entry.field_36_upload.indexOf(req.body.deleted_file)//find index of file to be deleted
             entry.field_36_upload.splice(index36, 1)//delete position of index, count 1
-            console.log(entry.field_36_upload)
             await database.ekthesi.update({ field_36_upload: entry.field_36_upload }, { where: { id: entry.id } })
-            console.log('33333')
         }
         fs.unlink(filePath, async function (err) {
             if (err && err.code == 'ENOENT') {
@@ -427,7 +258,6 @@ routes.put('/:entry_id/delete_file', authUser, async (req, res, next) => {
 });
 
 routes.delete('/:entry_id/delete_analysis', authUser, async function (req, res, next) {
-    console.log('gon delete now...')
     let entry = await database.ekthesi.findOne({ where: { id: req.params.entry_id } })
     entry ? entry.destroy().then(res.sendStatus(200)) : res.sendStatus(404);
 })

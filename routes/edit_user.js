@@ -2,7 +2,7 @@ const routes = require('express').Router();
 let database = require('../services/database');
 const bcrypt = require('bcrypt');
 const { body, check, validationResult } = require('express-validator');
-const { authUser, authRole } = require('../controllers/auth');
+const { authUser, authRole } = require('../middleware/auth');
 
 
 routes.get('/:username', authUser, authRole, async (req, res, next) => {

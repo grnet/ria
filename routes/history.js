@@ -1,7 +1,7 @@
 const routes = require('express').Router()
 let database = require('../services/database')
 const { Op } = require("sequelize");
-const { authUser } = require('../controllers/auth');
+const { authUser } = require('../middleware/auth');
 const { ekthesi } = require('../services/database');
 
 routes.get('/', authUser, async function (req, res, next) {

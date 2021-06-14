@@ -686,8 +686,8 @@
                                     </thead>
                                     <tbody id="tbody_14">
 
-                                        <% if( data.field_14_arthro && data.field_14_arthro.length ){ for (var i=0; i <
-                                            data.field_14_arthro.length; i++) { %>
+                                        <% if( data.field_14_arthro && data.field_14_arthro.length )
+                                            { for (var i=0; i < data.field_14_arthro.length; i++) { %>
                                             <tr id="table_14_row<%=i%>">
 
                                                 <td><textarea class="form-control" id="field_14_arthro<%=i%>"
@@ -1333,11 +1333,13 @@
                             var prefix;
 
                             for (var i in tables.checkbox_tables) {
-                                for (var j in tables.checkbox_tables[i].row[0].checkbox) {
-                                    var cbxname = (Object.keys(tables.checkbox_tables[i].row[0].checkbox[j]));//get key
-                                    var cbxvalue = (Object.values(tables.checkbox_tables[i].row[0].checkbox[j]));//returns array
-                                    if (cbxvalue[0]) {
-                                        $("input[name='" + cbxname + "']").prop("checked", true);//if value check target checkbox    
+                                for (var j in tables.static_tables[i].table) {                                    
+                                    for (var k in tables.checkbox_tables[i].table[j].row) {
+                                        var cbxname = (Object.keys(tables.checkbox_tables[i].table[j].row[k]));//get key
+                                        var cbxvalue = (Object.values(tables.checkbox_tables[i].table[j].row[k]));
+                                        if (cbxvalue[0]) {
+                                            $("input[name='" + cbxname + "']").prop("checked", true);//if value check target checkbox    
+                                        }
                                     }
                                 }
                             }
@@ -2173,9 +2175,6 @@
                         optionalFieldsClassRemoval("optional-label", "required");
 
                     }
-
-
-
 
                     if (role === "Γενικό Λογιστήριο του Κράτους") {
 

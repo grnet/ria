@@ -1,5 +1,5 @@
 const routes = require('express').Router()
-const { authUser } = require('../controllers/auth');
+const { authUser } = require('../middleware/auth');
 let database = require("../services/database")
 
 routes.get('/', authUser,async (req,res,next) =>{

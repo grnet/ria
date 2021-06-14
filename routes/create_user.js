@@ -1,7 +1,7 @@
 const routes = require('express').Router();
 let database = require("../services/database");
 const bcrypt = require('bcrypt');
-const { authUser, authRole } = require('../controllers/auth');
+const { authUser, authRole } = require('../middleware/auth');
 
 routes.get('/', authUser, authRole, function(req,res,next){
     res.render("user_views/create_user");
