@@ -1,0 +1,16 @@
+version: "3.8"
+services: 
+    ria:
+        build: .        
+        image: ria:latest        
+        ports: 
+            - "3000:3000"
+        extra_hosts:
+            - "ria.test.gr:127.0.0.1"
+        volumes: 
+            - ./:/app
+            - /app/node_modules
+            # - .:/code
+        environment: 
+            - PORT=3000
+        

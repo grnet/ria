@@ -148,6 +148,8 @@ routes.put('/:entry_id', authUser, upload,
                     console.log("Error message: " + e.message);
                 }
 
+                let keys = Object.keys(req.body)
+
                 let field_9 = tables.createStaticTable(req.body, '_header', '_label', '_secondHeader');//data for field_9 as json
                 let checkbox_tables = tables.createStaticTable(req.body, '_cbxHeader', '_cbxlabel', '_cbxsecondHeader');//data for fields 18-20 as json
 
@@ -179,6 +181,7 @@ routes.put('/:entry_id', authUser, upload,
                 });
 
                 await database.ekthesi.update({
+                    field_15_rythmiseis: req.body.f15, field_16_kratikos_proypologismos: req.body.f16_1, field_16_proypologismos_forea: req.body.f16_2, field_17_oikonomika_apotelesmata: req.body.f17,
                     field_14_arthro: field_14_arthro, field_14_stoxos: field_14_stoxos, field_17_onoma: field_17_onoma, field_17_epitheto: field_17_epitheto, field_17_idiotita: field_17_idiotita, minister_name: minister_name, minister_surname: minister_surname, ministry: ministry,
                     field_29_diatakseis_rythmisis: field_29_diatakseis_rythmisis, field_29_yfistamenes_diatakseis: field_29_yfistamenes_diatakseis, field_30_diatakseis_katargisi: field_30_diatakseis_katargisi, field_30_katargoumenes_diatakseis: field_30_katargoumenes_diatakseis,
                     field_31_sxetiki_diataksi: field_31_sxetiki_diataksi, field_31_synarmodia_ypoyrgeia: field_31_synarmodia_ypoyrgeia, field_31_antikeimeno_synarmodiotitas: field_31_antikeimeno_synarmodiotitas, field_32_eksousiodotiki_diataksi: field_32_eksousiodotiki_diataksi, field_32_eidos_praksis: field_32_eidos_praksis, field_32_armodio_ypoyrgeio: field_32_armodio_ypoyrgeio, field_32_antikeimeno: field_32_antikeimeno, field_32_xronodiagramma: field_32_xronodiagramma,
@@ -198,6 +201,12 @@ routes.put('/:entry_id', authUser, upload,
                 var author = req.session.fname + ' ' + req.session.lname;
 
                 await database.audit.create({ user: author, data: req.body, timestamp: req.body.last_updated, action: req.method, auditId: ekthesi_id });
+                console.log('CHECK THIS OUT!')
+                console.log(JSON.stringify(Object.values(req.body.field_15_rythmiseis)))
+                console.log(Object.values(req.body.field_15_rythmiseis))
+                console.log(req.body.field_15_rythmiseis)
+                console.log(req.body.f15)
+                
 
                 console.timeEnd();
 

@@ -11,6 +11,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/countable/3.0.1/Countable.min.js"></script>
         <!-- Development version. Change to production version later-->
         <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+        <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
         <br>
         <input type="button" name="back" class="back" value="Πίσω" />
@@ -867,6 +868,10 @@
                 }
             }
         }
+
+        tinymce.init({
+            mode : "textareas",selector: '.glk-text', readonly:true
+        });
 
         $("#ekthesi_glk").on("change", function (ev) {
             if (this.checked) {

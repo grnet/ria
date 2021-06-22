@@ -34,7 +34,7 @@ routes.post('/', [
                 bcrypt.compare(userPassword, user.password, function (err, result) {
                     if (result == true) {
                         req.session.user = user;
-                        req.session.username = user.username;//store his data to session variables
+                        req.session.username = user.username;//store data to session variables
                         req.session.fname = user.fname;
                         req.session.lname = user.lname;
                         req.session.dikaiwmata_diaxeirisis = user.dikaiwmata_diaxeirisis;
@@ -62,8 +62,6 @@ routes.post('/', [
         } else {
             res.send({ redirect: "./login" });
         }
-        //console.log(req.sessionID)
-        //console.log(req.session)
 
     });
 

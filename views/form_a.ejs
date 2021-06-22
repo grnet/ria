@@ -14,6 +14,8 @@
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/downloadjs/1.4.8/download.min.js"></script>
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/countable/3.0.1/Countable.min.js"></script>
                     <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+                    <!-- <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script> -->
+                    <script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
 
 
                     <br>
@@ -692,13 +694,13 @@
 
                                                 <td><textarea class="form-control" id="field_14_arthro<%=i%>"
                                                         name="field_14_arthro<%=i%>"
-                                                        rows="1"><%= Object.values(data.field_14_arthro[i]) %></textarea>
+                                                        rows="1"><%= data.field_14_arthro[i] %></textarea>
                                                 </td>
                                                 <td>
                                                     <textarea class="form-control" id="field_14_stoxos<%=i%>"
                                                         name="field_14_stoxos<%=i%>" rows="1"
                                                         onkeypress="wordsCounter('field_14_stoxos<%=i%>','words14_<%=i%>', event)"
-                                                        onpaste="wordsCounter('field_14_stoxos<%=i%>','words14_<%=i%>', event)"><%= Object.values(data.field_14_stoxos[i]) %></textarea>
+                                                        onpaste="wordsCounter('field_14_stoxos<%=i%>','words14_<%=i%>', event)"><%= data.field_14_stoxos[i] %></textarea>
                                                     <p style="float: right;">Λέξεις: <span id="words14_<%=i%>"></span>
                                                     </p>
                                                     <br><br>
@@ -944,6 +946,17 @@
                         $.each(checkbox, function (key, chckbx) {
                             fd.append($(chckbx).prop('name'), $(chckbx).value = '')//append to fd without value 
                         });
+                        // tinymce.triggerSave();                        
+                        // console.log(Object.values($('#field_15_rythmiseis').val()))
+                        // console.log('init val')
+                        // console.log($('#field_15_rythmiseis').val())
+                        // var value = CKEDITOR.instances['field_15_rythmiseis'].getData()                        
+                        // $('#field_15_rythmiseis').val(value);
+                        // console.log($('#field_15_rythmiseis').val())
+                        fd.append('f15', $('#field_15_rythmiseis').value= CKEDITOR.instances['field_15_rythmiseis'].getData());
+                        fd.append('f16_2', $('#field_16_kratikos_proypologismos').value= CKEDITOR.instances['field_16_kratikos_proypologismos'].getData());
+                        fd.append('f16_1', $('#field_16_proypologismos_forea').value= CKEDITOR.instances['field_16_proypologismos_forea'].getData());
+                        fd.append('f17', $('#field_17_oikonomika_apotelesmata').value= CKEDITOR.instances['field_17_oikonomika_apotelesmata'].getData());
                         $.ajax({
                             url: '/form_a/' + ekthesi_id,
                             //data: $("form").serialize(),
@@ -1101,6 +1114,24 @@
                         if (pdf_exists == true) {
                             $("#pdf_download").show();
                         }
+
+                        // if (role == "Γενικό Λογιστήριο του Κράτους") {
+
+                        //     tinymce.init({
+                        //         selector: '.glk-text'
+                        //     });
+                        
+                        // } else {
+
+                        //     tinymce.init({
+                        //         selector: '.glk-text', readonly:true
+                        //     });
+                        // }
+
+                        CKEDITOR.replace( 'field_15_rythmiseis' );
+                        CKEDITOR.replace( 'field_16_kratikos_proypologismos' );
+                        CKEDITOR.replace( 'field_16_proypologismos_forea' );
+                        CKEDITOR.replace( 'field_17_oikonomika_apotelesmata' );
 
                         requiredLegalistics("#field_33");//set initial state for fields 33-40                        
 
