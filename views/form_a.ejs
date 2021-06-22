@@ -1346,9 +1346,7 @@
                             
                             for (var i in tables.checkbox_tables) {
                                 for (var j in tables.static_tables[i].table) {             
-                                    console.log(tables.checkbox_tables[i].table[j])                       
                                     for (var k in tables.checkbox_tables[i].table[j].row) {
-                                        console.log('jola')
                                         var cbxname = (Object.keys(tables.checkbox_tables[i].table[j].row[k]));//get key
                                         var cbxvalue = (Object.values(tables.checkbox_tables[i].table[j].row[k]));
                                         if (cbxvalue[0]) {
@@ -2202,6 +2200,7 @@
                         $("#status_ekthesis").prop(('disabled', false));
                         $(".glk :input").prop("disabled", false);
 
+                        $(".export-pdf").prop("disabled", false);
                         enableFields(".next");
                         enableFields(".previous");
                     } else if (role == "Βουλή") {

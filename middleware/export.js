@@ -6,6 +6,12 @@ const PDFMerger = require('pdf-merger-js');
 
 exports.exportPDF = (async function (req, res, next) {
     let data = req.body;//assign req.body to variable
+    
+    let field_15_rythmiseis = stripHTML(data.field_15_rythmiseis);
+    let field_16_kratikos_proypologismos = stripHTML(data.field_16_kratikos_proypologismos);
+    let field_16_proypologismos_forea = stripHTML(data.field_16_proypologismos_forea);
+    let field_17_oikonomika_apotelesmata = stripHTML(data.field_17_oikonomika_apotelesmata);
+
     let keys = Object.keys(data);//get keys 
     let field_14_arthro = [];
     let field_14_stoxos = [];
@@ -382,7 +388,7 @@ exports.exportPDF = (async function (req, res, next) {
                 { text: req.body.field_15_ypoyrgeio + '\n\n', style: 'textStyle' },
                 { text: '15.Συνοπτική ανάλυση των άρθρων της αξιολογούμενης ρύθμισης ', style: 'labelStyle' },
                 { text: '\n\n' },
-                { text: req.body.field_15_rythmiseis + '\n\n' },
+                { text: field_15_rythmiseis + '\n\n' },
 
                 { text: '16.Οικονομικά αποτελέσματα επί του Κρατικού Προϋπολογισμού ή/και επί του προϋπολογισμού του/των αρμόδιου/ων φορέα/ων ', style: 'labelStyle' },
                 { text: '\n\n' },
@@ -390,10 +396,10 @@ exports.exportPDF = (async function (req, res, next) {
                 { text: '\n\n' },
                 { text: 'Επί του Κρατικού Προϋπολογισμού ', style: 'labelStyle' },
                 { text: '\n\n' },
-                { text: req.body.field_16_kratikos_proypologismos + '\n\n', style: 'textStyle' },
+                { text: field_16_kratikos_proypologismos + '\n\n', style: 'textStyle' },
                 { text: 'Επί του Προϋπολογισμού του/των αρμόδιου/ων φορέα/ων ', style: 'labelStyle' },
                 { text: '\n\n' },
-                { text: req.body.field_16_proypologismos_forea + '\n\n', style: 'textStyle' },
+                { text: field_16_proypologismos_forea + '\n\n', style: 'textStyle' },
                 { text: 'Ο/Η ΥΠΟΓΡΑΦΩΝ/ΟΥΣΑ ΓΕΝΙΚΟΣ/Η ΔΙΕΥΘΥΝΤΗΣ/ΡΙΑ', style: 'labelStyle' },
                 { text: '\n\n' },
                 {
@@ -419,7 +425,7 @@ exports.exportPDF = (async function (req, res, next) {
                 { text: data.field_17_ypoyrgeio + '\n\n', style: 'textStyle' },
                 { text: '17.Οικονομικά αποτελέσματα ', style: 'labelStyle' },
                 { text: '\n\n' },
-                { text: data.field_17_oikonomika_apotelesmata + '\n\n\n', style: 'textStyle' }, ,
+                { text: field_17_oikonomika_apotelesmata+ '\n\n\n', style: 'textStyle' }, ,
                 { text: 'ΟΙ ΥΠΟΥΡΓΟΙ', style: 'labelStyle' },
                 { text: "\n\n" },
                 createSignatories(field_17_onoma, field_17_epitheto, field_17_idiotita),
@@ -684,6 +690,12 @@ exports.exportPDF = (async function (req, res, next) {
 })
 
 ////////////////////////FUNCTIONS////////////////////////////////
+
+function stripHTML (element) {
+
+    element = element.replace(/(<([^>]+)>)/gi, "");
+    return element;
+}
 
 function valIsUndefined(val) {
     let typeOfVal = typeof val === "undefined" ? {} : { text: val + '\n\n', style: 'textStyle' };
