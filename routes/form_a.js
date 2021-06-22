@@ -200,13 +200,7 @@ routes.put('/:entry_id', authUser, upload,
                 });
                 var author = req.session.fname + ' ' + req.session.lname;
 
-                await database.audit.create({ user: author, data: req.body, timestamp: req.body.last_updated, action: req.method, auditId: ekthesi_id });
-                console.log('CHECK THIS OUT!')
-                console.log(JSON.stringify(Object.values(req.body.field_15_rythmiseis)))
-                console.log(Object.values(req.body.field_15_rythmiseis))
-                console.log(req.body.field_15_rythmiseis)
-                console.log(req.body.f15)
-                
+                await database.audit.create({ user: author, data: req.body, timestamp: req.body.last_updated, action: req.method, auditId: ekthesi_id });                
 
                 console.timeEnd();
 
