@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
           },
         //author_id: DataTypes.STRING,
+        nomosxedio: DataTypes.JSON,
         typos_analysis: DataTypes.STRING, 
         title: DataTypes.STRING,
         initial_submit: DataTypes.STRING,

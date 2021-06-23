@@ -33,6 +33,7 @@
                     <hr>
                 </div>
 
+                <br>
                 <div class="form-group row">
                     <label for="title" class="col-sm-6 col-form-label required">Τίτλος αξιολογούμενης ρύθμισης</label>
                     <div class="col-sm-4">
@@ -91,6 +92,18 @@
 
                 <br>
                 <hr>
+
+                <div id="nomosxedio_div">
+                    <div id="upload_nomosxedio">
+                        <label for="nomosxedio" class="nomosxedio" id="nomosxedio_label">Επισύναψη νομοσχεδίου</label>
+                        <br>
+                        <input type="file" id="nomosxedio" name="nomosxedio" accept=".pdf">
+                    </div>        
+                </div>    
+
+                <br>
+                <hr>
+
                 <div>
                     <p id="tomeis_nomothetisis">Επιλέξατε από τον παρακάτω κατάλογο τον τομέα ή τους τομείς νομοθέτησης
                         στους οποίους αφορούν οι
@@ -816,6 +829,9 @@
             $.each(checkbox, function (key, chckbx) {
                 fd.append($(chckbx).prop('name'), $(chckbx).value = '')//append to fd without value 
             });
+            console.log($('#nomosxedio').get(0).files.length);
+            console.log($('#field_23_upload').get(0).files.length);
+            if ($('#nomosxedio') != '' ) {console.log('ayyyy');getFullDate($('#upload_date')); console.log($('#upload_date').val());console.log($('#upload_date').value)}
             $.ajax({
                 url: '/create/<%= analysis %>',
                 data: fd,
@@ -834,12 +850,10 @@
         $(".save_temporarily").on("click", function (ev) {
             ev.preventDefault();
             var fd = new FormData($("form").get(0));
-            console.log(fd)
             var checkbox = $("form").find("input[type=checkbox]:not(:checked)");//find all unchecked checkboxes 
             $.each(checkbox, function (key, chckbx) {
                 fd.append($(chckbx).prop('name'), $(chckbx).value = '')//append to fd without value 
-            });
-            //console.log('my file: '+ document.getElementById("field_23_upload").files[0].name);
+            });            
             $.ajax({
                 url: '/create/<%= analysis %>',
                 data: fd,

@@ -51,9 +51,7 @@
                             <button class="btn delete-analysis float-right" style="float: right;" type="button"><img
                                     src="/img/delete.png" width="25px"></button>
                             <br><br>
-
-
-                            <br>
+                            
                             <div class="form-group row">
                                 <label for="title" class="required col-sm-6 col-form-label">Τίτλος αξιολογούμενης
                                     ρύθμισης</label>
@@ -130,6 +128,42 @@
                             <br>
                             <hr>
 
+                            <div id="nomosxedio_div">
+                                <div id="upload_nomosxedio">
+                                    <label for="nomosxedio" class="nomosxedio optional-label" id="nomosxedio_label">Επισύναψη Νομοσχεδίου</label>
+                                    <br>
+                                    <input type="file" id="nomosxedio" name="nomosxedio" accept=".pdf">
+                                </div>
+                        
+                                <br>
+                                <table id="nomosxedio_table" class="display:none">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="2">Προηγούμενες αναρτήσεις:</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                        
+                                        <% if( data.nomosxedio && data.nomosxedio.length) { 
+                                            for (var i=data.nomosxedio.length-1; i>=0 ; i--) { %>
+                                            <tr>
+                                                <td>
+                                                    <a href="/uploads/<%= data.nomosxedio[i].filename %> "><%= data.nomosxedio[i].filename %></a>                            
+                                                </td>
+                                                <td>
+                                                    <%= data.nomosxedio[i].upload_date %>                            
+                                                </td>
+                                            </tr>
+                                            <% } }%>
+                        
+                                    </tbody>
+                                </table>
+                                <br>
+                            </div>    
+
+                            <br>
+                            <hr>
+                            
                             <p>Επιλέξατε από τον παρακάτω κατάλογο τον τομέα ή τους τομείς νομοθέτησης στους οποίους
                                 αφορούν
                                 οι βασικές διατάξεις της αξιολογούμενης ρύθμισης:
@@ -1345,7 +1379,7 @@
                             var prefix;
                             
                             for (var i in tables.checkbox_tables) {
-                                for (var j in tables.static_tables[i].table) {             
+                                for (var j in tables.checkbox_tables[i].table) {             
                                     for (var k in tables.checkbox_tables[i].table[j].row) {
                                         var cbxname = (Object.keys(tables.checkbox_tables[i].table[j].row[k]));//get key
                                         var cbxvalue = (Object.values(tables.checkbox_tables[i].table[j].row[k]));
@@ -1579,7 +1613,7 @@
                     });
 
                     var table17RowIndex;
-                    if ("data.field_17_onoma.length" != null) {
+                    if ("<%= data.field_17_onoma.length %>") {
                         var table17RowIndex = "<%=data.field_17_onoma.length %>"
                     } else {
                         table17RowIndex = 0;
