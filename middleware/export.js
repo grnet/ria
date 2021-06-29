@@ -2,15 +2,16 @@ const fs = require('fs');
 let database = require('../services/database');
 let path = require('path');
 const PDFMerger = require('pdf-merger-js');
-//const { sign } = require('crypto');
+var jsdom = require("jsdom");
+var { JSDOM } = jsdom;
+var { window } = new JSDOM("");
+var PdfPrinter = require('../node_modules/pdfmake/src/printer');
+const htmlToPdfmake = require("html-to-pdfmake");
+const { convert } = require('html-to-text');
+
 
 exports.exportPDF = (async function (req, res, next) {
     let data = req.body;//assign req.body to variable
-    
-    let field_15_rythmiseis = stripHTML(data.field_15_rythmiseis);
-    let field_16_kratikos_proypologismos = stripHTML(data.field_16_kratikos_proypologismos);
-    let field_16_proypologismos_forea = stripHTML(data.field_16_proypologismos_forea);
-    let field_17_oikonomika_apotelesmata = stripHTML(data.field_17_oikonomika_apotelesmata);
 
     let keys = Object.keys(data);//get keys 
     let field_14_arthro = [];
@@ -197,7 +198,6 @@ exports.exportPDF = (async function (req, res, next) {
         }
     }
 
-    var PdfPrinter = require('../node_modules/pdfmake/src/printer');
     // download default Roboto font from cdnjs.com
     fonts = {
         Roboto: {
@@ -212,7 +212,6 @@ exports.exportPDF = (async function (req, res, next) {
     var docDefinition = {
 
         pageSize: 'A4',
-        //watermark: { text: 'test watermark', color: 'blue', opacity: 0.3, bold: true, italics: false },
         styles: {
             headerStyle: {
                 fontSize: 15,
@@ -388,7 +387,8 @@ exports.exportPDF = (async function (req, res, next) {
                 { text: req.body.field_15_ypoyrgeio + '\n\n', style: 'textStyle' },
                 { text: '15.Συνοπτική ανάλυση των άρθρων της αξιολογούμενης ρύθμισης ', style: 'labelStyle' },
                 { text: '\n\n' },
-                { text: field_15_rythmiseis + '\n\n' },
+                htmlToPdfmake(req.body.field_15_rythmiseis, { window: window, replaceText:function(text, nodes) { return text.replace(/(?:\r\n|\r|\n)/g, '<br>');}}),                
+                { text: '\n\n' },
 
                 { text: '16.Οικονομικά αποτελέσματα επί του Κρατικού Προϋπολογισμού ή/και επί του προϋπολογισμού του/των αρμόδιου/ων φορέα/ων ', style: 'labelStyle' },
                 { text: '\n\n' },
@@ -396,10 +396,12 @@ exports.exportPDF = (async function (req, res, next) {
                 { text: '\n\n' },
                 { text: 'Επί του Κρατικού Προϋπολογισμού ', style: 'labelStyle' },
                 { text: '\n\n' },
-                { text: field_16_kratikos_proypologismos + '\n\n', style: 'textStyle' },
+                htmlToPdfmake(req.body.field_16_kratikos_proypologismos, { window: window, replaceText:function(text, nodes) { return text.replace(/(?:\r\n|\r|\n)/g, '<br>');}}),
+                { text: '\n\n' },
                 { text: 'Επί του Προϋπολογισμού του/των αρμόδιου/ων φορέα/ων ', style: 'labelStyle' },
                 { text: '\n\n' },
-                { text: field_16_proypologismos_forea + '\n\n', style: 'textStyle' },
+                htmlToPdfmake(req.body.field_16_proypologismos_forea, { window: window, replaceText:function(text, nodes) { return text.replace(/(?:\r\n|\r|\n)/g, '<br>');}}),
+                { text: '\n\n' },
                 { text: 'Ο/Η ΥΠΟΓΡΑΦΩΝ/ΟΥΣΑ ΓΕΝΙΚΟΣ/Η ΔΙΕΥΘΥΝΤΗΣ/ΡΙΑ', style: 'labelStyle' },
                 { text: '\n\n' },
                 {
@@ -425,7 +427,8 @@ exports.exportPDF = (async function (req, res, next) {
                 { text: data.field_17_ypoyrgeio + '\n\n', style: 'textStyle' },
                 { text: '17.Οικονομικά αποτελέσματα ', style: 'labelStyle' },
                 { text: '\n\n' },
-                { text: field_17_oikonomika_apotelesmata+ '\n\n\n', style: 'textStyle' }, ,
+                htmlToPdfmake(req.body.field_17_oikonomika_apotelesmata, { window: window, replaceText:function(text, nodes) { return text.replace(/(?:\r\n|\r|\n)/g, '<br>'); }}),
+                { text: '\n\n' },
                 { text: 'ΟΙ ΥΠΟΥΡΓΟΙ', style: 'labelStyle' },
                 { text: "\n\n" },
                 createSignatories(field_17_onoma, field_17_epitheto, field_17_idiotita),
@@ -691,7 +694,7 @@ exports.exportPDF = (async function (req, res, next) {
 
 ////////////////////////FUNCTIONS////////////////////////////////
 
-function stripHTML (element) {
+function stripHTML(element) {
 
     element = element.replace(/(<([^>]+)>)/gi, "");
     return element;
@@ -704,26 +707,26 @@ function valIsUndefined(val) {
 
 function exportColumns(data) {
     var columns = [];
-    columns.push( {
+    columns.push({
         columns: [setGoalImage(data.field_7_goal_1, 'goal-1'), setGoalImage(data.field_7_goal_2, 'goal-2'), setGoalImage(data.field_7_goal_3, 'goal-3'), setGoalImage(data.field_7_goal_4, 'goal-4'), setGoalImage(data.field_7_goal_5, 'goal-5')
         ], columnGap: 10
     },
-    {
-        columns: [setGoalImage(data.field_7_goal_6, 'goal-6'), setGoalImage(data.field_7_goal_7, 'goal-7'), setGoalImage(data.field_7_goal_8, 'goal-8'), setGoalImage(data.field_7_goal_9, 'goal-9'), setGoalImage(data.field_7_goal_10, 'goal-10')
-        ], columnGap: 10
-    },
-    {
-        columns: [setGoalImage(data.field_7_goal_11, 'goal-11'), setGoalImage(data.field_7_goal_12, 'goal-12'), setGoalImage(data.field_7_goal_13, 'goal-13'), setGoalImage(data.field_7_goal_14, 'goal-14'), setGoalImage(data.field_7_goal_15, 'goal-15')
-        ], columnGap: 10
-    },
-    {
-        columns: [setGoalImage(data.field_7_goal_16, 'goal-16'), setGoalImage(data.field_7_goal_17, 'goal-17')
-        ], columnGap: 10
-    });
+        {
+            columns: [setGoalImage(data.field_7_goal_6, 'goal-6'), setGoalImage(data.field_7_goal_7, 'goal-7'), setGoalImage(data.field_7_goal_8, 'goal-8'), setGoalImage(data.field_7_goal_9, 'goal-9'), setGoalImage(data.field_7_goal_10, 'goal-10')
+            ], columnGap: 10
+        },
+        {
+            columns: [setGoalImage(data.field_7_goal_11, 'goal-11'), setGoalImage(data.field_7_goal_12, 'goal-12'), setGoalImage(data.field_7_goal_13, 'goal-13'), setGoalImage(data.field_7_goal_14, 'goal-14'), setGoalImage(data.field_7_goal_15, 'goal-15')
+            ], columnGap: 10
+        },
+        {
+            columns: [setGoalImage(data.field_7_goal_16, 'goal-16'), setGoalImage(data.field_7_goal_17, 'goal-17')
+            ], columnGap: 10
+        });
     return columns;
 }
 
-function setGoalImage(fieldName,img) {
+function setGoalImage(fieldName, img) {
 
     let image = `./public/img/gr-${img}.jpg`
     if (fieldName) {
