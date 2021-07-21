@@ -25,7 +25,6 @@ routes.delete('/:username', authUser, authRole, async (req, res, next) => {
     let user = await database.user.findOne({ where: { username: req.params.username } })
 
     if (!user) {
-        console.log("Error deleting user");
         res.status(404).send("Error while deleting user");
     } else {
         user.destroy();
@@ -39,7 +38,7 @@ routes.put('/:username', authUser, authRole, async (req, res, next) => {
     const userPassword = req.body.password;
     const newPassword = req.body.new_password;
 
-
+    console.log(req.body)
     bcrypt.hash(newPassword, 10, async function (err, newHash) {//if correct, has new password and update user
         if (newHash) {
             user = await database.user.update({ fname: req.body.fname, lname: req.body.lname, username: req.body.username, password: newHash, rolos: req.body.rolos, dikaiwmata_diaxeirisis: req.body.dikaiwmata_diaxeirisis, ypoyrgeio: req.body.ypoyrgeio }, {

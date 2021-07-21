@@ -997,7 +997,7 @@
                                 // var alerts = '';
                                 // for (i in errors) {
                                 //     console.log(errors[i].msg)
-                                //     alerts += "<li>" + errors[i].msg + "</li>";
+                                //     alerts c+= "<li>" + errors[i].msg + "</li>";
                                 // }
                                 // if ($(this).val() === '') {
                                 //     $(this).addClass("focused");
@@ -1143,10 +1143,10 @@
                             $("#pdf_download").show();
                         }
 
-                        CKEDITOR.replace( 'field_15_rythmiseis' );
-                        CKEDITOR.replace( 'field_16_kratikos_proypologismos' );
-                        CKEDITOR.replace( 'field_16_proypologismos_forea' );
-                        CKEDITOR.replace( 'field_17_oikonomika_apotelesmata' );
+                        CKEDITOR.replace( 'field_15_rythmiseis', {removeButtons: 'Subscript,Superscript'} );
+                        CKEDITOR.replace( 'field_16_kratikos_proypologismos', {removeButtons: 'Subscript,Superscript'} );
+                        CKEDITOR.replace( 'field_16_proypologismos_forea', {removeButtons: 'Subscript,Superscript'} );
+                        CKEDITOR.replace( 'field_17_oikonomika_apotelesmata', {removeButtons: 'Subscript,Superscript'} );
 
                         requiredLegalistics("#field_33");//set initial state for fields 33-40                        
 

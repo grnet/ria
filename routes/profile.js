@@ -24,7 +24,6 @@ routes.put('/:username', authUser, async function (req, res, next) {
     //     username: req.session.username
     // }, returning: true, plain: true});   
 
-
     let user = await database.user.findOne({
         where: {
             username: req.params.username
@@ -32,26 +31,26 @@ routes.put('/:username', authUser, async function (req, res, next) {
     });
     if (user && user.dataValues) {
 
-        await bcrypt.compare(req.body.password, user.password, function (err, result) {
+        bcrypt.compare(req.body.password, user.password, function (err, result) {
             if (result) {
                 if (req.body.new_password === req.body.password_repeat) {
                     bcrypt.hash(req.body.new_password, 10, async function (err, hash) {
                         if (hash) {
-                            if (user.dikaiwmata_diaxeirisis) {
+                            if (user.dikaiwmata_diaxeirisis && req.body.dikaiwmata_diaxeirisis) {
                                 await database.user.update({ fname: req.body.fname, lname: req.body.lname, username: req.body.username, password: hash, rolos: req.body.rolos, dikaiwmata_diaxeirisis: req.body.dikaiwmata_diaxeirisis, ypoyrgeio: req.body.ypoyrgeio },
                                     {
                                         where: {
                                             username: req.params.username
                                         }
-                                    });
+                                });
                                 res.send({ redirect: "./admin_dashboard" });
                             } else {
-                                await database.user.update({ fname: req.body.fname, lname: req.body.lname, username: req.body.username, password: hash },
+                                await database.user.update({ fname: req.body.fname, lname: req.body.lname, username: req.body.username, password: hash, rolos: req.body.rolos, dikaiwmata_diaxeirisis:'' , ypoyrgeio: req.body.ypoyrgeio },
                                     {
                                         where: {
                                             username: req.params.username
                                         }
-                                    });
+                                });
                                 res.send({ redirect: "./user_dashboard" });
                             }
                         }

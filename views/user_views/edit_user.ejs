@@ -42,26 +42,30 @@
                 <div class="form-group">
                     <label for="password">Νέος κωδικός πρόσβασης:</label>
                     <input type="password" size="20" id="new_password" name="new_password" minlength="8"
-                        placeholder="********" />
+                        placeholder="********" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$"
+                        oninvalid="this.setCustomValidity('Ο κωδικός πρέπει να περιέχει τουλάχιστον ένα κεφαλαίο γράμμα, έναν αριθμό και ένα σύμβολο(!@#$%^&*_=+-).')"
+                        oninput="this.setCustomValidity('')" />
                 </div>
 
                 <div class="form-group">
                     <label for="password">Επανάληψη νέου κωδικού πρόσβασης χρήστη:</label>
                     <input type="password" size="20" id="password_repeat" name="password_repeat" minlength="8"
-                        placeholder="********" />
+                        placeholder="********" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$"
+                        oninvalid="this.setCustomValidity('Ο κωδικός πρέπει να περιέχει τουλάχιστον ένα κεφαλαίο γράμμα, έναν αριθμό και ένα σύμβολο(!@#$%^&*_=+-).')"
+                        oninput="this.setCustomValidity('')" />
                     <div id="msg"></div>
                 </div>
 
                 <hr>
 
-                <div class="form-group user-restricted">
+                <div class="form-group">
                     <label for="ypoyrgeio">Υπουργείο:</label>
                     <input type="text" size="20" id="ypoyrgeio" name="ypoyrgeio" placeholder="Υπουργείο" required
                         value="<%= data.ypoyrgeio %>" />
                 </div>
                 <hr>
 
-                <div class="checkbox-group form-group row user-restricted">
+                <div class="checkbox-group form-group row">
                     <label for="rolos" class="col-sm-2 col-form-label">Ρόλος: </label>
                     <select id="rolos" name="rolos" class="col-sm-2 form-control" required>
                         <option value="" selected disabled>Eπιλογή</option>
@@ -84,12 +88,12 @@
                 <br>
                 <hr>
 
-                <div class="checkbox-group form-group row user-restricted">
+                <div class="checkbox-group form-group ">
                     <label for="dikaiwmata_diaxeirisis" class="col-sm-8 col-form-label">Ο χρήστης έχει δικαιώματα
                         διαχείρισης:</label>
                     <input class="col-sm-2 form-check-input position-static" type="checkbox" id="dikaiwmata_diaxeirisis"
-                        name="dikaiwmata_diaxeirisis" value="1" />
-                    <input type="hidden" name="dikaiwmata_diaxeirisis" id="dikaiwmata_diaxeirisis_hidden" value="0" />
+                        name="dikaiwmata_diaxeirisis" />
+                    <input type="hidden" name="dikaiwmata_diaxeirisis" id="dikaiwmata_diaxeirisis_hidden" value="" />
                 </div>
                 <hr>
 
@@ -184,11 +188,13 @@
                 ev.preventDefault();
                 if ($("#dikaiwmata_diaxeirisis").prop('checked')) {
                     $("#dikaiwmata_diaxeirisis_hidden").prop('disabled', true);
+                } else {
+                    $("#dikaiwmata_diaxeirisis").prop('disabled', true);
                 }
+
                 if ($("#password_repeat").val() != $("#new_password").val()) {
                     ev.preventDefault();
                 } else {
-                    console.log($(this).serialize())
                     $.ajax({
                         url: '/user_views/edit_user/' + username,
                         data: $(this).serialize(),
@@ -217,21 +223,20 @@
             $(document).ready(function () {
                 if ("<%= data.dikaiwmata_diaxeirisis %>") {
                     $("#dikaiwmata_diaxeirisis").prop('checked', true);
-                } else {
-                    $(".user-restricted :input").prop('disabled', true);
-                    $("#dikaiwmata_diaxeirisis").hide();
                 }
 
-                $("#password_repeat").keyup(function () {
+                $("#password_repeat, #new_password").keyup(function () {
                     passwordsMatch();
                 });
             });
 
             function passwordsMatch() {
-                if ($("#password_repeat").val() != $("#new_password").val()) {
-                    $("#msg").html("Οι κωδικοί δεν ταιριάζουν.").css("color", "red");
-                } else {
+                if (($("#password_repeat").val() == $("#new_password").val() && $("#new_password").val()!= '' ) ) {
                     $("#msg").html("Οι κωδικοί ταιριάζουν.").css("color", "green");
+                } else if (!$("#password_repeat").val() && !$("#new_password").val()) {
+                    $("#msg").empty();
+                } else {
+                    $("#msg").html("Οι κωδικοί δεν ταιριάζουν.").css("color", "red");
                 }
             }
 

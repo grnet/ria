@@ -7,7 +7,6 @@ var { JSDOM } = jsdom;
 var { window } = new JSDOM("");
 var PdfPrinter = require('../node_modules/pdfmake/src/printer');
 const htmlToPdfmake = require("html-to-pdfmake");
-const { convert } = require('html-to-text');
 
 
 exports.exportPDF = (async function (req, res, next) {

@@ -2,11 +2,6 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
     <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
 
     <div class="MuiContainer-root jss110 MuiContainer-maxWidthLg">
         <br>
@@ -56,7 +51,7 @@
                     <label for="password">Νέος κωδικός πρόσβασης:</label>
                     <input type="password" size="20" id="new_password" name="new_password" minlength="8"
                         placeholder="********" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$"
-                        oninvalid="this.setCustomValidity('Ο κωδικός πρέπει να περιέχει τουλάχιστον ένα κεφαλαίο γράμμα, έναν αριθμό και ένα σύμβολο.')"
+                        oninvalid="this.setCustomValidity('Ο κωδικός πρέπει να περιέχει τουλάχιστον ένα κεφαλαίο γράμμα, έναν αριθμό και ένα σύμβολο(!@#$%^&*_=+-).')"
                         oninput="this.setCustomValidity('')" />
                 </div>
 
@@ -64,20 +59,20 @@
                     <label for="password">Επανάληψη νέου κωδικού πρόσβασης χρήστη:</label>
                     <input type="password" size="20" id="password_repeat" name="password_repeat" minlength="8"
                         placeholder="********" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$"
-                        oninvalid="this.setCustomValidity('Ο κωδικός πρέπει να περιέχει τουλάχιστον ένα κεφαλαίο γράμμα, έναν αριθμό και ένα σύμβολο.')"
+                        oninvalid="this.setCustomValidity('Ο κωδικός πρέπει να περιέχει τουλάχιστον ένα κεφαλαίο γράμμα, έναν αριθμό και ένα σύμβολο(!@#$%^&*_=+-).')"
                         oninput="this.setCustomValidity('')" />
                     <div id="msg"></div>
                 </div>
                 <hr>
 
-                <div class="form-group user-restricted">
+                <div class="form-group">
                     <label for="ypoyrgeio">Υπουργείο:</label>
                     <input type="text" size="20" id="ypoyrgeio" name="ypoyrgeio" placeholder="Υπουργείο"
                         value="<%= user.ypoyrgeio %>" />
                 </div>
                 <hr>
 
-                <div class="checkbox-group form-group row user-restricted">
+                <div class="checkbox-group form-group row">
                     <label for="rolos" class="col-sm-2 col-form-label">Ρόλος: </label>
                     <select id="rolos" name="rolos" class="col-sm-2 form-control">
                         <option selected disabled>Eπιλογή</option>
@@ -104,10 +99,11 @@
                     </select>
                 </div>
 
-                <div id="dikaiwmata_diaxeirisis_checkbox" class="checkbox-group form-group row user-restricted">
-                    <br>
-                    <hr>
+                <br>            
 
+                <div id="dikaiwmata_diaxeirisis_checkbox" class="checkbox-group form-group row">
+                    
+                    
                     <label for="dikaiwmata_diaxeirisis" class="col-sm-2 col-form-label">Ο χρήστης έχει
                         δικαιώματα
                         διαχείρισης:</label>
@@ -190,9 +186,7 @@
             var validationErrors;
             $("form").on("submit", function (ev) {
                 ev.preventDefault();
-                if ($("#dikaiwmata_diaxeirisis").prop('checked')) {
-                    $("#dikaiwmata_diaxeirisis_hidden").prop('disabled', true);
-                }                
+                                
                 if ($("#password_repeat").val() != $("#new_password").val()) {
                     ev.preventDefault();
                     validationErrors = '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><li>Οι νέοι κωδικοί δεν ταιριάζουν.</li>';
@@ -247,10 +241,11 @@
             setDropdown("rolos");
 
             $(document).ready(function () {
+                console.log("<%= user.dikaiwmata_diaxeirisis %>")
                 if ("<%= user.dikaiwmata_diaxeirisis %>") {
+                    $("#dikaiwmata_diaxeirisis_checkbox").show();
                     $("#dikaiwmata_diaxeirisis").prop('checked', true);
                 } else {
-                    $(".user-restricted :input").prop('disabled', true);
                     $("#dikaiwmata_diaxeirisis_checkbox").hide();
                 }
 
@@ -260,7 +255,7 @@
             });
 
             function passwordsMatch() {
-                if ($("#password_repeat").val() == $("#new_password").val()) {
+                if (($("#password_repeat").val() == $("#new_password").val() && $("#new_password").val()!= '' ) ) {
                     $("#msg").html("Οι κωδικοί ταιριάζουν.").css("color", "green");
                 } else if (!$("#password_repeat").val() && !$("#new_password").val()) {
                     $("#msg").empty();
@@ -268,7 +263,6 @@
                     $("#msg").html("Οι κωδικοί δεν ταιριάζουν.").css("color", "red");
                 }
             }
-
         </script>
         </body>
 

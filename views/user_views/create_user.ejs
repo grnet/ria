@@ -1,175 +1,213 @@
 <%- include('../partials/head.ejs') %>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
-<script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+    <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 
-<div class="MuiContainer-root jss110 MuiContainer-maxWidthLg">
-    <br>
-    <input type="button" name="back" class="back" value="Πίσω"/>
-    <br>
-    <div class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-4">
-        
-        <form>
-            <h1>Δημιουργία νέου χρήστη</h1>
-            <br>
+    <div class="MuiContainer-root jss110 MuiContainer-maxWidthLg">
+        <br>
+        <input type="button" name="back" class="back" value="Πίσω" />
+        <br>
+        <div class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-4">
 
-            <div class="form-group">
-                <label for="fname">Όνομα χρήστη:</label>
-                <input type="text" size="10" id="fname" name="fname" placeholder="Όνομα χρήστη" required minlength="5"/>
-            </div>
-            <hr>
+            <form>
+                <h1>Δημιουργία νέου χρήστη</h1>
+                <br>
 
-            <div class="form-group">
-                <label for="lname">Επώνυμο χρήστη:</label>
-                <input type="text" size="10" id="lname" name="lname" placeholder="Επώνυμο χρήστη" required minlength="5"/> 
-            </div>
-            <hr>
+                <div class="form-group">
+                    <label for="fname">Όνομα χρήστη:</label>
+                    <input type="text" size="10" id="fname" name="fname" placeholder="Όνομα χρήστη" required
+                        minlength="5" />
+                </div>
+                <hr>
 
-            <div class="form-group">
-                <label for="username">Username χρήστη:</label>
-                <input type="text" size="10" id="username" name="username" placeholder="Username" required minlength="5"/> 
-            </div>
-            <hr>
+                <div class="form-group">
+                    <label for="lname">Επώνυμο χρήστη:</label>
+                    <input type="text" size="10" id="lname" name="lname" placeholder="Επώνυμο χρήστη" required
+                        minlength="5" />
+                </div>
+                <hr>
 
-            <div class="form-group">
-                <label for="password">Κωδικός πρόσβασης χρήστη:</label>
-                <input type="password" size="10" id="password" name="password" placeholder="Κωδικός πρόσβασης" required minlength="8"/> 
-            </div>
+                <div class="form-group">
+                    <label for="username">Username χρήστη:</label>
+                    <input type="text" size="10" id="username" name="username" placeholder="Username" required
+                        minlength="5" />
+                </div>
+                <hr>
 
-            <div class="form-group">
-                <label for="password">Επανάληψη κωδικού πρόσβασης χρήστη:</label>
-                <input type="password" size="10" id="repeat_password" name="repeat_password" placeholder="Επανάληψη κωδικού πρόσβασης" required minlength="8"/> 
-            </div>
-            <hr>
+                <div class="form-group">
+                    <label for="password">Κωδικός πρόσβασης χρήστη:</label>
+                    <input type="password" size="10" id="password" name="password" placeholder="Κωδικός πρόσβασης"
+                        required minlength="8" placeholder="********"
+                        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$"
+                        oninvalid="this.setCustomValidity('Ο κωδικός πρέπει να περιέχει τουλάχιστον ένα κεφαλαίο γράμμα, έναν αριθμό και ένα σύμβολο(!@#$%^&*_=+-).')"
+                        oninput="this.setCustomValidity('')" />
+                </div>
 
-            <div class="form-group">
-                <label for="ypoyrgeio">Υπουργείο:</label>
-                <input type="text" size="10" id="ypoyrgeio" name="ypoyrgeio" placeholder="Υπουργείο" required minlength="10"/> 
-            </div>
-            <hr>
+                <div class="form-group">
+                    <label for="repeat_password">Επανάληψη κωδικού πρόσβασης χρήστη:</label>
+                    <input type="password" size="10" id="repeat_password" name="repeat_password"
+                        placeholder="Επανάληψη κωδικού πρόσβασης" required minlength="8" placeholder="********"
+                        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$"
+                        oninvalid="this.setCustomValidity('Ο κωδικός πρέπει να περιέχει τουλάχιστον ένα κεφαλαίο γράμμα, έναν αριθμό και ένα σύμβολο(!@#$%^&*_=+-).')"
+                        oninput="this.setCustomValidity('')" />
+                    <div id="msg"></div>
+                </div>
+                <hr>
 
-            <div class="checkbox-group form-group row" >
-                <label for="rolos" class="col-sm-2 col-form-label">Ρόλος: </label>
-                <select id="rolos" name="rolos" class="col-sm-2 form-control" required>
-                    <option value="" selected disabled>Eπιλογή</option>
-                    <option value="Συντάκτης επισπεύδοντος Υπουργείου">Συντάκτης επισπεύδοντος Υπουργείου</option>
-                    <option value="Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων">Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων</option>
-                    <option value="Βουλευτής" >Βουλευτής</option>
-                    <option value="Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)" >Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)</option>
-                    <option value="Γενικό Λογιστήριο του Κράτους" >Γενικό Λογιστήριο του Κράτους</option>
-                    <option value="Επιτροπή Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)" >Επιτροπή Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)</option>
-                    <option value="Γραφείο Καλής Νομοθέτησης (ΓΓΝΚΘ)" >Γραφείο Καλής Νομοθέτησης (ΓΓΝΚΘ)</option>
-                    <option value="Διεύθυνση Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)" >Διεύθυνση Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)</option>
-                    <option value="Γενικός Γραμματέας Νομικών και Κοινοβουλευτικών Θεμάτων" >Γενικός Γραμματέας Νομικών και Κοινοβουλευτικών Θεμάτων</option>
-                    <option value="Βουλή" >Βουλή</option>
-                </select>
-            </div>
-            <br><hr>
+                <div class="form-group">
+                    <label for="ypoyrgeio">Υπουργείο:</label>
+                    <input type="text" size="10" id="ypoyrgeio" name="ypoyrgeio" placeholder="Υπουργείο" required
+                        minlength="10" />
+                </div>
+                <hr>
 
-            <div class="checkbox-group form-group row">
-                <label for="dikaiwmata_diaxeirisis" class="col-sm-8 col-form-label">Ο χρήστης έχει δικαιώματα διαχείρισης:</label>
-                <input class="col-sm-2 form-check-input position-static" type="checkbox" id="dikaiwmata_diaxeirisis" name="dikaiwmata_diaxeirisis">
-            </div>
-            <hr>
-            
-            <input type="submit" name="create_new" class="action-button" value="Δημιουργία"/>            
-        </form>
-        
+                <div class="checkbox-group form-group row">
+                    <label for="rolos" class="col-sm-2 col-form-label">Ρόλος: </label>
+                    <select id="rolos" name="rolos" class="col-sm-2 form-control" required>
+                        <option value="" selected disabled>Eπιλογή</option>
+                        <option value="Συντάκτης επισπεύδοντος Υπουργείου">Συντάκτης επισπεύδοντος Υπουργείου</option>
+                        <option value="Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων">Αρμόδιος
+                            επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων</option>
+                        <option value="Βουλευτής">Βουλευτής</option>
+                        <option value="Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)">Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)</option>
+                        <option value="Γενικό Λογιστήριο του Κράτους">Γενικό Λογιστήριο του Κράτους</option>
+                        <option value="Επιτροπή Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)">
+                            Επιτροπή Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)</option>
+                        <option value="Γραφείο Καλής Νομοθέτησης (ΓΓΝΚΘ)">Γραφείο Καλής Νομοθέτησης (ΓΓΝΚΘ)</option>
+                        <option value="Διεύθυνση Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)">Διεύθυνση Νομοπαρασκευαστικής
+                            Διαδικασίας (ΓΓΝΚΘ)</option>
+                        <option value="Γενικός Γραμματέας Νομικών και Κοινοβουλευτικών Θεμάτων">Γενικός Γραμματέας
+                            Νομικών και Κοινοβουλευτικών Θεμάτων</option>
+                        <option value="Βουλή">Βουλή</option>
+                    </select>
+                </div>
+                <br>
+                <hr>
+
+                <div class="checkbox-group form-group row">
+                    <label for="dikaiwmata_diaxeirisis" class="col-sm-8 col-form-label">Ο χρήστης έχει δικαιώματα
+                        διαχείρισης:</label>
+                    <input class="col-sm-2 form-check-input position-static" type="checkbox" id="dikaiwmata_diaxeirisis"
+                        name="dikaiwmata_diaxeirisis">
+                </div>
+                <hr>
+
+                <input type="submit" name="create_new" class="action-button" value="Δημιουργία" />
+            </form>
+
+        </div>
     </div>
-</div>
 
-<%- include('../partials/footer.ejs') %>
-</div>
+    <%- include('../partials/footer.ejs') %>
+        </div>
 
-<style>
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background-color: white;
-    }
-    
-    * {
-      box-sizing: border-box;
-    }
-    
-    /* Add padding to containers */
-    .container {
-      padding: 16px;
-      background-color: black;
-    }
-    
-    /* Full-width input fields */
-    input[type=text], input[type=password] {
-      width: 100%;
-      padding: 15px;
-      margin: 5px 0 22px 0;
-      display: inline-block;
-      border: 2px solid #ccc;
-      border-radius: 4px;
-      background: #f1f1f1;
-    }
-    
-    input[type=text]:focus, input[type=password]:focus {
-      background-color: #ddd;
-      outline: none;
-    }
-    
-    /* Overwrite default styles of hr */
-    hr {
-      border: 1px solid #f1f1f1;
-      margin-bottom: 25px;
-    }
+        <style>
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+                background-color: white;
+            }
 
-    .flex-form-group {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-    }
+            * {
+                box-sizing: border-box;
+            }
 
-    .checkbox-group {
-        display: flex;
-        align-items: center;
-    }
+            /* Add padding to containers */
+            .container {
+                padding: 16px;
+                background-color: black;
+            }
 
-    .form-check-input {
-        margin-top: 0px;
-    }
+            /* Full-width input fields */
+            input[type=text],
+            input[type=password] {
+                width: 100%;
+                padding: 15px;
+                margin: 5px 0 22px 0;
+                display: inline-block;
+                border: 2px solid #ccc;
+                border-radius: 4px;
+                background: #f1f1f1;
+            }
 
-    label {
-        font-weight: 700;
-    }
+            input[type=text]:focus,
+            input[type=password]:focus {
+                background-color: #ddd;
+                outline: none;
+            }
 
-    .action-button, .back {font-size: 16px;}
+            /* Overwrite default styles of hr */
+            hr {
+                border: 1px solid #f1f1f1;
+                margin-bottom: 25px;
+            }
 
-    a {
-      color: blue;
-    }
+            .flex-form-group {
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+            }
 
-</style>
+            .checkbox-group {
+                display: flex;
+                align-items: center;
+            }
 
-<script>
+            .form-check-input {
+                margin-top: 0px;
+            }
 
-$("form").on("submit",function(ev){
-    ev.preventDefault();
-    console.log($(this).serialize())//comment this line out to hide query wrote in db
-    $.ajax({
-        url: '/user_views/create_user',
-        data:$(this).serialize(),
-        error: function(error) {
-            console.log(error)
-        },
-        success: function(data) {
-            console.log(data)
-            window.location.href="./admin_dashboard"
-        },
-        type: 'POST'
-    });
-});
+            label {
+                font-weight: 700;
+            }
 
-$(".back").on("click",function(ev){
-    window.location.href = "/user_views/admin_dashboard";
-});
+            .action-button,
+            .back {
+                font-size: 16px;
+            }
 
-</script>
-</body>
+            a {
+                color: blue;
+            }
+        </style>
 
-</html>
+        <script>
+
+            $("form").on("submit", function (ev) {
+                ev.preventDefault();
+                console.log($(this).serialize())//comment this line out to hide query wrote in db
+                $.ajax({
+                    url: '/user_views/create_user',
+                    data: $(this).serialize(),
+                    error: function (error) {
+                        console.log(error)
+                    },
+                    success: function (data) {
+                        console.log(data)
+                        window.location.href = "./admin_dashboard"
+                    },
+                    type: 'POST'
+                });
+            });
+
+            $("#repeat_password, #password").keyup(function () {
+                passwordsMatch();
+            });
+
+            function passwordsMatch() {
+                if (($("#repeat_password").val() == $("#password").val() && $("#password").val()) ) {
+                    $("#msg").html("Οι κωδικοί ταιριάζουν.").css("color", "green");
+                } else if (!$("#repeat_password").val() && !$("#password").val()) {
+                    $("#msg").empty();
+                } else {
+                    $("#msg").html("Οι κωδικοί δεν ταιριάζουν.").css("color", "red");
+                }
+            }
+
+            $(".back").on("click", function (ev) {
+                window.location.href = "/user_views/admin_dashboard";
+            });
+
+        </script>
+        </body>
+
+        </html>
