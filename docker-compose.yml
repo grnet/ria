@@ -1,16 +1,31 @@
 version: "3.3"
+volumes: 
+    db_storage: {}
+
 services: 
     ria:
         build: .        
-        image: ria:dev
+        image: ria_dev:latest
         ports: 
-            - "6000:3000"
+            #dev
+            - "6000:3000" 
         extra_hosts:
             - "ria.test.gr:127.0.0.1"
         volumes: 
             - ./:/app
             - /app/node_modules
-            # - .:/code
+        depends_on: 
+        -database                
         environment: 
             - PORT=3000
-        
+            - DATABASE_HOST=
+            - DATABASE_USER=
+            - DATABASE_PASSWORD=
+            - DATABASE_NAME=
+            - DATABASE_DIALECT=
+    database:
+        image: mysql:latest
+        volumes: 
+            - db_storage:/var/lib/mysql   
+        environment: 
+            MYSQL_ROOT_PASSWORD:               
