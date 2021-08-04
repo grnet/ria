@@ -32,24 +32,20 @@ routes.post('/', [
             if (user && user.dataValues) {//found a user
 
                 bcrypt.compare(userPassword, user.password, function (err, result) {
-                    if (result == true) {
+                    if (result) {
                         req.session.user = user;
                         req.session.username = user.username;//store data to session variables
                         req.session.fname = user.fname;
                         req.session.lname = user.lname;
                         req.session.dikaiwmata_diaxeirisis = user.dikaiwmata_diaxeirisis;
                         req.session.rolos = user.rolos;
-                        if (user.dikaiwmata_diaxeirisis) {
-                            res.send({ redirect: "user_views/admin_dashboard" });//if user exists and has admin rights, redirect to admin dashboard
-                        }
-                        else {
-                            res.send({ redirect: "user_views/user_dashboard" });
-                        }
-                        //  } else {
-                        //  //res.send(err);
-                        //  //res.redirect('/');
-                        //  console.log(err);
+                        user.dikaiwmata_diaxeirisis? res.send({ redirect: "user_views/admin_dashboard" }) : res.send({ redirect: "user_views/user_dashboard" });
+                        // if (user.dikaiwmata_diaxeirisis) {
+                        //     res.send({ redirect: "user_views/admin_dashboard" });//if user exists and has admin rights, redirect to admin dashboard
                         // }
+                        // else {
+                        //     res.send({ redirect: "user_views/user_dashboard" });
+                        // }                        
                     } else {
                         req.session.errors.push({ msg: 'Δε βρέθηκε χρήστης με αυτό το όνομα ή κωδικό.' })//custom error message
                         res.send({ redirect: "./login" });//redirect and display errors

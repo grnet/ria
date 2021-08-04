@@ -1,114 +1,119 @@
 <%- include('../partials/head.ejs') %>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
-<script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+  <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 
-<div class="MuiContainer-root jss110 MuiContainer-maxWidthLg">
-  <div class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-4">
-    <div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-8">
-      <br><br>
-      <input type="button" name="back" class="back" value="Πίσω" />
-      <br><br>
-      <table id="data" class="display">
-        <thead>
-          <tr>
-            <th>Κατηγορία</th>
-            <th>Εκθέσεις</th>
-          </tr>
-        </thead>
-        <tbody>
+  <div class="MuiContainer-root jss110 MuiContainer-maxWidthLg">
+    <div class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-4">
+      <div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-8">
+        <br><br>
+        <input type="button" name="back" class="back" value="Πίσω" />
+        <br><br>
+        <table id="data" class="display">
+          <thead>
+            <tr>
+              <th>Κατηγορία</th>
+              <th>Εκθέσεις</th>
+            </tr>
+          </thead>
+          <tbody>
 
-          <tr>
-            <td>Προσχέδιο νόμου</td>
-            <td><%= prosxedio%></td>
-          </tr>
-          <tr>
-            <td>Σχέδιο νόμου</td>
-            <td> <%= sxedio%> </td>
-          </tr>
-          <tr>
-            <td>Κατευθυντήριες γραμμές</td>
-            <td> <%= kateythintiries%> </td>
-          </tr>
-          <tr>
-            <td>Επείγοντα και κατεπείγοντα νομοσχέδια</td>
-            <td> <%= epeigon%> </td>
-          </tr>
-          <tr>
-            <td>Πρόταση νόμου</td>
-            <td> <%= protasi%> </td>
-          </tr>
-          <tr>
-            <td>Κύρωση διεθνών συμβάσεων</td>
-            <td> <%= symvaseis%> </td>
-          </tr>
-          <tr>
-            <td>Τροπολογίες Υπουργών</td>
-            <td> <%= tropologies_upourgwn%> </td>
-          </tr>
-          <tr>
-            <td>Τροπολογίες Βουλευτών</td>
-            <td> <%= tropologies_vouleftwn%> </td>
-          </tr>
+            <tr>
+              <td>Προσχέδιο νόμου</td>
+              <td>
+                <%= prosxedio%>
+              </td>
+            </tr>
+            <tr>
+              <td>Σχέδιο νόμου</td>
+              <td>
+                <%= sxedio%>
+              </td>
+            </tr>
+            <tr>
+              <td>Κατευθυντήριες γραμμές</td>
+              <td>
+                <%= kateythintiries%>
+              </td>
+            </tr>
+            <tr>
+              <td>Επείγοντα και κατεπείγοντα νομοσχέδια</td>
+              <td>
+                <%= epeigon%>
+              </td>
+            </tr>
+            <tr>
+              <td>Πρόταση νόμου</td>
+              <td>
+                <%= protasi%>
+              </td>
+            </tr>
+            <tr>
+              <td>Κύρωση διεθνών συμβάσεων</td>
+              <td>
+                <%= symvaseis%>
+              </td>
+            </tr>
+            <tr>
+              <td>Τροπολογίες Υπουργών</td>
+              <td>
+                <%= tropologies_upourgwn%>
+              </td>
+            </tr>
+            <tr>
+              <td>Τροπολογίες Βουλευτών</td>
+              <td>
+                <%= tropologies_vouleftwn%>
+              </td>
+            </tr>
 
-        </tbody>
-        <tr>
-          <td><b>Σύνολο</b></td>
-          <td><%= entries %></td>
-        </tr>
-      </table>
-      <%- include('../user_views/menus.ejs') %>
+          </tbody>
+          <tr>
+            <td><b>Σύνολο</b></td>
+            <td>
+              <%= entries %>
+            </td>
+          </tr>
+        </table>
+        <%- include('../user_views/menus.ejs') %>
 
+      </div>
     </div>
   </div>
-</div>
-</div>
-<%- include('../partials/footer.ejs') %>
-</div>
+  </div>
+  <%- include('../partials/footer.ejs') %>
+    </div>
 
-<style>
-  a {
-    color: blue;
-  }
+    <style>
+      a {
+        color: blue;
+      }
 
-  .exit, .back {
-    font-size: 16px;
-  }
-</style>
+      .exit,
+      .back {
+        font-size: 16px;
+      }
+    </style>
 
-<script>
-  $(document).ready(function () {
-    $('#data').DataTable();
-  });
-  
-  $(".back").on("click", function (ev) {
-    window.location.href = "/user_views/admin_dashboard";
-  })
-  $("#admin_menu").show();
-  
-  var user_role = '<%= user.rolos %>';
-  if (user_role == 'Βουλευτής') {
-    document.getElementById("admin_ekthesi").children[1].style.display = "none";
-    document.getElementById("admin_ekthesi").children[2].style.display = "none";
-    document.getElementById("admin_ekthesi").children[3].style.display = "none";
-    document.getElementById("admin_ekthesi").children[4].style.display = "none";
-    document.getElementById("admin_ekthesi").children[6].style.display = "none";
-    document.getElementById("admin_ekthesi").children[7].style.display = "none";
-  } else if (user_role == 'Συντάκτης επισπεύδοντος Υπουργείου' || user_role == 'Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)') {
-      document.getElementById("admin_ekthesi").children[5].style.display = "none";
-      document.getElementById("admin_ekthesi").children[8].style.display = "none";
-  } else if (user_role == 'Βουλή' || user_role == 'Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων') {
-    document.getElementById("admin_ekthesi").children[0].style.display = "none";
-    document.getElementById("admin_ekthesi").children[1].style.display = "none";
-    document.getElementById("admin_ekthesi").children[2].style.display = "none";
-    document.getElementById("admin_ekthesi").children[3].style.display = "none";
-    document.getElementById("admin_ekthesi").children[4].style.display = "none";
-    document.getElementById("admin_ekthesi").children[5].style.display = "none";
-    document.getElementById("admin_ekthesi").children[6].style.display = "none";
-    document.getElementById("admin_ekthesi").children[7].style.display = "none";
-    document.getElementById("admin_ekthesi").children[8].style.display = "none";
-  } 
-</script>
-</body>
+    <script>
+      $(document).ready(function () {
+        $('#data').DataTable();
+      });
 
-</html>
+      $(".back").on("click", function (ev) {
+        window.location.href = "/user_views/admin_dashboard";
+      })
+      $("#admin_menu").show();
+
+      var user_role = '<%= user.rolos %>';
+      if (user_role == 'Βουλευτής') {
+        $("#admin_ekthesi").children(":not(.vouleftis)").hide();//hide all children elements without class vouleftis
+      } else if (user_role == 'Συντάκτης επισπεύδοντος Υπουργείου' || user_role == 'Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)') {
+        $("#admin_ekthesi").children(".vouleftis").hide();
+      } else {
+        $("#admin_ekthesi").children().hide();
+      }
+    </script>
+    </body>
+
+    </html>

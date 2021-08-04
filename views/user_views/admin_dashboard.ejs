@@ -1,66 +1,53 @@
 <%- include('../partials/head.ejs') %>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
-<script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+  <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 
-<div class="MuiContainer-root jss110 MuiContainer-maxWidthLg">
-  <div class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-4">
-    <div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-8">
-      <br><br>
+  <div class="MuiContainer-root jss110 MuiContainer-maxWidthLg">
+    <div class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-4">
+      <div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-8">
+        <br><br>
 
-      <p>Ως διαχειριστής του συστήματος μπορείτε, επιλέγοντας τον αντίστοιχο σύνδεσμο, να: <br>
-      <ul>
-        <li>Διαχειριστείτε τους χρήστες και ρόλους του συστήματος </li>
-        <li>Να δείτε συγκεντρωτικά στοιχεία για τις εκθέσεις που έχουν καταχωρηθεί</li>
-        <li>Να δείτε και να επεξεργαστείτε καταχωρημένες εκθέσεις</li>
-      </ul>
+        <p>Ως διαχειριστής του συστήματος μπορείτε, επιλέγοντας τον αντίστοιχο σύνδεσμο, να: <br>
+        <ul>
+          <li>Διαχειριστείτε τους χρήστες και ρόλους του συστήματος </li>
+          <li>Να δείτε συγκεντρωτικά στοιχεία για τις εκθέσεις που έχουν καταχωρηθεί</li>
+          <li>Να δείτε και να επεξεργαστείτε καταχωρημένες εκθέσεις</li>
+        </ul>
 
-      </p>
-      
-      <%- include('../user_views/menus.ejs') %>
+        </p>
+
+        <%- include('../user_views/menus.ejs') %>
+      </div>
     </div>
   </div>
-</div>
-<%- include('../partials/footer.ejs') %>
-</div>
+  <%- include('../partials/footer.ejs') %>
+    </div>
 
-<style>
-  a {
-    color: blue;
-  }
+    <style>
+      a {
+        color: blue;
+      }
 
-  .exit {
-    font-size: 16px;
-  }
-</style>
+      .exit {
+        font-size: 16px;
+      }
+    </style>
 
-<script>
-  $("#admin_menu").show();
+    <script>
+      $("#admin_menu").show();
 
-  var user_role = '<%= user.rolos %>';
-  if (user_role == 'Βουλευτής') {
-    document.getElementById("admin_ekthesi").children[1].style.display = "none";
-    document.getElementById("admin_ekthesi").children[2].style.display = "none";
-    document.getElementById("admin_ekthesi").children[3].style.display = "none";
-    document.getElementById("admin_ekthesi").children[4].style.display = "none";
-    document.getElementById("admin_ekthesi").children[6].style.display = "none"; 
-    document.getElementById("admin_ekthesi").children[7].style.display = "none";       
-  } else if (user_role == 'Συντάκτης επισπεύδοντος Υπουργείου' || user_role == 'Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)') {
-      document.getElementById("admin_ekthesi").children[5].style.display = "none";
-      document.getElementById("admin_ekthesi").children[8].style.display = "none";
-  } else {
-      document.getElementById("admin_ekthesi").children[0].style.display = "none";
-      document.getElementById("admin_ekthesi").children[1].style.display = "none";
-      document.getElementById("admin_ekthesi").children[2].style.display = "none";
-      document.getElementById("admin_ekthesi").children[3].style.display = "none";
-      document.getElementById("admin_ekthesi").children[4].style.display = "none";
-      document.getElementById("admin_ekthesi").children[5].style.display = "none";
-      document.getElementById("admin_ekthesi").children[6].style.display = "none";
-      document.getElementById("admin_ekthesi").children[7].style.display = "none";
-      document.getElementById("admin_ekthesi").children[8].style.display = "none";
-  } 
+      var user_role = '<%= user.rolos %>';
 
-</script>
-</body>
+      if (user_role == 'Βουλευτής') {
+        $("#admin_ekthesi").children(":not(.vouleftis)").hide();//hide all children elements without class vouleftis
+      } else if (user_role == 'Συντάκτης επισπεύδοντος Υπουργείου' || user_role == 'Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)') {
+        $("#admin_ekthesi").children(".vouleftis").hide();
+      } else {
+        $("#admin_ekthesi").children().hide();
+      }      
 
-</html>
+    </script>
+    </body>
+
+    </html>

@@ -790,36 +790,10 @@
         }
     </style>
 
-
+    <script type="text/javascript" src="/js/common_form_scripts.js"></script>
+    <script type="text/javascript" src="/js/common_form_tooltips.js"></script>
+    <script type="text/javascript" src="/js/common_form_events.js"></script>
     <script>
-        (function ($) {
-            var $root = $('html, body');
-            $('a.menu').click(function () {
-                var href = $.attr(this, 'href');
-                current_fs = $("fieldset:visible");
-                $(".progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
-                next_fs = $(href);
-                //hide the current fieldset with style
-                current_fs.hide();
-                //show the next fieldset
-                next_fs.show();
-                $(".progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
-                window.scrollTo(0, 0);
-                return false;
-            });
-
-        }(jQuery));
-
-        //count & limit words
-        function wordsCounter(fieldId, spanId, wordlimit, event) {
-            Countable.on(document.getElementById(fieldId), counter => {
-                if (counter.words >= wordlimit) {
-                    event.preventDefault();//if word limit is reached prevent typing by preventing next event
-                }
-                //console.log(counter);
-                document.getElementById(spanId).innerHTML = counter.words.toString();
-            })
-        }
 
         $("form").on("submit", function (ev) {
             ev.preventDefault();
@@ -831,7 +805,7 @@
             });
             console.log($('#nomosxedio').get(0).files.length);
             console.log($('#field_23_upload').get(0).files.length);
-            if ($('#nomosxedio') != '' ) {console.log('ayyyy');getFullDate($('#upload_date')); console.log($('#upload_date').val());console.log($('#upload_date').value)}
+            if ($('#nomosxedio') != '' ) {getFullDate($('#upload_date'));}
             $.ajax({
                 url: '/create/<%= analysis %>',
                 data: fd,
@@ -884,11 +858,7 @@
             }
         }
 
-        CKEDITOR.replace('field_15_rythmiseis');
-        CKEDITOR.replace('field_16_kratikos_proypologismos');
-        CKEDITOR.replace('field_16_proypologismos_forea');
-        CKEDITOR.replace('field_17_oikonomika_apotelesmata');
-
+        
         $("#ekthesi_glk").on("change", function (ev) {
             if (this.checked) {
                 answer = window.confirm("Με την ενέργειά σας αυτή η έκθεση θα αποσταλλεί στο Γενικό Λογιστήριο του κράτους. Συνέχεια;");
@@ -949,10 +919,6 @@
                 Επίσης, σύμφωνα με την παρ. 5 του άρθρου 88 του Κανονισμού της Βουλής «Oι τρoπoλoγίες που συνεπάγονται επιβάρυνση του πρoϋπoλoγισμoύ του Κράτους διαβιβάζονται πριν από τη συζήτησή τoυς στo Γενικό Λoγιστήριo τoυ Kράτoυς, αν το ζητήσουν oι αρμόδιοι Yπoυργoί. Σ’ αυτήν την περίπτωση τo Γενικό Λογιστήριο τoυ Kράτoυς υπoχρεoύται να υποβάλει στη Boυλή την έκθεσή τoυ μέσα σε τρεις ημέρες από την παραλαβή τoυς. Mόνo αν η προθεσμία αυτή περάσει άπρακτη, oι τρoπoλoγίες μπoρoύν να συζητηθoύν και χωρίς την έκθεση.».`)
         }
 
-        function getFullDate(fieldId) {
-            $(fieldId).prop("value", new Date().toLocaleString("el-GR", { timeZone: "Europe/Athens" }));
-            //console.log($(fieldId).val());
-        }
         //init_submit date - will be updated when actually submitted
         getFullDate("#initial_submit");
 
@@ -1384,229 +1350,9 @@
             table32RowIndex--;
         });
 
-        function tooltipEvents(imgId, tooltipClass) {
-            const img = document.querySelector('#' + imgId);
-            const tooltip = document.querySelector('#' + tooltipClass);
-            //console.log(img);
-            let popperInstance = null;
-
-            function create() {
-                popperInstance = Popper.createPopper(img, tooltip, {
-                    modifiers: [
-                        {
-                            name: 'offset',
-                            options: {
-                                offset: [0, 8],
-                            },
-                        },
-                    ],
-                });
-            }
-
-            function destroy() {
-                if (popperInstance) {
-                    popperInstance.destroy();
-                    popperInstance = null;
-                }
-            }
-
-            function show() {
-                tooltip.setAttribute('data-show', '');
-                create();
-            }
-
-            function hide() {
-                tooltip.removeAttribute('data-show');
-                destroy();
-            }
-
-            const showEvents = ['mouseenter', 'focus'];
-            const hideEvents = ['mouseleave', 'blur'];
-
-            showEvents.forEach(event => {
-                img.addEventListener(event, show);
-            });
-
-            hideEvents.forEach(event => {
-                img.addEventListener(event, hide);
-            });
-        }
-
-        $("#ekpedeusi_politismos").on('change', function (ev) {
-            if (this.checked) {
-                $("#politismos_table").show();
-                $("#ekpaideysi_table").show();
-                $(".ekpaideysi-politismos :input").prop('disabled', false);
-            } else {
-                $("#politismos_table").hide();
-                $("#ekpaideysi_table").hide();
-                $(".ekpaideysi-politismos :input").prop('disabled', true);
-            }
-        })
-
-        $("#forologiki_politiki").on('change', function (ev) {
-            if (this.checked) {
-                $("#oikonomia_table").show();
-                $("#forologia_table").show();
-                $("#ergasiakes_sxeseis_table").show();
-                $(".oikonomia :input").prop('disabled', false);
-            } else {
-                $("#oikonomia_table").hide();
-                $("#forologia_table").hide();
-                $("#ergasiakes_sxeseis_table").hide();
-                $(".oikonomia :input").prop('disabled', true);
-            }
-        })
-
-        $("#koinoniki_politiki").on('change', function (ev) {
-            if (this.checked) {
-                $("#apasxolisi_table").show();
-                $("#koinoniki_asfalisi_table").show();
-                $("#koinoniki_pronoia_table").show();
-                $("#ygeia_table").show();
-                $("#isotita_fylwn_table").show();
-                $("#metanasteytiki_prosfygiki_politiki_table").show();
-                $(".koinoniki-politiki :input").prop('disabled', false);
-            } else {
-                $("#apasxolisi_table").hide();
-                $("#koinoniki_asfalisi_table").hide();
-                $("#koinoniki_pronoia_table").hide();
-                $("#ygeia_table").hide();
-                $("#isotita_fylwn_table").hide();
-                $("#metanasteytiki_prosfygiki_politiki_table").hide();
-                $(".koinoniki-politiki :input").prop('disabled', true);
-            }
-        })
-
-        $("#dimosia_dioikisi").on('change', function (ev) {
-            if (this.checked) {
-                $("#dimosia_dioikisi_table").show();
-                $("#dimosia_asfaleia_table").show();
-                $("#dikaiosini_table").show();
-                $(".dimosia-dioikisi :input").prop('disabled', false);
-            } else {
-                $("#dimosia_dioikisi_table").hide();
-                $("#dimosia_asfaleia_table").hide();
-                $("#dikaiosini_table").hide();
-                $(".dimosia-dioikisi :input").prop('disabled', true);
-            }
-        })
-        $("#anaptiksi").on('change', function (ev) {
-            if (this.checked) {
-                $("#ependytiki_drastiriotita_table").show();
-                $("#perivallon_energeia_table").show();
-                $(".ependyseis :input").prop('disabled', false);
-            } else {
-                $("#ependytiki_drastiriotita_table").hide();
-                $("#perivallon_energeia_table").hide();
-                $(".ependyseis :input").prop('disabled', true);
-            }
-        })
-
+        
         requiredDigitalGov("#field_10_amesi");
         requiredDigitalGov("#field_10_emmesi");
-
-        $("#field_10_emmesi").on("change", function (ev) {
-            requiredDigitalGov("#field_10_emmesi");
-            $("#emesi_wrap").toggle();
-        })
-
-        $("#field_10_amesi").on("change", function (ev) {
-            requiredDigitalGov("#field_10_amesi");
-            $("#amesi_wrap").toggle();
-        })
-
-        $("#field_25_dikaio").on("change", function (ev) {
-            $("#dikaio_wrap").toggle();
-        })
-
-        $("#field_25_kanonismos").on("change", function (ev) {
-            $("#kanonismos_wrap").toggle();
-        })
-
-        $("#field_25_odigia").on("change", function (ev) {
-            $("#odigia_wrap").toggle();
-        })
-
-        $("#field_25_apofasi").on("change", function (ev) {
-            $("#apofasi_wrap").toggle();
-        })
-
-        $("#field_26_antrwpina_dikaiwmata").on("change", function (ev) {
-            $("#antrwpina_dikaiwmata_wrap").toggle();
-        })
-
-        $("#field_26_symvaseis").on("change", function (ev) {
-            $("#symvaseis_wrap").toggle();
-        })
-
-        $("#field_27_dikastirio").on("change", function (ev) {
-            $("#dikastirio_wrap").toggle();
-        })
-
-        $("#field_27_arxi").on("change", function (ev) {
-            $("#arxi_wrap").toggle();
-        })
-
-        $("#field_28_nomologia").on("change", function (ev) {
-            $("#nomologia_wrap").toggle();
-        })
-
-        $("#field_28_nomologia_dikaiwmatwn_anthrwpou").on("change", function (ev) {
-            $("#nomologia_dikaiwmatwn_anthrwpou_wrap").toggle();
-        })
-
-        $("#field_28_alla_dikastiria").on("change", function (ev) {
-            $("#alla_dikastiria_wrap").toggle();
-        })
-
-        $("#field_4").on("click", function (ev) {
-            if ($(this).val() == "Ναι") {
-                $("#field_4_wrap").show();
-            } else {
-                $("#field_4_wrap").hide();
-            }
-        })
-
-        $("#field_6").on("change", function (ev) {
-            if ($(this).val() == "Ναι") {
-                $("#field_6_wrap").show();
-            } else {
-                $("#field_6_wrap").hide();
-            }
-        })
-
-        $("#field_11").on("change", function (ev) {
-            if ($(this).val() == "Ναι") {
-                $("#field_11_wrap").show();
-            } else {
-                $("#field_11_wrap").hide();
-            }
-        })
-
-        $("#field_12").on("change", function (ev) {
-            if ($(this).val() == "Ναι") {
-                $("#field_12_wrap").show();
-            } else {
-                $("#field_12_wrap").hide();
-            }
-        })
-
-        $("#field_13").on("change", function (ev) {
-            if ($(this).val() == "Ναι") {
-                $("#field_13_wrap").show();
-            } else {
-                $("#field_13_wrap").hide();
-            }
-        })
-
-        $("#field_36").on("change", function (ev) {
-            if ($(this).val() == "Ναι") {
-                $("#field_36_wrap").show();
-            } else {
-                $("#field_36_wrap").hide();
-            }
-        })
 
         var tooltips = '<%= tooltips %>';
         tooltips = tooltips.replace(/&#34;/g, '"')
@@ -1632,63 +1378,9 @@
                 }
             }
         }
-
-        function addTooltip(fieldID) {
-            var parentDiv = $('#' + fieldID).closest('div.form-group');
-            var tooltip = `<div class="tooltip_div" >
-                            <img src="/img/information.png"  id="${fieldID}_tooltip_img" aria-describedby="${fieldID}_tooltip_img" 
-                                onmouseover="tooltipEvents('${fieldID}_tooltip_img', '${fieldID}_tooltip_div'); setTooltip('${fieldID}_tooltip_div','${fieldID}');" width="20px" >
-                            <div id="${fieldID}_tooltip_div" class="tooltip_text" role="tooltip"></div>
-                        </div>`;
-            parentDiv.append(tooltip);
-        }
-
-        function addTooltipByClass(fieldID) {
-            var parentDiv = $("." + fieldID);
-            parentDiv.each(function (index) {
-                var tooltip = `<div class="tooltip_div" >
-                            <img src="/img/information.png"  id="${fieldID}_tooltip_img_${index}" aria-describedby="${fieldID}_tooltip_img" 
-                                onmouseover="tooltipEvents('${fieldID}_tooltip_img_${index}', '${fieldID}_tooltip_div_${index}'); setTooltip('${fieldID}_tooltip_div_${index}','${fieldID}');" width="20px" >
-                            <div id="${fieldID}_tooltip_div_${index}" class="tooltip_text" role="tooltip"></div>
-                        </div>`;
-                $(this).append(tooltip);
-            });
-        }
-
-        function setTooltip(divID, fieldId) {
-            //var fieldId = fieldId.substring(1)//remove 1st character if #fieldID is passed as parameter
-
-            var tooltip;
-            for (i in tooltips) {
-                if (tooltips[i].fieldId == fieldId) {
-                    tooltip = tooltips[i].tooltipText;
-                    $("#" + divID).html((tooltip));
-                }
-            }
-        }
-
-        function requiredDigitalGov(field) {
-            if ($(field).prop("checked")) {
-                enableFields($('.digital_gov :input'));
-                $('.digital-gov-label').addClass('required');
-            } else {
-                optionalFields($('.digital_gov :input'));
-                $('.digital-gov-label').removeClass('required')
-            }
-        }
+        
         requiredLegalistics("#field_33");
-        function requiredLegalistics(field) {
-
-            let spaceLess = $(field).val().replace(/^\s+|\s+$/g, "");//replace white space
-            if (spaceLess) {
-                enableFields($('.legalistic :input'));
-                $('.legalistic-label').addClass('required');
-            } else {
-                optionalFields($('.legalistic :input'));
-                $('.legalistic-label').removeClass('required')
-            }
-        }
-
+        
         var current_fs, next_fs, previous_fs; //fieldsets
 
 
