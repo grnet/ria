@@ -793,6 +793,7 @@
     <script type="text/javascript" src="/js/common_form_scripts.js"></script>
     <script type="text/javascript" src="/js/common_form_tooltips.js"></script>
     <script type="text/javascript" src="/js/common_form_events.js"></script>
+    <script type="text/javascript" src="/js/syntaktis_scripts.js"></script>
     <script>
 
         $("form").on("submit", function (ev) {
@@ -803,8 +804,6 @@
             $.each(checkbox, function (key, chckbx) {
                 fd.append($(chckbx).prop('name'), $(chckbx).value = '')//append to fd without value 
             });
-            console.log($('#nomosxedio').get(0).files.length);
-            console.log($('#field_23_upload').get(0).files.length);
             if ($('#nomosxedio') != '' ) {getFullDate($('#upload_date'));}
             $.ajax({
                 url: '/create/<%= analysis %>',
@@ -844,34 +843,17 @@
             });
         })
 
-        $(".back").on("click", function (ev) {
-            window.location.href = "/user_views/history";
-        })
-        function onSubmitStatus(ev) {
-            if ($("#ekthesi_glk").prop("checked") && role === 'Συντάκτης επισπεύδοντος Υπουργείου') {
-                alert("Για την ανάλυση εκκρεμεί ο έλεγχος του Γενικού Λογιστηρίου του Κράτους που έχετε ζητήσει. Επικοινωνήστε με το Γενικό Λογιστήριο του Κράτους για να τον ολοκληρώσει ή ενημερώστε τον αρμόδιο του Υπουργείου σας για να το επιλύσει.");
-                ev.preventDefault();
-            } else {
-                if ($('#status_ekthesis').val("Συντάσσεται")) {
-                    $('#status_ekthesis').val("Ολοκληρώθηκε");
-                }
-            }
-        }
+        // function onSubmitStatus(ev) {
+        //     if ($("#ekthesi_glk").prop("checked") && role === 'Συντάκτης επισπεύδοντος Υπουργείου') {
+        //         alert("Για την ανάλυση εκκρεμεί ο έλεγχος του Γενικού Λογιστηρίου του Κράτους που έχετε ζητήσει. Επικοινωνήστε με το Γενικό Λογιστήριο του Κράτους για να τον ολοκληρώσει ή ενημερώστε τον αρμόδιο του Υπουργείου σας για να το επιλύσει.");
+        //         ev.preventDefault();
+        //     } else {
+        //         if ($('#status_ekthesis').val("Συντάσσεται")) {
+        //             $('#status_ekthesis').val("Ολοκληρώθηκε");
+        //         }
+        //     }
+        // }
 
-        
-        $("#ekthesi_glk").on("change", function (ev) {
-            if (this.checked) {
-                answer = window.confirm("Με την ενέργειά σας αυτή η έκθεση θα αποσταλλεί στο Γενικό Λογιστήριο του κράτους. Συνέχεια;");
-                if (answer) {
-                    $("#status_ekthesis").val("Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους");
-                }
-                else {
-                    $(this).prop('checked', false);
-                }
-            } else {
-                $('input[name=status_ekthesis]').val("Συντάσσεται");
-            }
-        })
         var analysis = "<%= analysis%>";
         //console.log("init val " + $(analysis).val());
         if (analysis == ':sxedio_nomou') {
@@ -919,8 +901,7 @@
                 Επίσης, σύμφωνα με την παρ. 5 του άρθρου 88 του Κανονισμού της Βουλής «Oι τρoπoλoγίες που συνεπάγονται επιβάρυνση του πρoϋπoλoγισμoύ του Κράτους διαβιβάζονται πριν από τη συζήτησή τoυς στo Γενικό Λoγιστήριo τoυ Kράτoυς, αν το ζητήσουν oι αρμόδιοι Yπoυργoί. Σ’ αυτήν την περίπτωση τo Γενικό Λογιστήριο τoυ Kράτoυς υπoχρεoύται να υποβάλει στη Boυλή την έκθεσή τoυ μέσα σε τρεις ημέρες από την παραλαβή τoυς. Mόνo αν η προθεσμία αυτή περάσει άπρακτη, oι τρoπoλoγίες μπoρoύν να συζητηθoύν και χωρίς την έκθεση.».`)
         }
 
-        //init_submit date - will be updated when actually submitted
-        getFullDate("#initial_submit");
+        
 
         var role = "<%= rolos%>";
         function optionalFields(fieldId) {
@@ -1023,73 +1004,21 @@
         enableFields(".previous");
         enableFields("#ekthesi_glk");
 
-        //console.log($("#status_ekthesis").val());
-
-        //if (role == 'Επιτροπή Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)') { }
-
-        //row counter
-        var table14RowIndex = 0;
-
-        // jQuery button click event for table 14 to add a row
+        //click event to add a row
         $("#add_row_table_14").on("click", function () {
-            //append adds row to table body with id 'tbody_14'
-            //line 604 creates unique id for the line, which will later be used for deletion
-            //also adding a delete icon for each row 
-            $('#tbody_14').append(`
-        <tr id="R${++table14RowIndex}"> 
-            <td> 
-                <textarea class="form-control" id="field_14_arthro${table14RowIndex}" name="field_14_arthro${table14RowIndex}" placeholder="Άρθρο" rows="1" ></textarea>                                                           
-            </td> 
-            <td> 
-                <textarea class="form-control" id="field_14_stoxos${table14RowIndex}" name="field_14_stoxos${table14RowIndex}" placeholder="Στόχος" rows="1" onkeypress="wordsCounter('field_14_stoxos${table14RowIndex}','words14_${table14RowIndex}', event)" onpaste="wordsCounter('field_14_stoxos${table14RowIndex}','words14_${table14RowIndex}', event)"></textarea>
-                <p style="float: right;">Λέξεις: <span id="words14_${table14RowIndex}" ></span></p> 
-                <br>
-                <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
-            </td>    
-        </tr>`
-            );
-        });
 
-        // jQuery button click event to remove a row 
-        $('#tbody_14').on('click', '.remove', function () {
-
-            // Getting all the rows close to the one to be removed 
-            var child = $(this).closest('tr').nextAll();
-
-            // Iterating across all the rows  
-            // obtained to change the index 
-            child.each(function () {
-
-                // Getting <tr> id
-                var id = $(this).attr('id');
-
-                // Gets row number from <tr> id
-                var row_num = parseInt(id.substring(1));
-
-                //Getting index
-                var idx = $(this).children('.row-index');
-
-                // Modifying row index
-                idx.html(`Row ${row_num - 1}`);
-
-                // Modifying row id
-                $(this).attr('id', `R${row_num - 1}`);
-            });
-
-            // Removing the current row. 
-            $(this).closest('tr').remove();
-
-            // Decreasing the total number of rows by 1. 
-            table14RowIndex--;
+            let stoxos_prefix = 'field_14_stoxos';
+            let arthro_prefix = 'field_14_arthro';
+            let counterPrefix = 'word_count_t14';
+            let index = $('#tbody_14').prop('rows').length; //get table_14's tbody row count 
+            let newRow = createRow(index, counterPrefix, stoxos_prefix, arthro_prefix);
+            $('#field_14_table > tbody').append(newRow);
         });
 
         var table17RowIndex = 0;
 
-        // jQuery button click event for table 14 to add a row
         $("#add_row_table_17").on("click", function () {
-            //append adds row to table body with id 'tbody_14'
-            //line 604 creates unique id for the line, which will later be used for deletion
-            //also adding a delete icon for each row 
+
             $('#tbody_17').append(`
         <tr id="R${++table17RowIndex}">  
             <td> 
@@ -1107,38 +1036,7 @@
             //console.log(table17RowIndex)
         });
 
-        // jQuery button click event to remove a row 
-        $('#tbody_17').on('click', '.remove', function () {
-
-            // Getting all the rows close to the one to be removed 
-            var child = $(this).closest('tr').nextAll();
-
-            // Iterating across all the rows  
-            // obtained to change the index 
-            child.each(function () {
-
-                // Getting <tr> id
-                var id = $(this).attr('id');
-
-                // Gets row number from <tr> id
-                var row_num = parseInt(id.substring(1));
-
-                //Getting index
-                var idx = $(this).children('.row-index');
-
-                // Modifying row index
-                idx.html(`Row ${row_num - 1}`);
-
-                // Modifying row id
-                $(this).attr('id', `R${row_num - 1}`);
-            });
-
-            // Removing the current row. 
-            $(this).closest('tr').remove();
-
-            // Decreasing the total number of rows by 1. 
-            table17RowIndex--;
-        });
+        
 
         var ministersTableRowIndex = 0;
 
@@ -1161,41 +1059,7 @@
             </td> 
         </tr>`
             );
-        });
-
-        // jQuery button click event to remove a row 
-        $('#tbody_ministers').on('click', '.remove', function () {
-
-            // Getting all the rows close to the one to be removed 
-            var child = $(this).closest('tr').nextAll();
-
-            // Iterating across all the rows  
-            // obtained to change the index 
-            child.each(function () {
-
-                // Getting <tr> id
-                var id = $(this).attr('id');
-
-                // Gets row number from <tr> id
-                var row_num = parseInt(id.substring(1));
-
-                //Getting index
-                var idx = $(this).children('.row-index');
-
-                // Modifying row index
-                idx.html(`Row ${row_num - 1}`);
-
-                // Modifying row id
-                $(this).attr('id', `R${row_num - 1}`);
-            });
-
-            // Removing the current row. 
-            $(this).closest('tr').remove();
-
-            // Decreasing the total number of rows by 1. 
-            ministersTableRowIndex--;
-        });
-
+        });        
 
         var table29RowIndex = 0;
         $("#add_row_table_29").on("click", function () {
@@ -1214,23 +1078,6 @@
             </td>     
         </tr>`
             );
-        });
-
-        $('#tbody_29').on('click', '.remove', function () {
-
-            var child = $(this).closest('tr').nextAll();
-
-            child.each(function () {
-
-                var id = $(this).attr('id');
-                var row_num = parseInt(id.substring(1));
-                var idx = $(this).children('.row-index');
-                idx.html(`Row ${row_num - 1}`);
-                $(this).attr('id', `R${row_num - 1}`);
-            });
-
-            $(this).closest('tr').remove();
-            table29RowIndex--;
         });
 
         var table30RowIndex = 0;
@@ -1252,23 +1099,6 @@
             );
         });
 
-        $('#tbody_30').on('click', '.remove', function () {
-
-            var child = $(this).closest('tr').nextAll();
-
-            child.each(function () {
-
-                var id = $(this).attr('id');
-                var row_num = parseInt(id.substring(1));
-                var idx = $(this).children('.row-index');
-                idx.html(`Row ${row_num - 1}`);
-                $(this).attr('id', `R${row_num - 1}`);
-            });
-
-            $(this).closest('tr').remove();
-            table30RowIndex--;
-        });
-
         var table31RowIndex = 0;
         $("#add_row_table_31").on("click", function () {
 
@@ -1288,23 +1118,6 @@
             </td>    
         </tr>`
             );
-        });
-
-        $('#tbody_31').on('click', '.remove', function () {
-
-            var child = $(this).closest('tr').nextAll();
-
-            child.each(function () {
-
-                var id = $(this).attr('id');
-                var row_num = parseInt(id.substring(1));
-                var idx = $(this).children('.row-index');
-                idx.html(`Row ${row_num - 1}`);
-                $(this).attr('id', `R${row_num - 1}`);
-            });
-
-            $(this).closest('tr').remove();
-            table31RowIndex--;
         });
 
         var table32RowIndex = 0;
@@ -1332,28 +1145,12 @@
         </tr>`
             );
         });
-
-        $('#tbody_32').on('click', '.remove', function () {
-
-            var child = $(this).closest('tr').nextAll();
-
-            child.each(function () {
-
-                var id = $(this).attr('id');
-                var row_num = parseInt(id.substring(1));
-                var idx = $(this).children('.row-index');
-                idx.html(`Row ${row_num - 1}`);
-                $(this).attr('id', `R${row_num - 1}`);
-            });
-
-            $(this).closest('tr').remove();
-            table32RowIndex--;
-        });
-
         
         requiredDigitalGov("#field_10_amesi");
         requiredDigitalGov("#field_10_emmesi");
+        requiredLegalistics("#field_33");
 
+        //create function for lines 1154-1177?
         var tooltips = '<%= tooltips %>';
         tooltips = tooltips.replace(/&#34;/g, '"')
             .replace(/[\u0000-\u0019]+/g, "")
@@ -1379,8 +1176,7 @@
             }
         }
         
-        requiredLegalistics("#field_33");
-        
+                
         var current_fs, next_fs, previous_fs; //fieldsets
 
 

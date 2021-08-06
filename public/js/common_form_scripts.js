@@ -1,4 +1,10 @@
-/////////////////////FUNCTIONS//////////////////////////
+/////////////////////FUNCTION CALLS//////////////////////////
+
+// requiredDigitalGov("#field_10_amesi");
+// requiredDigitalGov("#field_10_emmesi");
+//requiredLegalistics("#field_33");
+
+///////////////////////FUNCTIONS////////////////////////////
 
 //count & limit words
 //as of latest requests, word limit no longer required. Code will remain for future needs
@@ -38,4 +44,21 @@ function requiredLegalistics(field) {
 }
 
 
+function createRow(index, wordCounterPrefix, prefix1, prefix2, prefix3, prefix4, prefix5) {
 
+    let newRow;
+    newRow = `
+        <tr id="R${++index}"> 
+            <td> 
+                <textarea class="form-control" id="${prefix1}${index}" name="${prefix1}${index}" rows="1" ></textarea>                                                           
+            </td> 
+            <td> 
+                <textarea class="form-control" id="${prefix2}${index}" name="${prefix2}${index}" rows="1" onkeypress="wordsCounter('${prefix2}${index}','${wordCounterPrefix}_${index}', event)" onpaste="wordsCounter('${prefix2}${index}','${wordCounterPrefix}_${index}', event)"></textarea>
+                <p style="float: right;">Λέξεις: <span id="${wordCounterPrefix}_${index}" ></span></p> 
+                <br>
+                <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
+            </td>    
+        </tr>`;
+    return newRow;
+
+}

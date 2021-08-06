@@ -20,6 +20,39 @@ $('a.menu').click(function () {
     return false;
 });
 
+//click event to remove a row from any table
+$('#tbody_14, #tbody_17, #tbody_ministers, #tbody_29, #tbody_30, #tbody_31, #tbody_32').on('click', '.remove', function () { 
+
+    // Getting all the rows close to the one to be removed 
+    var child = $(this).closest('tr').nextAll();
+
+    // Iterating across all the rows obtained to change the index 
+    child.each(function () {
+
+        // Get <tr> id
+        var id = $(this).prop('id');
+
+        // Get row number from <tr> id
+        var row_num = parseInt(id.substring(1));
+
+        //Get index
+        var idx = $(this).children('.row-index');
+
+        // Modify row index
+        idx.html(`Row ${row_num - 1}`);
+
+        // Modify row id
+        $(this).prop('id', `R${row_num - 1}`);
+    });
+
+    // Remove current row. 
+    $(this).closest('tr').remove();
+});
+
+$(".back").on("click", function (ev) {
+    window.location.href = "/user_views/history";
+});
+
 $("#ekpedeusi_politismos").on('change', function (ev) {
     this.checked ? ($("#politismos_table").show(), $("#ekpaideysi_table").show(), $(".ekpaideysi-politismos :input").prop('disabled', false)) : ($("#politismos_table").hide(), $("#ekpaideysi_table").hide(), $(".ekpaideysi-politismos :input").prop('disabled', true))
 });
@@ -141,4 +174,3 @@ $("#field_36").on("change", function (ev) {
         $("#field_36_wrap").hide();
     }
 })
-
