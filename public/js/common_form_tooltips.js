@@ -1,5 +1,35 @@
 /////////////////////////TOOLTIPS/////////////////////////
 
+function textCleanUp(text) {
+
+    text = text.replace(/&#34;/g, '"')
+        .replace(/[\u0000-\u0019]+/g, "")
+        .replace(/\\'/g, "\\'")
+        .replace(/\\"/g, '\\"')
+        .replace(/\\&/g, "\\&")
+        .replace(/\\r/g, "\\r")
+        .replace(/\\t/g, "\\t")
+        .replace(/\\b/g, "\\b")
+        .replace(/\\f/g, "\\f");//cleaning tooltips with regexs
+    text = JSON.parse(text);//parse to JSON obj
+    return text;
+}
+
+function createTooltips(tooltips) {
+
+    //for rows in csv call function        
+    for (i in tooltips) {
+        var fieldId = tooltips[i].fieldId
+        if (fieldId) {
+            if ($("." + fieldId).length > 0) {
+                addTooltipByClass(fieldId);
+            } else {
+                addTooltip(tooltips[i].fieldId);
+            }
+        }
+    }
+}
+
 function tooltipEvents(imgId, tooltipClass) {
     const img = document.querySelector('#' + imgId);
     const tooltip = document.querySelector('#' + tooltipClass);

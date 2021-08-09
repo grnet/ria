@@ -5,6 +5,39 @@ CKEDITOR.replace('field_16_kratikos_proypologismos');
 CKEDITOR.replace('field_16_proypologismos_forea');
 CKEDITOR.replace('field_17_oikonomika_apotelesmata');
 
+//handle next-previous button actions
+var current_fs, next_fs, previous_fs; //fieldsets
+
+$(".next").click(function () {
+    current_fs = $(this).parent();
+    next_fs = $(this).parent().next();
+
+    //activate next step on progressbar using the index of next_fs
+    $(".progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+    //show the next fieldset
+    next_fs.show();
+    //hide the current fieldset with style
+    current_fs.hide();
+});
+
+$(".previous").click(function () {
+    current_fs = $(this).parent();
+    previous_fs = $(this).parent().prev();
+
+    //de-activate current step on progressbar
+    $(".progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+    //add class "active" if it doesn't exist 
+    if (!$(previous_fs).hasClass("active")) {
+        $(".progressbar li").eq($("fieldset").index(previous_fs)).addClass("active");
+    }
+    //show the previous fieldset
+    previous_fs.show();
+    //hide the current fieldset with style
+    current_fs.hide();
+    window.scrollTo(0, 0);
+});
+
 //handle side-menu
 $('a.menu').click(function () {
     var href = $.attr(this, 'href');
@@ -21,7 +54,7 @@ $('a.menu').click(function () {
 });
 
 //click event to remove a row from any table
-$('#tbody_14, #tbody_17, #tbody_ministers, #tbody_29, #tbody_30, #tbody_31, #tbody_32').on('click', '.remove', function () { 
+$('#tbody_14, #tbody_17, #tbody_ministers, #tbody_29, #tbody_30, #tbody_31, #tbody_32').on('click', '.remove', function () {
 
     // Getting all the rows close to the one to be removed 
     var child = $(this).closest('tr').nextAll();
@@ -53,6 +86,7 @@ $(".back").on("click", function (ev) {
     window.location.href = "/user_views/history";
 });
 
+//for each checkbox certain tables have to show up or be hidden. Hidden tables have their inputs disabled.
 $("#ekpedeusi_politismos").on('change', function (ev) {
     this.checked ? ($("#politismos_table").show(), $("#ekpaideysi_table").show(), $(".ekpaideysi-politismos :input").prop('disabled', false)) : ($("#politismos_table").hide(), $("#ekpaideysi_table").hide(), $(".ekpaideysi-politismos :input").prop('disabled', true))
 });
@@ -73,6 +107,7 @@ $("#anaptiksi").on('change', function (ev) {
     this.checked ? ($("#ependytiki_drastiriotita_table").show(), $("#perivallon_energeia_table").show(), $(".ependyseis :input").prop('disabled', false)) : ($("#ependytiki_drastiriotita_table").hide(), $("#perivallon_energeia_table").hide(), $(".ependyseis :input").prop('disabled', true))
 });
 
+//dropdown on change events
 $("#field_10_emmesi").on("change", function (ev) {
     requiredDigitalGov("#field_10_emmesi");
     $("#emesi_wrap").toggle();
@@ -174,3 +209,147 @@ $("#field_36").on("change", function (ev) {
         $("#field_36_wrap").hide();
     }
 })
+
+//add row events for tables
+
+//click event to add a row
+$("#add_row_table_14").on("click", function () {
+
+    let index = $('#tbody_14').prop('rows').length;
+    $('#tbody_14').append(`
+         <tr id="table_14_row${++index}"> 
+        <td> 
+            <textarea class="form-control" id="field_14_arthro${index}" name="field_14_arthro${index}" rows="1" ></textarea>                                   
+        </td>    
+        <td> 
+            <textarea class="form-control" id="field_14_stoxos${index}" name="field_14_stoxos${index}" onkeypress="wordsCounter('field_14_stoxos${index}','words14_${index}', event)" onpaste="wordsCounter('field_14_stoxos${index}','words14_${index}', event)" rows="1"></textarea>
+            <p style="float: right;">Λέξεις: <span id="words14_${index}" ></span></p>
+            <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
+        </td>    
+        </tr>`
+    );
+});
+
+
+$("#add_row_table_17").on("click", function () {
+
+    let index = $('#tbody_17').prop('rows').length; 
+    $('#tbody_17').append(`
+        <tr id="R${++index}">  
+            <td> 
+                <textarea class="form-control" id="field_17_onoma${index}" name="field_17_onoma${index}" placeholder="Όνομα" rows="1"></textarea> 
+            </td>    
+            <td> 
+                <textarea class="form-control" id="field_17_epitheto${index}" name="field_17_epitheto${index}" placeholder="Επώνυμο" rows="1"></textarea>
+            </td> 
+            <td> 
+                <textarea class="form-control" id="field_17_idiotita${index}" name="field_17_idiotita${index}" placeholder="Ιδιότητα" rows="1"></textarea>
+                <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
+            </td> 
+        </tr>`
+    );
+});
+
+$("#add_row_ministers_table").on("click", function () {
+    
+    let index = $('#tbody_ministers').prop('rows').length;
+    $('#tbody_ministers').append(`
+        <tr id="R${++index}">  
+            <td> 
+                <textarea class="form-control" id="minister_name${index}" name="minister_name${index}" placeholder="Όνομα" rows="1"></textarea> 
+            </td>    
+            <td> 
+                <textarea class="form-control" id="minister_surname${index}" name="minister_surname${index}" placeholder="Επώνυμο" rows="1"></textarea>
+            </td> 
+            <td> 
+                <textarea class="form-control" id="ministry${index}" name="ministry${index}" placeholder="Ιδιότητα" rows="1"></textarea>
+                <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
+            </td> 
+        </tr>`
+    );
+});        
+
+$("#add_row_table_29").on("click", function () {
+
+    let index = $('#tbody_29').prop('rows').length;
+    $('#tbody_29').append(`
+        <tr id="R${++index}"> 
+            <td> 
+                <textarea class="form-control" id="field_29_diatakseis_rythmisis${index}" name="field_29_diatakseis_rythmisis${index}" onkeypress="wordsCounter('field_29_diatakseis_rythmisis${index}','words29_diatakeis_rythm_${index}')" onpaste="wordsCounter('field_29_diatakseis_rythmisis${index}','words29_diatakeis_rythm_${index}')" rows="1"></textarea>
+                <p style="float: right;">Λέξεις: <span id="words29_diatakeis_rythm_${index}" ></span></p>   
+            </td> 
+            <td> 
+                <textarea class="form-control" id="field_29_yfistamenes_diatakseis${index}" name="field_29_yfistamenes_diatakseis${index}" onkeypress="wordsCounter('field_29_yfistamenes_diatakseis${index}','words29_diatakeis_yfist_${index}')" onpaste="wordsCounter('field_29_yfistamenes_diatakseis${index}','words29_diatakeis_yfist_${index}')" rows="1"></textarea>
+                <p style="float: right;">Λέξεις: <span id="words29_diatakeis_yfist_${index}" ></span></p>   
+                <br><br>
+                <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
+            </td>     
+        </tr>`
+    );
+});
+
+$("#add_row_table_30").on("click", function () {
+
+    let index = $('#tbody_30').prop('rows').length;
+    $('#tbody_30').append(`
+        <tr id="R${++index}"> 
+            <td> 
+                <textarea class="form-control" id="field_30_diatakseis_katargisi${index}" name="field_30_diatakseis_katargisi${index}" onkeypress="wordsCounter('field_30_diatakseis_katargisi${index}','words30_diatakeis_katarg_${index}')" onpaste="wordsCounter('field_30_diatakseis_katargisi${index}','words30_diatakeis_katarg_${index}')" rows="2"></textarea>
+                <p style="float: right;">Λέξεις: <span id="words30_diatakeis_katarg_${index}" ></span></p>
+            </td> 
+            <td> 
+                <textarea class="form-control" id="field_30_katargoumenes_diatakseis${index}" name="field_30_katargoumenes_diatakseis${index}" onkeypress="wordsCounter('field_30_katargoumenes_diatakseis${index}','words30_diatakeis_katargoum_${index}')" onpaste="wordsCounter('field_30_katargoumenes_diatakseis${index}','words30_diatakeis_katargoum_${index}')" rows="2"></textarea>
+                <p style="float: right;">Λέξεις: <span id="words30_diatakeis_katargoum_${index}" ></span></p>
+                <br><br>
+                <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
+            </td>
+        </tr>`
+    );
+});
+
+$("#add_row_table_31").on("click", function () {
+
+    let index = $('#tbody_31').prop('rows').length;
+    $('#tbody_31').append(`
+        <tr id="R${++index}"> 
+            <td> 
+                <textarea class="form-control" id="field_31_sxetiki_diataksi${index}" name="field_31_sxetiki_diataksi${index}" rows="2" ></textarea>                                                            
+            </td> 
+            <td> 
+                <textarea class="form-control" id="field_31_synarmodia_ypoyrgeia${index}" name="field_31_synarmodia_ypoyrgeia${index}" rows="2"></textarea>
+            </td> 
+            <td> 
+                <textarea class="form-control" id="field_31_antikeimeno_synarmodiotitas${index}" name="field_31_antikeimeno_synarmodiotitas${index}" rows="2" onkeypress="wordsCounter('field_31_antikeimeno_synarmodiotitas${index}','words31_${index}',50, event)" onpaste="wordsCounter('field_31_antikeimeno_synarmodiotitas${index}','words31_${index}',50, event)"></textarea>
+                <p style="float: right;">Λέξεις: <span id="words31_${index}" ></span> /50</p>
+                <br><br>
+                <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
+            </td>    
+        </tr>`
+    );
+});
+
+$("#add_row_table_32").on("click", function () {
+
+    let index = $('#tbody_32').prop('rows').length;
+    $('#tbody_32').append(`
+        <tr id="R${++index}"> 
+            <td> 
+                <textarea class="form-control" id="field_32_eksousiodotiki_diataksi${index}" name="field_32_eksousiodotiki_diataksi${index}" placeholder="Εξουσιοδοτική διάταξη" rows="4"></textarea>
+            </td> 
+            <td> 
+                <textarea class="form-control" id="field_32_eidos_praksis${index}" name="field_32_eidos_praksis${index}" placeholder="Είδος πράξης" rows="4"></textarea>
+            </td> 
+            <td> 
+                <textarea class="form-control" id="field_32_armodio_ypoyrgeio${index}" name="field_32_armodio_ypoyrgeio${index}" placeholder="Αρμόδιο ή επισπεύδον Υπουργείο ή υπηρεσία" rows="4"></textarea>
+            </td> 
+            <td> 
+                <textarea class="form-control" id="field_32_antikeimeno${index}" name="field_32_antikeimeno${index}" placeholder="Αντικείμενο" rows="4" onkeypress="wordsCounter('field_32_antikeimeno${index}','words32_${index}',50, event)" onpaste="wordsCounter('field_32_antikeimeno${index}','words32_${index}',50, event)"></textarea>
+                <p style="float: right;">Λέξεις: <span id="words32_${index}" ></span> /50</p>                                            
+            </td> 
+            <td> 
+                <textarea class="form-control" id="field_32_xronodiagramma${index}" name="field_32_xronodiagramma${index}" placeholder="Χρονοδιάγραμμα (ενδεικτική ή αποκλειστική προθεσμία)" rows="4"></textarea>
+                <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
+            </td>    
+        </tr>`
+    );
+});
