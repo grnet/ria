@@ -5,7 +5,6 @@ const { authUser } = require('../middleware/auth');
 const { ekthesi } = require('../services/database');
 
 routes.get('/', authUser, async function (req, res, next) {
-    console.time();
     let user = await database.user.findOne({
         where: {
             username: req.session.username
@@ -27,14 +26,14 @@ routes.get('/', authUser, async function (req, res, next) {
             status = "Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους"
             entries = await database.ekthesi.findAll({
                 where: {
-                    [Op.and]: [
-                        {
+                    // [Op.and]: [
+                        // {
                             status_ekthesis: {
-                                [Op.or]: ["Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους", "Ολοκληρώθηκε"],
+                                [Op.or]: ["Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους", "Ελέγχθηκε από το Γενικό Λογιστήριο του Κράτους"],
                             },
-                        },
-                        { ekthesi_glk: { [Op.ne]: [null || ""] } }
-                    ]
+                        // },
+                    //    { ekthesi_glk: { [Op.ne]: [null || ""] } }
+                    // ]
                 }, include: [{ model: database.user }], raw: true, nest: true
             })
         } else if (user.rolos == "Βουλή") {
@@ -56,7 +55,6 @@ routes.get('/', authUser, async function (req, res, next) {
         //         }, include: [{ model: database.user }], raw: true, nest: true
         //     })
         }
-        console.timeEnd();
         res.render("user_views/history", { entries: entries, user: user });
     } else {
         res.status(404).send("Not found")

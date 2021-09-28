@@ -86,6 +86,7 @@ module.exports = (sequelize, DataTypes) => {
         field_16_genikos_onoma: DataTypes.TEXT,
         field_16_genikos_epitheto: DataTypes.TEXT,
         field_16_genikos_date: DataTypes.TEXT,
+        signed_glk_pdf_upload: DataTypes.JSON,
 
         field_17_ypoyrgeio: DataTypes.TEXT,
         field_17_sxedio_nomou: DataTypes.TEXT,

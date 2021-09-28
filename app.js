@@ -25,7 +25,7 @@ app.use(cookieParser());
 // prune expired entries every 24h to avoid memory leaks
 let memoryStore = new session.MemoryStore({checkPeriod: 86400000 }); //We will store our user session details to the memory 
  app.use(session({                                 
-    secret:'this!_Should-_Be@-Long%-And*_Secret=-', //The secret is used to hash the session with HMAC                                         
+    secret: 'secret', //The secret is used to hash the session with HMAC. Value retrieved from docker-compose.                                         
     store: memoryStore,
     
 }));
@@ -34,14 +34,10 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(express.json({limit: '50mb'}));
-app.use(express.urlencoded({ limit: '200mb', extended: true, parameterLimit: 3000 }));//change limit if too many parameters to be parsed
+app.use(express.urlencoded({ limit: '200mb', extended: true, parameterLimit: 3000 }));//change limit if parser has too many parameters
 app.use(cookieParser());
-// app.use("/pdf_exports", express.static(__dirname + 'public'));
-// app.use("/uploads", express.static(__dirname + 'public'));
-// app.use("/fonts", express.static(__dirname + 'public'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.disable('x-powered-by');
-//app.use(express.static(path.join(__dirname,'public/js')));
 
 app.use('/', homeRoute);
 app.use('/login', loginRoute);

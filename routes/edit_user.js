@@ -14,7 +14,6 @@ routes.get('/:username', authUser, authRole, async (req, res, next) => {
     })
     if (user && user.dataValues) {
         res.render("user_views/edit_user", { data: user.dataValues });
-        console.log(user.dataValues);
     } else {
         res.status(404).send("Not found");
     }
@@ -38,7 +37,6 @@ routes.put('/:username', authUser, authRole, async (req, res, next) => {
     const userPassword = req.body.password;
     const newPassword = req.body.new_password;
 
-    console.log(req.body)
     bcrypt.hash(newPassword, 10, async function (err, newHash) {//if correct, has new password and update user
         if (newHash) {
             user = await database.user.update({ fname: req.body.fname, lname: req.body.lname, username: req.body.username, password: newHash, rolos: req.body.rolos, dikaiwmata_diaxeirisis: req.body.dikaiwmata_diaxeirisis, ypoyrgeio: req.body.ypoyrgeio }, {

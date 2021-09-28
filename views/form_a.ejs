@@ -955,7 +955,7 @@
                 </style>
 
                 <script type="text/javascript" src="/js/common_form_scripts.js"></script>
-                <script type="text/javascript" src="/js/common_form_tooltips.js"></script>
+                <script type="text/javascript" src="/js/tooltips.js"></script>
                 <script type="text/javascript" src="/js/common_form_events.js"></script>
                 <script>
                     var answer;
@@ -1022,8 +1022,8 @@
 
                     function createNewForm(ev) {
                         ev.preventDefault();
-                        getFullDate($("#initial_submit"));
-                        getFullDate($("#last_updated"));
+                        setDate($("#initial_submit"));
+                        setDate($("#last_updated"));
                         var fd = new FormData($("form").get(0));
                         $.ajax({
                             url: `/create/${analysis}`,
@@ -1136,10 +1136,32 @@
                         } else if (pdf_name === "") {
                             alert("Το όνομα του PDF δεν πρέπει να είναι κενό!")
                         }
+                    });
 
-                        //.then(function () {
-                        // return download(blob, title + ".pdf");//download pdf from browser
-                        // });
+                    $(".export-glk").on("click", function (ev) {
+                        ev.preventDefault();
+                        var pdf_name = prompt("Παρακαλώ εισάγετε το όνομα του PDF");
+                        if (pdf_name) {
+                            $("#glk_pdf_name").val(pdf_name);
+                            setDate("#field_16_genikos_date");
+                            $.ajax({
+                                url: `/form_a/export/glk/:${ekthesi_id}`,
+                                //data: $("form").serialize(),
+                                data: $("form").serialize(),
+                                processData: false,
+                                error: function (error) {
+                                    console.log(error);
+                                },
+                                success: function (data) {
+                                    $("#glk_pdf_download").html(`Το τελευταίο αποθηκευμένο PDF
+                                    βρίσκεται <a href="/pdf_exports/${pdf_name}.pdf">εδώ</a>.`)
+                                    $("#glk_pdf_download").show();
+                                },
+                                type: 'POST'
+                            })
+                        } else if (pdf_name === "") {
+                            alert("Το όνομα του PDF δεν πρέπει να είναι κενό!")
+                        }
                     });
 
                     $(document).ready(function () {
@@ -1354,7 +1376,7 @@
                         }
                         //init_submit date - will be updated when actually submitted
                         if ($("#last_updated").val() == '') {
-                            getFullDate("#last_updated");
+                            setDate("#last_updated");
                         }
                         if ($('#uploads_36 tbody tr').length > 0) {
                             $('#field_36').prop('selectedIndex', 1);
@@ -1486,22 +1508,7 @@
                         $(".previous").prop("disabled", false);
                     }
 
-
-                    function convertAnalysis() {
-                        if (analysis == 'Κατευθυντήριες γραμμές') {
-                            $("#typos_analysis").prop('value', 'Προσχέδιο νόμου');
-                            $("#title").prop('value', 'Αντίγραφο - ' + $("#title").val());
-                        } else if (analysis == 'Προσχέδιο νόμου') {
-                            $("#typos_analysis").prop('value', 'Σχέδιο νόμου');
-                            $("#title").prop('value', 'Αντίγραφο - ' + $("#title").val());
-                            // $("#title").prop('value', $("#title").val() + ' - Πρώην ' + $(analysis).val());
-                        }
-                        $("#status_ekthesis").val("Συντάσσεται");
-                        getFullDate($("#initial_submit"));
-                        getFullDate("#last_updated");
-                    }
-
-                    function getFullDate(fieldId) {
+                    function setDate(fieldId) {
                         $(fieldId).prop("value", new Date().toLocaleString("el-GR", { timeZone: "Europe/Athens" }));
                     }
 
@@ -1531,8 +1538,8 @@
                                 answer = window.confirm("Με την ενέργειά σας αυτή η έκθεση θεωρείται ολοκληρωμένη από μεριά σας και επιστρέφει "
                                     + "στον Αρμόδιο Συντάκτη ή στο Αρμόδιο Υπουργείο. Θέλετε να συνεχίσετε;");
                                 if (answer) {
-                                    $("#status_ekthesis").prop("disabled", false)
-                                    $("#status_ekthesis").val("Ελέγχθηκε από το Γενικό Λογιστήριο του Κράτους");
+                                    $("#status_ekthesis").prop("disabled", false).val("Ελέγχθηκε από το Γενικό Λογιστήριο του Κράτους");
+                                    setDate("#field_16_genikos_date");
                                     updateForm(ev); //once unchecked form is submitted/updated 
                                 } else {
                                     $("#ekthesi_glk").prop('checked', true);
@@ -1554,60 +1561,59 @@
                     });
 
 
+                    // $("#field_10_emmesi").on("change", function (ev) {
+                    //     requiredDigitalGov("#field_10_emmesi");
+                    //     $("#emesi_wrap").toggle();
+                    // })
 
-                    $("#field_10_emmesi").on("change", function (ev) {
-                        requiredDigitalGov("#field_10_emmesi");
-                        $("#emesi_wrap").toggle();
-                    })
+                    // $("#field_10_amesi").on("change", function (ev) {
+                    //     $("#amesi_wrap").toggle();
+                    //     requiredDigitalGov("#field_10_amesi");
+                    // })
 
-                    $("#field_10_amesi").on("change", function (ev) {
-                        $("#amesi_wrap").toggle();
-                        requiredDigitalGov("#field_10_amesi");
-                    })
+                    // $("#field_25_dikaio").on("change", function (ev) {
+                    //     $("#dikaio_wrap").toggle();
+                    // })
 
-                    $("#field_25_dikaio").on("change", function (ev) {
-                        $("#dikaio_wrap").toggle();
-                    })
+                    // $("#field_25_kanonismos").on("change", function (ev) {
+                    //     $("#kanonismos_wrap").toggle();
+                    // })
 
-                    $("#field_25_kanonismos").on("change", function (ev) {
-                        $("#kanonismos_wrap").toggle();
-                    })
+                    // $("#field_25_odigia").on("change", function (ev) {
+                    //     $("#odigia_wrap").toggle();
+                    // })
 
-                    $("#field_25_odigia").on("change", function (ev) {
-                        $("#odigia_wrap").toggle();
-                    })
+                    // $("#field_25_apofasi").on("change", function (ev) {
+                    //     $("#apofasi_wrap").toggle();
+                    // })
 
-                    $("#field_25_apofasi").on("change", function (ev) {
-                        $("#apofasi_wrap").toggle();
-                    })
+                    // $("#field_26_antrwpina_dikaiwmata").on("change", function (ev) {
+                    //     $("#antrwpina_dikaiwmata_wrap").toggle();
+                    // })
 
-                    $("#field_26_antrwpina_dikaiwmata").on("change", function (ev) {
-                        $("#antrwpina_dikaiwmata_wrap").toggle();
-                    })
+                    // $("#field_26_symvaseis").on("change", function (ev) {
+                    //     $("#symvaseis_wrap").toggle();
+                    // })
 
-                    $("#field_26_symvaseis").on("change", function (ev) {
-                        $("#symvaseis_wrap").toggle();
-                    })
+                    // $("#field_27_dikastirio").on("change", function (ev) {
+                    //     $("#dikastirio_wrap").toggle();
+                    // })
 
-                    $("#field_27_dikastirio").on("change", function (ev) {
-                        $("#dikastirio_wrap").toggle();
-                    })
+                    // $("#field_27_arxi").on("change", function (ev) {
+                    //     $("#arxi_wrap").toggle();
+                    // })
 
-                    $("#field_27_arxi").on("change", function (ev) {
-                        $("#arxi_wrap").toggle();
-                    })
+                    // $("#field_28_nomologia").on("change", function (ev) {
+                    //     $("#nomologia_wrap").toggle();
+                    // })
 
-                    $("#field_28_nomologia").on("change", function (ev) {
-                        $("#nomologia_wrap").toggle();
-                    })
+                    // $("#field_28_nomologia_dikaiwmatwn_anthrwpou").on("change", function (ev) {
+                    //     $("#nomologia_dikaiwmatwn_anthrwpou_wrap").toggle();
+                    // })
 
-                    $("#field_28_nomologia_dikaiwmatwn_anthrwpou").on("change", function (ev) {
-                        $("#nomologia_dikaiwmatwn_anthrwpou_wrap").toggle();
-                    })
-
-                    $("#field_28_alla_dikastiria").on("change", function (ev) {
-                        $("#alla_dikastiria_wrap").toggle();
-                    })
+                    // $("#field_28_alla_dikastiria").on("change", function (ev) {
+                    //     $("#alla_dikastiria_wrap").toggle();
+                    // })
 
                     $(function (ev) {
                         if ($("#field_4").val() == "Ναι") {
@@ -1645,125 +1651,55 @@
                         }
                     })
 
-                    $("#field_4").on("click", function (ev) {
-                        if ($(this).val() == "Ναι") {
-                            $("#field_4_wrap").show();
-                        } else {
-                            $("#field_4_wrap").hide();
-                        }
-                    })
+                    // $("#field_4").on("click", function (ev) {
+                    //     if ($(this).val() == "Ναι") {
+                    //         $("#field_4_wrap").show();
+                    //     } else {
+                    //         $("#field_4_wrap").hide();
+                    //     }
+                    // })
 
-                    $("#field_6").on("change", function (ev) {
-                        if ($(this).val() == "Ναι") {
-                            $("#field_6_wrap").show();
-                        } else {
-                            $("#field_6_wrap").hide();
-                        }
-                    })
+                    // $("#field_6").on("change", function (ev) {
+                    //     if ($(this).val() == "Ναι") {
+                    //         $("#field_6_wrap").show();
+                    //     } else {
+                    //         $("#field_6_wrap").hide();
+                    //     }
+                    // })
 
-                    $("#field_11").on("change", function (ev) {
-                        if ($(this).val() == "Ναι") {
-                            $("#field_11_wrap").show();
-                        } else {
-                            $("#field_11_wrap").hide();
-                        }
-                    })
+                    // $("#field_11").on("change", function (ev) {
+                    //     if ($(this).val() == "Ναι") {
+                    //         $("#field_11_wrap").show();
+                    //     } else {
+                    //         $("#field_11_wrap").hide();
+                    //     }
+                    // })
 
-                    $("#field_12").on("change", function (ev) {
-                        if ($(this).val() == "Ναι") {
-                            $("#field_12_wrap").show();
-                        } else {
-                            $("#field_12_wrap").hide();
-                        }
-                    })
+                    // $("#field_12").on("change", function (ev) {
+                    //     if ($(this).val() == "Ναι") {
+                    //         $("#field_12_wrap").show();
+                    //     } else {
+                    //         $("#field_12_wrap").hide();
+                    //     }
+                    // })
 
-                    $("#field_13").on("change", function (ev) {
-                        if ($(this).val() == "Ναι") {
-                            $("#field_13_wrap").show();
-                        } else {
-                            $("#field_13_wrap").hide();
-                        }
-                    })
+                    // $("#field_13").on("change", function (ev) {
+                    //     if ($(this).val() == "Ναι") {
+                    //         $("#field_13_wrap").show();
+                    //     } else {
+                    //         $("#field_13_wrap").hide();
+                    //     }
+                    // })
 
-                    $("#field_36").on("change", function (ev) {
-                        if ($(this).val() == "Ναι") {
-                            $("#field_36_wrap").show();
-                        } else {
-                            $("#field_36_wrap").hide();
-                        }
-                    })
+                    // $("#field_36").on("change", function (ev) {
+                    //     if ($(this).val() == "Ναι") {
+                    //         $("#field_36_wrap").show();
+                    //     } else {
+                    //         $("#field_36_wrap").hide();
+                    //     }
+                    // })
 
-                    $("#ekpedeusi_politismos").on('change', function (ev) {
-                        if (this.checked) {
-                            $("#politismos_table").show();
-                            $("#ekpaideysi_table").show();
-                            $(".ekpaideysi-politismos :input").prop('disabled', false);
-                        } else {
-                            $("#politismos_table").hide();
-                            $("#ekpaideysi_table").hide();
-                            $(".ekpaideysi-politismos :input").prop('disabled', true);
-                        }
-                    })
-
-                    $("#forologiki_politiki").on('change', function (ev) {
-                        if (this.checked) {
-                            $("#oikonomia_table").show();
-                            $("#forologia_table").show();
-                            $("#ergasiakes_sxeseis_table").show();
-                            $(".oikonomia :input").prop('disabled', false);
-                        } else {
-                            $("#oikonomia_table").hide();
-                            $("#forologia_table").hide();
-                            $("#ergasiakes_sxeseis_table").hide();
-                            $(".oikonomia :input").prop('disabled', true);
-                        }
-                    })
-
-                    $("#koinoniki_politiki").on('change', function (ev) {
-                        if (this.checked) {
-                            $("#apasxolisi_table").show();
-                            $("#koinoniki_asfalisi_table").show();
-                            $("#koinoniki_pronoia_table").show();
-                            $("#ygeia_table").show();
-                            $("#isotita_fylwn_table").show();
-                            $("#metanasteytiki_prosfygiki_politiki_table").show();
-                            $(".koinoniki-politiki :input").prop('disabled', false);
-                        } else {
-                            $("#apasxolisi_table").hide();
-                            $("#koinoniki_asfalisi_table").hide();
-                            $("#koinoniki_pronoia_table").hide();
-                            $("#ygeia_table").hide();
-                            $("#isotita_fylwn_table").hide();
-                            $("#metanasteytiki_prosfygiki_politiki_table").hide();
-                            $(".koinoniki-politiki :input").prop('disabled', true);
-                        }
-                    })
-
-                    $("#dimosia_dioikisi").on('change', function (ev) {
-                        if (this.checked) {
-                            $("#dimosia_dioikisi_table").show();
-                            $("#dimosia_asfaleia_table").show();
-                            $("#dikaiosini_table").show();
-                            $(".dimosia-dioikisi :input").prop('disabled', false);
-                        } else {
-                            $("#dimosia_dioikisi_table").hide();
-                            $("#dimosia_asfaleia_table").hide();
-                            $("#dikaiosini_table").hide();
-                            $(".dimosia-dioikisi :input").prop('disabled', true);
-                        }
-                    })
-                    $("#anaptiksi").on('change', function (ev) {
-                        if (this.checked) {
-                            $("#ependytiki_drastiriotita_table").show();
-                            $("#perivallon_energeia_table").show();
-                            $(".ependyseis :input").prop('disabled', false);
-                        } else {
-                            $("#ependytiki_drastiriotita_table").hide();
-                            $("#perivallon_energeia_table").hide();
-                            $(".ependyseis :input").prop('disabled', true);
-                        }
-                    })
-
+                    
                     function optionalFields(fieldId) {
                         $(fieldId).prop('disabled', true);//find and disable field, button or fieldset
                         //console.log((fieldId));
@@ -1926,8 +1862,12 @@
                         $(".ependyseis :input").prop('disabled', true);
                         $("#status_ekthesis").prop(('disabled', false));
                         $(".glk :input").prop("disabled", false);
-
-                        $(".export-pdf").prop("disabled", false);
+                        $("#status_ekthesis").prop("disabled", false);
+                        console.log($("#status_ekthesis").val())
+                        if ($("#status_ekthesis").val()==="Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους") {
+                            $("#export_glk").hide();
+                        }
+                        // $(".export-pdf").prop("disabled", false);
                         enableFields(".next");
                         enableFields(".previous");
                     } else if (role == "Βουλή") {
@@ -1990,7 +1930,7 @@
                         var field12 = "<%= data.field_12%>";
                         var field13 = "<%= data.field_13%>";
                         var field36 = "<%= data.field_36%>";
-                        $("#field_4").val(field4 ? field4 : $("#field_4 option:first").val());
+                        $("#field_4").val(field4 ? field4 : $("#field_4 option:first").val());//if calue then set  dropdown to value, else set to first dropdown option
                         $("#field_6").val(field6 ? field6 : $("#field_6 option:first").val());
                         $("#field_11").val(field11 ? field11 : $("#field_11 option:first").val());
                         $("#field_12").val(field12 ? field12 : $("#field_12 option:first").val());
@@ -2088,60 +2028,30 @@
                         }
                     });
 
-                    var current_fs, next_fs, previous_fs; //fieldsets
+                    // var current_fs, next_fs, previous_fs; //fieldsets
 
-                    //adding traversing functions to sidemenu
-                    (function ($) {
-                        var $root = $('html, body');
-                        $('a.menu').click(function () {
-                            var href = $.attr(this, 'href');
-                            current_fs = $("fieldset:visible");
-                            $(".progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
-                            next_fs = $(href);
-                            //hide the current fieldset with style
-                            current_fs.hide();
-                            //show the next fieldset
-                            next_fs.show();
-                            $(".progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
-                            window.scrollTo(0, 0);
-                            return false;
-                        });
+                    // //adding traversing functions to sidemenu
+                    // (function ($) {
+                    //     var $root = $('html, body');
+                    //     $('a.menu').click(function () {
+                    //         var href = $.attr(this, 'href');
+                    //         current_fs = $("fieldset:visible");
+                    //         $(".progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+                    //         next_fs = $(href);
+                    //         //hide the current fieldset with style
+                    //         current_fs.hide();
+                    //         //show the next fieldset
+                    //         next_fs.show();
+                    //         $(".progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+                    //         window.scrollTo(0, 0);
+                    //         return false;
+                    //     });
 
-                    }(jQuery));
+                    // }(jQuery));
 
-                    $(".next").click(function () {
-                        current_fs = $(this).parent();
-                        next_fs = $(this).parent().next();
-
-                        //activate next step on progressbar using the index of next_fs
-                        $(".progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
-
-                        //show the next fieldset
-                        next_fs.show();
-                        //hide the current fieldset with style
-                        current_fs.hide();
-                    });
-
-                    $(".previous").click(function () {
-                        current_fs = $(this).parent();
-                        previous_fs = $(this).parent().prev();
-
-                        //de-activate current step on progressbar
-                        $(".progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
-                        //add class "active" if it doesn't exist 
-                        if (!$(previous_fs).hasClass("active")) {
-                            $(".progressbar li").eq($("fieldset").index(previous_fs)).addClass("active");
-                        }
-                        //show the previous fieldset
-                        previous_fs.show();
-                        //hide the current fieldset with style
-                        current_fs.hide();
-                        window.scrollTo(0, 0);
-                    });
-
-                    $(".submit").click(function () {
-                        return false;
-                    })
+                    // $(".submit").click(function () {
+                    //     return false;
+                    // })
                 </script>
 
         </div>

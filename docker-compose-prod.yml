@@ -5,9 +5,9 @@ volumes:
 services: 
     ria:
         build: .        
-        image: ria_dev:latest
+        image: ria_prod:latest
         ports: 
-            - "6000:3000" 
+            - "5000:3000" 
         network_mode: "host"
         volumes: 
             - ./:/app
@@ -17,14 +17,14 @@ services:
         environment: 
             - SECRET=secret
             - DATABASE_PORT=port
-            - DATABASE_HOST=host
+            - DATABASE_HOST=database
             - DATABASE_USER=user
             - DATABASE_PASSWORD=password
-            - DATABASE_NAME=database
+            - DATABASE_NAME=riadb
             - DATABASE_DIALECT=dialect
     database:
         image: mysql:latest
         volumes: 
             - db_storage:/var/lib/mysql   
         environment: 
-            MYSQL_ROOT_PASSWORD: password              
+            MYSQL_ROOT_PASSWORD: password2              

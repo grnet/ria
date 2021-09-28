@@ -98,8 +98,8 @@
                         <label for="nomosxedio" class="nomosxedio" id="nomosxedio_label">Επισύναψη νομοσχεδίου</label>
                         <br>
                         <input type="file" id="nomosxedio" name="nomosxedio" accept=".pdf">
-                    </div>        
-                </div>    
+                    </div>
+                </div>
 
                 <br>
                 <hr>
@@ -791,7 +791,7 @@
     </style>
 
     <script type="text/javascript" src="/js/common_form_scripts.js"></script>
-    <script type="text/javascript" src="/js/common_form_tooltips.js"></script>
+    <script type="text/javascript" src="/js/tooltips.js"></script>
     <script type="text/javascript" src="/js/common_form_events.js"></script>
     <script type="text/javascript" src="/js/syntaktis_scripts.js"></script>
     <script>
@@ -804,7 +804,7 @@
             $.each(checkbox, function (key, chckbx) {
                 fd.append($(chckbx).prop('name'), $(chckbx).value = '')//append to fd without value 
             });
-            if ($('#nomosxedio') != '' ) {getFullDate($('#upload_date'));}
+            if ($('#nomosxedio') != '') { getFullDate($('#upload_date')); }
             $.ajax({
                 url: '/create/<%= analysis %>',
                 data: fd,
@@ -826,7 +826,7 @@
             var checkbox = $("form").find("input[type=checkbox]:not(:checked)");//find all unchecked checkboxes 
             $.each(checkbox, function (key, chckbx) {
                 fd.append($(chckbx).prop('name'), $(chckbx).value = '')//append to fd without value 
-            });            
+            });
             $.ajax({
                 url: '/create/<%= analysis %>',
                 data: fd,
@@ -855,162 +855,49 @@
         // }
 
         var analysis = "<%= analysis%>";
-        //console.log("init val " + $(analysis).val());
-        if (analysis == ':sxedio_nomou') {
-            $("#typos_analysis").prop('value', 'Σχέδιο νόμου');
-        } else if (analysis == ':prosxedio_nomou') {
-            $("#typos_analysis").prop('value', 'Προσχέδιο νόμου');
-            $("#subtitle").html("«Προκαταρκτική Ανάλυση Συνεπειών Ρύθμισης»");
-            $("#subtext").html(`Σύμφωνα με την παρ. 1 του άρθρου 63 του ν. 4622/2019 «Ο Υπουργός δύναται να υποβάλει στην Γενική Γραμματεία Νομικών και Κοινοβουλευτικών Θεμάτων: α) προσχέδιο νόμου και προκαταρκτική ανάλυση συνεπειών ρύθμισης η οποία συμπεριλαμβάνει τα στοιχεία του άρθρου 62 που κρίνει αναγκαία …».<br>
-                Στο «εγχειρίδιο νομοπαρασκευαστικής μεθοδολογίας»  αναφέρεται ότι: <br>
-                - «Συστήνεται … η προκαταρκτική Ανάλυση Συνεπειών Ρύθμισης να έχει ως βάση το υπόδειγμα της πλήρους Ανάλυσης, εξαιρουμένων των εκθέσεων του Γενικού Λογιστηρίου του Κράτους όπως επίσης του πεδίου που αφορά στην ηλεκτρονική διαβούλευση».<br>
-                - «Σε κάθε περίπτωση, για να καταστεί δυνατή η περαιτέρω αξιολόγηση της Ανάλυσης απαιτείται οπωσδήποτε αυτή να συμπεριλαμβάνει: i) την εισήγηση των αρμόδιων προϊσταμένων Γενικών Διευθύνσεων Οικονομικών Υποθέσεων όπως ορίζεται στο άρθρο 24 παρ. 5 περ. ε του ν. 4270/2015. […] ii) ειδική αιτιολογία σε περίπτωση πρόβλεψης παρεκκλίσεων από τις διατάξεις του νόμου περί ενιαίου μισθολογίου (ν. 4354/2015 [ΦΕΚ Α’ 176]).».<br>`)
-        } else if (analysis == ':kateythintiries_grammes') {
-            $("#typos_analysis").prop('value', 'Κατευθυντήριες γραμμές');
-            $("#subtitle").html("«Προκαταρκτική Ανάλυση Συνεπειών Ρύθμισης»");
-            $("#subtext").html(` Σύμφωνα με την παρ. 1 του άρθρου 63 του ν. 4622/2019 «Ο Υπουργός δύναται να υποβάλει στην Γενική Γραμματεία Νομικών και Κοινοβουλευτικών Θεμάτων: […] β) τις κατευθυντήριες γραμμές του σχεδίου νόμου μαζί με όποιο στοιχείο θεωρεί αναγκαίο να συμπεριληφθεί στην Ανάλυση Συνεπειών Ρύθμισης». <br>
-                Στο «εγχειρίδιο νομοπαρασκευαστικής μεθοδολογίας»  αναφέρεται ότι: <br>
-                - «Οι κατευθυντήριες γραμμές αναλύουν το σκεπτικό των αποφάσεων που οδήγησαν στην επιλογή τόσο του επιδιωκόμενου ρυθμιστικού αποτελέσματος, όσο και των μηχανισμών επίτευξής του. Συντάσσονται από στελέχη του Υπουργείου και παρέχουν όλα τα απαραίτητα στοιχεία για την προετοιμασία της νομοθεσίας, προσδιορίζοντας και, όπου είναι δυνατόν, ποσοτικοποιώντας τα επιδιωκόμενα ρυθμιστικά αποτελέσματα.».<br>
-                - «Στην περίπτωση της αποστολής κατευθυντηρίων γραμμών, πέραν των εκθέσεων του Γενικού Λογιστηρίου του Κράτους όπως επίσης του πεδίου που αφορά στην ηλεκτρονική διαβούλευση, δεν προσδοκάται η αποστολή των πεδίων που αφορούν την αιτιολογική έκθεση και την έκθεση εφαρμογής επί των συγκεκριμένων άρθρων.».`);
-        } else if (analysis == ':epeigon_katepeigon') {
-            $("#typos_analysis").prop('value', 'Επείγον ή κατεπείγον νομοσχέδιο');
-            $("#subtitle").html("«Συνοπτική Ανάλυση Συνεπειών Ρύθμισης»");
-            $("#subtext").html(`Σύμφωνα με την παρ. 3 του άρθρου 85 του Κανονισμού της Βουλής, εάν ένα νομοσχέδιο έχει χαρακτηρισθεί από την Κυβέρνηση ως επείγον ή κατεπείγον «απαιτείται να συνοδεύεται από συνοπτική Ανάλυση Συνεπειών Ρύθμισης που συμπεριλαμβάνει κατ’ ελάχιστον τις ανωτέρω ενότητες (α) και (ε), καθώς και στοιχεία από τις ενότητες (β) και (δ)», δηλαδή την αιτιολογική έκθεση και τον πίνακα τροποποιούμενων ή καταργούμενων διατάξεων, καθώς και στοιχεία της έκθεσης γενικών συνεπειών και της έκθεσης νομιμότητας. <br>
-                Επίσης, στην περίπτωση νομοσχεδίου που συνεπάγεται επιβάρυνση του κρατικού προϋπολογισμού (βλ. παρ. 5 του άρθρου 88 του Κανονισμού της Βουλής), η Ανάλυση Συνεπειών Ρύθμισης πρέπει να ενσωματώνει: «την έκθεση του άρθρου 75 παρ. 1 του Συντάγματος από το Γενικό Λογιστήριο του Κράτους, η οποία προσδιορίζει τη δημοσιονομική επίπτωση επί του Προϋπολογισμού από τις διατάξεις της ρύθμισης, όπως επίσης, ανάλογα με το περιεχόμενό του, α) την ειδική έκθεση του αρμόδιου Υπουργού και του Υπουργού Οικονομικών που προβλέπει το άρθρο 75 παρ. 3 του Συντάγματος και β) τη γνωμοδότηση του Ελεγκτικού Συνεδρίου που ορίζει το άρθρο 73 παρ. 2 του Συντάγματος.». `);
-        } else if (analysis == ':diethneis_symvaseis') {
-            $("#typos_analysis").prop('value', 'Διεθνείς συμβάσεις');
-            $("#subtitle").html("«Συνοπτική Ανάλυση Συνεπειών Ρύθμισης»");
-            $("#subtext").html(`Προσθήκη εισαγωγικού κειμένου μετά τον νέο υπότιτλο: Η κύρωση μιας διεθνούς σύμβασης εμπίπτει στο πεδίο εφαρμογής των ειδικών νομοθετικών διαδικασιών (βλ. άρθρο 112 του Κανονισμού της Βουλής) και ως εκ τούτου, σύμφωνα με την παρ. 3 του άρθρου 85 του Κανονισμού της Βουλής, το κυρωτικό νομοσχέδιο «απαιτείται να συνοδεύεται από συνοπτική Ανάλυση Συνεπειών Ρύθμισης που συμπεριλαμβάνει κατ’ ελάχιστον τις ανωτέρω ενότητες (α) και (ε), καθώς και στοιχεία από τις ενότητες (β) και (δ)», δηλαδή την αιτιολογική έκθεση και τον πίνακα τροποποιούμενων ή καταργούμενων διατάξεων, καθώς και στοιχεία της έκθεσης γενικών συνεπειών και της έκθεσης νομιμότητας. <br>
-                Επίσης, στην περίπτωση νομοσχεδίου που συνεπάγεται επιβάρυνση του κρατικού προϋπολογισμού (βλ. παρ. 5 του άρθρου 88 του Κανονισμού της Βουλής), η Ανάλυση Συνεπειών Ρύθμισης πρέπει να ενσωματώνει: «την έκθεση του άρθρου 75 παρ. 1 του Συντάγματος από το Γενικό Λογιστήριο του Κράτους, η οποία προσδιορίζει τη δημοσιονομική επίπτωση επί του Προϋπολογισμού από τις διατάξεις της ρύθμισης, όπως επίσης, ανάλογα με το περιεχόμενό του, α) την ειδική έκθεση του αρμόδιου Υπουργού και του Υπουργού Οικονομικών που προβλέπει το άρθρο 75 παρ. 3 του Συντάγματος και β) τη γνωμοδότηση του Ελεγκτικού Συνεδρίου που ορίζει το άρθρο 73 παρ. 2 του Συντάγματος.». `);
-        } else if (analysis == ':tropologies_upourgwn') {
-            $("#typos_analysis").prop('value', 'Τροπολογίες Υπουργών');
-            $("#subtitle").html("«Συνοπτική Ανάλυση Συνεπειών Ρύθμισης»");
-            $("#subtext").html(` Σύμφωνα με την παρ. 1 του άρθρου 62 του ν. 4622/2019 «Κάθε σχέδιο νόμου, προσθήκη ή τροπολογία, καθώς και κανονιστική απόφαση μείζονος οικονομικής ή κοινωνικής σημασίας, συνοδεύεται από Ανάλυση Συνεπειών Ρύθμισης (εφεξής Ανάλυση).».<br>
-                Ειδικότερα, για τις τροπολογίες Υπουργών, στην παρ. 2 του άρθρου 88 του Κανονισμού της Βουλής προβλέπεται ότι συνοδεύονται από «σύντομη συνοπτική Ανάλυση Συνεπειών Ρύθμισης που συμπεριλαμβάνει κατ’ ελάχιστον τις ενότητες (α) και (ε), καθώς και στοιχεία από τις ενότητες (β) και (δ) της παρ. 3 του άρθρου 85», δηλαδή την αιτιολογική έκθεση και τον πίνακα τροποποιούμενων ή καταργούμενων διατάξεων, καθώς και στοιχεία της έκθεσης γενικών συνεπειών και της έκθεσης νομιμότητας. <br>
-                Επίσης, σύμφωνα με την παρ. 5 του άρθρου 88 του Κανονισμού της Βουλής «Oι τρoπoλoγίες που συνεπάγονται επιβάρυνση του πρoϋπoλoγισμoύ του Κράτους διαβιβάζονται πριν από τη συζήτησή τoυς στo Γενικό Λoγιστήριo τoυ Kράτoυς, αν το ζητήσουν oι αρμόδιοι Yπoυργoί. Σ’ αυτήν την περίπτωση τo Γενικό Λογιστήριο τoυ Kράτoυς υπoχρεoύται να υποβάλει στη Boυλή την έκθεσή τoυ μέσα σε τρεις ημέρες από την παραλαβή τoυς. Mόνo αν η προθεσμία αυτή περάσει άπρακτη, oι τρoπoλoγίες μπoρoύν να συζητηθoύν και χωρίς την έκθεση.».`);
-        } else if (analysis == ':protasi_nomou') {
-            $("#typos_analysis").prop('value', 'Πρόταση νόμου');
-            $("#subtitle").html("«Συνοπτική Ανάλυση Συνεπειών Ρύθμισης»");
-            $("#subtext").html(` Σύμφωνα με την παρ. 3 του άρθρου 85 του Κανονισμού της Βουλής «Οι προτάσεις νόμων συνοδεύονται υποχρεωτικώς από συνοπτική Ανάλυση Συνεπειών Ρύθμισης, η οποία συμπεριλαμβάνει κατ’ ελάχιστον τις ανωτέρω ενότητες (α) και (ε)», δηλαδή την αιτιολογική έκθεση και τον πίνακα τροποποιούμενων ή καταργούμενων διατάξεων. <br>
-                Επίσης, σύμφωνα με την παρ. 6 του άρθρου 85 του Κανονισμού της Βουλής «Κάθε πρόταση νόμου διαβιβάζεται στους αρμόδιους Yπoυργoύς, που έχουν υποχρέωση να απαντούν αν αυτή υπάγεται ή όχι στους περιορισμούς τoυ άρθρου 73 παρ. 3 τoυ Συντάγματος, καθώς και στo Γενικό Λoγιστήριo τoυ Kράτoυς για τη σύνταξη της έκθεσης που oρίζει τo άρθρο 75 παρ. 1 τoυ Συντάγματος. To Γενικό Λoγιστήριo τoυ Kράτoυς υπoχρεoύται να υπoβάλει στη Boυλή τη σχετική έκθεση μέσα σε δεκαπέντε ημέρες από την παραλαβή της πρότασης νόμoυ. Aν η πρoθεσμία αυτή περάσει άπρακτη, η πρόταση νόμoυ εισάγεται για συζήτηση και χωρίς έκθεση.». `)
-        } else if (analysis == ':tropologies_vouleutwn') {
-            $("#typos_analysis").prop('value', 'Τροπολογίες Βουλευτών');
-            $("#subtitle").html("«Συνοπτική Ανάλυση Συνεπειών Ρύθμισης»");
-            $("#subtext").html(`Σύμφωνα με την παρ. 1 του άρθρου 62 του ν. 4622/2019 «Κάθε σχέδιο νόμου, προσθήκη ή τροπολογία, καθώς και κανονιστική απόφαση μείζονος οικονομικής ή κοινωνικής σημασίας, συνοδεύεται από Ανάλυση Συνεπειών Ρύθμισης (εφεξής Ανάλυση).». <br>
-                Ειδικότερα, για τις τροπολογίες Βουλευτών, στην παρ. 2 του άρθρου 88 του Κανονισμού της Βουλής προβλέπεται ότι συνοδεύονται «υποχρεωτικώς από συνοπτική Ανάλυση Συνεπειών Ρύθμισης, η οποία συμπεριλαμβάνει κατ’ ελάχιστον τις ενότητες (α) και (ε) της παρ. 3 του άρθρου 85», δηλαδή την αιτιολογική έκθεση και τον πίνακα τροποποιούμενων ή καταργούμενων διατάξεων.<br>
-                Επίσης, σύμφωνα με την παρ. 5 του άρθρου 88 του Κανονισμού της Βουλής «Oι τρoπoλoγίες που συνεπάγονται επιβάρυνση του πρoϋπoλoγισμoύ του Κράτους διαβιβάζονται πριν από τη συζήτησή τoυς στo Γενικό Λoγιστήριo τoυ Kράτoυς, αν το ζητήσουν oι αρμόδιοι Yπoυργoί. Σ’ αυτήν την περίπτωση τo Γενικό Λογιστήριο τoυ Kράτoυς υπoχρεoύται να υποβάλει στη Boυλή την έκθεσή τoυ μέσα σε τρεις ημέρες από την παραλαβή τoυς. Mόνo αν η προθεσμία αυτή περάσει άπρακτη, oι τρoπoλoγίες μπoρoύν να συζητηθoύν και χωρίς την έκθεση.».`)
-        }
+        var role = "<%= rolos%>";
 
         
-
-        var role = "<%= rolos%>";
-        function optionalFields(fieldId) {
-            $(fieldId).prop('disabled', true);//find and disable field, button or fieldset
-            //console.log((fieldId));
-        };
-
-        function enableFields(fieldId) {
-            $(fieldId).prop('disabled', false);//find and enable field or button
-            //console.log((fieldId));
-        };
-
-        function optionalFieldsClassRemoval(fieldLabel, className) {
-            var items = document.getElementsByClassName(fieldLabel);
-            for (var i = 0; i < items.length; i++) {
-                $(items[i]).removeClass(className);//remove required class from label
-            }
-        };
 
         function addLabelClass(fieldLabel, className) {
             $(fieldLabel).addClass(className);//remove required class from label
         };
-
-
-
-        //console.log("analysis-> "+analysis); // log analysis type
-        if (analysis == ":kateythintiries_grammes") {
-            optionalFields(".mostly-optional :input");
-            optionalFields(".optional :input");
-            optionalFields(".table-14 :input");
-            optionalFields(".table-29 :input");
-            optionalFields(".table-30 :input");
-            enableFields(".create-new");
-            enableFields(".next");
-            enableFields(".previous");
-
-            optionalFieldsClassRemoval("mostly-optional-label", "required");
-            optionalFieldsClassRemoval("optional-label", "required");
-            optionalFieldsClassRemoval("field-23-label", "required");
-            optionalFieldsClassRemoval("table-14-label", "required");
-            optionalFieldsClassRemoval("table-29-label", "required");
-            optionalFieldsClassRemoval("table-30-label", "required");
-
-        } else if (analysis == ":prosxedio_nomou") {
-            optionalFields(".mostly-optional :input");
-            optionalFieldsClassRemoval("field-23-label", "required");
-            optionalFieldsClassRemoval("mostly-optional-label", "required");
-
-        } else if (analysis == ":epeigon_katepeigon" || analysis == ":diethneis_symvaseis" || analysis == ":tropologies_upourgwn") {
-            optionalFields(".field-22 :input");
-            optionalFields(".optional :input");
-            enableFields(".create-new");
-            enableFields(".next");
-            enableFields(".previous");
-
-            optionalFieldsClassRemoval("field-22-label", "required");
-            optionalFieldsClassRemoval("field-23-label", "required");
-            optionalFieldsClassRemoval("optional-label", "required");
-
-
-        } else if (analysis == ":tropologies_vouleutwn" || analysis == ":protasi_nomou") {
-            optionalFields(".field-18 :input");
-            optionalFields(".field-19 :input");
-            optionalFields(".field-20 :input");
-            optionalFields(".field-21 :input");
-            optionalFields(".field-22 :input");
-            optionalFields(".field-24 :input");
-            optionalFields(".field-25 :input");
-            optionalFields(".field-26 :input");
-            optionalFields(".field-27 :input");
-            optionalFields(".field-28 :input");
-            optionalFields(".table-31 :input");
-            optionalFields(".table-32 :input");
-
-            optionalFields(".optional :input");
-            enableFields(".create-new");
-            enableFields(".next");
-            enableFields(".previous");
-
-            optionalFieldsClassRemoval("field-18-label", "required");
-            optionalFieldsClassRemoval("field-19-label", "required");
-            optionalFieldsClassRemoval("field-20-label", "required");
-            optionalFieldsClassRemoval("field-21-label", "required");
-            optionalFieldsClassRemoval("field-22-label", "required");
-            optionalFieldsClassRemoval("field-23-label", "required");
-            optionalFieldsClassRemoval("field-24-label", "required");
-            optionalFieldsClassRemoval("field-25-label", "required");
-            optionalFieldsClassRemoval("field-26-label", "required");
-            optionalFieldsClassRemoval("field-27-label", "required");
-            optionalFieldsClassRemoval("field-28-label", "required");
-            optionalFieldsClassRemoval("table-31-label", "required");
-            optionalFieldsClassRemoval("table-32-label", "required");
-            optionalFieldsClassRemoval("optional-label", "required");
-
-        }
-        //these fields are by default disabled
-        optionalFields(".glk :input");
-        optionalFields(".glk :input");
-        enableFields(".next");
-        enableFields(".previous");
-        enableFields("#ekthesi_glk");
         
+        function setAnalysisType () {
+            let analysisType = getAnalysisType();
+            $("#typos_analysis").prop('value',analysisType);
+        }
+
+        function getAnalysisType () {
+
+            let analysisType = {
+                'sxedio_nomou': 'Σχέδιο νόμου',
+                'kateythintiries_grammes' : 'Κατευθυντήριες γραμμές',
+                'prosxedio_nomou' : 'Προσχέδιο νόμου',
+                'epeigon_katepeigon' : 'Επείγον ή κατεπείγον νομοσχέδιο',
+                'diethneis_symvaseis' : 'Διεθνείς συμβάσεις',
+                'tropologies_upourgwn' : 'Τροπολογίες Υπουργών',
+                'tropologies_vouleutwn' : 'Τροπολογίες Βουλευτών',
+                'protasi_nomou' : 'Πρόταση νόμου',
+            } 
+            return analysisType[analysis];
+        }
+        
+        setAnalysisType();
+        analysis = getAnalysisType();//renew analysis
+        setSubtitle();
+        setSubText();
+        analysisRestrictions();
+        //initial_submit date - will be updated again when actually submitted
+        getFullDate("#initial_submit");
+
         requiredDigitalGov("#field_10_amesi");
         requiredDigitalGov("#field_10_emmesi");
         requiredLegalistics("#field_33");
 
         var tooltips = '<%= tooltips %>';
         tooltips = textCleanUp(tooltips);
-        createTooltips(tooltips);              
+        createTooltips(tooltips);
 
         $(".submit").click(function () {
             return false;

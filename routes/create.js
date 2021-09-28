@@ -19,6 +19,7 @@ var upload = multer({ storage: storage }).fields([{ name: 'field_21_upload', max
 
 routes.get('/:analysis', authUser, function (req, res, next) {
 
+    let analysis = req.params.analysis.substring(1);//removing first character
     try {
         var results = [];
         const valid_errors = req.session.errors;
@@ -28,7 +29,7 @@ routes.get('/:analysis', authUser, function (req, res, next) {
             .on('data', (data) => results.push(data))
             .on('end', () => {
                 results = JSON.stringify(results)
-                res.render("create", { analysis: req.params.analysis, rolos: req.session.rolos, errors: valid_errors, tooltips: results });
+                res.render("create", { analysis: analysis, rolos: req.session.rolos, errors: valid_errors, tooltips: results });
             });
     } catch (err) {
         console.log('error: ' + err)

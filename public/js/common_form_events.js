@@ -233,7 +233,7 @@ $("#add_row_table_14").on("click", function () {
 
 $("#add_row_table_17").on("click", function () {
 
-    let index = $('#tbody_17').prop('rows').length; 
+    let index = $('#tbody_17').prop('rows').length;
     $('#tbody_17').append(`
         <tr id="R${++index}">  
             <td> 
@@ -251,7 +251,7 @@ $("#add_row_table_17").on("click", function () {
 });
 
 $("#add_row_ministers_table").on("click", function () {
-    
+
     let index = $('#tbody_ministers').prop('rows').length;
     $('#tbody_ministers').append(`
         <tr id="R${++index}">  
@@ -267,7 +267,7 @@ $("#add_row_ministers_table").on("click", function () {
             </td> 
         </tr>`
     );
-});        
+});
 
 $("#add_row_table_29").on("click", function () {
 

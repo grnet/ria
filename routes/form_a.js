@@ -2,6 +2,7 @@ const routes = require('express').Router()
 let database = require('../services/database');
 const fs = require('fs');
 let pdf_export = require('../middleware/export');
+let glk_pdf_export = require('../middleware/export_glk');
 const csv = require('csv-parser')
 const { body, check, validationResult } = require('express-validator');
 var multer = require('multer');
@@ -16,7 +17,7 @@ var storage = multer.diskStorage({
     }
 })
 
-var upload = multer({ storage: storage }).fields([{ name: 'field_21_upload', maxCount: 10 }, { name: 'field_23_upload', maxCount: 10 }, { name: 'field_36_upload', maxCount: 10 }, { name: 'signed_pdf_upload', maxCount: 1 }, { name: 'nomosxedio' }]);
+var upload = multer({ storage: storage }).fields([{ name: 'field_21_upload', maxCount: 10 }, { name: 'field_23_upload', maxCount: 10 }, { name: 'field_36_upload', maxCount: 10 }, { name: 'signed_pdf_upload', maxCount: 1 }, { name: 'nomosxedio' }, {name: 'signed_glk_pdf_upload', maxCount: 1}]);
 
 routes.get('/:entry_id', authUser, async (req, res, next) => {
 
@@ -38,11 +39,8 @@ routes.get('/:entry_id', authUser, async (req, res, next) => {
         var pdf_exists;
         var results = [];
         if (fs.existsSync('./public/pdf_exports/' + pdf_name)) {
-
-            console.log("The file exists.");
             pdf_exists = true;
         } else {
-            console.log("The file does not exist.");
             pdf_exists = false;
         }
         if (entry && entry.dataValues) {
@@ -63,8 +61,7 @@ routes.get('/:entry_id', authUser, async (req, res, next) => {
     }
 });
 
-
-//routes.post('/:entry_id', authUser, pdf_export.exportPDF) //router calls controller to handle the export
+routes.post('/export/glk/:entry_id', authUser, glk_pdf_export.exportGlk) //router calls controller to handle the export
 routes.post('/:entry_id', authUser, pdf_export.exportPDF) //router calls controller to handle the export
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -119,6 +116,7 @@ routes.put('/:entry_id', authUser, upload,
                 let field36 = entry.field_36_upload;
                 let signed_pdf = entry.signed_pdf_upload;
                 let nomosxedio = entry.nomosxedio;
+                let signed_glk_pdf_upload = entry.signed_glk_pdf_upload;
                 try {
 
                     const file = req.files;
@@ -144,10 +142,13 @@ routes.put('/:entry_id', authUser, upload,
                             signed_pdf.push(file.signed_pdf_upload[i].filename)
                         }
                     }
-                    if (file.nomosxedio) {
+                    if (file.nomosxedio) {                        
                         nomosxedio.push({filename:file.nomosxedio[0].filename, upload_date:req.body.last_updated})
                     }
-
+                    if (file.signed_glk_pdf_upload) {      
+                        let date = new Date().toLocaleString("el-GR", { timeZone: "Europe/Athens" });                  
+                        signed_glk_pdf_upload.push({filename:file.signed_glk_pdf_upload[0].filename, upload_date:date})
+                    }
                 } catch (e) {
                     console.log("Error message: " + e.message);
                 }
@@ -189,7 +190,7 @@ routes.put('/:entry_id', authUser, upload,
                     field_14_arthro: field_14_arthro, field_14_stoxos: field_14_stoxos, field_17_onoma: field_17_onoma, field_17_epitheto: field_17_epitheto, field_17_idiotita: field_17_idiotita, minister_name: minister_name, minister_surname: minister_surname, ministry: ministry,
                     field_29_diatakseis_rythmisis: field_29_diatakseis_rythmisis, field_29_yfistamenes_diatakseis: field_29_yfistamenes_diatakseis, field_30_diatakseis_katargisi: field_30_diatakseis_katargisi, field_30_katargoumenes_diatakseis: field_30_katargoumenes_diatakseis,
                     field_31_sxetiki_diataksi: field_31_sxetiki_diataksi, field_31_synarmodia_ypoyrgeia: field_31_synarmodia_ypoyrgeia, field_31_antikeimeno_synarmodiotitas: field_31_antikeimeno_synarmodiotitas, field_32_eksousiodotiki_diataksi: field_32_eksousiodotiki_diataksi, field_32_eidos_praksis: field_32_eidos_praksis, field_32_armodio_ypoyrgeio: field_32_armodio_ypoyrgeio, field_32_antikeimeno: field_32_antikeimeno, field_32_xronodiagramma: field_32_xronodiagramma,
-                    field_21_upload: field21, field_23_upload: field23, field_36_upload: field36, signed_pdf_upload: signed_pdf, nomosxedio:nomosxedio
+                    field_21_upload: field21, field_23_upload: field23, field_36_upload: field36, signed_pdf_upload: signed_pdf, nomosxedio:nomosxedio, signed_glk_pdf_upload:signed_glk_pdf_upload
                 },
                     {
                         where: {

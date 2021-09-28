@@ -8,7 +8,6 @@ routes.get('/', authUser, authRole, async (req,res,next) =>{
     }})
     if(user && user.dataValues){
         res.render("user_views/admin_dashboard",{user:user.dataValues})
-        //console.log(user.dataValues)
     }else{
         res.status(404).send("Not found")
     }
