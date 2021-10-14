@@ -20,3 +20,6 @@ Repository for the Regulatory Impact Analysis project, which aims to digitalize 
 5. Start app:
 `docker compose up -d`
 
+**Development**
+
+For local development see Development.md.
