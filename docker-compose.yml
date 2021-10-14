@@ -1,30 +1,36 @@
 version: "3.3"
-volumes: 
-    db_storage: {}
+volumes:
+  db_storage: {}
 
-services: 
+services:
     ria:
-        build: .        
+        build: .
         image: ria_dev:latest
-        ports: 
-            - "6000:3000" 
-        network_mode: "host"
-        volumes: 
+        ports:
+            - "127.0.0.1:6000:3000"
+        container_name: ria_dev
+        volumes:
             - ./:/app
             - /app/node_modules
-        depends_on: 
-            - database                
-        environment: 
-            - SECRET=secret
-            - DATABASE_PORT=port
-            - DATABASE_HOST=host
-            - DATABASE_USER=user
-            - DATABASE_PASSWORD=password
-            - DATABASE_NAME=database
-            - DATABASE_DIALECT=dialect
+        depends_on:
+            - database
+        environment:
+            - DATABASE_HOST=$DATABASE_HOST
+            - DATABASE_USER=$DATABASE_USER
+            - DATABASE_PASSWORD=$DATABASE_PASSWORD
+            - DATABASE_NAME=$DATABASE_NAME
+            - DATABASE_DIALECT=$DATABASE_DIALECT
     database:
-        image: mysql:latest
-        volumes: 
-            - db_storage:/var/lib/mysql   
-        environment: 
-            MYSQL_ROOT_PASSWORD: password              
+        image: mysql:8
+        container_name: ria_database_dev
+        ports:
+            - '127.0.0.1:2306:3306'
+        expose: 
+            - '3306'
+        volumes:
+            - db_storage:/var/lib/mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD  
+            - MYSQL_USER=$DATABASE_USER  
+            - MYSQL_PASSWORD=$DATABASE_PASSWORD  
+            - MYSQL_DATABASE=$DATABASE_NAME 

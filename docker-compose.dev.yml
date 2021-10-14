@@ -1,0 +1,61 @@
+version: "3.3"
+volumes: 
+    db_storage: {}
+
+services: 
+
+    nginx:
+        image: nginx:1.20
+        ports:
+            - "127.0.0.1:81:80"
+        volumes:
+            - ./etc/assets/wait-for-it.sh:/wait-for-it.sh
+            - ./etc/nginx/nginx.conf:/etc/nginx/nginx.conf
+            - ./etc/nginx/conf.d:/etc/nginx/conf.d
+        entrypoint:
+            - bash
+            - -c
+            - |
+              /wait-for-it.sh -t 0 database:3306
+              /wait-for-it.sh -t 0 ria:3000
+              nginx-debug -g 'daemon off;'
+
+    ria:
+        build: 
+            context: ./
+            dockerfile: Dockerfile.dev        
+        image: ria_dev:latest
+        container_name: ria_dev
+        ports: 
+            - "127.0.0.1:3000:3000" 
+        volumes: 
+            - ./:/app
+            - /app/node_modules
+        depends_on: 
+            - database       
+        command: ["./etc/assets/wait-for-it.sh", "database:3306", "--", "npm", "start"]        
+        environment: 
+            - SECRET=$SECRET
+            - DATABASE_PORT=$DATABASE_PORT
+            - DATABASE_HOST=$DATABASE_HOST
+            - DATABASE_USER=$DATABASE_USER
+            - DATABASE_PASSWORD=$DATABASE_PASSWORD
+            - DATABASE_NAME=$DATABASE_NAME
+            - DATABASE_DIALECT=$DATABASE_DIALECT
+
+    database:
+        image: mysql:8
+        ports:
+            - '127.0.0.1:2306:3306'
+        expose: 
+            - '3306'
+        container_name: ria_db
+        volumes: 
+            - db_storage:/var/lib/mysql  
+            - ./init:/docker-entrypoint-initdb.d
+            - ./etc/assets/custom.cnf:/etc/mysql/conf.d/custom.cnf
+        environment: 
+            - MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD  
+            - MYSQL_USER=$DATABASE_USER  
+            - MYSQL_PASSWORD=$DATABASE_PASSWORD  
+            - MYSQL_DATABASE=$DATABASE_NAME              

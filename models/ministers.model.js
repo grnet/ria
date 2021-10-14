@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
             autoIncrement: true,
             type: DataTypes.INTEGER,
             allowNull: false,
-          },
+        },
         orgName: DataTypes.STRING, 
         orgDirector: DataTypes.STRING,
         orgType: DataTypes.STRING,

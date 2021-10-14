@@ -19,13 +19,14 @@ let userDashboardRoute = require('./routes/user_dashboard')
 let historyRoute = require('./routes/history')
 let summariesRoute = require('./routes/summaries')
 let profileRoute = require('./routes/profile')
+let ministriesRoute = require('./routes/ministries')
 
 const app = express(); //app init
 app.use(cookieParser());
 // prune expired entries every 24h to avoid memory leaks
 let memoryStore = new session.MemoryStore({checkPeriod: 86400000 }); //We will store our user session details to the memory 
  app.use(session({                                 
-    secret: 'secret', //The secret is used to hash the session with HMAC. Value retrieved from docker-compose.                                         
+    secret: process.env.SECRET, //The secret is used to hash the session with HMAC. Value retrieved from docker-compose.                                         
     store: memoryStore,
     
 }));
@@ -52,6 +53,7 @@ app.use('/user_views/edit_user', editUserRoute);
 app.use('/user_views/history', historyRoute)
 app.use('/user_views/summaries', summariesRoute)
 app.use('/user_views/profile', profileRoute)
+app.use('/ministries', ministriesRoute);
 
 app.listen(3000, () => {
     database.sequelize.sync();

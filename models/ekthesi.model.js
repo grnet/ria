@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
             autoIncrement: true,
             type: DataTypes.INTEGER,
             allowNull: false,
-          },
+        },
         //author_id: DataTypes.STRING,
         nomosxedio: DataTypes.JSON,
         typos_analysis: DataTypes.STRING, 

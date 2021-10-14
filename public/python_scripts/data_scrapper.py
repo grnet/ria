@@ -13,10 +13,10 @@ import json
 from json import JSONEncoder
 
 response = requests.get('https://gslegal.gov.gr/?page_id=138')
-soup = bs4.BeautifulSoup(response.text)
+soup = bs4.BeautifulSoup(response.text, 'html.parser')
 # links = soup.select('div.video-summary-data a[href^=/video]')
 tablerows=soup.select('table tbody tr')
-ministries = soup.select('td[style*="background-color: "] strong span[style*="color: #000000"]')
+ministries = soup.select('td[style*="background-color: "] span[style*="color: #000000"] strong')
 
 for m in ministries:
   # print(m.text)
@@ -32,11 +32,12 @@ allministries=[]
 positions=[]
 staff=[]
 for tr in tablerows:
-  ministry=tr.select('td[style*="background-color: "] strong span[style*="color: #000000"]')
-  minister=tr.select('td[style*="width: 527px"] strong span[style*="color: #000000"]')
+  ministry=tr.select('td[style*="background-color: "] span[style*="color: #000000"] strong')
+  minister=tr.select('td[style="height: 24px; width: 606.392px;"] span[style*="color: #000000"]')
   minister2=tr.select('td[style*="width: 527px"] strong')
-  name=tr.select('td[style*="width: 527px;"] span[style*="color: #000000"]')
+  name=tr.select('td[style="height: 24px; width: 606.392px;"] span[style*="color: #000000"]')
   name2=tr.select('td[style*="width: 527px; height: 24px;"] span[style*="color: #000000"]')
+  print(name)
   if len(ministry)>0:
     if 'ΥΠΟΥΡΓΕΙΟ ' in ministry[0].text:
       print('-->',ministry[0].text)
@@ -58,7 +59,7 @@ for tr in tablerows:
       positions.append(minister2[0].text)
       # inminister=True
   elif len(name)>0:
-    if name[0].text.isupper() and len(allministries)%3==1:
+    if name[0].text.isupper() and len(allministries)%3==1: 
       if 'ΓΓ ' in name[0].text or 'ΕΓ ' in name[0].text or 'ΥΓ ' in name[0].text  or 'ΥΓΓ ' in name[0].text or len(name[0].text)>40 or hasNumbers(name[0].text):
         continue
       print('==>',name[0].text)
@@ -67,7 +68,7 @@ for tr in tablerows:
       # inminister=False
 
 response = requests.get('https://government.gov.gr/kivernisi/')
-soup = bs4.BeautifulSoup(response.text, 'html.parser') 
+soup = bs4.BeautifulSoup(response.text, 'html.parser')
 
 # ministries=soup.select('ol li')
 # roles=soup.select('ul li')
@@ -100,6 +101,7 @@ class RoleEncoder(JSONEncoder):
 
 allministries=[]
 roles=[]
+ministers=[]
 minname=None
 for i in items:
   if i.select('a'):
@@ -114,7 +116,7 @@ for i in items:
       wordEndIndex = tok[0].index(word) + len(word)
       prefix=tok[0][:wordEndIndex]
       suffix=tok[0][wordEndIndex:]
-      role=Role(prefix.strip(), suffix.strip(), tok[1].strip())
+      # role=Role(prefix.strip(), suffix.strip(), tok[1].strip())
       # print(json.dumps(role, ensure_ascii=False, cls=RoleEncoder))
       roles.append(role)       
 
@@ -124,10 +126,10 @@ for i in items:
       wordEndIndex = tok[0].index(word) + len(word)
       prefix=tok[0][:wordEndIndex]
       suffix=tok[0][wordEndIndex:]
-      role=Role(prefix.strip(), suffix.strip(), tok[1].strip())
+      # role=Role(prefix.strip(), suffix.strip(), tok[1].strip())
       # print(json.dumps(role, ensure_ascii=False, cls=RoleEncoder))
       roles.append(role)
-
+  
   else:
     if (len(i.text)>0):
       if len(roles)==0:
@@ -146,6 +148,6 @@ for i in items:
       # roles=[]
 
 json_string = json.dumps(allministries,ensure_ascii=False,cls=MinistryEncoder)
+print(json_string)
 
-json_string
 

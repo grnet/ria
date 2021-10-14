@@ -1,0 +1,30 @@
+variables:
+  REGISTRY_URL: "registry.docker.grnet.gr"
+  REGISTRY_PROJECT: "digigov"
+  DOCKER_REGISTRY_USER: "robot$digigovpush"
+  IMG_K8S_TOOLS: "$REG_URL/grnetnoc/k8s-tools:latest"
+
+include:
+  - project: "devs/devline/templates-ci"
+    ref: master
+    file: "/templates/.branch-rules.yml"
+
+stages:
+  - build
+
+build ria:
+  image:
+    name: "gcr.io/kaniko-project/executor:v1.5.1-debug"
+    entrypoint: [""]
+  tags: 
+    - "docker_build"
+  stage: build
+  extends: ".mr-develop-master"
+  variables:
+    BUILD_DOCKERFILE_DIR: "./"
+    BUILD_IMAGE_NAME: "ria"
+    BUILD_IMAGE_TAG: "$REGISTRY_URL/$REGISTRY_PROJECT/$BUILD_IMAGE_NAME:$CI_COMMIT_SHORT_SHA"
+  before_script:
+    - echo "{\"auths\":{\"${REGISTRY_URL}\":{\"auth\":\"$DOCKER_REGISTRY_AUTH\"}}}" > /kaniko/.docker/config.json
+  script:
+    - /kaniko/executor --context $BUILD_DOCKERFILE_DIR --destination $BUILD_IMAGE_TAG --build-arg GIT_COMMIT=$CI_COMMIT_SHORT_SHA --dockerfile $BUILD_DOCKERFILE_DIR/Dockerfile --cache=false
