@@ -18,7 +18,7 @@ Repository for the Regulatory Impact Analysis project, which aims to digitalize 
 4. Build image: 
 `docker-compose build`
 5. Start app:
-`docker compose up -d`
+`docker-compose up -d`
 
 **Development**
 
