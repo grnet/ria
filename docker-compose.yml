@@ -7,7 +7,7 @@ services:
         build: 
             context: ./
             dockerfile: Dockerfile  
-        image: ria_dev:latest
+        image: ria_prod:latest
         ports:
             - "127.0.0.1:6000:3000"
         volumes:
