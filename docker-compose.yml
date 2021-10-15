@@ -4,7 +4,9 @@ volumes:
 
 services:
     ria:
-        build: .
+        build: 
+            context: ./
+            dockerfile: Dockerfile.dev  
         image: ria_dev:latest
         ports:
             - "127.0.0.1:6000:3000"
