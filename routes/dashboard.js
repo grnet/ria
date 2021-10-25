@@ -7,7 +7,7 @@ routes.get('/', authUser,async (req,res,next) =>{
         username: req.session.username
     }});
     if(user && user.dataValues){
-        res.render("user_views/user_dashboard",{user:user.dataValues})
+        res.render("user_views/dashboard",{user:user.dataValues})
     }else{
         res.status(404).send("Not found")
     }

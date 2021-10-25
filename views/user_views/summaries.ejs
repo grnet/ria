@@ -101,17 +101,20 @@
       });
 
       $(".back").on("click", function (ev) {
-        window.location.href = "/user_views/admin_dashboard";
+        window.location.href = "/user_views/dashboard";
       })
-      $("#admin_menu").show();
 
       var user_role = '<%= user.rolos %>';
-      if (user_role == 'Βουλευτής') {
-        $("#admin_ekthesi").children(":not(.vouleftis)").hide();//hide all children elements without class vouleftis
-      } else if (user_role == 'Συντάκτης επισπεύδοντος Υπουργείου' || user_role == 'Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)') {
-        $("#admin_ekthesi").children(".vouleftis").hide();
+      let isAdmin = '<%= user.dikaiwmata_diaxeirisis %>';
+
+      isAdmin ? $(".user").hide() : $(".admin").hide();//display admin info if user has administration rights
+
+      if (user_role === 'Βουλευτής') {
+        $("#create_analysis").children(":not(.vouleftis):not(.header)").hide();//hide all children elements without class vouleftis
+      } else if (user_role === 'Συντάκτης επισπεύδοντος Υπουργείου' || user_role == 'Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)') {
+        $("#create_analysis").children(".vouleftis").hide();//hide all children elements with class vouleftis
       } else {
-        $("#admin_ekthesi").children().hide();
+        $("#create_analysis").children().hide();//hide all children elements
       }
     </script>
     </body>

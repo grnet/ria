@@ -7,10 +7,9 @@ services:
         build: 
             context: ./
             dockerfile: Dockerfile  
-        image: ria_dev:latest
+        image: ria_prod:latest
         ports:
             - "127.0.0.1:6000:3000"
-        container_name: ria_dev
         volumes:
             - ./:/app
             - /app/node_modules
@@ -24,7 +23,6 @@ services:
             - DATABASE_DIALECT=$DATABASE_DIALECT
     database:
         image: mysql:8
-        container_name: ria_database_dev
         ports:
             - '127.0.0.1:2306:3306'
         expose: 

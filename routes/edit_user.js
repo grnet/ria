@@ -34,28 +34,60 @@ routes.delete('/:username', authUser, authRole, async (req, res, next) => {
 
 routes.put('/:username', authUser, authRole, async (req, res, next) => {
 
-    const userPassword = req.body.password;
+    const password = req.body.password;
     const newPassword = req.body.new_password;
+    const repeatPassword = req.body.password_repeat
 
-    bcrypt.hash(newPassword, 10, async function (err, newHash) {//if correct, has new password and update user
-        if (newHash) {
-            user = await database.user.update({ fname: req.body.fname, lname: req.body.lname, username: req.body.username, password: newHash, rolos: req.body.rolos, dikaiwmata_diaxeirisis: req.body.dikaiwmata_diaxeirisis, ypoyrgeio: req.body.ypoyrgeio }, {
-                where: {
-                    username: req.params.username
+    req.session.errors = [];
+    let user = await database.user.findOne({
+        where: {
+            username: req.params.username
+        }
+    });
+    if (user && user.dataValues) {
+        if (!password) { //if password not provided update everything but the password
+            await database.user.update({ fname: req.body.fname, lname: req.body.lname, username: req.body.username, rolos: req.body.rolos, dikaiwmata_diaxeirisis: req.body.dikaiwmata_diaxeirisis, ypoyrgeio: req.body.ypoyrgeio },
+                {
+                    where: {
+                        username: req.params.username
+                    }
+                }).then(res.send({ redirect: "../search_user" }));
+        }
+        else {
+            bcrypt.compare(password, user.password, function (err, result) {//compare user passwords
+                if (result) {
+                    if (newPassword === repeatPassword) {
+                        bcrypt.hash(newPassword, 10, async function (err, hash) {
+                            if (hash) {
+                                await database.user.update({ fname: req.body.fname, lname: req.body.lname, username: req.body.username, password: hash, rolos: req.body.rolos, dikaiwmata_diaxeirisis: req.body.dikaiwmata_diaxeirisis, ypoyrgeio: req.body.ypoyrgeio },
+                                    {
+                                        where: {
+                                            username: req.params.username
+                                        }
+                                    });
+                                res.send({ redirect: "../search_user" });
+
+                            }
+                        });
+                    } else {
+                        req.session.errors.push({ msg: 'Οι κωδικοί δεν ταιριάζουν.' })//custom error message
+                        const errors = req.session.errors
+                        if (errors) { 
+                            return res.status(422).json(errors);
+                        }
+                    }
+                } else {
+                    req.session.errors.push({ msg: 'Εισαγάγατε λάθος κωδικό πρόσβασης.' });
+                    res.send(req.session.errors);
                 }
             });
-            console.log(user.password);
-            if (!user) {
-                // console.log("Error updating user.");
-                // res.sendStatus.send(404);
-                res.status(404).send("Error while updating user");
-            } else {
-                res.send({ redirect: "../search_user" });
-            }
         }
 
+    } else {
+        req.session.errors.push({ msg: 'Εισαγάγατε λανθασμένα στοιχεία.' })
+        return res.send(req.session.errors);
+    }
 
-    })
 });
 
 module.exports = routes;

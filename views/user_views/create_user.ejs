@@ -48,7 +48,7 @@
                     <input type="password" size="10" id="repeat_password" name="repeat_password"
                         placeholder="Επανάληψη κωδικού πρόσβασης" required minlength="8" placeholder="********"
                         pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$"
-                        oninvalid="this.setCustomValidity('Ο κωδικός πρέπει να περιέχει τουλάχιστον ένα κεφαλαίο γράμμα, έναν αριθμό και ένα σύμβολο(!@#$%^&*_=+-).')"
+                        oninvalid="this.setCustomValidity('Ο κωδικός πρέπει να περιέχει τουλάχιστον ένα πεζό και ένα κεφαλαίο γράμμα, έναν αριθμό και ένα σύμβολο(!@#$%^&*_=+-).')"
                         oninput="this.setCustomValidity('')" />
                     <div id="msg"></div>
                 </div>
@@ -183,7 +183,7 @@
                     },
                     success: function (data) {
                         console.log(data)
-                        window.location.href = "./admin_dashboard"
+                        window.location.href = "./dashboard"
                     },
                     type: 'POST'
                 });
@@ -204,7 +204,7 @@
             }
 
             $(".back").on("click", function (ev) {
-                window.location.href = "/user_views/admin_dashboard";
+                window.location.href = "/user_views/dashboard";
             });
 
         </script>

@@ -19,11 +19,8 @@ routes.get('/', authUser, async function (req, res, next) {
 });
 
 routes.put('/:username', authUser, async function (req, res, next) {
-    req.session.errors = [];
-    // let user = await database.user.update( req.body,{where:{
-    //     username: req.session.username
-    // }, returning: true, plain: true});   
-
+    
+    req.session.errors = []; 
     let user = await database.user.findOne({
         where: {
             username: req.params.username
@@ -36,14 +33,14 @@ routes.put('/:username', authUser, async function (req, res, next) {
                 if (req.body.new_password === req.body.password_repeat) {
                     bcrypt.hash(req.body.new_password, 10, async function (err, hash) {
                         if (hash) {
-                            if (user.dikaiwmata_diaxeirisis && req.body.dikaiwmata_diaxeirisis) {
+                            if (req.body.dikaiwmata_diaxeirisis) {
                                 await database.user.update({ fname: req.body.fname, lname: req.body.lname, username: req.body.username, password: hash, rolos: req.body.rolos, dikaiwmata_diaxeirisis: req.body.dikaiwmata_diaxeirisis, ypoyrgeio: req.body.ypoyrgeio },
                                     {
                                         where: {
                                             username: req.params.username
                                         }
                                 });
-                                res.send({ redirect: "./admin_dashboard" });
+                                res.send({ redirect: "./dashboard" });
                             } else {
                                 await database.user.update({ fname: req.body.fname, lname: req.body.lname, username: req.body.username, password: hash, rolos: req.body.rolos, dikaiwmata_diaxeirisis:'' , ypoyrgeio: req.body.ypoyrgeio },
                                     {
@@ -51,7 +48,7 @@ routes.put('/:username', authUser, async function (req, res, next) {
                                             username: req.params.username
                                         }
                                 });
-                                res.send({ redirect: "./user_dashboard" });
+                                res.send({ redirect: "./dashboard" });
                             }
                         }
                     });
@@ -64,7 +61,7 @@ routes.put('/:username', authUser, async function (req, res, next) {
                     }
                 }
             } else {
-                req.session.errors.push({ msg: 'Εισάγατε λάθος κωδικό πρόσβασης.' });
+                req.session.errors.push({ msg: 'Εισαγάγατε λανθασμένο κωδικό πρόσβασης.' });
                 res.send(req.session.errors);
             }
         });

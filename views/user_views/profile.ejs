@@ -51,7 +51,7 @@
                     <label for="password">Νέος κωδικός πρόσβασης:</label>
                     <input type="password" size="20" id="new_password" name="new_password" minlength="8"
                         placeholder="********" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$"
-                        oninvalid="this.setCustomValidity('Ο κωδικός πρέπει να περιέχει τουλάχιστον ένα κεφαλαίο γράμμα, έναν αριθμό και ένα σύμβολο(!@#$%^&*_=+-).')"
+                        oninvalid="this.setCustomValidity('Ο κωδικός πρέπει να περιέχει τουλάχιστον ένα πεζό και ένα κεφαλαίο γράμμα, έναν αριθμό και ένα σύμβολο(!@#$%^&*_=+-).')"
                         oninput="this.setCustomValidity('')" />
                 </div>
 
@@ -59,7 +59,7 @@
                     <label for="password">Επανάληψη νέου κωδικού πρόσβασης χρήστη:</label>
                     <input type="password" size="20" id="password_repeat" name="password_repeat" minlength="8"
                         placeholder="********" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$"
-                        oninvalid="this.setCustomValidity('Ο κωδικός πρέπει να περιέχει τουλάχιστον ένα κεφαλαίο γράμμα, έναν αριθμό και ένα σύμβολο(!@#$%^&*_=+-).')"
+                        oninvalid="this.setCustomValidity('Ο κωδικός πρέπει να περιέχει τουλάχιστον ένα πεζό και ένα κεφαλαίο γράμμα, έναν αριθμό και ένα σύμβολο(!@#$%^&*_=+-).')"
                         oninput="this.setCustomValidity('')" />
                     <div id="msg"></div>
                 </div>
@@ -227,11 +227,7 @@
 
             });
             $(".back").on("click", function (ev) {
-                if ("<%= user.dikaiwmata_diaxeirisis %>") {
-                    window.location.href = "/user_views/admin_dashboard";
-                } else {
-                    window.location.href = "/user_views/user_dashboard";
-                }
+                window.location.href = "/user_views/dashboard";
             });
 
             function setDropdown(role) {

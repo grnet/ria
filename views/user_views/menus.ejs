@@ -1,71 +1,39 @@
 </div>
-<div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4" id="user_menu" style="display: none;">
+
+<div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4" id="menu">
   <div class="jss111">
     <div class="jss274">
-      <h3 class="jss273 jss178 jss181 "><u>Χρήσιμοι Σύνδεσμοι</u></h3>
+      <h3 class="jss273 jss178 jss181"><u>Χρήσιμοι Σύνδεσμοι</u></h3>
+      <ul class="jss275 admin" id="user_management">
+        <h4 class="jss276 jss178 jss181"><u>Διαχείριση Χρηστών:</u></h4>
+        <li><a href="./create_user">Δημιουργία νέου χρήστη</a></li>
+        <li><a href="./search_user">Επεξεργασία στοιχείων χρήστη</a></li>
+      </ul>
       <ul class="jss275" id="profile">
         <h4 class="jss276 jss178 jss181"><u>Το Προφίλ Μου:</u></h4>
         <li><a href="./profile">Τα Στοιχεία Μου</a></li>
       </ul>
-      <ul class="jss275" id="users_ekthesi">
-        <h4 class="jss276 jss178 jss181"><u>Νέα Ανάλυση</u></h4>
-        <li id="user_sxedio_nomoy"><a href="../create/:sxedio_nomou">Σχέδιο νόμου</a></li>
-        <li id="user_prosxedio"><a href="../create/:prosxedio_nomou">Προσχέδιο νόμου</a></li>
-        <li id="user_kateythintiries"><a href="../create/:kateythintiries_grammes">Κατευθυντήριες γραμμές</a></li>
-        <li id="user_epeigon_katepeigon"><a href="../create/:epeigon_katepeigon">Επείγον ή κατεπείγον νομοσχέδιο</a>
+      <ul class="jss275" id="create_analysis">
+        <h4 class="jss276 jss178 jss181 header"><u>Νέα Ανάλυση</u></h4>
+        <li id="sxedio_nomoy"><a href="../create/:sxedio_nomou">Σχέδιο νόμου</a></li>
+        <li id="prosxedio"><a href="../create/:prosxedio_nomou">Προσχέδιο νόμου</a></li>
+        <li id="kateythintiries"><a href="../create/:kateythintiries_grammes">Κατευθυντήριες γραμμές</a></li>
+        <li id="epeigon_katepeigon"><a href="../create/:epeigon_katepeigon">Επείγον ή κατεπείγον νομοσχέδιο</a>
         </li>
-        <li id="user_protasi_nomoy"><a href="../create/:protasi_nomou">Πρόταση νόμου</a></li>
-        <li id="user_diethneis_symvaseis"><a href="../create/:diethneis_symvaseis">Διεθνείς Συμβάσεις</a></li>
-        <li id="user_tropologies_ypourgwn" class="vouleftis"><a href="../create/:tropologies_upourgwn">Τροπολογίες
+        <li id="protasi_nomoy" class="vouleftis"><a href="../create/:protasi_nomou">Πρόταση νόμου</a></li>
+        <li id="diethneis_symvaseis"><a href="../create/:diethneis_symvaseis">Διεθνείς συμβάσεις</a></li>
+        <li id="tropologies_ypourgwn"><a href="../create/:tropologies_upourgwn">Τροπολογίες
             Υπουργών</a></li>
-        <li id="user_tropologies_vouleutwn" class="vouleftis"><a href="../create/:tropologies_vouleutwn">Τροπολογίες
+        <li id="tropologies_vouleutwn" class="vouleftis"><a href="../create/:tropologies_vouleutwn">Τροπολογίες
             Βουλευτών</a></li>
       </ul>
-      <ul class="jss275" id="edit_ekthesi">
-        <h4 class="jss276 jss178 jss181"><u>Διαχείριση Αναλύσεων</u></h4>
-        <li><a href="./history">Ιστορικό</a></li>
-      </ul>
-      <ul>
-        <h4 class="jss276 jss178 jss181"><u>Παρατηρήσεις</u></h4>
-        <li>Μπορείτε να στείλετε τις παρατηρήσεις σας στο <a
-            href="mailto:impact-assessment@grnet.gr">impact-assessment@grnet.gr</a></li>
-      </ul>
-    </div>
-  </div>
-  <input type="button" name="exit" class="exit float-right" value="Έξοδος" />
-</div>
-
-<div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4" id="admin_menu" style="display: none;">
-  <div class="jss111">
-    <div class="jss274">
-      <h3 class="jss273 jss178 jss181"><u></u>Χρήσιμοι Σύνδεσμοι</u></h3>
-      <ul class="jss275" id="progressbar">
-        <h4 class="jss276 jss178 jss181"><u></u>Διαχείριση Χρηστών:</u></h4>
-        <li><a href="./create_user">Δημιουργία νέου χρήστη</a></li>
-        <li><a href="./search_user">Επεξεργασία στοιχείων χρήστη</a></li>
-        <li><a href="./profile">Τα στοιχεία μου</a></li>
-      </ul>
-      <ul class="jss275" id="admin_ekthesi">
-        <h4 class="jss276 jss178 jss181"><u></u>Νέα Ανάλυση</u></h4>
-        <li id="admin_sxedio_nomoy"><a href="../create/:sxedio_nomou">Σχέδιο νόμου</a></li>
-        <li id="admin_prosxedio"><a href="../create/:prosxedio_nomou">Προσχέδιο νόμου</a></li>
-        <li id="admin_kateythintiries"><a href="../create/:kateythintiries_grammes">Κατευθυντήριες γραμμές</a></li>
-        <li id="admin_epeigon_katepeigon"><a href="../create/:epeigon_katepeigon">Επείγον ή κατεπείγον νομοσχέδιο</a>
-        </li>
-        <li id="admin_protasi_nomoy"><a href="../create/:protasi_nomou">Πρόταση νόμου</a></li>
-        <li id="admin_diethneis_symvaseis"><a href="../create/:diethneis_symvaseis">Διεθνείς συμβάσεις</a></li>
-        <li id="admin_tropologies_ypourgwn" class="vouleftis"><a href="../create/:tropologies_upourgwn">Τροπολογίες
-            Υπουργών</a></li>
-        <li id="admin_tropologies_vouleutwn" class="vouleftis"><a href="../create/:tropologies_vouleutwn">Τροπολογίες
-            Βουλευτών</a></li>
-      </ul>
-      <ul class="jss275" id="edit_ekthesi">
+      <ul class="jss275 admin" id="edit_analysis">
         <h4 class="jss276 jss178 jss181"><u>Διαχείριση Πλατφόρμας</u></h4>
         <li><button type="button" id="minstries" class="link">Επικαιροποίηση Υπουργείων</button>
       </ul>
-      <ul>
+      <ul class="jss275" id="analysis_management">
         <h4 class="jss276 jss178 jss181"><u>Διαχείριση Αναλύσεων</u></h4>
-        <li><a href="./summaries">Συνοπτικά στοιχεία</a></li>
+        <li class="admin"><a href="./summaries">Συνοπτικά στοιχεία</a></li>
         <li><a href="./history">Ιστορικό</a></li>
       </ul>
       <ul>
@@ -76,6 +44,7 @@
       </ul>
     </div>
   </div>
+  
   <input type="button" name="exit" class="exit float-right" value="Έξοδος" />
 </div>
 
