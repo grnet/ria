@@ -2,7 +2,7 @@
 
 1. Install prerequisites.
 2. Clone project.
-3. Make necessary changes to .env file and the parameters found within, if needed.
+3. Run `cp .env.sample .env` and make necessary changes to the parameters found within, if needed.
 4. Make sure that the ports defined inside Dockerfile.dev and docker-compose.dev.yml are free, otherwise make appropiate changes.
 5. Build image:
 `docker-compose build`
