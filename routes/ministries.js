@@ -1,27 +1,30 @@
 const { authRole, authUser } = require('../middleware/auth');
 const routes = require('express').Router();
 const { spawn } = require('child_process')
+const database = require('../services/database')
 
 routes.post('/', authUser, authRole, async (req, res, next) => {
 
-    const ls = spawn('python3', ['./public/python_scripts/data_scrapper.py']);
+    const script = spawn('python3', ['./public/python_scripts/data_scrapper.py']);
 
-    ls.stdout.on('data', (data) => {
-        // let mdata = JSON.parse(data)
-        console.log(`stdout: ${data}`);        
-        
+    script.stdout.on('data', async (data) => {
+        req.session.success = [];
+        let parsed_data = JSON.parse(data)
+        await database.ministries.create({ministries:parsed_data}).catch((error) => {console.log(error)})
+        req.session.success.push({ msg: 'Η επικαιροποίηση των Υπουργείων ολοκληρώθηκε επιτυχώς.' })
+        res.sendStatus(200);
     });
 
-    ls.stderr.on('data', (data) => {
-        console.error(`stderr: ${data}`);
+    script.stderr.on('data', (data) => {
+        req.session.errors = [];
+        // console.error(`stderr: ${data}`);
+        req.session.errors.push({ msg: 'Η επικαιροποίηση των Υπουργείων απέτυχε.' })
+        res.sendStatus(502);
     });
 
-    ls.on('close', (code) => {
-        console.log(`child process exited with code ${code}`);
-    });
-
-    // const result = spawn('python3')
-    console.log('ministries le called!')
+    // script.on('close', (code) => {
+    //     console.log(`child process exited with code ${code}`);
+    // });
 })
 
 module.exports = routes;

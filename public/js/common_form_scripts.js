@@ -21,6 +21,13 @@ function getFullDate(fieldId) {
     $(fieldId).prop("value", new Date().toLocaleString("el-GR", { timeZone: "Europe/Athens" }));
 }
 
+// function requiredDigitalGov() {
+//     //if certain checkboxes are checked, then fields with class digital-gov become required 
+//     ($('#field_10_emmesi').prop("checked") || $('#field_10_amesi').prop("checked")) //if these fields are checked
+//         ? ($('.digital_gov :input').prop('disabled', false), $('.digital-gov-label').addClass('required')) //enable class
+//         : ($('.digital_gov :input').prop('disabled', true), $('.digital-gov-label').removeClass('required')); //else disable class
+// }
+
 function requiredDigitalGov(field) {
     //if certain checkboxes are checked, then fields with class digital-gov become required 
     $(field).prop("checked") ? ($('.digital_gov :input').prop('disabled', false), $('.digital-gov-label').addClass('required'))
@@ -67,6 +74,9 @@ function analysisRestrictions() {
 
     let restrictions = {
 
+        'Σχέδιο νόμου': function () {
+            setAnalysisRestrictions('sxedio');
+        },
         'Κατευθυντήριες γραμμές': function () {
             setAnalysisRestrictions('kateuthintiries');
         },
@@ -98,6 +108,7 @@ function setAnalysisRestrictions(type) {
 
     let restrictions = {
 
+        'sxedio': () => {return},
         'kateuthintiries': function () {
             $(".mostly-optional :input, .optional :input, .table-14 :input, .table-29 :input, .table-30 :input").prop("disabled", true);
             $(".create-new, .next, .previous").prop("disabled", false);

@@ -29,7 +29,7 @@
       </ul>
       <ul class="jss275 admin" id="edit_analysis">
         <h4 class="jss276 jss178 jss181"><u>Διαχείριση Πλατφόρμας</u></h4>
-        <li><button type="button" id="minstries" class="link">Επικαιροποίηση Υπουργείων</button>
+        <li><button type="button" id="ministries" class="link">Επικαιροποίηση Υπουργείων</button>
       </ul>
       <ul class="jss275" id="analysis_management">
         <h4 class="jss276 jss178 jss181"><u>Διαχείριση Αναλύσεων</u></h4>
@@ -78,7 +78,7 @@ button.link {
     });
   });
 
-  $("#minstries").on("click", function (ev) {
+  $("#ministries").on("click", function (ev) {
     ev.preventDefault();
     $.ajax({
       url: `/ministries`,
@@ -86,7 +86,7 @@ button.link {
         console.log(error);
       },
       success: function (data) {
-        window.location.href = "/login";
+        window.location.href = "./dashboard";
       },
       type: 'POST'
     });

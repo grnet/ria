@@ -12,15 +12,22 @@ routes.get('/', authUser, async function (req, res, next) {
         }
     })
     if (user && user.dataValues) {
-        res.render("user_views/profile", { user: user.dataValues })
+        let latest_entry = await database.ministries.max('id').catch((error) => { console.log(error) }); // get entry with highest id 
+        let res_data = await database.ministries.findOne({ where: { id: latest_entry } }).catch((error) => { console.log(error) });
+        let ministries = [];
+        for (i in res_data.dataValues.ministries) {
+            let value = res_data.dataValues.ministries[i].ministry;
+            if (value && String(value).trim()) { ministries.push({ ministry: value }) }
+        }
+        res.render("user_views/profile", { user: user.dataValues, ministries: ministries })
     } else {
         res.status(404).send("Not found")
     }
 });
 
 routes.put('/:username', authUser, async function (req, res, next) {
-    
-    req.session.errors = []; 
+
+    req.session.errors = [];
     let user = await database.user.findOne({
         where: {
             username: req.params.username
@@ -39,15 +46,15 @@ routes.put('/:username', authUser, async function (req, res, next) {
                                         where: {
                                             username: req.params.username
                                         }
-                                });
+                                    });
                                 res.send({ redirect: "./dashboard" });
                             } else {
-                                await database.user.update({ fname: req.body.fname, lname: req.body.lname, username: req.body.username, password: hash, rolos: req.body.rolos, dikaiwmata_diaxeirisis:'' , ypoyrgeio: req.body.ypoyrgeio },
+                                await database.user.update({ fname: req.body.fname, lname: req.body.lname, username: req.body.username, password: hash, rolos: req.body.rolos, dikaiwmata_diaxeirisis: '', ypoyrgeio: req.body.ypoyrgeio },
                                     {
                                         where: {
                                             username: req.params.username
                                         }
-                                });
+                                    });
                                 res.send({ redirect: "./dashboard" });
                             }
                         }
