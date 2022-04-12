@@ -103,7 +103,7 @@
                                             </button>
                                         </div>
                                         <div class="modal-body" id="results_body">
-                                            <div id="results_table">
+                                            <div id="results_table" class="table-wrapper-scroll-y my-custom-scrollbar">
                                                 <table id="results" class="display">
                                                     <thead>
                                                         <tr>
@@ -119,7 +119,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Κλείσιμο</button>                                            
+                                                data-dismiss="modal">Κλείσιμο</button>
                                         </div>
                                     </div>
                                 </div>
@@ -1037,26 +1037,61 @@
                         table-layout: fixed;
                         overflow-wrap: break-word;
                     }
+
+                    .my-custom-scrollbar {
+                        position: relative;
+                        height: 200px;
+                        overflow: auto;
+                    }
+
+                    .table-wrapper-scroll-y {
+                        display: block;
+                    }
                 </style>
 
                 <script type="text/javascript" src="/js/common_form_scripts.js"></script>
                 <script type="text/javascript" src="/js/tooltips.js"></script>
                 <script type="text/javascript" src="/js/common_form_events.js"></script>
                 <script type="text/javascript" src="/js/form_a_scripts.js"></script>
-                <script type="text/javascript" src="/js/initialize_form.js"></script>
+
                 <script>
                     //TODO: anything bellow here should be moved
-                    var answer;
-                    var ekthesi_id = "<%= data.id %>";
-                    var role = "<%= rolos%>";
-                    var analysis = "<%= data.typos_analysis %>";
-                    var pdf_exists = "<%= pdf_exists %>";
-                    console.log(pdf_exists + '\n');
-                    var ministries = "<%= ministries %>";
-                    console.log(ministries);
+                    let answer;
+                    let ekthesi_id = "<%= data.id %>";
+                    let role = "<%= rolos%>";
+                    let analysis = "<%= data.typos_analysis %>";
+                    let pdf_exists = "<%= pdf_exists %>";
+                    // console.log(pdf_exists + '\n');
+                    let ministries = JSON.parse(' <%- JSON.stringify(ministries) %> ');
+                    let ministers = JSON.parse(' <%- JSON.stringify(ministers) %> ');
                     //prevent user from going to a different form through url   
                     if (sessionStorage.getItem("referer") != ekthesi_id) {
                         window.location.href = "/user_views/history"
+                    }
+
+                    
+                    let ministersRoles = JSON.parse(' <%- JSON.stringify(data.minister_role) %> ');                    
+                    let ministersNames = JSON.parse(' <%- JSON.stringify(data.minister_name) %> ');
+                    let ministersSurnames = JSON.parse(' <%- JSON.stringify(data.minister_surname) %> ');
+                    let index = $("#tbody_ministers").prop("rows").length;
+                    for (m in ministersRoles) {
+                        $("#tbody_ministers").append(`
+                            <tr id="R${++index}">  
+                                <td> 
+                                    <textarea class="form-control" id="minister_name${index}" name="minister_name${index}" placeholder="Όνομα" rows="1" readonly>${ministersNames[m].elem}</textarea> 
+                                </td>    
+                                <td> 
+                                    <select id="minister_surname${index}" name="minister_surname${index}" class="col-sm-8 form-control" onchange="ministerSurnameOnChange('minister_name${index}', 'minister_surname${index}', 'minister_role${index}')" required></select>
+                                </td> 
+                                <td> 
+                                    <textarea class="form-control" id="minister_role${index}" name="minister_role${index}" placeholder="Ιδιότητα" rows="5" readonly>${ministersRoles[m].elem}</textarea>
+                                    <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
+                                </td> 
+                            </tr>`);
+                        populateMinistersSurnameSelect(
+                            `minister_surname${index}`,
+                        );
+                        $(`#minister_surname${index}`).val(ministersSurnames[m].elem);
                     }
 
                     $("form").on("submit", function (ev) {
@@ -1266,8 +1301,11 @@
                                 console.log(error);
                             },
                             success: function (result) {
-                                for (i in result.entries) { //populate modal table
-                                    $("#versions_table tbody").append(`
+                                var rowCount = $('#versions_table tbody tr').length;
+                                console.log(rowCount)
+                                if (rowCount === 0) {
+                                    for (i in result.entries) { //populate modal table
+                                        $("#versions_table tbody").append(`
                                         <tr> 
                                             <td> 
                                                 <input type="checkbox" id="${result.entries[i].id}" name="${result.entries[i].id}">
@@ -1276,7 +1314,8 @@
                                                 ${result.entries[i].timestamp}
                                             </td>                                               
                                         </tr>`
-                                    );
+                                        );
+                                    }
                                 }
                             },
                             type: 'POST'
@@ -1297,27 +1336,34 @@
                                 console.log(error);
                             },
                             success: function (result) {
+                                console.log(result)
+                                $("#results_table tbody").empty()
                                 for (i in result.data) {
                                     //TODO: check if result.data[i] is an array and has length to limit recursions      
                                     let elem = result.data[i];
-                                    
-                                    if (elem.length > 1) {
+                                    if (elem.length > 0) { //minimum lenght is 1
                                         for (j in elem) {
-                                            $("#results_table tbody").append(`
-                                                <tr> 
-                                                    <td> 
-                                                        ${i}
-                                                    </td> 
-                                                    <td>
-                                                        <span style = "color: ${ elem[j].color};">${elem[j].value }</span >
-                                                    </td>                                               
-                                                </tr>`
-                                            );
+                                            let row = `<span style = "color: ${elem[j].color};">${elem[j].value}</span >`
+
+                                            if (j == 0) {
+                                                $("#results_table tbody").append(`
+                                                    <tr> 
+                                                        <td> 
+                                                            ${i}
+                                                        </td> 
+                                                        <td>
+                                                            ${row}
+                                                        </td>                                               
+                                                    </tr>`
+                                                );
+                                            } else {
+                                                $("#results_table tbody tr:last td:last").append(` ${row}`)
+                                            }
                                         }
                                     }
                                 }
                                 $('#versioningModal').modal('toggle');
-                                $('#versioningResultsModal').modal('toggle'); 
+                                $('#versioningResultsModal').modal('toggle');
                             },
                             type: 'POST'
                         });
@@ -1568,28 +1614,28 @@
                     //     }
                     // })
 
-
+                    //refactor    
                     function optionalFields(fieldId) {
                         $(fieldId).prop('disabled', true);//find and disable field, button or fieldset
                         //console.log((fieldId));
                     };
-
+                    //refactor
                     function enableFields(fieldId) {
                         $(fieldId).prop('disabled', false);//find and enable field or button
                         // console.log((fieldId));
                     };
-
+                    //refactor
                     function optionalFieldsClassRemoval(fieldLabel, className) {
                         var items = document.getElementsByClassName(fieldLabel);
                         for (var i = 0; i < items.length; i++) {
                             $(items[i]).removeClass(className);//remove required class from label
                         }
                     };
-
+                    //refactor
                     function addLabelClass(fieldLabel, className) {
                         $(fieldLabel).addClass(className);//remove required class from label
                     };
-
+                    //refactor 
                     //console.log("analysis-> "+analysis); // log analysis type
                     if (analysis == "Κατευθυντήριες γραμμές") {
 
@@ -1908,7 +1954,7 @@
                     //     return false;
                     // })
                 </script>
-
+                <script type="text/javascript" src="/js/initialize_form.js"></script>
         </div>
     </div>
     <%- include('partials/footer.ejs') %>

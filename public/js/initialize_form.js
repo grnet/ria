@@ -2,7 +2,7 @@
 // if (pdf_exists) {
 //     $("#pdf_download").show();
 // }
-var role = "<%= rolos%>";
+
 requiredLegalistics("#field_33"); //set initial state for fields 33-40
 
 let ekpedeusi_politismos = "<%= data.ekpedeusi_politismos %>";

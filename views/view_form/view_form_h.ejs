@@ -106,7 +106,7 @@
                             onkeypress="wordsCounter('field_32_antikeimeno<%=i%>','words32_<%=i%>',50, event)"
                             onpaste="wordsCounter('field_32_antikeimeno<%=i%>','words32_<%=i%>',50, event)"
                             rows="4"><%= Object.values(data.field_32_antikeimeno[i]) %></textarea>
-                            <p style="float: right;">Λέξεις: <span id="words32_<%=i%>"></span> /50</p>
+                        <p style="float: right;">Λέξεις: <span id="words32_<%=i%>"></span> /50</p>
                     </td>
                     <td>
                         <textarea class="form-control" id="field_32_xronodiagramma<%=i%>"
@@ -188,8 +188,11 @@
                         data.field_36_upload.length;i++) { %>
                         <tr>
                             <td>
-                                <a href="/uploads/<%= data.field_36_upload[i] %> "><%= data.field_36_upload[i] %></a>
-                                <button class="btn remove-file float-right" type="button"><img src="/img/delete.png" width="20px"></button>
+                                <a href="/uploads/<%= data.field_36_upload[i] %> ">
+                                    <%= data.field_36_upload[i] %>
+                                </a>
+                                <button class="btn remove-file float-right" type="button"><img src="/img/delete.png"
+                                        width="20px"></button>
                             </td>
                         </tr>
                         <% } }%>
@@ -260,29 +263,12 @@
                 </tr>
             </thead>
             <tbody id="tbody_ministers">
-    
-                <% if(data.minister_name !=null){ for (var i=0; i < data.minister_name.length; i++) { %>
-                    <tr id="ministers_table_row<%=i%>">
-                        <td>
-                            <textarea class="form-control" id="minister_name<%=i%>" name="minister_name<%=i%>"
-                                rows="4"><%= Object.values(data.minister_name[i]) %></textarea>
-                        </td>
-                        <td>
-                            <textarea class="form-control" id="minister_surname<%=i%>" name="minister_surname<%=i%>"
-                                rows="4"><%= Object.values(data.minister_surname[i]) %></textarea>
-                        </td>
-                        <td>
-                            <textarea class="form-control" id="ministry<%=i%>" name="ministry<%=i%>"
-                                rows="4"><%= Object.values(data.ministry[i]) %></textarea>
-                                <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
-                        </td>
-                    </tr>
-                    <% } } %>
-    
+
             </tbody>
         </table>
         <br>
-        <input type="button" id="add_row_ministers_table" name="add_row_ministers_table" class="float-right" value="Επιπλέον σειρά" />
+        <input type="button" id="add_row_ministers_table" name="add_row_ministers_table" class="float-right"
+            value="Επιπλέον σειρά" />
         <br><br>
     </div>
 
@@ -316,8 +302,8 @@
 
     <div>
         <input type="hidden" name="pdf_name" id="pdf_name">
-            <p id="pdf_download" class="pdf-download action-button" style="display: none;">
-            </p>
+        <p id="pdf_download" class="pdf-download action-button" style="display: none;">
+        </p>
     </div>
 
     <div id="signed_pdf_div" style="display: none;">
@@ -341,7 +327,9 @@
                     data.signed_pdf_upload.length;i++) { %>
                     <tr>
                         <td>
-                            <a href="/uploads/<%= data.signed_pdf_upload[i] %> "><%= data.signed_pdf_upload[i] %></a>                            
+                            <a href="/uploads/<%= data.signed_pdf_upload[i] %> ">
+                                <%= data.signed_pdf_upload[i] %>
+                            </a>
                         </td>
                     </tr>
                     <% } }%>

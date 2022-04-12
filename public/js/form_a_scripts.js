@@ -45,3 +45,5 @@ function setDate(fieldId) {
     new Date().toLocaleString("el-GR", { timeZone: "Europe/Athens" })
   );
 }
+
+

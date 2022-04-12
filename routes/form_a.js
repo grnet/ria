@@ -9,6 +9,7 @@ const { body, check, validationResult } = require("express-validator");
 var multer = require("multer");
 const { authUser } = require("../middleware/auth");
 const tables = require("../lib/tables");
+const ministries = require("../lib/ministries")
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "./public/uploads/");
@@ -45,6 +46,7 @@ routes.get("/:entry_id", authUser, async (req, res, next) => {
     pdf_name = pdf_name.replace(/\s+/g, ""); //buggy?
     var pdf_exists;
     var results = [];
+    let ministers, ministriesArray;
     fs.existsSync(`./public/pdf_exports/${pdf_name}`)
       ? (pdf_exists = true)
       : (pdf_exists = false);
@@ -59,15 +61,8 @@ routes.get("/:entry_id", authUser, async (req, res, next) => {
           console.log(error);
         });
       res_data = res_data.dataValues.ministries;
-      let ministries = [];
-      for (i in res_data) {
-        //handle ministers as well
-        // let value = res_data.dataValues.ministries[i].ministry;
-        let value = res_data[i].ministry;
-        if (value && String(value).trim()) {
-          ministries.push({ ministry: value });
-        }
-      }
+      ministers = ministries.getMinisters(res_data);
+      ministriesArray = ministries.getMinistries(res_data);
       //review using commented code bellow
       // let form = JSON.parse(fs.readFileSync(`./public/jsons/forms/${id}.json`, 'utf8', (err) => {
       //     if (err) return console.error(err);
@@ -84,7 +79,8 @@ routes.get("/:entry_id", authUser, async (req, res, next) => {
             rolos: req.session.rolos,
             pdf_exists: pdf_exists,
             tooltips: results,
-            ministries: ministries,
+            ministries: ministriesArray,
+            ministers: ministers,
           });
         });
     } else {
@@ -252,11 +248,11 @@ routes.put(
           "minister_name",
           entry.minister_name
         );
-        let ministry = tables.createDynamicTable(
+        let minister_role = tables.createDynamicTable(
           req.body,
           keys,
-          "ministry",
-          entry.ministry
+          "role",
+          entry.minister_role
         );
         let field_29_diatakseis_rythmisis = tables.createDynamicTable(
           req.body,
@@ -350,16 +346,16 @@ routes.put(
             field_17_idiotita: field_17_idiotita,
             minister_name: minister_name,
             minister_surname: minister_surname,
-            ministry: ministry,
+            minister_role: minister_role,
             field_29_diatakseis_rythmisis: field_29_diatakseis_rythmisis,
             field_29_yfistamenes_diatakseis: field_29_yfistamenes_diatakseis,
             field_30_diatakseis_katargisi: field_30_diatakseis_katargisi,
             field_30_katargoumenes_diatakseis:
-              field_30_katargoumenes_diatakseis,
+            field_30_katargoumenes_diatakseis,
             field_31_sxetiki_diataksi: field_31_sxetiki_diataksi,
             field_31_synarmodia_ypoyrgeia: field_31_synarmodia_ypoyrgeia,
             field_31_antikeimeno_synarmodiotitas:
-              field_31_antikeimeno_synarmodiotitas,
+            field_31_antikeimeno_synarmodiotitas,
             field_32_eksousiodotiki_diataksi: field_32_eksousiodotiki_diataksi,
             field_32_eidos_praksis: field_32_eidos_praksis,
             field_32_armodio_ypoyrgeio: field_32_armodio_ypoyrgeio,
@@ -513,7 +509,6 @@ routes.post("/:entry_id/diff/", authUser, async function (req, res, next) {
        : (data[i] = [{ value: part.value, color: "" }]);
     });
   }
-  console.log(data)
 res.status(200).json({ data:data })
 });
 

@@ -59,10 +59,11 @@
                 </div>
                 <hr>
 
-                <div class="form-group">
-                    <label for="ypoyrgeio">Υπουργείο:</label>
-                    <input type="text" size="10" id="ypoyrgeio" name="ypoyrgeio" placeholder="Υπουργείο" required
-                        minlength="10" />
+                <div class="checkbox-group form-group">
+                    <label for="ypoyrgeio" class="col-sm-2 col-form-label">Υπουργείο:</label>
+                    <select id="ypoyrgeio" name="ypoyrgeio" class="col-sm-8 form-control" required>
+                        <option value="" selected disabled>Eπιλογή</option>
+                    </select>
                 </div>
                 <hr>
 
@@ -207,6 +208,18 @@
                     $("#msg").html("Οι κωδικοί δεν ταιριάζουν.").css("color", "red");
                 }
             }
+
+            ///////////////////////////////Handle ministries/////////////////////////////////////
+
+                let ministries = JSON.parse(' <%- JSON.stringify(ministries) %> ');
+                for (i in ministries) {
+                    $("#ypoyrgeio").append(`<option value="${ministries[i].ministry}">${ministries[i].ministry}</option>`);
+                }
+                let ministryValue = "<%= data.ypoyrgeio %>";
+                let roleValue = "<%= data.rolos %>";
+                $("#ypoyrgeio").val(ministryValue ? ministryValue : $("#ypoyrgeio option:first").val());//if user is assigned a ministry, set dropdown accordingly, else set to first option
+                $("#rolos").val(roleValue ? roleValue : $("#ypoyrgeio option:first").val());//if user is assigned a role, set dropdown accordingly, else set to first option
+
 
             $(".back").on("click", function (ev) {
                 window.location.href = "/user_views/dashboard";

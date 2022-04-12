@@ -1,16 +1,18 @@
 'use strict';
 
 module.exports = (sequelize, DataTypes) => {
-    var ekthesi = sequelize.define('ekthesi', {
+    var ekthesi = sequelize.define(
+      "ekthesi",
+      {
         id: {
-            primaryKey: true,
-            autoIncrement: true,
-            type: DataTypes.INTEGER,
-            allowNull: false,
+          primaryKey: true,
+          autoIncrement: true,
+          type: DataTypes.INTEGER,
+          allowNull: false,
         },
         //author_id: DataTypes.STRING,
         nomosxedio: DataTypes.JSON,
-        typos_analysis: DataTypes.STRING, 
+        typos_analysis: DataTypes.STRING,
         title: DataTypes.STRING,
         initial_submit: DataTypes.STRING,
         last_updated: DataTypes.STRING,
@@ -18,18 +20,18 @@ module.exports = (sequelize, DataTypes) => {
         status_ekthesis: DataTypes.STRING,
         rythmisi_pou_afora: DataTypes.STRING,
         stoixeia_epikoinwnias: DataTypes.TEXT,
-  
-        ekpedeusi_politismos:DataTypes.STRING,
-        eksoteriki_politiki:DataTypes.STRING,
-        forologiki_politiki:DataTypes.STRING,
-        koinoniki_politiki:DataTypes.STRING,
-        dimosia_dioikisi:DataTypes.STRING,
-        anaptiksi:DataTypes.STRING,
+
+        ekpedeusi_politismos: DataTypes.STRING,
+        eksoteriki_politiki: DataTypes.STRING,
+        forologiki_politiki: DataTypes.STRING,
+        koinoniki_politiki: DataTypes.STRING,
+        dimosia_dioikisi: DataTypes.STRING,
+        anaptiksi: DataTypes.STRING,
 
         field_1: DataTypes.TEXT,
         field_2: DataTypes.TEXT,
         field_3: DataTypes.TEXT,
-        field_4:DataTypes.STRING,
+        field_4: DataTypes.STRING,
         field_4_comments: DataTypes.TEXT,
         field_5_1: DataTypes.TEXT,
         field_5_2: DataTypes.TEXT,
@@ -95,10 +97,6 @@ module.exports = (sequelize, DataTypes) => {
         field_17_epitheto: DataTypes.JSON,
         field_17_idiotita: DataTypes.JSON,
 
-        minister_name: DataTypes.JSON,
-        minister_surname: DataTypes.JSON,
-        ministry: DataTypes.JSON,
-        
         field_18_comments: DataTypes.TEXT,
         field_19_comments: DataTypes.TEXT,
         field_20_comments: DataTypes.TEXT,
@@ -131,7 +129,7 @@ module.exports = (sequelize, DataTypes) => {
         field_26_symvaseis: DataTypes.STRING,
         field_26_symvaseis_comment: DataTypes.TEXT,
 
-        field_27_dikastirio:DataTypes.STRING,
+        field_27_dikastirio: DataTypes.STRING,
         field_27_dikastirio_comment: DataTypes.TEXT,
         field_27_arxi: DataTypes.STRING,
         field_27_arxi_comment: DataTypes.TEXT,
@@ -140,23 +138,23 @@ module.exports = (sequelize, DataTypes) => {
         field_28_nomologia_comment: DataTypes.TEXT,
         field_28_nomologia_dikaiwmatwn_anthrwpou: DataTypes.STRING,
         field_28_nomologia_dikaiwmatwn_anthrwpou_comment: DataTypes.TEXT,
-        field_28_alla_dikastiria: DataTypes.STRING, 
+        field_28_alla_dikastiria: DataTypes.STRING,
         field_28_alla_dikastiria_comment: DataTypes.TEXT,
 
         field_29_diatakseis_rythmisis: DataTypes.JSON,
         field_29_yfistamenes_diatakseis: DataTypes.JSON,
         field_30_diatakseis_katargisi: DataTypes.JSON,
         field_30_katargoumenes_diatakseis: DataTypes.JSON,
-          
-        field_31_sxetiki_diataksi: DataTypes.JSON,  
-        field_31_synarmodia_ypoyrgeia: DataTypes.JSON,  
-        field_31_antikeimeno_synarmodiotitas: DataTypes.JSON,  
 
-        field_32_eksousiodotiki_diataksi: DataTypes.JSON,  
-        field_32_eidos_praksis: DataTypes.JSON,  
-        field_32_armodio_ypoyrgeio: DataTypes.JSON,  
-        field_32_antikeimeno: DataTypes.JSON,  
-        field_32_xronodiagramma: DataTypes.JSON,  
+        field_31_sxetiki_diataksi: DataTypes.JSON,
+        field_31_synarmodia_ypoyrgeia: DataTypes.JSON,
+        field_31_antikeimeno_synarmodiotitas: DataTypes.JSON,
+
+        field_32_eksousiodotiki_diataksi: DataTypes.JSON,
+        field_32_eidos_praksis: DataTypes.JSON,
+        field_32_armodio_ypoyrgeio: DataTypes.JSON,
+        field_32_antikeimeno: DataTypes.JSON,
+        field_32_xronodiagramma: DataTypes.JSON,
 
         field_33: DataTypes.TEXT,
         field_34: DataTypes.TEXT,
@@ -169,15 +167,21 @@ module.exports = (sequelize, DataTypes) => {
         field_39: DataTypes.TEXT,
         field_40: DataTypes.TEXT,
 
-        egkrisi_aksiologisis_nomoparaskeyastikis:DataTypes.STRING,
-        egkrisi_kalis_nomothetisis:DataTypes.STRING,
-        egkrisi_dieuthinsis_nomoparaskeyastikis:DataTypes.STRING,
-        egkrisi_genikou_grammatea:DataTypes.STRING,
+        minister_name: DataTypes.JSON,
+        minister_surname: DataTypes.JSON,
+        minister_role: DataTypes.JSON,
+
+        egkrisi_aksiologisis_nomoparaskeyastikis: DataTypes.STRING,
+        egkrisi_kalis_nomothetisis: DataTypes.STRING,
+        egkrisi_dieuthinsis_nomoparaskeyastikis: DataTypes.STRING,
+        egkrisi_genikou_grammatea: DataTypes.STRING,
 
         signed_pdf_upload: DataTypes.JSON,
-    },{
-        freezeTableName: true //table name same as model name
-    });
+      },
+      {
+        freezeTableName: true, //table name same as model name
+      }
+    );
 
     return ekthesi;
   };
