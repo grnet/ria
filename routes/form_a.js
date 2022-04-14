@@ -197,14 +197,16 @@ routes.put(
           req.body,
           "_header",
           "_label",
-          "_secondHeader"
-        ); //data for field_9 as json
+          "_secondHeader",
+          false
+        ); //data for field_9 
         let checkbox_tables = tables.createStaticTable(
           req.body,
           "_cbxHeader",
           "_cbxlabel",
-          "_cbxsecondHeader"
-        ); //data for fields 18-20 as json
+          "_cbxsecondHeader",
+          false
+        ); //data for fields 18-20 
 
         let field_14_arthro = tables.createDynamicTable(
           req.body,
