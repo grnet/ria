@@ -18,7 +18,6 @@ exports.exportPDF = async function (req, res, next) {
   let minister_surname = [];
   let minister_name = [];
   let ministry = [];
-  let field_30_diatakseis_katargisi = [];
 
   let field_9_data = tablesLib.getDataForPdfField9(
     req.body,
@@ -26,12 +25,9 @@ exports.exportPDF = async function (req, res, next) {
     "_label",
     "_secondHeader"
   ); //data for field_9
-  let checkbox_tables = tablesLib.getDataForPdfCheckboxTables(
-    req.body,
-    "_cbxHeader",
-    "_cbxlabel",
-    "_cbxsecondHeader"
-  ); //data for fields 18-20
+  let field_18 = tablesLib.getPdfCheckboxTableData(req.body, "field_18");
+  let field_19 = tablesLib.getPdfCheckboxTableData(req.body, "field_19");
+  let field_20 = tablesLib.getPdfCheckboxTableData(req.body, "field_20");
   let field_14 = {
     columns: 2,
     data: tablesLib.createDynamicPDFTable(data, [
@@ -75,526 +71,638 @@ exports.exportPDF = async function (req, res, next) {
     ]),
   };
 
-  const Report_A = {
-    header: "Α. Αιτολογική έκθεση",
-    fields: [
-      // TODO: handle 3 colspans
+  const Report = {
+    reports: [
       {
-        category: {
-          categoryHeader: "Η «ταυτότητα» της αξιολογούμενης ρύθμισης",
-          categoryFields: [
-            {
-              field: {
-                fieldId: 1,
-                fieldHeader:
-                  "Ποιο ζήτημα αντιμετωπίζει η αξιολογούμενη ρύθμιση;",
-                fieldText: data.field_1 + "\n\n",
-              },
+        reportTitle: "Α. Αιτολογική έκθεση",
+        fields: [
+          {
+            category: {
+              categoryHeader: "Η «ταυτότητα» της αξιολογούμενης ρύθμισης",
+              categoryFields: [
+                {
+                  field: {
+                    fieldId: 1,
+                    fieldHeader:
+                      "Ποιο ζήτημα αντιμετωπίζει η αξιολογούμενη ρύθμιση;",
+                    fieldText: data.field_1,
+                  },
+                },
+                {
+                  field: {
+                    fieldId: 2,
+                    fieldHeader: "Γιατί αποτελεί πρόβλημα;",
+                    fieldText: data.field_2,
+                  },
+                },
+                {
+                  field: {
+                    fieldId: 3,
+                    fieldHeader: "Ποιους φορείς ή πληθυσμιακές ομάδες αφορά;",
+                    fieldText: data.field_3,
+                  },
+                },
+              ],
             },
-            {
-              field: {
-                fieldId: 2,
-                fieldHeader: "Γιατί αποτελεί πρόβλημα;",
-                fieldText: data.field_2 + "\n\n",
-              },
-            },
-            {
-              field: {
-                fieldId: 3,
-                fieldHeader: "Ποιους φορείς ή πληθυσμιακές ομάδες αφορά;",
-                fieldText: data.field_3 + "\n\n",
-              },
-            },
-          ],
-        },
-      },
-      {
-        category: {
-          categoryHeader: "Η αναγκαιότητα της αξιολογούμενης ρύθμισης",
-          categoryFields: [
-            {
-              field: {
-                fieldId: 4,
-                fieldHeader: `Το εν λόγω ζήτημα έχει αντιμετωπιστεί με νομοθετική ρύθμιση στο παρελθόν;
+          },
+          {
+            category: {
+              categoryHeader: "Η αναγκαιότητα της αξιολογούμενης ρύθμισης",
+              categoryFields: [
+                {
+                  field: {
+                    fieldId: 4,
+                    fieldHeader: `Το εν λόγω ζήτημα έχει αντιμετωπιστεί με νομοθετική ρύθμιση στο παρελθόν;
                   ΝΑΙ   Χ        ΟΧΙ  
                   Εάν ΝΑΙ, ποιο είναι το ισχύον νομικό πλαίσιο που ρυθμίζει το ζήτημα;`,
-                fieldText: data.field_1 + "\n\n",
-              },
-            },
-            {
-              field: {
-                fieldId: 5,
-                fieldHeader:
-                  "Γιατί δεν είναι δυνατό να αντιμετωπιστεί στο πλαίσιο της υφιστάμενης νομοθεσίας",
-                fieldOptions: [
-                  {
-                    option:
-                      "i) με αλλαγή προεδρικού διατάγματος, υπουργικής απόφασης ή άλλης κανονιστικής πράξης;",
-                    optionText: data.field_5_1,
+                    fieldText: data.field_4_comments + "\n\n",
                   },
-                  {
-                    option:
-                      "ii) με αλλαγή διοικητικής  πρακτικής συμπεριλαμβανομένης της δυνατότητας νέας ερμηνευτικής προσέγγισης της υφιστάμενης νομοθεσίας;",
-                    optionText: data.field_5_2,
+                },
+                {
+                  field: {
+                    fieldId: 5,
+                    fieldHeader:
+                      "Γιατί δεν είναι δυνατό να αντιμετωπιστεί στο πλαίσιο της υφιστάμενης νομοθεσίας",
+                    fieldOptions: [
+                      {
+                        option:
+                          "i) με αλλαγή προεδρικού διατάγματος, υπουργικής απόφασης ή άλλης κανονιστικής πράξης;",
+                        optionText: data.field_5_1,
+                      },
+                      {
+                        option:
+                          "ii) με αλλαγή διοικητικής  πρακτικής συμπεριλαμβανομένης της δυνατότητας νέας ερμηνευτικής προσέγγισης της υφιστάμενης νομοθεσίας;",
+                        optionText: data.field_5_2,
+                      },
+                    ],
                   },
-                ],
-                fieldText: data.field_2 + "\n\n",
-              },
+                },
+                ,
+              ],
             },
-            ,
-          ],
-        },
-      },
-      {
-        category: {
-          categoryHeader: "Συναφείς πρακτικές",
-          categoryFields: [
-            {
-              field: {
-                fieldId: 6,
-                fieldHeader: `Έχετε λάβει υπόψη συναφείς πρακτικές; 
+          },
+          {
+            category: {
+              categoryHeader: "Συναφείς πρακτικές",
+              categoryFields: [
+                {
+                  field: {
+                    fieldId: 6,
+                    fieldHeader: `Έχετε λάβει υπόψη συναφείς πρακτικές; 
                    ΝΑΙ       Χ          ΟΧΙ       
                    Εάν ΝΑΙ, αναφέρατε συγκεκριμένα:`,
-                fieldOptions: [
-                  {
-                    option: "i)   σε άλλη/ες χώρα/ες της Ε.Ε. ή του ΟΟΣΑ:",
-                    optionText: data.field_6_1,
+                    fieldOptions: [
+                      {
+                        option: "i) σε άλλη/ες χώρα/ες της Ε.Ε. ή του ΟΟΣΑ:",
+                        optionText: data.field_6_1,
+                      },
+                      {
+                        option: "ii) σε όργανα της Ε.Ε.:",
+                        optionText: data.field_6_2,
+                      },
+                      {
+                        option: "iii) σε διεθνείς οργανισμούς:",
+                        optionText: data.field_6_3,
+                      },
+                    ],
                   },
-                  {
-                    option: "ii)  σε όργανα της Ε.Ε.:",
-                    optionText: data.field_6_2,
-                  },
-                  {
-                    option: "iii) σε διεθνείς οργανισμούς:",
-                    optionText: data.field_6_3,
-                  },
-                ],
-              },
+                },
+                ,
+              ],
             },
-            ,
-          ],
-        },
-      },
-      {
-        category: {
-          categoryHeader: "Στόχοι αξιολογούμενης ρύθμισης",
-          categoryFields: [
-            {
-              field: {
-                fieldId: 7,
-                fieldHeader:
-                  "Σημειώστε ποιοι από τους στόχους βιώσιμης ανάπτυξης των Ηνωμένων Εθνών επιδιώκονται με την αξιολογούμενη ρύθμιση",
-                // fieldCreatedBy: createField7(data),
-              },
-            },
-            {
-              field: {
-                fieldId: 8,
-                fieldHeader:
-                  "Ποιοι είναι οι στόχοι της αξιολογούμενης ρύθμισης;",
-                fieldOptions: [
-                  {
-                    option: "i)   βραχυπρόθεσμοι:",
-                    optionText: data.field_8_1,
+          },
+          {
+            category: {
+              categoryHeader: "Στόχοι αξιολογούμενης ρύθμισης",
+              categoryFields: [
+                {
+                  field: {
+                    fieldId: 7,
+                    fieldHeader:
+                      "Σημειώστε ποιοι από τους στόχους βιώσιμης ανάπτυξης των Ηνωμένων Εθνών επιδιώκονται με την αξιολογούμενη ρύθμιση",
+                    fieldCreatedBy: createField7(data),
                   },
-                  {
-                    option: "ii)  μακροπρόθεσμοι:",
-                    optionText: data.field_8_2,
-                  },
-                ],
-              },
+                },
+              ],
             },
-            {
-              field: {
-                fieldId: 9,
-                fieldHeader:
-                  "Ειδικότεροι στόχοι ανάλογα με τον τομέα νομοθέτησης",
-                fieldCreatedBy: createField9Tables(field_9_data),
-              },
-            },
-          ],
-        },
-      },
-      {
-        category: {
-          categoryHeader: "Ψηφιακή διακυβέρνηση",
-          categoryFields: [
-            {
-              field: {
-                fieldId: 10,
-                fieldHeader: `Σε περίπτωση που προβλέπεται η χρήση πληροφοριακού συστήματος, ποια θα είναι η συμβολή αυτού στην επίτευξη των στόχων της αξιολογούμενης ρύθμισης:         ΑΜΕΣΗ           ή/και      ΕΜΜΕΣΗ     `,
-                fieldOptions: [
-                  {
-                    option: "i)   Εάν είναι άμεση, εξηγήστε:",
-                    optionText: data.field_10_amesi_comments,
+          },
+          {
+            category: {
+              categoryFields: [
+                {
+                  field: {
+                    fieldId: 8,
+                    fieldHeader:
+                      "Ποιοι είναι οι στόχοι της αξιολογούμενης ρύθμισης;",
+                    fieldOptions: [
+                      {
+                        option: "i) βραχυπρόθεσμοι:",
+                        optionText: data.field_8_1,
+                      },
+                      {
+                        option: "ii) μακροπρόθεσμοι:",
+                        optionText: data.field_8_2,
+                      },
+                    ],
                   },
-                  {
-                    option: "ii)  Εάν είναι έμμεση, εξηγήστε:",
-                    optionText: data.field_10_emmesi_comments,
+                },
+                {
+                  field: {
+                    fieldId: 9,
+                    fieldHeader:
+                      "Ειδικότεροι στόχοι ανάλογα με τον τομέα νομοθέτησης",
+                    fieldCreatedBy: createField9(field_9_data),
                   },
-                ],
-              },
+                },
+              ],
             },
-            {
-              field: {
-                fieldId: 11,
-                fieldHeader: `Το προβλεπόμενο πληροφοριακό σύστημα είναι συμβατό με την εκάστοτε ψηφιακή στρατηγική της χώρας (Βίβλος Ψηφιακού Μετασχηματισμού);   
+          },
+          {
+            category: {
+              categoryHeader: "Ψηφιακή διακυβέρνηση",
+              categoryFields: [
+                {
+                  field: {
+                    fieldId: 10,
+                    fieldHeader: `Σε περίπτωση που προβλέπεται η χρήση πληροφοριακού συστήματος, ποια θα είναι η συμβολή αυτού στην επίτευξη των στόχων της αξιολογούμενης ρύθμισης:         ΑΜΕΣΗ           ή/και      ΕΜΜΕΣΗ     `,
+                    fieldOptions: [
+                      {
+                        option: "i)   Εάν είναι άμεση, εξηγήστε:",
+                        optionText: data.field_10_amesi_comments,
+                      },
+                      {
+                        option: "ii)  Εάν είναι έμμεση, εξηγήστε:",
+                        optionText: data.field_10_emmesi_comments,
+                      },
+                    ],
+                  },
+                },
+                {
+                  field: {
+                    fieldId: 11,
+                    fieldHeader: `Το προβλεπόμενο πληροφοριακό σύστημα είναι συμβατό με την εκάστοτε ψηφιακή στρατηγική της χώρας (Βίβλος Ψηφιακού Μετασχηματισμού);   
                 ΝΑΙ                 ΟΧΙ     `,
-                fieldText: data.field_11,
-              },
-            },
-            {
-              field: {
-                fieldId: 12,
-                fieldHeader: `Διασφαλίζεται η διαλειτουργικότητα του εν λόγω πληροφοριακού συστήματος με άλλα υφιστάμενα συστήματα;     ΝΑΙ                 ΟΧΙ     `,
-                fieldText: data.field_12,
-              },
-            },
-            {
-              field: {
-                fieldId: 13,
-                fieldHeader: `Έχει προηγηθεί μελέτη βιωσιμότητας του προβλεπόμενου πληροφοριακού συστήματος;                           ΝΑΙ                 ΟΧΙ     `,
-                fieldText: data.field_13,
-              },
-            },
-          ],
-        },
-      },
-      {
-        category: {
-          categoryHeader: "Κατ’ άρθρο ανάλυση αξιολογούμενης ρύθμισης",
-          categoryFields: [
-            {
-              field: {
-                fieldId: 14,
-                fieldHeader: "Σύνοψη στόχων κάθε άρθρου",
-                fieldCreatedBy: createTables(field_14),
-              },
-            },
-          ],
-        },
-      },
-    ],
-  };
-
-  const Report_E = {
-    header: "Ε.  Έκθεση διαβούλευσης",
-    fields: [
-      // TODO: handle 3 colspans
-      {
-        category: {
-          categoryHeader: "",
-          categoryFields: [
-            {
-              field: {
-                fieldId: 22,
-                fieldHeader:
-                  "Διαβούλευση κατά τη διάρκεια της νομοπαρασκευαστικής διαδικασίας από την έναρξη κατάρτισης της αξιολογούμενης ρύθμισης μέχρι την υπογραφή από τους συναρμόδιους Υπουργούς",
-                fieldOptions: [
-                  {
-                    hasCheckbox: true,
-                    option: "Συνεργασία με άλλα υπουργεία / υπηρεσίες ",
-                    optionText: data.field_22_sinergasia_ypoyrgeiwn,
-                  },
-                  {
-                    hasCheckbox: true,
-                    option:
-                      "Συνεργασία με κοινωνικούς φορείς / Ανεξάρτητες Αρχές",
-                    optionText: data.field_22_sinergasia_forewn_arxwn,
-                  },
-                  {
-                    hasCheckbox: true,
-                    option: "Διεθνής διαβούλευση",
-                    optionText: data.field_22_diethnis_diavouleusi,
-                  },
-                ],
-              },
-            },
-          ],
-        },
-      },
-      {
-        category: {
-          categoryHeader: "",
-          categoryFields: [
-            {
-              field: {
-                fieldId: 23,
-                fieldHeader:
-                  "Σχόλια στο πλαίσιο της διαβούλευσης μέσω της ηλεκτρονικής πλατφόρμας www.opengov.gr (ηλεκτρονική επισύναψη της έκθεσης)",
-                fieldOptionsCategories: [
-                  {
-                    fieldOptionsCategory:
-                      "Επί των γενικών αρχών («επί της αρχής») της αξιολογούμενης ρύθμισης",
                     fieldOptions: [
                       {
-                        option: "Αριθμός συμμετασχόντων",
-                        optionText: data.field_23_arxes_symmetasxontes,
-                      },
-                      {
-                        option: "Σχόλια που υιοθετήθηκαν",
-                        optionText: data.field_23_arxes_sxolia_yiothetithikan,
-                      },
-                      {
-                        option:
-                          "Σχόλια που δεν υιοθετήθηκαν (συμπεριλαμβανομένης επαρκούς αιτιολόγησης)",
-                        optionText:
-                          data.field_23_arxes_sxolia_den_yiothetithikan,
+                        option: "Εξηγήστε:",
+                        optionText: data.field_11_comments,
                       },
                     ],
                   },
-                  {
-                    fieldOptionsCategory:
-                      "Επί των άρθρων της αξιολογούμενης ρύθμισης",
+                },
+                {
+                  field: {
+                    fieldId: 12,
+                    fieldHeader: `Διασφαλίζεται η διαλειτουργικότητα του εν λόγω πληροφοριακού συστήματος με άλλα υφιστάμενα συστήματα;     ΝΑΙ                 ΟΧΙ     `,
                     fieldOptions: [
                       {
-                        option: "Αριθμός συμμετασχόντων",
-                        optionText: data.field_23_arthra_symmetasxontes,
-                      },
-                      {
-                        option: "Σχόλια που υιοθετήθηκαν",
-                        optionText: data.field_23_arxes_sxolia_yiothetithikan,
-                      },
-                      {
-                        option:
-                          "Σχόλια που δεν υιοθετήθηκαν (συμπεριλαμβανομένης επαρκούς αιτιολόγησης)",
-                        optionText:
-                          data.field_23_arthra_sxolia_den_yiothetithikan,
+                        option: "Αναφέρατε ποια είναι αυτά τα συστήματα:",
+                        optionText: data.field_12_comments,
                       },
                     ],
                   },
-                ],
-              },
+                },
+                {
+                  field: {
+                    fieldId: 13,
+                    fieldHeader: `Έχει προηγηθεί μελέτη βιωσιμότητας του προβλεπόμενου πληροφοριακού συστήματος;                           ΝΑΙ                 ΟΧΙ     `,
+                    fieldOptions: [
+                      {
+                        option: "Εξηγήστε:",
+                        optionText: data.field_13_comments,
+                      },
+                    ],
+                  },
+                },
+              ],
             },
-          ],
-        },
+          },
+          {
+            category: {
+              categoryHeader: "Κατ’ άρθρο ανάλυση αξιολογούμενης ρύθμισης",
+              categoryFields: [
+                {
+                  field: {
+                    fieldId: 14,
+                    fieldHeader: "Σύνοψη στόχων κάθε άρθρου",
+                    fieldCreatedBy: createTables(field_14),
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+      {
+        reportTitle: "Δ.  Έκθεση γενικών συνεπειών ",
+        fields: [
+          {
+            category: {
+              categoryFields: [
+                {
+                  field: {
+                    fieldId: 18,
+                    fieldHeader:
+                      "Σχόλια στο πλαίσιο της διαβούλευσης μέσω της ηλεκτρονικής πλατφόρμας www.opengov.gr (ηλεκτρονική επισύναψη της έκθεσης)",
+                    fieldCreatedBy: createField18(field_18, data),
+                  },
+                },
+              ],
+            },
+          },
+          {
+            category: {
+              categoryFields: [
+                {
+                  field: {
+                    fieldId: 19,
+                    fieldHeader:
+                      "Σχόλια στο πλαίσιο της διαβούλευσης μέσω της ηλεκτρονικής πλατφόρμας www.opengov.gr (ηλεκτρονική επισύναψη της έκθεσης)",
+                    fieldCreatedBy: createField19(field_19, data),
+                  },
+                },
+              ],
+            },
+          },
+          {
+            category: {
+              categoryFields: [
+                {
+                  field: {
+                    fieldId: 20,
+                    fieldHeader:
+                      "Σχόλια στο πλαίσιο της διαβούλευσης μέσω της ηλεκτρονικής πλατφόρμας www.opengov.gr (ηλεκτρονική επισύναψη της έκθεσης)",
+                    fieldCreatedBy: createField20(field_20, data),
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+      {
+        reportTitle: "Ε.  Έκθεση διαβούλευσης",
+        fields: [
+          {
+            category: {
+              categoryFields: [
+                {
+                  field: {
+                    fieldId: 22,
+                    fieldHeader:
+                      "Διαβούλευση κατά τη διάρκεια της νομοπαρασκευαστικής διαδικασίας από την έναρξη κατάρτισης της αξιολογούμενης ρύθμισης μέχρι την υπογραφή από τους συναρμόδιους Υπουργούς",
+                    fieldOptions: [
+                      {
+                        hasCheckbox: true,
+                        option: "Συνεργασία με άλλα υπουργεία / υπηρεσίες ",
+                        optionText: data.field_22_sinergasia_ypoyrgeiwn,
+                      },
+                      {
+                        hasCheckbox: true,
+                        option:
+                          "Συνεργασία με κοινωνικούς φορείς / Ανεξάρτητες Αρχές",
+                        optionText: data.field_22_sinergasia_forewn_arxwn,
+                      },
+                      {
+                        hasCheckbox: true,
+                        option: "Διεθνής διαβούλευση",
+                        optionText: data.field_22_diethnis_diavouleusi,
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            category: {
+              categoryFields: [
+                {
+                  field: {
+                    fieldId: 23,
+                    fieldHeader:
+                      "Σχόλια στο πλαίσιο της διαβούλευσης μέσω της ηλεκτρονικής πλατφόρμας www.opengov.gr (ηλεκτρονική επισύναψη της έκθεσης)",
+                    annex: "Παράρτημα Β",
+                    fieldOptions: [
+                      {
+                        title:
+                          "Επί των γενικών αρχών («επί της αρχής») της αξιολογούμενης ρύθμισης",
+                        options: [
+                          {
+                            option: "Αριθμός συμμετασχόντων",
+                            optionText: data.field_23_arxes_symmetasxontes,
+                          },
+                          {
+                            option: "Σχόλια που υιοθετήθηκαν",
+                            optionText:
+                              data.field_23_arxes_sxolia_yiothetithikan,
+                          },
+                          {
+                            option:
+                              "Σχόλια που δεν υιοθετήθηκαν (συμπεριλαμβανομένης επαρκούς αιτιολόγησης)",
+                            optionText:
+                              data.field_23_arxes_sxolia_den_yiothetithikan,
+                          },
+                        ],
+                      },
+                      {
+                        title: "Επί των άρθρων της αξιολογούμενης ρύθμισης",
+                        options: [
+                          {
+                            option: "Αριθμός συμμετασχόντων",
+                            optionText: data.field_23_arthra_symmetasxontes,
+                          },
+                          {
+                            option: "Σχόλια που υιοθετήθηκαν",
+                            optionText:
+                              data.field_23_arthra_sxolia_yiothetithikan,
+                          },
+                          {
+                            option:
+                              "Σχόλια που δεν υιοθετήθηκαν (συμπεριλαμβανομένης επαρκούς αιτιολόγησης)",
+                            optionText:
+                              data.field_23_arthra_sxolia_den_yiothetithikan,
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+      {
+        reportTitle: "Στ.  Έκθεση νομιμότητας ",
+        fields: [
+          {
+            category: {
+              categoryFields: [
+                {
+                  field: {
+                    fieldId: 24,
+                    fieldHeader: "Συναφείς συνταγματικές διατάξεις",
+                    fieldText: data.field_24,
+                  },
+                },
+              ],
+            },
+          },
+          {
+            category: {
+              categoryFields: [
+                {
+                  field: {
+                    fieldId: 25,
+                    fieldHeader: "Ενωσιακό δίκαιο",
+                    fieldOptions: [
+                      {
+                        hasCheckbox: true,
+                        option:
+                          "Πρωτογενές ενωσιακό δίκαιο (συμπεριλαμβανομένου του Χάρτη Θεμελιωδών Δικαιωμάτων)",
+                        optionText: data.field_25_dikaio_comment,
+                      },
+                      {
+                        hasCheckbox: true,
+                        option: "Κανονισμός",
+                        optionText: data.field_25_kanonismos_comment,
+                      },
+                      {
+                        hasCheckbox: true,
+                        option: "Οδηγία/Ανακοινώσεις",
+                        optionText: data.field_25_odigia_comment,
+                      },
+                      {
+                        hasCheckbox: true,
+                        option: "Απόφαση",
+                        optionText: data.field_25_apofasi_comment,
+                      },
+                    ],
+                  },
+                },
+                {
+                  field: {
+                    fieldId: 26,
+                    fieldHeader:
+                      "Συναφείς διατάξεις διεθνών συνθηκών ή συμφωνιών",
+                    fieldOptions: [
+                      {
+                        hasCheckbox: true,
+                        option:
+                          "Ευρωπαϊκή Σύμβαση των Δικαιωμάτων του Ανθρώπου",
+                        optionText: data.field_26_antrwpina_dikaiwmata_comment,
+                      },
+                      {
+                        hasCheckbox: true,
+                        option: "Διεθνείς συμβάσεις",
+                        optionText: data.field_26_symvaseis_comment,
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            category: {
+              categoryFields: [
+                {
+                  field: {
+                    fieldId: 27,
+                    fieldHeader:
+                      "Συναφής νομολογία των ανωτάτων και άλλων εθνικών δικαστηρίων, καθώς και αποφάσεις των Ανεξάρτητων Αρχών",
+                    fieldSubHeader: "Στοιχεία & βασικό περιεχόμενο απόφασης",
+                    fieldOptions: [
+                      {
+                        hasCheckbox: true,
+                        option: "Ανώτατο ή άλλο εθνικό δικαστήριο  (αναφέρατε)",
+                        optionText: data.field_27_dikastirio_comment,
+                      },
+                      {
+                        hasCheckbox: true,
+                        option: "Ανεξάρτητη Αρχή (αναφέρατε)",
+                        optionText: data.field_27_arxi_comment,
+                      },
+                    ],
+                  },
+                },
+                {
+                  field: {
+                    fieldId: 28,
+                    fieldHeader: "Συναφής ευρωπαϊκή και διεθνής νομολογία",
+                    fieldSubHeader: "Στοιχεία & βασικό περιεχόμενο απόφασης",
+                    fieldOptions: [
+                      {
+                        hasCheckbox: true,
+                        option: "Νομολογία Δικαστηρίου Ε.Ε.",
+                        optionText: data.field_28_nomologia_comment,
+                      },
+                      {
+                        hasCheckbox: true,
+                        option:
+                          "Νομολογία Ευρωπαϊκού Δικαστηρίου Δικαιωμάτων του Ανθρώπου",
+                        optionText:
+                          data.field_28_nomologia_dikaiwmatwn_anthrwpou_comment,
+                      },
+                      {
+                        hasCheckbox: true,
+                        option:
+                          "Άλλα ευρωπαϊκά ή διεθνή δικαστήρια ή διαιτητικά όργανα",
+                        optionText: data.field_28_alla_dikastiria_comment,
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+      {
+        reportTitle: "Ζ.  Πίνακας τροποποιούμενων ή καταργούμενων διατάξεων",
+        fields: [
+          {
+            category: {
+              categoryFields: [
+                {
+                  field: {
+                    fieldId: 29,
+                    fieldHeader:
+                      "Τροποποίηση – αντικατάσταση – συμπλήρωση διατάξεων",
+                    fieldCreatedBy: createTables(field_29),
+                  },
+                },
+              ],
+            },
+          },
+          {
+            category: {
+              categoryFields: [
+                {
+                  field: {
+                    fieldId: 30,
+                    fieldHeader: "Κατάργηση διατάξεων",
+                    fieldCreatedBy: createTables(field_30),
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+      {
+        reportTitle: "Η.  Έκθεση εφαρμογής της ρύθμισης",
+        fields: [
+          {
+            category: {
+              categoryFields: [
+                {
+                  field: {
+                    fieldId: 31,
+                    fieldHeader:
+                      "Συναρμοδιότητα Υπουργείων / υπηρεσιών / φορέων",
+                    fieldCreatedBy: createTables(field_31),
+                  },
+                },
+              ],
+            },
+          },
+          {
+            category: {
+              categoryFields: [
+                {
+                  field: {
+                    fieldId: 32,
+                    fieldHeader: "Έκδοση κανονιστικών πράξεων και εγκυκλίων",
+                    fieldCreatedBy: createTables(field_32),
+                  },
+                },
+              ],
+            },
+          },
+          {
+            category: {
+              categoryHeader:
+                "Ανάγκη σύστασης νέου νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας υπηρεσίας",
+              categoryFields: [
+                {
+                  field: {
+                    fieldId: 33,
+                    fieldHeader:
+                      "Ποιες διατάξεις της αξιολογούμενης ρύθμισης προβλέπουν τη σύσταση νέου νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας υπηρεσίας;",
+                    fieldText: data.field_33 + "\n\n",
+                  },
+                },
+                {
+                  field: {
+                    fieldId: 34,
+                    fieldHeader:
+                      "Γιατί προτείνεται η σύσταση αυτού του νέου οργάνου και δεν επαρκούν οι υφιστάμενες διοικητικές δομές για να επιτευχθεί ο στόχος της αξιολογούμενης ρύθμισης;",
+                    fieldText: data.field_34 + "\n\n",
+                  },
+                },
+                {
+                  field: {
+                    fieldId: 35,
+                    fieldHeader: "Χρόνος έναρξης λειτουργίας του νέου οργάνου",
+                    fieldText: data.field_35 + "\n\n",
+                  },
+                },
+                {
+                  field: {
+                    fieldId: 36,
+                    fieldHeader:
+                      "Έχει γίνει η σχετική οικονομοτεχνική μελέτη αναφορικά με τη σύσταση του νέου οργάνου;            ΝΑΙ                 ΟΧΙ     Εάν ΝΑΙ, να επισυναφθεί ηλεκτρονικά.",
+                    annex: "Παράρτημα Γ",
+                  },
+                },
+                ,
+              ],
+            },
+          },
+          {
+            category: {
+              categoryHeader:
+                "Στοιχεία νέου νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας υπηρεσίας",
+              categoryFields: [
+                {
+                  field: {
+                    fieldId: 37,
+                    fieldHeader: "Επωνυμία ή ονομασία και νομική μορφή",
+                    fieldText: data.field_37 + "\n\n",
+                  },
+                },
+                {
+                  field: {
+                    fieldId: 38,
+                    fieldHeader: "Χώρος λειτουργίας του νέου οργάνου",
+                    fieldText: data.field_38 + "\n\n",
+                  },
+                },
+                {
+                  field: {
+                    fieldId: 39,
+                    fieldHeader:
+                      "Διασφάλιση επαρκούς υλικοτεχνικού & ηλεκτρονικού εξοπλισμού",
+                    fieldText: data.field_39 + "\n\n",
+                  },
+                },
+                {
+                  field: {
+                    fieldId: 40,
+                    fieldHeader: "Τρόπος στελέχωσης του νέου οργάνου",
+                    fieldText: data.field_40 + "\n\n",
+                  },
+                },
+              ],
+            },
+          },
+        ],
       },
     ],
   };
 
-  const Report_ST = {
-    header: "Στ.  Έκθεση νομιμότητας ",
-    fields: [
-      {
-        category: {
-          categoryHeader: "",
-          categoryFields: [
-            {
-              field: {
-                fieldId: 24,
-                fieldHeader: "Συναφείς συνταγματικές διατάξεις",
-                fieldText: data.field_24,
-              },
-            },
-            {
-              field: {
-                fieldId: 25,
-                fieldHeader: "Ενωσιακό δίκαιο",
-                fieldOptions: [
-                  {
-                    hasCheckbox: true,
-                    option:
-                      "Πρωτογενές ενωσιακό δίκαιο (συμπεριλαμβανομένου του Χάρτη Θεμελιωδών Δικαιωμάτων)",
-                    optionText: data.field_25_dikaio_comment,
-                  },
-                  {
-                    hasCheckbox: true,
-                    option: "Κανονισμός",
-                    optionText: data.field_25_kanonismos_comment,
-                  },
-                  {
-                    hasCheckbox: true,
-                    option: "Οδηγία/Ανακοινώσεις",
-                    optionText: data.field_25_odigia_comment,
-                  },
-                  {
-                    hasCheckbox: true,
-                    option: "Απόφαση",
-                    optionText: data.field_25_apofasi_comment,
-                  },
-                ],
-              },
-            },
-            {
-              field: {
-                fieldId: 26,
-                fieldHeader: "Συναφείς διατάξεις διεθνών συνθηκών ή συμφωνιών",
-                fieldOptions: [
-                  {
-                    hasCheckbox: true,
-                    option: "Ευρωπαϊκή Σύμβαση των Δικαιωμάτων του Ανθρώπου",
-                    optionText: data.field_26_antrwpina_dikaiwmata_comment,
-                  },
-                  {
-                    hasCheckbox: true,
-                    option: "Διεθνείς συμβάσεις",
-                    optionText: data.field_26_symvaseis_comment,
-                  },
-                ],
-              },
-            },
-          ],
-        },
-      },
-      {
-        category: {
-          categoryHeader: "",
-          categoryFields: [
-            {
-              field: {
-                fieldId: 27,
-                fieldHeader:
-                  "Συναφής νομολογία των ανωτάτων και άλλων εθνικών δικαστηρίων, καθώς και αποφάσεις των Ανεξάρτητων Αρχών",
-                fieldSubHeader: "Στοιχεία & βασικό περιεχόμενο απόφασης",
-                fieldOptions: [
-                  {
-                    hasCheckbox: true,
-                    option: "Ανώτατο ή άλλο εθνικό δικαστήριο  (αναφέρατε)",
-                    optionText: data.field_27_dikastirio_comment,
-                  },
-                  {
-                    hasCheckbox: true,
-                    option: "Ανεξάρτητη Αρχή (αναφέρατε)",
-                    optionText: data.field_27_arxi_comment,
-                  },
-                ],
-              },
-            },
-            {
-              field: {
-                fieldId: 28,
-                fieldHeader: "Συναφής ευρωπαϊκή και διεθνής νομολογία",
-                fieldSubHeader: "Στοιχεία & βασικό περιεχόμενο απόφασης",
-                fieldOptions: [
-                  {
-                    hasCheckbox: true,
-                    option: "Νομολογία Δικαστηρίου Ε.Ε.",
-                    optionText: data.field_28_nomologia_comment,
-                  },
-                  {
-                    hasCheckbox: true,
-                    option:
-                      "Νομολογία Ευρωπαϊκού Δικαστηρίου Δικαιωμάτων του Ανθρώπου",
-                    optionText:
-                      data.field_28_nomologia_dikaiwmatwn_anthrwpou_comment,
-                  },
-                  {
-                    hasCheckbox: true,
-                    option:
-                      "Άλλα ευρωπαϊκά ή διεθνή δικαστήρια ή διαιτητικά όργανα",
-                    optionText: data.field_28_alla_dikastiria_comment,
-                  },
-                ],
-              },
-            },
-          ],
-        },
-      },
-    ],
-  };
-
-  const Report_H = {
-    header: "Η.  Έκθεση εφαρμογής της ρύθμισης",
-    fields: [
-      // {
-      //   category: {
-      //     categoryHeader: "",
-      //     categoryFields: [
-      //       {
-      //         field: {
-      //           fieldId: 31,
-      //           fieldHeader: "Συναρμοδιότητα Υπουργείων / υπηρεσιών / φορέων",
-      //           fieldText: data.field_31 + "\n\n",
-      //         },
-      //       },
-      //       {
-      //         field: {
-      //           fieldId: 32,
-      //           fieldHeader: "Έκδοση κανονιστικών πράξεων και εγκυκλίων",
-      //           fieldText: data.field_32 + "\n\n",
-      //         },
-      //       },
-      //     ],
-      //   },
-      // },
-      {
-        category: {
-          categoryHeader:
-            "Ανάγκη σύστασης νέου νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας υπηρεσίας",
-          categoryFields: [
-            {
-              field: {
-                fieldId: 33,
-                fieldHeader:
-                  "Ποιες διατάξεις της αξιολογούμενης ρύθμισης προβλέπουν τη σύσταση νέου νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας υπηρεσίας;",
-                fieldText: data.field_33 + "\n\n",
-              },
-            },
-            {
-              field: {
-                fieldId: 34,
-                fieldHeader:
-                  "Γιατί προτείνεται η σύσταση αυτού του νέου οργάνου και δεν επαρκούν οι υφιστάμενες διοικητικές δομές για να επιτευχθεί ο στόχος της αξιολογούμενης ρύθμισης;",
-                fieldText: data.field_34 + "\n\n",
-              },
-            },
-            {
-              field: {
-                fieldId: 35,
-                fieldHeader: "Χρόνος έναρξης λειτουργίας του νέου οργάνου",
-                fieldText: data.field_35 + "\n\n",
-              },
-            },
-            {
-              field: {
-                fieldId: 36,
-                fieldHeader:
-                  "Έχει γίνει η σχετική οικονομοτεχνική μελέτη αναφορικά με τη σύσταση του νέου οργάνου;            ΝΑΙ                 ΟΧΙ     Εάν ΝΑΙ, να επισυναφθεί ηλεκτρονικά.",
-              },
-            },
-            ,
-          ],
-        },
-      },
-      {
-        category: {
-          categoryHeader:
-            "Στοιχεία νέου νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας υπηρεσίας",
-          categoryFields: [
-            {
-              field: {
-                fieldId: 37,
-                fieldHeader: "Επωνυμία ή ονομασία και νομική μορφή",
-                fieldText: data.field_37 + "\n\n",
-              },
-            },
-            {
-              field: {
-                fieldId: 38,
-                fieldHeader: "Χώρος λειτουργίας του νέου οργάνου",
-                fieldText: data.field_38 + "\n\n",
-              },
-            },
-            {
-              field: {
-                fieldId: 39,
-                fieldHeader:
-                  "Διασφάλιση επαρκούς υλικοτεχνικού & ηλεκτρονικού εξοπλισμού",
-                fieldText: data.field_39 + "\n\n",
-              },
-            },
-            {
-              field: {
-                fieldId: 40,
-                fieldHeader: "Τρόπος στελέχωσης του νέου οργάνου",
-                fieldText: data.field_40 + "\n\n",
-              },
-            },
-          ],
-        },
-      },
-    ],
-  };
   // download default Roboto font from cdnjs.com
   fonts = {
     Roboto: {
@@ -691,24 +799,7 @@ exports.exportPDF = async function (req, res, next) {
           style: "textStyle",
         }, //, pageBreak:'after',
 
-        // {
-        //   text: "Α. Αιτολογική έκθεση",
-        //   style: "header",
-        //   fontSize: 16,
-        //   tocItem: true,
-        //   tocStyle: { bold: true },
-        //   decoration: "underline",
-        //   tocMargin: [20, 0, 0, 0],
-        //   pageBreak: "before",
-        // },
-        createContainerTable(Report_A),
-        { text: "\n\n" },
-        exportColumns(data),
-        { text: "\n\n" },
-        createField9Tables(field_9_data),
-        { text: "\n\n" },
-        { text: "14.Σύνοψη στόχων κάθε άρθρου" },
-        createTables(field_14),
+        createContainerTable(Report),
 
         {
           text: "Β. Έκθεση Γενικού Λογιστηρίου του Κράτους (άρθρο 75 παρ. 1 ή 2 του Συντάγματος)",
@@ -818,80 +909,6 @@ exports.exportPDF = async function (req, res, next) {
         { text: "\n\n" },
         // createSignatories(field_17_onoma, field_17_epitheto, field_17_idiotita),
 
-        {
-          text: "Δ. Έκθεση γενικών συνεπειών",
-          style: "headerStyle",
-          tocItem: true,
-          tocStyle: { bold: true },
-          tocMargin: [20, 0, 0, 0],
-          pageBreak: "before",
-        },
-
-        { text: "18.Οφέλη αξιολογούμενης ρύθμισης", style: "labelStyle" },
-        { text: "\n\n" },
-        exportChckbxTables(checkbox_tables),
-
-        {
-          text: "Ε. Έκθεση διαβούλευσης",
-          style: "headerStyle",
-          tocItem: true,
-          tocStyle: { bold: true },
-          tocMargin: [20, 0, 0, 0],
-          pageBreak: "before",
-        },
-
-        {
-          text: "Στ. Έκθεση νομιμότητας",
-          style: "headerStyle",
-          tocItem: true,
-          tocStyle: { bold: true },
-          tocMargin: [20, 0, 0, 0],
-          pageBreak: "before",
-        },
-        createContainerTableB(Report_E),
-        { text: "\n\n" },
-        createContainerTableB(Report_ST),
-
-        {
-          text: "Ζ. Πίνακας τροποποιούμενων ή καταργούμενων διατάξεων",
-          style: "headerStyle",
-          tocItem: true,
-          tocStyle: { bold: true },
-          tocMargin: [20, 0, 0, 0],
-          pageBreak: "before",
-        },
-        { text: "29. Τροποποίηση – αντικατάσταση – συμπλήρωση διατάξεων" },
-        createTables(field_29),
-        { text: "\n\n" },
-        { text: "30. Κατάργηση διατάξεων" },
-        createTables(field_30),
-        { text: "\n\n" },
-
-        {
-          text: "Η. Έκθεση εφαρμογής της ρύθμισης",
-          style: "headerStyle",
-          tocItem: true,
-          tocStyle: { bold: true },
-          tocMargin: [20, 0, 0, 0],
-          pageBreak: "before",
-        },
-
-        {
-          text: "31.Συναρμοδιότητα Υπουργείων / υπηρεσιών / φορέων",
-          style: "labelStyle",
-        },
-        { text: "\n\n" },
-        createTables(field_31),
-        { text: "\n\n" },
-        {
-          text: "32.Έκδοση κανονιστικών πράξεων και εγκυκλίων",
-          style: "labelStyle",
-        },
-        { text: "\n\n" },
-        createTables(field_32),
-        { text: "\n\n\n\n" },
-
-        createContainerTable(Report_H),
 
         {
           text: "ΟΙ ΥΠΟΥΡΓΟΙ",
@@ -975,285 +992,413 @@ function valIsUndefined(val) {
   return typeOfVal;
 }
 
-function createContainerTableB(report) {
-  const header = { text: report.header, fillColor: "#6c541e" }; //"#808080",}
-  let reportTable = [];
-  let table;
-  let reportTables = [];
-
-  // TODO: add header NOT as table row
-  for (i in report.fields) {
-    for (j in report.fields[i].category.categoryFields) {
-      reportTable.push([
-        {
-          text: report.fields[i].category.categoryFields[j].field.fieldId,
-          alignment: "center",
-          fillColor: "#dcdcdc",
-        },
-        {
-          text: report.fields[i].category.categoryFields[j].field.fieldHeader,
-          alignment: "center",
-          fillColor: "#dcdcdc",
-          colSpan: 3,
-        },
-        { text: "" },
-        { text: "" },
-      ]);
-      if (report.fields[i].category.categoryFields[j].field.fieldOptions) {
-        for (k in report.fields[i].category.categoryFields[j].field
-          .fieldOptions) {
-          reportTable.push([
-            { text: "" },
-            { image: `./public/img/checkbox.jpg`, width: 30, height: 30 },
-            {
-              text: report.fields[i].category.categoryFields[j].field
-                .fieldOptions[k].option,
-              alignment: "center",
-            },
-            {
-              text: report.fields[i].category.categoryFields[j].field
-                .fieldOptions[k].optionText,
-              alignment: "center",
-            },
-          ]);
-        }
-      } else if (
-        report.fields[i].category.categoryFields[j].field.fieldOptionsCategories
-      ) {
-        for (k in report.fields[i].category.categoryFields[j].field
-          .fieldOptionsCategories) {
-          reportTable.push([
-            { text: "" },
-            {
-              text: report.fields[i].category.categoryFields[j].field
-                .fieldOptionsCategories[k].fieldOptionsCategory,
-              alignment: "center",
-              rowSpan: 3,
-            },
-            { text: "" },
-            { text: "" },
-          ]);
-          // fieldOptionsCategories: [
-          //                 {
-          //                   fieldOptionsCategory:
-          //                     "Επί των γενικών αρχών («επί της αρχής») της αξιολογούμενης ρύθμισης",
-          //                   fieldOptions: [
-          //                     {
-          //                       option: "Αριθμός συμμετασχόντων",
-          //                       optionText: data.field_23_arxes_symmetasxontes,
-          //                     },
-          //                     {
-          //                       option: "Σχόλια που υιοθετήθηκαν",
-          //                       optionText: data.field_23_arxes_sxolia_yiothetithikan,
-          //                     },
-          //                     {
-          //                       option:
-          //                         "Σχόλια που δεν υιοθετήθηκαν (συμπεριλαμβανομένης επαρκούς αιτιολόγησης)",
-          //                       optionText:
-          //                         data.field_23_arxes_sxolia_den_yiothetithikan,
-          //                     },
-          //                   ],
-          //                 },
-          for (m in report.fields[i].category.categoryFields[j].field
-            .fieldOptionsCategories[k].fieldOptions) {
-          }
-          reportTable.push([
-            {
-              text: "",
-            },
-            {
-              text: "",
-            },
-            {
-              text: report.fields[i].category.categoryFields[j].field
-                .fieldOptionsCategories[k].fieldOptions[m].option,
-              alignment: "center",
-            },
-            {
-              text: report.fields[i].category.categoryFields[j].field
-                .fieldOptionsCategories[k].fieldOptions[m].optionText,
-              alignment: "center",
-            },
-          ]);
-        }
-      } else {
-        reportTable.push([
-          { text: "" },
-          {
-            text: report.fields[i].category.categoryFields[j].field.fieldText,
-            alignment: "center",
-            colSpan: 3,
-          },
-          { text: "" },
-          { text: "" },
-        ]);
-      }
-      table = {
-        table: {
-          headerRows: 1,
-          widths: ["5%", "10%", "25%", "60%"],
-          body: reportTable,
-        },
-      };
-      reportTables.push(table);
-      reportTable = [];
-    }
-  }
-
-  return reportTables;
-}
-
 function createContainerTable(report) {
   const header = { text: report.header, fillColor: "#6c541e" }; //"#808080",}
   let reportTables = [];
+  let tempTables;
   // TODO: add header NOT as table row
-  for (i in report.fields) {
+  for (let i in report.reports) {
     // return reportTable;
+    reportTables.push({
+      text: report.reports[i].reportTitle,
+      pageBreak: "before",
+      fontSize: 15,
+      color: "#5c3d3d",
+      bold: true,
+    });
     reportTables.push({ text: "\n\n" });
-    reportTables.push(createTable(report.fields[i]));
+    for (let j in report.reports[i].fields) {
+      tempTables = createTable(report.reports[i].fields[j]);
+      if (tempTables[1]) {
+        reportTables.push({ text: "\n\n" });
+        reportTables.push(tempTables[0]);
+        reportTables.push(tempTables[1]);
+      } else {
+        reportTables.push({ text: "\n\n" });
+        reportTables.push(tempTables);
+      }
+    }
   }
-
   return reportTables;
 }
 
 function createTable(categoryData) {
   let reportTable = [];
+  let reportTables;
   let generatedFields;
-  let columns;
-  // handle 2colspans and 3colspans (i.e. field4 & field5 )
-  reportTable.push([
-    { text: "", fillColor: "#a9a9a9" },
-    {
-      text: categoryData.category.categoryHeader,
-      alignment: "center",
-      fillColor: "#a9a9a9",
-      colSpan: 2,
-    },
-  ]);
-  for (j in categoryData.category.categoryFields) {
+
+  if (categoryData.category.categoryHeader) {
     reportTable.push([
       {
-        text: categoryData.category.categoryFields[j].field.fieldId,
-        alignment: "center",
-        fillColor: "#dcdcdc",
+        text: "",
+        border: [false, false, false, false],
+        fillColor: "white",
       },
       {
-        text: categoryData.category.categoryFields[j].field.fieldHeader,
+        text: categoryData.category.categoryHeader,
         alignment: "center",
-        fillColor: "#dcdcdc",
+        fillColor: "#a9a9a9",
         colSpan: 2,
       },
+      { text: "" },
     ]);
-    // {
-    //           field: {
-    //             fieldId: 9,
-    //             fieldHeader:
-    //               "Ειδικότεροι στόχοι ανάλογα με τον τομέα νομοθέτησης",
-    //             fieldCreatedBy: createField9Tables(field_9_data),
-    //           },
-    //         },
+  }
+
+  for (j in categoryData.category.categoryFields) {
+    handleCategoryFields(reportTable, categoryData.category.categoryFields[j]);
+
     if (categoryData.category.categoryFields[j].field.fieldCreatedBy) {
-      generatedFields = {
-        id: categoryData.category.categoryFields[j].field.fieldId,
-        data: categoryData.category.categoryFields[j].field.fieldCreatedBy,
-      };
-    }
-    if (categoryData.category.categoryFields[j].field.fieldOptions) {
-      for (k in categoryData.category.categoryFields[j].field.fieldOptions) {
-        reportTable.push([
-          { text: "" },
-          {
-            text: categoryData.category.categoryFields[j].field.fieldOptions[k]
-              .option,
-            alignment: "center",
-          },
-          {
-            text: categoryData.category.categoryFields[j].field.fieldOptions[k]
-              .optionText,
-            alignment: "center",
-          },
-          // {}, {},{},{},{}
-        ]);
-      }
-    } else {
-      reportTable.push([
-        { text: "" },
-        {
-          text: categoryData.category.categoryFields[j].field.fieldText,
-          alignment: "center",
-          colSpan: 2,
-        },
-      ]);
+      generatedFields =
+        categoryData.category.categoryFields[j].field.fieldCreatedBy;
     }
   }
 
+  let len = reportTable.length;
+  if (reportTable[len - 1].length === 4) {
+    reportTables = {
+      table: {
+        headerRows: 0, //uncomment to have table header repeated on page break
+        widths: ["5%", "10%", "25%", "60%"],
+        body: reportTable,
+      },
+    };
+  } else {
+    reportTables = {
+      table: {
+        headerRows: 0, //uncomment to have table header repeated on page break
+        widths: ["5%", "20%", "75%"],
+        body: reportTable,
+      },
+    };
+  }
+
+  if (generatedFields) {
+    return [reportTables, generatedFields];
+  } else {
+    return reportTables;
+  }
+}
+
+function handleCategoryFields(reportTable, category) {
+  reportTable.push([
+    {
+      text: category.field.fieldId,
+      alignment: "center",
+      fillColor: "#dcdcdc",
+    },
+    {
+      text: category.field.fieldHeader,
+      alignment: "center",
+      fillColor: "#dcdcdc",
+      colSpan: 2,
+    },
+    { text: "" },
+  ]);
+
+  if (category.field.fieldOptions) {
+    if (category.field.fieldOptions[0].title) {
+      reportTable[reportTable.length - 1][1].colSpan = 3; //update colspan for previous entry
+      reportTable[reportTable.length - 1].push({ text: "" });
+      // TODO: debug here
+      for (fieldOption in category.field.fieldOptions) {
+        reportTable.push([
+          { text: "", border: [false, false, false, false] },
+          {
+            text: category.field.fieldOptions[fieldOption].title,
+            alignment: "center",
+            rowSpan: 3,
+          },
+          {
+            text: category.field.fieldOptions[fieldOption].options[0].option,
+          },
+          {
+            text: category.field.fieldOptions[fieldOption].options[0]
+              .optionText,
+          },
+        ]);
+        for (option in category.field.fieldOptions[fieldOption].options) {
+          if (option !== "0") {
+            reportTable.push([
+              { text: "", border: [false, false, false, false] },
+              {
+                text: "",
+              },
+              {
+                text: category.field.fieldOptions[fieldOption].options[option]
+                  .option,
+              },
+              {
+                text: category.field.fieldOptions[fieldOption].options[option]
+                  .optionText,
+              },
+            ]);
+          }
+        }
+      }
+    } else {
+      let alteredColumns = false;
+      for (k in category.field.fieldOptions) {
+        if (category.field.fieldOptions[k].hasCheckbox) {
+          if (!alteredColumns) {
+            reportTable[reportTable.length - 1][1].colSpan = 3;
+            reportTable[reportTable.length - 1].push({ text: "" });
+            alteredColumns = true;
+          }
+          reportTable.push([
+            { text: "" },
+            { image: `./public/img/empty-checkbox.jpg`, width: 30, height: 30 },
+            {
+              text: category.field.fieldOptions[k].option,
+              alignment: "center",
+            },
+            {
+              text: category.field.fieldOptions[k].optionText,
+              alignment: "center",
+            },
+          ]);
+        } else {
+          reportTable.push([
+            { text: "", border: [false, false, false, false] },
+            {
+              text: category.field.fieldOptions[k].option,
+              alignment: "center",
+            },
+            {
+              text: category.field.fieldOptions[k].optionText,
+              alignment: "center",
+            },
+          ]);
+        }
+      }
+    }
+  } else {
+    if (category.field.fieldText) {
+      reportTable.push([
+        { text: "", border: [false, false, false, false] },
+        {
+          text: category.field.fieldText,
+          alignment: "center",
+          colSpan: 2,
+        },
+        { text: "" },
+      ]);
+    }
+  }
+}
+
+//create field7 alignment using columns and stacks
+function createField7(data) {
   let reportTables = {
     table: {
-      headerRows: 1,
-      widths: ["5%", "20%", "75%"], //widths: ["25%", "5%", "5%", "5%", "5%", "5%", "25%", "25%"],
-      body: reportTable,
+      headerRows: 0,
+      widths: ["100%"],
+      body: [
+        [
+          {
+            stack: [
+              {
+                columns: [
+                  {
+                    stack: [
+                      {
+                        columns: [
+                          setImage(data.field_7_goal_1),
+                          {
+                            image: "./public/img/gr-goal-1.jpg",
+                            width: 60,
+                            height: 60,
+                          },
+                          setImage(data.field_7_goal_2),
+                          {
+                            image: "./public/img/gr-goal-2.jpg",
+                            width: 60,
+                            height: 60,
+                          },
+                          setImage(data.field_7_goal_3),
+                          {
+                            image: "./public/img/gr-goal-3.jpg",
+                            width: 60,
+                            height: 60,
+                          },
+                          setImage(data.field_7_goal_4),
+                          {
+                            image: "./public/img/gr-goal-4.jpg",
+                            width: 60,
+                            height: 60,
+                          },
+                          setImage(data.field_7_goal_5),
+                          {
+                            image: "./public/img/gr-goal-5.jpg",
+                            width: 60,
+                            height: 60,
+                          },
+                        ],
+                      },
+                      {
+                        text: "\n",
+                      },
+                    ],
+                  },
+                ],
+                columnGap: 10,
+              },
+              {
+                columns: [
+                  {
+                    stack: [
+                      {
+                        columns: [
+                          setImage(data.field_7_goal_6),
+                          {
+                            image: "./public/img/gr-goal-6.jpg",
+                            width: 60,
+                            height: 60,
+                          },
+                          setImage(data.field_7_goal_7),
+                          {
+                            image: "./public/img/gr-goal-7.jpg",
+                            width: 60,
+                            height: 60,
+                          },
+                          setImage(data.field_7_goal_8),
+                          {
+                            image: "./public/img/gr-goal-8.jpg",
+                            width: 60,
+                            height: 60,
+                          },
+                          setImage(data.field_7_goal_9),
+                          {
+                            image: "./public/img/gr-goal-9.jpg",
+                            width: 60,
+                            height: 60,
+                          },
+                          setImage(data.field_7_goal_10),
+                          {
+                            image: "./public/img/gr-goal-10.jpg",
+                            width: 60,
+                            height: 60,
+                          },
+                        ],
+                      },
+                      {
+                        text: "\n",
+                      },
+                    ],
+                  },
+                ],
+                columnGap: 10,
+              },
+              {
+                columns: [
+                  {
+                    stack: [
+                      {
+                        columns: [
+                          setImage(data.field_7_goal_11),
+                          {
+                            image: "./public/img/gr-goal-11.jpg",
+                            width: 60,
+                            height: 60,
+                          },
+                          setImage(data.field_7_goal_12),
+                          {
+                            image: "./public/img/gr-goal-12.jpg",
+                            width: 60,
+                            height: 60,
+                          },
+                          setImage(data.field_7_goal_13),
+                          {
+                            image: "./public/img/gr-goal-13.jpg",
+                            width: 60,
+                            height: 60,
+                          },
+                          setImage(data.field_7_goal_14),
+                          {
+                            image: "./public/img/gr-goal-14.jpg",
+                            width: 60,
+                            height: 60,
+                          },
+                          setImage(data.field_7_goal_15),
+                          {
+                            image: "./public/img/gr-goal-15.jpg",
+                            width: 60,
+                            height: 60,
+                          },
+                        ],
+                      },
+                      {
+                        text: "\n",
+                      },
+                    ],
+                  },
+                ],
+                columnGap: 10,
+              },
+              {
+                columns: [
+                  {
+                    stack: [
+                      {
+                        columns: [
+                          {
+                            text: "",
+                          },
+                          {
+                            text: "",
+                          },
+                          {
+                            text: "",
+                          },
+                          {
+                            image: "./public/img/gr-goal-16.jpg",
+                            width: 60,
+                            height: 60,
+                          },
+                          setImage(data.field_7_goal_16),
+                          {
+                            image: "./public/img/gr-goal-17.jpg",
+                            width: 60,
+                            height: 60,
+                          },
+                          setImage(data.field_7_goal_17),
+                          {
+                            text: "",
+                          },
+                          {
+                            text: "",
+                          },
+                          {
+                            text: "",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+                columnGap: 10,
+              },
+            ],
+          },
+        ],
+      ],
     },
   };
   return reportTables;
 }
-function exportColumns(data) {
-  var columns = [];
-  columns.push(
-    {
-      columns: [
-        setGoalImage(data.field_7_goal_1, "goal-1"),
-        setGoalImage(data.field_7_goal_2, "goal-2"),
-        setGoalImage(data.field_7_goal_3, "goal-3"),
-        setGoalImage(data.field_7_goal_4, "goal-4"),
-        setGoalImage(data.field_7_goal_5, "goal-5"),
-      ],
-      columnGap: 10,
-    },
-    {
-      columns: [
-        setGoalImage(data.field_7_goal_6, "goal-6"),
-        setGoalImage(data.field_7_goal_7, "goal-7"),
-        setGoalImage(data.field_7_goal_8, "goal-8"),
-        setGoalImage(data.field_7_goal_9, "goal-9"),
-        setGoalImage(data.field_7_goal_10, "goal-10"),
-      ],
-      columnGap: 10,
-    },
-    {
-      columns: [
-        setGoalImage(data.field_7_goal_11, "goal-11"),
-        setGoalImage(data.field_7_goal_12, "goal-12"),
-        setGoalImage(data.field_7_goal_13, "goal-13"),
-        setGoalImage(data.field_7_goal_14, "goal-14"),
-        setGoalImage(data.field_7_goal_15, "goal-15"),
-      ],
-      columnGap: 10,
-    },
-    {
-      columns: [
-        setGoalImage(data.field_7_goal_16, "goal-16"),
-        setGoalImage(data.field_7_goal_17, "goal-17"),
-      ],
-      columnGap: 10,
-    }
-  );
-  return columns;
-}
 
-function setGoalImage(fieldName, img) {
-  let image = `./public/img/gr-${img}.jpg`;
+function setImage(fieldName) {
   if (fieldName) {
     return {
-      image: image,
-      width: 50,
-      height: 50,
+      image: "./public/img/checked-checkbox.png",
+      width: 20,
+      height: 20,
     };
   } else {
     return {
-      image: image,
-      width: 50,
-      height: 50,
-      opacity: 0.15,
+      image: "./public/img/empty-checkbox.jpg",
+      width: 20,
+      height: 20,
+      // opacity: 0.15,
     };
   }
 }
@@ -1261,7 +1406,6 @@ function setGoalImage(fieldName, img) {
 function createTables(tableData) {
   var rows = [];
   let table;
-  // { columns:2 ,data
   if (tableData.columns === 2) {
     for (let i = 1; i < tableData.data.length; i += 2) {
       rows.push([
@@ -1313,78 +1457,7 @@ function createTables(tableData) {
   return table;
 }
 
-function createDynamicThreeColumnTable(
-  header1,
-  header2,
-  header3,
-  val1,
-  val2,
-  val3
-) {
-  var rows = [];
-  rows.push([
-    { text: header1, alignment: "center", bold: true },
-    { text: header2, alignment: "center", bold: true },
-    { text: header3, alignment: "center", bold: true },
-  ]); //push headers
-
-  for (var i in val1) {
-    rows.push([
-      Object.values(val1[i]),
-      Object.values(val2[i]),
-      Object.values(val3[i]),
-    ]); //push values
-  }
-  var table = {
-    table: {
-      headerRows: 1,
-      widths: ["*", "*", "*"],
-      body: rows,
-    },
-  };
-  return table;
-}
-
-function createDynamicFiveColumnTable(
-  header1,
-  header2,
-  header3,
-  header4,
-  header5,
-  val1,
-  val2,
-  val3,
-  val4,
-  val5
-) {
-  var rows = [];
-  rows.push([
-    { text: header1, alignment: "center", bold: true },
-    { text: header2, alignment: "center", bold: true },
-    { text: header3, alignment: "center", bold: true },
-    { text: header4, alignment: "center", bold: true },
-    { text: header5, alignment: "center", bold: true },
-  ]); //push headers
-  for (var i in val1) {
-    rows.push([
-      Object.values(val1[i]),
-      Object.values(val2[i]),
-      Object.values(val3[i]),
-      Object.values(val4[i]),
-      Object.values(val5[i]),
-    ]); //push values
-  }
-  var table = {
-    table: {
-      headerRows: 1,
-      widths: ["*", "*", "*", "*", "*"],
-      body: rows,
-    },
-  };
-  return table;
-}
-
-function createStaticTable(jsonTableData) {
+function createField9Tables(jsonTableData) {
   let tableRows = [];
   for (i in jsonTableData) {
     if (
@@ -1461,9 +1534,8 @@ function createStaticTable(jsonTableData) {
   }
 
   let table = {
-    //layout: 'lightHorizontalLines',
     table: {
-      headerRows: 1,
+      // headerRows: 1,
       widths: ["25%", "5%", "5%", "5%", "5%", "5%", "25%", "25%"],
       body: tableRows,
     },
@@ -1471,36 +1543,29 @@ function createStaticTable(jsonTableData) {
   return table;
 }
 
-function createField9Tables(josnData) {
+function createField9(josnData) {
   var tables = [];
   for (i in josnData) {
     tables.push({ text: "\n\n" });
-    tables.push(createStaticTable(josnData[i]));
+    tables.push(createField9Tables(josnData[i]));
   }
   return tables;
 }
 
-function getCheckboxValues(values) {
-  let vals = [];
-  for (j in values) {
-    if (values[j].value !== "") {
-      vals.push("√");
-    } else {
-      vals.push(values[j].value);
-    }
-  }
-  return vals;
+function checkboxValue(value) {
+  return value !== "" ? "√" : value;
 }
 
-// TODO: DEBUG
-function exportChckbxTables(table) {
-  let rows = [];
-  let tableRows = [];
+function createField18(field_18, data) {
+  let table = [];
+  let fieldTable;
+  let fieldData = [];
+  let count = 11;
 
-  tableRows.push([
-    { text: "" },
-    { text: "" },
-    { text: "" },
+  table.push([
+    { text: "", border: [false, false, false, false] },
+    { text: "", border: [false, false, false, false] },
+    { text: "", border: [false, false, false, false] },
     {
       text: "ΘΕΣΜΟΙ, ΔΗΜΟΣΙΑ ΔΙΟΙΚΗΣΗ, ΔΙΑΦΑΝΕΙΑ",
       alignment: "center",
@@ -1522,159 +1587,510 @@ function exportChckbxTables(table) {
       alignment: "center",
     },
   ]);
-  for (i in table[0].data[0].rows) {
-    let checkboxValues = getCheckboxValues(table[0].data[0].rows[i].values);
-    rows.push(
-      { text: "" },
-      { text: "" },
+  table.push([
+    {
+      text: "ΟΦΕΛΗ ΡΥΘΜΙΣΗΣ",
+      alignment: "center",
+      rowSpan: 10,
+      fillColor: "#93C572",
+    },
+    {
+      text: "ΑΜΕΣΑ",
+      alignment: "center",
+      rowSpan: 5,
+      fillColor: "#C1E1C1",
+    },
+    {
+      text: field_18[0],
+      alignment: "center",
+    },
+    {
+      text: checkboxValue(field_18[1]),
+      alignment: "center",
+    },
+    {
+      text: checkboxValue(field_18[2]),
+    },
+    {
+      text: checkboxValue(field_18[3]),
+    },
+    {
+      text: checkboxValue(field_18[4]),
+    },
+    {
+      text: checkboxValue(field_18[5]),
+    },
+  ]);
+  for (let i = 0; i < 4; i++) {
+    table.push([
       {
-        text: table[0].data[0].rows[i].label,
+        text: "",
+      },
+      {
+        text: "",
+      },
+      {
+        text: field_18[count - 5],
         alignment: "center",
       },
       {
-        text: checkboxValues[0],
+        text: checkboxValue(field_18[count - 4]),
         alignment: "center",
       },
       {
-        text: checkboxValues[1],
-        alignment: "center",
+        text: checkboxValue(field_18[count - 3]),
       },
       {
-        text: checkboxValues[2],
-        alignment: "center",
+        text: checkboxValue(field_18[count - 2]),
       },
       {
-        text: checkboxValues[3],
-        alignment: "center",
+        text: checkboxValue(field_18[count - 1]),
       },
       {
-        text: checkboxValues[4],
-        alignment: "center",
-      }
-    );
-    tableRows.push(rows);
-    rows = [];
+        text: checkboxValue(field_18[count]),
+      },
+    ]);
+    count += 6;
   }
-
-  // tableRows.push(
-  //   [
-  //     {
-  //       text: table[0].header,
-  //       fillColor: "#7bb661",
-  //       alignment: "center",
-  //       bold: true,
-  //       rowSpan: 5,
-  //     },
-  //     {
-  //       text: table[0].data[0].subHeader,
-  //       fillColor: "#7bb661",
-  //       alignment: "center",
-  //       bold: true,
-  //       rowSpan: 5,
-  //     },
-  //   ],
-  //   rows
-  // );
-  let tables = {
+  table.push([
+    {
+      text: "",
+    },
+    {
+      text: "ΕΜΜΕΣΑ",
+      alignment: "center",
+      rowSpan: 5,
+      fillColor: "#C1E1C1",
+    },
+    {
+      text: field_18[count - 5],
+      alignment: "center",
+    },
+    {
+      text: checkboxValue(field_18[count - 4]),
+      alignment: "center",
+    },
+    {
+      text: checkboxValue(field_18[count - 3]),
+    },
+    {
+      text: checkboxValue(field_18[count - 2]),
+    },
+    {
+      text: checkboxValue(field_18[count - 1]),
+    },
+    {
+      text: checkboxValue(field_18[count]),
+    },
+  ]);
+  count += 6;
+  for (let i = 0; i < 4; i++) {
+    table.push([
+      {
+        text: "",
+      },
+      {
+        text: "",
+      },
+      {
+        text: field_18[count - 5],
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(field_18[count - 4]),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(field_18[count - 3]),
+      },
+      {
+        text: checkboxValue(field_18[count - 2]),
+      },
+      {
+        text: checkboxValue(field_18[count - 1]),
+      },
+      {
+        text: checkboxValue(field_18[count]),
+      },
+    ]);
+    count += 6;
+  }
+  fieldTable = {
     table: {
-      // headerRows: header,
-      widths: [
-        "12,5%",
-        "12,5%",
-        "12,5%",
-        "12,5%",
-        // "25%",
-        // "25%",
-        "12,5%",
-        "12,5%",
-        "12,5%",
-        "12,5%",
-      ],
-      body: tableRows,
+      headerRows: 0, //uncomment to have table header repeated on page break
+      widths: ["8%", "11%", "11%", "14%", "14%", "14%", "14%", "14%"],
+      body: table,
     },
   };
 
-  return tables;
+  fieldData.push(fieldTable);
+  fieldData.push({ text: "\nΣχολιασμός / ποιοτική αποτίμηση:" });
+  fieldData.push({
+    table: {
+      widths: ["100%"],
+
+      body: [[data.field_18_comments]],
+    },
+  });
+  return fieldData;
 }
 
-function createChckbxTable(table) {
-  var rows = [];
-  var header = 0;
-  if (table[6]) {
-    rows.push([
-      {
-        text: table[6],
-        fillColor: "#7bb661",
-        alignment: "center",
-        bold: true,
-        colSpan: 5,
-      },
-      { text: "" },
-      { text: "" },
-      { text: "" },
-      { text: "" },
-    ]);
-    header++;
-  }
-  if (table[7]) {
-    rows.push([
-      {
-        text: table[7],
-        colSpan: 5,
-        fillColor: "#7bb661",
-        alignment: "center",
-        bold: true,
-      },
-      { text: "" },
-      { text: "" },
-      { text: "" },
-      { text: "" },
-    ]);
-    rows.push([
-      {
-        text: "ΘΕΣΜΟΙ, ΔΗΜΟΣΙΑ ΔΙΟΙΚΗΣΗ, ΔΙΑΦΑΝΕΙΑ",
-        alignment: "center",
-        bold: true,
-      },
-      {
-        text: "ΑΓΟΡΑ, ΟΙΚΟΝΟΜΙΑ, ΑΝΤΑΓΩΝΙΣΜΟΣ",
-        alignment: "center",
-        bold: true,
-      },
-      { text: "ΚΟΙΝΩΝΙΑ & ΚΟΙΝΩΝΙΚΕΣ ΟΜΑΔΕΣ", alignment: "center", bold: true },
-      {
-        text: "ΦΥΣΙΚΟ, ΑΣΤΙΚΟ ΚΑΙ ΠΟΛΙΤΙΣΤΙΚΟ ΠΕΡΙΒΑΛΛΟΝ",
-        alignment: "center",
-        bold: true,
-      },
-      { text: "ΝΗΣΙΩΤΙΚΟΤΗΤΑ", alignment: "center", bold: true },
-    ]);
-    header++;
-  }
-  rows.push([
-    { text: table[0], colSpan: 5, alignment: "center", bold: true },
-    { text: "" },
-    { text: "" },
-    { text: "" },
-    { text: "" },
-  ]);
-  rows.push([
-    { text: table[1], alignment: "center" },
-    { text: table[2], alignment: "center" },
-    { text: table[3], alignment: "center" },
-    { text: table[4], alignment: "center" },
-    { text: table[5], alignment: "center" },
-  ]);
+function createField19(field_19, data) {
+  let table = [];
+  let fieldTable;
+  let fieldData = [];
+  let count = 11;
 
-  var table = {
+  table.push([
+    { text: "", border: [false, false, false, false] },
+    { text: "", border: [false, false, false, false] },
+    { text: "", border: [false, false, false, false] },
+    {
+      text: "ΘΕΣΜΟΙ, ΔΗΜΟΣΙΑ ΔΙΟΙΚΗΣΗ, ΔΙΑΦΑΝΕΙΑ",
+      alignment: "center",
+    },
+    {
+      text: "ΑΓΟΡΑ, ΟΙΚΟΝΟΜΙΑ, ΑΝΤΑΓΩΝΙΣΜΟΣ",
+      alignment: "center",
+    },
+    {
+      text: "ΚΟΙΝΩΝΙΑ & ΚΟΙΝΩΝΙΚΕΣ ΟΜΑΔΕΣ",
+      alignment: "center",
+    },
+    {
+      text: "ΦΥΣΙΚΟ, ΑΣΤΙΚΟ ΚΑΙ ΠΟΛΙΤΙΣΤΙΚΟ ΠΕΡΙΒΑΛΛΟΝ",
+      alignment: "center",
+    },
+    {
+      text: "ΝΗΣΙΩΤΙΚΟΤΗΤΑ",
+      alignment: "center",
+    },
+  ]);
+  table.push([
+    {
+      text: "ΚΟΣΤΟΣ ΡΥΘΜΙΣΗΣ",
+      alignment: "center",
+      rowSpan: 9,
+      fillColor: "#EF9759",
+    },
+    {
+      text: "ΓΙΑ ΤΗΝ ΕΝΑΡΞΗ ΕΦΑΡΜΟΓΗΣ ΤΗΣ ΡΥΘΜΙΣΗΣ",
+      alignment: "center",
+      rowSpan: 5,
+      fillColor: "#F9B483",
+    },
+    {
+      text: field_19[0],
+      alignment: "center",
+    },
+    {
+      text: checkboxValue(field_19[1]),
+      alignment: "center",
+    },
+    {
+      text: checkboxValue(field_19[2]),
+    },
+    {
+      text: checkboxValue(field_19[3]),
+    },
+    {
+      text: checkboxValue(field_19[4]),
+    },
+    {
+      text: checkboxValue(field_19[5]),
+    },
+  ]);
+  for (let i = 0; i < 4; i++) {
+    table.push([
+      {
+        text: "",
+      },
+      {
+        text: "",
+      },
+      {
+        text: field_19[count - 5],
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(field_19[count - 4]),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(field_19[count - 3]),
+      },
+      {
+        text: checkboxValue(field_19[count - 2]),
+      },
+      {
+        text: checkboxValue(field_19[count - 1]),
+      },
+      {
+        text: checkboxValue(field_19[count]),
+      },
+    ]);
+    count += 6;
+  }
+  table.push([
+    {
+      text: "",
+    },
+    {
+      text: "ΓΙΑ ΤΗ ΛΕΙΤΟΥΡΓΙΑ & ΑΠΟΔΟΣΗ ΤΗΣ ΡΥΘΜΙΣΗΣ",
+      alignment: "center",
+      rowSpan: 4,
+      fillColor: "#F9B483",
+    },
+    {
+      text: field_19[count - 5],
+      alignment: "center",
+    },
+    {
+      text: checkboxValue(field_19[count - 4]),
+      alignment: "center",
+    },
+    {
+      text: checkboxValue(field_19[count - 3]),
+    },
+    {
+      text: checkboxValue(field_19[count - 2]),
+    },
+    {
+      text: checkboxValue(field_19[count - 1]),
+    },
+    {
+      text: checkboxValue(field_19[count]),
+    },
+  ]);
+  count += 6;
+  for (let i = 0; i < 3; i++) {
+    table.push([
+      {
+        text: "",
+      },
+      {
+        text: "",
+      },
+      {
+        text: field_19[count - 5],
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(field_19[count - 4]),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(field_19[count - 3]),
+      },
+      {
+        text: checkboxValue(field_19[count - 2]),
+      },
+      {
+        text: checkboxValue(field_19[count - 1]),
+      },
+      {
+        text: checkboxValue(field_19[count]),
+      },
+    ]);
+    count += 6;
+  }
+  fieldTable = {
     table: {
-      headerRows: header,
-      widths: ["*", "*", "*", "*", "*"],
-      body: rows,
+      headerRows: 0, //uncomment to have table header repeated on page break
+      widths: ["8%", "11%", "11%", "14%", "14%", "14%", "14%", "14%"],
+      body: table,
     },
   };
 
-  return table;
+  fieldData.push(fieldTable);
+  fieldData.push({ text: "\nΣχολιασμός / ποιοτική αποτίμηση:" });
+  fieldData.push({
+    table: {
+      widths: ["100%"],
+
+      body: [[data.field_19_comments]],
+    },
+  });
+  return fieldData;
+}
+
+function createField20(field_20, data) {
+  let table = [];
+  let fieldTable;
+  let fieldData = [];
+  let count = 11;
+
+  table.push([
+    { text: "", border: [false, false, false, false] },
+    { text: "", border: [false, false, false, false] },
+    { text: "", border: [false, false, false, false] },
+    {
+      text: "ΘΕΣΜΟΙ, ΔΗΜΟΣΙΑ ΔΙΟΙΚΗΣΗ, ΔΙΑΦΑΝΕΙΑ",
+      alignment: "center",
+    },
+    {
+      text: "ΑΓΟΡΑ, ΟΙΚΟΝΟΜΙΑ, ΑΝΤΑΓΩΝΙΣΜΟΣ",
+      alignment: "center",
+    },
+    {
+      text: "ΚΟΙΝΩΝΙΑ & ΚΟΙΝΩΝΙΚΕΣ ΟΜΑΔΕΣ",
+      alignment: "center",
+    },
+    {
+      text: "ΦΥΣΙΚΟ, ΑΣΤΙΚΟ ΚΑΙ ΠΟΛΙΤΙΣΤΙΚΟ ΠΕΡΙΒΑΛΛΟΝ",
+      alignment: "center",
+    },
+    {
+      text: "ΝΗΣΙΩΤΙΚΟΤΗΤΑ",
+      alignment: "center",
+    },
+  ]);
+  table.push([
+    {
+      text: "ΚΙΝΔΥΝΟΙ ΡΥΘΜΙΣΗΣ",
+      alignment: "center",
+      rowSpan: 8,
+      fillColor: "#E5E510 ",
+    },
+    {
+      text: "ΔΙΑΧΕΙΡΙΣΗ ΚΙΝΔΥΝΩΝ",
+      alignment: "center",
+      rowSpan: 4,
+      fillColor: "#F4F410",
+    },
+    {
+      text: field_20[0],
+      alignment: "center",
+    },
+    {
+      text: checkboxValue(field_20[1]),
+      alignment: "center",
+    },
+    {
+      text: checkboxValue(field_20[2]),
+    },
+    {
+      text: checkboxValue(field_20[3]),
+    },
+    {
+      text: checkboxValue(field_20[4]),
+    },
+    {
+      text: checkboxValue(field_20[5]),
+    },
+  ]);
+  for (let i = 0; i < 3; i++) {
+    table.push([
+      {
+        text: "",
+      },
+      {
+        text: "",
+      },
+      {
+        text: field_20[count - 5],
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(field_20[count - 4]),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(field_20[count - 3]),
+      },
+      {
+        text: checkboxValue(field_20[count - 2]),
+      },
+      {
+        text: checkboxValue(field_20[count - 1]),
+      },
+      {
+        text: checkboxValue(field_20[count]),
+      },
+    ]);
+    count += 6;
+  }
+  table.push([
+    {
+      text: "",
+    },
+    {
+      text: "ΜΕΙΩΣΗ ΚΙΝΔΥΝΩΝ",
+      alignment: "center",
+      rowSpan: 4,
+      fillColor: "#F4F410",
+    },
+    {
+      text: field_20[count - 5],
+      alignment: "center",
+    },
+    {
+      text: checkboxValue(field_20[count - 4]),
+      alignment: "center",
+    },
+    {
+      text: checkboxValue(field_20[count - 3]),
+    },
+    {
+      text: checkboxValue(field_20[count - 2]),
+    },
+    {
+      text: checkboxValue(field_20[count - 1]),
+    },
+    {
+      text: checkboxValue(field_20[count]),
+    },
+  ]);
+  count += 6;
+  for (let i = 0; i < 3; i++) {
+    table.push([
+      {
+        text: "",
+      },
+      {
+        text: "",
+      },
+      {
+        text: field_20[count - 5],
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(field_20[count - 4]),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(field_20[count - 3]),
+      },
+      {
+        text: checkboxValue(field_20[count - 2]),
+      },
+      {
+        text: checkboxValue(field_20[count - 1]),
+      },
+      {
+        text: checkboxValue(field_20[count]),
+      },
+    ]);
+    count += 6;
+  }
+  fieldTable = {
+    table: {
+      headerRows: 0, //uncomment to have table header repeated on page break
+      widths: ["8%", "11%", "11%", "14%", "14%", "14%", "14%", "14%"],
+      body: table,
+    },
+  };
+
+  fieldData.push(fieldTable);
+  fieldData.push({ text: "\nΣχολιασμός / ποιοτική αποτίμηση:" });
+  fieldData.push({
+    table: {
+      widths: ["100%"],
+
+      body: [[data.field_20_comments]],
+    },
+  });
+  return fieldData;
 }
 
 function createSignatories(fname, lname, position) {
