@@ -2,32 +2,46 @@ const fs = require("fs");
 let database = require("../services/database");
 let path = require("path");
 const PDFMerger = require("pdf-merger-js");
-var jsdom = require("jsdom");
-var { JSDOM } = jsdom;
-var { window } = new JSDOM("");
-var PdfPrinter = require("../node_modules/pdfmake/src/printer");
+let jsdom = require("jsdom");
+let { JSDOM } = jsdom;
+let { window } = new JSDOM("");
+let PdfPrinter = require("../node_modules/pdfmake/src/printer");
 const htmlToPdfmake = require("html-to-pdfmake");
 const tablesLib = require("../lib/tables");
 
 // exports.exportPDF = (async function ( data, next) { // for diff
 exports.exportPDF = async function (req, res, next) {
   let data = req.body;
-  let field_17_onoma = [];
-  let field_17_epitheto = [];
-  let field_17_idiotita = [];
-  let minister_surname = [];
-  let minister_name = [];
-  let ministry = [];
 
+  let ministers = tablesLib.getMinisters(
+    data,
+    "minister_name",
+    "minister_surname",
+    "minister_ministry",
+    "minister_role",
+    "field_17"
+  );
+  let field_17_ministers = tablesLib.getMinisters(
+    data,
+    "field_17_minister_name",
+    "field_17_minister_surname",
+    "field_17_minister_ministry",
+    "field_17_minister_role"
+  );
+  let field_16_signatory = [
+    data.field_16_genikos_onoma,
+    data.field_16_genikos_epitheto,
+  ];
   let field_9_data = tablesLib.getDataForPdfField9(
-    req.body,
+    data,
     "_header",
     "_label",
     "_secondHeader"
   ); //data for field_9
-  let field_18 = tablesLib.getPdfCheckboxTableData(req.body, "field_18");
-  let field_19 = tablesLib.getPdfCheckboxTableData(req.body, "field_19");
-  let field_20 = tablesLib.getPdfCheckboxTableData(req.body, "field_20");
+  let field_18 = tablesLib.getPdfCheckboxTableData(data, "field_18");
+  // console.log(field_18)
+  let field_19 = tablesLib.getPdfCheckboxTableData(data, "field_19");
+  let field_20 = tablesLib.getPdfCheckboxTableData(data, "field_20");
   let field_14 = {
     columns: 2,
     data: tablesLib.createDynamicPDFTable(data, [
@@ -71,7 +85,29 @@ exports.exportPDF = async function (req, res, next) {
     ]),
   };
 
+  let field_14_headers = ["Άρθρο", "Στόχος"];
+  let field_29_headers = [
+    "Διατάξεις αξιολογούμενης ρύθμισης",
+    "Υφιστάμενες διατάξεις",
+  ];
+  let field_30_headers = [
+    "Διατάξεις αξιολογούμενης ρύθμισης που προβλέπουν κατάργηση",
+    "Καταργούμενες διατάξεις",
+  ];
+  let field_31_headers = [
+    "Σχετική διάταξη αξιολογούμενης ρύθμισης",
+    "Συναρμόδια Υπουργεία –Συναρμόδιες υπηρεσίες / φορείς",
+    "Αντικείμενο συναρμοδιότητας",
+  ];
+  let field_32_headers = [
+    "Εξουσιοδοτική διάταξη",
+    "Είδος πράξης",
+    "Αρμόδιο ή επισπεύδον Υπουργείο ή υπηρεσία",
+    "Αντικείμενο",
+    "Χρονοδιάγραμμα (ενδεικτική ή αποκλειστική προθεσμία)",
+  ];
   const Report = {
+    cover: createCover(data),
     reports: [
       {
         reportTitle: "Α. Αιτολογική έκθεση",
@@ -85,21 +121,21 @@ exports.exportPDF = async function (req, res, next) {
                     fieldId: 1,
                     fieldHeader:
                       "Ποιο ζήτημα αντιμετωπίζει η αξιολογούμενη ρύθμιση;",
-                    fieldText: data.field_1,
+                    fieldText: isEmpty(data.field_1),
                   },
                 },
                 {
                   field: {
                     fieldId: 2,
                     fieldHeader: "Γιατί αποτελεί πρόβλημα;",
-                    fieldText: data.field_2,
+                    fieldText: isEmpty(data.field_2),
                   },
                 },
                 {
                   field: {
                     fieldId: 3,
                     fieldHeader: "Ποιους φορείς ή πληθυσμιακές ομάδες αφορά;",
-                    fieldText: data.field_3,
+                    fieldText: isEmpty(data.field_3),
                   },
                 },
               ],
@@ -112,10 +148,13 @@ exports.exportPDF = async function (req, res, next) {
                 {
                   field: {
                     fieldId: 4,
-                    fieldHeader: `Το εν λόγω ζήτημα έχει αντιμετωπιστεί με νομοθετική ρύθμιση στο παρελθόν;
-                  ΝΑΙ   Χ        ΟΧΙ  
-                  Εάν ΝΑΙ, ποιο είναι το ισχύον νομικό πλαίσιο που ρυθμίζει το ζήτημα;`,
-                    fieldText: data.field_4_comments + "\n\n",
+                    fieldHeader: isSelect(
+                      `Το εν λόγω ζήτημα έχει αντιμετωπιστεί με νομοθετική ρύθμιση στο παρελθόν; 
+                      ΝΑΙ ΟΧΙ 
+                      Εάν ΝΑΙ, ποιο είναι το ισχύον νομικό πλαίσιο που ρυθμίζει το ζήτημα;`,
+                      data.field_4
+                    ),
+                    fieldText: isEmpty(data.field_4_comments),
                   },
                 },
                 {
@@ -148,9 +187,12 @@ exports.exportPDF = async function (req, res, next) {
                 {
                   field: {
                     fieldId: 6,
-                    fieldHeader: `Έχετε λάβει υπόψη συναφείς πρακτικές; 
-                   ΝΑΙ       Χ          ΟΧΙ       
+                    fieldHeader: isSelect(
+                      `Έχετε λάβει υπόψη συναφείς πρακτικές; 
+                   ΝΑΙ  ΟΧΙ
                    Εάν ΝΑΙ, αναφέρατε συγκεκριμένα:`,
+                      data.field_6
+                    ),
                     fieldOptions: [
                       {
                         option: "i) σε άλλη/ες χώρα/ες της Ε.Ε. ή του ΟΟΣΑ:",
@@ -224,7 +266,12 @@ exports.exportPDF = async function (req, res, next) {
                 {
                   field: {
                     fieldId: 10,
-                    fieldHeader: `Σε περίπτωση που προβλέπεται η χρήση πληροφοριακού συστήματος, ποια θα είναι η συμβολή αυτού στην επίτευξη των στόχων της αξιολογούμενης ρύθμισης:         ΑΜΕΣΗ           ή/και      ΕΜΜΕΣΗ     `,
+                    fieldHeader: isDirectOrIndirect(
+                      `Σε περίπτωση που προβλέπεται η χρήση πληροφοριακού συστήματος, ποια θα είναι η συμβολή αυτού στην επίτευξη των στόχων της αξιολογούμενης ρύθμισης: 
+                    ΑΜΕΣΗ ή/και ΕΜΜΕΣΗ`,
+                      data.field_10_amesi,
+                      data.field_10_emmesi
+                    ),
                     fieldOptions: [
                       {
                         option: "i)   Εάν είναι άμεση, εξηγήστε:",
@@ -240,8 +287,11 @@ exports.exportPDF = async function (req, res, next) {
                 {
                   field: {
                     fieldId: 11,
-                    fieldHeader: `Το προβλεπόμενο πληροφοριακό σύστημα είναι συμβατό με την εκάστοτε ψηφιακή στρατηγική της χώρας (Βίβλος Ψηφιακού Μετασχηματισμού);   
-                ΝΑΙ                 ΟΧΙ     `,
+                    fieldHeader: isSelect(
+                      `Το προβλεπόμενο πληροφοριακό σύστημα είναι συμβατό με την εκάστοτε ψηφιακή στρατηγική της χώρας (Βίβλος Ψηφιακού Μετασχηματισμού);   
+                ΝΑΙ  ΟΧΙ`,
+                      data.field_11
+                    ),
                     fieldOptions: [
                       {
                         option: "Εξηγήστε:",
@@ -253,7 +303,11 @@ exports.exportPDF = async function (req, res, next) {
                 {
                   field: {
                     fieldId: 12,
-                    fieldHeader: `Διασφαλίζεται η διαλειτουργικότητα του εν λόγω πληροφοριακού συστήματος με άλλα υφιστάμενα συστήματα;     ΝΑΙ                 ΟΧΙ     `,
+                    fieldHeader: isSelect(
+                      `Διασφαλίζεται η διαλειτουργικότητα του εν λόγω πληροφοριακού συστήματος με άλλα υφιστάμενα συστήματα; 
+                    ΝΑΙ ΟΧΙ`,
+                      data.field_12
+                    ),
                     fieldOptions: [
                       {
                         option: "Αναφέρατε ποια είναι αυτά τα συστήματα:",
@@ -265,7 +319,11 @@ exports.exportPDF = async function (req, res, next) {
                 {
                   field: {
                     fieldId: 13,
-                    fieldHeader: `Έχει προηγηθεί μελέτη βιωσιμότητας του προβλεπόμενου πληροφοριακού συστήματος;                           ΝΑΙ                 ΟΧΙ     `,
+                    fieldHeader: isSelect(
+                      `Έχει προηγηθεί μελέτη βιωσιμότητας του προβλεπόμενου πληροφοριακού συστήματος; 
+                    ΝΑΙ ΟΧΙ`,
+                      data.field_13
+                    ),
                     fieldOptions: [
                       {
                         option: "Εξηγήστε:",
@@ -285,7 +343,137 @@ exports.exportPDF = async function (req, res, next) {
                   field: {
                     fieldId: 14,
                     fieldHeader: "Σύνοψη στόχων κάθε άρθρου",
-                    fieldCreatedBy: createTables(field_14),
+                    fieldCreatedBy: createTables(field_14, field_14_headers),
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+      {
+        reportTitle:
+          "Β. Έκθεση Γενικού Λογιστηρίου του Κράτους (άρθρο 75 παρ. 1 ή 2 του Συντάγματος)",
+        fields: [
+          {
+            category: {
+              categoryFields: [
+                {
+                  field: {
+                    fieldHeader:
+                      "Στο σχέδιο νόμου ή στην τροπολογία επί του σχεδίου νόμου",
+                    fieldText: isEmpty(data.field_15_sxedio_nomou),
+                  },
+                },
+                {
+                  field: {
+                    fieldHeader: "του Υπουργείου:",
+                    fieldText: isEmpty(data.field_15_ypoyrgeio),
+                  },
+                },
+                {
+                  field: {
+                    fieldId: 15,
+                    fieldHeader:
+                      "15.Συνοπτική ανάλυση των άρθρων της αξιολογούμενης ρύθμισης",
+                    fieldText: isEmpty(data.field_15_rythmiseis, true),
+                    hasHTML: true,
+                  },
+                },
+              ],
+            },
+          },
+          {
+            category: {
+              categoryHeader: "Στόχοι αξιολογούμενης ρύθμισης",
+              categoryFields: [
+                {
+                  field: {
+                    fieldId: 16,
+                    fieldHeader:
+                      "16.Οικονομικά αποτελέσματα επί του Κρατικού Προϋπολογισμού ή/και επί του προϋπολογισμού του/των αρμόδιου/ων φορέα/ων",
+                  },
+                },
+                {
+                  field: {
+                    fieldHeader:
+                      "Από τις προτεινόμενες διατάξεις προκαλούνται τα ακόλουθα οικονομικά αποτελέσματα:",
+                  },
+                },
+                {
+                  field: {
+                    fieldHeader: "Επί του Κρατικού Προϋπολογισμού",
+                    fieldText: isEmpty(data.field_16_kratikos_proypologismos),
+                    hasHTML: true,
+                  },
+                },
+                {
+                  field: {
+                    fieldHeader:
+                      "Επί του Προϋπολογισμού του/των αρμόδιου/ων φορέα/ων",
+                    fieldText: isEmpty(
+                      data.field_16_proypologismos_forea,
+                      true
+                    ),
+                    hasHTML: true,
+                  },
+                },
+              ],
+            },
+          },
+          {
+            category: {
+              categoryFields: [
+                {
+                  field: {
+                    fieldCreatedBy:
+                      createGlkDirectorSignature(field_16_signatory),
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+      {
+        reportTitle: "Γ. Ειδική Έκθεση (άρθρο 75 παρ. 3 του Συντάγματος)",
+        fields: [
+          {
+            category: {
+              categoryFields: [
+                {
+                  field: {
+                    fieldHeader:
+                      "Στο σχέδιο νόμου ή στην τροπολογία επί του σχεδίου νόμου",
+                    fieldText: isEmpty(data.field_17_sxedio_nomou),
+                  },
+                },
+                {
+                  field: {
+                    fieldHeader: "του Υπουργείου:",
+                    fieldText: isEmpty(data.field_17_ypoyrgeio),
+                  },
+                },
+                {
+                  field: {
+                    fieldId: 17,
+                    fieldHeader: "17.Οικονομικά αποτελέσματα ",
+                    fieldText: isEmpty(
+                      data.field_17_oikonomika_apotelesmata,
+                      true
+                    ),
+                    hasHTML: true,
+                  },
+                },
+              ],
+            },
+          },
+          {
+            category: {
+              categoryFields: [
+                {
+                  field: {
+                    fieldCreatedBy: createSignatories(field_17_ministers),
                   },
                 },
               ],
@@ -338,6 +526,20 @@ exports.exportPDF = async function (req, res, next) {
               ],
             },
           },
+          {
+            category: {
+              categoryFields: [
+                {
+                  field: {
+                    fieldId: 21,
+                    fieldHeader:
+                      "Γνώμες ή πορίσματα αρμόδιων υπηρεσιών και ανεξάρτητων αρχών (ηλεκτρονική επισύναψη). Ειδική αιτιολογία σε περίπτωση σημαντικής απόκλισης μεταξύ της γνωμοδότησης και της αξιολογούμενης ρύθμισης.",
+                    fieldText: "Δείτε το Παράρτημα",
+                  },
+                },
+              ],
+            },
+          },
         ],
       },
       {
@@ -382,7 +584,6 @@ exports.exportPDF = async function (req, res, next) {
                     fieldId: 23,
                     fieldHeader:
                       "Σχόλια στο πλαίσιο της διαβούλευσης μέσω της ηλεκτρονικής πλατφόρμας www.opengov.gr (ηλεκτρονική επισύναψη της έκθεσης)",
-                    annex: "Παράρτημα Β",
                     fieldOptions: [
                       {
                         title:
@@ -443,7 +644,7 @@ exports.exportPDF = async function (req, res, next) {
                   field: {
                     fieldId: 24,
                     fieldHeader: "Συναφείς συνταγματικές διατάξεις",
-                    fieldText: data.field_24,
+                    fieldText: isEmpty(data.field_24),
                   },
                 },
               ],
@@ -570,7 +771,7 @@ exports.exportPDF = async function (req, res, next) {
                     fieldId: 29,
                     fieldHeader:
                       "Τροποποίηση – αντικατάσταση – συμπλήρωση διατάξεων",
-                    fieldCreatedBy: createTables(field_29),
+                    fieldCreatedBy: createTables(field_29, field_29_headers),
                   },
                 },
               ],
@@ -583,7 +784,7 @@ exports.exportPDF = async function (req, res, next) {
                   field: {
                     fieldId: 30,
                     fieldHeader: "Κατάργηση διατάξεων",
-                    fieldCreatedBy: createTables(field_30),
+                    fieldCreatedBy: createTables(field_30, field_30_headers),
                   },
                 },
               ],
@@ -602,7 +803,7 @@ exports.exportPDF = async function (req, res, next) {
                     fieldId: 31,
                     fieldHeader:
                       "Συναρμοδιότητα Υπουργείων / υπηρεσιών / φορέων",
-                    fieldCreatedBy: createTables(field_31),
+                    fieldCreatedBy: createTables(field_31, field_31_headers),
                   },
                 },
               ],
@@ -615,7 +816,7 @@ exports.exportPDF = async function (req, res, next) {
                   field: {
                     fieldId: 32,
                     fieldHeader: "Έκδοση κανονιστικών πράξεων και εγκυκλίων",
-                    fieldCreatedBy: createTables(field_32),
+                    fieldCreatedBy: createTables(field_32, field_32_headers),
                   },
                 },
               ],
@@ -631,7 +832,7 @@ exports.exportPDF = async function (req, res, next) {
                     fieldId: 33,
                     fieldHeader:
                       "Ποιες διατάξεις της αξιολογούμενης ρύθμισης προβλέπουν τη σύσταση νέου νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας υπηρεσίας;",
-                    fieldText: data.field_33 + "\n\n",
+                    fieldText: isEmpty(data.field_33),
                   },
                 },
                 {
@@ -639,22 +840,26 @@ exports.exportPDF = async function (req, res, next) {
                     fieldId: 34,
                     fieldHeader:
                       "Γιατί προτείνεται η σύσταση αυτού του νέου οργάνου και δεν επαρκούν οι υφιστάμενες διοικητικές δομές για να επιτευχθεί ο στόχος της αξιολογούμενης ρύθμισης;",
-                    fieldText: data.field_34 + "\n\n",
+                    fieldText: isEmpty(data.field_34),
                   },
                 },
                 {
                   field: {
                     fieldId: 35,
                     fieldHeader: "Χρόνος έναρξης λειτουργίας του νέου οργάνου",
-                    fieldText: data.field_35 + "\n\n",
+                    fieldText: isEmpty(data.field_35),
                   },
                 },
                 {
                   field: {
                     fieldId: 36,
-                    fieldHeader:
-                      "Έχει γίνει η σχετική οικονομοτεχνική μελέτη αναφορικά με τη σύσταση του νέου οργάνου;            ΝΑΙ                 ΟΧΙ     Εάν ΝΑΙ, να επισυναφθεί ηλεκτρονικά.",
-                    annex: "Παράρτημα Γ",
+                    fieldHeader: isSelect(
+                      `Έχει γίνει η σχετική οικονομοτεχνική μελέτη αναφορικά με τη σύσταση του νέου οργάνου; 
+                      ΝΑΙ ΟΧΙ
+                      Εάν ΝΑΙ, να επισυναφθεί ηλεκτρονικά.`,
+                      data.field_36
+                    ),
+                    fieldText: "Δείτε το Παράρτημα",
                   },
                 },
                 ,
@@ -670,14 +875,14 @@ exports.exportPDF = async function (req, res, next) {
                   field: {
                     fieldId: 37,
                     fieldHeader: "Επωνυμία ή ονομασία και νομική μορφή",
-                    fieldText: data.field_37 + "\n\n",
+                    fieldText: isEmpty(data.field_37),
                   },
                 },
                 {
                   field: {
                     fieldId: 38,
                     fieldHeader: "Χώρος λειτουργίας του νέου οργάνου",
-                    fieldText: data.field_38 + "\n\n",
+                    fieldText: isEmpty(data.field_38),
                   },
                 },
                 {
@@ -685,14 +890,14 @@ exports.exportPDF = async function (req, res, next) {
                     fieldId: 39,
                     fieldHeader:
                       "Διασφάλιση επαρκούς υλικοτεχνικού & ηλεκτρονικού εξοπλισμού",
-                    fieldText: data.field_39 + "\n\n",
+                    fieldText: isEmpty(data.field_39),
                   },
                 },
                 {
                   field: {
                     fieldId: 40,
                     fieldHeader: "Τρόπος στελέχωσης του νέου οργάνου",
-                    fieldText: data.field_40 + "\n\n",
+                    fieldText: isEmpty(data.field_40),
                   },
                 },
               ],
@@ -701,6 +906,10 @@ exports.exportPDF = async function (req, res, next) {
         ],
       },
     ],
+    signatories: {
+      createdBy: createSignatories(ministers),
+    },
+    // annex: "Παράρτημα",
   };
 
   // download default Roboto font from cdnjs.com
@@ -708,235 +917,55 @@ exports.exportPDF = async function (req, res, next) {
     Roboto: {
       normal: "public/fonts/Roboto-Regular.ttf",
       bold: "public/fonts/Roboto-Bold.ttf",
+      bolditalics: "public/fonts/Roboto-BoldItalic.ttf",
       italics: "public/fonts/Roboto-Italic.ttf",
       medium: "public/fonts/Roboto-Medium.ttf",
     },
   };
-  var printer = new PdfPrinter(fonts);
+  let printer = new PdfPrinter(fonts);
 
-  var docDefinition = {
+  let docDefinition = {
     pageSize: "A4",
-    styles: {
-      headerStyle: {
-        fontSize: 15,
-        alignment: "left",
-        decoration: "underline",
-      },
-      labelStyle: {
-        fontSize: 13,
-        alignment: "left",
-        decoration: "underline",
-      },
-      signatoryStyle: {
-        fontSize: 13,
-        alignment: "left",
-      },
-      textStyle: {
-        fontSize: 11,
-        alignment: "left",
-      },
-      diffAddedStyle: {
-        fontSize: 11,
-        alignment: "left",
-        color: "green",
-      },
-      diffRemovedStyle: {
-        fontSize: 11,
-        alignment: "left",
-        color: "red",
-        decoration: "lineThrough",
-      },
-    },
+    // styles: {
+    //   headerStyle: {
+    //     fontSize: 15,
+    //     alignment: "left",
+    //     decoration: "underline",
+    //   },
+    //   labelStyle: {
+    //     fontSize: 13,
+    //     alignment: "left",
+    //     decoration: "underline",
+    //   },
+    //   signatoryStyle: {
+    //     fontSize: 13,
+    //     alignment: "left",
+    //   },
+    //   textStyle: {
+    //     fontSize: 11,
+    //     alignment: "left",
+    //   },
+    //   diffAddedStyle: {
+    //     fontSize: 11,
+    //     alignment: "left",
+    //     color: "green",
+    //   },
+    //   diffRemovedStyle: {
+    //     fontSize: 11,
+    //     alignment: "left",
+    //     color: "red",
+    //     decoration: "lineThrough",
+    //   },
+    // },
 
-    content: [
-      [
-        {
-          toc: {
-            title: {
-              text: "Πίνακας περιεχομένων",
-              style: ["header", { bold: true }],
-              fontSize: 18,
-              decoration: "underline",
-            },
-          },
-        },
-        {
-          text: "Αρχική σελίδα",
-          style: "header",
-          fontSize: 16,
-          tocItem: true,
-          tocStyle: { bold: true },
-          decoration: "underline",
-          tocMargin: [20, 0, 0, 0],
-          pageBreak: "before",
-        },
-        {
-          text:
-            "\n\n" +
-            "Τίτλος αξιολογούμενης ρύθμισης: " +
-            data.title +
-            "\n\n" +
-            "Ονοματεπώνυμο συγγραφέα: " +
-            req.session.lname +
-            " " +
-            req.session.fname +
-            "\n\n" +
-            "Αρχική καταχώρηση: " +
-            data.initial_submit +
-            "\n\n" +
-            "Τελευταία ενημέρωση: " +
-            data.last_updated +
-            "\n\n" +
-            "Επισπεύδων φορέας: " +
-            data.epispeudon_foreas +
-            "\n\n" +
-            "Ρύθμιση την οποία αφορά: " +
-            data.rythmisi_pou_afora +
-            "\n\n" +
-            "Στοιχεία επικοινωνίας: " +
-            data.stoixeia_epikoinwnias +
-            "\n\n",
-          style: "textStyle",
-        }, //, pageBreak:'after',
-
-        createContainerTable(Report),
-
-        {
-          text: "Β. Έκθεση Γενικού Λογιστηρίου του Κράτους (άρθρο 75 παρ. 1 ή 2 του Συντάγματος)",
-          style: "headerStyle",
-          tocItem: true,
-          tocStyle: { bold: true },
-          tocMargin: [20, 0, 0, 0],
-          pageBreak: "before",
-        },
-
-        {
-          text: "Στο σχέδιο νόμου ή στην τροπολογία επί του σχεδίου νόμου",
-          style: "labelStyle",
-        },
-        { text: "\n\n" },
-        { text: req.body.field_15_sxedio_nomou + "\n\n", style: "textStyle" },
-        { text: "του Υπουργείου: ", style: "labelStyle" },
-        { text: "\n\n" },
-        { text: req.body.field_15_ypoyrgeio + "\n\n", style: "textStyle" },
-        {
-          text: "15.Συνοπτική ανάλυση των άρθρων της αξιολογούμενης ρύθμισης ",
-          style: "labelStyle",
-        },
-        { text: "\n\n" },
-        htmlToPdfmake(req.body.field_15_rythmiseis, {
-          window: window,
-          replaceText: function (text, nodes) {
-            return text.replace(/(?:\r\n|\r|\n)/g, "<br>");
-          },
-        }),
-        { text: "\n\n" },
-
-        {
-          text: "16.Οικονομικά αποτελέσματα επί του Κρατικού Προϋπολογισμού ή/και επί του προϋπολογισμού του/των αρμόδιου/ων φορέα/ων ",
-          style: "labelStyle",
-        },
-        { text: "\n\n" },
-        {
-          text: "Από τις προτεινόμενες διατάξεις προκαλούνται τα ακόλουθα οικονομικά αποτελέσματα: ",
-          style: "labelStyle",
-        },
-        { text: "\n\n" },
-        { text: "Επί του Κρατικού Προϋπολογισμού ", style: "labelStyle" },
-        { text: "\n\n" },
-        htmlToPdfmake(req.body.field_16_kratikos_proypologismos, {
-          window: window,
-          replaceText: function (text, nodes) {
-            return text.replace(/(?:\r\n|\r|\n)/g, "<br>");
-          },
-        }),
-        { text: "\n\n" },
-        {
-          text: "Επί του Προϋπολογισμού του/των αρμόδιου/ων φορέα/ων ",
-          style: "labelStyle",
-        },
-        { text: "\n\n" },
-        htmlToPdfmake(req.body.field_16_proypologismos_forea, {
-          window: window,
-          replaceText: function (text, nodes) {
-            return text.replace(/(?:\r\n|\r|\n)/g, "<br>");
-          },
-        }),
-        { text: "\n\n" },
-        {
-          text: "Ο/Η ΥΠΟΓΡΑΦΩΝ/ΟΥΣΑ ΓΕΝΙΚΟΣ/Η ΔΙΕΥΘΥΝΤΗΣ/ΡΙΑ",
-          style: "labelStyle",
-        },
-        { text: "\n\n" },
-        {
-          columns: [
-            { text: req.body.field_16_genikos_onoma, style: "textStyle" },
-            { text: req.body.field_16_genikos_epitheto, style: "textStyle" },
-            { text: req.body.field_16_genikos_date, style: "textStyle" },
-          ],
-          columnGap: 20,
-          width: "*",
-        },
-
-        {
-          text: "Γ. Ειδική Έκθεση (άρθρο 75 παρ. 3 του Συντάγματος)",
-          style: "headerStyle",
-          tocItem: true,
-          tocStyle: { bold: true },
-          tocMargin: [20, 0, 0, 0],
-          pageBreak: "before",
-        },
-
-        {
-          text: "Στο σχέδιο νόμου ή στην τροπολογία επί του σχεδίου νόμου",
-          style: "labelStyle",
-        },
-        { text: "\n\n" },
-        { text: data.field_17_sxedio_nomou + "\n\n", style: "textStyle" },
-        { text: "του Υπουργείου: ", style: "labelStyle" },
-        { text: "\n\n" },
-        { text: data.field_17_ypoyrgeio + "\n\n", style: "textStyle" },
-        { text: "17.Οικονομικά αποτελέσματα ", style: "labelStyle" },
-        { text: "\n\n" },
-        htmlToPdfmake(req.body.field_17_oikonomika_apotelesmata, {
-          window: window,
-          replaceText: function (text, nodes) {
-            return text.replace(/(?:\r\n|\r|\n)/g, "<br>");
-          },
-        }),
-        { text: "\n\n" },
-        { text: "ΟΙ ΥΠΟΥΡΓΟΙ", style: "labelStyle" },
-        { text: "\n\n" },
-        // createSignatories(field_17_onoma, field_17_epitheto, field_17_idiotita),
-
-
-        {
-          text: "ΟΙ ΥΠΟΥΡΓΟΙ",
-          style: "headerStyle",
-          tocItem: true,
-          tocStyle: { bold: true },
-          tocMargin: [20, 0, 0, 0],
-          pageBreak: "before",
-        },
-        { text: "\n\n" },
-        // createSignatories(minister_name, minister_surname, ministry),
-
-        {
-          text: "Παράρτημα",
-          style: "headerStyle",
-          tocItem: true,
-          tocStyle: { bold: true },
-          tocMargin: [20, 0, 0, 0],
-          pageBreak: "before",
-        },
-      ],
-    ],
+    content: [[createContainerTable(Report)]],
   };
-  var pdfDoc = printer.createPdfKitDocument(docDefinition);
-  var pdf_name = data.pdf_name + ".pdf";
+
+  let pdfDoc = printer.createPdfKitDocument(docDefinition);
+  let pdf_name = data.pdf_name + ".pdf";
   //pdf_name = pdf_name.replace(/\s+/g, '');
-  var export_path = "public/pdf_exports/";
-  var pdf_path = path.resolve(export_path, pdf_name);
+  let export_path = "public/pdf_exports/";
+  let pdf_path = path.resolve(export_path, pdf_name);
   pdf_path = path.resolve(export_path, pdf_name);
   pdfDoc.pipe(fs.createWriteStream(pdf_path));
   pdfDoc.end();
@@ -948,7 +977,7 @@ exports.exportPDF = async function (req, res, next) {
         id: req.params.entry_id,
       },
     });
-    var merger = new PDFMerger();
+    let merger = new PDFMerger();
     merger.add(pdf_path);
     if (entry.dataValues.field_21_upload) {
       for (i in entry.dataValues.field_21_upload) {
@@ -979,23 +1008,279 @@ exports.exportPDF = async function (req, res, next) {
 
 ////////////////////////FUNCTIONS////////////////////////////////
 
+// TODO: add function which splits string on NAI/OXI and reconstruct it adding checked/unchecked checkbox imgs after each depending on value of checkbox/dropdown
+function isSelect(text, value) {
+  let newText;
+  if (value && value === "Ναι") {
+    newText = text.replace("ΝΑΙ", "ΝΑΙ  X   ");
+  }
+  if (value && value === "Όχι") {
+    newText = text.replace("ΟΧΙ", "   ΟΧΙ  X");
+  }
+  return newText ? newText : text;
+}
+
+function isDirectOrIndirect(text, value1, value2) {
+  let newText;
+  if (value1 && value1 === "on") {
+    newText = text.replace("ΑΜΕΣΗ", "ΑΜΕΣΗ  X   ");
+  }
+  if (value2 && value2 === "on") {
+    newText
+      ? (newText = newText.replace("ΕΜΜΕΣΗ", "   ΕΜΜΕΣΗ  X"))
+      : (newText = text.replace("ΕΜΜΕΣΗ", "   ΕΜΜΕΣΗ  X"));
+  }
+  return newText ? newText : text;
+}
+
 function stripHTML(element) {
   element = element.replace(/(<([^>]+)>)/gi, "");
   return element;
 }
 
-function valIsUndefined(val) {
-  let typeOfVal =
-    typeof val === "undefined"
-      ? {}
-      : { text: val + "\n\n", style: "textStyle" };
-  return typeOfVal;
+function isEmpty(val, hasHTML) {
+  let text;
+  if (hasHTML) {
+    !htmlToPdfmake(val, { window: window }).length
+      ? (text = "\n\n")
+      : (text = val);
+  } else {
+    val === "" && !val ? (text = "\n\n") : (text = val);
+  }
+  return text;
+}
+
+function createCover(data) {
+  let cover = [];
+
+  cover.push({
+    text: "ΑΝΑΛΥΣΗ ΣΥΝΕΠΕΙΩΝ ΡΥΘΜΙΣΗΣ\n\n",
+    fontSize: 17,
+    bold: true,
+    decoration: "underline",
+    alignment: "center",
+  });
+  // cover.push({
+  //   text: "",
+  // });
+  cover.push({
+    text: "ΤΙΤΛΟΣ ΑΞΙΟΛΟΓΟΥΜΕΝΗΣ ΡΥΘΜΙΣΗΣ",
+    fontSize: 15,
+    bold: true,
+    alignment: "center",
+  });
+  cover.push({
+    table: {
+      // headerRows: 0,
+      widths: ["100%"],
+      body: [[{ text: data.title, alignment: "center" }]],
+    },
+  });
+  cover.push({
+    text: "Επισπεύδον Υπουργείο:\n\n",
+    alignment: "center",
+    bold: true,
+  });
+  cover.push({
+    text: data.epispeudon_foreas,
+    fontSize: 15,
+    bold: true,
+    alignment: "center",
+  });
+  cover.push({
+    text: "\nΣτοιχεία επικοινωνίας: " + data.stoixeia_epikoinwnias,
+    alignment: "center",
+    bold: true,
+  });
+  cover.push({
+    text: "\n",
+  });
+  cover.push({
+    table: {
+      headerRows: 0,
+      widths: ["50%", "50%"],
+      body: [
+        [
+          {
+            text: "Επιλέξατε από τον παρακάτω κατάλογο τον τομέα ή τους τομείς νομοθέτησης στους οποίους αφορούν οι βασικές διατάξεις της αξιολογούμενης ρύθμισης:",
+            alignment: "center",
+            colSpan: 2,
+          },
+          { text: "" },
+        ],
+        [{ text: "ΤΟΜΕΙΣ ΝΟΜΟΘΕΤΗΣΗΣ" }, { text: "(X)", alignment: "center" }],
+        [
+          {
+            columns: [
+              {
+                text: "ΕΚΠΑΙΔΕΥΣΗ - ΠΟΛΙΤΙΣΜΟΣ",
+                width: "auto",
+                fontSize: 11,
+              },
+              { text: "1", width: "auto", fontSize: 7 },
+            ],
+          },
+          {
+            text: checkboxValue(data.ekpedeusi_politismos),
+            alignment: "center",
+          },
+        ],
+        [
+          {
+            columns: [
+              {
+                text: "ΕΘΝΙΚΗ ΑΜΥΝΑ – ΕΞΩΤΕΡΙΚΗ ΠΟΛΙΤΙΚΗ",
+                width: "auto",
+                fontSize: 11,
+              },
+              { text: "2", width: "auto", fontSize: 7 },
+            ],
+          },
+          {
+            text: checkboxValue(data.eksoteriki_politiki),
+            alignment: "center",
+          },
+        ],
+        [
+          {
+            columns: [
+              {
+                text: "ΟΙΚΟΝΟΜΙΚΗ / ΔΗΜΟΣΙΟΝΟΜΙΚΗ / ΦΟΡΟΛΟΓΙΚΗ ΠΟΛΙΤΙΚΗ",
+                width: "auto",
+                fontSize: 11,
+              },
+              { text: "3", width: "auto", fontSize: 7 },
+            ],
+          },
+          {
+            text: checkboxValue(data.forologiki_politiki),
+            alignment: "center",
+          },
+        ],
+        [
+          {
+            columns: [
+              {
+                text: "ΚΟΙΝΩΝΙΚΗ ΠΟΛΙΤΙΚΗ",
+                width: "auto",
+                fontSize: 11,
+              },
+              { text: "4", width: "auto", fontSize: 7 },
+            ],
+          },
+          {
+            text: checkboxValue(data.koinoniki_politiki),
+            alignment: "center",
+          },
+        ],
+        [
+          {
+            columns: [
+              {
+                text: "ΔΗΜΟΣΙΑ ΔΙΟΙΚΗΣΗ – ΔΗΜΟΣΙΑ ΤΑΞΗ – ΔΙΚΑΙΟΣΥΝΗ",
+                width: "auto",
+                fontSize: 11,
+              },
+              { text: "5", width: "auto", fontSize: 7 },
+            ],
+          },
+          {
+            text: checkboxValue(data.dimosia_dioikisi),
+            alignment: "center",
+          },
+        ],
+        [
+          {
+            columns: [
+              {
+                text: "ΑΝΑΠΤΥΞΗ – ΕΠΕΝΔΥΤΙΚΗ ΔΡΑΣΤΗΡΙΟΤΗΤΑ",
+                width: "auto",
+                fontSize: 11,
+              },
+              { text: "6", width: "auto", fontSize: 7 },
+            ],
+          },
+          {
+            text: checkboxValue(data.anaptiksi),
+            alignment: "center",
+          },
+        ],
+      ],
+    },
+  });
+  cover.push({
+    text: "\n",
+  });
+  cover.push(
+    {
+      columns: [
+        { text: "1", width: "auto", fontSize: 8 },
+        {
+          text: "Τομέας νομοθέτησης επί θεμάτων Υπουργείου Παιδείας & Θρησκευμάτων και Υπουργείου Πολιτισμού & Αθλητισμού.",
+          width: "auto",
+          fontSize: 10,
+        },
+      ],
+    },
+    {
+      columns: [
+        { text: "2", width: "auto", fontSize: 8 },
+        {
+          text: "Τομέας νομοθέτησης επί θεμάτων Υπουργείου Εθνικής Άμυνας και Υπουργείου Εξωτερικών.",
+          width: "auto",
+          fontSize: 10,
+        },
+      ],
+    },
+    {
+      columns: [
+        { text: "3", width: "auto", fontSize: 8 },
+        {
+          text: "Τομέας νομοθέτησης επί θεμάτων Υπουργείου Οικονομικών.",
+          width: "auto",
+          fontSize: 10,
+        },
+      ],
+    },
+    {
+      columns: [
+        { text: "4", width: "auto", fontSize: 8 },
+        {
+          text: "Τομέας νομοθέτησης επί θεμάτων Υπουργείου Εργασίας και Κοινωνικών Υποθέσεων και Υπουργείου Υγείας.",
+          width: "auto",
+          fontSize: 10,
+        },
+      ],
+    },
+    {
+      columns: [
+        { text: "5", width: "auto", fontSize: 8 },
+        {
+          text: "Τομέας νομοθέτησης επί θεμάτων Υπουργείου Εσωτερικών, Υπουργείου Ψηφιακής Διακυβέρνησης, Υπουργείου Προστασίας του Πολίτη και Υπουργείου Δικαιοσύνης.",
+          width: "auto",
+          fontSize: 10,
+        },
+      ],
+    },
+    {
+      columns: [
+        { text: "6", width: "auto", fontSize: 8 },
+        {
+          text: "Τομέας νομοθέτησης επί θεμάτων Υπουργείου Ανάπτυξης & Επενδύσεων, Υπουργείου Περιβάλλοντος & Ενέργειας, Υπουργείου Υποδομών & Μεταφορών, Υπουργείου Ναυτιλίας & Νησιωτικής Πολιτικής, Υπουργείου Αγροτικής Ανάπτυξης & Τροφίμων και Υπουργείου Τουρισμού.",
+          width: "auto",
+          fontSize: 10,
+        },
+      ],
+    }
+  );
+  return cover;
 }
 
 function createContainerTable(report) {
   const header = { text: report.header, fillColor: "#6c541e" }; //"#808080",}
   let reportTables = [];
   let tempTables;
+  reportTables.push(report.cover);
   // TODO: add header NOT as table row
   for (let i in report.reports) {
     // return reportTable;
@@ -1019,6 +1304,14 @@ function createContainerTable(report) {
       }
     }
   }
+  reportTables.push(report.signatories.createdBy);
+  // reportTables.push({ //uncomment if annex is neede
+  //   text: report.annex,
+  //   fontSize: 17,
+  //   decoration: "underline",
+  //   bold: true,
+  //   pageBreak: "before",
+  // });
   return reportTables;
 }
 
@@ -1057,7 +1350,7 @@ function createTable(categoryData) {
   if (reportTable[len - 1].length === 4) {
     reportTables = {
       table: {
-        headerRows: 0, //uncomment to have table header repeated on page break
+        headerRows: 0,
         widths: ["5%", "10%", "25%", "60%"],
         body: reportTable,
       },
@@ -1065,7 +1358,7 @@ function createTable(categoryData) {
   } else {
     reportTables = {
       table: {
-        headerRows: 0, //uncomment to have table header repeated on page break
+        headerRows: 0,
         widths: ["5%", "20%", "75%"],
         body: reportTable,
       },
@@ -1080,26 +1373,37 @@ function createTable(categoryData) {
 }
 
 function handleCategoryFields(reportTable, category) {
-  reportTable.push([
-    {
-      text: category.field.fieldId,
-      alignment: "center",
-      fillColor: "#dcdcdc",
-    },
-    {
-      text: category.field.fieldHeader,
-      alignment: "center",
-      fillColor: "#dcdcdc",
-      colSpan: 2,
-    },
-    { text: "" },
-  ]);
+  if (category.field.fieldId) {
+    reportTable.push([
+      {
+        text: category.field.fieldId,
+        alignment: "center",
+        fillColor: "#dcdcdc",
+      },
+      {
+        text: category.field.fieldHeader,
+        alignment: "center",
+        fillColor: "#dcdcdc",
+        colSpan: 2,
+      },
+      { text: "" },
+    ]);
+  } else {
+    reportTable.push([
+      { text: "", border: [false, false, false, false] },
+      {
+        text: category.field.fieldHeader,
+        alignment: "center",
+        colSpan: 2,
+      },
+      { text: "" },
+    ]);
+  }
 
   if (category.field.fieldOptions) {
     if (category.field.fieldOptions[0].title) {
       reportTable[reportTable.length - 1][1].colSpan = 3; //update colspan for previous entry
       reportTable[reportTable.length - 1].push({ text: "" });
-      // TODO: debug here
       for (fieldOption in category.field.fieldOptions) {
         reportTable.push([
           { text: "", border: [false, false, false, false] },
@@ -1137,23 +1441,41 @@ function handleCategoryFields(reportTable, category) {
       }
     } else {
       let alteredColumns = false;
+      let retractPosition = 1; //last occurance of component with less than 3 columns
+      if (category.field.fieldSubHeader) {
+        reportTable.push([
+          { text: "", border: [false, false, false, false] },
+          { text: "" },
+          { text: "" },
+          {
+            text: category.field.fieldSubHeader,
+            alignment: "center",
+          },
+        ]);
+        retractPosition = 2;
+      }
       for (k in category.field.fieldOptions) {
         if (category.field.fieldOptions[k].hasCheckbox) {
           if (!alteredColumns) {
-            reportTable[reportTable.length - 1][1].colSpan = 3;
-            reportTable[reportTable.length - 1].push({ text: "" });
+            reportTable[reportTable.length - retractPosition][1].colSpan = 3; // increase column span
+            reportTable[reportTable.length - retractPosition].push({
+              // text will be overlapped by previous component's colSpan increase
+              text: "",
+            });
             alteredColumns = true;
           }
           reportTable.push([
-            { text: "" },
-            { image: `./public/img/empty-checkbox.jpg`, width: 30, height: 30 },
+            { text: "", border: [false, false, false, false] },
+            {
+              image: `./public/img/empty-checkbox.jpg`,
+              width: 30,
+              height: 30,
+            },
             {
               text: category.field.fieldOptions[k].option,
-              alignment: "center",
             },
             {
               text: category.field.fieldOptions[k].optionText,
-              alignment: "center",
             },
           ]);
         } else {
@@ -1161,11 +1483,9 @@ function handleCategoryFields(reportTable, category) {
             { text: "", border: [false, false, false, false] },
             {
               text: category.field.fieldOptions[k].option,
-              alignment: "center",
             },
             {
               text: category.field.fieldOptions[k].optionText,
-              alignment: "center",
             },
           ]);
         }
@@ -1173,17 +1493,44 @@ function handleCategoryFields(reportTable, category) {
     }
   } else {
     if (category.field.fieldText) {
-      reportTable.push([
-        { text: "", border: [false, false, false, false] },
-        {
-          text: category.field.fieldText,
-          alignment: "center",
-          colSpan: 2,
-        },
-        { text: "" },
-      ]);
+      if (category.field.hasHTML) {
+        category.field.fieldText === "\n\n"
+          ? reportTable.push([
+              { text: "", border: [false, false, false, false], colSpan: 2 },
+              { text: "" },
+              { text: category.field.fieldText },
+            ])
+          : reportTable.push([
+              { text: "", border: [false, false, false, false], colSpan: 2 },
+              { text: "" },
+              htmlToPdfmake(category.field.fieldText, {
+                window: window,
+                replaceText: function (text) {
+                  return text.replace(/(?:\r\n|\r|\n)/g, "<br>");
+                },
+              }),
+            ]);
+      } else {
+        reportTable.push([
+          { text: "", border: [false, false, false, false] },
+          {
+            text: category.field.fieldText,
+            colSpan: 2,
+          },
+          { text: "" },
+        ]);
+      }
     }
   }
+}
+
+function hTMLPdf(data) {
+  return {
+    table: {
+      widths: ["100%"],
+      body: [htmlToPdfmake(data)],
+    },
+  };
 }
 
 //create field7 alignment using columns and stacks
@@ -1403,15 +1750,20 @@ function setImage(fieldName) {
   }
 }
 
-function createTables(tableData) {
-  var rows = [];
+function createTables(tableData, headers) {
+  let rows = [];
   let table;
   if (tableData.columns === 2) {
+    rows.push([
+      { text: "", border: [false, false, false, false] },
+      { text: headers[0], alignment: "center" },
+      { text: headers[1], alignment: "center" },
+    ]);
     for (let i = 1; i < tableData.data.length; i += 2) {
       rows.push([
-        { text: "" },
-        { text: tableData.data[i - 1], alignment: "center" },
-        { text: tableData.data[i], alignment: "center" },
+        { text: "", border: [false, false, false, false] },
+        { text: tableData.data[i - 1] },
+        { text: tableData.data[i] },
       ]);
     }
     table = {
@@ -1421,12 +1773,18 @@ function createTables(tableData) {
       },
     };
   } else if (tableData.columns === 3) {
+    rows.push([
+      { text: "", border: [false, false, false, false] },
+      { text: headers[0], alignment: "center" },
+      { text: headers[1], alignment: "center" },
+      { text: headers[2], alignment: "center" },
+    ]);
     for (let i = 2; i < tableData.data.length; i += 3) {
       rows.push([
-        { text: "" },
-        { text: tableData.data[i - 2], alignment: "center" },
-        { text: tableData.data[i - 1], alignment: "center" },
-        { text: tableData.data[i], alignment: "center" },
+        { text: "", border: [false, false, false, false] },
+        { text: tableData.data[i - 2] },
+        { text: tableData.data[i - 1] },
+        { text: tableData.data[i] },
       ]);
     }
     table = {
@@ -1436,14 +1794,22 @@ function createTables(tableData) {
       },
     };
   } else if (tableData.columns === 5) {
+    rows.push([
+      { text: "", border: [false, false, false, false] },
+      { text: headers[0], alignment: "center" },
+      { text: headers[1], alignment: "center" },
+      { text: headers[2], alignment: "center" },
+      { text: headers[3], alignment: "center" },
+      { text: headers[4], alignment: "center" },
+    ]);
     for (let i = 4; i < tableData.data.length; i += 5) {
       rows.push([
-        { text: "" },
-        { text: tableData.data[i - 4], alignment: "center" },
-        { text: tableData.data[i - 3], alignment: "center" },
-        { text: tableData.data[i - 2], alignment: "center" },
-        { text: tableData.data[i - 1], alignment: "center" },
-        { text: tableData.data[i], alignment: "center" },
+        { text: "", border: [false, false, false, false] },
+        { text: tableData.data[i - 4] },
+        { text: tableData.data[i - 3] },
+        { text: tableData.data[i - 2] },
+        { text: tableData.data[i - 1] },
+        { text: tableData.data[i] },
       ]);
     }
     table = {
@@ -1499,43 +1865,51 @@ function createField9Tables(jsonTableData) {
     }
     tableRows.push([
       {
-        text: jsonTableData[i].label,
+        text: isEmpty(jsonTableData[i].label),
         alignment: "center",
+        fontSize: 7,
       },
       {
         text: jsonTableData[i].values[0].value,
         alignment: "center",
+        fontSize: 7,
       },
       {
         text: jsonTableData[i].values[1].value,
         alignment: "center",
+        fontSize: 7,
       },
       {
         text: jsonTableData[i].values[2].value,
         alignment: "center",
+        fontSize: 7,
       },
       {
         text: jsonTableData[i].values[3].value,
         alignment: "center",
+        fontSize: 7,
       },
       {
         text: jsonTableData[i].values[4].value,
         alignment: "center",
+        fontSize: 7,
       },
       {
         text: jsonTableData[i].values[5].value,
         alignment: "center",
+        fontSize: 7,
       },
       {
         text: jsonTableData[i].values[6].value,
         alignment: "center",
+        fontSize: 7,
       },
     ]);
   }
 
   let table = {
     table: {
-      // headerRows: 1,
+      headerRows: 0,
       widths: ["25%", "5%", "5%", "5%", "5%", "5%", "25%", "25%"],
       body: tableRows,
     },
@@ -1544,7 +1918,7 @@ function createField9Tables(jsonTableData) {
 }
 
 function createField9(josnData) {
-  var tables = [];
+  let tables = [];
   for (i in josnData) {
     tables.push({ text: "\n\n" });
     tables.push(createField9Tables(josnData[i]));
@@ -1553,7 +1927,7 @@ function createField9(josnData) {
 }
 
 function checkboxValue(value) {
-  return value !== "" ? "√" : value;
+  return value !== "" ? "X" : value;
 }
 
 function createField18(field_18, data) {
@@ -1569,22 +1943,27 @@ function createField18(field_18, data) {
     {
       text: "ΘΕΣΜΟΙ, ΔΗΜΟΣΙΑ ΔΙΟΙΚΗΣΗ, ΔΙΑΦΑΝΕΙΑ",
       alignment: "center",
+      fontSize: 10,
     },
     {
       text: "ΑΓΟΡΑ, ΟΙΚΟΝΟΜΙΑ, ΑΝΤΑΓΩΝΙΣΜΟΣ",
       alignment: "center",
+      fontSize: 10,
     },
     {
       text: "ΚΟΙΝΩΝΙΑ & ΚΟΙΝΩΝΙΚΕΣ ΟΜΑΔΕΣ",
       alignment: "center",
+      fontSize: 10,
     },
     {
       text: "ΦΥΣΙΚΟ, ΑΣΤΙΚΟ ΚΑΙ ΠΟΛΙΤΙΣΤΙΚΟ ΠΕΡΙΒΑΛΛΟΝ",
       alignment: "center",
+      fontSize: 10,
     },
     {
       text: "ΝΗΣΙΩΤΙΚΟΤΗΤΑ",
       alignment: "center",
+      fontSize: 10,
     },
   ]);
   table.push([
@@ -1593,16 +1972,19 @@ function createField18(field_18, data) {
       alignment: "center",
       rowSpan: 10,
       fillColor: "#93C572",
+      fontSize: 10,
     },
     {
       text: "ΑΜΕΣΑ",
       alignment: "center",
       rowSpan: 5,
       fillColor: "#C1E1C1",
+      fontSize: 10,
     },
     {
       text: field_18[0],
       alignment: "center",
+      fontSize: 8,
     },
     {
       text: checkboxValue(field_18[1]),
@@ -1610,15 +1992,19 @@ function createField18(field_18, data) {
     },
     {
       text: checkboxValue(field_18[2]),
+      alignment: "center",
     },
     {
       text: checkboxValue(field_18[3]),
+      alignment: "center",
     },
     {
       text: checkboxValue(field_18[4]),
+      alignment: "center",
     },
     {
       text: checkboxValue(field_18[5]),
+      alignment: "center",
     },
   ]);
   for (let i = 0; i < 4; i++) {
@@ -1632,6 +2018,7 @@ function createField18(field_18, data) {
       {
         text: field_18[count - 5],
         alignment: "center",
+        fontSize: 8,
       },
       {
         text: checkboxValue(field_18[count - 4]),
@@ -1639,15 +2026,19 @@ function createField18(field_18, data) {
       },
       {
         text: checkboxValue(field_18[count - 3]),
+        alignment: "center",
       },
       {
         text: checkboxValue(field_18[count - 2]),
+        alignment: "center",
       },
       {
         text: checkboxValue(field_18[count - 1]),
+        alignment: "center",
       },
       {
         text: checkboxValue(field_18[count]),
+        alignment: "center",
       },
     ]);
     count += 6;
@@ -1660,11 +2051,13 @@ function createField18(field_18, data) {
       text: "ΕΜΜΕΣΑ",
       alignment: "center",
       rowSpan: 5,
+      fontSize: 10,
       fillColor: "#C1E1C1",
     },
     {
       text: field_18[count - 5],
       alignment: "center",
+      fontSize: 8,
     },
     {
       text: checkboxValue(field_18[count - 4]),
@@ -1672,15 +2065,19 @@ function createField18(field_18, data) {
     },
     {
       text: checkboxValue(field_18[count - 3]),
+      alignment: "center",
     },
     {
       text: checkboxValue(field_18[count - 2]),
+      alignment: "center",
     },
     {
       text: checkboxValue(field_18[count - 1]),
+      alignment: "center",
     },
     {
       text: checkboxValue(field_18[count]),
+      alignment: "center",
     },
   ]);
   count += 6;
@@ -1695,6 +2092,7 @@ function createField18(field_18, data) {
       {
         text: field_18[count - 5],
         alignment: "center",
+        fontSize: 8,
       },
       {
         text: checkboxValue(field_18[count - 4]),
@@ -1702,22 +2100,26 @@ function createField18(field_18, data) {
       },
       {
         text: checkboxValue(field_18[count - 3]),
+        alignment: "center",
       },
       {
         text: checkboxValue(field_18[count - 2]),
+        alignment: "center",
       },
       {
         text: checkboxValue(field_18[count - 1]),
+        alignment: "center",
       },
       {
         text: checkboxValue(field_18[count]),
+        alignment: "center",
       },
     ]);
     count += 6;
   }
   fieldTable = {
     table: {
-      headerRows: 0, //uncomment to have table header repeated on page break
+      headerRows: 0,
       widths: ["8%", "11%", "11%", "14%", "14%", "14%", "14%", "14%"],
       body: table,
     },
@@ -1729,7 +2131,7 @@ function createField18(field_18, data) {
     table: {
       widths: ["100%"],
 
-      body: [[data.field_18_comments]],
+      body: [[isEmpty(data.field_18_comments)]],
     },
   });
   return fieldData;
@@ -1748,22 +2150,27 @@ function createField19(field_19, data) {
     {
       text: "ΘΕΣΜΟΙ, ΔΗΜΟΣΙΑ ΔΙΟΙΚΗΣΗ, ΔΙΑΦΑΝΕΙΑ",
       alignment: "center",
+      fontSize: 10,
     },
     {
       text: "ΑΓΟΡΑ, ΟΙΚΟΝΟΜΙΑ, ΑΝΤΑΓΩΝΙΣΜΟΣ",
       alignment: "center",
+      fontSize: 10,
     },
     {
       text: "ΚΟΙΝΩΝΙΑ & ΚΟΙΝΩΝΙΚΕΣ ΟΜΑΔΕΣ",
       alignment: "center",
+      fontSize: 10,
     },
     {
       text: "ΦΥΣΙΚΟ, ΑΣΤΙΚΟ ΚΑΙ ΠΟΛΙΤΙΣΤΙΚΟ ΠΕΡΙΒΑΛΛΟΝ",
       alignment: "center",
+      fontSize: 10,
     },
     {
       text: "ΝΗΣΙΩΤΙΚΟΤΗΤΑ",
       alignment: "center",
+      fontSize: 10,
     },
   ]);
   table.push([
@@ -1772,16 +2179,19 @@ function createField19(field_19, data) {
       alignment: "center",
       rowSpan: 9,
       fillColor: "#EF9759",
+      fontSize: 10,
     },
     {
       text: "ΓΙΑ ΤΗΝ ΕΝΑΡΞΗ ΕΦΑΡΜΟΓΗΣ ΤΗΣ ΡΥΘΜΙΣΗΣ",
       alignment: "center",
       rowSpan: 5,
       fillColor: "#F9B483",
+      fontSize: 10,
     },
     {
       text: field_19[0],
       alignment: "center",
+      fontSize: 8,
     },
     {
       text: checkboxValue(field_19[1]),
@@ -1789,15 +2199,19 @@ function createField19(field_19, data) {
     },
     {
       text: checkboxValue(field_19[2]),
+      alignment: "center",
     },
     {
       text: checkboxValue(field_19[3]),
+      alignment: "center",
     },
     {
       text: checkboxValue(field_19[4]),
+      alignment: "center",
     },
     {
       text: checkboxValue(field_19[5]),
+      alignment: "center",
     },
   ]);
   for (let i = 0; i < 4; i++) {
@@ -1811,6 +2225,7 @@ function createField19(field_19, data) {
       {
         text: field_19[count - 5],
         alignment: "center",
+        fontSize: 8,
       },
       {
         text: checkboxValue(field_19[count - 4]),
@@ -1818,15 +2233,19 @@ function createField19(field_19, data) {
       },
       {
         text: checkboxValue(field_19[count - 3]),
+        alignment: "center",
       },
       {
         text: checkboxValue(field_19[count - 2]),
+        alignment: "center",
       },
       {
         text: checkboxValue(field_19[count - 1]),
+        alignment: "center",
       },
       {
         text: checkboxValue(field_19[count]),
+        alignment: "center",
       },
     ]);
     count += 6;
@@ -1840,10 +2259,12 @@ function createField19(field_19, data) {
       alignment: "center",
       rowSpan: 4,
       fillColor: "#F9B483",
+      fontSize: 10,
     },
     {
       text: field_19[count - 5],
       alignment: "center",
+      fontSize: 8,
     },
     {
       text: checkboxValue(field_19[count - 4]),
@@ -1851,15 +2272,19 @@ function createField19(field_19, data) {
     },
     {
       text: checkboxValue(field_19[count - 3]),
+      alignment: "center",
     },
     {
       text: checkboxValue(field_19[count - 2]),
+      alignment: "center",
     },
     {
       text: checkboxValue(field_19[count - 1]),
+      alignment: "center",
     },
     {
       text: checkboxValue(field_19[count]),
+      alignment: "center",
     },
   ]);
   count += 6;
@@ -1874,6 +2299,7 @@ function createField19(field_19, data) {
       {
         text: field_19[count - 5],
         alignment: "center",
+        fontSize: 8,
       },
       {
         text: checkboxValue(field_19[count - 4]),
@@ -1881,22 +2307,26 @@ function createField19(field_19, data) {
       },
       {
         text: checkboxValue(field_19[count - 3]),
+        alignment: "center",
       },
       {
         text: checkboxValue(field_19[count - 2]),
+        alignment: "center",
       },
       {
         text: checkboxValue(field_19[count - 1]),
+        alignment: "center",
       },
       {
         text: checkboxValue(field_19[count]),
+        alignment: "center",
       },
     ]);
     count += 6;
   }
   fieldTable = {
     table: {
-      headerRows: 0, //uncomment to have table header repeated on page break
+      headerRows: 0,
       widths: ["8%", "11%", "11%", "14%", "14%", "14%", "14%", "14%"],
       body: table,
     },
@@ -1908,7 +2338,7 @@ function createField19(field_19, data) {
     table: {
       widths: ["100%"],
 
-      body: [[data.field_19_comments]],
+      body: [[isEmpty(data.field_19_comments)]],
     },
   });
   return fieldData;
@@ -1927,22 +2357,27 @@ function createField20(field_20, data) {
     {
       text: "ΘΕΣΜΟΙ, ΔΗΜΟΣΙΑ ΔΙΟΙΚΗΣΗ, ΔΙΑΦΑΝΕΙΑ",
       alignment: "center",
+      fontSize: 10,
     },
     {
       text: "ΑΓΟΡΑ, ΟΙΚΟΝΟΜΙΑ, ΑΝΤΑΓΩΝΙΣΜΟΣ",
       alignment: "center",
+      fontSize: 10,
     },
     {
       text: "ΚΟΙΝΩΝΙΑ & ΚΟΙΝΩΝΙΚΕΣ ΟΜΑΔΕΣ",
       alignment: "center",
+      fontSize: 10,
     },
     {
       text: "ΦΥΣΙΚΟ, ΑΣΤΙΚΟ ΚΑΙ ΠΟΛΙΤΙΣΤΙΚΟ ΠΕΡΙΒΑΛΛΟΝ",
       alignment: "center",
+      fontSize: 10,
     },
     {
       text: "ΝΗΣΙΩΤΙΚΟΤΗΤΑ",
       alignment: "center",
+      fontSize: 10,
     },
   ]);
   table.push([
@@ -1951,16 +2386,19 @@ function createField20(field_20, data) {
       alignment: "center",
       rowSpan: 8,
       fillColor: "#E5E510 ",
+      fontSize: 10,
     },
     {
       text: "ΔΙΑΧΕΙΡΙΣΗ ΚΙΝΔΥΝΩΝ",
       alignment: "center",
       rowSpan: 4,
       fillColor: "#F4F410",
+      fontSize: 10,
     },
     {
       text: field_20[0],
       alignment: "center",
+      fontSize: 8,
     },
     {
       text: checkboxValue(field_20[1]),
@@ -1968,15 +2406,19 @@ function createField20(field_20, data) {
     },
     {
       text: checkboxValue(field_20[2]),
+      alignment: "center",
     },
     {
       text: checkboxValue(field_20[3]),
+      alignment: "center",
     },
     {
       text: checkboxValue(field_20[4]),
+      alignment: "center",
     },
     {
       text: checkboxValue(field_20[5]),
+      alignment: "center",
     },
   ]);
   for (let i = 0; i < 3; i++) {
@@ -1990,6 +2432,7 @@ function createField20(field_20, data) {
       {
         text: field_20[count - 5],
         alignment: "center",
+        fontSize: 8,
       },
       {
         text: checkboxValue(field_20[count - 4]),
@@ -1997,15 +2440,19 @@ function createField20(field_20, data) {
       },
       {
         text: checkboxValue(field_20[count - 3]),
+        alignment: "center",
       },
       {
         text: checkboxValue(field_20[count - 2]),
+        alignment: "center",
       },
       {
         text: checkboxValue(field_20[count - 1]),
+        alignment: "center",
       },
       {
         text: checkboxValue(field_20[count]),
+        alignment: "center",
       },
     ]);
     count += 6;
@@ -2019,10 +2466,12 @@ function createField20(field_20, data) {
       alignment: "center",
       rowSpan: 4,
       fillColor: "#F4F410",
+      fontSize: 10,
     },
     {
       text: field_20[count - 5],
       alignment: "center",
+      fontSize: 8,
     },
     {
       text: checkboxValue(field_20[count - 4]),
@@ -2030,15 +2479,19 @@ function createField20(field_20, data) {
     },
     {
       text: checkboxValue(field_20[count - 3]),
+      alignment: "center",
     },
     {
       text: checkboxValue(field_20[count - 2]),
+      alignment: "center",
     },
     {
       text: checkboxValue(field_20[count - 1]),
+      alignment: "center",
     },
     {
       text: checkboxValue(field_20[count]),
+      alignment: "center",
     },
   ]);
   count += 6;
@@ -2053,6 +2506,7 @@ function createField20(field_20, data) {
       {
         text: field_20[count - 5],
         alignment: "center",
+        fontSize: 8,
       },
       {
         text: checkboxValue(field_20[count - 4]),
@@ -2060,22 +2514,26 @@ function createField20(field_20, data) {
       },
       {
         text: checkboxValue(field_20[count - 3]),
+        alignment: "center",
       },
       {
         text: checkboxValue(field_20[count - 2]),
+        alignment: "center",
       },
       {
         text: checkboxValue(field_20[count - 1]),
+        alignment: "center",
       },
       {
         text: checkboxValue(field_20[count]),
+        alignment: "center",
       },
     ]);
     count += 6;
   }
   fieldTable = {
     table: {
-      headerRows: 0, //uncomment to have table header repeated on page break
+      headerRows: 0,
       widths: ["8%", "11%", "11%", "14%", "14%", "14%", "14%", "14%"],
       body: table,
     },
@@ -2087,115 +2545,196 @@ function createField20(field_20, data) {
     table: {
       widths: ["100%"],
 
-      body: [[data.field_20_comments]],
+      body: [[isEmpty(data.field_20_comments)]],
     },
   });
   return fieldData;
 }
 
-function createSignatories(fname, lname, position) {
-  var length = fname.length;
-  var signatories = [];
-  if (length % 2 == 0) {
-    for (var i = -1; i < length; i += 2) {
-      if (i < 0) {
-        continue;
-      } else if (fname[i - 1]) {
-        signatories.push({
-          columns: [
-            {
-              text:
-                Object.values(fname[i - 1]) +
-                " " +
-                Object.values(lname[i - 1]) +
-                "\n\n\n\n\n" +
-                Object.values(position[i - 1]),
-              style: "signatoryStyle",
-              alignment: "center",
-            },
-            {
-              text:
-                Object.values(fname[i]) +
-                " " +
-                Object.values(lname[i]) +
-                "\n\n\n\n\n" +
-                Object.values(position[i]),
-              style: "signatoryStyle",
-              alignment: "center",
-            },
+function createGlkDirectorSignature(data) {
+  let signatory = [
+    {
+      text: "\n\n\nΟ/Η ΥΠΟΓΡΑΦΩΝ/ΟΥΣΑ ΓΕΝΙΚΟΣ/Η ΔΙΕΥΘΥΝΤΗΣ/ΡΙΑ ",
+      bold: true,
+      alignment: "center",
+    },
+  ];
+  signatory.push({
+    columns: [
+      { width: "30%", text: "" },
+      {
+        table: {
+          headerRows: 0,
+          widths: ["50%"],
+          body: [
+            [
+              {
+                text: "\n\n\n" + data[0] + " " + data[1],
+                bold: true,
+                alignment: "center",
+              },
+            ],
           ],
-          columnGap: 15,
-          width: "*",
-        });
-      } else {
-        signatories.push({
-          columns: [
-            {
-              text:
-                Object.values(fname[i]) +
-                " " +
-                Object.values(lname[i]) +
-                "\n\n\n\n\n" +
-                Object.values(position[i]),
-              style: "signatoryStyle",
-              alignment: "center",
-            },
-          ],
-          columnGap: 15,
-          width: "*",
-        });
-      }
-      signatories.push({ text: "\n" });
+        },
+      },
+      { width: "20%", text: "" },
+    ],
+  });
+  return signatory;
+}
+
+function createSignatories(ministers) {
+  let signatories = [];
+  let table = [];
+  if (ministers.ministers && ministers.ministers.length) {
+    signatories.push({ text: "\n\n" });
+    signatories.push({
+      text: "ΟΙ ΥΠΟΥΡΓΟΙ \n",
+      bold: true,
+      alignment: "center",
+    });
+    signatories.push({ text: "\n" });
+    for (i = 0; i < ministers.ministers.length; i += 2) {
+      table.push([
+        {
+          text: ministers.ministers[i][2],
+          bold: true,
+          alignment: "center",
+        },
+        {
+          text: isMinister(ministers.ministers, i, "ministry"),
+          bold: true,
+          alignment: "center",
+        },
+      ]);
+      table.push([
+        {
+          text:
+            "\n\n\n" +
+            ministers.ministers[i][0] +
+            " " +
+            ministers.ministers[i][1],
+          alignment: "center",
+        },
+        {
+          text: isMinister(ministers.ministers, i, "name"),
+          alignment: "center",
+        },
+      ]);
+    }
+    signatories.push({
+      table: {
+        headerRows: 0,
+        widths: ["50%", "50%"],
+        body: table,
+      },
+    });
+    table = [];
+  }
+
+  if (ministers.substitutes && ministers.substitutes.length) {
+    signatories.push({ text: "\n\n" });
+    signatories.push({
+      text: "ΟΙ ΥΦΥΠΟΥΡΓΟΙ \n",
+      bold: true,
+      alignment: "center",
+    });
+    signatories.push({ text: "\n" });
+    for (i = 0; i < ministers.substitutes.length; i += 2) {
+      table.push([
+        {
+          text: ministers.substitutes[i][2],
+          bold: true,
+          alignment: "center",
+        },
+        {
+          text: isMinister(ministers.substitutes, i, "ministry"),
+          bold: true,
+          alignment: "center",
+        },
+      ]);
+      table.push([
+        {
+          text:
+            "\n\n\n" +
+            ministers.substitutes[i][0] +
+            " " +
+            ministers.substitutes[i][1],
+          alignment: "center",
+        },
+        {
+          text: isMinister(ministers.substitutes, i, "name"),
+          alignment: "center",
+        },
+      ]);
+    }
+    signatories.push({
+      table: {
+        headerRows: 0,
+        widths: ["50%", "50%"],
+        body: table,
+      },
+    });
+    table = [];
+  }
+
+  if (ministers.undersecretaries && ministers.undersecretaries.length) {
+    signatories.push({ text: "\n\n" });
+    signatories.push({
+      text: "ΟΙ ΑΝΑΠΛΗΡΩΤΕΣ ΥΠΟΥΡΓΟΙ \n",
+      bold: true,
+      alignment: "center",
+    });
+    signatories.push({ text: "\n" });
+    for (i = 0; i < ministers.undersecretaries.length; i += 2) {
+      table.push([
+        {
+          text: ministers.undersecretaries[i][2],
+          bold: true,
+          alignment: "center",
+        },
+        {
+          text: isMinister(ministers.undersecretaries, i, "ministry"),
+          bold: true,
+          alignment: "center",
+        },
+      ]);
+      table.push([
+        {
+          text:
+            "\n\n\n" +
+            ministers.undersecretaries[i][0] +
+            " " +
+            ministers.undersecretaries[i][1],
+          alignment: "center",
+        },
+        {
+          text: isMinister(ministers.undersecretaries, i, "name"),
+          alignment: "center",
+        },
+      ]);
+    }
+    signatories.push({
+      table: {
+        headerRows: 0,
+        widths: ["50%", "50%"],
+        body: table,
+      },
+    });
+  }
+  if (signatories) {
+    return signatories;
+  }
+}
+
+function isMinister(data, step, type) {
+  if (data[step + 1]) {
+    if (type === "name") {
+      return "\n\n\n" + data[step + 1][0] + " " + data[step + 1][1];
+    } else {
+      return data[step + 1][2];
     }
   } else {
-    for (var i = 0; i < length; i += 2) {
-      if (fname[i - 1]) {
-        signatories.push({
-          columns: [
-            {
-              text:
-                Object.values(fname[i - 1]) +
-                " " +
-                Object.values(lname[i - 1]) +
-                "\n\n\n\n\n" +
-                Object.values(position[i - 1]),
-              style: "signatoryStyle",
-              alignment: "center",
-            },
-            {
-              text:
-                Object.values(fname[i]) +
-                " " +
-                Object.values(lname[i]) +
-                "\n\n\n\n\n" +
-                Object.values(position[i]),
-              style: "signatoryStyle",
-              alignment: "center",
-            },
-          ],
-          columnGap: 15,
-          width: "*",
-        });
-      } else {
-        signatories.push({
-          columns: [
-            {
-              text:
-                Object.values(fname[i]) +
-                " " +
-                Object.values(lname[i]) +
-                "\n\n\n\n\n" +
-                Object.values(position[i]),
-              style: "signatoryStyle",
-              alignment: "center",
-            },
-          ],
-          columnGap: 15,
-          width: "*",
-        });
-      }
-      signatories.push({ text: "\n" });
-    }
+    return "";
   }
-  return signatories;
 }

@@ -7,10 +7,12 @@
         <textarea class="form-control" id="field_17_sxedio_nomou" name="field_17_sxedio_nomou"
             placeholder="Σχέδιο νόμου" rows="1"><%= data.field_17_sxedio_nomou %></textarea>
     </div>
-    <div class="form-group">
-        <label for="field_17_ypoyrgeio" class="mostly-optional-label required">του Υπουργείου</label>
-        <textarea class="form-control" id="field_17_ypoyrgeio" name="field_17_ypoyrgeio" rows="1"
-            placeholder="Υπουργείο"><%= data.field_17_ypoyrgeio %></textarea>
+    <div class="checkbox-group form-group">
+        <label id="field_17_ypoyrgeio_label" for="field_17_ypoyrgeio" class="mostly-optional-label required">του
+            Υπουργείου</label>
+        <select id="field_17_ypoyrgeio" name="field_17_ypoyrgeio" class="col-sm-8 form-control" required>
+            <option value="" selected disabled>Eπιλογή</option>
+        </select>
     </div>
     <div class="form-group">
         <label for="field_17_oikonomika_apotelesmata" class="mostly-optional-label required">17.Οικονομικά
@@ -32,24 +34,6 @@
                 </tr>
             </thead>
             <tbody id="tbody_17">
-    
-                <% if(data.field_17_onoma !=null){ for (var i=0; i < data.field_17_onoma.length; i++) { %>
-                    <tr id="table_17_row<%=i%>">
-                        <td>
-                            <textarea class="form-control" id="field_17_onoma<%=i%>" name="field_17_onoma<%=i%>"
-                                rows="4"><%= Object.values(data.field_17_onoma[i]) %></textarea>
-                        </td>
-                        <td>
-                            <textarea class="form-control" id="field_17_epitheto<%=i%>" name="field_17_epitheto<%=i%>"
-                                rows="4"><%= Object.values(data.field_17_epitheto[i]) %></textarea>
-                        </td>
-                        <td>
-                            <textarea class="form-control" id="field_17_idiotita<%=i%>" name="field_17_idiotita<%=i%>"
-                                rows="4"><%= Object.values(data.field_17_idiotita[i]) %></textarea>
-                                <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
-                        </td>
-                    </tr>
-                    <% } } %>
     
             </tbody>
         </table>

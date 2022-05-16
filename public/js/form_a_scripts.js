@@ -25,13 +25,8 @@ function submitVisibility() {
 }
 
 function setDropdown() {
-  var field4 = "<%= data.field_4%>";
-  var field6 = "<%= data.field_6%>";
-  var field11 = "<%= data.field_11%>";
-  var field12 = "<%= data.field_12%>";
-  var field13 = "<%= data.field_13%>";
-  var field36 = "<%= data.field_36%>";
-  $("#field_4").val(field4 ? field4 : $("#field_4 option:first").val()); //if calue then set  dropdown to value, else set to first dropdown option
+
+  $("#field_4").val(field4 ? field4 : $("#field_4 option:first").val()); //if value then set  dropdown to value, else set to first dropdown option
   $("#field_6").val(field6 ? field6 : $("#field_6 option:first").val());
   $("#field_11").val(field11 ? field11 : $("#field_11 option:first").val());
   $("#field_12").val(field12 ? field12 : $("#field_12 option:first").val());

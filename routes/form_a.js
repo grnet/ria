@@ -220,41 +220,57 @@ routes.put(
           "field_14_stoxos",
           entry.field_14_stoxos
         );
-        let field_17_onoma = tables.createDynamicTable(
+        let field_17_minister_name = tables.createDynamicTable(
           req.body,
           keys,
-          "field_17_onoma",
-          entry.field_17_onoma
+          "field_17_minister_name",
+          entry.field_17_minister_name
         );
-        let field_17_epitheto = tables.createDynamicTable(
+        let field_17_minister_surname = tables.createDynamicTable(
           req.body,
           keys,
-          "field_17_epitheto",
-          entry.field_17_epitheto
+          "field_17_minister_surname",
+          entry.field_17_minister_surname
         );
-        let field_17_idiotita = tables.createDynamicTable(
+        let field_17_minister_role = tables.createDynamicTable(
           req.body,
           keys,
-          "field_17_idiotita",
-          entry.field_17_idiotita
+          "field_17_minister_role",
+          entry.field_17_minister_role
+        );
+        let field_17_minister_ministry = tables.createDynamicTable(
+          req.body,
+          keys,
+          "field_17_minister_ministry",
+          entry.field_17_minister_ministry
         );
         let minister_surname = tables.createDynamicTable(
           req.body,
           keys,
           "minister_surname",
-          entry.minister_surname
+          entry.minister_surname,
+          'field_17'
         );
         let minister_name = tables.createDynamicTable(
           req.body,
           keys,
           "minister_name",
-          entry.minister_name
+          entry.minister_name,
+          "field_17"
         );
         let minister_role = tables.createDynamicTable(
           req.body,
           keys,
-          "role",
-          entry.minister_role
+          "minister_role",
+          entry.minister_role,
+          "field_17"
+        );
+        let minister_ministry = tables.createDynamicTable(
+          req.body,
+          keys,
+          "minister_ministry",
+          entry.minister_ministry,
+          "field_17"
         );
         let field_29_diatakseis_rythmisis = tables.createDynamicTable(
           req.body,
@@ -343,12 +359,14 @@ routes.put(
             field_17_oikonomika_apotelesmata: req.body.f17,
             field_14_arthro: field_14_arthro,
             field_14_stoxos: field_14_stoxos,
-            field_17_onoma: field_17_onoma,
-            field_17_epitheto: field_17_epitheto,
-            field_17_idiotita: field_17_idiotita,
+            field_17_minister_name: field_17_minister_name,
+            field_17_minister_surname: field_17_minister_surname,
+            field_17_minister_role: field_17_minister_role,
+            field_17_minister_ministry: field_17_minister_ministry,
             minister_name: minister_name,
             minister_surname: minister_surname,
             minister_role: minister_role,
+            minister_ministry: minister_ministry,
             field_29_diatakseis_rythmisis: field_29_diatakseis_rythmisis,
             field_29_yfistamenes_diatakseis: field_29_yfistamenes_diatakseis,
             field_30_diatakseis_katargisi: field_30_diatakseis_katargisi,
@@ -394,8 +412,6 @@ routes.put(
           action: req.method,
           auditId: ekthesi_id,
         });
-
-        console.timeEnd();
 
         if (!ekthesi) {
           res.status(404).send("Error in updating ekthesi.");
@@ -472,7 +488,6 @@ routes.delete(
 );
 
 routes.post("/:entry_id/versions", authUser, async function (req, res, next) {
-  console.log("api ok");
   let entries = await database.audit.findAll({
     where: { auditId: req.params.entry_id },
   });
@@ -483,7 +498,6 @@ routes.post("/:entry_id/versions", authUser, async function (req, res, next) {
 });
 
 routes.post("/:entry_id/diff/", authUser, async function (req, res, next) {
-  console.log("api ok");
   let target1 = req.body.target1;
   let target2 = req.body.target2;
   let entry1 = await database.audit.findOne({

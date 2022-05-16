@@ -1,16 +1,10 @@
-/////////////////////FUNCTION CALLS//////////////////////////
-
-// requiredDigitalGov("#field_10_amesi");
-// requiredDigitalGov("#field_10_emmesi");
-//requiredLegalistics("#field_33");
-
-///////////////////////VARIABLES////////////////////////////
-
-///////////////////////FUNCTIONS////////////////////////////
-
 //count & limit words
 //as of latest requests, word limit no longer required. Code will remain for future needs
 function wordsCounter(fieldId, spanId, wordlimit, event) {
+  console.log('wrdscntr called')
+  console.log(fieldId);
+  console.log(spanId);
+
   Countable.on(document.getElementById(fieldId), (counter) => {
     // if (counter.words >= wordlimit) {
     //   event.preventDefault(); //if word limit is reached prevent typing by preventing next event
@@ -26,17 +20,22 @@ function getFullDate(fieldId) {
   );
 }
 
-function requiredDigitalGov(field) {
-  //if certain checkboxes are checked, then fields with class digital-gov become required
-  $(field).prop("checked")
-    ? ($(".digital_gov :input").prop("disabled", false),
-      $(".digital-gov-label").addClass("required"))
-    : ($(".digital_gov :input").prop("disabled", true),
-      $(".digital-gov-label").removeClass("required"));
+function requiredDigitalGov() {
+  if (
+    $("#field_10_amesi").prop("checked") ||
+    $("#field_10_emmesi").prop("checked")
+  ) {
+    addLabelClass($(".digital_gov"));
+    $(".digital-gov-label").addClass("required");
+    $(".digital_gov :input").prop("disabled", false);
+  } else {
+    $(".digital_gov :input").prop("disabled", true);
+    $(".digital-gov-label").removeClass("required");
+  }
 }
 
-function requiredLegalistics(field) {
-  let spaceless = $(field)
+function requiredLegalistics() {
+  let spaceless = $("#field_33")
     .val()
     .replace(/^\s+|\s+$/g, ""); //replace white space
   spaceless
@@ -163,13 +162,15 @@ function populateMinistersSurnameSelect(ministerSurnameSelectId) {
 function ministerSurnameOnChange(
   ministerNameTextareaId,
   ministerSurnameSelectId,
-  ministerRoleTextareaId
+  ministerRoleTextareaId,
+  ministerMinistryInputId
 ) {
   let surname = $(`#${ministerSurnameSelectId}`).val();
   for (i in ministers) {
     if (ministers[i].lastName.includes(surname)) {
       $(`#${ministerNameTextareaId}`).val(ministers[i].firstName);
       $(`#${ministerRoleTextareaId}`).val(ministers[i].role);
+      $(`#${ministerMinistryInputId}`).val(ministers[i].ministry);
       break;
     }
   }

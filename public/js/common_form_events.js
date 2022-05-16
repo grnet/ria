@@ -215,6 +215,7 @@ $("#field_4").on("click", function (ev) {
     $("#field_4_wrap").show();
   } else {
     $("#field_4_wrap").hide();
+    // $("#field_4_wrap").prop('disable', true); //values won't reach backend and won't update database. Alternative is to empty field.
   }
 });
 
@@ -259,7 +260,6 @@ $("#field_36").on("change", function (ev) {
 });
 
 //add row events for tables
-
 //click event to add a row
 $("#add_row_table_14").on("click", function () {
   let index = $("#tbody_14").prop("rows").length;
@@ -281,16 +281,18 @@ $("#add_row_table_17").on("click", function () {
   $("#tbody_17").append(`
         <tr id="R${++index}">  
             <td> 
-                <textarea class="form-control" id="field_17_onoma${index}" name="field_17_onoma${index}" placeholder="Όνομα" rows="1"></textarea> 
+                <textarea class="form-control" id="field_17_minister_name${index}" name="field_17_minister_name${index}" rows="1"></textarea> 
             </td>    
             <td> 
-                <textarea class="form-control" id="field_17_epitheto${index}" name="field_17_epitheto${index}" placeholder="Επώνυμο" rows="1"></textarea>
+                <select id="field_17_minister_surname${index}" name="field_17_minister_surname${index}" class="col-sm-8 form-control" onchange="ministerSurnameOnChange('field_17_minister_name${index}', 'field_17_minister_surname${index}', 'field_17_minister_role${index}', 'field_17_minister_ministry${index}')" required></select>
             </td> 
             <td> 
-                <textarea class="form-control" id="field_17_idiotita${index}" name="field_17_idiotita${index}" placeholder="Ιδιότητα" rows="1"></textarea>
+                <textarea class="form-control" id="field_17_minister_role${index}" name="field_17_minister_role${index}" rows="5" readonly></textarea>
                 <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
+                <input type="hidden" id="field_17_minister_ministry${index}" name="field_17_minister_ministry${index}">
             </td> 
         </tr>`);
+  populateMinistersSurnameSelect(`field_17_minister_surname${index}`);
 });
 
 $("#add_row_ministers_table").on("click", function () {
@@ -298,15 +300,16 @@ $("#add_row_ministers_table").on("click", function () {
   $("#tbody_ministers").append(`
         <tr id="R${++index}">  
             <td> 
-                <textarea class="form-control" id="minister_name${index}" name="minister_name${index}" placeholder="Όνομα" rows="1" readonly></textarea> 
+                <textarea class="form-control" id="minister_name${index}" name="minister_name${index}" rows="1" readonly></textarea> 
             </td>    
             <td> 
-                <select id="minister_surname${index}" name="minister_surname${index}" class="col-sm-8 form-control" onchange="ministerSurnameOnChange('minister_name${index}', 'minister_surname${index}', 'minister_role${index}')" required></select>
+                <select id="minister_surname${index}" name="minister_surname${index}" class="col-sm-8 form-control" onchange="ministerSurnameOnChange('minister_name${index}', 'minister_surname${index}', 'minister_role${index}', 'minister_ministry${index}')" required></select>
             </td> 
             <td> 
-                <textarea class="form-control" id="minister_role${index}" name="minister_role${index}" placeholder="Ιδιότητα" rows="5" readonly></textarea>
+                <textarea class="form-control" id="minister_role${index}" name="minister_role${index}" rows="5" readonly></textarea>
                 <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
-            </td> 
+                <input type="hidden" id="minister_ministry${index}" name="minister_ministry${index}">
+            </td>             
         </tr>`);
   populateMinistersSurnameSelect(`minister_surname${index}`);
 });

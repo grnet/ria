@@ -93,9 +93,10 @@ module.exports = (sequelize, DataTypes) => {
         field_17_ypoyrgeio: DataTypes.TEXT,
         field_17_sxedio_nomou: DataTypes.TEXT,
         field_17_oikonomika_apotelesmata: DataTypes.TEXT,
-        field_17_onoma: DataTypes.JSON,
-        field_17_epitheto: DataTypes.JSON,
-        field_17_idiotita: DataTypes.JSON,
+        field_17_minister_name: DataTypes.JSON,
+        field_17_minister_surname: DataTypes.JSON,
+        field_17_minister_role: DataTypes.JSON,
+        field_17_minister_ministry: DataTypes.JSON,
 
         field_18_comments: DataTypes.TEXT,
         field_19_comments: DataTypes.TEXT,
@@ -170,6 +171,7 @@ module.exports = (sequelize, DataTypes) => {
         minister_name: DataTypes.JSON,
         minister_surname: DataTypes.JSON,
         minister_role: DataTypes.JSON,
+        minister_ministry: DataTypes.JSON,
 
         egkrisi_aksiologisis_nomoparaskeyastikis: DataTypes.STRING,
         egkrisi_kalis_nomothetisis: DataTypes.STRING,

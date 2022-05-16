@@ -891,9 +891,8 @@
         //initial_submit date - will be updated again when actually submitted
         getFullDate("#initial_submit");
 
-        requiredDigitalGov("#field_10_amesi");
-        requiredDigitalGov("#field_10_emmesi");
-        requiredLegalistics("#field_33");
+        requiredDigitalGov();
+        requiredLegalistics();
 
         var tooltips = '<%= tooltips %>';
         tooltips = textCleanUp(tooltips);
