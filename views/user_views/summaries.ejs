@@ -1,92 +1,78 @@
 <%- include('../partials/head.ejs') %>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
-  <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-
-  <div class="MuiContainer-root jss110 MuiContainer-maxWidthLg">
-    <div class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-4">
-      <div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-8">
-        <br><br>
-        <input type="button" name="back" class="back" value="Πίσω" />
-        <br><br>
-        <table id="data" class="display">
-          <thead>
-            <tr>
-              <th>Κατηγορία</th>
-              <th>Εκθέσεις</th>
-            </tr>
-          </thead>
-          <tbody>
-
-            <tr>
-              <td>Προσχέδιο νόμου</td>
-              <td>
-                <%= prosxedio%>
-              </td>
-            </tr>
-            <tr>
-              <td>Σχέδιο νόμου</td>
-              <td>
-                <%= sxedio%>
-              </td>
-            </tr>
-            <tr>
-              <td>Κατευθυντήριες γραμμές</td>
-              <td>
-                <%= kateythintiries%>
-              </td>
-            </tr>
-            <tr>
-              <td>Επείγοντα και κατεπείγοντα νομοσχέδια</td>
-              <td>
-                <%= epeigon%>
-              </td>
-            </tr>
-            <tr>
-              <td>Πρόταση νόμου</td>
-              <td>
-                <%= protasi%>
-              </td>
-            </tr>
-            <tr>
-              <td>Κύρωση διεθνών συμβάσεων</td>
-              <td>
-                <%= symvaseis%>
-              </td>
-            </tr>
-            <tr>
-              <td>Τροπολογίες Υπουργών</td>
-              <td>
-                <%= tropologies_upourgwn%>
-              </td>
-            </tr>
-            <tr>
-              <td>Τροπολογίες Βουλευτών</td>
-              <td>
-                <%= tropologies_vouleftwn%>
-              </td>
-            </tr>
-
-          </tbody>
-          <tr>
-            <td><b>Σύνολο</b></td>
-            <td>
-              <%= entries %>
+  <div class=""> <br />
+    <!--<input type="button" name="back" class="back" value="Πίσω"/> <br/>--> <a href="#" class="govgr-back-link"
+      id="back" name="back"> <svg class="govgr-caret--left" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M18,22V2L6,12L18,22z" />
+      </svg>
+      Επιστροφή στην αρχική</a> <br />
+    <div class="govgr-width-container">
+      <table id="data" class="govgr-table--zebra govgr-table--dense govgr-table--dark govgr-table">
+        <thead class="govgr-table__head">
+          <tr class="govgr-table__row">
+            <th class="govgr-table__header" scope="col">Κατηγορία</th>
+            <th class="govgr-table__header" scope="col">Εκθέσεις</th>
+          </tr>
+        </thead>
+        <tbody class="govgr-table__body">
+          <tr class="govgr-table__row">
+            <td class="govgr-table__cell">Προσχέδιο νόμου</td>
+            <td class="govgr-table__cell">
+              <%= prosxedio%>
             </td>
           </tr>
-        </table>
-        <%- include('../user_views/menus.ejs') %>
-
-      </div>
+          <tr class="govgr-table__row">
+            <td class="govgr-table__cell">Σχέδιο νόμου</td>
+            <td class="govgr-table__cell">
+              <%= sxedio%>
+            </td>
+          </tr>
+          <tr class="govgr-table__row">
+            <td class="govgr-table__cell">Κατευθυντήριες γραμμές</td>
+            <td class="govgr-table__cell">
+              <%= kateythintiries%>
+            </td>
+          </tr>
+          <tr class="govgr-table__row">
+            <td class="govgr-table__cell">Επείγοντα και κατεπείγοντα νομοσχέδια</td>
+            <td class="govgr-table__cell">
+              <%= epeigon%>
+            </td>
+          </tr>
+          <tr class="govgr-table__row">
+            <td class="govgr-table__cell">Πρόταση νόμου</td>
+            <td class="govgr-table__cell">
+              <%= protasi%>
+            </td>
+          </tr>
+          <tr class="govgr-table__row">
+            <td class="govgr-table__cell">Κύρωση διεθνών συμβάσεων</td>
+            <td class="govgr-table__cell">
+              <%= symvaseis%>
+            </td>
+          </tr>
+          <tr class="govgr-table__row">
+            <td class="govgr-table__cell">Τροπολογίες Υπουργών</td>
+            <td class="govgr-table__cell">
+              <%= tropologies_upourgwn%>
+            </td>
+          </tr>
+          <tr class="govgr-table__row">
+            <td class="govgr-table__cell">Τροπολογίες Βουλευτών</td>
+            <td class="govgr-table__cell">
+              <%= tropologies_vouleftwn%>
+            </td>
+          </tr>
+        </tbody>
+        <tr class="govgr-table__row">
+          <td class="govgr-table__cell"><b>Σύνολο</b></td>
+          <td class="govgr-table__cell"> <b>
+              <%= entries %>
+            </b> </td>
+        </tr>
+      </table>
+      <%- include('../user_views/menus.ejs') %>
     </div>
   </div>
-  </div>
-  <%- include('../partials/footer.ejs') %>
-    </div>
 
     <style>
       a {
@@ -104,7 +90,7 @@
         $('#data').DataTable();
       });
 
-      $(".back").on("click", function (ev) {
+      $("#back").on("click", function (ev) {
         window.location.href = "/user_views/dashboard";
       })
 
