@@ -1,109 +1,123 @@
 <%- include('../partials/head.ejs') %>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
-    <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-
-    <div class="MuiContainer-root jss110 MuiContainer-maxWidthLg">
-        <br>
-        <input type="button" name="back" class="back" value="Πίσω" />
-        <br>
-        <div class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-4">
-
+    <div class=""> <br />
+        <!--<input type="button" name="back" class="back" value="Πίσω"/> <br/>--> <a href="#" class="govgr-back-link"
+            name="back"> <svg class="govgr-caret--left" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M18,22V2L6,12L18,22z" />
+            </svg>
+            Επιστροφή στην αρχική</a> <br />
+        <div class="govgr-width-container">
             <form>
-                <h1>Δημιουργία νέου χρήστη</h1>
-                <br>
-
-                <div class="form-group">
-                    <label for="fname">Όνομα χρήστη:</label>
-                    <input type="text" size="10" id="fname" name="fname" placeholder="Όνομα χρήστη" required
-                        minlength="5" />
+                <div id="errors" style="display: none;">
+                    <!--Display validation errors here-->
+                    <!-- <div class="alert alert-danger"> 
+                    <ul id="alerts"></ul>                     
+                </div>                 
+            </div>   -->
+                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close"></a> <strong>
+                            <ul id="alerts"></ul>
+                        </strong>
+                    </div>
                 </div>
-                <hr>
-
-                <div class="form-group">
-                    <label for="lname">Επώνυμο χρήστη:</label>
-                    <input type="text" size="10" id="lname" name="lname" placeholder="Επώνυμο χρήστη" required
-                        minlength="5" />
+                <h1 class="govgr-heading-xl">Δημιουργία Νέου Χρήστη</h1>
+                <div class="govgr-field">
+                    <label class="govgr-label" for="fname"> <span>Όνομα χρήστη:</span>
+                        <input class="govgr-input govgr-!-width-full" type="text" id="fname" name="fname"
+                            placeholder="Όνομα χρήστη" required minlength="5" />
+                    </label>
                 </div>
-                <hr>
-
-                <div class="form-group">
-                    <label for="username">Username χρήστη:</label>
-                    <input type="text" size="10" id="username" name="username" placeholder="Username" required
-                        minlength="5" />
+                <hr />
+                <div class="govgr-field">
+                    <label class="govgr-label" for="lname"> <span>Επώνυμο χρήστη:</span>
+                        <input class="govgr-input govgr-!-width-full" type="text" id="lname" name="lname"
+                            placeholder="Επώνυμο χρήστη" required minlength="5" />
+                    </label>
                 </div>
-                <hr>
-
-                <div class="form-group">
-                    <label for="password">Κωδικός πρόσβασης χρήστη:</label>
-                    <input type="password" size="10" id="password" name="password" placeholder="Κωδικός πρόσβασης"
-                        required minlength="8" placeholder="********"
-                        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$"
-                        oninvalid="this.setCustomValidity('Ο κωδικός πρέπει να περιέχει τουλάχιστον ένα κεφαλαίο γράμμα, έναν αριθμό και ένα σύμβολο(!@#$%^&*_=+-).')"
-                        oninput="this.setCustomValidity('')" />
+                <hr />
+                <div class="govgr-field">
+                    <label class="govgr-label" for="username"> <span>Username:</span>
+                        <input class="govgr-input govgr-!-width-full" type="text" id="username" name="username"
+                            placeholder="Username" required minlength="5" />
+                    </label>
                 </div>
-
-                <div class="form-group">
-                    <label for="repeat_password">Επανάληψη κωδικού πρόσβασης χρήστη:</label>
-                    <input type="password" size="10" id="repeat_password" name="repeat_password"
-                        placeholder="Επανάληψη κωδικού πρόσβασης" required minlength="8" placeholder="********"
-                        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$"
-                        oninvalid="this.setCustomValidity('Ο κωδικός πρέπει να περιέχει τουλάχιστον ένα πεζό και ένα κεφαλαίο γράμμα, έναν αριθμό και ένα σύμβολο(!@#$%^&*_=+-).')"
-                        oninput="this.setCustomValidity('')" />
+                <hr />
+                <div class="govgr-field">
+                    <label class="govgr-label" for="password"> <span>Κωδικός Πρόσβασης:</span>
+                        <input class="govgr-input govgr-!-width-full" type="password" id="password" name="password"
+                            required minlength="8"
+                            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$"
+                            oninvalid="this.setCustomValidity('Ο κωδικός πρέπει να περιέχει τουλάχιστον ένα πεζό και ένα κεφαλαίο γράμμα, έναν αριθμό και ένα σύμβολο(!@#$%^&*_=+-).')"
+                            oninput="this.setCustomValidity('')" />
+                    </label>
+                </div>
+                <div class="govgr-field">
+                    <label for="password"> <span>Επανάληψη κωδικού πρόσβασης χρήστη:</span>
+                        <input type="password" size="20" id="password_repeat" name="password_repeat" required
+                            minlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$"
+                            oninvalid="this.setCustomValidity('Ο κωδικός πρέπει να περιέχει τουλάχιστον ένα πεζό και ένα κεφαλαίο γράμμα, έναν αριθμό και ένα σύμβολο(!@#$%^&*_=+-).')"
+                            oninput="this.setCustomValidity('')" />
+                    </label>
                     <div id="msg"></div>
                 </div>
-                <hr>
-
-                <div class="checkbox-group form-group">
-                    <label for="ypoyrgeio" class="col-sm-2 col-form-label">Υπουργείο:</label>
-                    <select id="ypoyrgeio" name="ypoyrgeio" class="col-sm-8 form-control" required>
-                        <option value="" selected disabled>Eπιλογή</option>
-                    </select>
+                <hr />
+                <div class="govgr-field">
+                    <label class="govgr-label" for="ypoyrgeio">
+                        Υπουργείο:
+                        <select class="govgr-select" id="ypoyrgeio" name="ypoyrgeio" required>
+                            <option value="" selected disabled>Eπιλογή</option>
+                        </select>
+                    </label>
                 </div>
-                <hr>
-
-                <div class="checkbox-group form-group row">
-                    <label for="rolos" class="col-sm-2 col-form-label">Ρόλος: </label>
-                    <select id="rolos" name="rolos" class="col-sm-2 form-control" required>
-                        <option value="" selected disabled>Eπιλογή</option>
-                        <option value="Συντάκτης επισπεύδοντος Υπουργείου">Συντάκτης επισπεύδοντος Υπουργείου</option>
-                        <option value="Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων">Αρμόδιος
-                            επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων</option>
-                        <option value="Βουλευτής">Βουλευτής</option>
-                        <option value="Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)">Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)</option>
-                        <option value="Γενικό Λογιστήριο του Κράτους">Γενικό Λογιστήριο του Κράτους</option>
-                        <option value="Επιτροπή Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)">
-                            Επιτροπή Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)</option>
-                        <option value="Γραφείο Καλής Νομοθέτησης (ΓΓΝΚΘ)">Γραφείο Καλής Νομοθέτησης (ΓΓΝΚΘ)</option>
-                        <option value="Διεύθυνση Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)">Διεύθυνση Νομοπαρασκευαστικής
-                            Διαδικασίας (ΓΓΝΚΘ)</option>
-                        <option value="Γενικός Γραμματέας Νομικών και Κοινοβουλευτικών Θεμάτων">Γενικός Γραμματέας
-                            Νομικών και Κοινοβουλευτικών Θεμάτων</option>
-                        <option value="Βουλή">Βουλή</option>
-                    </select>
+                <hr />
+                <div class="govgr-field">
+                    <label class="govgr-label" for="rolos">
+                        Ρόλος:
+                        <select class="govgr-select" id="rolos" name="rolos" required>
+                            <option value="" selected disabled>Eπιλογή</option>
+                            <option value="Συντάκτης επισπεύδοντος Υπουργείου">Συντάκτης επισπεύδοντος Υπουργείου
+                            </option>
+                            <option value="Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων">Αρμόδιος
+                                επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων</option>
+                            <option value="Βουλευτής">Βουλευτής</option>
+                            <option value="Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)">Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)
+                            </option>
+                            <option value="Γενικό Λογιστήριο του Κράτους">Γενικό Λογιστήριο του Κράτους</option>
+                            <option value="Επιτροπή Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)">
+                                Επιτροπή Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)</option>
+                            <option value="Γραφείο Καλής Νομοθέτησης (ΓΓΝΚΘ)">Γραφείο Καλής Νομοθέτησης (ΓΓΝΚΘ)</option>
+                            <option value="Διεύθυνση Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)">Διεύθυνση
+                                Νομοπαρασκευαστικής
+                                Διαδικασίας (ΓΓΝΚΘ)</option>
+                            <option value="Γενικός Γραμματέας Νομικών και Κοινοβουλευτικών Θεμάτων">Γενικός Γραμματέας
+                                Νομικών και Κοινοβουλευτικών Θεμάτων</option>
+                            <option value="Βουλή">Βουλή</option>
+                        </select>
+                    </label>
+                </div> <br />
+                <div class="govgr-field">
+                    <fieldset class="govgr-fieldset">
+                        <legend for="dikaiwmata_diaxeirisis" role="heading" aria-level="1"
+                            class="govgr-fieldset__legend govgr-heading-l">
+                            Δικαιώματα Διαχείρισης
+                        </legend>
+                        <p class="govgr-hint">
+                            Ο χρήστης έχει δικαιώματα διαχείρισης: </p>
+                        <div class="govgr-checkboxes" id="dikaiwmata_diaxeirisis_checkbox">
+                            <div class="govgr-checkboxes__item">
+                                <label class="govgr-label govgr-checkboxes__label">
+                                    <input class="govgr-checkboxes__input" type="checkbox" id="dikaiwmata_diaxeirisis"
+                                        name="dikaiwmata_diaxeirisis" />
+                                </label>
+                            </div>
+                        </div>
+                    </fieldset>
                 </div>
-                <br>
-                <hr>
-
-                <div class="checkbox-group form-group row">
-                    <label for="dikaiwmata_diaxeirisis" class="col-sm-8 col-form-label">Ο χρήστης έχει δικαιώματα
-                        διαχείρισης:</label>
-                    <input class="col-sm-2 form-check-input position-static" type="checkbox" id="dikaiwmata_diaxeirisis"
-                        name="dikaiwmata_diaxeirisis">
-                </div>
-                <hr>
-
-                <input type="submit" name="create_new" class="action-button" value="Δημιουργία" />
+                <hr /> <br />
+                <input type="submit" id=" create_new" name="action-button" class="govgr-btn govgr-btn-primary"
+                    value="Δημιουργία" />
             </form>
-
         </div>
     </div>
-
     <%- include('../partials/footer.ejs') %>
         </div>
 
@@ -117,7 +131,6 @@
                 box-sizing: border-box;
             }
 
-            /* Add padding to containers */
             .container {
                 padding: 16px;
                 background-color: black;
@@ -180,7 +193,6 @@
 
             $("form").on("submit", function (ev) {
                 ev.preventDefault();
-                // console.log($(this).serialize())//comment this line out to hide query wrote in db
                 $.ajax({
                     url: '/user_views/create_user',
                     data: $(this).serialize(),
@@ -195,26 +207,24 @@
                 });
             });
 
-            $("#repeat_password, #password").keyup(function () {
+            $("#password_repeat, #password").keyup(function () {
                 passwordsMatch();
             });
 
             function passwordsMatch() {
-                if (($("#repeat_password").val() == $("#password").val() && $("#password").val())) {
+                if (($("#password_repeat").val() === $("#password").val() && $("#password").val() !== '')) {
                     $("#msg").html("Οι κωδικοί ταιριάζουν.").css("color", "green");
-                } else if (!$("#repeat_password").val() && !$("#password").val()) {
+                } else if (!$("#password_repeat").val() && !$("#password").val()) {
                     $("#msg").empty();
                 } else {
                     $("#msg").html("Οι κωδικοί δεν ταιριάζουν.").css("color", "red");
                 }
             }
 
-            ///////////////////////////////Handle ministries/////////////////////////////////////
-
-                let ministries = JSON.parse(' <%- JSON.stringify(ministries) %> ');
-                for (i in ministries) {
-                    $("#ypoyrgeio").append(`<option value="${ministries[i].ministry}">${ministries[i].ministry}</option>`);
-                }
+            let ministries = JSON.parse(' <%- JSON.stringify(ministries) %> ');
+            for (i in ministries) {
+                $("#ypoyrgeio").append(`<option value="${ministries[i].ministry}">${ministries[i].ministry}</option>`);
+            }
 
             $(".back").on("click", function (ev) {
                 window.location.href = "/user_views/dashboard";
