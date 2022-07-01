@@ -1,81 +1,53 @@
 <%- include('../partials/head.ejs') %>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
-  <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-
-  <div class="MuiContainer-root jss110 MuiContainer-maxWidthLg">
-    <div class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-4">
-      <div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-8">
-        <br><br>
-        <input type="button" name="back" class="back" value="Πίσω" />
-        <br><br>
-        <table id="data" class="display">
-          <thead>
-            <tr>
-              <th>Όνομα</th>
-              <th>Επώνυμο</th>
-              <th>Username</th>
-              <th>Ρόλος</th>
-              <th>Υπουργείο</th>
+  <div class=""> <br />
+    <!--<input type="button" name="back" class="back" value="Πίσω"/> <br/>--> <a href="#" class="govgr-back-link"
+      id="back" name="back"> <svg class="govgr-caret--left" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M18,22V2L6,12L18,22z" />
+      </svg>
+      Επιστροφή στην αρχική</a> <br />
+    <div class="govgr-width-container">
+      <table id="data" class="govgr-table--zebra govgr-table--dense govgr-table--dark govgr-table">
+        <!-- <table id="data" class="display"> -->
+        <thead class="govgr-table__head">
+          <tr class="govgr-table__row">
+            <th class="govgr-table__header" scope="col">Όνομα</th>
+            <th class="govgr-table__header" scope="col">Επώνυμο</th>
+            <th class="govgr-table__header" scope="col">Username</th>
+            <th class="govgr-table__header" scope="col">Ρόλος</th>
+            <th class="govgr-table__header" scope="col">Υπουργείο</th>
+          </tr>
+        </thead>
+        <tbody class="govgr-table__body">
+          <% for(var i=0; i<users.length; i++) {%>
+            <tr class="govgr-table__row" onclick="window.location.href='./edit_user/<%= users[i].username %>'">
+              <td class="govgr-table__cell">
+                <%= users[i].fname %>
+              </td>
+              <td class="govgr-table__cell">
+                <%= users[i].lname %>
+              </td>
+              <td class="govgr-table__cell">
+                <%= users[i].username %>
+              </td>
+              <td class="govgr-table__cell">
+                <%= users[i].rolos %>
+              </td>
+              <td class="govgr-table__cell">
+                <%= users[i].ypoyrgeio %>
+              </td>
             </tr>
-          </thead>
-          <tbody>
-
-            <% for(var i=0; i<users.length; i++) {%>
-              <tr onclick="window.location.href='./edit_user/<%= users[i].username %>'">
-                <td style="text-align:center">
-                  <%= users[i].fname %>
-                </td>
-                <td style="text-align:center">
-                  <%= users[i].lname %>
-                </td>
-                <td style="text-align:center">
-                  <%= users[i].username %>
-                </td>
-                <td style="text-align:center">
-                  <%= users[i].rolos %>
-                </td>
-                <td style="text-align:center">
-                  <%= users[i].ypoyrgeio %>
-                </td>
-              </tr>
-              <% } %>
-
-          </tbody>
-        </table>
-        <%- include('../user_views/menus.ejs') %>
-      </div>
-
+            <% } %>
+        </tbody>
+      </table>
+      <%- include('../user_views/menus.ejs') %>
     </div>
   </div>
   <%- include('../partials/footer.ejs') %>
-    </div>
-
-    <style>
-      a {
-        color: blue;
-      }
-
-      .display {
-        table-layout: fixed;
-        overflow-wrap: break-word;
-      }
-
-      .exit,
-      .back {
-        font-size: 16px;
-      }
-    </style>
-
     <script>
       $(document).ready(function () {
         $('#data').DataTable();
       });
-      $(".back").on("click", function (ev) {
+      $("#back").on("click", function (ev) {
         window.location.href = "/user_views/dashboard";
       })
       $("#admin_menu").show();
@@ -91,6 +63,3 @@
       }
 
     </script>
-    </body>
-
-    </html>
