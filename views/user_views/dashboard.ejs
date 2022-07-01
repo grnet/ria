@@ -74,9 +74,8 @@
 
       let user_role = '<%= user.rolos %>';
       let isAdmin = '<%= user.dikaiwmata_diaxeirisis %>';
-      if (!isAdmin) { //hide admin menu options if user does not have administration rights
-        $(".admin").hide(); 
-      }       
+
+      isAdmin ? $(".user").hide() : $(".admin").hide(); //hide admin menu options if user does not have administration rights
 
       if (user_role === 'Βουλευτής') {
         $("#create_analysis").children(":not(.vouleftis):not(.header)").hide();//hide all children elements without class vouleftis
