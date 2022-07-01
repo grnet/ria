@@ -1,7 +1,7 @@
 <%- include('../partials/head.ejs') %>
     <div class=""> <br />
         <!--<input type="button" name="back" class="back" value="Πίσω"/> <br/>--> <a href="#" class="govgr-back-link"
-            name="back"> <svg class="govgr-caret--left" viewBox="0 0 24 24" aria-hidden="true">
+            name="back" id="back"> <svg class="govgr-caret--left" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M18,22V2L6,12L18,22z" />
             </svg>
             Επιστροφή στην αρχική</a> <br />
@@ -226,7 +226,7 @@
                 $("#ypoyrgeio").append(`<option value="${ministries[i].ministry}">${ministries[i].ministry}</option>`);
             }
 
-            $(".back").on("click", function (ev) {
+            $("#back").on("click", function (ev) {
                 window.location.href = "/user_views/dashboard";
             });
 
