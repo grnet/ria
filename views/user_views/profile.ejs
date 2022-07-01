@@ -237,8 +237,8 @@
             for (i in ministries) {
                 $("#ypoyrgeio").append(`<option value="${ministries[i].ministry}">${ministries[i].ministry}</option>`);
             }
-            let ministryValue = "<%= data.ypoyrgeio %>";
-            let roleValue = "<%= data.rolos %>";
+            let ministryValue = "<%= user.ypoyrgeio %>";
+            let roleValue = "<%= user.rolos %>";
             $("#ypoyrgeio").val(ministryValue ? ministryValue : $("#ypoyrgeio option:first").val());//if user is assigned a ministry, set dropdown accordingly, else set to first option
             $("#rolos").val(roleValue ? roleValue : $("#ypoyrgeio option:first").val());//if user is assigned a role, set dropdown accordingly, else set to first option
 

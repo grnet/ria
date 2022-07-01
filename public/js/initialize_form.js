@@ -28,8 +28,10 @@ if (pdf_exists) {
   $("#pdf_download").show();
 }
 
+setSubtitle();
+setSubText();
 setDropdown();
-requiredDigitalGov();
+requiredDigitalGov(); //set initial state for fields 10-13
 requiredLegalistics(); //set initial state for fields 33-40
 
 ekpedeusi_politismos
@@ -317,7 +319,6 @@ $("#field_17_ypoyrgeio").val(
 );
 
 let index = $("#tbody_ministers").prop("rows").length;
-console.log(ministersRoles);
 for (let j in ministersRoles) {
   $("#tbody_ministers").append(`
     <tr id="R${++index}">  
@@ -366,3 +367,7 @@ for (let i in f17ministersRoles) {
   $(`#field_17_minister_surname${index}`).val(f17ministersSurnames[i].elem);
   $(`#field_17_minister_ministry${index}`).val(f17ministersMinistry[i].elem);
 }
+//TODO: fix order
+viewFormRoleRestriction();
+viewFormAnalysisRestriction();
+analysisRestrictions();

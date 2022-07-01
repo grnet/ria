@@ -1,10 +1,6 @@
 //count & limit words
 //as of latest requests, word limit no longer required. Code will remain for future needs
 function wordsCounter(fieldId, spanId, wordlimit, event) {
-  console.log('wrdscntr called')
-  console.log(fieldId);
-  console.log(spanId);
-
   Countable.on(document.getElementById(fieldId), (counter) => {
     // if (counter.words >= wordlimit) {
     //   event.preventDefault(); //if word limit is reached prevent typing by preventing next event
@@ -84,7 +80,6 @@ function analysisRestrictions() {
       setAnalysisRestrictions("kateuthintiries");
     },
     "Προσχέδιο νόμου": function () {
-      console.log("is prosxedio");
       setAnalysisRestrictions("prosxedio");
     },
     "Επείγον ή κατεπείγον νομοσχέδιο": function () {
@@ -114,7 +109,7 @@ function setAnalysisRestrictions(type) {
     },
     kateuthintiries: function () {
       $(
-        ".mostly-optional :input, .optional :input, .table-14 :input, .table-29 :input, .table-30 :input"
+        ".mostly-optional :input, .optional :input, .table-14 :input"
       ).prop("disabled", true);
       $(".create-new, .next, .previous").prop("disabled", false);
       $(
@@ -122,10 +117,9 @@ function setAnalysisRestrictions(type) {
       ).removeClass("required");
     },
     prosxedio: function () {
-      console.log("is prosxedio num2");
       $(".mostly-optional :input").prop("disabled", true);
       $(".create-new, .next, .previous").prop("disabled", false);
-      $(".mostly-optional-label, .field-23-label").removeClass("required");
+      $(".mostly-optional-label, .field-23-label, .glk").removeClass("required");
     },
     upourgoi: function () {
       $(".optional :input, .field-22 :input").prop("disabled", true);
@@ -136,14 +130,22 @@ function setAnalysisRestrictions(type) {
     },
     vouleutes: function () {
       $(".optional :input, .vouleutes :input").prop("disabled", true);
-      $(".create-new, .next, .previous").prop("disabled", false);
+      $(
+        ".create-new, .next, .previous, .table-31 :input, .table-32 :input"
+      ).prop("disabled", false);
       $(".optional-label, .vouleutes-label, .field-23-label").removeClass(
         "required"
       );
+      $(".table-31-label, .table-32-label").addClass("required");
     },
   };
-  $(".glk :input:not(.create-new, .next, .previous)").prop("disabled", true); //disable fields accessible only by Γενικό Λογιστήριο
+  //TODO: remove required class
+  $(".glk :input:not(.create-new, .next, .previous, #ekthesi_glk)").prop(
+    "disabled",
+    true
+  ); //disable fields accessible only by Γενικό Λογιστήριο
   restrictions[type]();
+  $(".export-pdf").prop("disabled", false);  
 }
 
 function populateMinistersSurnameSelect(ministerSurnameSelectId) {
