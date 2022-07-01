@@ -1,19 +1,69 @@
-<div class="MuiBox-root jss114">
-    <header class="MuiPaper-root MuiAppBar-root MuiAppBar-positionStatic MuiAppBar-colorPrimary jss115 MuiPaper-elevation4">
-    <div class="MuiContainer-root MuiContainer-maxWidthLg">
-        <div class="MuiToolbar-root MuiToolbar-dense jss122">
-        <div class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-1">
-            <div class="MuiGrid-root jss120 MuiGrid-item">
-            <div class="jss117">
-                <a href="https://gov.gr" style="display: flex;"><img src="/img/gov_gr.png" height="90" alt="header.logo_alt_label"></a>
-            </div>
-            <a class="MuiButtonBase-root" tabindex="0" aria-disabled="false" href="/">
-                <h4 class="jss118 jss178 jss182">Ανάλυση Συνεπειών Ρύθμισης <div class="MuiServiceBadge-root">ALPHA</div></h4>
-            </a>
+<header class="govgr-header govgr-header-internal">
+    <div class="govgr-header__container">
+        <div class="govgr-header__content"><a href="https://www.gov.gr/"> <img class="govgr-header-logo"
+                    src="https://www.gov.gr/gov_gr_logo.svg" /> </a> <a href="https://ria.dev.grnet.gr/"
+                class="govgr-header-title">Ανάλυση Συνεπειών Ρύθμισης</a>
+            <!--  <img class="govgr-header-secondary-logo" src="images/e_gif_white.svg"/>-->
+        </div>
+        <!-- Menu (needs to be placed here atm)-->
+        <div>
+            <div class="govgr-burger-menu govgr-burger-menu--white-bg">
+                <div id="govgr-burger-menu__line1"></div>
+                <div id="govgr-burger-menu__line2"></div>
+                <div id="govgr-burger-menu__line3"></div>
             </div>
         </div>
-        </div>
+        <!-- End of menu -->
     </div>
-    <div class="jss116"></div>
-    </header>
-</div>
+</header>
+<svg class="govgr-burger-icon" focusable="true" viewBox="0 0 24 24" aria-hidden="true">
+    <rect id="govgr-burger-icon__line-1" width="20" height="3.3" />
+    <rect id="govgr-burger-icon__line-2" width="20" height="3.3" />
+    <rect id="govgr-burger-icon__line-3" width="20" height="3.3" />
+</svg>
+<nav class="govgr-horizontal-nav">
+    <div class="govgr-horizontal-nav__container"><a href=""
+            class="govgr-horizontal-nav__item govgr-horizontal-nav__item-active"> Αρχική </a>
+        <details class="govgr-dropdown">
+            <summary class="govgr-dropdown__button govgr-link"> Διαχείριση Χρηστών
+                <svg aria-hidden="true" class="govgr-svg-icon govgr-arrow--down" focusable="false" viewBox="0 0 24 24">
+                    <path d="M22,8.2l-2.3-2.4L12,13.4L4.4,5.8L2,8.2l10,10L22,8.2z" />
+                </svg>
+            </summary>
+            <div class="govgr-dropdown__content">
+                <nav class="govgr-vertical-nav"><a href="#" class="govgr-link govgr-vertical-nav__item"> Δημιουργία νέου
+                        χρήστη</a><a href="#" class="govgr-link govgr-vertical-nav__item"> Επεξεργασία στοιχείων χρήστη
+                    </a><a href="#" class="govgr-link govgr-vertical-nav__item"> Τα στοιχεία μου</a>
+                </nav>
+            </div>
+        </details>
+        <details class="govgr-dropdown">
+            <summary class="govgr-dropdown__button govgr-link"> Νέα Ανάλυση
+                <svg aria-hidden="true" class="govgr-svg-icon govgr-arrow--down" focusable="false" viewBox="0 0 24 24">
+                    <path d="M22,8.2l-2.3-2.4L12,13.4L4.4,5.8L2,8.2l10,10L22,8.2z" />
+                </svg>
+            </summary>
+            <div class="govgr-dropdown__content">
+                <nav class="govgr-vertical-nav"><a href="#" class="govgr-link govgr-vertical-nav__item"> Σχέδιο
+                        νόμου</a><a href="#" class="govgr-link govgr-vertical-nav__item"> Προσχέδιο νόμου </a><a
+                        href="#" class="govgr-link govgr-vertical-nav__item"> Κατευθυντήριες γραμμές</a><a href="#"
+                        class="govgr-link govgr-vertical-nav__item"> Επείγον ή κατεπείγον νομοσχέδιο </a><a href="#"
+                        class="govgr-link govgr-vertical-nav__item"> Πρόταση νόμου</a><a href="#"
+                        class="govgr-link govgr-vertical-nav__item"> Διεθνείς συμβάσεις</a>
+                </nav>
+            </div>
+        </details>
+        <details class="govgr-dropdown">
+            <summary class="govgr-dropdown__button govgr-link"> Διαχείριση Αναλύσεων
+                <svg aria-hidden="true" class="govgr-svg-icon govgr-arrow--down" focusable="false" viewBox="0 0 24 24">
+                    <path d="M22,8.2l-2.3-2.4L12,13.4L4.4,5.8L2,8.2l10,10L22,8.2z" />
+                </svg>
+            </summary>
+            <div class="govgr-dropdown__content">
+                <nav class="govgr-vertical-nav"><a href="#" class="govgr-link govgr-vertical-nav__item"> Συνοπτικά
+                        στοιχεία</a><a href="#" class="govgr-link govgr-vertical-nav__item"> Ιστορικό </a>
+                </nav>
+            </div>
+        </details>
+    </div>
+</nav>

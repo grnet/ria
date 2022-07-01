@@ -1,46 +1,40 @@
 <%- include('partials/head.ejs') %>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<br><br><br><br>
-<div class="MuiContainer-root jss110 MuiContainer-maxWidthLg">
-  <div class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-4">
-        
-    <form>
-      <br>
-      <% if( typeof errors !== "undefined") {
-            for (i in errors) {%>
-      <div class="alert alert-danger alert-dismissible">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        <strong><%= errors[i].msg%></strong>
+  <div class="govgr-width-container">
+    <div class="govgr-main-wrapper">
+      <div class="govgr-grid-column-two-thirds">
+        <form>
+          <% if( typeof errors !=="undefined" ) { for (i in errors) {%>
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert"> <a
+                href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> <strong>
+                <%= errors[i].msg%>
+              </strong>
+            </div>
+            <% } } %> <br />
+              <div>
+                <h2 class="govgr-heading-xl">Απαιτείται ταυτοποίηση</h2>
+                <h2 class="govgr-heading-l">Για να προχωρήσετε πρέπει πρώτα να συνδεθείτε.</h2>
+              </div>
+              <div class="govgr-field">
+                <label class="govgr-label">
+                  <span>Όνομα Χρήστη</span>
+                  <input class="govgr-input govgr-!-width-one-half" type="text" id="username" name="username"
+                    required />
+                </label>
+              </div>
+              <div class="govgr-field">
+                <label class="govgr-label">
+                  <span>Κωδικός Πρόσβασης</span>
+                  <input type="password" class="govgr-input govgr-!-width-one-half" id="password" name="password"
+                    required />
+                </label>
+              </div>
+              <input type="submit" name="login" class=" govgr-btn govgr-btn-primary" value="Σύνδεση" /> <br /><br />
+        </form>
       </div>
-      <%  }
-           } %>
-      <br>     
-      <h1>Απαιτείται ταυτοποίηση</h1>
-
-      <h4>Για να προχωρήσετε πρέπει πρώτα να συνδεθείτε.</h4>
-      <div class="form-group">
-        <label for="username">Χρήστης:</label>
-        <input type="text" id="username" name="username" placeholder="Χρήστης" required />
-      </div>
-
-      <div class="form-group">
-        <label for="password">Κωδικός πρόσβασης χρήστη:</label>
-        <input type="password" id="password" name="password" placeholder="Κωδικός πρόσβασης" required />
-      </div>
-
-      <input type="submit" name="login"
-        class=" MuiButtonBase-root MuiButton-root jss243 MuiButton-contained MuiButton-containedPrimary MuiButton-containedSizeLarge MuiButton-sizeLarge"
-        value="Σύνδεση" />
-
-      <br><br><br><br><br><br>
-    </form>
+    </div>
+    <p></p><br /><br />
   </div>
-</div>
 
 <%- include('partials/footer.ejs') %>
 </div>
