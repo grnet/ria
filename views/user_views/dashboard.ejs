@@ -1,56 +1,56 @@
 <%- include('../partials/head.ejs') %>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 
-  <div class="MuiContainer-root jss110 MuiContainer-maxWidthLg">
-    <div class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-4">
-      <div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-8">
-        <br><br>
-
+  <div class="govgr-width-container">
+    <div class="govgr-main-wrapper">
+      <div class="govgr-grid-column-two-thirds">
         <% if( typeof errors !=="undefined" ) { for (i in errors) {%>
-          <div class="alert alert-danger alert-dismissible">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <strong>
+          <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert"> <a
+              href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> <strong>
               <%= errors[i].msg%>
             </strong>
           </div>
-          <% } } %>
-
+          <% } } %> <br />
             <div class="user">
-              <p class="MuiTypography-root jss211 MuiTypography-body1">
-                Ως χρήστης του συστήματος μπορείτε, επιλέγοντας τον αντίστοιχο σύνδεσμο, να: <br>
+              <p class="govgr-body">
+                Ως <b>Χρήστης</b> του συστήματος μπορείτε, επιλέγοντας τον αντίστοιχο σύνδεσμο, να: <br />
               <ul>
-                <li>Διαχειριστείτε τα στοιχεία του προφίλ σας</li>
-                <li>Να ξεκινήσετε μια νέα έκθεση</li>
-                <li>Να δείτε τις καταχωρημένες εκθέσεις σε κάθε κατηγορία και να συνεχίσετε μια θεση που έχετε
+                <li>
+                  <span>&#10004;</span> Διαχειριστείτε τα στοιχεία του προφίλ σας
+                </li>
+                <li>
+                  <span>&#10004;</span>
+                  Να ξεκινήσετε μια νέα έκθεση
+                </li>
+                <li>
+                  <span>&#10004;</span> Να δείτε τις καταχωρημένες εκθέσεις σε κάθε κατηγορία και να συνεχίσετε μια θεση
+                  που έχετε
                   αποθηκεύσει
-                  προσωρινά</li>
+                  προσωρινά
+                </li>
               </ul>
               </p>
-            </div>
-
+            </div> <br />
             <div class="admin">
-              <p class="MuiTypography-root jss211 MuiTypography-body1">
-                Ως διαχειριστής του συστήματος μπορείτε, επιλέγοντας τον αντίστοιχο σύνδεσμο, να: <br>
+              <p class="govgr-body">
+                Ως <b>Διαχειριστής</b> του συστήματος μπορείτε, επιλέγοντας τον αντίστοιχο σύνδεσμο, να: <br />
               <ul>
-                <li>Διαχειριστείτε τους χρήστες και ρόλους του συστήματος </li>
-                <li>Να δείτε συγκεντρωτικά στοιχεία για τις εκθέσεις που έχουν καταχωρηθεί</li>
-                <li>Να δείτε και να επεξεργαστείτε καταχωρημένες εκθέσεις</li>
+                <li><span>&#10004;</span> Διαχειριστείτε τους χρήστες και ρόλους του συστήματος
+                </li>
+                <li><span>&#10004;</span> Να δείτε συγκεντρωτικά στοιχεία για τις εκθέσεις που έχουν καταχωρηθεί
+                </li>
+                <li><span>&#10004;</span> Να δείτε και να επεξεργαστείτε καταχωρημένες εκθέσεις
+                </li>
               </ul>
-
               </p>
             </div>
-
-            <%- include('../user_views/menus.ejs') %>
-
+      </div>
+      <div class="govgr-grid-column-one-third">
+        <%- include('../user_views/menus.ejs') %>
       </div>
     </div>
+    <p></p><br /><br />
   </div>
-  <br><br>
   <%- include('../partials/footer.ejs') %>
     </div>
 
@@ -74,8 +74,9 @@
 
       let user_role = '<%= user.rolos %>';
       let isAdmin = '<%= user.dikaiwmata_diaxeirisis %>';
-
-      isAdmin ? $(".user").hide() : $(".admin").hide();//display admin info if user has administration rights
+      if (!isAdmin) { //hide admin menu options if user does not have administration rights
+        $(".admin").hide(); 
+      }       
 
       if (user_role === 'Βουλευτής') {
         $("#create_analysis").children(":not(.vouleftis):not(.header)").hide();//hide all children elements without class vouleftis
