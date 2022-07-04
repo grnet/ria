@@ -9,21 +9,22 @@ CKEDITOR.replace("field_17_oikonomika_apotelesmata");
 var current_fs, next_fs, previous_fs; //fieldsets
 
 $(".next").click(function () {
-  current_fs = $(this).parent();
-  next_fs = $(this).parent().next();
+  current_fs = $(this).closest("fieldset");
+  next_fs = $(this).closest("fieldset").next();
 
   //activate next step on progressbar using the index of next_fs
-  $(".progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+  // $(".progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
 
   //show the next fieldset
   next_fs.show();
   //hide the current fieldset with style
   current_fs.hide();
+  window.scrollTo(0, 0);
 });
 
 $(".previous").click(function () {
-  current_fs = $(this).parent();
-  previous_fs = $(this).parent().prev();
+  current_fs = $(this).closest("fieldset");
+  previous_fs = $(this).closest("fieldset").prev();
 
   //de-activate current step on progressbar
   $(".progressbar li")
@@ -88,7 +89,7 @@ $(
   $(this).closest("tr").remove();
 });
 
-$(".back").on("click", function (ev) {
+$("#back").on("click", function (ev) {
   window.location.href = "/user_views/history";
 });
 
@@ -211,7 +212,8 @@ $("#field_28_alla_dikastiria").on("change", function (ev) {
 });
 
 $("#field_4").on("click", function (ev) {
-  if ($(this).val() == "Ναι") {
+  console.log('f4 event called')
+  if ($(this).val() === "Ναι") {
     $("#field_4_wrap").show();
   } else {
     $("#field_4_wrap").hide();
