@@ -501,947 +501,918 @@
         <p style="float: right;">Λέξεις: <span id="words18"></span> /150</p>
     </div> <br /> <br />
     <div class="govgr-button-group">
-        <button class="govgr-btn govgr-btn-primary govgr-btn-cta previous action-button-previous" name="previous">
+        <button type="button" class="govgr-btn govgr-btn-primary govgr-btn-cta previous action-button-previous"
+            name="previous">
             <svg viewBox="0 0 24 24" class="govgr-arrow--left" focusable="false" aria-hidden="true">
                 <path d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z" />
                 <!--  <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z"/>-->
             </svg> Προηγούμενη φόρμα
         </button>
-        <button class="govgr-btn govgr-btn-primary govgr-btn-cta next action-button" name="next">
+        <button type="button" class="govgr-btn govgr-btn-primary govgr-btn-cta next action-button" name="next">
             Επόμενα πεδία
             <svg viewBox="0 0 24 24" class="govgr-arrow--right" focusable="false" aria-hidden="true">
                 <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z" />
             </svg>
         </button>
     </div>
-    <fieldset id="kostos_rythmisis" class="field-19 vouleutes">
-        <h3 class="govgr-heading-l"></h3>
-        <label id="kostos_rythmisis_table_label" class="field-19-label vouleutes-label required">19.Κόστος
-            αξιολογούμενης ρύθμισης</label>
-        <div class="index_table19"></div>
-        </h3>
-        <table class="govgr-table--dense govgr-table--dark govgr-table" id="kostos_rythmisis_table">
-            <thead class="thead">
-                <tr>
-                    <th colspan="6">
-                        <label>ΚΟΣΤΟΣ ΡΥΘΜΙΣΗΣ</label>
-                        <div class="index_cost"></div>
-                    </th>
+</fieldset>
+<fieldset id="kostos_rythmisis" class="field-19 vouleutes">
+    <h3 class="govgr-heading-l"></h3>
+    <label id="kostos_rythmisis_table_label" class="field-19-label vouleutes-label required">19.Κόστος
+        αξιολογούμενης ρύθμισης</label>
+    <div class="index_table19"></div>
+    </h3>
+    <table class="govgr-table--dense govgr-table--dark govgr-table" id="kostos_rythmisis_table">
+        <thead class="thead">
+            <tr>
+                <th colspan="6">
+                    <label>ΚΟΣΤΟΣ ΡΥΘΜΙΣΗΣ</label>
+                    <div class="index_cost"></div>
+                </th>
 
-                <tr>
-                    <th colspan="6">ΓΙΑ ΤΗΝ ΕΝΑΡΞΗ ΕΦΑΡΜΟΓΗΣ ΤΗΣ ΡΥΘΜΙΣΗΣ</th>
-                <tr>
-                    <th colspan="1"> </th>
-                    <th colspan="1">ΘΕΣΜΟΙ, ΔΗΜΟΣΙΑ ΔΙΟΙΚΗΣΗ, ΔΙΑΦΑΝΕΙΑ</th>
-                    <th colspan="1">ΑΓΟΡΑ, ΟΙΚΟΝΟΜΙΑ, ΑΝΤΑΓΩΝΙΣΜΟΣ</th>
-                    <th colspan="1">ΚΟΙΝΩΝΙΑ & ΚΟΙΝΩΝΙΚΕΣ ΟΜΑΔΕΣ</th>
-                    <th colspan="1">ΦΥΣΙΚΟ, ΑΣΤΙΚΟ ΚΑΙ ΠΟΛΙΤΙΣΤΙΚΟ ΠΕΡΙΒΑΛΛΟΝ</th>
-                    <th colspan="1">ΝΗΣΙΩΤΙΚΟΤΗΤΑ</th>
-                </tr>
+            <tr>
+                <th colspan="6">ΓΙΑ ΤΗΝ ΕΝΑΡΞΗ ΕΦΑΡΜΟΓΗΣ ΤΗΣ ΡΥΘΜΙΣΗΣ</th>
+            <tr>
+                <th colspan="1"> </th>
+                <th colspan="1">ΘΕΣΜΟΙ, ΔΗΜΟΣΙΑ ΔΙΟΙΚΗΣΗ, ΔΙΑΦΑΝΕΙΑ</th>
+                <th colspan="1">ΑΓΟΡΑ, ΟΙΚΟΝΟΜΙΑ, ΑΝΤΑΓΩΝΙΣΜΟΣ</th>
+                <th colspan="1">ΚΟΙΝΩΝΙΑ & ΚΟΙΝΩΝΙΚΕΣ ΟΜΑΔΕΣ</th>
+                <th colspan="1">ΦΥΣΙΚΟ, ΑΣΤΙΚΟ ΚΑΙ ΠΟΛΙΤΙΣΤΙΚΟ ΠΕΡΙΒΑΛΛΟΝ</th>
+                <th colspan="1">ΝΗΣΙΩΤΙΚΟΤΗΤΑ</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <input type="hidden" name="field_19_efarmogi_proetimasia_cbxlabel"
+                            value="Σχεδιασμός / προετοιμασία" />
+                        <input type="hidden" name="field_19_efarmogi_proetimasia_cbxsecondHeader"
+                            value="ΓΙΑ ΤΗΝ ΕΝΑΡΞΗ ΕΦΑΡΜΟΓΗΣ ΤΗΣ ΡΥΘΜΙΣΗΣ" />
+                        <input type="hidden" name="field_19_efarmogi_proetimasia_cbxHeader" value="ΚΟΣΤΟΣ ΡΥΘΜΙΣΗΣ" />
+                        <label class="col-sm-10 col-form-label">Σχεδιασμός / προετοιμασία</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_19_efarmogi_proetimasia_thesmoi" name="field_19_efarmogi_proetimasia_thesmoi" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_19_efarmogi_proetimasia_oikonomia"
+                            name="field_19_efarmogi_proetimasia_oikonomia" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_19_efarmogi_proetimasia_kinonia" name="field_19_efarmogi_proetimasia_kinonia" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_19_efarmogi_proetimasia_perivallon"
+                            name="field_19_efarmogi_proetimasia_perivallon" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_19_efarmogi_proetimasia_nisiwtika"
+                            name="field_19_efarmogi_proetimasia_nisiwtika" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <input type="hidden" name="field_19_efarmogi_ypodomi_cbxlabel" value="Υποδομή / εξοπλισμός" />
+                        <label class="col-sm-11 col-form-label">Υποδομή / εξοπλισμός</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_19_efarmogi_ypodomi_thesmoi" name="field_19_efarmogi_ypodomi_thesmoi" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_19_efarmogi_ypodomi_oikonomia" name="field_19_efarmogi_ypodomi_oikonomia" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_19_efarmogi_ypodomi_kinonia" name="field_19_efarmogi_ypodomi_kinonia" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_19_efarmogi_ypodomi_perivallon" name="field_19_efarmogi_ypodomi_perivallon" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_19_efarmogi_ypodomi_nisiwtika" name="field_19_efarmogi_ypodomi_nisiwtika" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <input type="hidden" name="field_19_efarmogi_kinitikotita_cbxlabel"
+                            value="Προσλήψεις / κινητικότητα" />
+                        <label class="col-sm-12 col-form-label">Προσλήψεις / κινητικότητα</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_19_efarmogi_kinitikotita_thesmoi" name="field_19_efarmogi_kinitikotita_thesmoi" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_19_efarmogi_kinitikotita_oikonomia"
+                            name="field_19_efarmogi_kinitikotita_oikonomia" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_19_efarmogi_kinitikotita_kinonia" name="field_19_efarmogi_kinitikotita_kinonia" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_19_efarmogi_kinitikotita_perivallon"
+                            name="field_19_efarmogi_kinitikotita_perivallon" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_19_efarmogi_kinitikotita_nisiwtika"
+                            name="field_19_efarmogi_kinitikotita_nisiwtika" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <input type="hidden" name="field_19_efarmogi_emplekomenoi_cbxlabel"
+                            value="Ενημέρωση εκπαίδευση εμπλεκομένων" />
+                        <label class="col-sm-12 col-form-label">Ενημέρωση εκπαίδευση εμπλεκομένων</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_19_efarmogi_emplekomenoi_thesmoi" name="field_19_efarmogi_emplekomenoi_thesmoi" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_19_efarmogi_emplekomenoi_oikonomia"
+                            name="field_19_efarmogi_emplekomenoi_oikonomia" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_19_efarmogi_emplekomenoi_kinonia" name="field_19_efarmogi_emplekomenoi_kinonia" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_19_efarmogi_emplekomenoi_perivallon"
+                            name="field_19_efarmogi_emplekomenoi_perivallon" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_19_efarmogi_emplekomenoi_nisiwtika"
+                            name="field_19_efarmogi_emplekomenoi_nisiwtika" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <input type="hidden" name="field_19_efarmogi_allo_cbxlabel" value="Άλλο" />
+                        <label class="col-sm-12 col-form-label">Άλλο</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_19_efarmogi_allo_thesmoi" name="field_19_efarmogi_allo_thesmoi" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_19_efarmogi_allo_oikonomia" name="field_19_efarmogi_allo_oikonomia" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_19_efarmogi_allo_kinonia" name="field_19_efarmogi_allo_kinonia" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_19_efarmogi_allo_perivallon" name="field_19_efarmogi_allo_perivallon" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_19_efarmogi_allo_nisiwtika" name="field_19_efarmogi_allo_nisiwtika" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="6">ΓΙΑ ΤΗ ΛΕΙΤΟΥΡΓΙΑ & ΑΠΟΔΟΣΗ ΤΗΣ ΡΥΘΜΙΣΗΣ</th>
+            <tr>
+                <th colspan="1"> </th>
+                <th colspan="1">ΘΕΣΜΟΙ, ΔΗΜΟΣΙΑ ΔΙΟΙΚΗΣΗ, ΔΙΑΦΑΝΕΙΑ</th>
+                <th colspan="1">ΑΓΟΡΑ, ΟΙΚΟΝΟΜΙΑ, ΑΝΤΑΓΩΝΙΣΜΟΣ</th>
+                <th colspan="1">ΚΟΙΝΩΝΙΑ & ΚΟΙΝΩΝΙΚΕΣ ΟΜΑΔΕΣ</th>
+                <th colspan="1">ΦΥΣΙΚΟ, ΑΣΤΙΚΟ ΚΑΙ ΠΟΛΙΤΙΣΤΙΚΟ ΠΕΡΙΒΑΛΛΟΝ</th>
+                <th colspan="1">ΝΗΣΙΩΤΙΚΟΤΗΤΑ</th>
+            </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <input type="hidden" name="field_19_efarmogi_proetimasia_cbxlabel"
-                                value="Σχεδιασμός / προετοιμασία" />
-                            <input type="hidden" name="field_19_efarmogi_proetimasia_cbxsecondHeader"
-                                value="ΓΙΑ ΤΗΝ ΕΝΑΡΞΗ ΕΦΑΡΜΟΓΗΣ ΤΗΣ ΡΥΘΜΙΣΗΣ" />
-                            <input type="hidden" name="field_19_efarmogi_proetimasia_cbxHeader"
-                                value="ΚΟΣΤΟΣ ΡΥΘΜΙΣΗΣ" />
-                            <label class="col-sm-10 col-form-label">Σχεδιασμός / προετοιμασία</label>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <div class="col-2"></div>
-                            <input class="col-2 form-check-input position-static" type="checkbox"
-                                id="field_19_efarmogi_proetimasia_thesmoi"
-                                name="field_19_efarmogi_proetimasia_thesmoi" />
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <div class="col-2"></div>
-                            <input class="col-2 form-check-input position-static" type="checkbox"
-                                id="field_19_efarmogi_proetimasia_oikonomia"
-                                name="field_19_efarmogi_proetimasia_oikonomia" />
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <div class="col-2"></div>
-                            <input class="col-2 form-check-input position-static" type="checkbox"
-                                id="field_19_efarmogi_proetimasia_kinonia"
-                                name="field_19_efarmogi_proetimasia_kinonia" />
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <div class="col-2"></div>
-                            <input class="col-2 form-check-input position-static" type="checkbox"
-                                id="field_19_efarmogi_proetimasia_perivallon"
-                                name="field_19_efarmogi_proetimasia_perivallon" />
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <div class="col-2"></div>
-                            <input class="col-2 form-check-input position-static" type="checkbox"
-                                id="field_19_efarmogi_proetimasia_nisiwtika"
-                                name="field_19_efarmogi_proetimasia_nisiwtika" />
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <input type="hidden" name="field_19_efarmogi_ypodomi_cbxlabel"
-                                value="Υποδομή / εξοπλισμός" />
-                            <label class="col-sm-11 col-form-label">Υποδομή / εξοπλισμός</label>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <div class="col-2"></div>
-                            <input class="col-2 form-check-input position-static" type="checkbox"
-                                id="field_19_efarmogi_ypodomi_thesmoi" name="field_19_efarmogi_ypodomi_thesmoi" />
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <div class="col-2"></div>
-                            <input class="col-2 form-check-input position-static" type="checkbox"
-                                id="field_19_efarmogi_ypodomi_oikonomia" name="field_19_efarmogi_ypodomi_oikonomia" />
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <div class="col-2"></div>
-                            <input class="col-2 form-check-input position-static" type="checkbox"
-                                id="field_19_efarmogi_ypodomi_kinonia" name="field_19_efarmogi_ypodomi_kinonia" />
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <div class="col-2"></div>
-                            <input class="col-2 form-check-input position-static" type="checkbox"
-                                id="field_19_efarmogi_ypodomi_perivallon" name="field_19_efarmogi_ypodomi_perivallon" />
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <div class="col-2"></div>
-                            <input class="col-2 form-check-input position-static" type="checkbox"
-                                id="field_19_efarmogi_ypodomi_nisiwtika" name="field_19_efarmogi_ypodomi_nisiwtika" />
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <input type="hidden" name="field_19_efarmogi_kinitikotita_cbxlabel"
-                                value="Προσλήψεις / κινητικότητα" />
-                            <label class="col-sm-12 col-form-label">Προσλήψεις / κινητικότητα</label>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <div class="col-2"></div>
-                            <input class="col-2 form-check-input position-static" type="checkbox"
-                                id="field_19_efarmogi_kinitikotita_thesmoi"
-                                name="field_19_efarmogi_kinitikotita_thesmoi" />
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <div class="col-2"></div>
-                            <input class="col-2 form-check-input position-static" type="checkbox"
-                                id="field_19_efarmogi_kinitikotita_oikonomia"
-                                name="field_19_efarmogi_kinitikotita_oikonomia" />
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <div class="col-2"></div>
-                            <input class="col-2 form-check-input position-static" type="checkbox"
-                                id="field_19_efarmogi_kinitikotita_kinonia"
-                                name="field_19_efarmogi_kinitikotita_kinonia" />
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <div class="col-2"></div>
-                            <input class="col-2 form-check-input position-static" type="checkbox"
-                                id="field_19_efarmogi_kinitikotita_perivallon"
-                                name="field_19_efarmogi_kinitikotita_perivallon" />
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <div class="col-2"></div>
-                            <input class="col-2 form-check-input position-static" type="checkbox"
-                                id="field_19_efarmogi_kinitikotita_nisiwtika"
-                                name="field_19_efarmogi_kinitikotita_nisiwtika" />
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <input type="hidden" name="field_19_efarmogi_emplekomenoi_cbxlabel"
-                                value="Ενημέρωση εκπαίδευση εμπλεκομένων" />
-                            <label class="col-sm-12 col-form-label">Ενημέρωση εκπαίδευση εμπλεκομένων</label>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <div class="col-2"></div>
-                            <input class="col-2 form-check-input position-static" type="checkbox"
-                                id="field_19_efarmogi_emplekomenoi_thesmoi"
-                                name="field_19_efarmogi_emplekomenoi_thesmoi" />
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <div class="col-2"></div>
-                            <input class="col-2 form-check-input position-static" type="checkbox"
-                                id="field_19_efarmogi_emplekomenoi_oikonomia"
-                                name="field_19_efarmogi_emplekomenoi_oikonomia" />
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <div class="col-2"></div>
-                            <input class="col-2 form-check-input position-static" type="checkbox"
-                                id="field_19_efarmogi_emplekomenoi_kinonia"
-                                name="field_19_efarmogi_emplekomenoi_kinonia" />
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <div class="col-2"></div>
-                            <input class="col-2 form-check-input position-static" type="checkbox"
-                                id="field_19_efarmogi_emplekomenoi_perivallon"
-                                name="field_19_efarmogi_emplekomenoi_perivallon" />
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <div class="col-2"></div>
-                            <input class="col-2 form-check-input position-static" type="checkbox"
-                                id="field_19_efarmogi_emplekomenoi_nisiwtika"
-                                name="field_19_efarmogi_emplekomenoi_nisiwtika" />
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <input type="hidden" name="field_19_efarmogi_allo_cbxlabel" value="Άλλο" />
-                            <label class="col-sm-12 col-form-label">Άλλο</label>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <div class="col-2"></div>
-                            <input class="col-2 form-check-input position-static" type="checkbox"
-                                id="field_19_efarmogi_allo_thesmoi" name="field_19_efarmogi_allo_thesmoi" />
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <div class="col-2"></div>
-                            <input class="col-2 form-check-input position-static" type="checkbox"
-                                id="field_19_efarmogi_allo_oikonomia" name="field_19_efarmogi_allo_oikonomia" />
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <div class="col-2"></div>
-                            <input class="col-2 form-check-input position-static" type="checkbox"
-                                id="field_19_efarmogi_allo_kinonia" name="field_19_efarmogi_allo_kinonia" />
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <div class="col-2"></div>
-                            <input class="col-2 form-check-input position-static" type="checkbox"
-                                id="field_19_efarmogi_allo_perivallon" name="field_19_efarmogi_allo_perivallon" />
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <div class="col-2"></div>
-                            <input class="col-2 form-check-input position-static" type="checkbox"
-                                id="field_19_efarmogi_allo_nisiwtika" name="field_19_efarmogi_allo_nisiwtika" />
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <th colspan="6">ΓΙΑ ΤΗ ΛΕΙΤΟΥΡΓΙΑ & ΑΠΟΔΟΣΗ ΤΗΣ ΡΥΘΜΙΣΗΣ</th>
-                <tr>
-                    <th colspan="1"> </th>
-                    <th colspan="1">ΘΕΣΜΟΙ, ΔΗΜΟΣΙΑ ΔΙΟΙΚΗΣΗ, ΔΙΑΦΑΝΕΙΑ</th>
-                    <th colspan="1">ΑΓΟΡΑ, ΟΙΚΟΝΟΜΙΑ, ΑΝΤΑΓΩΝΙΣΜΟΣ</th>
-                    <th colspan="1">ΚΟΙΝΩΝΙΑ & ΚΟΙΝΩΝΙΚΕΣ ΟΜΑΔΕΣ</th>
-                    <th colspan="1">ΦΥΣΙΚΟ, ΑΣΤΙΚΟ ΚΑΙ ΠΟΛΙΤΙΣΤΙΚΟ ΠΕΡΙΒΑΛΛΟΝ</th>
-                    <th colspan="1">ΝΗΣΙΩΤΙΚΟΤΗΤΑ</th>
-                </tr>
-                </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <input type="hidden" name="field_19_apodosi_diaxirisis_cbxlabel"
-                                value="Στήριξη και λειτουργία διαχείρισης" />
-                            <input type="hidden" name="field_19_apodosi_diaxirisis_cbxsecondHeader"
-                                value="ΓΙΑ ΤΗ ΛΕΙΤΟΥΡΓΙΑ & ΑΠΟΔΟΣΗ ΤΗΣ ΡΥΘΜΙΣΗΣ" />
-                            <label class="col-sm-12 col-form-label">Στήριξη και λειτουργία διαχείρισης</label>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <div class="col-2"></div>
-                            <input class="col-2 form-check-input position-static" type="checkbox"
-                                id="field_19_apodosi_diaxirisis_thesmoi" name="field_19_apodosi_diaxirisis_thesmoi" />
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <div class="col-2"></div>
-                            <input class="col-2 form-check-input position-static" type="checkbox"
-                                id="field_19_apodosi_diaxirisis_oikonomia"
-                                name="field_19_apodosi_diaxirisis_oikonomia" />
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <div class="col-2"></div>
-                            <input class="col-2 form-check-input position-static" type="checkbox"
-                                id="field_19_apodosi_diaxirisis_kinonia" name="field_19_apodosi_diaxirisis_kinonia" />
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <div class="col-2"></div>
-                            <input class="col-2 form-check-input position-static" type="checkbox"
-                                id="field_19_apodosi_diaxirisis_perivallon"
-                                name="field_19_apodosi_diaxirisis_perivallon" />
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <div class="col-2"></div>
-                            <input class="col-2 form-check-input position-static" type="checkbox"
-                                id="field_19_apodosi_diaxirisis_nisiwtika"
-                                name="field_19_apodosi_diaxirisis_nisiwtika" />
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <input type="hidden" name="field_19_apodosi_ektelesi_cbxlabel"
-                                value="Διαχείριση αλλαγών κατά την εκτέλεση" />
-                            <label class="col-sm-11 col-form-label">Διαχείριση αλλαγών κατά την εκτέλεση</label>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <div class="col-2"></div>
-                            <input class="col-2 form-check-input position-static" type="checkbox"
-                                id="field_19_apodosi_ektelesi_thesmoi" name="field_19_apodosi_ektelesi_thesmoi" />
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <div class="col-2"></div>
-                            <input class="col-2 form-check-input position-static" type="checkbox"
-                                id="field_19_apodosi_ektelesi_oikonomia" name="field_19_apodosi_ektelesi_oikonomia" />
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <div class="col-2"></div>
-                            <input class="col-2 form-check-input position-static" type="checkbox"
-                                id="field_19_apodosi_ektelesi_kinonia" name="field_19_apodosi_ektelesi_kinonia" />
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <div class="col-2"></div>
-                            <input class="col-2 form-check-input position-static" type="checkbox"
-                                id="field_19_apodosi_ektelesi_perivallon" name="field_19_apodosi_ektelesi_perivallon" />
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <div class="col-2"></div>
-                            <input class="col-2 form-check-input position-static" type="checkbox"
-                                id="field_19_apodosi_ektelesi_nisiwtika" name="field_19_apodosi_ektelesi_nisiwtika" />
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <input type="hidden" name="field_19_apodosi_kostos_cbxlabel"
-                                value="Κόστος συμμετοχής στη νέα ρύθμιση" />
-                            <label class="col-sm-12 col-form-label">Κόστος συμμετοχής στη νέα ρύθμιση</label>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <div class="col-2"></div>
-                            <input class="col-2 form-check-input position-static" type="checkbox"
-                                id="field_19_apodosi_kostos_thesmoi" name="field_19_apodosi_kostos_thesmoi" />
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <div class="col-2"></div>
-                            <input class="col-2 form-check-input position-static" type="checkbox"
-                                id="field_19_apodosi_kostos_oikonomia" name="field_19_apodosi_kostos_oikonomia" />
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <div class="col-2"></div>
-                            <input class="col-2 form-check-input position-static" type="checkbox"
-                                id="field_19_apodosi_kostos_kinonia" name="field_19_apodosi_kostos_kinonia" />
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <div class="col-2"></div>
-                            <input class="col-2 form-check-input position-static" type="checkbox"
-                                id="field_19_apodosi_kostos_perivallon" name="field_19_apodosi_kostos_perivallon" />
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <div class="col-2"></div>
-                            <input class="col-2 form-check-input position-static" type="checkbox"
-                                id="field_19_apodosi_kostos_nisiwtika" name="field_19_apodosi_kostos_nisiwtika" />
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <input type="hidden" name="field_19_apodosi_allo_cbxlabel" value="Άλλο" />
-                            <label class="col-sm-12 col-form-label">Άλλο</label>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <div class="col-2"></div>
-                            <input class="col-2 form-check-input position-static" type="checkbox"
-                                id="field_19_apodosi_allo_thesmoi" name="field_19_apodosi_allo_thesmoi" />
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <div class="col-2"></div>
-                            <input class="col-2 form-check-input position-static" type="checkbox"
-                                id="field_19_apodosi_allo_oikonomia" name="field_19_apodosi_allo_oikonomia" />
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <div class="col-2"></div>
-                            <input class="col-2 form-check-input position-static" type="checkbox"
-                                id="field_19_apodosi_allo_kinonia" name="field_19_apodosi_allo_kinonia" />
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <div class="col-2"></div>
-                            <input class="col-2 form-check-input position-static" type="checkbox"
-                                id="field_19_apodosi_allo_perivallon" name="field_19_apodosi_allo_perivallon" />
-                        </div>
-                    </td>
-                    <td>
-                        <div class="checkbox-group form-group row">
-                            <div class="col-2"></div>
-                            <input class="col-2 form-check-input position-static" type="checkbox"
-                                id="field_19_apodosi_allo_nisiwtika" name="field_19_apodosi_allo_nisiwtika" />
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="form-group">
-            <label for="field_19_comments" class="field-19-label vouleutes-label required">
-                <div class="index_table19_comments"></div> Σχολιασμός / ποιοτική αποτίμηση:
-            </label>
-            <textarea class="govgr-textarea" id="field_19_comments" name="field_19_comments" rows="3"
-                onkeypress="wordsCounter('field_19_comments','words19',150, event)"
-                onpaste="wordsCounter('field_19_comments','words19',150, event)"></textarea>
-            <p style="float: right;">Λέξεις: <span id="words19"></span> /150</p>
-        </div> <br /><br />
-        <div class="govgr-button-group">
-            <button class="govgr-btn govgr-btn-primary govgr-btn-cta previous action-button-previous" name="previous">
-                <svg viewBox="0 0 24 24" class="govgr-arrow--left" focusable="false" aria-hidden="true">
-                    <path d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z" />
-                    <!--  <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z"/>-->
-                </svg> Προηγούμενα πεδία
-            </button>
-            <button class="govgr-btn govgr-btn-primary govgr-btn-cta next action-button" name="next">
-                Επόμενα πεδία
-                <svg viewBox="0 0 24 24" class="govgr-arrow--right" focusable="false" aria-hidden="true">
-                    <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z" />
-                </svg>
-            </button>
-        </div>
-        <fieldset id="kindynoi_rythmisis" class="field-20 vouleutes">
-            <h3 class="govgr-heading-l"><label id="kindynoi_rythmisis_table_label"
-                    class="field-20-label vouleutes-label required">20.Κίνδυνοι αξιολογούμενης ρύθμισης</label>
-                <div class="index_table20"></div>
-            </h3>
-            <table class="govgr-table--dense govgr-table--dark govgr-table" id="kindynoi_rythmisis_table">
-                <thead class="thead">
-                    <tr>
-                        <th colspan="6">
-                            <label>ΚΙΝΔΥΝΟΙ ΡΥΘΜΙΣΗΣ</label>
-                            <div class="index_dangers"></div>
-                        </th>
+        <tbody>
+            <tr>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <input type="hidden" name="field_19_apodosi_diaxirisis_cbxlabel"
+                            value="Στήριξη και λειτουργία διαχείρισης" />
+                        <input type="hidden" name="field_19_apodosi_diaxirisis_cbxsecondHeader"
+                            value="ΓΙΑ ΤΗ ΛΕΙΤΟΥΡΓΙΑ & ΑΠΟΔΟΣΗ ΤΗΣ ΡΥΘΜΙΣΗΣ" />
+                        <label class="col-sm-12 col-form-label">Στήριξη και λειτουργία διαχείρισης</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_19_apodosi_diaxirisis_thesmoi" name="field_19_apodosi_diaxirisis_thesmoi" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_19_apodosi_diaxirisis_oikonomia" name="field_19_apodosi_diaxirisis_oikonomia" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_19_apodosi_diaxirisis_kinonia" name="field_19_apodosi_diaxirisis_kinonia" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_19_apodosi_diaxirisis_perivallon" name="field_19_apodosi_diaxirisis_perivallon" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_19_apodosi_diaxirisis_nisiwtika" name="field_19_apodosi_diaxirisis_nisiwtika" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <input type="hidden" name="field_19_apodosi_ektelesi_cbxlabel"
+                            value="Διαχείριση αλλαγών κατά την εκτέλεση" />
+                        <label class="col-sm-11 col-form-label">Διαχείριση αλλαγών κατά την εκτέλεση</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_19_apodosi_ektelesi_thesmoi" name="field_19_apodosi_ektelesi_thesmoi" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_19_apodosi_ektelesi_oikonomia" name="field_19_apodosi_ektelesi_oikonomia" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_19_apodosi_ektelesi_kinonia" name="field_19_apodosi_ektelesi_kinonia" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_19_apodosi_ektelesi_perivallon" name="field_19_apodosi_ektelesi_perivallon" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_19_apodosi_ektelesi_nisiwtika" name="field_19_apodosi_ektelesi_nisiwtika" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <input type="hidden" name="field_19_apodosi_kostos_cbxlabel"
+                            value="Κόστος συμμετοχής στη νέα ρύθμιση" />
+                        <label class="col-sm-12 col-form-label">Κόστος συμμετοχής στη νέα ρύθμιση</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_19_apodosi_kostos_thesmoi" name="field_19_apodosi_kostos_thesmoi" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_19_apodosi_kostos_oikonomia" name="field_19_apodosi_kostos_oikonomia" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_19_apodosi_kostos_kinonia" name="field_19_apodosi_kostos_kinonia" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_19_apodosi_kostos_perivallon" name="field_19_apodosi_kostos_perivallon" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_19_apodosi_kostos_nisiwtika" name="field_19_apodosi_kostos_nisiwtika" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <input type="hidden" name="field_19_apodosi_allo_cbxlabel" value="Άλλο" />
+                        <label class="col-sm-12 col-form-label">Άλλο</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_19_apodosi_allo_thesmoi" name="field_19_apodosi_allo_thesmoi" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_19_apodosi_allo_oikonomia" name="field_19_apodosi_allo_oikonomia" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_19_apodosi_allo_kinonia" name="field_19_apodosi_allo_kinonia" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_19_apodosi_allo_perivallon" name="field_19_apodosi_allo_perivallon" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_19_apodosi_allo_nisiwtika" name="field_19_apodosi_allo_nisiwtika" />
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="form-group">
+        <label for="field_19_comments" class="field-19-label vouleutes-label required">
+            <div class="index_table19_comments"></div> Σχολιασμός / ποιοτική αποτίμηση:
+        </label>
+        <textarea class="govgr-textarea" id="field_19_comments" name="field_19_comments" rows="3"
+            onkeypress="wordsCounter('field_19_comments','words19',150, event)"
+            onpaste="wordsCounter('field_19_comments','words19',150, event)"></textarea>
+        <p style="float: right;">Λέξεις: <span id="words19"></span> /150</p>
+    </div> <br /><br />
+    <div class="govgr-button-group">
+        <button type="button" class="govgr-btn govgr-btn-primary govgr-btn-cta previous action-button-previous"
+            name="previous">
+            <svg viewBox="0 0 24 24" class="govgr-arrow--left" focusable="false" aria-hidden="true">
+                <path d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z" />
+                <!--  <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z"/>-->
+            </svg> Προηγούμενα πεδία
+        </button>
+        <button type="button" class="govgr-btn govgr-btn-primary govgr-btn-cta next action-button" name="next">
+            Επόμενα πεδία
+            <svg viewBox="0 0 24 24" class="govgr-arrow--right" focusable="false" aria-hidden="true">
+                <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z" />
+            </svg>
+        </button>
+    </div>
+</fieldset>
+<fieldset id="kindynoi_rythmisis" class="field-20 vouleutes">
+    <h3 class="govgr-heading-l"><label id="kindynoi_rythmisis_table_label"
+            class="field-20-label vouleutes-label required">20.Κίνδυνοι αξιολογούμενης ρύθμισης</label>
+        <div class="index_table20"></div>
+    </h3>
+    <table class="govgr-table--dense govgr-table--dark govgr-table" id="kindynoi_rythmisis_table">
+        <thead class="thead">
+            <tr>
+                <th colspan="6">
+                    <label>ΚΙΝΔΥΝΟΙ ΡΥΘΜΙΣΗΣ</label>
+                    <div class="index_dangers"></div>
+                </th>
 
-                    <tr>
-                        <th colspan="6">ΔΙΑΧΕΙΡΙΣΗ KΙΝΔΥΝΩΝ</th>
-                    <tr>
-                        <th colspan="1"> </th>
-                        <th colspan="1">ΘΕΣΜΟΙ, ΔΗΜΟΣΙΑ ΔΙΟΙΚΗΣΗ, ΔΙΑΦΑΝΕΙΑ</th>
-                        <th colspan="1">ΑΓΟΡΑ, ΟΙΚΟΝΟΜΙΑ, ΑΝΤΑΓΩΝΙΣΜΟΣ</th>
-                        <th colspan="1">ΚΟΙΝΩΝΙΑ & ΚΟΙΝΩΝΙΚΕΣ ΟΜΑΔΕΣ</th>
-                        <th colspan="1">ΦΥΣΙΚΟ, ΑΣΤΙΚΟ ΚΑΙ ΠΟΛΙΤΙΣΤΙΚΟ ΠΕΡΙΒΑΛΛΟΝ</th>
-                        <th colspan="1">ΝΗΣΙΩΤΙΚΟΤΗΤΑ</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <input type="hidden" name="field_20_diaxirisi_entopismos_cbxlabel"
-                                    value="Αναγνώριση / εντοπισμός κινδύνου" />
-                                <input type="hidden" name="field_20_diaxirisi_entopismos_cbxsecondHeader"
-                                    value="ΔΙΑΧΕΙΡΙΣΗ KΙΝΔΥΝΩΝ" />
-                                <input type="hidden" name="field_20_diaxirisi_entopismos_cbxHeader"
-                                    value="ΚΙΝΔΥΝΟΙ ΡΥΘΜΙΣΗΣ" />
-                                <label class="col-sm-10 col-form-label">Αναγνώριση / εντοπισμός κινδύνου</label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <div class="col-2"></div>
-                                <input class="col-2 form-check-input position-static" type="checkbox"
-                                    id="field_20_diaxirisi_entopismos_thesmoi"
-                                    name="field_20_diaxirisi_entopismos_thesmoi" />
-                            </div>
-                        </td>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <div class="col-2"></div>
-                                <input class="col-2 form-check-input position-static" type="checkbox"
-                                    id="field_20_diaxirisi_entopismos_oikonomia"
-                                    name="field_20_diaxirisi_entopismos_oikonomia" />
-                            </div>
-                        </td>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <div class="col-2"></div>
-                                <input class="col-2 form-check-input position-static" type="checkbox"
-                                    id="field_20_diaxirisi_entopismos_kinonia"
-                                    name="field_20_diaxirisi_entopismos_kinonia" />
-                            </div>
-                        </td>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <div class="col-2"></div>
-                                <input class="col-2 form-check-input position-static" type="checkbox"
-                                    id="field_20_diaxirisi_entopismos_perivallon"
-                                    name="field_20_diaxirisi_entopismos_perivallon" />
-                            </div>
-                        </td>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <div class="col-2"></div>
-                                <input class="col-2 form-check-input position-static" type="checkbox"
-                                    id="field_20_diaxirisi_entopismos_nisiwtika"
-                                    name="field_20_diaxirisi_entopismos_nisiwtika" />
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <input type="hidden" name="field_20_diaxirisi_synepeies_cbxlabel"
-                                    value="Διαπίστωση συνεπειών κινδύνων στους στόχους" />
-                                <label class="col-sm-11 col-form-label">Διαπίστωση συνεπειών κινδύνων στους
-                                    στόχους</label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <div class="col-2"></div>
-                                <input class="col-2 form-check-input position-static" type="checkbox"
-                                    id="field_20_diaxirisi_synepeies_thesmoi"
-                                    name="field_20_diaxirisi_synepeies_thesmoi" />
-                            </div>
-                        </td>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <div class="col-2"></div>
-                                <input class="col-2 form-check-input position-static" type="checkbox"
-                                    id="field_20_diaxirisi_synepeies_oikonomia"
-                                    name="field_20_diaxirisi_synepeies_oikonomia" />
-                            </div>
-                        </td>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <div class="col-2"></div>
-                                <input class="col-2 form-check-input position-static" type="checkbox"
-                                    id="field_20_diaxirisi_synepeies_kinonia"
-                                    name="field_20_diaxirisi_synepeies_kinonia" />
-                            </div>
-                        </td>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <div class="col-2"></div>
-                                <input class="col-2 form-check-input position-static" type="checkbox"
-                                    id="field_20_diaxirisi_synepeies_perivallon"
-                                    name="field_20_diaxirisi_synepeies_perivallon" />
-                            </div>
-                        </td>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <div class="col-2"></div>
-                                <input class="col-2 form-check-input position-static" type="checkbox"
-                                    id="field_20_diaxirisi_synepeies_nisiwtika"
-                                    name="field_20_diaxirisi_synepeies_nisiwtika" />
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <input type="hidden" name="field_20_diaxirisi_apotropi_cbxlabel"
-                                    value="Σχεδιασμός αποτροπής / αντιστάθμισης κινδύνων" />
-                                <label class="col-sm-12 col-form-label">Σχεδιασμός αποτροπής / αντιστάθμισης
-                                    κινδύνων</label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <div class="col-2"></div>
-                                <input class="col-2 form-check-input position-static" type="checkbox"
-                                    id="field_20_diaxirisi_apotropi_thesmoi"
-                                    name="field_20_diaxirisi_apotropi_thesmoi" />
-                            </div>
-                        </td>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <div class="col-2"></div>
-                                <input class="col-2 form-check-input position-static" type="checkbox"
-                                    id="field_20_diaxirisi_apotropi_oikonomia"
-                                    name="field_20_diaxirisi_apotropi_oikonomia" />
-                            </div>
-                        </td>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <div class="col-2"></div>
-                                <input class="col-2 form-check-input position-static" type="checkbox"
-                                    id="field_20_diaxirisi_apotropi_kinonia"
-                                    name="field_20_diaxirisi_apotropi_kinonia" />
-                            </div>
-                        </td>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <div class="col-2"></div>
-                                <input class="col-2 form-check-input position-static" type="checkbox"
-                                    id="field_20_diaxirisi_apotropi_perivallon"
-                                    name="field_20_diaxirisi_apotropi_perivallon" />
-                            </div>
-                        </td>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <div class="col-2"></div>
-                                <input class="col-2 form-check-input position-static" type="checkbox"
-                                    id="field_20_diaxirisi_apotropi_nisiwtika"
-                                    name="field_20_diaxirisi_apotropi_nisiwtika" />
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <input type="hidden" name="field_20_diaxirisi_allo_cbxlabel" value="Άλλο" />
-                                <label class="col-sm-12 col-form-label">Άλλο</label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <div class="col-2"></div>
-                                <input class="col-2 form-check-input position-static" type="checkbox"
-                                    id="field_20_diaxirisi_allo_thesmoi" name="field_20_diaxirisi_allo_thesmoi" />
-                            </div>
-                        </td>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <div class="col-2"></div>
-                                <input class="col-2 form-check-input position-static" type="checkbox"
-                                    id="field_20_diaxirisi_allo_oikonomia" name="field_20_diaxirisi_allo_oikonomia" />
-                            </div>
-                        </td>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <div class="col-2"></div>
-                                <input class="col-2 form-check-input position-static" type="checkbox"
-                                    id="field_20_diaxirisi_allo_kinonia" name="field_20_diaxirisi_allo_kinonia" />
-                            </div>
-                        </td>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <div class="col-2"></div>
-                                <input class="col-2 form-check-input position-static" type="checkbox"
-                                    id="field_20_diaxirisi_allo_perivallon" name="field_20_diaxirisi_allo_perivallon" />
-                            </div>
-                        </td>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <div class="col-2"></div>
-                                <input class="col-2 form-check-input position-static" type="checkbox"
-                                    id="field_20_diaxirisi_allo_nisiwtika" name="field_20_diaxirisi_allo_nisiwtika" />
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th colspan="6">ΜΕΙΩΣΗ ΚΙΝΔΥΝΩΝ</th>
-                    <tr>
-                        <th colspan="1"> </th>
-                        <th colspan="1">ΘΕΣΜΟΙ, ΔΗΜΟΣΙΑ ΔΙΟΙΚΗΣΗ, ΔΙΑΦΑΝΕΙΑ</th>
-                        <th colspan="1">ΑΓΟΡΑ, ΟΙΚΟΝΟΜΙΑ, ΑΝΤΑΓΩΝΙΣΜΟΣ</th>
-                        <th colspan="1">ΚΟΙΝΩΝΙΑ & ΚΟΙΝΩΝΙΚΕΣ ΟΜΑΔΕΣ</th>
-                        <th colspan="1">ΦΥΣΙΚΟ, ΑΣΤΙΚΟ ΚΑΙ ΠΟΛΙΤΙΣΤΙΚΟ ΠΕΡΙΒΑΛΛΟΝ</th>
-                        <th colspan="1">ΝΗΣΙΩΤΙΚΟΤΗΤΑ</th>
-                    </tr>
-                    </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <input type="hidden" name="field_20_meiwsi_efarmogi_cbxlabel"
-                                    value="Πιλοτική εφαρμογή" />
-                                <input type="hidden" name="field_20_meiwsi_efarmogi_cbxsecondHeader"
-                                    value="ΜΕΙΩΣΗ ΚΙΝΔΥΝΩΝ" />
-                                <label class="col-sm-12 col-form-label">Πιλοτική εφαρμογή</label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <div class="col-2"></div>
-                                <input class="col-2 form-check-input position-static" type="checkbox"
-                                    id="field_20_meiwsi_efarmogi_thesmoi" name="field_20_meiwsi_efarmogi_thesmoi" />
-                            </div>
-                        </td>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <div class="col-2"></div>
-                                <input class="col-2 form-check-input position-static" type="checkbox"
-                                    id="field_20_meiwsi_efarmogi_oikonomia" name="field_20_meiwsi_efarmogi_oikonomia" />
-                            </div>
-                        </td>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <div class="col-2"></div>
-                                <input class="col-2 form-check-input position-static" type="checkbox"
-                                    id="field_20_meiwsi_efarmogi_kinonia" name="field_20_meiwsi_efarmogi_kinonia" />
-                            </div>
-                        </td>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <div class="col-2"></div>
-                                <input class="col-2 form-check-input position-static" type="checkbox"
-                                    id="field_20_meiwsi_efarmogi_perivallon"
-                                    name="field_20_meiwsi_efarmogi_perivallon" />
-                            </div>
-                        </td>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <div class="col-2"></div>
-                                <input class="col-2 form-check-input position-static" type="checkbox"
-                                    id="field_20_meiwsi_efarmogi_nisiwtika" name="field_20_meiwsi_efarmogi_nisiwtika" />
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <input type="hidden" name="field_20_meiwsi_praktikes_cbxlabel"
-                                    value="Ανάδειξη καλών πρακτικών κατά την υλοποίηση της ρύθμισης" />
-                                <label class="col-sm-11 col-form-label">Ανάδειξη καλών πρακτικών κατά την υλοποίηση της
-                                    ρύθμισης</label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <div class="col-2"></div>
-                                <input class="col-2 form-check-input position-static" type="checkbox"
-                                    id="field_20_meiwsi_praktikes_thesmoi" name="field_20_meiwsi_praktikes_thesmoi" />
-                            </div>
-                        </td>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <div class="col-2"></div>
-                                <input class="col-2 form-check-input position-static" type="checkbox"
-                                    id="field_20_meiwsi_praktikes_oikonomia"
-                                    name="field_20_meiwsi_praktikes_oikonomia" />
-                            </div>
-                        </td>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <div class="col-2"></div>
-                                <input class="col-2 form-check-input position-static" type="checkbox"
-                                    id="field_20_meiwsi_praktikes_kinonia" name="field_20_meiwsi_praktikes_kinonia" />
-                            </div>
-                        </td>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <div class="col-2"></div>
-                                <input class="col-2 form-check-input position-static" type="checkbox"
-                                    id="field_20_meiwsi_praktikes_perivallon"
-                                    name="field_20_meiwsi_praktikes_perivallon" />
-                            </div>
-                        </td>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <div class="col-2"></div>
-                                <input class="col-2 form-check-input position-static" type="checkbox"
-                                    id="field_20_meiwsi_praktikes_nisiwtika"
-                                    name="field_20_meiwsi_praktikes_nisiwtika" />
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <input type="hidden" name="field_20_meiwsi_aksiologisi_cbxlabel"
-                                    value="Συνεχής αξιολόγηση διαδικασιών διαχείρισης κινδύνων" />
-                                <label class="col-sm-12 col-form-label">Συνεχής αξιολόγηση διαδικασιών διαχείρισης
-                                    κινδύνων</label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <div class="col-2"></div>
-                                <input class="col-2 form-check-input position-static" type="checkbox"
-                                    id="field_20_meiwsi_aksiologisi_thesmoi"
-                                    name="field_20_meiwsi_aksiologisi_thesmoi" />
-                            </div>
-                        </td>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <div class="col-2"></div>
-                                <input class="col-2 form-check-input position-static" type="checkbox"
-                                    id="field_20_meiwsi_aksiologisi_oikonomia"
-                                    name="field_20_meiwsi_aksiologisi_oikonomia" />
-                            </div>
-                        </td>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <div class="col-2"></div>
-                                <input class="col-2 form-check-input position-static" type="checkbox"
-                                    id="field_20_meiwsi_aksiologisi_kinonia"
-                                    name="field_20_meiwsi_aksiologisi_kinonia" />
-                            </div>
-                        </td>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <div class="col-2"></div>
-                                <input class="col-2 form-check-input position-static" type="checkbox"
-                                    id="field_20_meiwsi_aksiologisi_perivallon"
-                                    name="field_20_meiwsi_aksiologisi_perivallon" />
-                            </div>
-                        </td>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <div class="col-2"></div>
-                                <input class="col-2 form-check-input position-static" type="checkbox"
-                                    id="field_20_meiwsi_aksiologisi_nisiwtika"
-                                    name="field_20_meiwsi_aksiologisi_nisiwtika" />
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <input type="hidden" name="field_20_meiwsi_allo_cbxlabel" value="Άλλο" />
-                                <label class="col-sm-12 col-form-label">Άλλο</label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <div class="col-2"></div>
-                                <input class="col-2 form-check-input position-static" type="checkbox"
-                                    id="field_20_meiwsi_allo_thesmoi" name="field_20_meiwsi_allo_thesmoi" />
-                            </div>
-                        </td>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <div class="col-2"></div>
-                                <input class="col-2 form-check-input position-static" type="checkbox"
-                                    id="field_20_meiwsi_allo_oikonomia" name="field_20_meiwsi_allo_oikonomia" />
-                            </div>
-                        </td>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <div class="col-2"></div>
-                                <input class="col-2 form-check-input position-static" type="checkbox"
-                                    id="field_20_meiwsi_allo_kinonia" name="field_20_meiwsi_allo_kinonia" />
-                            </div>
-                        </td>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <div class="col-2"></div>
-                                <input class="col-2 form-check-input position-static" type="checkbox"
-                                    id="field_20_meiwsi_allo_perivallon" name="field_20_meiwsi_allo_perivallon" />
-                            </div>
-                        </td>
-                        <td>
-                            <div class="checkbox-group form-group row">
-                                <div class="col-2"></div>
-                                <input class="col-2 form-check-input position-static" type="checkbox"
-                                    id="field_20_meiwsi_allo_nisiwtika" name="field_20_meiwsi_allo_nisiwtika" />
-                            </div>
-                        </td>
-                        <input type="hidden" name="final_cbxlabel" />
-                        <input type="hidden" name="final_cbxHeader" />
-                    </tr>
-                    </tr>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="form-group">
-                <label for="field_20_comments" class="required field-20-label vouleutes-label">Σχολιασμός / ποιοτική
-                    αποτίμηση:</label>
-                <textarea class="govgr-textarea" id="field_20_comments" name="field_20_comments" rows="3"
-                    onkeypress="wordsCounter('field_20_comments','words20',150, event)"
-                    onpaste="wordsCounter('field_20_comments','words20',150, event)"></textarea>
-                <p style="float: right;">Λέξεις: <span id="words20"></span> /150</p>
-            </div> <br /><br />
-            <div class="govgr-button-group">
-                <button class="govgr-btn govgr-btn-primary govgr-btn-cta previous action-button-previous"
-                    name="previous">
-                    <svg viewBox="0 0 24 24" class="govgr-arrow--left" focusable="false" aria-hidden="true">
-                        <path d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z" />
-                        <!--  <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z"/>-->
-                    </svg> Προηγούμενα πεδία
-                </button>
-                <button class="govgr-btn govgr-btn-primary govgr-btn-cta next action-button" name="next">
-                    Επόμενα πεδία
-                    <svg viewBox="0 0 24 24" class="govgr-arrow--right" focusable="false" aria-hidden="true">
-                        <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z" />
-                    </svg>
-                </button>
-            </div>
+            <tr>
+                <th colspan="6">ΔΙΑΧΕΙΡΙΣΗ KΙΝΔΥΝΩΝ</th>
+            <tr>
+                <th colspan="1"> </th>
+                <th colspan="1">ΘΕΣΜΟΙ, ΔΗΜΟΣΙΑ ΔΙΟΙΚΗΣΗ, ΔΙΑΦΑΝΕΙΑ</th>
+                <th colspan="1">ΑΓΟΡΑ, ΟΙΚΟΝΟΜΙΑ, ΑΝΤΑΓΩΝΙΣΜΟΣ</th>
+                <th colspan="1">ΚΟΙΝΩΝΙΑ & ΚΟΙΝΩΝΙΚΕΣ ΟΜΑΔΕΣ</th>
+                <th colspan="1">ΦΥΣΙΚΟ, ΑΣΤΙΚΟ ΚΑΙ ΠΟΛΙΤΙΣΤΙΚΟ ΠΕΡΙΒΑΛΛΟΝ</th>
+                <th colspan="1">ΝΗΣΙΩΤΙΚΟΤΗΤΑ</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <input type="hidden" name="field_20_diaxirisi_entopismos_cbxlabel"
+                            value="Αναγνώριση / εντοπισμός κινδύνου" />
+                        <input type="hidden" name="field_20_diaxirisi_entopismos_cbxsecondHeader"
+                            value="ΔΙΑΧΕΙΡΙΣΗ KΙΝΔΥΝΩΝ" />
+                        <input type="hidden" name="field_20_diaxirisi_entopismos_cbxHeader" value="ΚΙΝΔΥΝΟΙ ΡΥΘΜΙΣΗΣ" />
+                        <label class="col-sm-10 col-form-label">Αναγνώριση / εντοπισμός κινδύνου</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_20_diaxirisi_entopismos_thesmoi" name="field_20_diaxirisi_entopismos_thesmoi" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_20_diaxirisi_entopismos_oikonomia"
+                            name="field_20_diaxirisi_entopismos_oikonomia" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_20_diaxirisi_entopismos_kinonia" name="field_20_diaxirisi_entopismos_kinonia" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_20_diaxirisi_entopismos_perivallon"
+                            name="field_20_diaxirisi_entopismos_perivallon" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_20_diaxirisi_entopismos_nisiwtika"
+                            name="field_20_diaxirisi_entopismos_nisiwtika" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <input type="hidden" name="field_20_diaxirisi_synepeies_cbxlabel"
+                            value="Διαπίστωση συνεπειών κινδύνων στους στόχους" />
+                        <label class="col-sm-11 col-form-label">Διαπίστωση συνεπειών κινδύνων στους
+                            στόχους</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_20_diaxirisi_synepeies_thesmoi" name="field_20_diaxirisi_synepeies_thesmoi" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_20_diaxirisi_synepeies_oikonomia" name="field_20_diaxirisi_synepeies_oikonomia" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_20_diaxirisi_synepeies_kinonia" name="field_20_diaxirisi_synepeies_kinonia" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_20_diaxirisi_synepeies_perivallon"
+                            name="field_20_diaxirisi_synepeies_perivallon" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_20_diaxirisi_synepeies_nisiwtika" name="field_20_diaxirisi_synepeies_nisiwtika" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <input type="hidden" name="field_20_diaxirisi_apotropi_cbxlabel"
+                            value="Σχεδιασμός αποτροπής / αντιστάθμισης κινδύνων" />
+                        <label class="col-sm-12 col-form-label">Σχεδιασμός αποτροπής / αντιστάθμισης
+                            κινδύνων</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_20_diaxirisi_apotropi_thesmoi" name="field_20_diaxirisi_apotropi_thesmoi" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_20_diaxirisi_apotropi_oikonomia" name="field_20_diaxirisi_apotropi_oikonomia" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_20_diaxirisi_apotropi_kinonia" name="field_20_diaxirisi_apotropi_kinonia" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_20_diaxirisi_apotropi_perivallon" name="field_20_diaxirisi_apotropi_perivallon" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_20_diaxirisi_apotropi_nisiwtika" name="field_20_diaxirisi_apotropi_nisiwtika" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <input type="hidden" name="field_20_diaxirisi_allo_cbxlabel" value="Άλλο" />
+                        <label class="col-sm-12 col-form-label">Άλλο</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_20_diaxirisi_allo_thesmoi" name="field_20_diaxirisi_allo_thesmoi" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_20_diaxirisi_allo_oikonomia" name="field_20_diaxirisi_allo_oikonomia" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_20_diaxirisi_allo_kinonia" name="field_20_diaxirisi_allo_kinonia" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_20_diaxirisi_allo_perivallon" name="field_20_diaxirisi_allo_perivallon" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_20_diaxirisi_allo_nisiwtika" name="field_20_diaxirisi_allo_nisiwtika" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="6">ΜΕΙΩΣΗ ΚΙΝΔΥΝΩΝ</th>
+            <tr>
+                <th colspan="1"> </th>
+                <th colspan="1">ΘΕΣΜΟΙ, ΔΗΜΟΣΙΑ ΔΙΟΙΚΗΣΗ, ΔΙΑΦΑΝΕΙΑ</th>
+                <th colspan="1">ΑΓΟΡΑ, ΟΙΚΟΝΟΜΙΑ, ΑΝΤΑΓΩΝΙΣΜΟΣ</th>
+                <th colspan="1">ΚΟΙΝΩΝΙΑ & ΚΟΙΝΩΝΙΚΕΣ ΟΜΑΔΕΣ</th>
+                <th colspan="1">ΦΥΣΙΚΟ, ΑΣΤΙΚΟ ΚΑΙ ΠΟΛΙΤΙΣΤΙΚΟ ΠΕΡΙΒΑΛΛΟΝ</th>
+                <th colspan="1">ΝΗΣΙΩΤΙΚΟΤΗΤΑ</th>
+            </tr>
+            </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <input type="hidden" name="field_20_meiwsi_efarmogi_cbxlabel" value="Πιλοτική εφαρμογή" />
+                        <input type="hidden" name="field_20_meiwsi_efarmogi_cbxsecondHeader" value="ΜΕΙΩΣΗ ΚΙΝΔΥΝΩΝ" />
+                        <label class="col-sm-12 col-form-label">Πιλοτική εφαρμογή</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_20_meiwsi_efarmogi_thesmoi" name="field_20_meiwsi_efarmogi_thesmoi" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_20_meiwsi_efarmogi_oikonomia" name="field_20_meiwsi_efarmogi_oikonomia" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_20_meiwsi_efarmogi_kinonia" name="field_20_meiwsi_efarmogi_kinonia" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_20_meiwsi_efarmogi_perivallon" name="field_20_meiwsi_efarmogi_perivallon" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_20_meiwsi_efarmogi_nisiwtika" name="field_20_meiwsi_efarmogi_nisiwtika" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <input type="hidden" name="field_20_meiwsi_praktikes_cbxlabel"
+                            value="Ανάδειξη καλών πρακτικών κατά την υλοποίηση της ρύθμισης" />
+                        <label class="col-sm-11 col-form-label">Ανάδειξη καλών πρακτικών κατά την υλοποίηση της
+                            ρύθμισης</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_20_meiwsi_praktikes_thesmoi" name="field_20_meiwsi_praktikes_thesmoi" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_20_meiwsi_praktikes_oikonomia" name="field_20_meiwsi_praktikes_oikonomia" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_20_meiwsi_praktikes_kinonia" name="field_20_meiwsi_praktikes_kinonia" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_20_meiwsi_praktikes_perivallon" name="field_20_meiwsi_praktikes_perivallon" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_20_meiwsi_praktikes_nisiwtika" name="field_20_meiwsi_praktikes_nisiwtika" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <input type="hidden" name="field_20_meiwsi_aksiologisi_cbxlabel"
+                            value="Συνεχής αξιολόγηση διαδικασιών διαχείρισης κινδύνων" />
+                        <label class="col-sm-12 col-form-label">Συνεχής αξιολόγηση διαδικασιών διαχείρισης
+                            κινδύνων</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_20_meiwsi_aksiologisi_thesmoi" name="field_20_meiwsi_aksiologisi_thesmoi" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_20_meiwsi_aksiologisi_oikonomia" name="field_20_meiwsi_aksiologisi_oikonomia" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_20_meiwsi_aksiologisi_kinonia" name="field_20_meiwsi_aksiologisi_kinonia" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_20_meiwsi_aksiologisi_perivallon" name="field_20_meiwsi_aksiologisi_perivallon" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_20_meiwsi_aksiologisi_nisiwtika" name="field_20_meiwsi_aksiologisi_nisiwtika" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <input type="hidden" name="field_20_meiwsi_allo_cbxlabel" value="Άλλο" />
+                        <label class="col-sm-12 col-form-label">Άλλο</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_20_meiwsi_allo_thesmoi" name="field_20_meiwsi_allo_thesmoi" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_20_meiwsi_allo_oikonomia" name="field_20_meiwsi_allo_oikonomia" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_20_meiwsi_allo_kinonia" name="field_20_meiwsi_allo_kinonia" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_20_meiwsi_allo_perivallon" name="field_20_meiwsi_allo_perivallon" />
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox-group form-group row">
+                        <div class="col-2"></div>
+                        <input class="col-2 form-check-input position-static" type="checkbox"
+                            id="field_20_meiwsi_allo_nisiwtika" name="field_20_meiwsi_allo_nisiwtika" />
+                    </div>
+                </td>
+                <input type="hidden" name="final_cbxlabel" />
+                <input type="hidden" name="final_cbxHeader" />
+            </tr>
+            </tr>
+            </tr>
+        </tbody>
+    </table>
+    <div class="form-group">
+        <label for="field_20_comments" class="required field-20-label vouleutes-label">Σχολιασμός / ποιοτική
+            αποτίμηση:</label>
+        <textarea class="govgr-textarea" id="field_20_comments" name="field_20_comments" rows="3"
+            onkeypress="wordsCounter('field_20_comments','words20',150, event)"
+            onpaste="wordsCounter('field_20_comments','words20',150, event)"></textarea>
+        <p style="float: right;">Λέξεις: <span id="words20"></span> /150</p>
+    </div> <br /><br />
+    <div class="govgr-button-group">
+        <button type="button" class="govgr-btn govgr-btn-primary govgr-btn-cta previous action-button-previous"
+            name="previous">
+            <svg viewBox="0 0 24 24" class="govgr-arrow--left" focusable="false" aria-hidden="true">
+                <path d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z" />
+                <!--  <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z"/>-->
+            </svg> Προηγούμενα πεδία
+        </button>
+        <button type="button" class="govgr-btn govgr-btn-primary govgr-btn-cta next action-button" name="next">
+            Επόμενα πεδία
+            <svg viewBox="0 0 24 24" class="govgr-arrow--right" focusable="false" aria-hidden="true">
+                <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z" />
+            </svg>
+        </button>
+    </div>
+</fieldset>
