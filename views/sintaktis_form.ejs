@@ -1422,9 +1422,9 @@
                                             <%- include('fill_form/fill_form_f.ejs') %>
                                                 <%- include('fill_form/fill_form_g.ejs') %>
                                                     <%- include('fill_form/fill_form_h.ejs') %> <br />
-                                                        <button type="submit"
-                                                            class="govgr-btn govgr-btn-secondary save_temporarily"
-                                                            name="save_temporarily" style="float: right;">
+                                                        <button type="button" class="govgr-btn govgr-btn-secondary"
+                                                            id="save_temporarily" name="save_temporarily"
+                                                            style="float: right;">
                                                             Προσωρινή αποθήκευση
                                                         </button>
                 </form>
@@ -1627,6 +1627,9 @@
 <script type="text/javascript" src="/js/syntaktis_scripts.js"></script>
 <script>
 
+    let ministries = JSON.parse(' <%- JSON.stringify(ministries) %> ');
+    let ministers = JSON.parse(' <%- JSON.stringify(ministers) %> ');
+
     $("form").on("submit", function (ev) {
         ev.preventDefault();
         onSubmitStatus(ev);
@@ -1651,13 +1654,14 @@
         });
     })
 
-    $(".save_temporarily").on("click", function (ev) {
+    $("#save_temporarily").on("click", function (ev) {
         ev.preventDefault();
         var fd = new FormData($("form").get(0));
-        var checkbox = $("form").find("input[type=checkbox]:not(:checked)");//find all unchecked checkboxes 
-        $.each(checkbox, function (key, chckbx) {
-            fd.append($(chckbx).prop('name'), $(chckbx).value = '')//append to fd without value 
-        });
+        // console.log([...fd])        
+        // var checkbox = $("form").find("input[type=checkbox]:not(:checked)");//find all unchecked checkboxes 
+        // $.each(checkbox, function (key, chckbx) {
+        //     fd.append($(chckbx).prop('name'), $(chckbx).value = '')//append to fd without value 
+        // });
         $.ajax({
             url: '/create/<%= analysis %>',
             data: fd,
@@ -1667,7 +1671,7 @@
                 console.log(error);
             },
             success: function (data) {
-                //console.log(data);
+                console.log(data);
                 window.location.href = "/user_views/history";
             },
             type: 'POST'

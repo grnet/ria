@@ -308,7 +308,7 @@ $("#add_row_ministers_table").on("click", function () {
                 <select id="minister_surname${index}" name="minister_surname${index}" class="col-sm-8 form-control" onchange="ministerSurnameOnChange('minister_name${index}', 'minister_surname${index}', 'minister_role${index}', 'minister_ministry${index}')" required></select>
             </td> 
             <td> 
-                <textarea class="form-control" id="minister_role${index}" name="minister_role${index}" rows="5" readonly></textarea>
+                <textarea class="form-control" id="minister_role${index}" name="minister_role${index}" rows="2" readonly></textarea>
                 <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
                 <input type="hidden" id="minister_ministry${index}" name="minister_ministry${index}">
             </td>             
