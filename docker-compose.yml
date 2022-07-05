@@ -4,10 +4,11 @@ volumes:
 
 services:
     ria:
-        build: 
+        build:
             context: ./
-            dockerfile: Dockerfile  
-        image: ria_prod:latest
+            dockerfile: Dockerfile
+        image: ria_dev:latest
+        container_name: ria_dev
         ports:
             - "127.0.0.1:6000:3000"
         volumes:
@@ -15,8 +16,11 @@ services:
             - /app/node_modules
         depends_on:
             - database
+        command: ["./etc/assets/wait-for-it.sh", "database:3306", "--", "npm", "start"]
         environment:
+            - SECRET=$SECRET
             - DATABASE_HOST=$DATABASE_HOST
+            - DATABASE_POST=$DATABASE_PORT
             - DATABASE_USER=$DATABASE_USER
             - DATABASE_PASSWORD=$DATABASE_PASSWORD
             - DATABASE_NAME=$DATABASE_NAME
@@ -24,13 +28,17 @@ services:
     database:
         image: mysql:8
         ports:
-            - '127.0.0.1:2306:3306'
-        expose: 
+            - '127.0.0.1:2307:3306'
+        expose:
             - '3306'
+        container_name: ria_db_dev
         volumes:
             - db_storage:/var/lib/mysql
+            - ./innit:/docker-entrypoint-initdb.d
+            - ./etc/assets/custom.cnf:/etc/mysql/conf.d/custom.cnf
         environment:
-            - MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD  
-            - MYSQL_USER=$DATABASE_USER  
-            - MYSQL_PASSWORD=$DATABASE_PASSWORD  
-            - MYSQL_DATABASE=$DATABASE_NAME 
+            - MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
+            - MYSQL_USER=$DATABASE_USER
+            - MYSQL_PASSWORD=$DATABASE_PASSWORD
+            - MYSQL_DATABASE=$DATABASE_NAME
+

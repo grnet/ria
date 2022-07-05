@@ -287,11 +287,11 @@ $("#add_row_table_17").on("click", function () {
                 <textarea class="govgr-textarea" id="field_17_minister_name${index}" name="field_17_minister_name${index}" rows="1"></textarea> 
             </td>    
             <td> 
-                <select id="field_17_minister_surname${index}" name="field_17_minister_surname${index}" class="col-sm-8 form-control" onchange="ministerSurnameOnChange('field_17_minister_name${index}', 'field_17_minister_surname${index}', 'field_17_minister_role${index}', 'field_17_minister_ministry${index}')" required></select>
+                <select id="field_17_minister_surname${index}" name="field_17_minister_surname${index}" class="govgr-select" onchange="ministerSurnameOnChange('field_17_minister_name${index}', 'field_17_minister_surname${index}', 'field_17_minister_role${index}', 'field_17_minister_ministry${index}')" required></select>
             </td> 
             <td>
                 <br> 
-                <textarea class="govgr-textarea" id="field_17_minister_role${index}" name="field_17_minister_role${index}" rows="5" readonly></textarea>
+                <textarea class="govgr-textarea" id="field_17_minister_role${index}" name="field_17_minister_role${index}" rows="1" readonly></textarea>
                 <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
                 <input type="hidden" id="field_17_minister_ministry${index}" name="field_17_minister_ministry${index}">
             </td> 
@@ -307,11 +307,11 @@ $("#add_row_ministers_table").on("click", function () {
                 <textarea class="govgr-textarea" id="minister_name${index}" name="minister_name${index}" rows="1" readonly></textarea> 
             </td>    
             <td> 
-                <select id="minister_surname${index}" name="minister_surname${index}" class="col-sm-8 form-control" onchange="ministerSurnameOnChange('minister_name${index}', 'minister_surname${index}', 'minister_role${index}', 'minister_ministry${index}')" required></select>
+                <select id="minister_surname${index}" name="minister_surname${index}" class="govgr-select" onchange="ministerSurnameOnChange('minister_name${index}', 'minister_surname${index}', 'minister_role${index}', 'minister_ministry${index}')" required></select>
             </td> 
             <td>
                 <br> 
-                <textarea class="govgr-textarea" id="minister_role${index}" name="minister_role${index}" rows="2" readonly></textarea>
+                <textarea class="govgr-textarea" id="minister_role${index}" name="minister_role${index}" rows="1" readonly></textarea>
                 <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
                 <input type="hidden" id="minister_ministry${index}" name="minister_ministry${index}">
             </td>             
