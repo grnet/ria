@@ -27,7 +27,7 @@ services:
         image: ria_dev:latest
         container_name: ria_dev
         ports: 
-            - "127.0.0.1:3000:3000" 
+            - "127.0.0.1:6000:3000" 
         volumes: 
             - ./:/app
             - /app/node_modules
