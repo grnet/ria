@@ -1,82 +1,130 @@
 <fieldset id="tropopoiisi_diataksewn" class="table-29">
-    <h2>Ζ. Πίνακας τροποποιούμενων ή καταργούμενων διατάξεων</h2>
-    <br>
-    
-    <h4><label id="table_29_label" class="table-29-label required">29.Τροποποίηση – αντικατάσταση – συμπλήρωση διατάξεων</label><div class="index_table29"></div></h4>
-    <br>
-    <table class="table" id="field_29_table">
-        <thead class="thead">
-            <tr>
-                <th colspan="1">Διατάξεις αξιολογούμενης ρύθμισης<div class="index_diatakseis"></div></th>
-                <th colspan="1">Υφιστάμενες διατάξεις<div class="index_yfistamenes_diatakseis"></div></th>
-            </tr>
-        </thead>
-        <tbody id="tbody_29">
-
-            <% if(data.field_29_diatakseis_rythmisis != null && data.field_29_diatakseis_rythmisis.length != null ){
-                for (var i = 0; i < data.field_29_diatakseis_rythmisis.length; i++) { %>
-            <tr id="table_29_row<%=i%>">
-                <td> 
-                    <textarea class="form-control" id="field_29_diatakseis_rythmisis<%=i%>" name="field_29_diatakseis_rythmisis<%=i%>" onkeypress="wordsCounter('field_29_diatakseis_rythmisis<%=i%>','words29_diatakeis_rythm_<%=i%>')" onpaste="wordsCounter('field_29_diatakseis_rythmisis<%=i%>','words29_diatakeis_rythm_<%=i%>')" rows="1"><%= Object.values(data.field_29_diatakseis_rythmisis[i]) %></textarea>
-                    <p style="float: right;">Λέξεις: <span id="words29_diatakeis_rythm_<%=i%>" ></span></p>  
-                </td> 
-                <td> 
-                    <textarea class="form-control" id="field_29_yfistamenes_diatakseis<%=i%>" name="field_29_yfistamenes_diatakseis<%=i%>" onkeypress="wordsCounter('field_29_yfistamenes_diatakseis<%=i%>','words29_diatakeis_yfist_<%=i%>')" onpaste="wordsCounter('field_29_yfistamenes_diatakseis<%=i%>','words29_diatakeis_yfist_<%=i%>')" rows="1"><%= Object.values(data.field_29_yfistamenes_diatakseis[i]) %></textarea>
-                    <p style="float: right;">Λέξεις: <span id="words29_diatakeis_yfist_<%=i%>" ></span></p>   
-                    <br><br>
-                    <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
-                </td>
-            </tr>    
-            <%  }
-               } %>
-
-        </tbody>
-    </table>
-    
-    <input type="button" id="add_row_table_29" name="add_row_table_29" class="float-right" value="Επιπλέον σειρά" />
-    <br><br><br>
-
-    <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενη φόρμα" />
-    <input type="button" name="next" class="next action-button" value="Επόμενα πεδία" />
-</fieldset>
-
-
-<fieldset id="katargisi_diataksewn" class="table-30">
-
-    <h4><label id="table_14_label" class="table-30-label required">30.Κατάργηση διατάξεων</label><div class="index_table30"></div></h4>
-    <br>
-    <table class="table" id="field_30_table">
-        <thead class="thead">
-            <tr>
-                <th colspan="1">Διατάξεις αξιολογούμενης ρύθμισης που προβλέπουν κατάργηση<div class="index_diatakseis_pros_katargisi"></div></th>
-                <th colspan="1">Καταργούμενες διατάξεις<div class="index_katargoumenes_diatakseis"></div></th>
-            </tr>
-        </thead>
-        <tbody id="tbody_30">
-
-            <% if(data.field_30_diatakseis_katargisi != null && data.field_30_diatakseis_katargisi.length != null ){
-                for (var i = 0; i < data.field_30_diatakseis_katargisi.length; i++) { %>
-                <tr id="table_30_row<%=i%>">
-                    <td> 
-                        <textarea class="form-control" id="field_30_diatakseis_katargisi<%=i%>" name="field_30_diatakseis_katargisi<%=i%>" onkeypress="wordsCounter('field_30_diatakseis_katargisi$<%=i%>','words30_diatakeis_katarg_<%=i%>')" onpaste="wordsCounter('field_30_diatakseis_katargisi<%=i%>','words30_diatakeis_katarg_${table30RowIndex}')" rows="2"><%= Object.values(data.field_30_diatakseis_katargisi[i]) %></textarea>
-                        <p style="float: right;">Λέξεις: <span id="words30_diatakeis_katarg_<%=i%>" ></span></p>
-                    </td> 
-                    <td> 
-                        <textarea class="form-control" id="field_30_katargoumenes_diatakseis<%=i%>" name="field_30_katargoumenes_diatakseis<%=i%>" onkeypress="wordsCounter('field_30_katargoumenes_diatakseis<%=i%>}','words30_diatakeis_katargoum_<%=i%>')" onpaste="wordsCounter('field_30_katargoumenes_diatakseis${table30RowIndex}','words30_diatakeis_katargoum_<%=i%>')" rows="2"><%= Object.values(data.field_30_katargoumenes_diatakseis[i]) %></textarea>
-                        <p style="float: right;">Λέξεις: <span id="words30_diatakeis_katargoum_<%=i%>" ></span></p>
-                        <br><br>
-                        <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
-                    </td>  
+    <h2 class="govgr-heading-l">Ζ. Πίνακας τροποποιούμενων ή καταργούμενων διατάξεων</h2> <br />
+    <h4 class="govgr-heading-m"><label id="table_29_label" class="table-29-label required">29.Τροποποίηση –
+            αντικατάσταση – συμπλήρωση διατάξεων</label>
+        <div class="index_table29"></div>
+    </h4> <br />
+    <div>
+        <table class="govgr-table--dark govgr-table" id="field_29_table">
+            <thead class="govgr-table__head">
+                <tr>
+                    <th colspan="1">Διατάξεις αξιολογούμενης ρύθμισης
+                        <div class="index_diatakseis"></div>
+                    </th>
+                    <th colspan="1">Υφιστάμενες διατάξεις
+                        <div class="index_yfistamenes_diatakseis"></div>
+                    </th>
                 </tr>
-            <%  }
-               } %>
-    
-        </tbody>
-    </table>
-
-    <input type="button" id="add_row_table_30" name="add_row_table_30" class="float-right" value="Επιπλέον σειρά" />
-    <br><br><br>
-    
-    <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενα πεδία" />
-    <input type="button" name="next" class="next action-button" value="Επόμενη φόρμα" />
+            </thead>
+            <tbody class="govgr-table__body" id="tbody_29">
+                <% if(data.field_29_diatakseis_rythmisis !=null && data.field_29_diatakseis_rythmisis.length !=null ){
+                    for (var i=0; i < data.field_29_diatakseis_rythmisis.length; i++) { %>
+                    <tr id="table_29_row<%=i%>">
+                        <td> <textarea class="govgr-textarea " id="field_29_diatakseis_rythmisis<%=i%>"
+                                name="field_29_diatakseis_rythmisis<%=i%>"
+                                onkeypress="wordsCounter('field_29_diatakseis_rythmisis<%=i%>','words29_diatakeis_rythm_<%=i%>')"
+                                onpaste="wordsCounter('field_29_diatakseis_rythmisis<%=i%>','words29_diatakeis_rythm_<%=i%>')"
+                                rows="1"><%= Object.values(data.field_29_diatakseis_rythmisis[i]) %></textarea>
+                            <p style="float: right;">Λέξεις: <span id="words29_diatakeis_rythm_<%=i%>"></span></p>
+                        </td>
+                        <td>
+                            <textarea class="govgr-textarea " id="field_29_yfistamenes_diatakseis<%=i%>"
+                                name="field_29_yfistamenes_diatakseis<%=i%>"
+                                onkeypress="wordsCounter('field_29_yfistamenes_diatakseis<%=i%>','words29_diatakeis_yfist_<%=i%>')"
+                                onpaste="wordsCounter('field_29_yfistamenes_diatakseis<%=i%>','words29_diatakeis_yfist_<%=i%>')"
+                                rows="1"><%= Object.values(data.field_29_yfistamenes_diatakseis[i]) %></textarea>
+                            <p style="float: right;">Λέξεις: <span id="words29_diatakeis_yfist_<%=i%>"></span></p>
+                            <br />
+                            <br />
+                            <button class="btn remove float-right" type="button">
+                                <img src="/img/delete.png" width="20px" />
+                            </button>
+                        </td>
+                    </tr>
+                    <% } } %>
+            </tbody>
+        </table>
+        <button type="button" id="add_row_table_29" name="add_row_table_29" class="govgr-btn govgr-btn-secondary float-right">+
+            Επιπλέον σειρά</button>
+    </div>
+    <br />
+    <br /><br />
+    <div class="govgr-button-group">
+        <button type="button" class="govgr-btn govgr-btn-primary govgr-btn-cta previous action-button-previous" name="previous">
+            <svg viewBox="0 0 24 24" class="govgr-arrow--left" focusable="false" aria-hidden="true">
+                <path d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z" />
+                <!--  <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z"/>-->
+            </svg> Προηγούμενη φόρμα
+        </button>
+        <button type="button" class="govgr-btn govgr-btn-primary govgr-btn-cta next action-button" name="next">
+            Επόμενα πεδία
+            <svg viewBox="0 0 24 24" class="govgr-arrow--right" focusable="false" aria-hidden="true">
+                <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z" />
+            </svg>
+        </button>
+    </div>
+</fieldset>
+<fieldset id="katargisi_diataksewn" class="table-30">
+    <h4><label id="table_30_label" class="table-30-label required">30.Κατάργηση διατάξεων</label>
+        <div class="index_table30"></div>
+    </h4> <br />
+    <div>
+        <table class="govgr-table--dark govgr-table" id="field_30_table">
+            <thead class="govgr-table__head">
+                <tr>
+                    <th colspan="1">Διατάξεις αξιολογούμενης ρύθμισης που προβλέπουν κατάργηση
+                        <div class="index_diatakseis_pros_katargisi"></div>
+                    </th>
+                    <th colspan="1">Καταργούμενες διατάξεις
+                        <div class="index_katargoumenes_diatakseis"></div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="govgr-table__body" id="tbody_30">
+                <% if(data.field_30_diatakseis_katargisi !=null && data.field_30_diatakseis_katargisi.length !=null ){
+                    for (var i=0; i < data.field_30_diatakseis_katargisi.length; i++) { %>
+                    <tr id="table_30_row<%=i%>">
+                        <td> <textarea class="govgr-textarea " id="field_30_diatakseis_katargisi<%=i%>"
+                                name="field_30_diatakseis_katargisi<%=i%>"
+                                onkeypress="wordsCounter('field_30_diatakseis_katargisi$<%=i%>','words30_diatakeis_katarg_<%=i%>')"
+                                onpaste="wordsCounter('field_30_diatakseis_katargisi<%=i%>','words30_diatakeis_katarg_${table30RowIndex}')"
+                                rows="2"><%= Object.values(data.field_30_diatakseis_katargisi[i]) %></textarea>
+                            <p style="float: right;">Λέξεις: <span id="words30_diatakeis_katarg_<%=i%>"></span></p>
+                        </td>
+                        <td>
+                            <textarea class="govgr-textarea " id="field_30_katargoumenes_diatakseis<%=i%>"
+                                name="field_30_katargoumenes_diatakseis<%=i%>"
+                                onkeypress="wordsCounter('field_30_katargoumenes_diatakseis<%=i%>}','words30_diatakeis_katargoum_<%=i%>')"
+                                onpaste="wordsCounter('field_30_katargoumenes_diatakseis${table30RowIndex}','words30_diatakeis_katargoum_<%=i%>')"
+                                rows="2"><%= Object.values(data.field_30_katargoumenes_diatakseis[i]) %></textarea>
+                            <p style="float: right;">Λέξεις: <span id="words30_diatakeis_katargoum_<%=i%>"></span></p>
+                            <br />
+                            <br />
+                            <button class="btn remove float-right" type="button">
+                                <img src="/img/delete.png" width="20px" />
+                            </button>
+                        </td>
+                    </tr>
+                    <% } } %>
+            </tbody>
+        </table>
+        <button type="button" id="add_row_table_30" name="add_row_table_30" class="govgr-btn govgr-btn-secondary float-right">+
+            Επιπλέον σειρά</button>
+    </div>
+    <br />
+    <br /><br />
+    <div class="govgr-button-group">
+        <button type="button" class="govgr-btn govgr-btn-primary govgr-btn-cta previous action-button-previous" name="previous">
+            <svg viewBox="0 0 24 24" class="govgr-arrow--left" focusable="false" aria-hidden="true">
+                <path d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z" />
+                <!--  <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z"/>-->
+            </svg> Προηγούμενα πεδία
+        </button>
+        <button type="button" class="govgr-btn govgr-btn-primary govgr-btn-cta next action-button" name="next">
+            Επόμενη φόρμα
+            <svg viewBox="0 0 24 24" class="govgr-arrow--right" focusable="false" aria-hidden="true">
+                <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z" />
+            </svg>
+        </button>
+    </div>
 </fieldset>
