@@ -139,7 +139,8 @@
         </div>
     </div> <br /> <br />
     <div class="govgr-button-group">
-        <button type="button" class="govgr-btn govgr-btn-primary govgr-btn-cta previous action-button-previous" name="previous">
+        <button type="button" class="govgr-btn govgr-btn-primary govgr-btn-cta previous action-button-previous"
+            name="previous">
             <svg viewBox="0 0 24 24" class="govgr-arrow--left" focusable="false" aria-hidden="true">
                 <path d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z" />
                 <!--  <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z"/>-->
@@ -189,7 +190,31 @@
             onkeypress="wordsCounter('field_40','words40',200, event)"
             onpaste="wordsCounter('field_40','words40',200, event)"></textarea>
         <p style="float: right;">Λέξεις: <span id="words40"></span> /200</p>
-    </div> <br />
+    </div>
+    <br>
+    <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
+    <div>
+        <table class="govgr-table--dark govgr-table" id="emd_processes_table">
+            <thead class="govgr-table__head">
+                <tr class="govgr-table__row">
+                    <th class="govgr-table__header">
+                        <label id="emd_processes_table_label" class="emd-processes-table-label">Διαδικασίες ΕΜΔ που
+                            επηρεάζονται
+                        </label>
+                        <div class="table-cell index_emd"></div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="govgr-table__body" id="emd_processes_tbody">
+            </tbody>
+        </table>
+        <button type="button" id="add_row_emd_table" name="add_row_emd_table" class="govgr-btn govgr-btn-secondary "
+            style="float: right;">+
+            Επιπλέον σειρά</button>
+        <br />
+    </div>
+    <br />
+    <br />
     <br />
     <hr />
     <div>
@@ -214,7 +239,8 @@
         <br />
     </div> <br />
     <div class="govgr-button-group">
-        <button type="button" class="govgr-btn govgr-btn-primary govgr-btn-cta previous action-button-previous" name="previous">
+        <button type="button" class="govgr-btn govgr-btn-primary govgr-btn-cta previous action-button-previous"
+            name="previous">
             Προηγούμενα πεδία
         </button>
     </div> <br />

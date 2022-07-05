@@ -216,6 +216,7 @@ routes.post(
       keys,
       "field_32_xronodiagramma"
     );
+    let emd_processes = tables.createDynamicTable(req.body, keys, "process");
 
     var author = req.session.username;
     await database.ekthesi.update(
@@ -245,6 +246,7 @@ routes.post(
         field_21_upload: field21,
         field_23_upload: field23,
         field_36_upload: field36,
+        emd_processes: emd_processes,
         nomosxedio: nomosxedio,
       },
       {

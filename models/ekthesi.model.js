@@ -167,6 +167,8 @@ module.exports = (sequelize, DataTypes) => {
         field_38: DataTypes.TEXT,
         field_39: DataTypes.TEXT,
         field_40: DataTypes.TEXT,
+        
+        emd_processes: DataTypes.JSON,
 
         minister_name: DataTypes.JSON,
         minister_surname: DataTypes.JSON,
