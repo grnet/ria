@@ -34,7 +34,7 @@ services:
         container_name: ria_db_dev
         volumes:
             - db_storage:/var/lib/mysql
-            - ./innit:/docker-entrypoint-initdb.d
+            - ./init:/docker-entrypoint-initdb.d
             - ./etc/assets/custom.cnf:/etc/mysql/conf.d/custom.cnf
         environment:
             - MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD

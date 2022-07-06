@@ -406,3 +406,41 @@ $("#add_row_emd_table").on("click", function () {
         </tr>`);
   populateMinistersSurnameSelect(`minister_surname${index}`);
 });
+
+    $("#eidikoteroi_stoxoi_analogws_tomea table").addClass(
+      "govgr-table--light govgr-table govgr-table--with-vertical-header govgr-table--with-vertical-lines"
+    );
+    $("#eidikoteroi_stoxoi_analogws_tomea table").removeClass("table");
+    $("#eidikoteroi_stoxoi_analogws_tomea table > thead").addClass(
+      "govgr-table__head govgr-table__header--numeric"
+    );
+    $("#eidikoteroi_stoxoi_analogws_tomea table > thead").removeClass("thead");
+    $("#eidikoteroi_stoxoi_analogws_tomea table > thead > tr").addClass(
+      "govgr-table__row"
+    );
+    $("#eidikoteroi_stoxoi_analogws_tomea table > thead > tr > th").addClass(
+      "govgr-table__header"
+    );
+    $("#eidikoteroi_stoxoi_analogws_tomea table > thead > tr > th").prop(
+      "scope",
+      "col"
+    );
+
+    $("#eidikoteroi_stoxoi_analogws_tomea table > tbody").addClass(
+      "govgr-table__body"
+    );
+    $("#eidikoteroi_stoxoi_analogws_tomea table > tbody > tr").addClass(
+      "govgr-table__row"
+    );
+    $("#eidikoteroi_stoxoi_analogws_tomea table > tbody > tr > th").addClass(
+      "govgr-table__header govgr-table__header--numeric"
+    );
+    $(
+      "#eidikoteroi_stoxoi_analogws_tomea table > tbody > tr > th > input"
+    ).addClass("govgr-input");
+    $("#eidikoteroi_stoxoi_analogws_tomea table > tbody > tr > td").addClass(
+      "govgr-table__cell govgr-table__cell--numeric"
+    );
+    $(
+      "#eidikoteroi_stoxoi_analogws_tomea table > tbody > tr > td > input"
+    ).addClass("govgr-input");
