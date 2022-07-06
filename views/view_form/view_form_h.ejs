@@ -1,260 +1,311 @@
-<fieldset id="sunarmodioi_foreis" class="table-31 optional">
-
-    <h2>Η. Έκθεση εφαρμογής της ρύθμισης</h2>
-    <br>
-
-    <h4><label id="table_31_label" class="table-31-label optional-label required">31.Συναρμοδιότητα Υπουργείων /
-            υπηρεσιών / φορέων</label></h4>
-    <br>
-
-    <table class="table" id="field_31_table">
-        <thead class="thead">
-
+<fieldset id="sunarmodioi_foreis" class="table-31 optional vouleutes">
+    <h2 class="govgr-heading-l">Η. Έκθεση εφαρμογής της ρύθμισης</h2> <br />
+    <h4 class="govgr-heading-m"><label id="table_31_label"
+            class="table-31-label vouleutes-label optional-label required">31.Συναρμοδιότητα Υπουργείων / υπηρεσιών /
+            φορέων</label>
+        <div class="index_table31"></div>
+    </h4> <br />
+    <table class="govgr-table--dark govgr-table" id="field_31_table">
+        <thead class="govgr-table__head">
             <tr>
-                <th colspan="1">Σχετική διάταξη αξιολογούμενης ρύθμισης<div class="index_sxetiki_diataksi"></div>
+                <th colspan="1">Σχετική διάταξη αξιολογούμενης ρύθμισης
+                    <div class="index_sxetiki_diataksi"></div>
                 </th>
-                <th colspan="1">Συναρμόδια Υπουργεία – Συναρμόδιες υπηρεσίες / φορείς<div class="index_foreis"></div>
+                <th colspan="1">Συναρμόδια Υπουργεία – Συναρμόδιες υπηρεσίες / φορείς
+                    <div class="index_foreis"></div>
                 </th>
-                <th colspan="1">Αντικείμενο συναρμοδιότητας<div class="index31_antikeimeno"></div>
+                <th colspan="1">Αντικείμενο συναρμοδιότητας
+                    <div class="index31_antikeimeno"></div>
                 </th>
             </tr>
         </thead>
-        <tbody id="tbody_31">
-
+        <tbody class="govgr-table__body" id="tbody_31">
             <%if(data.field_31_sxetiki_diataksi !=null && data.field_31_sxetiki_diataksi.length !=null ){ for (var i=0;
                 i < data.field_31_sxetiki_diataksi.length; i++) { %>
                 <tr id="table_31_row<%=i%>">
-                    <td>
-                        <textarea class="form-control" id="field_31_sxetiki_diataksi<%=i%>"
+                    <td> <textarea class="govgr-textarea form-control" id="field_31_sxetiki_diataksi<%=i%>"
                             name="field_31_sxetiki_diataksi<%=i%>"
-                            rows="2"><%= Object.values(data.field_31_sxetiki_diataksi[i]) %></textarea>
-                    </td>
-                    <td>
-                        <textarea class="form-control" id="field_31_synarmodia_ypoyrgeia<%=i%>"
+                            rows="2"><%= Object.values(data.field_31_sxetiki_diataksi[i]) %></textarea> </td>
+                    <td> <textarea class="govgr-textarea form-control" id="field_31_synarmodia_ypoyrgeia<%=i%>"
                             name="field_31_synarmodia_ypoyrgeia<%=i%>"
-                            rows="2"><%= Object.values(data.field_31_synarmodia_ypoyrgeia[i]) %></textarea>
-                    </td>
+                            rows="2"><%= Object.values(data.field_31_synarmodia_ypoyrgeia[i]) %></textarea> </td>
                     <td>
-                        <textarea class="form-control" id="field_31_antikeimeno_synarmodiotitas<%=i%>"
+                        <textarea class="govgr-textarea form-control" id="field_31_antikeimeno_synarmodiotitas<%=i%>"
                             name="field_31_antikeimeno_synarmodiotitas<%=i%>"
                             onkeypress="wordsCounter('field_31_antikeimeno_synarmodiotitas<%=i%>','words31_<%=i%>',50, event)"
                             onpaste="wordsCounter('field_31_antikeimeno_synarmodiotitas<%=i%>','words31_<%=i%>',50, event)"
                             rows="2"><%= Object.values(data.field_31_antikeimeno_synarmodiotitas[i]) %></textarea>
-                        <p style="float: right;">Λέξεις: <span id="words31_<%=i%>"></span> /50</p>
-                        <br><br>
-                        <button class="btn remove float-right" type="button"><img src="/img/delete.png"
-                                width="20px"></button>
+                        <p style="float: right;">Λέξεις: <span id="words31_<%=i%>"></span> /50</p> <br /><br />
+                        <button class="btn remove float-right" type="button">
+                            <img src="/img/delete.png" width="20px" />
+                        </button>
                     </td>
                 </tr>
                 <% } } %>
-
         </tbody>
     </table>
-
-    <input type="button" id="add_row_table_31" name="add_row_table_31" class="float-right" value="Επιπλέον σειρά" />
-    <br><br><br>
-
-    <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενη φόρμα" />
-    <input type="button" name="next" class="next action-button" value="Επόμενα πεδία" />
+    <button id="add_row_table_31" name="add_row_table_31" class="govgr-btn govgr-btn-secondary float-right">+ Επιπλέον
+        σειρά</button> <br />
+    <br />
+    <br />
+    <div class="govgr-button-group">
+        <button type="button" class="govgr-btn govgr-btn-primary govgr-btn-cta previous action-button-previous"
+            name="previous">
+            <svg viewBox="0 0 24 24" class="govgr-arrow--left" focusable="false" aria-hidden="true">
+                <path d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z" />
+                <!--  <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z"/>-->
+            </svg> Προηγούμενη φόρμα
+        </button>
+        <button type="button" class="govgr-btn govgr-btn-primary govgr-btn-cta next action-button" name="next">
+            Επόμενα πεδία
+            <svg viewBox="0 0 24 24" class="govgr-arrow--right" focusable="false" aria-hidden="true">
+                <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z" />
+            </svg>
+        </button>
+    </div>
 </fieldset>
 
-<fieldset id="ekdosi_egkukliwn" class="table-32 optional">
-
-    <h4><label id="table_32_label" class="table-32-label optional-label required">32.Έκδοση κανονιστικών πράξεων και
-            εγκυκλίων</label></h4>
-    <br>
-
-    <table class="table" id="field_32_table">
-        <thead class="thead">
-
+<fieldset id="ekdosi_egkukliwn" class="table-32 optional vouleutes">
+    <h4 class="govgr-heading-m"><label id="table_32_label"
+            class="table-32-label vouleutes-label optional-label required">32.Έκδοση κανονιστικών πράξεων και
+            εγκυκλίων</label>
+        <div class="index_table32"></div>
+    </h4> <br />
+    <table class="govgr-table--dark govgr-table" id="field_32_table">
+        <thead class="govgr-table__head">
             <tr>
-                <th colspan="1">Εξουσιοδοτική διάταξη<div class="index_eksousiodotiki_diataksi"></div>
+                <th colspan="1">Εξουσιοδοτική διάταξη
+                    <div class="index_eksousiodotiki_diataksi"></div>
                 </th>
-                <th colspan="1">Είδος πράξης<div class="index_eidos_praksis"></div>
+                <th colspan="1">Είδος πράξης
+                    <div class="index_eidos_praksis"></div>
                 </th>
-                <th colspan="1">Αρμόδιο ή επισπεύδον Υπουργείο ή υπηρεσία<div class="index_armodio_upourgeio"></div>
+                <th colspan="1">Αρμόδιο ή επισπεύδον Υπουργείο ή υπηρεσία
+                    <div class="index_armodio_upourgeio"></div>
                 </th>
-                <th colspan="1">Αντικείμενο<div class="index32_antikeimeno"></div>
+                <th colspan="1">Αντικείμενο
+                    <div class="index32_antikeimeno"></div>
                 </th>
-                <th colspan="1">Χρονοδιάγραμμα (ενδεικτική ή αποκλειστική προθεσμία)<div class="index_xronodiagramma">
-                    </div>
+                <th colspan="1">Χρονοδιάγραμμα (ενδεικτική ή αποκλειστική προθεσμία)
+                    <div class="index_xronodiagramma"></div>
                 </th>
             </tr>
         </thead>
-        <tbody id="tbody_32">
-
+        <tbody class="govgr-table__body" id="tbody_32">
             <% if(data.field_32_eksousiodotiki_diataksi !=null && data.field_32_eksousiodotiki_diataksi.length !=null ){
                 for (var i=0; i < data.field_32_eksousiodotiki_diataksi.length; i++) { %>
                 <tr id="table_32_row<%=i%>">
-                    <td>
-                        <textarea class="form-control" id="field_32_eksousiodotiki_diataksi<%=i%>"
+                    <td> <textarea class="govgr-textarea form-control" id="field_32_eksousiodotiki_diataksi<%=i%>"
                             name="field_32_eksousiodotiki_diataksi<%=i%>"
-                            rows="4"><%= Object.values(data.field_32_eksousiodotiki_diataksi[i]) %></textarea>
-                    </td>
-                    <td>
-                        <textarea class="form-control" id="field_32_eidos_praksis<%=i%>"
+                            rows="4"><%= Object.values(data.field_32_eksousiodotiki_diataksi[i]) %></textarea> </td>
+                    <td> <textarea class="govgr-textarea form-control" id="field_32_eidos_praksis<%=i%>"
                             name="field_32_eidos_praksis<%=i%>"
-                            rows="4"><%= Object.values(data.field_32_eidos_praksis[i]) %></textarea>
-                    </td>
-                    <td>
-                        <textarea class="form-control" id="field_32_armodio_ypoyrgeio<%=i%>"
+                            rows="4"><%= Object.values(data.field_32_eidos_praksis[i]) %></textarea> </td>
+                    <td> <textarea class="govgr-textarea form-control" id="field_32_armodio_ypoyrgeio<%=i%>"
                             name="field_32_armodio_ypoyrgeio<%=i%>"
-                            rows="4"><%= Object.values(data.field_32_armodio_ypoyrgeio[i]) %></textarea>
-                    </td>
-                    <td>
-                        <textarea class="form-control" id="field_32_antikeimeno<%=i%>" name="field_32_antikeimeno<%=i%>"
+                            rows="4"><%= Object.values(data.field_32_armodio_ypoyrgeio[i]) %></textarea> </td>
+                    <td> <textarea class="govgr-textarea form-control" id="field_32_antikeimeno<%=i%>"
+                            name="field_32_antikeimeno<%=i%>"
                             onkeypress="wordsCounter('field_32_antikeimeno<%=i%>','words32_<%=i%>',50, event)"
                             onpaste="wordsCounter('field_32_antikeimeno<%=i%>','words32_<%=i%>',50, event)"
                             rows="4"><%= Object.values(data.field_32_antikeimeno[i]) %></textarea>
                         <p style="float: right;">Λέξεις: <span id="words32_<%=i%>"></span> /50</p>
                     </td>
                     <td>
-                        <textarea class="form-control" id="field_32_xronodiagramma<%=i%>"
+                        <textarea class="govgr-textarea form-control" id="field_32_xronodiagramma<%=i%>"
                             name="field_32_xronodiagramma<%=i%>"
                             rows="4"><%= Object.values(data.field_32_xronodiagramma[i]) %></textarea>
-                        <button class="btn remove float-right" type="button"><img src="/img/delete.png"
-                                width="20px"></button>
+                        <button class="btn remove float-right" type="button">
+                            <img src="/img/delete.png" width="20px" />
+                        </button>
                     </td>
                 </tr>
                 <% } } %>
-
         </tbody>
     </table>
-
-    <input type="button" id="add_row_table_32" name="add_row_table_32" class="float-right" value="Επιπλέον σειρά" />
-    <br><br><br>
-    <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενη φόρμα" />
-    <input type="button" name="next" class="next action-button" value="Επόμενα πεδία" />
+    <button id="add_row_table_32" name="add_row_table_32" class="govgr-btn govgr-btn-secondary float-right">+ Επιπλέον
+        σειρά</button> <br />
+    <br />
+    <br />
+    <div class="govgr-button-group">
+        <button class="govgr-btn govgr-btn-primary govgr-btn-cta previous action-button-previous" name="previous">
+            <svg viewBox="0 0 24 24" class="govgr-arrow--left" focusable="false" aria-hidden="true">
+                <path d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z" />
+                <!--  <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z"/>-->
+            </svg> Προηγούμενη φόρμα
+        </button>
+        <button class="govgr-btn govgr-btn-primary govgr-btn-cta next action-button" name="next">
+            Επόμενα πεδία
+            <svg viewBox="0 0 24 24" class="govgr-arrow--right" focusable="false" aria-hidden="true">
+                <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z" />
+            </svg>
+        </button>
+    </div>
 </fieldset>
 
 <fieldset id="sustasi_etairias" class="optional">
-
-    <label>Ανάγκη σύστασης νέου νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας υπηρεσίας</label>
-    <div class="form-group">
-        <br>
-        <label for="field_33" class="legalistic-label optional-label" id="field_33_label">33.Ποιες διατάξεις της
-            αξιολογούμενης ρύθμισης προβλέπουν τη σύσταση νέου
-            νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας υπηρεσίας;</label>
-        <textarea class="form-control" id="field_33" name="field_33" rows="5"
+    <h2 class="govgr-heading-m">Ανάγκη σύστασης νέου νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας υπηρεσίας</h2>
+    <div class="form-group"> <br />
+        <label for="field_33" class="govgr-label legalistic-label optional-label" id="field_33_label">33.Ποιες διατάξεις
+            της αξιολογούμενης ρύθμισης προβλέπουν τη σύσταση νέου
+            νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας υπηρεσίας;
+        </label>
+        <textarea class="govgr-textarea form-control" id="field_33" name="field_33" rows="5"
             onkeyup="wordsCounter('field_33','words33',100, event), requiredLegalistics('#field_33')"
             onpaste="wordsCounter('field_33','words33',100, event)"><%= data.field_33 %></textarea>
         <p style="float: right;">Λέξεις: <span id="words33"></span> /100</p>
-    </div>
-
+    </div> <br /> <br />
     <div class="form-group legalistic">
-        <label for="field_34" class="legalistic-label optional-label" id="field_34_label">34.Γιατί προτείνεται η σύσταση
-            αυτού του νέου οργάνου και δεν επαρκούν οι
-            υφιστάμενες διοικητικές δομές για να επιτευχθεί ο στόχος της αξιολογούμενης ρύθμισης;</label>
-        <textarea class="form-control" id="field_34" name="field_34" rows="5"
+        <label for="field_34" class="govgr-label optional-label legalistic-label" id="field_34_label">34.Γιατί
+            προτείνεται η σύσταση αυτού του νέου οργάνου και δεν επαρκούν οι
+            υφιστάμενες διοικητικές δομές για να επιτευχθεί ο στόχος της αξιολογούμενης ρύθμισης;
+        </label>
+        <textarea class="govgr-textarea form-control" id="field_34" name="field_34" rows="5"
             onkeypress="wordsCounter('field_34','words34',100, event)"
             onpaste="wordsCounter('field_34','words34',100, event)"><%= data.field_34 %></textarea>
         <p style="float: right;">Λέξεις: <span id="words34"></span> /100</p>
-    </div>
-
+    </div> <br /> <br />
     <div class="form-group legalistic">
-        <label for="field_35" class="legalistic-label optional-label" id="field_35_label">35.Χρόνος έναρξης λειτουργίας
-            του νέου οργάνου:</label>
-        <textarea class="form-control" id="field_35" name="field_35" rows="5"
+        <label for="field_35" class="govgr-label optional-label legalistic-label" id="field_35_label">35.Χρόνος έναρξης
+            λειτουργίας του νέου οργάνου:</label>
+        <textarea class="govgr-textarea form-control" id="field_35" name="field_35" rows="5"
             onkeypress="wordsCounter('field_35','words35',50, event)"
             onpaste="wordsCounter('field_35','words35',50, event)"><%= data.field_35 %></textarea>
         <p style="float: right;">Λέξεις: <span id="words35"></span> /50</p>
-    </div>
-
-    <div class="checkbox-group form-group row legalistic">
-        <label class="legalistic-label optional-label" id="field_36_label" for="field_36"
-            class="col-sm-8 col-form-label">36. Έχει γίνει η σχετική οικονομοτεχνική μελέτη αναφορικά με τη σύσταση
-            του νέου οργάνου;</label>
-        <select id="field_36" name="field_36" class="col-sm-2 form-control">
+    </div> <br /> <br />
+    <div class="govgr-field">
+        <label class="govgr-label optional-label legalistic-label" id="field_36_label" for="field_36">36. Έχει γίνει η
+            σχετική οικονομοτεχνική μελέτη αναφορικά με τη σύσταση
+            του νέου οργάνου;
+        </label>
+        <select id="field_36" name="field_36" class="govgr-select form-control">
             <option selected disabled>Eπιλογή</option>
             <option value="Ναι">Ναι</option>
             <option value="Όχι">Όχι</option>
-        </select>
-
-        <div id="field_36_wrap" class="form-group" style="display:none;">
-            <label for="field_36_upload" class="legalistic-label optional-label" id="field_36_upload_label">Εάν ΝΑΙ, να
-                επισυναφθεί ηλεκτρονικά.</label>
-            <input type="file" id="field_36_upload" name="field_36_upload" accept=".pdf" multiple>
-
-            <br>
-            <table id="uploads_36" class="display:none">
-                <thead>
+        </select> <br />
+        <div for="field_36_upload" id="field_36_wrap" class="upload-file form-group" style="display:none;">
+            <label class="govgr-label required optional-label" id="field_36_upload_label">Εάν ΝΑΙ, να επισυναφθεί
+                ηλεκτρονικά.</label>
+            <input class="govgr-file-upload" type="file" id="field_36_upload" name="field_36_upload" accept=".pdf"
+                multiple />
+            <table id="uploads_36" class="govgr-table--dark govgr-table display:none">
+                <thead class="govgr-table__head">
                     <tr>
                         <th>Προηγούμενες αναρτήσεις:</th>
                     </tr>
                 </thead>
-                <tbody>
-
+                <tbody class="govgr-table__body">
                     <% if( data.field_36_upload && data.field_36_upload.length) { for (var i=0; i<
                         data.field_36_upload.length;i++) { %>
                         <tr>
-                            <td>
-                                <a href="/uploads/<%= data.field_36_upload[i] %> ">
+                            <td> <a href="/uploads/<%= data.field_36_upload[i] %> ">
                                     <%= data.field_36_upload[i] %>
                                 </a>
-                                <button class="btn remove-file float-right" type="button"><img src="/img/delete.png"
-                                        width="20px"></button>
+                                <button class="btn remove-file float-right" type="button">
+                                    <img src="/img/delete.png" width="20px" />
+                                </button>
                             </td>
                         </tr>
                         <% } }%>
-
                 </tbody>
-            </table>
-            <br>
+            </table> <br />
         </div>
+    </div> <br /> <br />
+    <div class="govgr-button-group">
+        <button type="button" class="govgr-btn govgr-btn-primary govgr-btn-cta previous action-button-previous"
+            name="previous">
+            <svg viewBox="0 0 24 24" class="govgr-arrow--left" focusable="false" aria-hidden="true">
+                <path d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z" />
+                <!--  <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z"/>-->
+            </svg> Προηγούμενα πεδία
+        </button>
+        <button type="button" class="govgr-btn govgr-btn-primary govgr-btn-cta next action-button" name="next">
+            Επόμενα πεδία
+            <svg viewBox="0 0 24 24" class="govgr-arrow--right" focusable="false" aria-hidden="true">
+                <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z" />
+            </svg>
+        </button>
     </div>
-
-    <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενα πεδία" />
-    <input type="button" name="next" class="next action-button" value="Επόμενα πεδία" />
-
 </fieldset>
 
 <fieldset id="stoixeia_etairias" class="optional">
-
-    <label>Στοιχεία νέου νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας υπηρεσίας</label>
-    <div class="form-group legalistic">
-        <br>
-        <label for="field_37" class="legalistic-label optional-label" id="field_37_label">37.Επωνυμία ή ονομασία και
-            νομική μορφή</label>
-        <textarea class="form-control" id="field_37" name="field_37" rows="3"
+    <h2 class="govgr-heading-m">Στοιχεία νέου νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας υπηρεσίας</h2>
+    <div class="form-group legalistic"> <br />
+        <label for="field_37" class="govgr-label optional-label legalistic-label" id="field_37_label">37.Επωνυμία ή
+            ονομασία και νομική μορφή</label>
+        <textarea class="govgr-textarea form-control" id="field_37" name="field_37" rows="3"
             onkeypress="wordsCounter('field_37','words37',80, event)"
             onpaste="wordsCounter('field_37','words37',80, event)"><%= data.field_37 %></textarea>
         <p style="float: right;">Λέξεις: <span id="words37"></span> /80</p>
-    </div>
-
+    </div> <br />
+    <br />
     <div class="form-group legalistic">
-        <label for="field_38" class="legalistic-label optional-label" id="field_38_label">38.Χώρος λειτουργίας του νέου
-            οργάνου</label>
-        <textarea class="form-control" id="field_38" name="field_38" rows="3"
+        <label for="field_38" class="govgr-label optional-label legalistic-label" id="field_38_label">38.Χώρος
+            λειτουργίας του νέου οργάνου</label>
+        <textarea class="govgr-textarea form-control" id="field_38" name="field_38" rows="3"
             onkeypress="wordsCounter('field_38','words38',100, event)"
             onpaste="wordsCounter('field_38','words38',100, event)"><%= data.field_38 %></textarea>
         <p style="float: right;">Λέξεις: <span id="words38"></span> /100</p>
-    </div>
-
+    </div> <br />
+    <br />
     <div class="form-group legalistic">
-        <label for="field_39" class="legalistic-label optional-label" id="field_39_label">39.Διασφάλιση επαρκούς
-            υλικοτεχνικού & ηλεκτρονικού εξοπλισμού</label>
-        <textarea class="form-control" id="field_39" name="field_39" rows="3"
+        <label for="field_39" class="govgr-label optional-label legalistic-label" id="field_39_label">39.Διασφάλιση
+            επαρκούς υλικοτεχνικού & ηλεκτρονικού εξοπλισμού</label>
+        <textarea class="govgr-textarea form-control" id="field_39" name="field_39" rows="3"
             onkeypress="wordsCounter('field_39','words39',100, event)"
             onpaste="wordsCounter('field_39','words39',100, event)"><%= data.field_39 %></textarea>
         <p style="float: right;">Λέξεις: <span id="words39"></span> /100</p>
-    </div>
-
+    </div> <br />
+    <br />
     <div class="form-group legalistic">
-        <label for="field_40" class="legalistic-label optional-label" id="field_40_label">40.Τρόπος στελέχωσης του νέου
-            οργάνου</label>
-        <textarea class="form-control" id="field_40" name="field_40" rows="3"
+        <label for="field_40" class="govgr-label optional-label legalistic-label" id="field_40_label">40.Τρόπος
+            στελέχωσης του νέου οργάνου</label>
+        <textarea class="govgr-textarea form-control" id="field_40" name="field_40" rows="3"
             onkeypress="wordsCounter('field_40','words40',200, event)"
             onpaste="wordsCounter('field_40','words40',200, event)"><%= data.field_40 %></textarea>
         <p style="float: right;">Λέξεις: <span id="words40"></span> /200</p>
-    </div>
-    <br>
-
-    <hr>
+    </div> <br />
+    <br />
+    <hr />
+        <div>
+            <table class="govgr-table--dark govgr-table" id="emd_processes_table">
+                <thead class="govgr-table__head">
+                    <tr class="govgr-table__row">
+                        <th class="govgr-table__header">
+                            <label id="emd_processes_table_label" class="emd-processes-table-label">Διαδικασίες ΕΜΔ που
+                                επηρεάζονται
+                            </label>
+                            <div class="table-cell index_emd"></div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="govgr-table__body" id="emd_processes_tbody">
+                    <% if( data.emd_processes && data.emd_processes.length) { for (var i=0; i< data.emd_processes.length;i++) {
+                        %>
+                        <tr>
+                            <td> <a href="/uploads/<%= data.emd_processes[i] %> ">
+                                    <%= data.emd_processes[i] %>
+                                </a> </td>
+                        </tr>
+                        <% } }%>
+                </tbody>
+            </table>
+            <button type="button" id="add_row_emd_table" name="add_row_emd_table" class="govgr-btn govgr-btn-secondary "
+                style="float: right;">+
+                Επιπλέον σειρά</button>
+            <br />
+        </div>
+        <br />
+        <br />
+        <br />
+        <hr />
     <div>
-        <table class="table " id="ministers_table">
-            <thead class="thead ">
+        <table class="govgr-table--dark govgr-table" id="ministers_table">
+            <thead class="govgr-table__head ">
                 <tr>
-                    <th colspan="3"><label id="ministers_table_label">ΟΙ ΥΠΟΥΡΓΟΙ</label></th>
+                    <th colspan="3">
+                        <label id="ministers_table_label">ΟΙ ΥΠΟΥΡΓΟΙ</label>
+                    </th>
                 </tr>
                 <tr>
                     <th colspan="1">Όνομα</th>
@@ -262,91 +313,81 @@
                     <th colspan="1">Ιδιότητα</th>
                 </tr>
             </thead>
-            <tbody id="tbody_ministers">
+            <tbody class="govgr-table__body" id="tbody_ministers">
 
             </tbody>
-        </table>
-        <br>
-        <input type="button" id="add_row_ministers_table" name="add_row_ministers_table" class="float-right"
-            value="Επιπλέον σειρά" />
-        <br><br>
-    </div>
-
+        </table> <br />
+        <button id="add_row_ministers_table" name="add_row_ministers_table"
+            class="govgr-btn govgr-btn-secondary float-right">+ Επιπλέον σειρά</button> <br />
+        <br />
+    </div> <br />
     <div class="checkbox-group form-group row ggnkth" style="display: none;">
         <label for="egkrisi_aksiologisis_nomoparaskeyastikis" class="col-sm-8 col-form-label">Έγκριση της Επιτροπής
-            Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)</label>
+            Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)
+        </label>
         <input class="col-sm-2 form-check-input position-static egkrisi_aksiologisis_nomoparaskeyastikis"
             type="checkbox" id="egkrisi_aksiologisis_nomoparaskeyastikis"
-            name="egkrisi_aksiologisis_nomoparaskeyastikis">
+            name="egkrisi_aksiologisis_nomoparaskeyastikis" />
     </div>
     <div class="checkbox-group form-group row ggnkth" style="display: none;">
         <label for="egkrisi_kalis_nomothetisis" class="col-sm-8 col-form-label">Έγκριση Γραφείου Καλής Νομοθέτησης
-            (ΓΓΝΚΘ)</label>
+            (ΓΓΝΚΘ)
+        </label>
         <input class="col-sm-2 form-check-input position-static egkrisi_kalis_nomothetisis" type="checkbox"
-            id="egkrisi_kalis_nomothetisis" name="egkrisi_kalis_nomothetisis">
+            id="egkrisi_kalis_nomothetisis" name="egkrisi_kalis_nomothetisis" />
     </div>
     <div class="checkbox-group form-group row ggnkth" style="display: none;">
         <label for="egkrisi_dieuthinsis_nomoparaskeyastikis" class="col-sm-8 col-form-label">Έγκριση Διεύθυνσης
-            Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)</label>
+            Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)
+        </label>
         <input class="col-sm-2 form-check-input position-static egkrisi_dieuthinsis_nomoparaskeyastikis" type="checkbox"
-            id="egkrisi_dieuthinsis_nomoparaskeyastikis" name="egkrisi_dieuthinsis_nomoparaskeyastikis">
+            id="egkrisi_dieuthinsis_nomoparaskeyastikis" name="egkrisi_dieuthinsis_nomoparaskeyastikis" />
     </div>
     <div class="checkbox-group form-group row ggnkth" style="display: none;">
         <label for="egkrisi_genikou_grammatea" class="col-sm-8 col-form-label">Έγκριση Γενικού Γραμματέα Νομικών και
-            Κοινοβουλευτικών Θεμάτων </label>
+            Κοινοβουλευτικών Θεμάτων
+        </label>
         <input class="col-sm-2 form-check-input position-static egkrisi_genikou_grammatea" type="checkbox"
-            id="egkrisi_genikou_grammatea" name="egkrisi_genikou_grammatea">
-
-    </div>
-    <br>
-
+            id="egkrisi_genikou_grammatea" name="egkrisi_genikou_grammatea" />
+    </div> <br />
     <div>
-        <input type="hidden" name="pdf_name" id="pdf_name">
-        <p id="pdf_download" class="pdf-download action-button" style="display: none;">
-        </p>
+        <input type="hidden" name="pdf_name" id="pdf_name" />
+        <p id="pdf_download" class="pdf-download action-button" style="display: none;"> </p>
     </div>
-
     <div id="signed_pdf_div" style="display: none;">
         <div id="upload_signed_pdf">
             <label for="signed_pdf_upload" class="signed-pdf optional-label" id="signed_pdf_upload_label">Επισύναψη
-                υπογεγραμμένου pdf</label>
-            <br>
-            <input type="file" id="signed_pdf_upload" name="signed_pdf_upload" accept=".pdf">
-        </div>
-
-        <br>
-        <table id="signed_pdf" class="display:none">
-            <thead>
+                υπογεγραμμένου pdf
+            </label> <br />
+            <input type="file" id="signed_pdf_upload" name="signed_pdf_upload" accept=".pdf" />
+        </div> <br />
+        <table id="signed_pdf" class="govgr-table--dark govgr-table" style="display:none">
+            <thead class="govgr-table__head">
                 <tr>
                     <th>Προηγούμενη ανάρτηση:</th>
                 </tr>
             </thead>
-            <tbody>
-
+            <tbody class="govgr-table__body">
                 <% if( data.signed_pdf_upload && data.signed_pdf_upload.length) { for (var i=0; i<
                     data.signed_pdf_upload.length;i++) { %>
                     <tr>
-                        <td>
-                            <a href="/uploads/<%= data.signed_pdf_upload[i] %> ">
+                        <td> <a href="/uploads/<%= data.signed_pdf_upload[i] %> ">
                                 <%= data.signed_pdf_upload[i] %>
-                            </a>
-                        </td>
+                            </a> </td>
                     </tr>
                     <% } }%>
-
             </tbody>
-        </table>
-        <br>
+        </table> <br />
+    </div> <br />
+    <div class="govgr-button-group">
+        <button class="govgr-btn govgr-btn-primary govgr-btn-cta previous action-button-previous" name="previous">
+            Προηγούμενα πεδία
+        </button>
+    </div> <br />
+    <div class="flex justify-center">
+        <input type="submit" id="create_new"
+            class="govgr-btn govgr-btn-primary govgr-btn-cta next action-button action-button-create create-new"
+            value="Οριστική Αποθήκευση" />
     </div>
-
-    <br>
-    <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενα πεδία" />
-    <br>
-    <input type="button" name="pdfExport" class="export-pdf action-button-export" style="float: right;"
-        value="Εξαγωγή σε PDF" />
-    <br><br>
-
-    <input type="submit" id="create_new" class="action-button-create create-new" value="Οριστική Αποθήκευση" />
-    <br>
-    <br><br>
+    <br /><br />
 </fieldset>

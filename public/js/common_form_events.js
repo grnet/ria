@@ -25,7 +25,7 @@ $(".next").click(function () {
 $(".previous").click(function () {
   current_fs = $(this).closest("fieldset");
   previous_fs = $(this).closest("fieldset").prev();
-
+  
   //de-activate current step on progressbar
   $(".progressbar li")
     .eq($("fieldset").index(current_fs))
