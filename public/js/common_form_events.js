@@ -435,6 +435,10 @@ $("#add_row_emd_table").on("click", function () {
     $("#eidikoteroi_stoxoi_analogws_tomea table > tbody > tr > th").addClass(
       "govgr-table__header govgr-table__header--numeric"
     );
+    $("#eidikoteroi_stoxoi_analogws_tomea tbody > thead > tr > th").prop(
+      "scope",
+      "col"
+    );
     $(
       "#eidikoteroi_stoxoi_analogws_tomea table > tbody > tr > th > input"
     ).addClass("govgr-input");
