@@ -71,18 +71,13 @@
 
       })
 
-      let user_role = '<%= user.rolos %>';
+      const userRole = "<%= user.rolos %>";
+
       let isAdmin = '<%= user.dikaiwmata_diaxeirisis %>';
 
       isAdmin ? $(".user").hide() : $(".admin").hide(); //hide admin menu options if user does not have administration rights
-
-      if (user_role === 'Βουλευτής') {
-        $("#create_analysis").children(":not(.vouleftis):not(.header)").hide();//hide all children elements without class vouleftis
-      } else if (user_role === 'Συντάκτης επισπεύδοντος Υπουργείου' || user_role == 'Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)') {
-        $("#create_analysis").children(".vouleftis").hide();//hide all children elements with class vouleftis
-      } else {
-        $("#create_analysis").children().hide();//hide all children elements
-      }
+      setUserRestrictions(userRole);
+      
 
     </script>
     </body>
