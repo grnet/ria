@@ -31,7 +31,7 @@
                             </div> -->
                             <div class="govgr-grid__col-span-6">
                                 <input type="text" class="govgr-input form-control" id="title" name="title" />
-                            </div>                            
+                            </div>
                         </div>
                         <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
                         <div class="govgr-grid">
@@ -793,7 +793,6 @@
                                 </button>
                             </div>
                         </fieldset>
-                        <br>
 
                         <%- include('fill_form/fill_form_b.ejs') %>
                             <%- include('fill_form/fill_form_c.ejs') %>
@@ -1003,6 +1002,7 @@
     }
 </style>
 
+<script type="text/javascript" src="/js/nav_scripts.js"></script>
 <script type="text/javascript" src="/js/common_form_scripts.js"></script>
 <script type="text/javascript" src="/js/tooltips.js"></script>
 <script type="text/javascript" src="/js/common_form_events.js"></script>
@@ -1074,8 +1074,7 @@
     var analysis = "<%= analysis%>";
     var role = "<%= rolos%>";
 
-
-
+    setUserRestrictions(role);
     function addLabelClass(fieldLabel, className) {
         $(fieldLabel).addClass(className);//remove required class from label
     };

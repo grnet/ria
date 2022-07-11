@@ -1,3 +1,5 @@
+setUserRestrictions(role);
+
 if (field_18) {
   $("#field_18_comments").val(field_18);
 }
