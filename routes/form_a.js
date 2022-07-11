@@ -36,6 +36,7 @@ routes.get("/:entry_id", authUser, async (req, res, next) => {
       }, //, include: [{ model: database.ekthesi_tables }] //join tables
     });
 
+    const user = req.session.user;
     let ekthesi_tables = await database.ekthesi_tables.findOne({
       where: {
         ekthesi_tablesId: req.params.entry_id,
@@ -81,6 +82,7 @@ routes.get("/:entry_id", authUser, async (req, res, next) => {
             tooltips: results,
             ministries: ministriesArray,
             ministers: ministers,
+            user: user,
           });
         });
     } else {

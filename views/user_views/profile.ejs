@@ -1,7 +1,8 @@
 <%- include('../partials/head.ejs') %>
     <div class=""> <br />
-        <!--<input type="button" name="back" class="back" value="Πίσω"/> <br/>--> <a href="/user_views/dashboard" class="govgr-back-link"
-            id="back" name="back"> <svg class="govgr-caret--left" viewBox="0 0 24 24" aria-hidden="true">
+        <!--<input type="button" name="back" class="back" value="Πίσω"/> <br/>--> <a href="/user_views/dashboard"
+            class="govgr-back-link" id="back" name="back"> <svg class="govgr-caret--left" viewBox="0 0 24 24"
+                aria-hidden="true">
                 <path d="M18,22V2L6,12L18,22z" />
             </svg>
             Επιστροφή στην αρχική</a> <br />
@@ -196,12 +197,16 @@
         </style>
 
         <script>
-            
-            var username = $("#username").val();
-            var validationErrors;
+            const userRole = "<%= user.rolos %>";
+            setUserRestrictions(userRole);
+            let isAdmin = '<%= user.dikaiwmata_diaxeirisis %>';
+            isAdmin ? $(".user").hide() : $(".admin").hide();
+
+            let username = $("#username").val();
+            let validationErrors;
             $("form").on("submit", function (ev) {
                 ev.preventDefault();
-                                
+
                 if ($("#password_repeat").val() != $("#new_password").val()) {
                     ev.preventDefault();
                     validationErrors = '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><li>Οι νέοι κωδικοί δεν ταιριάζουν.</li>';
@@ -222,9 +227,9 @@
                         data: $(this).serialize(),
                         error: function (error) {
                             console.log(error)
-                            var errors = JSON.parse(error.responseText);
+                            let errors = JSON.parse(error.responseText);
                             $('#errors').show();
-                            var alerts = '';
+                            let alerts = '';
                             for (i in errors) {
                                 console.log(errors[i].msg)
                                 alerts += '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' + "<li>" + errors[i].msg + "</li>";
@@ -275,7 +280,7 @@
             });
 
             function passwordsMatch() {
-                if (($("#password_repeat").val() == $("#new_password").val() && $("#new_password").val()!= '' ) ) {
+                if (($("#password_repeat").val() == $("#new_password").val() && $("#new_password").val() != '')) {
                     $("#msg").html("Οι κωδικοί ταιριάζουν.").css("color", "green");
                 } else if (!$("#password_repeat").val() && !$("#new_password").val()) {
                     $("#msg").empty();

@@ -7,6 +7,7 @@ routes.get("/", authUser, authRole, async function (req, res, next) {
   let latest_entry = await database.ministries.max("id").catch((error) => {
     console.log(error);
   }); // get entry with highest id
+  const user = req.session.user;
   let res_data = await database.ministries
     .findOne({ where: { id: latest_entry } })
     .catch((error) => {
@@ -19,7 +20,7 @@ routes.get("/", authUser, authRole, async function (req, res, next) {
       ministries.push({ ministry: value });
     }
   }
-  res.render("user_views/create_user", { ministries: ministries });
+  res.render("user_views/create_user", { ministries: ministries, user:user });
 });
 
 routes.post("/", authUser, authRole, async function (req, res, next) {

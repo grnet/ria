@@ -21,7 +21,6 @@ function requiredDigitalGov() {
     $("#field_10_amesi").prop("checked") ||
     $("#field_10_emmesi").prop("checked")
   ) {
-    addLabelClass($(".digital_gov"));
     $(".digital-gov-label").addClass("required");
     $(".digital_gov :input").prop("disabled", false);
   } else {

@@ -2,7 +2,7 @@
     <h2 class="govgr-heading-l">Β. Έκθεση Γενικού Λογιστηρίου του Κράτους (άρθρο 75 παρ. 1 ή 2 του Συντάγματος)</h2>
     <div class="govgr-checkboxes">
         <div class="govgr-checkboxes__item">
-            <input class="govgr-checkboxes__input" type="checkbox" />
+            <input class="govgr-checkboxes__input" id="ekthesi_glk" type="checkbox" />
             <label for="ekthesi_glk" class="govgr-label govgr-checkboxes__label glk-required mostly-optional-label"
                 class="govgr-label govgr-checkboxes__label">
                 Απαιτείται η Έκθεση
@@ -16,7 +16,7 @@
             σχέδιο νόμου ή στην τροπολογία επί του σχεδίου νόμου
         </label>
         <textarea class="govgr-textarea" id="field_15_sxedio_nomou" name="field_15_sxedio_nomou"
-            placeholder="Σχέδιο νόμου" placeholder="Υπουργείο" rows="1"> <%= data.field_15_sxedio_nomou %></textarea>
+            rows="1"> <%= data.field_15_sxedio_nomou %></textarea>
     </div>
     <div class="govgr-field">
         <label id="field_15_ypoyrgeio_label" for="field_15_ypoyrgeio"
@@ -105,7 +105,8 @@
         </div> <br /><br />
         <div>
             <input type="hidden" name="glk_pdf_name" id="glk_pdf_name" />
-            <p id="glk_pdf_download" name="glk_pdf_download" class="glk-pdf-download action-button" style="display: none;">
+            <p id="glk_pdf_download" name="glk_pdf_download" class="glk-pdf-download action-button"
+                style="display: none;">
             </p>
         </div>
         <div id="glk_pdf_div">
@@ -139,7 +140,8 @@
         </div>
     </div>
     <div class="govgr-button-group">
-        <button type="button" class="govgr-btn govgr-btn-primary govgr-btn-cta previous action-button-previous" name="previous">
+        <button type="button" class="govgr-btn govgr-btn-primary govgr-btn-cta previous action-button-previous"
+            name="previous">
             <svg viewBox="0 0 24 24" class="govgr-arrow--left" focusable="false" aria-hidden="true">
                 <path d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z" />
                 <!--  <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z"/>-->
@@ -152,4 +154,4 @@
             </svg>
         </button>
     </div>
-    </fieldset>
+</fieldset>

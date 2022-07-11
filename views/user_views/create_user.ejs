@@ -190,6 +190,10 @@
         </style>
 
         <script>
+            const userRole = "<%= user.rolos %>";
+            setUserRestrictions(userRole);
+            const isAdmin = '<%= user.dikaiwmata_diaxeirisis %>';
+            isAdmin ? $(".user").hide() : $(".admin").hide();
 
             $("form").on("submit", function (ev) {
                 ev.preventDefault();

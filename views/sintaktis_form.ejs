@@ -1011,6 +1011,11 @@
 
     let ministries = JSON.parse(' <%- JSON.stringify(ministries) %> ');
     let ministers = JSON.parse(' <%- JSON.stringify(ministers) %> ');
+    let analysis = "<%= analysis%>";
+    const role = "<%= rolos%>";
+    setUserRestrictions(role);
+    const isAdmin = '<%= user.dikaiwmata_diaxeirisis %>';
+    isAdmin ? $(".user").hide() : $(".admin").hide();
 
     $("form").on("submit", function (ev) {
         ev.preventDefault();
@@ -1069,10 +1074,7 @@
                 $('#status_ekthesis').val("Ολοκληρώθηκε");
             }
         }
-    }
-
-    var analysis = "<%= analysis%>";
-    var role = "<%= rolos%>";
+    }    
 
     setUserRestrictions(role);
     function addLabelClass(fieldLabel, className) {

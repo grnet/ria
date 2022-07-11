@@ -16,8 +16,8 @@
         <tbody class="govgr-table__body">
             <% if( data.field_21_upload && data.field_21_upload.length ) { for (var i=0; i<
                 data.field_21_upload.length;i++) { %>
-                <tr>
-                    <td> <a href="/uploads/<%= data.field_21_upload[i] %> ">
+                <tr class="govgr-table__row">
+                    <td class="govgr-table__cell"> <a href="/uploads/<%= data.field_21_upload[i] %> ">
                             <%= data.field_21_upload[i] %>
                         </a>
                         <button class="btn remove-file float-right" type="button">

@@ -29,6 +29,7 @@ routes.get("/:analysis", authUser, async (req, res, next) => {
     var results = [];
     const valid_errors = req.session.errors;
     req.session.errors = null;
+    const user = req.session.user;
     let ministers, ministriesArray;
     let latest_entry = await database.ministries.max("id").catch((error) => {
       console.log(error);
@@ -53,6 +54,7 @@ routes.get("/:analysis", authUser, async (req, res, next) => {
           tooltips: results,
           ministers: ministers,
           ministries: ministries,
+          user:user
         });
       });
   } catch (err) {

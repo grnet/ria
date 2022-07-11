@@ -31,6 +31,7 @@
                         <div>
                             <h4 id="subtitle"></h4>
                             <p id="subtext"></p>
+                            <br><br>
                         </div>
                         <!-- Button trigger modal -->
                         <!-- <button type="button" class="btn btn-primary" style="float: right;" data-toggle="modal"
@@ -106,18 +107,21 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> -->
+                            </div> -->                        
+                        <div>
+                            <input type="button" name="delete" id="delete"
+                                class=" delete-analysis govgr-btn govgr-btn-warning action-button-delete"
+                                style="float: right;" value="Διαγραφή" />
+                            <br><br><br><br>
+                        </div>
 
                         <div>
-                            <input type="button" name="convert" class="convert" style="display: none; float: right;"
-                                value="Μετατροπή" />
+                            <input type="button" name="convert"
+                                class="govgr-btn govgr-btn-warning convert action-button-convert"
+                                style="display: none; float: right;" value="Μετατροπή" />
+                            <br /><br /><br><br>
                         </div>
-                        <br><br>
-                        <div>
-                            <button class="btn delete-analysis float-right" style="float: right;" type="button"><img
-                                    src="/img/delete.png" width="25px"></button>
-                        </div>
-                        <br><br>
+
 
                         <div class="govgr-grid">
                             <div class="govgr-grid__col-span-6">
@@ -784,7 +788,7 @@
                             <div class="govgr-grid__col-span-6">
                                 <textarea class="govgr-textarea" id="field_8_1" name="field_8_1" rows="3"
                                     onkeypress="wordsCounter('field_8_1','words8_1', event)"
-                                    onpaste="wordsCounter('field_8_1','words8_1', event)"><%= data.field_8_2 %></textarea>
+                                    onpaste="wordsCounter('field_8_1','words8_1', event)"><%= data.field_8_1 %></textarea>
                                 <p style="float: right;">Λέξεις: <span id="words8_1"></span></p>
                             </div>
                         </div>
@@ -797,7 +801,7 @@
                             <div class="govgr-grid__col-span-6">
                                 <textarea class="govgr-textarea" id="field_8_2" name="field_8_2" rows="3"
                                     onkeypress="wordsCounter('field_8_2','words8_2', event)"
-                                    onpaste="wordsCounter('field_8_2','words8_2', event)"></textarea>
+                                    onpaste="wordsCounter('field_8_2','words8_2', event)"><%= data.field_8_2 %></textarea>
                                 <p style="float: right;">Λέξεις: <span id="words8_2"></span></p>
                             </div>
                         </div>
@@ -889,7 +893,7 @@
                                 <label for="field_11_comments" class="digital-gov-label">Εξηγήστε</label>
                                 <textarea class="govgr-textarea" name="field_11_comments" id="field_11_comments"
                                     rows="3" onkeypress="wordsCounter('field_11_comments','words11', event)"
-                                    onpaste="wordsCounter('field_11_comments','words11', event)"></textarea>
+                                    onpaste="wordsCounter('field_11_comments','words11', event)"><%= data.field_11_comments %></textarea>
                                 <p style="float: right;">Λέξεις: <span id="words11"></span></p>
                             </div>
                             <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
@@ -915,7 +919,7 @@
                                 </label>
                                 <textarea class="govgr-textarea" name="field_12_comments" id="field_12_comments"
                                     rows="3" onkeypress="wordsCounter('field_12_comments','words12', event)"
-                                    onpaste="wordsCounter('field_12_comments','words12', event)"></textarea>
+                                    onpaste="wordsCounter('field_12_comments','words12', event)"><%= data.field_12_comments %></textarea>
                                 <p style="float: right;">Λέξεις: <span id="words12"></span></p>
                             </div>
                             <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
@@ -939,7 +943,7 @@
                                 <label for="field_13_comments" class="digital-gov-label">Εξηγήστε</label>
                                 <textarea class="govgr-textarea" name="field_13_comments" id="field_13_comments"
                                     rows="3" onkeypress="wordsCounter('field_13_comments','words13', event)"
-                                    onpaste="wordsCounter('field_13_comments','words13', event)"></textarea>
+                                    onpaste="wordsCounter('field_13_comments','words13', event)"><%= data.field_13_comments %></textarea>
                                 <p style="float: right;">Λέξεις: <span id="words13"></span></p>
                             </div>
                             <div class="govgr-button-group">
@@ -994,15 +998,17 @@
                                                     rows="1"><%= Object.values(data.field_14_arthro[i]) %></textarea>
                                             </td>
                                             <td class="govgr-table__cell">
-                                                <textarea class="govgr-textarea" id="field_14_stoxos<%=i%>"
-                                                    name="field_14_stoxos<%=i%>" rows="1"
-                                                    onkeypress="wordsCounter('field_14_stoxos<%=i%>','words14_<%=i%>', event)"
-                                                    onpaste="wordsCounter('field_14_stoxos<%=i%>','words14_<%=i%>', event)"><%= Object.values(data.field_14_stoxos[i]) %></textarea>
-                                                <p style="float: right;">Λέξεις: <span id="words14_<%=i%>"></span>
-                                                </p>
-                                                <br><br>
-                                                <button class="btn remove float-right" type="button"><img
-                                                        src="/img/delete.png" width="20px"></button>
+                                                <div style="position: relative;">
+                                                    <br>
+                                                    <textarea class="govgr-textarea" id="field_14_stoxos<%=i%>"
+                                                        name="field_14_stoxos<%=i%>" rows="1"
+                                                        onkeypress="wordsCounter('field_14_stoxos<%=i%>','words14_<%=i%>', event)"
+                                                        onpaste="wordsCounter('field_14_stoxos<%=i%>','words14_<%=i%>', event)"><%= Object.values(data.field_14_stoxos[i]) %></textarea>
+                                                    <p style="float: right;">Λέξεις: <span id="words14_<%=i%>"></span>
+                                                    </p>
+                                                    <button class="btn remove float-right" type="button"><img
+                                                            src="/img/delete.png" width="20px"></button>
+                                                </div>
                                             </td>
 
                                         </tr>
@@ -1037,13 +1043,14 @@
                             </div>
                         </fieldset>
 
-                        <%- include('fill_form/fill_form_b.ejs') %>
-                            <%- include('fill_form/fill_form_c.ejs') %>
+                        <%- include('view_form/view_form_b.ejs') %>
+                            <%- include('view_form/view_form_c.ejs') %>
                                 <%- include('fill_form/fill_form_d.ejs') %>
-                                    <%- include('fill_form/fill_form_e.ejs') %>
-                                        <%- include('fill_form/fill_form_f.ejs') %>
-                                            <%- include('fill_form/fill_form_g.ejs') %>
-                                                <%- include('fill_form/fill_form_h.ejs') %> <br />
+                                    <%- include('view_form/view_form_e.ejs') %>
+                                        <%- include('view_form/view_form_f.ejs') %>
+                                            <%- include('view_form/view_form_g.ejs') %>
+                                                <%- include('view_form/view_form_h.ejs') %>
+
                                                     <button type="button" class="govgr-btn govgr-btn-secondary"
                                                         id="save_temporarily" name="save_temporarily"
                                                         style="float: right;">
@@ -1258,6 +1265,11 @@
 
     <script>
 
+        const userRole = "<%= user.rolos %>";
+        setUserRestrictions(userRole);
+        const isAdmin = '<%= user.dikaiwmata_diaxeirisis %>';
+        isAdmin ? $(".user").hide() : $(".admin").hide();
+
         let answer;
         let ekthesi_id = "<%= data.id %>";
         //prevent user from going to a different form through url
@@ -1398,7 +1410,7 @@
             }
         });
 
-        $(".save_temporarily").on("click", function (ev) {
+        $("#save_temporarily").on("click", function (ev) {
             // var validationFlag;
             // validationFlag = validateRequiredFields(validationFlag);
             // console.log('validationFlag: ' + validationFlag)
