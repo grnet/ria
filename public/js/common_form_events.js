@@ -212,7 +212,6 @@ $("#field_28_alla_dikastiria").on("change", function (ev) {
 });
 
 $("#field_4").on("click", function (ev) {
-  console.log("f4 event called");
   if ($(this).val() === "Ναι") {
     $("#field_4_wrap").show();
   } else {

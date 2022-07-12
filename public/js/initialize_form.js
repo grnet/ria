@@ -265,7 +265,6 @@ $("#field_17_ypoyrgeio").val(
 );
 
 let index = $("#tbody_ministers").prop("rows").length;
-console.log(ministersRoles);
 for (let j in ministersNames) {
   $("#tbody_ministers").append(`
     <tr id="R${++index}">  
