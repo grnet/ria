@@ -1505,18 +1505,21 @@
             if (pdf_name) {
                 $("#glk_pdf_name").val(pdf_name);
                 setDate("#field_16_genikos_date");
+                $("#arxiki").prop("disabled", false);
                 $.ajax({
                     url: `/form_a/export/glk/:${ekthesi_id}`,
                     //data: $("form").serialize(),
                     data: $("form").serialize(),
                     processData: false,
                     error: function (error) {
+                        $("#arxiki").prop("disabled", true);
                         console.log(error);
                     },
                     success: function (data) {
                         $("#glk_pdf_download").html(`Το τελευταίο αποθηκευμένο PDF
                                     βρίσκεται <a href="/pdf_exports/${pdf_name}.pdf">εδώ</a>.`)
                         $("#glk_pdf_download").show();
+                        $("#arxiki").prop("disabled", true);
                     },
                     type: 'POST'
                 })
@@ -1607,7 +1610,7 @@
 
             if ((role === "Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων" || role === "Βουλευτής") || (role === "Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)" && $('#status_ekthesis').val("Συντάσσεται"))) {
                 $('#status_ekthesis').val("Ολοκληρώθηκε");
-            } else if (role === "Επιτροπή Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)" || role === "Γραφείο Καλής Νομοθέτησης (ΓΓΝΚΘ)" || role === "Διεύθυνση Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)") {
+            } else if (role === "Επιτροπή Αξιολόγησης0 Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)" || role === "Γραφείο Καλής Νομοθέτησης (ΓΓΝΚΘ)" || role === "Διεύθυνση Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)") {
                 if ($("#egkrisi_aksiologisis_nomoparaskeyastikis").prop("checked") && $("#egkrisi_kalis_nomothetisis").prop("checked") && $("#egkrisi_dieuthinsis_nomoparaskeyastikis").prop("checked") && $("#egkrisi_genikou_grammatea").prop("checked")) {
                     $('#status_ekthesis').val("Οριστικοποιήθηκε");
                 }
@@ -1621,225 +1624,11 @@
                 }
 
             }
-        }
-
-        //TODO: Test 1
-        // if (role === "Συντάκτης επισπεύδοντος Υπουργείου") {
-        //     if ($("#status_ekthesis").val() != "Συντάσσεται") {
-        //         optionalFields("#edit_form :input");
-        //         enableFields(".next");
-        //         enableFields(".previous");
-        //     }
-        // }
-
-        //TODO: Test 2
-        // if ($('#status_ekthesis').val() === "Οριστικοποιήθηκε") {
-        //     $("#edit_form :input").prop("disabled", true);
-        //     //$("#edit_form :input[type=checkbox]").prop("disable",true);
-        // }
-
-        //TODO: Test 3
-        // if ((role === "Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)" && $("#pdf_download").prop("hidden") === false && $('#status_ekthesis').val() === "Οριστικοποιήθηκε") || ($('#status_ekthesis').val() === "Οριστικοποιήθηκε" && role === "Γενικός Γραμματέας Νομικών και Κοινοβουλευτικών Θεμάτων")) {
-        //     $("#signed_pdf_div").show();
-        //     $("#pdf_download").prop("disabled", false);
-        //     $("#signed_pdf_upload").prop("disabled", false);
-        //     $(".export-pdf").prop("disabled", false);
-        //     if ("<%= data.egkrisi_genikou_grammatea%>") {
-        //         $(".create-new").prop("disabled", false);
-        //     }
-        //     $(".next").prop("disabled", false);
-        //     $(".previous").prop("disabled", false);
-        // }
-
+        }        
 
         // $("#egkrisi_aksiologisis_nomoparaskeyastikis,#egkrisi_kalis_nomothetisis,#egkrisi_dieuthinsis_nomoparaskeyastikis,#egkrisi_genikou_grammatea").on("change", function () {
         //     submitVisibility();
-        // });                                        
-
-
-
-        // TODO: remove lines bellow
-        function optionalFields(fieldId) {
-            $(fieldId).prop('disabled', true);//find and disable field, button or fieldset
-            //console.log((fieldId));
-        };
-        //refactor
-        function enableFields(fieldId) {
-            $(fieldId).prop('disabled', false);//find and enable field or button
-            // console.log((fieldId));
-        };
-        //refactor
-        function optionalFieldsClassRemoval(fieldLabel, className) {
-            var items = document.getElementsByClassName(fieldLabel);
-            for (var i = 0; i < items.length; i++) {
-                $(items[i]).removeClass(className);//remove required class from label
-            }
-        };
-        //refactor
-        // function addLabelClass(fieldLabel, className) {
-        //     $(fieldLabel).addClass(className);//remove required class from label
-        // };
-        //refactor 
-        //console.log("analysis-> "+analysis); // log analysis type
-        // if (analysis == "Κατευθυντήριες γραμμές") {
-
-        //     $("#subtitle").html("«Προκαταρκτική Ανάλυση Συνεπειών Ρύθμισης»");
-        //     $("#subtext").html(` Σύμφωνα με την παρ. 1 του άρθρου 63 του ν. 4622/2019 «Ο Υπουργός δύναται να υποβάλει στην Γενική Γραμματεία Νομικών και Κοινοβουλευτικών Θεμάτων: […] β) τις κατευθυντήριες γραμμές του σχεδίου νόμου μαζί με όποιο στοιχείο θεωρεί αναγκαίο να συμπεριληφθεί στην Ανάλυση Συνεπειών Ρύθμισης». <br>
-        //         Στο «εγχειρίδιο νομοπαρασκευαστικής μεθοδολογίας»  αναφέρεται ότι: <br>
-        //         - «Οι κατευθυντήριες γραμμές αναλύουν το σκεπτικό των αποφάσεων που οδήγησαν στην επιλογή τόσο του επιδιωκόμενου ρυθμιστικού αποτελέσματος, όσο και των μηχανισμών επίτευξής του. Συντάσσονται από στελέχη του Υπουργείου και παρέχουν όλα τα απαραίτητα στοιχεία για την προετοιμασία της νομοθεσίας, προσδιορίζοντας και, όπου είναι δυνατόν, ποσοτικοποιώντας τα επιδιωκόμενα ρυθμιστικά αποτελέσματα.».<br>
-        //         - «Στην περίπτωση της αποστολής κατευθυντηρίων γραμμών, πέραν των εκθέσεων του Γενικού Λογιστηρίου του Κράτους όπως επίσης του πεδίου που αφορά στην ηλεκτρονική διαβούλευση, δεν προσδοκάται η αποστολή των πεδίων που αφορούν την αιτιολογική έκθεση και την έκθεση εφαρμογής επί των συγκεκριμένων άρθρων.».`);
-
-        //     optionalFields(".mostly-optional :input");
-        //     optionalFields(".optional :input");
-        //     optionalFields(".table-14 :input");
-        //     optionalFields(".table-29 :input");
-        //     optionalFields(".table-30 :input");
-        //     enableFields(".create-new");
-        //     enableFields(".next");
-        //     enableFields(".previous");
-        //     $("#egkrisi_aksiologisis_nomoparaskeyastikis, #egkrisi_kalis_nomothetisis, #egkrisi_dieuthinsis_nomoparaskeyastikis, #egkrisi_genikou_grammatea").prop('disabled', false);
-        //     $("#pdf_download").prop("disabled", false);
-        //     $(".export-pdf").prop("disabled", false);
-        //     $("#signed_pdf_upload").prop("disabled", false);
-
-        //     optionalFieldsClassRemoval("mostly-optional-label", "required");
-        //     optionalFieldsClassRemoval("optional-label", "required");
-        //     optionalFieldsClassRemoval("field-23-label", "required");
-        //     optionalFieldsClassRemoval("table-14-label", "required");
-        //     optionalFieldsClassRemoval("table-29-label", "required");
-        //     optionalFieldsClassRemoval("table-30-label", "required");
-
-        // } else if (analysis == "Προσχέδιο νόμου") {
-
-        //     $("#subtitle").html("«Προκαταρκτική Ανάλυση Συνεπειών Ρύθμισης»");
-        //     $("#subtext").html(`Σύμφωνα με την παρ. 1 του άρθρου 63 του ν. 4622/2019 «Ο Υπουργός δύναται να υποβάλει στην Γενική Γραμματεία Νομικών και Κοινοβουλευτικών Θεμάτων: α) προσχέδιο νόμου και προκαταρκτική ανάλυση συνεπειών ρύθμισης η οποία συμπεριλαμβάνει τα στοιχεία του άρθρου 62 που κρίνει αναγκαία …».<br>
-        //         Στο «εγχειρίδιο νομοπαρασκευαστικής μεθοδολογίας»  αναφέρεται ότι: <br>
-        //         - «Συστήνεται … η προκαταρκτική Ανάλυση Συνεπειών Ρύθμισης να έχει ως βάση το υπόδειγμα της πλήρους Ανάλυσης, εξαιρουμένων των εκθέσεων του Γενικού Λογιστηρίου του Κράτους όπως επίσης του πεδίου που αφορά στην ηλεκτρονική διαβούλευση».<br>
-        //         - «Σε κάθε περίπτωση, για να καταστεί δυνατή η περαιτέρω αξιολόγηση της Ανάλυσης απαιτείται οπωσδήποτε αυτή να συμπεριλαμβάνει: i) την εισήγηση των αρμόδιων προϊσταμένων Γενικών Διευθύνσεων Οικονομικών Υποθέσεων όπως ορίζεται στο άρθρο 24 παρ. 5 περ. ε του ν. 4270/2015. […] ii) ειδική αιτιολογία σε περίπτωση πρόβλεψης παρεκκλίσεων από τις διατάξεις του νόμου περί ενιαίου μισθολογίου (ν. 4354/2015 [ΦΕΚ Α’ 176]).».<br>`)
-
-        //     optionalFields(".mostly-optional :input");
-        //     optionalFieldsClassRemoval("field-23-label", "required");
-        //     optionalFieldsClassRemoval("mostly-optional-label", "required");
-
-        // } else if (analysis == "Επείγον ή κατεπείγον νομοσχέδιο" || analysis == "Διεθνείς συμβάσεις" || analysis == "Τροπολογίες Υπουργών") {
-
-        //     switch (analysis) {
-        //         case "Επείγον ή κατεπείγον νομοσχέδιο":
-        //             $("#subtitle").html("«Συνοπτική Ανάλυση Συνεπειών Ρύθμισης»");
-        //             $("#subtext").html(`Σύμφωνα με την παρ. 3 του άρθρου 85 του Κανονισμού της Βουλής, εάν ένα νομοσχέδιο έχει χαρακτηρισθεί από την Κυβέρνηση ως επείγον ή κατεπείγον «απαιτείται να συνοδεύεται από συνοπτική Ανάλυση Συνεπειών Ρύθμισης που συμπεριλαμβάνει κατ’ ελάχιστον τις ανωτέρω ενότητες (α) και (ε), καθώς και στοιχεία από τις ενότητες (β) και (δ)», δηλαδή την αιτιολογική έκθεση και τον πίνακα τροποποιούμενων ή καταργούμενων διατάξεων, καθώς και στοιχεία της έκθεσης γενικών συνεπειών και της έκθεσης νομιμότητας. <br>
-        //                 Επίσης, στην περίπτωση νομοσχεδίου που συνεπάγεται επιβάρυνση του κρατικού προϋπολογισμού (βλ. παρ. 5 του άρθρου 88 του Κανονισμού της Βουλής), η Ανάλυση Συνεπειών Ρύθμισης πρέπει να ενσωματώνει: «την έκθεση του άρθρου 75 παρ. 1 του Συντάγματος από το Γενικό Λογιστήριο του Κράτους, η οποία προσδιορίζει τη δημοσιονομική επίπτωση επί του Προϋπολογισμού από τις διατάξεις της ρύθμισης, όπως επίσης, ανάλογα με το περιεχόμενό του, α) την ειδική έκθεση του αρμόδιου Υπουργού και του Υπουργού Οικονομικών που προβλέπει το άρθρο 75 παρ. 3 του Συντάγματος και β) τη γνωμοδότηση του Ελεγκτικού Συνεδρίου που ορίζει το άρθρο 73 παρ. 2 του Συντάγματος.». `);
-        //             break;
-        //         case "Διεθνείς συμβάσεις":
-        //             $("#subtitle").html("«Συνοπτική Ανάλυση Συνεπειών Ρύθμισης»");
-        //             $("#subtext").html(`Προσθήκη εισαγωγικού κειμένου μετά τον νέο υπότιτλο: Η κύρωση μιας διεθνούς σύμβασης εμπίπτει στο πεδίο εφαρμογής των ειδικών νομοθετικών διαδικασιών (βλ. άρθρο 112 του Κανονισμού της Βουλής) και ως εκ τούτου, σύμφωνα με την παρ. 3 του άρθρου 85 του Κανονισμού της Βουλής, το κυρωτικό νομοσχέδιο «απαιτείται να συνοδεύεται από συνοπτική Ανάλυση Συνεπειών Ρύθμισης που συμπεριλαμβάνει κατ’ ελάχιστον τις ανωτέρω ενότητες (α) και (ε), καθώς και στοιχεία από τις ενότητες (β) και (δ)», δηλαδή την αιτιολογική έκθεση και τον πίνακα τροποποιούμενων ή καταργούμενων διατάξεων, καθώς και στοιχεία της έκθεσης γενικών συνεπειών και της έκθεσης νομιμότητας. <br>
-        //                 Επίσης, στην περίπτωση νομοσχεδίου που συνεπάγεται επιβάρυνση του κρατικού προϋπολογισμού (βλ. παρ. 5 του άρθρου 88 του Κανονισμού της Βουλής), η Ανάλυση Συνεπειών Ρύθμισης πρέπει να ενσωματώνει: «την έκθεση του άρθρου 75 παρ. 1 του Συντάγματος από το Γενικό Λογιστήριο του Κράτους, η οποία προσδιορίζει τη δημοσιονομική επίπτωση επί του Προϋπολογισμού από τις διατάξεις της ρύθμισης, όπως επίσης, ανάλογα με το περιεχόμενό του, α) την ειδική έκθεση του αρμόδιου Υπουργού και του Υπουργού Οικονομικών που προβλέπει το άρθρο 75 παρ. 3 του Συντάγματος και β) τη γνωμοδότηση του Ελεγκτικού Συνεδρίου που ορίζει το άρθρο 73 παρ. 2 του Συντάγματος.». `);
-        //             break;
-        //         case "Τροπολογίες Υπουργών":
-        //             $("#subtitle").html("«Συνοπτική Ανάλυση Συνεπειών Ρύθμισης»");
-        //             $("#subtext").html(` Σύμφωνα με την παρ. 1 του άρθρου 62 του ν. 4622/2019 «Κάθε σχέδιο νόμου, προσθήκη ή τροπολογία, καθώς και κανονιστική απόφαση μείζονος οικονομικής ή κοινωνικής σημασίας, συνοδεύεται από Ανάλυση Συνεπειών Ρύθμισης (εφεξής Ανάλυση).».<br>
-        //                 Ειδικότερα, για τις τροπολογίες Υπουργών, στην παρ. 2 του άρθρου 88 του Κανονισμού της Βουλής προβλέπεται ότι συνοδεύονται από «σύντομη συνοπτική Ανάλυση Συνεπειών Ρύθμισης που συμπεριλαμβάνει κατ’ ελάχιστον τις ενότητες (α) και (ε), καθώς και στοιχεία από τις ενότητες (β) και (δ) της παρ. 3 του άρθρου 85», δηλαδή την αιτιολογική έκθεση και τον πίνακα τροποποιούμενων ή καταργούμενων διατάξεων, καθώς και στοιχεία της έκθεσης γενικών συνεπειών και της έκθεσης νομιμότητας. <br>
-        //                 Επίσης, σύμφωνα με την παρ. 5 του άρθρου 88 του Κανονισμού της Βουλής «Oι τρoπoλoγίες που συνεπάγονται επιβάρυνση του πρoϋπoλoγισμoύ του Κράτους διαβιβάζονται πριν από τη συζήτησή τoυς στo Γενικό Λoγιστήριo τoυ Kράτoυς, αν το ζητήσουν oι αρμόδιοι Yπoυργoί. Σ’ αυτήν την περίπτωση τo Γενικό Λογιστήριο τoυ Kράτoυς υπoχρεoύται να υποβάλει στη Boυλή την έκθεσή τoυ μέσα σε τρεις ημέρες από την παραλαβή τoυς. Mόνo αν η προθεσμία αυτή περάσει άπρακτη, oι τρoπoλoγίες μπoρoύν να συζητηθoύν και χωρίς την έκθεση.».`);
-        //             break;
-        //     }
-
-        //     optionalFields(".field-22 :input");
-        //     optionalFields(".optional :input");
-        //     enableFields(".create-new");
-        //     enableFields(".next");
-        //     enableFields(".previous");
-        //     $("#egkrisi_aksiologisis_nomoparaskeyastikis, #egkrisi_kalis_nomothetisis, #egkrisi_dieuthinsis_nomoparaskeyastikis, #egkrisi_genikou_grammatea").prop('disabled', false);
-        //     $("#pdf_download").prop("disabled", false);
-        //     $(".export-pdf").prop("disabled", false);
-
-        //     optionalFieldsClassRemoval("field-22-label", "required");
-        //     optionalFieldsClassRemoval("field-23-label", "required");
-        //     optionalFieldsClassRemoval("optional-label", "required");
-
-
-        // } else if (analysis == "Τροπολογίες Βουλευτών" || analysis == "Πρόταση νόμου") {
-
-        //     switch (analysis) {
-        //         case "Τροπολογίες Βουλευτών":
-        //             $("#subtitle").html("«Συνοπτική Ανάλυση Συνεπειών Ρύθμισης»");
-        //             $("#subtext").html(`Σύμφωνα με την παρ. 1 του άρθρου 62 του ν. 4622/2019 «Κάθε σχέδιο νόμου, προσθήκη ή τροπολογία, καθώς και κανονιστική απόφαση μείζονος οικονομικής ή κοινωνικής σημασίας, συνοδεύεται από Ανάλυση Συνεπειών Ρύθμισης (εφεξής Ανάλυση).». <br>
-        //                 Ειδικότερα, για τις τροπολογίες Βουλευτών, στην παρ. 2 του άρθρου 88 του Κανονισμού της Βουλής προβλέπεται ότι συνοδεύονται «υποχρεωτικώς από συνοπτική Ανάλυση Συνεπειών Ρύθμισης, η οποία συμπεριλαμβάνει κατ’ ελάχιστον τις ενότητες (α) και (ε) της παρ. 3 του άρθρου 85», δηλαδή την αιτιολογική έκθεση και τον πίνακα τροποποιούμενων ή καταργούμενων διατάξεων.<br>
-        //                 Επίσης, σύμφωνα με την παρ. 5 του άρθρου 88 του Κανονισμού της Βουλής «Oι τρoπoλoγίες που συνεπάγονται επιβάρυνση του πρoϋπoλoγισμoύ του Κράτους διαβιβάζονται πριν από τη συζήτησή τoυς στo Γενικό Λoγιστήριo τoυ Kράτoυς, αν το ζητήσουν oι αρμόδιοι Yπoυργoί. Σ’ αυτήν την περίπτωση τo Γενικό Λογιστήριο τoυ Kράτoυς υπoχρεoύται να υποβάλει στη Boυλή την έκθεσή τoυ μέσα σε τρεις ημέρες από την παραλαβή τoυς. Mόνo αν η προθεσμία αυτή περάσει άπρακτη, oι τρoπoλoγίες μπoρoύν να συζητηθoύν και χωρίς την έκθεση.».`)
-        //             break;
-        //         case "Πρόταση νόμου":
-        //             $("#subtitle").html("«Συνοπτική Ανάλυση Συνεπειών Ρύθμισης»");
-        //             $("#subtext").html(` Σύμφωνα με την παρ. 3 του άρθρου 85 του Κανονισμού της Βουλής «Οι προτάσεις νόμων συνοδεύονται υποχρεωτικώς από συνοπτική Ανάλυση Συνεπειών Ρύθμισης, η οποία συμπεριλαμβάνει κατ’ ελάχιστον τις ανωτέρω ενότητες (α) και (ε)», δηλαδή την αιτιολογική έκθεση και τον πίνακα τροποποιούμενων ή καταργούμενων διατάξεων. <br>
-        //                 Επίσης, σύμφωνα με την παρ. 6 του άρθρου 85 του Κανονισμού της Βουλής «Κάθε πρόταση νόμου διαβιβάζεται στους αρμόδιους Yπoυργoύς, που έχουν υποχρέωση να απαντούν αν αυτή υπάγεται ή όχι στους περιορισμούς τoυ άρθρου 73 παρ. 3 τoυ Συντάγματος, καθώς και στo Γενικό Λoγιστήριo τoυ Kράτoυς για τη σύνταξη της έκθεσης που oρίζει τo άρθρο 75 παρ. 1 τoυ Συντάγματος. To Γενικό Λoγιστήριo τoυ Kράτoυς υπoχρεoύται να υπoβάλει στη Boυλή τη σχετική έκθεση μέσα σε δεκαπέντε ημέρες από την παραλαβή της πρότασης νόμoυ. Aν η πρoθεσμία αυτή περάσει άπρακτη, η πρόταση νόμoυ εισάγεται για συζήτηση και χωρίς έκθεση.». `)
-        //             break;
-        //     }
-
-        //     optionalFields(".field-18 :input");
-        //     optionalFields(".field-19 :input");
-        //     optionalFields(".field-20 :input");
-        //     optionalFields(".field-21 :input");
-        //     optionalFields(".field-22 :input");
-        //     optionalFields(".field-24 :input");
-        //     optionalFields(".field-25 :input");
-        //     optionalFields(".field-26 :input");
-        //     optionalFields(".field-27 :input");
-        //     optionalFields(".field-28 :input");
-        //     optionalFields(".table-31 :input");
-        //     optionalFields(".table-32 :input");
-        //     optionalFields(".optional :input");
-        //     enableFields(".create-new");
-        //     enableFields(".next");
-        //     enableFields(".previous");
-        //     $("#egkrisi_aksiologisis_nomoparaskeyastikis, #egkrisi_kalis_nomothetisis, #egkrisi_dieuthinsis_nomoparaskeyastikis, #egkrisi_genikou_grammatea").prop('disabled', false);
-        //     $("#pdf_download").prop("disabled", false);
-        //     $("#signed_pdf_upload").prop("disabled", false);
-        //     $(".export-pdf").prop("disabled", false);
-
-        //     optionalFieldsClassRemoval("field-18-label", "required");
-        //     optionalFieldsClassRemoval("field-19-label", "required");
-        //     optionalFieldsClassRemoval("field-20-label", "required");
-        //     optionalFieldsClassRemoval("field-21-label", "required");
-        //     optionalFieldsClassRemoval("field-22-label", "required");
-        //     optionalFieldsClassRemoval("field-23-label", "required");
-        //     optionalFieldsClassRemoval("field-24-label", "required");
-        //     optionalFieldsClassRemoval("field-25-label", "required");
-        //     optionalFieldsClassRemoval("field-26-label", "required");
-        //     optionalFieldsClassRemoval("field-27-label", "required");
-        //     optionalFieldsClassRemoval("field-28-label", "required");
-        //     optionalFieldsClassRemoval("table-31-label", "required");
-        //     optionalFieldsClassRemoval("table-32-label", "required");
-        //     optionalFieldsClassRemoval("optional-label", "required");
-
-        // }
-
-        // TODO: refactor
-        if (role === "Γενικό Λογιστήριο του Κράτους") {
-
-            $("#edit_form :input").prop("disabled", true);
-            //optionalFields("#edit_form :input:not([type=hidden])");
-            $(".ekpaideysi-politismos :input").prop('disabled', true);
-            $(".oikonomia :input").prop('disabled', true);
-            $(".koinoniki-politiki :input").prop('disabled', true);
-            $(".dimosia-dioikisi :input").prop('disabled', true);
-            $(".ependyseis :input").prop('disabled', true);
-            $("#status_ekthesis").prop(('disabled', false));
-            $(".glk :input").prop("disabled", false);
-            $("#status_ekthesis").prop("disabled", false);
-            if ($("#status_ekthesis").val() === "Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους") {
-                $("#export_glk").hide();
-            }
-            // $(".export-pdf").prop("disabled", false);
-            enableFields(".next");
-            enableFields(".previous");
-        } else if (role == "Βουλή") {
-            optionalFields("#edit_form :input");
-            enableFields(document.getElementsByName("next"));
-            enableFields(document.getElementsByName("previous"));
-        } else {
-            optionalFields(".glk :input");
-            enableFields("#ekthesi_glk");
-            enableFields(".next");
-            enableFields(".previous");
-        }
-
+        // });                                       
 
         // TODO: review validation
         //check if required fields are empty

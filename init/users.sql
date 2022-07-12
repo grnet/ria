@@ -19,7 +19,7 @@ INSERT INTO user VALUES
 (4,'Γενικό Λογιστήριο','Κράτους','genikolog', '$2b$10$9lpXKwKompF8ZHAjEt/vxeeChFz71NwpMW/bAwBJzPZ7MeITZfmo6', 'Γενικό Λογιστήριο του Κράτους', '', 'ΥΠΟΥΡΓΕΙΟ ΟΙΚΟΝΟΜΙΚΩΝ', NOW(), NOW()),
 (5,'Γενικός Γραμματέας Νομικών','Κοινοβουλευτικών Θεμάτων','gengramnomikwn', '$2b$10$9USzrzTtgC51fjdMqoMnueetStr92mlwTH4.PTLLwpJqiPlbSpPkC', 'Γενικός Γραμματέας Νομικών και Κοινοβουλευτικών Θεμάτων', 'on', 'ΥΠΟΥΡΓΕΙΟ ΟΙΚΟΝΟΜΙΚΩΝ', NOW(), NOW()),
 (6,'Διεύθυνση Νομοπαρασκευαστικής','Διαδικασίας','dieuthinsinomopar', '$2b$10$8VYE0HkAqU7LRgCb3rma6e9j8YJarDPYO/6oUTuSy6IjKKgJKFRM.', 'Διεύθυνση Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)', '', 'ΥΠΟΥΡΓΕΙΟ ΟΙΚΟΝΟΜΙΚΩΝ', NOW(), NOW()),
-(7,'Επιτροπή Αξιολόγησης','Ποιότητας','epitropiaksiolog', '$2b$10$UEumY1R6HWawQ6HGxUT0UeTruB0VtKMRAoTHoQmtg8uyJj.0LP.2K', 'Επιτροπή Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)', '', 'ΥΠΟΥΡΓΕΙΟ ΟΙΚΟΝΟΜΙΚΩΝ', NOW(), NOW()),
+(7,'Επιτροπή Αξιολόγησης','Ποιότητας','epitropiaksiolog', '$2b$10$xAevSzdETvNydjzsgK37.OBlSVmAZha4FIETwBTzk5A93kFHHdOPe', 'Επιτροπή Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)', '', 'ΥΠΟΥΡΓΕΙΟ ΟΙΚΟΝΟΜΙΚΩΝ', NOW(), NOW()),
 (8,'Καλή Νομοθέτηση','Καλή Νομοθέτηση','kalinomothetisi', '$2b$10$xbn8eBWw0pq49yRzsGc4sOBfV0HAvnyN6LRLGZakJGO03sReNx6SS', 'Γραφείο Καλής Νομοθέτησης (ΓΓΝΚΘ)', '', 'ΥΠΟΥΡΓΕΙΟ ΟΙΚΟΝΟΜΙΚΩΝ', NOW(), NOW()),
 (9,'Νομοπαρασκευαστική','Επιτροπή','nomoparaskeuastiki', '$2b$10$62YscmFbslJs7rwae8peh.ZR4fqQayEkOT/d6Ap0k37gT7.0xlQSq', 'Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)', 'on', 'ΥΠΟΥΡΓΕΙΟ ΟΙΚΟΝΟΜΙΚΩΝ', NOW(), NOW()),
 (10,'Συντάκτης','Συντάκτης','syntaktis', '$2b$10$hcDOjbHxGWaTypEG24kPV.QXQYsi1wepufmT95aYkzIuxLUkZhp4K', 'Συντάκτης επισπεύδοντος Υπουργείου', '', 'ΥΠΟΥΡΓΕΙΟ ΟΙΚΟΝΟΜΙΚΩΝ', NOW(), NOW());

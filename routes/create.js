@@ -157,7 +157,16 @@ routes.post(
       keys,
       "minister_name"
     );
-    let ministry = tables.createDynamicTable(req.body, keys, "ministry");
+    let minister_role = tables.createDynamicTable(
+      req.body,
+      keys,
+      "minister_role"
+    );
+    let minister_ministry = tables.createDynamicTable(
+      req.body,
+      keys,
+      "minister_ministry"
+    );
     let field_29_diatakseis_rythmisis = tables.createDynamicTable(
       req.body,
       keys,
@@ -231,7 +240,8 @@ routes.post(
         field_17_idiotita: field_17_idiotita,
         minister_name: minister_name,
         minister_surname: minister_surname,
-        ministry: ministry,
+        minister_role: minister_role,
+        minister_ministry: minister_ministry,
         field_29_diatakseis_rythmisis: field_29_diatakseis_rythmisis,
         field_29_yfistamenes_diatakseis: field_29_yfistamenes_diatakseis,
         field_30_diatakseis_katargisi: field_30_diatakseis_katargisi,

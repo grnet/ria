@@ -110,19 +110,19 @@ function setAnalysisRestrictions(type) {
       $(
         ".mostly-optional :input, .optional :input, .table-14 :input"
       ).prop("disabled", true);
-      $(".create-new, .next, .previous").prop("disabled", false);
+      // $(".create-new, .next, .previous").prop("disabled", false);
       $(
         ".mostly-optional-label, .optional-label, .table-14-label, .table-29-label, .table-30-label"
       ).removeClass("required");
     },
     prosxedio: function () {
       $(".mostly-optional :input").prop("disabled", true);
-      $(".create-new, .next, .previous").prop("disabled", false);
+      // $(".create-new, .next, .previous").prop("disabled", false);
       $(".mostly-optional-label, .field-23-label, .glk").removeClass("required");
     },
     upourgoi: function () {
       $(".optional :input, .field-22 :input").prop("disabled", true);
-      $(".create-new, .next, .previous").prop("disabled", false);
+      // $(".create-new, .next, .previous").prop("disabled", false);
       $(".optional-label, .field-22-label, .field-23-label").removeClass(
         "required"
       );
@@ -130,7 +130,7 @@ function setAnalysisRestrictions(type) {
     vouleutes: function () {
       $(".optional :input, .vouleutes :input").prop("disabled", true);
       $(
-        ".create-new, .next, .previous, .table-31 :input, .table-32 :input"
+        ".table-31 :input, .table-32 :input"
       ).prop("disabled", false);
       $(".optional-label, .vouleutes-label, .field-23-label").removeClass(
         "required"
@@ -144,7 +144,9 @@ function setAnalysisRestrictions(type) {
     true
   ); //disable fields accessible only by Γενικό Λογιστήριο
   restrictions[type]();
-  $(".export-pdf").prop("disabled", false);  
+  $(
+    ".export-pdf, #add_row_ministers_table, #add_row_emd_table, .next, .previous, .create-new"
+  ).prop("disabled", false);  
 }
 
 function populateMinistersSurnameSelect(ministerSurnameSelectId) {

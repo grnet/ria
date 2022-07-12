@@ -30,6 +30,7 @@
                             name="field_31_synarmodia_ypoyrgeia<%=i%>"
                             rows="2"><%= Object.values(data.field_31_synarmodia_ypoyrgeia[i]) %></textarea> </td>
                     <td>
+                        <br><br>
                         <textarea class="govgr-textarea form-control" id="field_31_antikeimeno_synarmodiotitas<%=i%>"
                             name="field_31_antikeimeno_synarmodiotitas<%=i%>"
                             onkeypress="wordsCounter('field_31_antikeimeno_synarmodiotitas<%=i%>','words31_<%=i%>',50, event)"
@@ -105,7 +106,8 @@
                     <td> <textarea class="govgr-textarea" id="field_32_armodio_ypoyrgeio<%=i%>"
                             name="field_32_armodio_ypoyrgeio<%=i%>"
                             rows="4"><%= Object.values(data.field_32_armodio_ypoyrgeio[i]) %></textarea> </td>
-                    <td> <textarea class="govgr-textarea" id="field_32_antikeimeno<%=i%>"
+                    <td>                         
+                        <textarea class="govgr-textarea" id="field_32_antikeimeno<%=i%>"
                             name="field_32_antikeimeno<%=i%>"
                             onkeypress="wordsCounter('field_32_antikeimeno<%=i%>','words32_<%=i%>',50, event)"
                             onpaste="wordsCounter('field_32_antikeimeno<%=i%>','words32_<%=i%>',50, event)"
@@ -113,6 +115,7 @@
                         <p style="float: right;">Λέξεις: <span id="words32_<%=i%>"></span> /50</p>
                     </td>
                     <td>
+                        <br>
                         <textarea class="govgr-textarea" id="field_32_xronodiagramma<%=i%>"
                             name="field_32_xronodiagramma<%=i%>"
                             rows="4"><%= Object.values(data.field_32_xronodiagramma[i]) %></textarea>
@@ -372,7 +375,7 @@
             </label> <br />
             <input type="file" id="signed_pdf_upload" name="signed_pdf_upload" accept=".pdf" />
         </div> <br />
-        <table id="signed_pdf" class="govgr-table--dark govgr-table" style="display:none">
+        <table id="signed_pdf" class="govgr-table--dark govgr-table">
             <thead class="govgr-table__head">
                 <tr>
                     <th>Προηγούμενη ανάρτηση:</th>
@@ -403,7 +406,7 @@
         </button>
     </div> <br />
     <div class="flex justify-center">
-        <input type="submit" id="create_new"
+        <input type="submit" id="final_save"
             class="govgr-btn govgr-btn-primary govgr-btn-cta next action-button action-button-create create-new"
             value="Οριστική Αποθήκευση" style="float: right;" />
     </div>
