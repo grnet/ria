@@ -1,112 +1,104 @@
 <%- include('../partials/head.ejs') %>
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
-  <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-
+<script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
   <div id="content">
-    <div class="MuiContainer-root jss110 MuiContainer-maxWidthLg">
-      <div class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-4">
-        <div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-8">
-          <br><br>
-          <input type="button" class="back" value="Πίσω" />
-          <br><br>
-          <input type="button" id="user_button" class="display-table-button" value="Οι αναλύσεις μου" />
-          <input type="button" id="entries_button" class="display-table-button"
-            value="Διαθέσιμες αναλύσεις του Φορέα" />
-          <br><br>
-          <div>
-            <table id="user_data" class="display">
-              <thead>
-                <tr>
-                  <th>Τίτλος</th>
-                  <th>Ονοματεπώνυμο συντάκτη</th>
-                  <th>Ρόλος συντάκτη</th>
-                  <th>Φορέας συντάκτη</th>
-                  <th>Τύπος ανάλυσης</th>
-                  <th>Κατάσταση αίτησης</th>
+    <div class=""> <br />
+      <!--<input type="button" name="back" class="back" value="Πίσω"/> <br/>--> <a href="#" class="govgr-back-link"
+        id="back" name="back"> <svg class="govgr-caret--left" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M18,22V2L6,12L18,22z" />
+        </svg>
+        Επιστροφή στην αρχική</a> <br />
+      <div class="govgr-width-container"> <br />
+        <div class="govgr-button-group">
+          <input type="button" id="user_button" class="govgr-btn govgr-btn-primary" value="Οι αναλύσεις μου" />
+          <input type="button" id="entries_button" class="govgr-btn govgr-btn-primary"
+            value="Διαθέσιμες αναλύσεις του Φορέα" /> <br />
+          <br />
+        </div>
+        <div>
+          <table id="user_data" class="govgr-table--zebra govgr-table--dense govgr-table--dark govgr-table">
+            <thead class="govgr-table__head">
+              <tr class="govgr-table__row">
+                <th class="govgr-table__header" scope="col">Τίτλος</th>
+                <th class="govgr-table__header" scope="col">Ονοματεπώνυμο συντάκτη</th>
+                <th class="govgr-table__header" scope="col">Ρόλος συντάκτη</th>
+                <th class="govgr-table__header" scope="col">Φορέας συντάκτη</th>
+                <th class="govgr-table__header" scope="col">Τύπος ανάλυσης</th>
+                <th class="govgr-table__header" scope="col">Κατάσταση αίτησης</th>
+              </tr>
+            </thead>
+            <tbody class="govgr-table__body">
+              <% for(var i=0; i<user.ekthesis.length; i++) {%>
+                <tr class="govgr-table__row" onclick="setReferer('<%=  user.ekthesis[i].id %>')">
+                  <td class="govgr-table__cell">
+                    <%= user.ekthesis[i].title %>
+                  </td>
+                  <td class="govgr-table__cell">
+                    <%= user.fname%>
+                      <%= user.lname%>
+                  </td>
+                  <td class="govgr-table__cell">
+                    <%= user.rolos%>
+                  </td>
+                  <td class="govgr-table__cell">
+                    <%= user.ypoyrgeio %>
+                  </td>
+                  <td class="govgr-table__cell">
+                    <%= user.ekthesis[i].typos_analysis %>
+                  </td>
+                  <td class="govgr-table__cell">
+                    <%= user.ekthesis[i].status_ekthesis %>
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-
-                <% for(var i=0; i<user.ekthesis.length; i++) {%>
-                  <tr onclick="setReferer('<%=  user.ekthesis[i].id %>')">
-                    <td>
-                      <%= user.ekthesis[i].title %>
+                <% } %>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <table id="entries_data" class="govgr-table--zebra govgr-table--dense govgr-table--dark govgr-table">
+            <thead class="govgr-table__head">
+              <tr class="govgr-table__row">
+                <th class="govgr-table__header" scope="col">Τίτλος</th>
+                <th class="govgr-table__header" scope="col">Ονοματεπώνυμο συντάκτη</th>
+                <th class="govgr-table__header" scope="col">Ρόλος συντάκτη</th>
+                <th class="govgr-table__header" scope="col">Φορέας συντάκτη</th>
+                <th class="govgr-table__header" scope="col">Τύπος ανάλυσης</th>
+                <th class="govgr-table__header" scope="col">Κατάσταση αίτησης</th>
+              </tr>
+            </thead>
+            <tbody class="govgr-table__body">
+              <% if (entries !=null) {%>
+                <% for(var i=0; i<entries.length; i++) {%>
+                  <tr class="govgr-table__row" onclick="setReferer('<%= entries[i].id %>')">
+                    <td class="govgr-table__cell">
+                      <%= entries[i].title %>
                     </td>
-                    <td>
-                      <%= user.fname%>
-                        <%= user.lname%>
+                    <td class="govgr-table__cell">
+                      <%= entries[i].user.fname%>
+                        <%= entries[i].user.lname%>
                     </td>
-                    <td>
-                      <%= user.rolos%>
+                    <td class="govgr-table__cell">
+                      <%= entries[i].user.rolos%>
                     </td>
-                    <td>
-                      <%= user.ypoyrgeio %>
+                    <td class="govgr-table__cell">
+                      <%= entries[i].user.ypoyrgeio %>
                     </td>
-                    <td>
-                      <%= user.ekthesis[i].typos_analysis %>
+                    <td class="govgr-table__cell">
+                      <%= entries[i].typos_analysis %>
                     </td>
-                    <td>
-                      <%= user.ekthesis[i].status_ekthesis %>
+                    <td class="govgr-table__cell">
+                      <%= entries[i].status_ekthesis %>
                     </td>
                   </tr>
                   <% } %>
-
-              </tbody>
-            </table>
-          </div>
-          <div>
-            <table id="entries_data" class="display">
-              <thead>
-                <tr>
-                  <th>Τίτλος</th>
-                  <th>Ονοματεπώνυμο συντάκτη</th>
-                  <th>Ρόλος συντάκτη</th>
-                  <th>Φορέας συντάκτη</th>
-                  <th>Τύπος ανάλυσης</th>
-                  <th>Κατάσταση αίτησης</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% if (entries !=null) {%>
-                  <% for(var i=0; i<entries.length; i++) {%>
-                    <tr onclick="setReferer('<%= entries[i].id %>')">
-                      <td>
-                        <%= entries[i].title %>
-                      </td>
-                      <td>
-                        <%= entries[i].user.fname%>
-                          <%= entries[i].user.lname%>
-                      </td>
-                      <td>
-                        <%= entries[i].user.rolos%>
-                      </td>
-                      <td>
-                        <%= entries[i].user.ypoyrgeio %>
-                      </td>
-                      <td>
-                        <%= entries[i].typos_analysis %>
-                      </td>
-                      <td>
-                        <%= entries[i].status_ekthesis %>
-                      </td>
-                    </tr>
                     <% } %>
-                      <% } %>
-              </tbody>
-            </table>
-          </div>
-          <br><br>
-
-          <%- include('../user_views/menus.ejs') %>
-        </div>
+            </tbody>
+          </table>
+        </div> <br />
+        <%- include('../user_views/menus.ejs') %>
       </div>
     </div>
-
   </div>
-
   <%- include('../partials/footer.ejs') %>
-    </div>
 
     <style>
       a {
@@ -145,18 +137,12 @@
         window.location.href = '/form_a/' + id;
       }
 
-      var user_role = '<%= user.rolos %>';
+      const userRole = "<%= user.rolos %>";
+      setUserRestrictions(userRole);
+      
       let isAdmin = '<%= user.dikaiwmata_diaxeirisis %>';
 
       isAdmin ? $(".user").hide() : $(".admin").hide();//display admin info if user has administration rights
-
-      if (user_role === 'Βουλευτής') {
-        $("#create_analysis").children(":not(.vouleftis):not(.header)").hide();//hide all children elements without class vouleftis
-      } else if (user_role === 'Συντάκτης επισπεύδοντος Υπουργείου' || user_role == 'Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)') {
-        $("#create_analysis").children(".vouleftis").hide();//hide all children elements with class vouleftis
-      } else {
-        $("#create_analysis").children().hide();//hide all children elements
-      }
 
       //set width of column x
       /*$('#entries_data').dataTable({
@@ -184,7 +170,7 @@
         showDataTable("#entries_data", "#entries_data_wrapper");
       });
 
-      $(".back").on("click", function (ev) {
+      $("#back").on("click", function (ev) {
         window.location.href = "/user_views/dashboard";
       });
 

@@ -14,7 +14,6 @@ let database = require('./services/database')
 let createUserRoute = require('./routes/create_user')
 let searchUserRoute = require('./routes/search_user')
 let editUserRoute = require('./routes/edit_user')
-let adminDashboardRoute = require('./routes/admin_dashboard')
 let dashboardRoute = require('./routes/dashboard')
 let historyRoute = require('./routes/history')
 let summariesRoute = require('./routes/summaries')
@@ -45,7 +44,6 @@ app.use('/login', loginRoute);
 app.use('/logout', logoutRoute);
 app.use('/create', createRoute);
 app.use('/form_a', form_aRoute);
-app.use('/user_views/admin_dashboard', adminDashboardRoute);
 app.use('/user_views/dashboard', dashboardRoute);
 app.use('/user_views/create_user', createUserRoute);
 app.use('/user_views/search_user', searchUserRoute);

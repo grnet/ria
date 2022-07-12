@@ -1,90 +1,135 @@
 <fieldset id="ekthesi_genikou_logistiriou" class='glk mostly-optional'>
-    <h2>Β. Έκθεση Γενικού Λογιστηρίου του Κράτους (άρθρο 75 παρ. 1 ή 2 του Συντάγματος)</h2>
-    <br>
-    <br>
-    <div class="checkbox-group form-group row">
-        <label for="ekthesi_glk" class="glk-required mostly-optional-label col-sm-8 col-form-label">Απαιτείται η Έκθεση
-            του Γενικού Λογιστηρίου του Κράτους</label>
-        <input class="col-sm-2 form-check-input position-static" type="checkbox" id="ekthesi_glk" name="ekthesi_glk">
+    <h2 class="govgr-heading-l">Β. Έκθεση Γενικού Λογιστηρίου του Κράτους (άρθρο 75 παρ. 1 ή 2 του Συντάγματος)</h2>
+    <div class="govgr-checkboxes">
+        <div class="govgr-checkboxes__item">
+            <input class="govgr-checkboxes__input" id="ekthesi_glk" type="checkbox" />
+            <label for="ekthesi_glk" class="govgr-label govgr-checkboxes__label glk-required mostly-optional-label"
+                class="govgr-label govgr-checkboxes__label">
+                Απαιτείται η Έκθεση
+                του Γενικού Λογιστηρίου του Κράτους
+            </label>
+        </div>
     </div>
-    <br>
-    <div class="form-group">
-        <label id="field_15_sxedio_nomou_label" for="field_15_sxedio_nomou" class="mostly-optional-label required">Στο
-            σχέδιο νόμου ή στην τροπολογία επί του σχεδίου νόμου</label>
-        <textarea class="form-control" id="field_15_sxedio_nomou" name="field_15_sxedio_nomou"
-            placeholder="Σχέδιο νόμου" placeholder="Υπουργείο" rows="1"></textarea>
-    </div>
-    <div class="form-group">
-        <label id="field_15_ypoyrgeio_label" for="field_15_ypoyrgeio" class="mostly-optional-label required">του
-            Υπουργείου</label>
-        <textarea class="form-control" id="field_15_ypoyrgeio" name="field_15_ypoyrgeio" rows="1"></textarea>
-    </div>
-    <div class="form-group">
-        <label id="field_15_rythmiseis_label" for="field_15_rythmiseis" class="mostly-optional-label required">
-            <h3>15.Συνοπτική ανάλυση των άρθρων της αξιολογούμενης ρύθμισης</h3>
+    <div class="govgr-field">
+        <label id="field_15_sxedio_nomou_label" for="field_15_sxedio_nomou"
+            class="govgr-label-row mostly-optional-label required">Στο
+            σχέδιο νόμου ή στην τροπολογία επί του σχεδίου νόμου
         </label>
-        <textarea class="form-control glk-text" id="field_15_rythmiseis" name="field_15_rythmiseis" rows="5" ></textarea>
+        <textarea class="govgr-textarea" id="field_15_sxedio_nomou" name="field_15_sxedio_nomou"
+            placeholder="Σχέδιο νόμου" placeholder="Υπουργείο" rows="1"> </textarea>
     </div>
-    <br>
-    <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενη φόρμα" />
-    <input type="button" name="next" class="next action-button" value="Επόμενα πεδία" />
-</fieldset>
-
-<fieldset id="oikonomika_apotelesmata_proupologismwn" class='glk mostly-optional'>
-    <h3>16.Οικονομικά αποτελέσματα επί του Κρατικού Προϋπολογισμού ή/και επί του
-        προϋπολογισμού του/των αρμόδιου/ων φορέα/ων <div class="index_budget"></div>
-    </h3>
-    <br>
-
-    <div class="form-group">
-        <h4>Από τις προτεινόμενες διατάξεις προκαλούνται τα ακόλουθα οικονομικά αποτελέσματα:</h4>
+    <div class="govgr-field">
+        <div class="govgr-grid">
+            <div class="govgr-grid__col-span-9 govgr-label-row ">
+                <label for="field_15_ypoyrgeio" class="govgr-label-row mostly-optional-label required">του
+                    Υπουργείου
+                </label>
+            </div>
+            <div class="govgr-grid__col-span-6">
+                <select id="field_15_ypoyrgeio" name="field_15_ypoyrgeio" class="govgr-select">
+                    <option  value="" selected disabled>Eπιλογή</option>
+                </select>
+            </div>
+        </div>
     </div>
-    <div class="form-group">
-        <label id="field_16_kratikos_proypologismos_label" for="field_16_kratikos_proypologismos"
-            class="mostly-optional-label required">Επί του Κρατικού Προϋπολογισμού</label>
-        <textarea class="form-control glk-text" id="field_16_kratikos_proypologismos" name="field_16_kratikos_proypologismos"
+    <div class="govgr-field">
+        <label id="field_15_rythmiseis_label" for="field_15_rythmiseis"
+            class="govgr-heading-m govgr-label-row mostly-optional-label required">
+            15.Συνοπτική ανάλυση των άρθρων της αξιολογούμενης ρύθμισης
+        </label>
+        <textarea class="govgr-textarea form-control glk-text" id="field_15_rythmiseis" name="field_15_rythmiseis"
             rows="5"></textarea>
     </div>
-    <div class="form-group">
+    <br />
+    <div class="govgr-button-group">
+        <button type="button" class="govgr-btn govgr-btn-primary previous action-button-previous" name="previous">
+            <svg viewBox="0 0 24 24" class="govgr-svg-icon govgr-arrow--left" focusable="false" aria-hidden="true">
+                <path d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z" />
+                <!--  <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z"/>-->
+            </svg> Προηγούμενα πεδία
+        </button>
+        <button type="button" class="govgr-btn govgr-btn-primary next action-button" name="next">
+            Επόμενα πεδία
+            <svg viewBox="0 0 24 24" class="govgr-svg-icon govgr-arrow--right" focusable="false" aria-hidden="true">
+                <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z" />
+            </svg>
+        </button>
+    </div>
+</fieldset>
+<fieldset id="oikonomika_apotelesmata_proupologismwn" class='glk mostly-optional'>
+    <h3 class="govgr-heading-l">16.Οικονομικά αποτελέσματα επί του Κρατικού Προϋπολογισμού ή/και επί του
+        προϋπολογισμού του/των αρμόδιου/ων φορέα/ων <div class="index_budget"></div>
+    </h3> <br />
+    <div class="govgr-field">
+        <h4 class="govgr-heading-m">Από τις προτεινόμενες διατάξεις προκαλούνται τα ακόλουθα οικονομικά αποτελέσματα:
+        </h4>
+    </div>
+    <div class="govgr-field">
+        <label id="field_16_kratikos_proypologismos_label" for="field_16_kratikos_proypologismos"
+            class="govgr-label-row mostly-optional-label required">Επί του Κρατικού Προϋπολογισμού</label>
+        <textarea class="govgr-textarea glk-text" id="field_16_kratikos_proypologismos"
+            name="field_16_kratikos_proypologismos" rows="5"></textarea>
+        <br /><br />
+        <div class="govgr-field">
+            <div class="govgr-grid">
+                <div class="govgr-grid__col-span-3 govgr-label-row ">
+                    <label for="field_16_ypoyrgeio" class="govgr-label-row mostly-optional-label required">του
+                        Υπουργείου
+                    </label>
+                </div>
+                <div class="govgr-grid__col-span-3">
+                    <select id="field_16_ypoyrgeio" name="field_16_ypoyrgeio" class="govgr-select">
+                        <option selected disabled>Eπιλογή</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="govgr-field">
         <label id="field_16_proypologismos_forea_label" for="field_16_proypologismos_forea"
             class="mostly-optional-label required">Επί του Προϋπολογισμού του/των αρμόδιου/ων φορέα/ων</label>
         <textarea class="form-control glk-text" id="field_16_proypologismos_forea" name="field_16_proypologismos_forea"
             rows="5"></textarea>
-    </div>
-    <br>
-    <table class="table " id="field_16_table">
-        <thead class="thead ">
-            <tr>
-                <th colspan="3"><label id="table_16_label" class="mostly-optional-label required">Ο/Η ΥΠΟΓΡΑΦΩΝ/ΟΥΣΑ
-                        ΓΕΝΙΚΟΣ/Η ΔΙΕΥΘΥΝΤΗΣ/ΡΙΑ (Όνομα Επώνυμο Ημερομηνία)</label></th>
+    </div> <br />
+    <table class="govgr-table--dark govgr-table"" id=" field_16_table">
+        <thead class="govgr-table__head">
+            <tr class="govgr-table__row">
+                <th colspan="3">
+                    <label id="table_16_label" class="mostly-optional-label required">Ο/Η ΥΠΟΓΡΑΦΩΝ/ΟΥΣΑ
+                        ΓΕΝΙΚΟΣ/Η ΔΙΕΥΘΥΝΤΗΣ/ΡΙΑ (Όνομα Επώνυμο Ημερομηνία)
+                    </label>
+                </th>
             </tr>
-            <tr>
+            <tr class="govgr-table__row">
                 <th colspan="1">Όνομα</th>
                 <th colspan="1">Επώνυμο</th>
                 <th colspan="1">Ημερομηνία</th>
             </tr>
         </thead>
-        <tbody id="tbody_16">
+        <tbody class="govgr-table__body" id="tbody_16">
             <tr>
-                <td>
-                    <textarea class="form-control" id="field_16_genikos_onoma" name="field_16_genikos_onoma"
-                        placeholder="Όνομα" rows="1"></textarea>
-                </td>
-                <td>
-                    <textarea class="form-control" id="field_16_genikos_epitheto" name="field_16_genikos_epitheto"
-                        placeholder="Επώνυμο" rows="1"></textarea>
-                </td>
-                <td>
-                    <textarea class="form-control" id="field_16_genikos_date" name="field_16_genikos_date"
-                        placeholder="Ημερομηνία" rows="1"></textarea>
-                </td>
+                <td> <textarea class="govgr-textarea" id="field_16_genikos_onoma" name="field_16_genikos_onoma"
+                        placeholder="Όνομα" rows="1"></textarea> </td>
+                <td> <textarea class="govgr-textarea" id="field_16_genikos_epitheto" name="field_16_genikos_epitheto"
+                        placeholder="Επώνυμο" rows="1"></textarea> </td>
+                <td> <textarea class="govgr-textarea" id="field_16_genikos_date" name="field_16_genikos_date"
+                        placeholder="Ημερομηνία" rows="1"></textarea> </td>
             </tr>
         </tbody>
-    </table>
-
-    <br>
-
-    <br>
-    <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενα πεδία" />
-    <input type="button" name="next" class="next action-button" value="Επόμενη φόρμα" />
+    </table> <br /> <br />
+    <div class="govgr-button-group">
+        <button type="button" class="govgr-btn govgr-btn-primary govgr-btn-cta previous action-button-previous"
+            name="previous">
+            <svg viewBox="0 0 24 24" class="govgr-arrow--left" focusable="false" aria-hidden="true">
+                <path d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z" />
+                <!--  <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z"/>-->
+            </svg> Προηγούμενα πεδία
+        </button>
+        <button type="button" class="govgr-btn govgr-btn-primary govgr-btn-cta next action-button" name="next">
+            Επόμενη φόρμα
+            <svg viewBox="0 0 24 24" class="govgr-arrow--right" focusable="false" aria-hidden="true">
+                <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z" />
+            </svg>
+        </button>
+    </div>
 </fieldset>

@@ -1,43 +1,68 @@
-<fieldset id="oikonomika_apotelesmata" class = 'glk mostly-optional'>
-    <h2>Γ. Ειδική Έκθεση</h2>
-    <br>
-    <div class="form-group">
-        <label id="field_17_sxedio_nomou_label" for="field_17_sxedio_nomou" class="mostly-optional-label required">Στο σχέδιο νόμου ή στην τροπολογία επί του σχεδίου νόμου</label>
-        <textarea class="form-control" id="field_17_sxedio_nomou" name="field_17_sxedio_nomou" rows="1" placeholder="Σχέδιο νόμου"></textarea>
-    </div> 
-   <div class="form-group">
-        <label id="field_17_ypoyrgeio_label" for="field_17_ypoyrgeio" class="mostly-optional-label required">του Υπουργείου</label>
-        <textarea class="form-control" id="field_17_ypoyrgeio" name="field_17_ypoyrgeio" rows="1" placeholder="Υπουργείο"></textarea>
+<fieldset id="oikonomika_apotelesmata" class='glk mostly-optional'>
+    <h2 class="govgr-heading-l">Γ. Ειδική Έκθεση</h2> <br />
+    <div class="govgr-field">
+        <label id="field_17_sxedio_nomou_label" for="field_17_sxedio_nomou"
+            class="govgr-label-row mostly-optional-label required">Στο
+            σχέδιο νόμου ή στην τροπολογία επί του σχεδίου νόμου
+        </label>
+        <textarea class="govgr-textarea" id="field_17_sxedio_nomou" name="field_17_sxedio_nomou"
+            placeholder="Σχέδιο νόμου" rows="1"> </textarea>
     </div>
-    <div class="form-group">
-        <label id="field_17_oikonomika_apotelesmata_label" for="field_17_oikonomika_apotelesmata" class="mostly-optional-label required">17.Οικονομικά αποτελέσματα:</label>
-        <textarea class="form-control glk-text" id="field_17_oikonomika_apotelesmata" name="field_17_oikonomika_apotelesmata" rows="10" placeholder="Από τις διατάξεις του προτεινόμενου σχεδίου νόμου (ή της προτεινόμενης τροπολογίας) προκαλούνται τα ακόλουθα οικονομικά αποτελέσματα:"></textarea>
+    <div class="govgr-field">
+        <div class="govgr-grid">
+            <div class="govgr-grid__col-span-3 govgr-label-row ">
+                <label for="field_17_ypoyrgeio" class="govgr-label-row mostly-optional-label required">του
+                Υπουργείου
+                </label>
+            </div>
+            <div class="govgr-grid__col-span-3">
+                <select id="field_17_ypoyrgeio" name="field_17_ypoyrgeio" class="govgr-select">
+                    <option selected disabled>Eπιλογή</option>
+                </select>
+            </div>
+        </div>
     </div>
-    <hr>
+    <div class="govgr-field">
+        <label id="field_17_oikonomika_apotelesmata_label" for="field_17_oikonomika_apotelesmata"
+            class="govgr-heading-m govgr-label-row mostly-optional-label required">17.Οικονομικά αποτελέσματα:</label>
+        <textarea class="govgr-textarea form-control glk-text" id="field_17_oikonomika_apotelesmata"
+            name="field_17_oikonomika_apotelesmata" rows="10"
+            placeholder="Από τις διατάξεις του προτεινόμενου σχεδίου νόμου (ή της προτεινόμενης τροπολογίας) προκαλούνται τα ακόλουθα οικονομικά αποτελέσματα:"></textarea>
+    </div>
+    <hr />
     <div>
-        <table class="table " id="field_17_table">
-            <thead class="thead ">
-                <tr> 
-                    <th colspan="3"><label id="table_17_label">ΟΙ ΥΠΟΥΡΓΟΙ</label></th>
-                </tr>  
+        <table class="govgr-table--dark govgr-table" id="field_17_table">
+            <thead class="govgr-table__head">
+                <tr class="govgr-table__row">
+                    <th class="" colspan="3">
+                        <label id="table_17_label">ΟΙ ΥΠΟΥΡΓΟΙ</label>
+                    </th>
+                </tr>
                 <tr>
                     <th colspan="1">Όνομα</th>
                     <th colspan="1">Επώνυμο</th>
                     <th colspan="1">Ιδιότητα</th>
-               </tr>
+                </tr>
             </thead>
             <tbody id="tbody_17">
-              
             </tbody>
-          </table>
-        <br>     
-        <input type="button" id="add_row_table_17" name="add_row_table_17" class="float-right" value="Επιπλέον σειρά" />
-        <br><br>              
+        </table> <br />
+        <button type="button" id="add_row_table_17" name="add_row_table_17" class="govgr-btn govgr-btn-secondary float-right">+
+            Επιπλέον σειρά</button>
+        <br />
+    </div> <br />
+    <div class="govgr-button-group">
+        <button type="button" class="govgr-btn govgr-btn-primary govgr-btn-cta previous action-button-previous" name="previous">
+            <svg viewBox="0 0 24 24" class="govgr-arrow--left" focusable="false" aria-hidden="true">
+                <path d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z" />
+                <!--  <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z"/>-->
+            </svg> Προηγούμενα πεδία
+        </button>
+        <button type="button" class="govgr-btn govgr-btn-primary govgr-btn-cta next action-button" name="next">
+            Επόμενη φόρμα
+            <svg viewBox="0 0 24 24" class="govgr-arrow--right" focusable="false" aria-hidden="true">
+                <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z" />
+            </svg>
+        </button>
     </div>
-    
-    
-    <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενη φόρμα"/>
-    <input type="button" name="next" class="next action-button" value="Επόμενη φόρμα"/>
 </fieldset>
-
-

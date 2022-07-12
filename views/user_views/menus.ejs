@@ -1,70 +1,44 @@
+<div class="" id="menu">
+  <h3 class="govgr-heading-m">Χρήσιμοι Σύνδεσμοι</h3>
+  <h4 class="govgr-heading-s">Διαχείριση Χρηστών</h4>
+  <nav class="govgr-vertical-nav" id="user_management">
+    <a class="govgr-link govgr-vertical-nav__item govgr-vertical-nav__item admin" href="./create_user"> Δημιουργία
+      νέου χρήστη</a><a class="govgr-link govgr-vertical-nav__item admin" href="./search_user"> Επεξεργασία στοιχείων
+      χρήστη</a><a class="govgr-link govgr-vertical-nav__item" href="./profile" id="profile"> Τα Στοιχεία Μου</a>
+  </nav>
+  <h4 class="govgr-heading-s">Νέα Ανάλυση</h4>
+  <nav class="govgr-vertical-nav" id="create_analysis"><a id="sxedio_nomoy" class="govgr-link govgr-vertical-nav__item"
+      href="../create/:sxedio_nomou"> Σχέδιο νόμου</a><a id="prosxedio" class="govgr-link govgr-vertical-nav__item"
+      href="../create/:prosxedio_nomou">Προσχέδιο νόμου</a><a id="kateythintiries"
+      class="govgr-link govgr-vertical-nav__item" href="../create/:kateythintiries_grammes"> Κατευθυντήριες γραμμές</a>
+    <a id="epeigon_katepeigon" class="govgr-link govgr-vertical-nav__item" href="../create/:epeigon_katepeigon"> Επείγον
+      ή κατεπείγον νομοσχέδιο</a>
+    <a id="protasi_nomoy" class="govgr-link govgr-vertical-nav__item vouleftis" href="../create/:protasi_nomou"> Πρόταση
+      νόμου</a>
+    <a id="diethneis_symvaseis" class="govgr-link govgr-vertical-nav__item" href="../create/:diethneis_symvaseis">
+      Διεθνείς συμβάσεις</a>
+    <a id="tropologies_ypourgwn" class="govgr-link govgr-vertical-nav__item" href="../create/:tropologies_upourgwn">
+      Τροπολογίες Υπουργών</a>
+    <a id="tropologies_vouleutwn" class="govgr-link govgr-vertical-nav__item vouleftis"
+      href="../create/:tropologies_vouleutwn"> Τροπολογίες Βουλευτών</a>
+  </nav>
+  <h4 class="govgr-heading-s">Διαχείριση Πλατφόρμας</h4>
+  <nav class="govgr-vertical-nav admin" id="edit_analysis">
+    <a class="govgr-link govgr-vertical-nav__item" href="../create/:sxedio_nomou" id="ministries"> Επικαιροποίηση
+      Υπουργείων</a>
+  </nav>
+  <h4 class="govgr-heading-s">Διαχείριση Αναλύσεων</h4>
+  <nav class="govgr-vertical-nav" id="analysis_management">
+    <a class="govgr-link govgr-vertical-nav__item admin" href="./summaries"> Συνοπτικά στοιχεία</a>
+    <a class="govgr-link govgr-vertical-nav__item" href="./history">Ιστορικό</a>
+  </nav>
+  <h4 class="govgr-heading-s"><u>Παρατηρήσεις</u></h4>
+  <p class="mb-10">Μπορείτε να στείλετε τις παρατηρήσεις σας στο <a
+      href="mailto:impact-assessment@grnet.gr">impact-assessment@grnet.gr</a> </p> <br />
+  <input type="button" name="exit" id="exit" class="govgr-btn govgr-btn-primary" value="Έξοδος" />
 </div>
-
-<div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4" id="menu">
-  <div class="jss111">
-    <div class="jss274">
-      <h3 class="jss273 jss178 jss181"><u>Χρήσιμοι Σύνδεσμοι</u></h3>
-      <ul class="jss275 admin" id="user_management">
-        <h4 class="jss276 jss178 jss181"><u>Διαχείριση Χρηστών:</u></h4>
-        <li><a href="./create_user">Δημιουργία νέου χρήστη</a></li>
-        <li><a href="./search_user">Επεξεργασία στοιχείων χρήστη</a></li>
-      </ul>
-      <ul class="jss275" id="profile">
-        <h4 class="jss276 jss178 jss181"><u>Το Προφίλ Μου:</u></h4>
-        <li><a href="./profile">Τα Στοιχεία Μου</a></li>
-      </ul>
-      <ul class="jss275" id="create_analysis">
-        <h4 class="jss276 jss178 jss181 header"><u>Νέα Ανάλυση</u></h4>
-        <li id="sxedio_nomoy"><a href="../create/:sxedio_nomou">Σχέδιο νόμου</a></li>
-        <li id="prosxedio"><a href="../create/:prosxedio_nomou">Προσχέδιο νόμου</a></li>
-        <li id="kateythintiries"><a href="../create/:kateythintiries_grammes">Κατευθυντήριες γραμμές</a></li>
-        <li id="epeigon_katepeigon"><a href="../create/:epeigon_katepeigon">Επείγον ή κατεπείγον νομοσχέδιο</a>
-        </li>
-        <li id="protasi_nomoy" class="vouleftis"><a href="../create/:protasi_nomou">Πρόταση νόμου</a></li>
-        <li id="diethneis_symvaseis"><a href="../create/:diethneis_symvaseis">Διεθνείς συμβάσεις</a></li>
-        <li id="tropologies_ypourgwn"><a href="../create/:tropologies_upourgwn">Τροπολογίες
-            Υπουργών</a></li>
-        <li id="tropologies_vouleutwn" class="vouleftis"><a href="../create/:tropologies_vouleutwn">Τροπολογίες
-            Βουλευτών</a></li>
-      </ul>
-      <ul class="jss275 admin" id="edit_analysis">
-        <h4 class="jss276 jss178 jss181"><u>Διαχείριση Πλατφόρμας</u></h4>
-        <li><button type="button" id="minstries" class="link">Επικαιροποίηση Υπουργείων</button>
-      </ul>
-      <ul class="jss275" id="analysis_management">
-        <h4 class="jss276 jss178 jss181"><u>Διαχείριση Αναλύσεων</u></h4>
-        <li class="admin"><a href="./summaries">Συνοπτικά στοιχεία</a></li>
-        <li><a href="./history">Ιστορικό</a></li>
-      </ul>
-      <ul>
-        <h4 class="jss276 jss178 jss181"><u>Παρατηρήσεις</u></h4>
-        <li>Μπορείτε να στείλετε τις παρατηρήσεις σας στο <a
-            href="mailto:impact-assessment@grnet.gr">impact-assessment@grnet.gr</a></li>
-      </ul>
-      </ul>
-    </div>
-  </div>
-  
-  <input type="button" name="exit" class="exit float-right" value="Έξοδος" />
-</div>
-
-<style>
-
-button.link {
-  display: inline-block;
-  position: relative;
-  background-color: transparent;
-  cursor: pointer;
-  border: 0;
-  padding: 0;
-  color: #00f;
-  text-decoration: underline;
-  font: inherit;
-}
-</style>
-
 <script>
-  $(".exit").on("click", function (ev) {
+  $("#exit").on("click", function (ev) {
     ev.preventDefault();
     $.ajax({
       url: `/logout`,
@@ -78,7 +52,7 @@ button.link {
     });
   });
 
-  $("#minstries").on("click", function (ev) {
+  $("#ministries").on("click", function (ev) {
     ev.preventDefault();
     $.ajax({
       url: `/ministries`,
@@ -86,7 +60,7 @@ button.link {
         console.log(error);
       },
       success: function (data) {
-        window.location.href = "/login";
+        window.location.href = "./dashboard";
       },
       type: 'POST'
     });

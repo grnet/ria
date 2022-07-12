@@ -7,13 +7,22 @@ const { authUser, authRole } = require('../middleware/auth');
 
 routes.get('/:username', authUser, authRole, async (req, res, next) => {
 
-    let user = await database.user.findOne({
+    let entry = await database.user.findOne({
         where: {
             username: req.params.username
         }
     })
-    if (user && user.dataValues) {
-        res.render("user_views/edit_user", { data: user.dataValues });
+    if (entry && entry.dataValues) {
+        const user = req.session.user;
+        let latest_entry = await database.ministries.max('id').catch((error) => { console.log(error) }); // get entry with highest id 
+        let res_data = await database.ministries.findOne({ where: { id: latest_entry } }).catch((error) => { console.log(error) });
+        let ministries = [];
+        for (i in res_data.dataValues.ministries) {
+            let value = res_data.dataValues.ministries[i].ministry;
+            if (value && String(value).trim()) { ministries.push({ ministry: value }) }
+        }
+
+        res.render("user_views/edit_user", { data: entry.dataValues, ministries: ministries, user:user });
     } else {
         res.status(404).send("Not found");
     }
@@ -72,7 +81,7 @@ routes.put('/:username', authUser, authRole, async (req, res, next) => {
                     } else {
                         req.session.errors.push({ msg: 'Οι κωδικοί δεν ταιριάζουν.' })//custom error message
                         const errors = req.session.errors
-                        if (errors) { 
+                        if (errors) {
                             return res.status(422).json(errors);
                         }
                     }

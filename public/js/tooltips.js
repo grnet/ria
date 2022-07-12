@@ -78,8 +78,8 @@ function tooltipEvents(imgId, tooltipClass) {
 }
 
 function addTooltip(fieldID) {
-    var parentDiv = $('#' + fieldID).closest('div.form-group');
-    var tooltip = `<div class="tooltip_div" >
+    var parentDiv = $("#" + fieldID).closest("div.govgr-grid");
+    var tooltip = `<div class="tooltip_div govgr-grid__col-span-3" >
                     <img src="/img/information.png"  id="${fieldID}_tooltip_img" aria-describedby="${fieldID}_tooltip_img" 
                         onmouseover="tooltipEvents('${fieldID}_tooltip_img', '${fieldID}_tooltip_div'); setTooltip('${fieldID}_tooltip_div','${fieldID}');" width="20px" >
                     <div id="${fieldID}_tooltip_div" class="tooltip_text" role="tooltip"></div>

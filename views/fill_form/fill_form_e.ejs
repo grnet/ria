@@ -1,134 +1,175 @@
 <fieldset id="porismata" class="field-21 vouleutes">
-
-    <label class="field-21-label vouleutes-label" id="field_21_upload_label" for="field_21_upload"><h3>21.Γνώμες ή πορίσματα αρμόδιων υπηρεσιών και ανεξάρτητων αρχών (ηλεκτρονική επισύναψη) </h3></label><div class="index_field21"></div>
-    <input type="file" class="required" id="field_21_upload" name="field_21_upload" accept=".pdf" multiple> 
-    
+    <h2 class="govgr-heading-l">21.Γνώμες ή πορίσματα αρμόδιων υπηρεσιών και ανεξάρτητων αρχών (ηλεκτρονική επισύναψη)
+    </h2>
+    <label class="field-21-label vouleutes-label" id="field_21_upload_label" for="field_21_upload">
+    </label>
+    <div class="index_field21"></div>
+    <div>
+        <input type="file" class="required" id="field_21_upload" name="field_21_upload" accept=".pdf" multiple />
+    </div> <br />
     <div class="form-group">
-        <label class="required field-21-label vouleutes-label" id="field_21_comments_label" for="field_21_comments">Ειδική αιτιολογία σε περίπτωση σημαντικής απόκλισης μεταξύ της
-            γνωμοδότησης και της αξιολογούμενης ρύθμισης.</label>
-        <textarea class="form-control" id="field_21_comments" name="field_21_comments" rows="3" onkeypress="wordsCounter('field_21_comments','words21',200, event)" onpaste="wordsCounter('field_21_comments','words21',200, event)"></textarea>
-        <p style="float: right;">Λέξεις: <span id="words21" ></span> /200</p>
+        <p><label class="required field-21-label vouleutes-label" id="field_21_comments_label"
+                for="field_21_comments">Ειδική αιτιολογία σε περίπτωση σημαντικής απόκλισης μεταξύ της
+                γνωμοδότησης και της αξιολογούμενης ρύθμισης.
+            </label> </p> <br />
+        <textarea class="govgr-textarea form-control" id="field_21_comments" name="field_21_comments" rows="3"
+            onkeypress="wordsCounter('field_21_comments','words21',200, event)"
+            onpaste="wordsCounter('field_21_comments','words21',200, event)"></textarea>
+        <p style="float: right;">Λέξεις: <span id="words21"></span> /200</p>
+    </div> <br />
+    <div class="govgr-button-group">
+        <button type="button" class="govgr-btn govgr-btn-primary govgr-btn-cta previous action-button-previous" name="previous">
+            <svg viewBox="0 0 24 24" class="govgr-arrow--left" focusable="false" aria-hidden="true">
+                <path d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z" />
+                <!--  <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z"/>-->
+            </svg> Προηγούμενα πεδία
+        </button>
+        <button type="button" class="govgr-btn govgr-btn-primary govgr-btn-cta next action-button" name="next">
+            Επόμενη φόρμα
+            <svg viewBox="0 0 24 24" class="govgr-arrow--right" focusable="false" aria-hidden="true">
+                <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z" />
+            </svg>
+        </button>
     </div>
-
-    <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενα πεδία" />
-    <input type="button" name="next" class="next action-button" value="Επόμενη φόρμα" />
 </fieldset>
-
 <fieldset id="diavouleusi_nomoparaskeuastikis" class="field-22 vouleutes">
-
-    <h2>Ε. Έκθεση διαβούλευσης</h2>
-    <br>
+    <h2 class="govgr-heading-l">Ε. Έκθεση διαβούλευσης</h2> <br />
     <div class="form-group">
-        <h3>22.Διαβούλευση κατά τη διάρκεια της νομοπαρασκευαστικής διαδικασίας από την έναρξη κατάρτισης της
+        <h3 class="govgr-heading-m">22.Διαβούλευση κατά τη διάρκεια της νομοπαρασκευαστικής διαδικασίας από την έναρξη
+            κατάρτισης της
             αξιολογούμενης ρύθμισης μέχρι την υπογραφή από τους συναρμόδιους Υπουργούς</h3>
-        <div class="index_field22"></div>
-        <br>
+        <div class="index_field22"></div> <br />
         <label id="field_22_sinergasia_ypoyrgeiwn_label" class="field-22-label vouleutes-label required"
             for="field_22_sinergasia_ypoyrgeiwn">Συνεργασία με άλλα υπουργεία / υπηρεσίες</label>
-        <textarea class="form-control" id="field_22_sinergasia_ypoyrgeiwn" name="field_22_sinergasia_ypoyrgeiwn"
-            rows="5" onkeypress="wordsCounter('field_22_sinergasia_ypoyrgeiwn','words22_1',150, event)"
+        <textarea class="govgr-textarea form-control" id="field_22_sinergasia_ypoyrgeiwn"
+            name="field_22_sinergasia_ypoyrgeiwn" rows="5"
+            onkeypress="wordsCounter('field_22_sinergasia_ypoyrgeiwn','words22_1',150, event)"
             onpaste="wordsCounter('field_22_sinergasia_ypoyrgeiwn','words22_1',150, event)"></textarea>
         <p style="float: right;">Λέξεις: <span id="words22_1"></span> /150</p>
-    </div>
+    </div> <br /> <br />
     <div class="form-group">
         <label id="field_22_sinergasia_forewn_arxwn_label" class="required field-22-label vouleutes-label"
             for="field_22_sinergasia_forewn_arxwn">Συνεργασία με κοινωνικούς φορείς / Ανεξάρτητες Αρχές</label>
-        <textarea class="form-control" id="field_22_sinergasia_forewn_arxwn" name="field_22_sinergasia_forewn_arxwn"
-            rows="5" onkeypress="wordsCounter('field_22_sinergasia_forewn_arxwn','words22_2',150, event)"
+        <textarea class="govgr-textarea form-control" id="field_22_sinergasia_forewn_arxwn"
+            name="field_22_sinergasia_forewn_arxwn" rows="5"
+            onkeypress="wordsCounter('field_22_sinergasia_forewn_arxwn','words22_2',150, event)"
             onpaste="wordsCounter('field_22_sinergasia_forewn_arxwn','words22_2',150, event)"></textarea>
         <p style="float: right;">Λέξεις: <span id="words22_2"></span> /150</p>
-    </div>
-
+    </div> <br /> <br />
     <div class="form-group">
         <label id="field_22_diethnis_diavouleusi_label" class="required vouleutes-label field-22-label"
             for="field_22_diethnis_diavouleusi">Διεθνής διαβούλευση</label>
-        <textarea class="form-control" id="field_22_diethnis_diavouleusi" name="field_22_diethnis_diavouleusi" rows="5"
+        <textarea class="govgr-textarea form-control" id="field_22_diethnis_diavouleusi"
+            name="field_22_diethnis_diavouleusi" rows="5"
             onkeypress="wordsCounter('field_22_diethnis_diavouleusi','words22_3',150, event)"
             onpaste="wordsCounter('field_22_diethnis_diavouleusi','words22_3',150, event)"></textarea>
         <p style="float: right;">Λέξεις: <span id="words22_3"></span> /150</p>
+    </div> <br /> <br />
+    <div class="govgr-button-group">
+        <button type="button" class="govgr-btn govgr-btn-primary govgr-btn-cta previous action-button-previous" name="previous">
+            <svg viewBox="0 0 24 24" class="govgr-arrow--left" focusable="false" aria-hidden="true">
+                <path d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z" />
+                <!--  <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z"/>-->
+            </svg> Προηγούμενη φόρμα
+        </button>
+        <button type="button" class="govgr-btn govgr-btn-primary govgr-btn-cta next action-button" name="next">
+            Επόμενα πεδία
+            <svg viewBox="0 0 24 24" class="govgr-arrow--right" focusable="false" aria-hidden="true">
+                <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z" />
+            </svg>
+        </button>
     </div>
-    <br>
-    <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενη φόρμα" />
-    <input type="button" name="next" class="next action-button" value="Επόμενα πεδία" />
-
 </fieldset>
-
 <fieldset id="sxolia_diavouleusis" class='optional mostly-optional'>
-
     <div class="form-group">
-        <h3>23.Σχόλια στο πλαίσιο της διαβούλευσης μέσω της ηλεκτρονικής πλατφόρμας www.opengov.gr (ηλεκτρονική επισύναψη της έκθεσης)<div class="index_field23"></div></h3>
-        <br>
-        <input type="file" id="field_23_upload" name="field_23_upload" accept=".pdf" multiple>
-        <br><br>
-        <label id="field_23_arxes_label" >Επί των γενικών αρχών
-            («επί της αρχής») της αξιολογούμενης ρύθμισης</label>
-        <br>
+        <h3 class="govgr-heading-l">23.Σχόλια στο πλαίσιο της διαβούλευσης μέσω της ηλεκτρονικής πλατφόρμας
+            www.opengov.gr (ηλεκτρονική επισύναψη της έκθεσης)<div class="index_field23"></div>
+        </h3> <br />
+        <input type="file" id="field_23_upload" name="field_23_upload" accept=".pdf" multiple /> <br /><br /> <br />
+        <label class="govgr-heading-m" id="field_23_arxes_label">Επί των γενικών αρχών
+            («επί της αρχής») της αξιολογούμενης ρύθμισης
+        </label> <br /> <br />
         <div class="form-group">
             <label id="field_23_arxes_symmetasxontes_label" class="required optional mostly-optional field-23-label"
                 for="field_23_arxes_symmetasxontes">Αριθμός συμμετασχόντων</label>
-            <textarea class="form-control" id="field_23_arxes_symmetasxontes" name="field_23_arxes_symmetasxontes"
-                rows="3" onkeypress="wordsCounter('field_23_arxes_symmetasxontes','words23_1', event)"
+            <textarea class="govgr-textarea form-control" id="field_23_arxes_symmetasxontes"
+                name="field_23_arxes_symmetasxontes" rows="3"
+                onkeypress="wordsCounter('field_23_arxes_symmetasxontes','words23_1', event)"
                 onpaste="wordsCounter('field_23_arxes_symmetasxontes','words23_1', event)"></textarea>
             <p style="float: right;">Λέξεις: <span id="words23_1"></span></p>
-        </div>
+        </div> <br />
         <div class="form-group">
-            <label id="field_23_arxes_sxolia_yiothetithikan_label" class="required optional mostly-optional field-23-label"
+            <label id="field_23_arxes_sxolia_yiothetithikan_label"
+                class="required optional mostly-optional field-23-label"
                 for="field_23_arxes_sxolia_yiothetithikan">Σχόλια που υιοθετήθηκαν</label>
-            <textarea class="form-control" id="field_23_arxes_sxolia_yiothetithikan"
+            <textarea class="govgr-textarea form-control" id="field_23_arxes_sxolia_yiothetithikan"
                 name="field_23_arxes_sxolia_yiothetithikan" rows="3"
                 onkeypress="wordsCounter('field_23_arxes_sxolia_yiothetithikan','words23_2', event)"
                 onpaste="wordsCounter('field_23_arxes_sxolia_yiothetithikan','words23_2', event)"></textarea>
             <p style="float: right;">Λέξεις: <span id="words23_2"></span></p>
-        </div>
+        </div> <br />
         <div class="form-group">
-            <label id="field_23_arxes_sxolia_den_yiothetithikan_label" class="required optional mostly-optional field-23-label"
+            <label id="field_23_arxes_sxolia_den_yiothetithikan_label"
+                class="required optional mostly-optional field-23-label"
                 for="field_23_arxes_sxolia_den_yiothetithikan">Σχόλια που δεν υιοθετήθηκαν (συμπεριλαμβανομένης επαρκούς
-                αιτιολόγησης)</label>
-            <textarea class="form-control" id="field_23_arxes_sxolia_den_yiothetithikan"
+                αιτιολόγησης)
+            </label>
+            <textarea class="govgr-textarea form-control" id="field_23_arxes_sxolia_den_yiothetithikan"
                 name="field_23_arxes_sxolia_den_yiothetithikan" rows="3"
                 onkeypress="wordsCounter('field_23_arxes_sxolia_den_yiothetithikan','words23_3', event)"
                 onpaste="wordsCounter('field_23_arxes_sxolia_den_yiothetithikan','words23_3', event)"></textarea>
             <p style="float: right;">Λέξεις: <span id="words23_3"></span></p>
-        </div>
-    </div>
-    <br>
+        </div> <br />
+    </div> <br />
     <div class="form-group">
-
-        <label id="field_23_arthra_label">Επί των άρθρων της
-            αξιολογούμενης ρύθμισης</label>
-        <br>
+        <label class="govgr-heading-m" id="field_23_arthra_label">Επί των άρθρων της
+            αξιολογούμενης ρύθμισης
+        </label> <br /> <br />
         <div class="form-group">
             <label id="field_23_arthra_symmetasxontes_label" class="required optional mostly-optional field-23-label"
                 for="field_23_arthra_symmetasxontes">Αριθμός συμμετασχόντων</label>
-            <textarea class="form-control" id="field_23_arthra_symmetasxontes" name="field_23_arthra_symmetasxontes" rows="3"
+            <textarea class="govgr-textarea form-control" id="field_23_arthra_symmetasxontes"
+                name="field_23_arthra_symmetasxontes" rows="3"
                 onkeypress="wordsCounter('field_23_arthra_symmetasxontes','words23_4', event)"
                 onpaste="wordsCounter('field_23_arthra_symmetasxontes','words23_4', event)"></textarea>
             <p style="float: right;">Λέξεις: <span id="words23_4"></span></p>
-        </div>
+        </div> <br />
         <div class="form-group">
-            <label id="field_23_arthra_sxolia_yiothetithikan_label" class="required optional mostly-optional field-23-label"
+            <label id="field_23_arthra_sxolia_yiothetithikan_label"
+                class="required optional mostly-optional field-23-label"
                 for="field_23_arthra_sxolia_yiothetithikan">Σχόλια που υιοθετήθηκαν</label>
-            <textarea class="form-control" id="field_23_arthra_sxolia_yiothetithikan"
+            <textarea class="govgr-textarea form-control" id="field_23_arthra_sxolia_yiothetithikan"
                 name="field_23_arthra_sxolia_yiothetithikan" rows="3"
                 onkeypress="wordsCounter('field_23_arthra_sxolia_yiothetithikan','words23_5', event)"
                 onpaste="wordsCounter('field_23_arthra_sxolia_yiothetithikan','words23_5', event)"></textarea>
             <p style="float: right;">Λέξεις: <span id="words23_5"></span></p>
-        </div>
+        </div> <br />
         <div class="form-group">
-            <label id="field_23_arthra_sxolia_den_yiothetithikan_label" class="required optional mostly-optional field-23-label"
+            <label id="field_23_arthra_sxolia_den_yiothetithikan_label"
+                class="required optional mostly-optional field-23-label"
                 for="field_23_arthra_sxolia_den_yiothetithikan">Σχόλια που δεν υιοθετήθηκαν (συμπεριλαμβανομένης
                 επαρκούς
-                αιτιολόγησης)</label>
-            <textarea class="form-control" id="field_23_arthra_sxolia_den_yiothetithikan"
+                αιτιολόγησης)
+            </label>
+            <textarea class="govgr-textarea form-control" id="field_23_arthra_sxolia_den_yiothetithikan"
                 name="field_23_arthra_sxolia_den_yiothetithikan" rows="3"
                 onkeypress="wordsCounter('field_23_arthra_sxolia_den_yiothetithikan','words23_6', event)"
                 onpaste="wordsCounter('field_23_arthra_sxolia_den_yiothetithikan','words23_6', event)"></textarea>
             <p style="float: right;">Λέξεις: <span id="words23_6"></span></p>
         </div>
+    </div> <br /> <br />
+    <div class="govgr-button-group">
+        <button type="button" class="govgr-btn govgr-btn-primary govgr-btn-cta previous action-button-previous" name="previous">
+            <svg viewBox="0 0 24 24" class="govgr-arrow--left" focusable="false" aria-hidden="true">
+                <path d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z" />
+                <!--  <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z"/>-->
+            </svg> Προηγούμενα πεδία
+        </button>
+        <button type="button" class="govgr-btn govgr-btn-primary govgr-btn-cta next action-button" name="next">
+            Επόμενη φόρμα
+            <svg viewBox="0 0 24 24" class="govgr-arrow--right" focusable="false" aria-hidden="true">
+                <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z" />
+            </svg>
+        </button>
     </div>
-    <br>
-
-    <input type="button" name="previous" class="previous action-button-previous" value="Προηγούμενα πεδία" />
-    <input type="button" name="next" class="next action-button" value="Επόμενη φόρμα" />
-
 </fieldset>

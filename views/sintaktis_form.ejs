@@ -1,606 +1,815 @@
-<div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-8">
-    <br>
-    <div>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-        <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/countable/3.0.1/Countable.min.js"></script>
-        <!-- Development version. Change to production version later-->
-        <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
-        <script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
-
-
-        <br>
-        <input type="button" name="back" class="back" value="Πίσω" />
-        <br><br>
-        <form enctype="multipart/form-data">
-
-            <input type="hidden" id="status_ekthesis" name="status_ekthesis" value="Συντάσσεται">
-
-            <fieldset id="arxiki" name="arxiki">
-                <h2>Ανάλυση Συνεπειών Ρύθμισης</h2>
-                <br>
-
-                <div>
-                    <h4 id="subtitle"></h4>
-                    <br>
-                    <p id="subtext"></p>
-                    <br>
-                    <hr>
-                </div>
-
-                <br>
-                <div class="form-group row">
-                    <label for="title" class="col-sm-6 col-form-label required">Τίτλος αξιολογούμενης ρύθμισης</label>
-                    <div class="col-sm-4">
-                        <input type="text" class="form-control" id="title" name="title">
-                    </div>
-                </div>
-
-                <br>
-                <hr>
-
-                <div class="form-group row">
-                    <label for="typos_analysis" class="col-sm-6 col-form-label required">Τύπος ανάλυσης</label>
-                    <div class="col-sm-4">
-                        <input type="text" class="form-control" id="typos_analysis" name="typos_analysis" readonly>
-                    </div>
-                </div>
-                <br>
-                <hr>
-
-                <div class="form-group row">
-                    <label for="initial_submit" class="col-sm-6 col-form-label required">Αρχική καταχώρηση</label>
-                    <div class="col-sm-4">
-                        <input type="text" class="form-control" id="initial_submit" name="initial_submit" readonly>
-                    </div>
-                </div>
-                <br>
-                <hr>
-
-                <div class="form-group row">
-                    <label for="epispeudon_foreas" class="col-sm-6 col-form-label required">Επισπεύδων φορέας</label>
-                    <div class="col-sm-4">
-                        <textarea class="form-control" id="epispeudon_foreas" name="epispeudon_foreas" rows="3"
-                            placeholder="Επισπεύδον Υπουργείο ή Βουλευτής"></textarea>
-                    </div>
-                </div>
-
-                <hr>
-
-                <div class="form-group row">
-                    <label for="rythmisi_pou_afora" class="col-sm-6 col-form-label">Ρύθμιση την οποία αφορά</label>
-                    <div class="col-sm-4">
-                        <textarea class="form-control" id="rythmisi_pou_afora" name="rythmisi_pou_afora" rows="3"
-                            placeholder="Ρύθμιση"></textarea>
-                    </div>
-                </div>
-
-                <hr>
-
-                <div class="form-group row">
-                    <label for="stoixeia_epikoinwnias" class="col-sm-6 col-form-label">Στοιχεία επικοινωνίας</label>
-                    <div class="col-sm-4">
-                        <textarea class="form-control" id="stoixeia_epikoinwnias" name="stoixeia_epikoinwnias" rows="3"
-                            placeholder="E-mail, κινητό, γραφείο κ.ο.κ"></textarea>
-                    </div>
-                </div>
-
-                <br>
-                <hr>
-
-                <div id="nomosxedio_div">
-                    <div id="upload_nomosxedio">
-                        <label for="nomosxedio" class="nomosxedio" id="nomosxedio_label">Επισύναψη νομοσχεδίου</label>
-                        <br>
-                        <input type="file" id="nomosxedio" name="nomosxedio" accept=".pdf">
-                    </div>
-                </div>
-
-                <br>
-                <hr>
-
-                <div>
-                    <p id="tomeis_nomothetisis">Επιλέξατε από τον παρακάτω κατάλογο τον τομέα ή τους τομείς νομοθέτησης
-                        στους οποίους αφορούν οι
-                        βασικές διατάξεις της αξιολογούμενης ρύθμισης:
-                    </p>
-                    <div class="index_tomeis"></div>
-                </div>
-                <div class="checkbox-group form-group row ">
-                    <label for="ekpedeusi_politismos" class="col-sm-8 col-form-label">ΕΚΠΑΙΔΕΥΣΗ - ΠΟΛΙΤΙΣΜΟΣ</label>
-                    <input class="col-sm-2 form-check-input position-static" name="ekpedeusi_politismos" type="checkbox"
-                        id="ekpedeusi_politismos">
-                </div>
-                <div class="checkbox-group form-group row">
-                    <label for="eksoteriki_politiki" class="col-sm-8 col-form-label">ΕΘΝΙΚΗ ΑΜΥΝΑ - ΕΞΩΤΕΡΙΚΗ
-                        ΠΟΛΙΤΙΚΗ</label>
-                    <input class="col-sm-2 form-check-input position-static" type="checkbox" id="eksoteriki_politiki"
-                        name="eksoteriki_politiki" value="eksoteriki_politiki">
-                </div>
-                <div class="checkbox-group form-group row">
-                    <label for="forologiki_politiki" class="col-sm-8 col-form-label">ΟΙΚΟΝΟΜΙΚΗ / ΔΗΜΟΣΙΟΝΟΜΙΚΗ /
-                        ΦΟΡΟΛΟΓΙΚΗ ΠΟΛΙΤΙΚΗ</label>
-                    <input class="col-sm-2 form-check-input position-static" type="checkbox" id="forologiki_politiki"
-                        name="forologiki_politiki" value="forologiki_politiki">
-                </div>
-                <div class="checkbox-group form-group row">
-                    <label for="koinoniki_politiki" class="col-sm-8 col-form-label">ΚΟΙΝΩΝΙΚΗ ΠΟΛΙΤΙΚΗ</label>
-                    <input class="col-sm-2 form-check-input position-static" type="checkbox" id="koinoniki_politiki"
-                        name="koinoniki_politiki" value="koinoniki_politiki">
-                </div>
-                <div class="checkbox-group form-group row">
-                    <label for="dimosia_dioikisi" class="col-sm-8 col-form-label">ΔΗΜΟΣΙΑ ΔΙΟΙΚΗΣΗ - ΔΗΜΟΣΙΑ ΤΑΞΗ -
-                        ΔΙΚΑΙΟΣΥΝΗ</label>
-                    <input class="col-sm-2 form-check-input position-static" type="checkbox" id="dimosia_dioikisi"
-                        name="dimosia_dioikisi" value="dimosia_dioikisi">
-                </div>
-                <div class="checkbox-group form-group row">
-                    <label for="anaptiksi" class="col-sm-8 col-form-label">ΑΝΑΠΤΥΞΗ - ΕΠΕΝΔΥΤΙΚΗ ΔΡΑΣΤΗΡΙΟΤΗΤΑ</label>
-                    <input class="col-sm-2 form-check-input position-static" type="checkbox" id="anaptiksi"
-                        name="anaptiksi" value="anaptiksi">
-                </div>
-                <input type="button" name="next" class="next action-button" value="Επόμενα πεδία" />
-
-            </fieldset>
-
-            <fieldset id="tautotita_ruthmisis">
-                <h2>Α. Αιτιολογική έκθεση</h2>
-                <br><br>
-                <h3>Η «ταυτότητα» της αξιολογούμενης ρύθμισης</h3>
-                <br>
-
-                <div class="form-group">
-                    <label for="field_1" class="required">1. Ποιο ζήτημα αντιμετωπίζει η αξιολογούμενη
-                        ρύθμιση;</label>
-                    <textarea class="form-control" id="field_1" name="field_1" rows="3"
-                        onkeypress="wordsCounter('field_1','words1', event)"
-                        onpaste="wordsCounter('field_1','words1', event)"></textarea>
-                    <p style="float: right;">Λέξεις: <span id="words1"></span></p>
-                </div>
-
-                <div class="form-group">
-                    <label for="field_2" class="required">2. Γιατί αποτελεί πρόβλημα;</label>
-                    <textarea class="form-control" id="field_2" name="field_2" rows="3"
-                        onkeypress="wordsCounter('field_2','words2', event)"
-                        onpaste="wordsCounter('field_2','words2', event)"></textarea>
-                    <p style="float: right;">Λέξεις: <span id="words2"></span></p>
-                </div>
-
-                <div class="form-group">
-                    <label for="field_3" class="required">3. Ποιους φορείς ή πληθυσμιακές ομάδες αφορά;</label>
-                    <textarea class="form-control" id="field_3" name="field_3" rows="3"
-                        onkeypress="wordsCounter('field_3','words3', event)"
-                        onpaste="wordsCounter('field_3','words3', event)"></textarea>
-                    <p style="float: right;">Λέξεις: <span id="words3"></span></p>
-                </div>
-
-                <input type="button" name="previous" class="previous action-button-previous"
-                    value="Προηγούμενα πεδία" />
-                <input type="button" name="next" class="next action-button" value="Επόμενα πεδία" />
-            </fieldset>
-
-            <fieldset id="anagkaiotita_rythmisis_1">
-                <h2>Η αναγκαιότητα της αξιολογούμενης ρύθμισης (i)</h2>
-                <br>
-                <div class="checkbox-group form-group row">
-                    <label for="field_4" class="col-sm-8 col-form-label required">4. Το εν λόγω ζήτημα έχει
-                        αντιμετωπιστεί με νομοθετική ρύθμιση στο παρελθόν;</label>
-                    <select id="field_4" name="field_4" class="col-sm-2 form-control">
-                        <option selected disabled>Eπιλογή</option>
-                        <option value="Ναι">Ναι</option>
-                        <option value="Όχι">Όχι</option>
-                    </select>
-                </div>
-
-                <div id="field_4_wrap" class="form-group" style="display:none;">
-                    <label for="field_4_1" class="required">4.1 Ποιο είναι το ισχύον νομικό πλαίσιο που ρυθμίζει το
-                        ζήτημα;</label>
-                    <textarea class="form-control" id="field_4_1" name="field_4_comments" rows="3"
-                        onkeypress="wordsCounter('field_4_1','words4')"
-                        onpaste="wordsCounter('field_4_1','words4')"></textarea>
-                    <p style="float: right;">Λέξεις: <span id="words4"></span></p>
-                </div>
-
-                <input type="button" name="previous" class="previous action-button-previous"
-                    value="Προηγούμενα πεδία" />
-                <input type="button" name="next" class="next action-button" value="Επόμενα πεδία" />
-            </fieldset>
-
-            <fieldset id="anagkaiotita_rythmisis_2">
-                <h2>Η αναγκαιότητα της αξιολογούμενης ρύθμισης (ii)</h2>
-                <label>5. Γιατί δεν είναι δυνατό να αντιμετωπιστεί στο πλαίσιο της υφιστάμενης νομοθεσίας:</label>
-                <div class="index_field_5"></div>
-                <div class="form-group">
-                    <label for="field_5_1" class="required">5.1 με αλλαγή προεδρικού διατάγματος, υπουργικής απόφασης ή
-                        άλλης κανονιστικής πράξης;</label>
-                    <textarea class="form-control" id="field_5_1" name="field_5_1" rows="3"
-                        onkeypress="wordsCounter('field_5_1','words5_1', event)"
-                        onpaste="wordsCounter('field_5_1','words5_1', event)"></textarea>
-                    <p style="float: right;">Λέξεις: <span id="words5_1"></span></p>
-                </div>
-
-                <div class="form-group">
-                    <label for="field_5_2" class="required">5.2 με αλλαγή διοικητικής πρακτικής συμπεριλαμβανομένης της
-                        δυνατότητας νέας ερμηνευτικής προσέγγισης της υφιστάμενης νομοθεσίας;</label>
-                    <textarea class="form-control" id="field_5_2" name="field_5_2" rows="3"
-                        onkeypress="wordsCounter('field_5_2','words5_2', event)"
-                        onpaste="wordsCounter('field_5_2','words5_2', event)"></textarea>
-                    <p style="float: right;">Λέξεις: <span id="words5_2"></span></p>
-                </div>
-
-                <div class="form-group">
-                    <label for="field_5_3" class="required">5.3 με διάθεση περισσότερων ανθρώπινων και υλικών
-                        πόρων;</label>
-                    <textarea class="form-control" id="field_5_3" name="field_5_3" rows="3"
-                        onkeypress="wordsCounter('field_5_3','words5_3', event)"
-                        onpaste="wordsCounter('field_5_3','words5_3', event)"></textarea>
-                    <p style="float: right;">Λέξεις: <span id="words5_3"></span></p>
-                </div>
-
-                <input type="button" name="previous" class="previous action-button-previous"
-                    value="Προηγούμενα πεδία" />
-                <input type="button" name="next" class="next action-button" value="Επόμενα πεδία" />
-            </fieldset>
-
-            <fieldset id="sunafeis_praktikes">
-                <h2>Συναφείς πρακτικές</h2>
-                <br>
-                <div class="checkbox-group form-group row">
-                    <label for="field_6" class="col-sm-8 col-form-label required">6. Έχετε λάβει υπόψη συναφείς
-                        πρακτικές;</label>
-                    <select id="field_6" name="field_6" class="col-sm-2 form-control">
-                        <option selected disabled>Eπιλογή</option>
-                        <option value="Ναι">Ναι</option>
-                        <option value="Όχι">Όχι</option>
-                    </select>
-                </div>
-
-                <div id="field_6_wrap" class="form-group" style="display:none;">
-                    <div class="form-group">
-                        <label for="field_6_1" class="required">6.1 Σε άλλη/ες χώρα/ες της Ε.Ε. ή του ΟΟΣΑ:</label>
-                        <textarea class="form-control" id="field_6_1" name="field_6_1" rows="3"
-                            onkeypress="wordsCounter('field_6_1','words6_1', event)"
-                            onpaste="wordsCounter('field_6_1','words6_1', event)"></textarea>
-                        <p style="float: right;">Λέξεις: <span id="words6_1"></span></p>
-                    </div>
-                    <br>
-                    <div class="form-group">
-                        <label for="field_6_2" class="required">6.2 Σε όργανα της Ε.Ε.:</label>
-                        <textarea class="form-control" id="field_6_2" name="field_6_2" rows="3"
-                            onkeypress="wordsCounter('field_6_2','words6_2', event)"
-                            onpaste="wordsCounter('field_6_2','words6_2', event)"></textarea>
-                        <p style="float: right;">Λέξεις: <span id="words6_2"></span></p>
-                    </div>
-                    <div class="form-group">
-                        <label for="field_6_3" class="required">6.3 Σε διεθνείς οργανισμούς:</label>
-                        <textarea class="form-control" id="field_6_3" name="field_6_3" rows="3"
-                            onkeypress="wordsCounter('field_6_3','words6_3', event)"
-                            onpaste="wordsCounter('field_6_3','words6_3', event)"></textarea>
-                        <p style="float: right;">Λέξεις: <span id="words6_3"></span></p>
-                    </div>
-                </div>
-                <input type="button" name="previous" class="previous action-button-previous"
-                    value="Προηγούμενα πεδία" />
-                <input type="button" name="next" class="next action-button" value="Επόμενα πεδία" />
-            </fieldset>
-
-            <fieldset id="stoxoi_ruthmisis">
-                <h2>Στόχοι αξιολογούμενης ρύθμισης</h2>
-                <br>
-                <div id="field_7_wrap">
-                    <label class="col-form-label required">7. Σημειώστε ποιοι από τους στόχους βιώσιμης ανάπτυξης των
-                        Ηνωμένων Εθνών επιδιώκονται με την αξιολογούμενη ρύθμιση</label>
-                    <div class="index_goals"></div>
-                    <br>
-                    <div class="flex-form-group form-group">
-                        <div class="wrap">
-                            <input id="goal_1" class="checkbox-inline" type="checkbox" name="field_7_goal_1"
-                                value="goal-1">
-                            <label for="goal_1" class="checkbox-label"><img src="/img/gr-goal-1.jpg"
-                                    width="100px"></label>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/countable/3.0.1/Countable.min.js"></script>
+<!-- Development version. Change to production version later-->
+<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+<script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
+<div class="">
+    <!--<input type="button" name="back" class="back" value="Πίσω"/> <br/>--> <a href="#" class="govgr-back-link"
+        id="back" name="back"> <svg class="govgr-caret--left" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M18,22V2L6,12L18,22z" />
+        </svg> Επιστροφή στο ιστορικό</a>
+    <div class="govgr-width-container">
+        <div class="govgr-main-wrapper">
+            <div class="govgr-grid-column-two-thirds">
+                <form enctype="multipart/form-data">
+                    <input type="hidden" id="status_ekthesis" name="status_ekthesis" value="Συντάσσεται" />
+                    <fieldset id="arxiki" name="arxiki">
+                        <h2 class="govgr-heading-m">Ανάλυση Συνεπειών Ρύθμισης</h2>
+                        <div>
+                            <h4 id="subtitle"></h4>
+                            <p id="subtext"></p>
                         </div>
-                        <div class="wrap">
-                            <input id="goal_2" class="checkbox-inline" type="checkbox" name="field_7_goal_2"
-                                value="goal-2">
-                            <label for="goal_2" class="checkbox-label"><img src="/img/gr-goal-2.jpg"
-                                    width="100px"></label>
+                        <div class="govgr-grid">
+                            <div class="govgr-grid__col-span-6">
+                                <label for="title" class="govgr-label-row required">Τίτλος αξιολογούμενης
+                                    ρύθμισης</label>
+                            </div>                            
+                            <div class="govgr-grid__col-span-6">
+                                <input type="text" class="govgr-input form-control" id="title" name="title" />
+                            </div>
                         </div>
-                        <div class="wrap">
-                            <input id="goal_3" class="checkbox-inline" type="checkbox" name="field_7_goal_3"
-                                value="goal-3">
-                            <label for="goal_3" class="checkbox-label"><img src="/img/gr-goal-3.jpg"
-                                    width="100px"></label>
+                        <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
+                        <div class="govgr-grid">
+                            <div class="govgr-grid__col-span-6">
+                                <label for="typos_analysis" class="govgr-label-row required">Τύπος ανάλυσης</label>
+                            </div>
+                            <div class="govgr-grid__col-span-6">
+                                <input type="text" class="govgr-input form-control" id="typos_analysis"
+                                    name="typos_analysis" readonly />
+                            </div>
                         </div>
-                        <div class="wrap">
-                            <input id="goal_4" class="checkbox-inline" type="checkbox" name="field_7_goal_4"
-                                value="goal-4">
-                            <label for="goal_4" class="checkbox-label"><img src="/img/gr-goal-4.jpg"
-                                    width="100px"></label>
+                        <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
+                        <div class="govgr-grid">
+                            <div class="govgr-grid__col-span-6">
+                                <label for="initial_submit" class="govgr-label-row required">Αρχική καταχώρηση</label>
+                            </div>
+                            <div class="govgr-grid__col-span-6">
+                                <input type="text" class="govgr-input form-control" id="initial_submit"
+                                    name="initial_submit" readonly />
+                            </div>
                         </div>
-
-                    </div>
-                    <div class="flex-form-group form-group">
-                        <div class="wrap">
-                            <input id="goal_5" class="checkbox-inline" type="checkbox" name="field_7_goal_5"
-                                value="goal-5">
-                            <label for="goal_5" class="checkbox-label"><img src="/img/gr-goal-5.jpg"
-                                    width="100px"></label>
+                        <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
+                        <div class="govgr-grid">
+                            <div class="govgr-grid__col-span-6">
+                                <label for="epispeudon_foreas" class="govgr-label-row required">Επισπεύδων
+                                    φορέας</label>
+                            </div>
+                            <div class="govgr-grid__col-span-6">
+                                <textarea class="govgr-textarea" id="epispeudon_foreas" name="epispeudon_foreas"
+                                    rows="3"></textarea>
+                            </div>
                         </div>
-                        <div class="wrap">
-                            <input id="goal_6" class="checkbox-inline" type="checkbox" name="field_7_goal_6"
-                                value="goal-6">
-                            <label for="goal_6" class="checkbox-label"><img src="/img/gr-goal-6.jpg"
-                                    width="100px"></label>
+                        <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
+                        <div class="govgr-grid">
+                            <div class="govgr-grid__col-span-6">
+                                <label for="rythmisi_pou_afora" class="govgr-label-row">Ρύθμιση την οποία αφορά</label>
+                            </div>
+                            <div class="govgr-grid__col-span-6">
+                                <textarea class="govgr-textarea" id="rythmisi_pou_afora" name="rythmisi_pou_afora"
+                                    rows="3"></textarea>
+                            </div>
                         </div>
-                        <div class="wrap">
-                            <input id="goal_7" class="checkbox-inline" type="checkbox" name="field_7_goal_7"
-                                value="goal-7">
-                            <label for="goal_7" class="checkbox-label"><img src="/img/gr-goal-7.jpg"
-                                    width="100px"></label>
+                        <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
+                        <div class="govgr-grid">
+                            <div class="govgr-grid__col-span-6">
+                                <label for="stoixeia_epikoinwnias" class="govgr-label-row">Στοιχεία επικοινωνίας</label>
+                            </div>
+                            <div class="govgr-grid__col-span-6">
+                                <textarea class="govgr-textarea" id="stoixeia_epikoinwnias" name="stoixeia_epikoinwnias"
+                                    rows="3" placeholder="E-mail, κινητό, γραφείο κ.ο.κ"></textarea>
+                            </div>
                         </div>
-                        <div class="wrap">
-                            <input id="goal_8" class="checkbox-inline" type="checkbox" name="field_7_goal_8"
-                                value="goal-8">
-                            <label for="goal_8" class="checkbox-label"><img src="/img/gr-goal-8.jpg"
-                                    width="100px"></label>
+                        <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
+                        <div id="nomosxedio_div">
+                            <div id="upload_nomosxedio">
+                                <label for="nomosxedio" class="nomosxedio" id="nomosxedio_label">Επισύναψη
+                                    νομοσχεδίου</label> <br />
+                                <input type="file" class="govgr-file-upload" id="nomosxedio" name="nomosxedio"
+                                    accept=".pdf" />
+                            </div>
                         </div>
-
-                    </div>
-
-                    <div class="flex-form-group form-group">
-                        <div class="wrap">
-                            <input id="goal_9" class="checkbox-inline" type="checkbox" name="field_7_goal_9"
-                                value="goal-9">
-                            <label for="goal_9" class="checkbox-label"><img src="/img/gr-goal-9.jpg"
-                                    width="100px"></label>
+                        <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
+                        <div>
+                            <p class="govgr-body" id="tomeis_nomothetisis">Επιλέξατε από τον παρακάτω κατάλογο τον τομέα
+                                ή τους τομείς νομοθέτησης
+                                στους οποίους αφορούν οι
+                                βασικές διατάξεις της αξιολογούμενης ρύθμισης: </p>
+                            <div class="index_tomeis"></div>
                         </div>
-                        <div class="wrap">
-                            <input id="goal_10" class="checkbox-inline" type="checkbox" name="field_7_goal_10"
-                                value="goal-10">
-                            <label for="goal_10" class="checkbox-label"><img src="/img/gr-goal-10.jpg"
-                                    width="100px"></label>
+                        <div class="govgr-checkboxes ">
+                            <div class="govgr-checkboxes__item">
+                                <label for="ekpedeusi_politismos" class="govgr-label govgr-checkboxes__label">ΕΚΠΑΙΔΕΥΣΗ
+                                    - ΠΟΛΙΤΙΣΜΟΣ</label>
+                                <input class="govgr-checkboxes__input" name="ekpedeusi_politismos" type="checkbox"
+                                    id="ekpedeusi_politismos" />
+                            </div>
+                            <div class="govgr-checkboxes__item govgr-checkboxes--inline">
+                                <label for="eksoteriki_politiki" class="govgr-label govgr-checkboxes__label">ΕΘΝΙΚΗ
+                                    ΑΜΥΝΑ - ΕΞΩΤΕΡΙΚΗ
+                                    ΠΟΛΙΤΙΚΗ
+                                </label>
+                                <input class="govgr-checkboxes__input" type="checkbox" id="eksoteriki_politiki"
+                                    name="eksoteriki_politiki" value="eksoteriki_politiki" />
+                            </div>
+                            <div class="govgr-checkboxes__item">
+                                <label for="forologiki_politiki" class="govgr-label govgr-checkboxes__label">ΟΙΚΟΝΟΜΙΚΗ
+                                    / ΔΗΜΟΣΙΟΝΟΜΙΚΗ /
+                                    ΦΟΡΟΛΟΓΙΚΗ ΠΟΛΙΤΙΚΗ
+                                </label>
+                                <input class="govgr-checkboxes__input" type="checkbox" id="forologiki_politiki"
+                                    name="forologiki_politiki" value="forologiki_politiki" />
+                            </div>
+                            <div class="govgr-checkboxes__item">
+                                <label for="koinoniki_politiki" class="govgr-label govgr-checkboxes__label">ΚΟΙΝΩΝΙΚΗ
+                                    ΠΟΛΙΤΙΚΗ</label>
+                                <input class="govgr-checkboxes__input" type="checkbox" id="koinoniki_politiki"
+                                    name="koinoniki_politiki" value="koinoniki_politiki" />
+                            </div>
+                            <div class="govgr-checkboxes__item">
+                                <label for="dimosia_dioikisi" class="govgr-label govgr-checkboxes__label">ΔΗΜΟΣΙΑ
+                                    ΔΙΟΙΚΗΣΗ - ΔΗΜΟΣΙΑ ΤΑΞΗ -
+                                    ΔΙΚΑΙΟΣΥΝΗ
+                                </label>
+                                <input class="govgr-checkboxes__input" type="checkbox" id="dimosia_dioikisi"
+                                    name="dimosia_dioikisi" value="dimosia_dioikisi" />
+                            </div>
+                            <div class="govgr-checkboxes__item">
+                                <label for="anaptiksi" class="govgr-label govgr-checkboxes__label">ΑΝΑΠΤΥΞΗ - ΕΠΕΝΔΥΤΙΚΗ
+                                    ΔΡΑΣΤΗΡΙΟΤΗΤΑ</label>
+                                <input class="govgr-checkboxes__input" type="checkbox" id="anaptiksi" name="anaptiksi"
+                                    value="anaptiksi" />
+                            </div>
+                        </div> <br />
+                        <div class="govgr-button-group">
+                            <button type="button" class="govgr-btn govgr-btn-primary next action-button" name="next">
+                                Επόμενα πεδία
+                                <svg viewBox="0 0 24 24" class="govgr-svg-icon govgr-arrow--right" focusable="false"
+                                    aria-hidden="true">
+                                    <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z" />
+                                </svg>
+                            </button>
                         </div>
-                        <div class="wrap">
-                            <input id="goal_11" class="checkbox-inline" type="checkbox" name="field_7_goal_11"
-                                value="goal-11">
-                            <label for="goal_11" class="checkbox-label"><img src="/img/gr-goal-11.jpg"
-                                    width="100px"></label>
+                    </fieldset>
+
+                    <fieldset id="tautotita_ruthmisis">
+                        <h2>Α. Αιτιολογική έκθεση</h2> <br />
+                        <br />
+                        <h3>Η «ταυτότητα» της αξιολογούμενης ρύθμισης</h3> <br />
+                        <div class="govgr-grid">
+                            <div class="govgr-grid__col-span-6">
+                                <label for="field_1" class="govgr-label-row required">1. Ποιο ζήτημα αντιμετωπίζει η
+                                    αξιολογούμενη
+                                    ρύθμιση;
+                                </label>
+                            </div>
+                            <div class="govgr-grid__col-span-6">
+                                <textarea class="govgr-textarea" id="field_1" name="field_1" rows="3"
+                                    onkeypress="wordsCounter('field_1','words1', event)"
+                                    onpaste="wordsCounter('field_1','words1', event)"></textarea>
+                                <p style="float: right;">Λέξεις: <span id="words1"></span></p>
+                            </div>
                         </div>
-                        <div class="wrap">
-                            <input id="goal_12" class="checkbox-inline" type="checkbox" name="field_7_goal_12"
-                                value="goal-12">
-                            <label for="goal_12" class="checkbox-label"><img src="/img/gr-goal-12.jpg"
-                                    width="100px"></label>
+                        <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
+                        <div class="govgr-grid">
+                            <div class="govgr-grid__col-span-6">
+                                <label for="field_2" class="govgr-label-row required">2. Γιατί αποτελεί
+                                    πρόβλημα;</label>
+                            </div>
+                            <div class="govgr-grid__col-span-6">
+                                <textarea class="govgr-textarea" id="field_2" name="field_2" rows="3"
+                                    onkeypress="wordsCounter('field_2','words2', event)"
+                                    onpaste="wordsCounter('field_2','words2', event)"></textarea>
+                                <p style="float: right;">Λέξεις: <span id="words2"></span></p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="flex-form-group form-group">
-                        <div class="wrap">
-                            <input id="goal_13" class="checkbox-inline" type="checkbox" name="field_7_goal_13"
-                                value="goal-13">
-                            <label for="goal_13" class="checkbox-label"><img src="/img/gr-goal-13.jpg"
-                                    width="100px"></label>
+                        <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
+                        <div class="govgr-grid">
+                            <div class="govgr-grid__col-span-6">
+                                <label for="field_3" class="govgr-label-row required">3. Ποιους φορείς ή πληθυσμιακές
+                                    ομάδες αφορά;</label>
+                            </div>
+                            <div class="govgr-grid__col-span-6">
+                                <textarea class="govgr-textarea" id="field_3" name="field_3" rows="3"
+                                    onkeypress="wordsCounter('field_3','words3', event)"
+                                    onpaste="wordsCounter('field_3','words3', event)"></textarea>
+                                <p style="float: right;">Λέξεις: <span id="words3"></span></p>
+                            </div>
                         </div>
-                        <div class="wrap">
-                            <input id="goal_14" class="checkbox-inline" type="checkbox" name="field_7_goal_14"
-                                value="goal-14">
-                            <label for="goal_14" class="checkbox-label"><img src="/img/gr-goal-14.jpg"
-                                    width="100px"></label>
+                        <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
+                        <div class="govgr-button-group">
+                            <button type="button" class="govgr-btn govgr-btn-primary previous action-button-previous"
+                                name="previous">
+                                <svg viewBox="0 0 24 24" class="govgr-svg-icon govgr-arrow--left" focusable="false"
+                                    aria-hidden="true">
+                                    <path d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z" />
+                                    <!--  <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z"/>-->
+                                </svg> Προηγούμενα πεδία
+                            </button>
+                            <button type="button" class="govgr-btn govgr-btn-primary next action-button" name="next">
+                                Επόμενα πεδία
+                                <svg viewBox="0 0 24 24" class="govgr-svg-icon govgr-arrow--right" focusable="false"
+                                    aria-hidden="true">
+                                    <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z" />
+                                </svg>
+                            </button>
                         </div>
-                        <div class="wrap">
-                            <input id="goal_15" class="checkbox-inline" type="checkbox" name="field_7_goal_15"
-                                value="goal-15">
-                            <label for="goal_15" class="checkbox-label"><img src="/img/gr-goal-15.jpg"
-                                    width="100px"></label>
+                    </fieldset>
+
+                    <fieldset id="anagkaiotita_rythmisis_1">
+                        <h2 class="govgr-heading-m">Η αναγκαιότητα της αξιολογούμενης ρύθμισης (i)</h2> <br />
+                        <div class="govgr-grid">
+                            <div class="govgr-grid__col-span-9">
+                                <label for="field_4" class="govgr-label-row required">4. Το εν λόγω ζήτημα έχει
+                                    αντιμετωπιστεί με νομοθετική ρύθμιση στο παρελθόν;
+                                </label>
+                            </div>
+                            <div class="govgr-grid__col-span-3">
+                                <select id="field_4" name="field_4" class="govgr-select">
+                                    <option selected disabled>Eπιλογή</option>
+                                    <option value="Ναι">Ναι</option>
+                                    <option value="Όχι">Όχι</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="wrap">
-                            <input id="goal_16" class="checkbox-inline" type="checkbox" name="field_7_goal_16"
-                                value="goal-16">
-                            <label for="goal_16" class="checkbox-label"><img src="/img/gr-goal-16.jpg"
-                                    width="100px"></label>
+                        <div class="govgr-grid" id="field_4_wrap" style="display:none;">
+                            <div class="govgr-grid__col-span-6">
+                                <label for="field_4_1" class="govgr-label-row required">4.1 Ποιο είναι το ισχύον νομικό
+                                    πλαίσιο που ρυθμίζει το
+                                    ζήτημα;
+                                </label>
+                            </div>
+                            <div class="govgr-grid__col-span-6">
+                                <textarea class="govgr-textarea" id="field_4_1" name="field_4_comments" rows="3"
+                                    onkeypress="wordsCounter('field_4_1','words4')"
+                                    onpaste="wordsCounter('field_4_1','words4')"></textarea>
+                                <p style="float: right;">Λέξεις: <span id="words4"></span></p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="flex-form-group form-group">
-                        <div class="wrap">
-                            <input id="goal_17" class="checkbox-inline" type="checkbox" name="field_7_goal_17"
-                                value="goal-17">
-                            <label for="goal_17" class="checkbox-label"><img src="/img/gr-goal-17.jpg"
-                                    width="100px"></label>
+                        <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" /><br />
+                        <div class="govgr-button-group">
+                            <button type="button" class="govgr-btn govgr-btn-primary previous action-button-previous"
+                                name="previous">
+                                <svg viewBox="0 0 24 24" class="govgr-svg-icon govgr-arrow--left" focusable="false"
+                                    aria-hidden="true">
+                                    <path d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z" />
+                                    <!--  <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z"/>-->
+                                </svg> Προηγούμενα πεδία
+                            </button>
+                            <button type="button" class="govgr-btn govgr-btn-primary next action-button" name="next">
+                                Επόμενα πεδία
+                                <svg viewBox="0 0 24 24" class="govgr-svg-icon govgr-arrow--right" focusable="false"
+                                    aria-hidden="true">
+                                    <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z" />
+                                </svg>
+                            </button>
                         </div>
-                    </div>
-                </div>
-                <hr>
-                <label>8. Ποιοι είναι οι στόχοι της αξιολογούμενης ρύθμισης;</label>
-                <div class="index_field_8"></div>
-                <div class="form-group">
-                    <label for="field_8_1" class="required">8.1 βραχυπρόθεσμοι: </label>
-                    <textarea class="form-control" id="field_8_1" name="field_8_1" rows="3"
-                        onkeypress="wordsCounter('field_8_1','words8_1', event)"
-                        onpaste="wordsCounter('field_8_1','words8_1', event)"></textarea>
-                    <p style="float: right;">Λέξεις: <span id="words8_1"></span></p>
-                </div>
+                    </fieldset>
 
-                <div class="form-group">
-                    <label for="field_8_2" class="required">8.2 μακροπρόθεσμοι: </label>
-                    <textarea class="form-control" id="field_8_2" name="field_8_2" rows="3"
-                        onkeypress="wordsCounter('field_8_2','words8_2', event)"
-                        onpaste="wordsCounter('field_8_2','words8_2', event)"></textarea>
-                    <p style="float: right;">Λέξεις: <span id="words8_2"></span></p>
-                </div>
 
-                <input type="button" name="previous" class="previous action-button-previous"
-                    value="Προηγούμενα πεδία" />
-                <input type="button" name="next" class="next action-button" value="Επόμενα πεδία" />
-            </fieldset>
+                    <fieldset id="anagkaiotita_rythmisis_2">
+                        <h2 class="govgr-heading-m">Η αναγκαιότητα της αξιολογούμενης ρύθμισης (ii)</h2>
+                        <label>5. Γιατί δεν είναι δυνατό να αντιμετωπιστεί στο πλαίσιο της υφιστάμενης
+                            νομοθεσίας:</label>
+                        <br />
+                        <div class="index_field_5"></div> <br />
+                        <div class="govgr-grid">
+                            <div class="govgr-grid__col-span-6">
+                                <label for="field_5_1" class="govgr-label-row required">5.1 με αλλαγή προεδρικού
+                                    διατάγματος, υπουργικής απόφασης ή
+                                    άλλης κανονιστικής πράξης;
+                                </label>
+                            </div>
+                            <div class="govgr-grid__col-span-6">
+                                <textarea class="govgr-textarea" id="field_5_1" name="field_5_1" rows="3"
+                                    onkeypress="wordsCounter('field_5_1','words5_1', event)"
+                                    onpaste="wordsCounter('field_5_1','words5_1', event)"></textarea>
+                                <p style="float: right;">Λέξεις: <span id="words5_1"></span></p>
+                            </div>
+                        </div>
+                        <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
+                        <div class="govgr-grid">
+                            <div class="govgr-grid__col-span-6">
+                                <label for="field_5_2" class="govgr-label-row required">5.2 με αλλαγή διοικητικής
+                                    πρακτικής συμπεριλαμβανομένης της
+                                    δυνατότητας νέας ερμηνευτικής προσέγγισης της υφιστάμενης νομοθεσίας;
+                                </label>
+                            </div>
+                            <div class="govgr-grid__col-span-6">
+                                <textarea class="govgr-textarea" id="field_5_2" name="field_5_2" rows="3"
+                                    onkeypress="wordsCounter('field_5_2','words5_2', event)"
+                                    onpaste="wordsCounter('field_5_2','words5_2', event)"></textarea>
+                                <p style="float: right;">Λέξεις: <span id="words5_2"></span></p>
+                            </div>
+                        </div>
+                        <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
+                        <div class="govgr-grid">
+                            <div class="govgr-grid__col-span-6">
+                                <label for="field_5_3" class="govgr-label-row required">5.3 με διάθεση περισσότερων
+                                    ανθρώπινων και υλικών
+                                    πόρων;
+                                </label>
+                            </div>
+                            <div class="govgr-grid__col-span-6">
+                                <textarea class="govgr-textarea" id="field_5_3" name="field_5_3" rows="3"
+                                    onkeypress="wordsCounter('field_5_3','words5_3', event)"
+                                    onpaste="wordsCounter('field_5_3','words5_3', event)"></textarea>
+                                <p style="float: right;">Λέξεις: <span id="words5_3"></span></p>
+                            </div>
+                        </div>
+                        <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
+                        <div class="govgr-button-group">
+                            <button type="button" class="govgr-btn govgr-btn-primary previous action-button-previous"
+                                name="previous">
+                                <svg viewBox="0 0 24 24" class="govgr-svg-icon govgr-arrow--left" focusable="false"
+                                    aria-hidden="true">
+                                    <path d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z" />
+                                    <!--  <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z"/>-->
+                                </svg> Προηγούμενα πεδία
+                            </button>
+                            <button type="button" class="govgr-btn govgr-btn-primary next action-button" name="next">
+                                Επόμενα πεδία
+                                <svg viewBox="0 0 24 24" class="govgr-svg-icon govgr-arrow--right" focusable="false"
+                                    aria-hidden="true">
+                                    <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </fieldset>
 
-            <%- include('fill_form/field_9.ejs') %>
+                    <fieldset id="sunafeis_praktikes">
+                        <h2 class="govgr-heading-m">Συναφείς Πρακτικές</h2> <br />
+                        <div class="govgr-grid">
+                            <div class="govgr-grid__col-span-9">
+                                <label for="field_6" class="govgr-label-row required">6. Έχετε λάβει υπόψη συναφείς
+                                    πρακτικές;
+                                </label>
+                            </div>
+                            <div class="govgr-grid__col-span-3">
+                                <select id="field_6" name="field_6" class="govgr-select">
+                                    <option selected disabled>Eπιλογή</option>
+                                    <option value="Ναι">Ναι</option>
+                                    <option value="Όχι">Όχι</option>
+                                </select>
+                            </div>
+                        </div> <br />
+                        <div id="field_6_wrap" class="govgr-grid" style="display:none;">
+                            <div class="govgr-grid">
+                                <div class="govgr-grid__col-span-6">
+                                    <label for="field_6_1" class="govgr-label-row required">6.1 Σε άλλη/ες χώρα/ες της
+                                        Ε.Ε. ή του ΟΟΣΑ:
+                                    </label>
+                                </div>
+                                <div class="govgr-grid__col-span-6">
+                                    <textarea class="govgr-textarea" id="field_6_1" name="field_6_1" rows="3"
+                                        onkeypress="wordsCounter('field_6_1','words6')"
+                                        onpaste="wordsCounter('field_6_1','words6')"></textarea>
+                                    <p style="float: right;">Λέξεις: <span id="words6"></span></p>
+                                </div>
+                            </div>
+                            <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
+                            <div class="govgr-grid">
+                                <div class="govgr-grid__col-span-6">
+                                    <label for="field_6_2" class="govgr-label-row required">6.2 Σε όργανα της Ε.Ε.:
+                                    </label>
+                                </div>
+                                <div class="govgr-grid__col-span-6">
+                                    <textarea class="govgr-textarea" id="field_6_2" name="field_6_2" rows="3"
+                                        onkeypress="wordsCounter('field_6_2','words6_2')"
+                                        onpaste="wordsCounter('field_6_2','words6_2')"></textarea>
+                                    <p style="float: right;">Λέξεις: <span id="words6_2"></span></p>
+                                </div>
+                            </div>
+                            <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
+                            <div class="govgr-grid">
+                                <div class="govgr-grid__col-span-6">
+                                    <label for="field_6_3" class="govgr-label-row required">6.3 Σε διεθνείς οργανισμούς:
+                                    </label>
+                                </div>
+                                <div class="govgr-grid__col-span-6">
+                                    <textarea class="govgr-textarea" id="field_6_3" name="field_6_3" rows="3"
+                                        onkeypress="wordsCounter('field_6_3','words6_3')"
+                                        onpaste="wordsCounter('field_6_3','words6_3')"></textarea>
+                                    <p style="float: right;">Λέξεις: <span id="words6_3"></span></p>
+                                </div>
+                            </div>
+                            <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
+                        </div>
+                        <div class="govgr-button-group">
+                            <button type="button" class="govgr-btn govgr-btn-primary previous action-button-previous"
+                                name="previous">
+                                <svg viewBox="0 0 24 24" class="govgr-svg-icon govgr-arrow--left" focusable="false"
+                                    aria-hidden="true">
+                                    <path d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z" />
+                                    <!--  <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z"/>-->
+                                </svg> Προηγούμενα πεδία
+                            </button>
+                            <button type="button" class="govgr-btn govgr-btn-primary next action-button" name="next">
+                                Επόμενα πεδία
+                                <svg viewBox="0 0 24 24" class="govgr-svg-icon govgr-arrow--right" focusable="false"
+                                    aria-hidden="true">
+                                    <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </fieldset>
 
-                <fieldset id="digital_governance">
-                    <h2>Ψηφιακή διακυβέρνηση</h2>
-                    <br>
 
-                    <div class="checkbox-group form-group row">
-                        <label class="col-sm-8 col-form-label digital-gov-label">10. Σε περίπτωση που προβλέπεται η
-                            χρήση
-                            πληροφοριακού συστήματος, ποια θα είναι η συμβολή αυτού στην επίτευξη των στόχων της
-                            αξιολογούμενης ρύθμισης: </label>
-                        <div class="index_field_10"></div>
-                    </div>
+                    <fieldset id="stoxoi_ruthmisis">
+                        <h2 class="govgr-heading-m">Στόχοι αξιολογούμενης ρύθμισης</h2> <br />
+                        <div id="field_7_wrap">
+                            <label class="govgr-label required">7. Σημειώστε ποιοι από τους στόχους βιώσιμης ανάπτυξης
+                                των
+                                Ηνωμένων Εθνών επιδιώκονται με την αξιολογούμενη ρύθμιση
+                            </label>
+                            <div class="index_goals"></div> <br />
+                            <div class="flex-form-group form-group">
+                                <div class="wrap">
+                                    <input id="goal_1" class="checkbox-inline" type="checkbox" name="field_7_goal_1"
+                                        value="goal-1" />
+                                    <label for="goal_1" class="checkbox-label">
+                                        <img src="/img/gr-goal-1.jpg" width="100px" />
+                                    </label>
+                                </div>
+                                <div class="wrap">
+                                    <input id="goal_2" class="checkbox-inline" type="checkbox" name="field_7_goal_2"
+                                        value="goal-2" />
+                                    <label for="goal_2" class="checkbox-label">
+                                        <img src="/img/gr-goal-2.jpg" width="100px" />
+                                    </label>
+                                </div>
+                                <div class="wrap">
+                                    <input id="goal_3" class="checkbox-inline" type="checkbox" name="field_7_goal_3"
+                                        value="goal-3" />
+                                    <label for="goal_3" class="checkbox-label">
+                                        <img src="/img/gr-goal-3.jpg" width="100px" />
+                                    </label>
+                                </div>
+                                <div class="wrap">
+                                    <input id="goal_4" class="checkbox-inline" type="checkbox" name="field_7_goal_4"
+                                        value="goal-4" />
+                                    <label for="goal_4" class="checkbox-label">
+                                        <img src="/img/gr-goal-4.jpg" width="100px" />
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="flex-form-group form-group">
+                                <div class="wrap">
+                                    <input id="goal_5" class="checkbox-inline" type="checkbox" name="field_7_goal_5"
+                                        value="goal-5" />
+                                    <label for="goal_5" class="checkbox-label">
+                                        <img src="/img/gr-goal-5.jpg" width="100px" />
+                                    </label>
+                                </div>
+                                <div class="wrap">
+                                    <input id="goal_6" class="checkbox-inline" type="checkbox" name="field_7_goal_6"
+                                        value="goal-6" />
+                                    <label for="goal_6" class="checkbox-label">
+                                        <img src="/img/gr-goal-6.jpg" width="100px" />
+                                    </label>
+                                </div>
+                                <div class="wrap">
+                                    <input id="goal_7" class="checkbox-inline" type="checkbox" name="field_7_goal_7"
+                                        value="goal-7" />
+                                    <label for="goal_7" class="checkbox-label">
+                                        <img src="/img/gr-goal-7.jpg" width="100px" />
+                                    </label>
+                                </div>
+                                <div class="wrap">
+                                    <input id="goal_8" class="checkbox-inline" type="checkbox" name="field_7_goal_8"
+                                        value="goal-8" />
+                                    <label for="goal_8" class="checkbox-label">
+                                        <img src="/img/gr-goal-8.jpg" width="100px" />
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="flex-form-group form-group">
+                                <div class="wrap">
+                                    <input id="goal_9" class="checkbox-inline" type="checkbox" name="field_7_goal_9"
+                                        value="goal-9" />
+                                    <label for="goal_9" class="checkbox-label">
+                                        <img src="/img/gr-goal-9.jpg" width="100px" />
+                                    </label>
+                                </div>
+                                <div class="wrap">
+                                    <input id="goal_10" class="checkbox-inline" type="checkbox" name="field_7_goal_10"
+                                        value="goal-10" />
+                                    <label for="goal_10" class="checkbox-label">
+                                        <img src="/img/gr-goal-10.jpg" width="100px" />
+                                    </label>
+                                </div>
+                                <div class="wrap">
+                                    <input id="goal_11" class="checkbox-inline" type="checkbox" name="field_7_goal_11"
+                                        value="goal-11" />
+                                    <label for="goal_11" class="checkbox-label">
+                                        <img src="/img/gr-goal-11.jpg" width="100px" />
+                                    </label>
+                                </div>
+                                <div class="wrap">
+                                    <input id="goal_12" class="checkbox-inline" type="checkbox" name="field_7_goal_12"
+                                        value="goal-12" />
+                                    <label for="goal_12" class="checkbox-label">
+                                        <img src="/img/gr-goal-12.jpg" width="100px" />
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="flex-form-group form-group">
+                                <div class="wrap">
+                                    <input id="goal_13" class="checkbox-inline" type="checkbox" name="field_7_goal_13"
+                                        value="goal-13" />
+                                    <label for="goal_13" class="checkbox-label">
+                                        <img src="/img/gr-goal-13.jpg" width="100px" />
+                                    </label>
+                                </div>
+                                <div class="wrap">
+                                    <input id="goal_14" class="checkbox-inline" type="checkbox" name="field_7_goal_14"
+                                        value="goal-14" />
+                                    <label for="goal_14" class="checkbox-label">
+                                        <img src="/img/gr-goal-14.jpg" width="100px" />
+                                    </label>
+                                </div>
+                                <div class="wrap">
+                                    <input id="goal_15" class="checkbox-inline" type="checkbox" name="field_7_goal_15"
+                                        value="goal-15" />
+                                    <label for="goal_15" class="checkbox-label">
+                                        <img src="/img/gr-goal-15.jpg" width="100px" />
+                                    </label>
+                                </div>
+                                <div class="wrap">
+                                    <input id="goal_16" class="checkbox-inline" type="checkbox" name="field_7_goal_16"
+                                        value="goal-16" />
+                                    <label for="goal_16" class="checkbox-label">
+                                        <img src="/img/gr-goal-16.jpg" width="100px" />
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="flex-form-group form-group">
+                                <div class="wrap">
+                                    <input id="goal_17" class="checkbox-inline" type="checkbox" name="field_7_goal_17"
+                                        value="goal-17" />
+                                    <label for="goal_17" class="checkbox-label">
+                                        <img src="/img/gr-goal-17.jpg" width="100px" />
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
+                        <h2 class="govgr-heading-m">8. Ποιοι είναι οι στόχοι της αξιολογούμενης ρύθμισης;</h2> <br />
+                        <div class="index_field_8"></div>
+                        <div class="govgr-grid">
+                            <div class="govgr-grid__col-span-6">
+                                <label for="field_8_1" class="govgr-label-row required">8.1 βραχυπρόθεσμοι:
+                                </label>
+                            </div>
+                            <div class="govgr-grid__col-span-6">
+                                <textarea class="govgr-textarea" id="field_8_1" name="field_8_1" rows="3"
+                                    onkeypress="wordsCounter('field_8_1','words8_1', event)"
+                                    onpaste="wordsCounter('field_8_1','words8_1', event)"></textarea>
+                                <p style="float: right;">Λέξεις: <span id="words8_1"></span></p>
+                            </div>
+                        </div>
+                        <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
+                        <div class="govgr-grid">
+                            <div class="govgr-grid__col-span-6">
+                                <label for="field_8_2" class="govgr-label-row required">8.2 μακροπρόθεσμοι:</label>
+                            </div>
+                            <div class="govgr-grid__col-span-6">
+                                <textarea class="govgr-textarea" id="field_8_2" name="field_8_2" rows="3"
+                                    onkeypress="wordsCounter('field_8_2','words8_2', event)"
+                                    onpaste="wordsCounter('field_8_2','words8_2', event)"></textarea>
+                                <p style="float: right;">Λέξεις: <span id="words8_2"></span></p>
+                            </div>
+                        </div>
+                        <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
+                        <div class="govgr-button-group">
+                            <button type="button" class="govgr-btn govgr-btn-primary previous action-button-previous"
+                                name="previous">
+                                <svg viewBox="0 0 24 24" class="govgr-svg-icon govgr-arrow--left" focusable="false"
+                                    aria-hidden="true">
+                                    <path d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z" />
+                                    <!--  <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z"/>-->
+                                </svg> Προηγούμενα πεδία
+                            </button>
+                            <button type="button" class="govgr-btn govgr-btn-primary next action-button" name="next">
+                                Επόμενα πεδία
+                                <svg viewBox="0 0 24 24" class="govgr-svg-icon govgr-arrow--right" focusable="false"
+                                    aria-hidden="true">
+                                    <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </fieldset>
+                    <%- include('fill_form/field_9.ejs') %>
 
-                    <div class="checkbox-group form-group row">
-                        <div class="col-2"></div>
-                        <label class="col-3 col-form-label">ΑΜΕΣΗ</label>
-                        <input class="col-2 form-check-input position-static" type="checkbox" id="field_10_amesi"
-                            name="field_10_amesi">
-                    </div>
-                    <div id="amesi_wrap" class="form-group digital_gov" style="display:none;">
-                        <label for="field_10_amesi_comments" class="digital-gov-label">Εάν είναι άμεση,
-                            εξηγήστε:</label>
-                        <textarea class="form-control" id="field_10_amesi_comments" name="field_10_amesi_comments"
-                            rows="3" onkeypress="wordsCounter('field_10_amesi_comments','words10_1', event)"
-                            onpaste="wordsCounter('field_10_amesi_comments','words10_1', event)"></textarea>
-                        <p style="float: right;">Λέξεις: <span id="words10_1"></span></p>
-                    </div>
+                        <fieldset id="digital_governance">
+                            <h2 class="govgr-heading-m">Ψηφιακή διακυβέρνηση</h2> <br />
+                            <div class="govgr-grid__col-span-12">
+                                <label class="col-sm-8 col-form-label digital-gov-label">10. Σε περίπτωση που
+                                    προβλέπεται η
+                                    χρήση
+                                    πληροφοριακού συστήματος, ποια θα είναι η συμβολή αυτού στην επίτευξη των στόχων της
+                                    αξιολογούμενης ρύθμισης:
+                                </label>
+                                <div class="index_field_10"></div>
+                            </div>
+                            <div class="checkbox-group form-group row">
+                                <div class="col-2"></div>
+                                <label class="col-3 col-form-label">ΑΜΕΣΗ</label>
+                                <input class="col-2 form-check-input position-static" type="checkbox"
+                                    id="field_10_amesi" name="field_10_amesi" />
+                            </div>
+                            <div id="amesi_wrap" class="form-group digital_gov" style="display:none;">
+                                <label for="field_10_amesi_comments" class="digital-gov-label">Εάν είναι άμεση,
+                                    εξηγήστε:
+                                </label>
+                                <textarea class="govgr-textarea" id="field_10_amesi_comments"
+                                    name="field_10_amesi_comments" rows="3"
+                                    onkeypress="wordsCounter('field_10_amesi_comments','words10_1', event)"
+                                    onpaste="wordsCounter('field_10_amesi_comments','words10_1', event)"></textarea>
+                                <p style="float: right;">Λέξεις: <span id="words10_1"></span></p>
+                            </div>
+                            <div class="checkbox-group form-group row">
+                                <div class="col-2"></div>
+                                <label class="col-3 col-form-label">ΕΜΜΕΣΗ</label>
+                                <input class="col-2 form-check-input position-static" type="checkbox"
+                                    id="field_10_emmesi" name="field_10_emmesi" />
+                            </div>
+                            <div id="emesi_wrap" class="form-group digital_gov" style="display:none;">
+                                <label for="field_10_emmesi_comments" class="digital-gov-label">Εάν είναι έμμεση,
+                                    εξηγήστε:
+                                </label>
+                                <textarea class="govgr-textarea" id="field_10_emmesi_comments"
+                                    name="field_10_emmesi_comments" rows="3"
+                                    onkeypress="wordsCounter('field_10_emmesi_comments','words10_2', event)"
+                                    onpaste="wordsCounter('field_10_emmesi_comments','words10_2', event)"></textarea>
+                                <p style="float: right;">Λέξεις: <span id="words10_2"></span></p>
+                            </div>
+                            <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
+                            <div class="govgr-grid">
+                                <div class="govgr-grid__col-span-9">
+                                    <label for="field_11" class="govgr-label-row required">11. Το προβλεπόμενο
+                                        πληροφοριακό
+                                        σύστημα είναι συμβατό με την εκάστοτε ψηφιακή στρατηγική της χώρας (Βίβλος
+                                        Ψηφιακού
+                                        Μετασχηματισμού);
+                                    </label>
+                                </div>
+                                <div class="govgr-grid__col-span-3">
+                                    <select id="field_11" name="field_11" class="govgr-select">
+                                        <option selected disabled>Eπιλογή</option>
+                                        <option value="Ναι">Ναι</option>
+                                        <option value="Όχι">Όχι</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
+                            <div id="field_11_wrap" class="form-group digital_gov" style="display:none;">
+                                <label for="field_11_comments" class="digital-gov-label">Εξηγήστε</label>
+                                <textarea class="govgr-textarea" name="field_11_comments" id="field_11_comments"
+                                    rows="3" onkeypress="wordsCounter('field_11_comments','words11', event)"
+                                    onpaste="wordsCounter('field_11_comments','words11', event)"></textarea>
+                                <p style="float: right;">Λέξεις: <span id="words11"></span></p>
+                            </div>
+                            <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
+                            <div class="govgr-grid">
+                                <div class="govgr-grid__col-span-9">
+                                    <label for="field_12" class="govgr-label-row required">12. Διασφαλίζεται η
+                                        διαλειτουργικότητα του εν λόγω πληροφοριακού συστήματος με άλλα υφιστάμενα
+                                        συστήματα;
+                                    </label>
+                                </div>
+                                <div class="govgr-grid__col-span-3">
+                                    <select id="field_12" name="field_12" class="govgr-select">
+                                        <option selected disabled>Eπιλογή</option>
+                                        <option value="Ναι">Ναι</option>
+                                        <option value="Όχι">Όχι</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
+                            <div id="field_12_wrap" class="form-group digital_gov" style="display:none;">
+                                <label for="field_12_comments" class="digital-gov-label">Αναφέρατε ποια είναι αυτά τα
+                                    συστήματα:
+                                </label>
+                                <textarea class="govgr-textarea" name="field_12_comments" id="field_12_comments"
+                                    rows="3" onkeypress="wordsCounter('field_12_comments','words12', event)"
+                                    onpaste="wordsCounter('field_12_comments','words12', event)"></textarea>
+                                <p style="float: right;">Λέξεις: <span id="words12"></span></p>
+                            </div>
+                            <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
+                            <div class="govgr-grid">
+                                <div class="govgr-grid__col-span-9">
+                                    <label for="field_13" class="govgr-label-row required">13. Έχει προηγηθεί
+                                        μελέτη
+                                        βιωσιμότητας του προβλεπόμενου πληροφοριακού συστήματος;
+                                    </label>
+                                </div>
+                                <div class="govgr-grid__col-span-3">
+                                    <select id="field_13" name="field_13" class="govgr-select">
+                                        <option selected disabled>Eπιλογή</option>
+                                        <option value="Ναι">Ναι</option>
+                                        <option value="Όχι">Όχι</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
+                            <div id="field_13_wrap" class="form-group digital_gov" style="display:none;">
+                                <label for="field_13_comments" class="digital-gov-label">Εξηγήστε</label>
+                                <textarea class="govgr-textarea" name="field_13_comments" id="field_13_comments"
+                                    rows="3" onkeypress="wordsCounter('field_13_comments','words13', event)"
+                                    onpaste="wordsCounter('field_13_comments','words13', event)"></textarea>
+                                <p style="float: right;">Λέξεις: <span id="words13"></span></p>
+                            </div>
+                            <div class="govgr-button-group">
+                                <button type="button"
+                                    class="govgr-btn govgr-btn-primary previous action-button-previous" name="previous">
+                                    <svg viewBox="0 0 24 24" class="govgr-svg-icon govgr-arrow--left" focusable="false"
+                                        aria-hidden="true">
+                                        <path d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z" />
+                                        <!--  <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z"/>-->
+                                    </svg> Προηγούμενα πεδία
+                                </button>
+                                <button type="button" class="govgr-btn govgr-btn-primary next action-button"
+                                    name="next">
+                                    Επόμενα πεδία
+                                    <svg viewBox="0 0 24 24" class="govgr-svg-icon govgr-arrow--right" focusable="false"
+                                        aria-hidden="true">
+                                        <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </fieldset>
 
-                    <div class="checkbox-group form-group row">
-                        <div class="col-2"></div>
-                        <label class="col-3 col-form-label">ΕΜΜΕΣΗ</label>
-                        <input class="col-2 form-check-input position-static" type="checkbox" id="field_10_emmesi"
-                            name="field_10_emmesi">
-                    </div>
 
-                    <div id="emesi_wrap" class="form-group digital_gov" style="display:none;">
-                        <label for="field_10_emmesi_comments" class="digital-gov-label">Εάν είναι έμμεση,
-                            εξηγήστε:</label>
-                        <textarea class="form-control" id="field_10_emmesi_comments" name="field_10_emmesi_comments"
-                            rows="3" onkeypress="wordsCounter('field_10_emmesi_comments','words10_2', event)"
-                            onpaste="wordsCounter('field_10_emmesi_comments','words10_2', event)"></textarea>
-                        <p style="float: right;">Λέξεις: <span id="words10_2"></span></p>
-                    </div>
-                    <hr>
+                        <fieldset id="kat_arthro_analusi" class="table-14">
+                            <h2 class="govgr-heading-m">Κατ’ άρθρο ανάλυση αξιολογούμενης ρύθμισης</h2> <br />
+                            <table class="govgr-table--dark govgr-table" id="field_14_table">
+                                <thead class="govgr-table__head">
+                                    <tr class="govgr-table__row">
+                                        <th class="govgr-table__header" colspan="2">
+                                            <label id="table_14_label" class="table-14-label required">14.Σύνοψη
+                                                στόχων κάθε άρθρου
+                                            </label>
+                                            <div class="table-cell index_14"></div>
+                                        </th>
+                                    </tr>
+                                    <tr class="govgr-table__row">
+                                        <th class="govgr-table__header" colspan="1">Άρθρο
+                                            <div class="table-cell index_article"></div>
+                                        </th>
+                                        <th class="govgr-table__header" colspan="1">Στόχος
+                                            <div class="table-cell index_goal"></div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody class="govgr-table__body" id="tbody_14">
+                                </tbody>
+                            </table>
+                            <button type="button" id="add_row_table_14" name="add_row_table_14"
+                                class="govgr-btn govgr-btn-secondary" style="float: right;">+ Επιπλέον σειρά</button>
+                            <br />
+                            <br />
+                            <br />
+                            <div class="govgr-button-group">
+                                <button type="button"
+                                    class="govgr-btn govgr-btn-primary previous action-button-previous" name="previous">
+                                    <svg viewBox="0 0 24 24" class="govgr-svg-icon govgr-arrow--left" focusable="false"
+                                        aria-hidden="true">
+                                        <path d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z" />
+                                        <!--  <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z"/>-->
+                                    </svg> Προηγούμενα πεδία
+                                </button>
+                                <button type="button" class="govgr-btn govgr-btn-primary next action-button"
+                                    name="next">
+                                    Επόμενα πεδία
+                                    <svg viewBox="0 0 24 24" class="govgr-svg-icon govgr-arrow--right" focusable="false"
+                                        aria-hidden="true">
+                                        <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </fieldset>
 
-                    <div class="checkbox-group form-group row digital_gov">
-                        <label for="field_11" class="digital-gov-label col-sm-8 col-form-label">11. Το προβλεπόμενο
-                            πληροφοριακό
-                            σύστημα είναι συμβατό με την εκάστοτε ψηφιακή στρατηγική της χώρας (Βίβλος Ψηφιακού
-                            Μετασχηματισμού);</label>
-                        <select id="field_11" name="field_11" class="col-sm-2 form-control">
-                            <option selected disabled>Eπιλογή</option>
-                            <option value="Ναι">Ναι</option>
-                            <option value="Όχι">Όχι</option>
-                        </select>
-                    </div>
-
-                    <div id="field_11_wrap" class="form-group digital_gov" style="display:none;">
-                        <label for="field_11_comments" class="digital-gov-label">Εξηγήστε</label>
-                        <textarea class="form-control" name="field_11_comments" id="field_11_comments" rows="3"
-                            onkeypress="wordsCounter('field_11_comments','words11', event)"
-                            onpaste="wordsCounter('field_11_comments','words11', event)"></textarea>
-                        <p style="float: right;">Λέξεις: <span id="words11"></span></p>
-                    </div>
-                    <hr>
-
-                    <div class="checkbox-group form-group row digital_gov">
-                        <label for="field_12" class="col-sm-8 col-form-label digital-gov-label">12. Διασφαλίζεται η
-                            διαλειτουργικότητα του εν λόγω πληροφοριακού συστήματος με άλλα υφιστάμενα
-                            συστήματα;</label>
-                        <select id="field_12" name="field_12" class="col-sm-2 form-control">
-                            <option selected disabled>Eπιλογή</option>
-                            <option value="Ναι">Ναι</option>
-                            <option value="Όχι">Όχι</option>
-                        </select>
-                    </div>
-
-                    <div id="field_12_wrap" class="form-group digital_gov" style="display:none;">
-                        <label for="field_12_comments" class="digital-gov-label">Αναφέρατε ποια είναι αυτά τα
-                            συστήματα:</label>
-                        <textarea class="form-control" name="field_12_comments" id="field_12_comments" rows="3"
-                            onkeypress="wordsCounter('field_12_comments','words12', event)"
-                            onpaste="wordsCounter('field_12_comments','words12', event)"></textarea>
-                        <p style="float: right;">Λέξεις: <span id="words12"></span></p>
-                    </div>
-                    <hr>
-
-                    <div class="checkbox-group form-group row digital_gov">
-                        <label for="field_13" class="col-sm-8 col-form-label digital-gov-label">13. Έχει προηγηθεί
-                            μελέτη
-                            βιωσιμότητας του προβλεπόμενου πληροφοριακού συστήματος;</label>
-                        <select id="field_13" name="field_13" class="col-sm-2 form-control">
-                            <option selected disabled>Eπιλογή</option>
-                            <option value="Ναι">Ναι</option>
-                            <option value="Όχι">Όχι</option>
-                        </select>
-                    </div>
-
-                    <div id="field_13_wrap" class="form-group digital_gov" style="display:none;">
-                        <label for="field_13_comments" class="digital-gov-label">Εξηγήστε</label>
-                        <textarea class="form-control" name="field_13_comments" id="field_13_comments" rows="3"
-                            onkeypress="wordsCounter('field_13_comments','words13', event)"
-                            onpaste="wordsCounter('field_13_comments','words13', event)"></textarea>
-                        <p style="float: right;">Λέξεις: <span id="words13"></span></p>
-                    </div>
-
-                    <input type="button" name="previous" class="previous action-button-previous"
-                        value="Προηγούμενα πεδία" />
-                    <input type="button" name="next" class="next action-button" value="Επόμενα πεδία" />
-                </fieldset>
-
-                <fieldset id="kat_arthro_analusi" class="table-14">
-                    <h2>Κατ’ άρθρο ανάλυση αξιολογούμενης ρύθμισης</h2>
-                    <br>
-                    <table class="table " id="field_14_table">
-                        <thead class="thead ">
-                            <tr>
-                                <th colspan="2"><label id="table_14_label" class="table-14-label required">14.Σύνοψη
-                                        στόχων κάθε άρθρου</label>
-                                    <div class="table-cell index_14"></div>
-                                </th>
-                            </tr>
-                            <tr>
-                                <th colspan="1">Άρθρο<div class="table-cell index_article"></div>
-                                </th>
-                                <th colspan="1">Στόχος<div class="table-cell index_goal"></div>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody id="tbody_14">
-
-                        </tbody>
-                    </table>
-
-                    <input type="button" id="add_row_table_14" name="add_row_table_14" class="float-right"
-                        value="Επιπλέον σειρά" />
-
-                    <br><br><br>
-                    <input type="button" name="previous" class="previous action-button-previous"
-                        value="Προηγούμενα πεδία" />
-                    <input type="button" name="next" class="next action-button" value="Επόμενη φόρμα" />
-                </fieldset>
-
-                <%- include('fill_form/fill_form_b.ejs') %>
-                    <%- include('fill_form/fill_form_c.ejs') %>
-                        <%- include('fill_form/fill_form_d.ejs') %>
-                            <%- include('fill_form/fill_form_e.ejs') %>
-                                <%- include('fill_form/fill_form_f.ejs') %>
-                                    <%- include('fill_form/fill_form_g.ejs') %>
-                                        <%- include('fill_form/fill_form_h.ejs') %>
-
-                                            <br>
-                                            <input type="button" name="save_temporarily"
-                                                class="save_temporarily float-right" value="Προσωρινή αποθήκευση" />
-        </form>
-
+                        <%- include('fill_form/fill_form_b.ejs') %>
+                            <%- include('fill_form/fill_form_c.ejs') %>
+                                <%- include('fill_form/fill_form_d.ejs') %>
+                                    <%- include('fill_form/fill_form_e.ejs') %>
+                                        <%- include('fill_form/fill_form_f.ejs') %>
+                                            <%- include('fill_form/fill_form_g.ejs') %>
+                                                <%- include('fill_form/fill_form_h.ejs') %> <br />
+                                                    <button type="button" class="govgr-btn govgr-btn-secondary"
+                                                        id="save_temporarily" name="save_temporarily"
+                                                        style="float: right;">
+                                                        Προσωρινή αποθήκευση
+                                                    </button>
+                </form>
+            </div>
+            <%- include('sidebar.ejs') %>
+        </div>
     </div>
 </div>
-<%- include('sidebar.ejs') %>
 
 
-    <style>
-        /* .content_div {
+<style>
+    /* .content_div {
             width: 90%;
             overflow: hidden;
             float: left;
@@ -617,289 +826,291 @@
             justify-content: space-between;
             flex-wrap: wrap;
         } */
+    .exit {
+        font-size: 16px;
+    }
 
-        .exit {
-            font-size: 16px;
+    .tooltip_text[data-show] {
+        display: block;
+    }
+
+    .tooltip_text {
+        background: #333;
+        color: white;
+        font-weight: bold;
+        padding: 4px;
+        font-size: 13px;
+        border-radius: 4px;
+        /* width: 50%; */
+        display: none;
+    }
+
+    /* table {
+        border: 1px solid black;
+        width: 100%;
+        padding: 20px;
+        text-align: left;
+    }
+
+    table th {
+        background-color: grey;
+        text-align: center;
+        padding: 10px;
+    }
+
+    table td {
+        border: 1px dotted black;
+    } */
+
+    li.active {
+        border-color: blue;
+        border-width: 1px;
+        border-style: dashed;
+    }
+
+    .arxiki_menu {
+        display: none;
+    }
+
+    .arxiki_list:hover .arxiki_menu {
+        display: initial;
+    }
+
+    .aitiologiki_menu {
+        display: none;
+    }
+
+    .aitiologiki_list:hover .aitiologiki_menu {
+        display: initial;
+    }
+
+    .ekthesi_syntagmatos_menu {
+        display: none;
+    }
+
+    .ekthesi_syntagmatos_list:hover .ekthesi_syntagmatos_menu {
+        display: initial;
+    }
+
+    .eidiki_ekthesi_menu {
+        display: none;
+    }
+
+    .eidiki_ekthesi_list:hover .eidiki_ekthesi_menu {
+        display: initial;
+    }
+
+    .ekthesi_genikwn_synepeiwn_menu {
+        display: none;
+    }
+
+    .ekthesi_genikwn_synepeiwn_list:hover .ekthesi_genikwn_synepeiwn_menu {
+        display: initial;
+    }
+
+    .ekthesi_diavouleusis_menu {
+        display: none;
+    }
+
+    .ekthesi_diavouleusis_list:hover .ekthesi_diavouleusis_menu {
+        display: initial;
+    }
+
+    .ekthesi_nomimotitas_menu {
+        display: none;
+    }
+
+    .ekthesi_nomimotitas_list:hover .ekthesi_nomimotitas_menu {
+        display: initial;
+    }
+
+    .pinakas_tropopoioymenwn_katargoymenwn_diataksewn_menu {
+        display: none;
+    }
+
+    .pinakas_tropopoioymenwn_katargoymenwn_diataksewn_list:hover .pinakas_tropopoioymenwn_katargoymenwn_diataksewn_menu {
+        display: initial;
+    }
+
+    .ekthesi_efarmogis_rythmisis_menu {
+        display: none;
+    }
+
+    .ekthesi_efarmogis_rythmisis_list:hover .ekthesi_efarmogis_rythmisis_menu {
+        display: initial;
+    }
+
+    .flex-form-group {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .flex-form-group .wrap {
+        min-width: 8em;
+        margin: 4px;
+        /* to add gap between rows */
+    }
+
+    fieldset {
+        position: relative;
+    }
+
+    fieldset:not(:first-of-type) {
+        display: none;
+    }
+
+    .explain_text {
+        font-size: 12px;
+    }
+
+    .checkbox-group {
+        display: flex;
+        align-items: center;
+    }
+
+    .form-check-input {
+        margin-top: 0px;
+    }
+
+    label {
+        font-weight: 700;
+    }
+
+    .parent {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .child {
+        flex: 1 0 21%;
+        /* explanation below */
+        margin: 5px;
+        height: 100px;
+        background-color: blue;
+    }
+
+    form label.required:after {
+        color: red;
+        content: "*";
+    }
+</style>
+
+<script type="text/javascript" src="/js/nav_scripts.js"></script>
+<script type="text/javascript" src="/js/common_form_scripts.js"></script>
+<script type="text/javascript" src="/js/tooltips.js"></script>
+<script type="text/javascript" src="/js/common_form_events.js"></script>
+<script type="text/javascript" src="/js/syntaktis_scripts.js"></script>
+<script>
+
+    let ministries = JSON.parse(' <%- JSON.stringify(ministries) %> ');
+    let ministers = JSON.parse(' <%- JSON.stringify(ministers) %> ');
+    let analysis = "<%= analysis%>";
+    const role = "<%= rolos%>";
+    setUserRestrictions(role);
+    const isAdmin = '<%= user.dikaiwmata_diaxeirisis %>';
+    isAdmin ? $(".user").hide() : $(".admin").hide();
+
+    $("form").on("submit", function (ev) {
+        ev.preventDefault();
+        onSubmitStatus();
+        var fd = new FormData($("form").get(0));
+        var checkbox = $("form").find("input[type=checkbox]:not(:checked)");//find all unchecked checkboxes 
+        $.each(checkbox, function (key, chckbx) {
+            fd.append($(chckbx).prop('name'), $(chckbx).value = '')//append to fd without value 
+        });
+        if ($('#nomosxedio') != '') { getFullDate($('#upload_date')); }
+        $.ajax({
+            url: '/create/<%= analysis %>',
+            data: fd,
+            contentType: false,
+            processData: false,
+            error: function (error) {
+                console.log(error);
+            },
+            success: function (data) {
+                window.location.href = "/user_views/history";
+            },
+            type: 'POST'
+        });
+    })
+
+    $("#save_temporarily").on("click", function (ev) {
+        ev.preventDefault();
+        var fd = new FormData($("form").get(0));
+        // console.log([...fd])        
+        // var checkbox = $("form").find("input[type=checkbox]:not(:checked)");//find all unchecked checkboxes 
+        // $.each(checkbox, function (key, chckbx) {
+        //     fd.append($(chckbx).prop('name'), $(chckbx).value = '')//append to fd without value 
+        // });
+        $.ajax({
+            url: '/create/<%= analysis %>',
+            data: fd,
+            contentType: false,
+            processData: false,
+            error: function (error) {
+                console.log(error);
+            },
+            success: function (data) {
+                console.log(data);
+                window.location.href = "/user_views/history";
+            },
+            type: 'POST'
+        });
+    })
+
+    function onSubmitStatus() {
+        if ($("#ekthesi_glk").prop("checked") && role === 'Συντάκτης επισπεύδοντος Υπουργείου') {
+            alert("Για την ανάλυση εκκρεμεί ο έλεγχος του Γενικού Λογιστηρίου του Κράτους που έχετε ζητήσει. Επικοινωνήστε με το Γενικό Λογιστήριο του Κράτους για να τον ολοκληρώσει ή ενημερώστε τον αρμόδιο του Υπουργείου σας για να το επιλύσει.");
+            // ev.preventDefault();
+        } else {
+            if ($('#status_ekthesis').val("Συντάσσεται")) {
+                $('#status_ekthesis').val("Ολοκληρώθηκε");
+            }
         }
+    }    
 
-        .tooltip_text[data-show] {
-            display: block;
+    setUserRestrictions(role);
+    function addLabelClass(fieldLabel, className) {
+        $(fieldLabel).addClass(className);//remove required class from label
+    };
+
+    function setAnalysisType() {
+        let analysisType = getAnalysisType();
+        $("#typos_analysis").prop('value', analysisType);
+    }
+
+    function getAnalysisType() {
+
+        let analysisType = {
+            'sxedio_nomou': 'Σχέδιο νόμου',
+            'kateythintiries_grammes': 'Κατευθυντήριες γραμμές',
+            'prosxedio_nomou': 'Προσχέδιο νόμου',
+            'epeigon_katepeigon': 'Επείγον ή κατεπείγον νομοσχέδιο',
+            'diethneis_symvaseis': 'Διεθνείς συμβάσεις',
+            'tropologies_upourgwn': 'Τροπολογίες Υπουργών',
+            'tropologies_vouleutwn': 'Τροπολογίες Βουλευτών',
+            'protasi_nomou': 'Πρόταση νόμου',
         }
+        return analysisType[analysis];
+    }
 
-        .tooltip_text {
+    setAnalysisType();
+    analysis = getAnalysisType();//renew analysis
+    setSubtitle();
+    setSubText();
+    analysisRestrictions();
+    //initial_submit date - will be updated again when actually submitted
+    getFullDate("#initial_submit");
 
-            background: #333;
-            color: white;
-            font-weight: bold;
-            padding: 4px;
-            font-size: 13px;
-            border-radius: 4px;
-            /* width: 50%; */
-            display: none;
+    requiredDigitalGov();
+    requiredLegalistics();
 
-        }
+    var tooltips = '<%= tooltips %>';
+    tooltips = textCleanUp(tooltips);
+    createTooltips(tooltips);
 
-        table {
-            border: 1px solid black;
-            width: 100%;
-            padding: 20px;
-            text-align: left;
-        }
-
-        table th {
-            background-color: grey;
-            text-align: center;
-            padding: 10px;
-        }
-
-        table td {
-            border: 1px dotted black;
-        }
-
-        li.active {
-            border-color: blue;
-            border-width: 1px;
-            border-style: dashed;
-        }
-
-        .arxiki_menu {
-            display: none
-        }
-
-        .arxiki_list:hover .arxiki_menu {
-            display: initial
-        }
-
-        .aitiologiki_menu {
-            display: none
-        }
-
-        .aitiologiki_list:hover .aitiologiki_menu {
-            display: initial
-        }
-
-        .ekthesi_syntagmatos_menu {
-            display: none
-        }
-
-        .ekthesi_syntagmatos_list:hover .ekthesi_syntagmatos_menu {
-            display: initial
-        }
-
-        .eidiki_ekthesi_menu {
-            display: none
-        }
-
-        .eidiki_ekthesi_list:hover .eidiki_ekthesi_menu {
-            display: initial
-        }
-
-        .ekthesi_genikwn_synepeiwn_menu {
-            display: none
-        }
-
-        .ekthesi_genikwn_synepeiwn_list:hover .ekthesi_genikwn_synepeiwn_menu {
-            display: initial
-        }
-
-        .ekthesi_diavouleusis_menu {
-            display: none
-        }
-
-        .ekthesi_diavouleusis_list:hover .ekthesi_diavouleusis_menu {
-            display: initial
-        }
-
-        .ekthesi_nomimotitas_menu {
-            display: none
-        }
-
-        .ekthesi_nomimotitas_list:hover .ekthesi_nomimotitas_menu {
-            display: initial
-        }
-
-        .pinakas_tropopoioymenwn_katargoymenwn_diataksewn_menu {
-            display: none
-        }
-
-        .pinakas_tropopoioymenwn_katargoymenwn_diataksewn_list:hover .pinakas_tropopoioymenwn_katargoymenwn_diataksewn_menu {
-            display: initial
-        }
-
-        .ekthesi_efarmogis_rythmisis_menu {
-            display: none
-        }
-
-        .ekthesi_efarmogis_rythmisis_list:hover .ekthesi_efarmogis_rythmisis_menu {
-            display: initial
-        }
-
-        .flex-form-group {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-        }
-
-        .flex-form-group .wrap {
-            min-width: 8em;
-            margin: 4px;
-            /* to add gap between rows */
-        }
-
-        fieldset {
-            position: relative;
-        }
-
-        fieldset:not(:first-of-type) {
-            display: none;
-        }
-
-        .explain_text {
-            font-size: 12px;
-        }
-
-        .checkbox-group {
-            display: flex;
-            align-items: center;
-        }
-
-        .form-check-input {
-            margin-top: 0px;
-        }
-
-        label {
-            font-weight: 700;
-        }
-
-        .parent {
-            display: flex;
-            flex-wrap: wrap;
-        }
-
-        .child {
-            flex: 1 0 21%;
-            /* explanation below */
-            margin: 5px;
-            height: 100px;
-            background-color: blue;
-        }
-
-        form label.required:after {
-            color: red;
-            content: "*";
-        }
-    </style>
-
-    <script type="text/javascript" src="/js/common_form_scripts.js"></script>
-    <script type="text/javascript" src="/js/tooltips.js"></script>
-    <script type="text/javascript" src="/js/common_form_events.js"></script>
-    <script type="text/javascript" src="/js/syntaktis_scripts.js"></script>
-    <script>
-
-        $("form").on("submit", function (ev) {
-            ev.preventDefault();
-            onSubmitStatus(ev);
-            var fd = new FormData($("form").get(0));
-            var checkbox = $("form").find("input[type=checkbox]:not(:checked)");//find all unchecked checkboxes 
-            $.each(checkbox, function (key, chckbx) {
-                fd.append($(chckbx).prop('name'), $(chckbx).value = '')//append to fd without value 
-            });
-            if ($('#nomosxedio') != '') { getFullDate($('#upload_date')); }
-            $.ajax({
-                url: '/create/<%= analysis %>',
-                data: fd,
-                contentType: false,
-                processData: false,
-                error: function (error) {
-                    console.log(error);
-                },
-                success: function (data) {
-                    window.location.href = "/user_views/history";
-                },
-                type: 'POST'
-            });
-        })
-
-        $(".save_temporarily").on("click", function (ev) {
-            ev.preventDefault();
-            var fd = new FormData($("form").get(0));
-            var checkbox = $("form").find("input[type=checkbox]:not(:checked)");//find all unchecked checkboxes 
-            $.each(checkbox, function (key, chckbx) {
-                fd.append($(chckbx).prop('name'), $(chckbx).value = '')//append to fd without value 
-            });
-            $.ajax({
-                url: '/create/<%= analysis %>',
-                data: fd,
-                contentType: false,
-                processData: false,
-                error: function (error) {
-                    console.log(error);
-                },
-                success: function (data) {
-                    //console.log(data);
-                    window.location.href = "/user_views/history";
-                },
-                type: 'POST'
-            });
-        })
-
-        // function onSubmitStatus(ev) {
-        //     if ($("#ekthesi_glk").prop("checked") && role === 'Συντάκτης επισπεύδοντος Υπουργείου') {
-        //         alert("Για την ανάλυση εκκρεμεί ο έλεγχος του Γενικού Λογιστηρίου του Κράτους που έχετε ζητήσει. Επικοινωνήστε με το Γενικό Λογιστήριο του Κράτους για να τον ολοκληρώσει ή ενημερώστε τον αρμόδιο του Υπουργείου σας για να το επιλύσει.");
-        //         ev.preventDefault();
-        //     } else {
-        //         if ($('#status_ekthesis').val("Συντάσσεται")) {
-        //             $('#status_ekthesis').val("Ολοκληρώθηκε");
-        //         }
-        //     }
-        // }
-
-        var analysis = "<%= analysis%>";
-        var role = "<%= rolos%>";
-
-        
-
-        function addLabelClass(fieldLabel, className) {
-            $(fieldLabel).addClass(className);//remove required class from label
-        };
-        
-        function setAnalysisType () {
-            let analysisType = getAnalysisType();
-            $("#typos_analysis").prop('value',analysisType);
-        }
-
-        function getAnalysisType () {
-
-            let analysisType = {
-                'sxedio_nomou': 'Σχέδιο νόμου',
-                'kateythintiries_grammes' : 'Κατευθυντήριες γραμμές',
-                'prosxedio_nomou' : 'Προσχέδιο νόμου',
-                'epeigon_katepeigon' : 'Επείγον ή κατεπείγον νομοσχέδιο',
-                'diethneis_symvaseis' : 'Διεθνείς συμβάσεις',
-                'tropologies_upourgwn' : 'Τροπολογίες Υπουργών',
-                'tropologies_vouleutwn' : 'Τροπολογίες Βουλευτών',
-                'protasi_nomou' : 'Πρόταση νόμου',
-            } 
-            return analysisType[analysis];
-        }
-        
-        setAnalysisType();
-        analysis = getAnalysisType();//renew analysis
-        setSubtitle();
-        setSubText();
-        analysisRestrictions();
-        //initial_submit date - will be updated again when actually submitted
-        getFullDate("#initial_submit");
-
-        requiredDigitalGov("#field_10_amesi");
-        requiredDigitalGov("#field_10_emmesi");
-        requiredLegalistics("#field_33");
-
-        var tooltips = '<%= tooltips %>';
-        tooltips = textCleanUp(tooltips);
-        createTooltips(tooltips);
-
-        $(".submit").click(function () {
-            return false;
-        })
-    </script>
+    $(".submit").click(function () {
+        return false;
+    })
+</script>
