@@ -248,12 +248,12 @@ if (tables) {
   }
 }
 
-for (i in ministries) {
+for (let i in ministriesArray) {
   $("#field_15_ypoyrgeio").append(
-    `<option value="${ministries[i].ministry}">${ministries[i].ministry}</option>`
+    `<option value="${ministriesArray[i]}">${ministriesArray[i]}</option>`
   );
   $("#field_17_ypoyrgeio").append(
-    `<option value="${ministries[i].ministry}">${ministries[i].ministry}</option>`
+    `<option value="${ministriesArray[i]}">${ministriesArray[i]}</option>`
   );
 }
 
@@ -317,7 +317,7 @@ for (let i in f17ministersNames) {
 // TODO: refactor
 if (role === "Γενικό Λογιστήριο του Κράτους") {
   $(
-    "#edit_form :input:not(#status_ekthesis, .glk :input, .next, .previous, #save_temporarily)" //, #final_save
+    "#edit_form :input:not(#status_ekthesis, .glk :input, .next, .previous, .export-pdf, #save_temporarily)" //, #final_save
   ).prop("disabled", true);
   if (
     $("#status_ekthesis").val() ===

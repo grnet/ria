@@ -155,9 +155,9 @@ function populateMinistersSurnameSelect(ministerSurnameSelectId) {
   $(`#${ministerSurnameSelectId}`).append(
     `<option value="" selected disabled>Eπιλογή</option>`
   );
-  for (i in ministers) {
+  for (i in ministersArray) {
     $(`#${ministerSurnameSelectId}`).append(
-      `<option value="${ministers[i].lastName}">${ministers[i].lastName}</option>`
+      `<option value="${ministersArray[i]}">${ministersArray[i]}</option>`
     );
   }
 }

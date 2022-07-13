@@ -81,10 +81,10 @@ module.exports = (sequelize, DataTypes) => {
         ekthesi_glk: DataTypes.STRING,
         field_15_ypoyrgeio: DataTypes.TEXT,
         field_15_sxedio_nomou: DataTypes.TEXT,
-        field_15_rythmiseis: DataTypes.TEXT,
+        field_15_rythmiseis: DataTypes.TEXT("long"),
 
-        field_16_kratikos_proypologismos: DataTypes.TEXT,
-        field_16_proypologismos_forea: DataTypes.TEXT,
+        field_16_kratikos_proypologismos: DataTypes.TEXT("long"),
+        field_16_proypologismos_forea: DataTypes.TEXT("long"),
         field_16_genikos_onoma: DataTypes.TEXT,
         field_16_genikos_epitheto: DataTypes.TEXT,
         field_16_genikos_date: DataTypes.TEXT,
@@ -92,7 +92,7 @@ module.exports = (sequelize, DataTypes) => {
 
         field_17_ypoyrgeio: DataTypes.TEXT,
         field_17_sxedio_nomou: DataTypes.TEXT,
-        field_17_oikonomika_apotelesmata: DataTypes.TEXT,
+        field_17_oikonomika_apotelesmata: DataTypes.TEXT("long"),
         field_17_minister_name: DataTypes.JSON,
         field_17_minister_surname: DataTypes.JSON,
         field_17_minister_role: DataTypes.JSON,
@@ -167,7 +167,7 @@ module.exports = (sequelize, DataTypes) => {
         field_38: DataTypes.TEXT,
         field_39: DataTypes.TEXT,
         field_40: DataTypes.TEXT,
-        
+
         emd_processes: DataTypes.JSON,
 
         minister_name: DataTypes.JSON,

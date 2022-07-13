@@ -22,7 +22,7 @@
                             <div class="govgr-grid__col-span-6">
                                 <label for="title" class="govgr-label-row required">Τίτλος αξιολογούμενης
                                     ρύθμισης</label>
-                            </div>                            
+                            </div>
                             <div class="govgr-grid__col-span-6">
                                 <input type="text" class="govgr-input form-control" id="title" name="title" />
                             </div>
@@ -1005,6 +1005,14 @@
 
     let ministries = JSON.parse(' <%- JSON.stringify(ministries) %> ');
     let ministers = JSON.parse(' <%- JSON.stringify(ministers) %> ');
+    let ministriesArray = [];
+    let ministersArray = [];
+    for (let i in ministries) {
+        ministriesArray.push(ministries[i].ministry)
+    }
+    for (let j in ministers) {
+        ministersArray.push(ministers[j].lastName)
+    }
     let analysis = "<%= analysis%>";
     const role = "<%= rolos%>";
     setUserRestrictions(role);
@@ -1068,7 +1076,7 @@
                 $('#status_ekthesis').val("Ολοκληρώθηκε");
             }
         }
-    }    
+    }
 
     setUserRestrictions(role);
     function addLabelClass(fieldLabel, className) {

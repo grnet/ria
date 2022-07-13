@@ -107,7 +107,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> -->                        
+                            </div> -->
                         <div>
                             <input type="button" name="delete" id="delete"
                                 class=" delete-analysis govgr-btn govgr-btn-warning action-button-delete"
@@ -1282,8 +1282,16 @@
         let pdf_exists = "<%= pdf_exists %>";
         let ministries = JSON.parse(' <%- JSON.stringify(ministries) %> ');
         let ministers = JSON.parse(' <%- JSON.stringify(ministers) %> ');
-        console.log(ministries)
-        console.log(ministers)
+        let ministriesArray = [];
+        let ministersArray = [];
+        for (let i in ministries) {
+            ministriesArray.push(ministries[i].ministry)
+        }        
+        for (let j in ministers) {
+            ministersArray.push(ministers[j].lastName)
+        }
+        ministersArray.sort();
+
         var tables = "<%= JSON.stringify(tables) %>";
         var field4 = "<%= data.field_4%>";
         var field6 = "<%= data.field_6%>";
@@ -1296,9 +1304,9 @@
         let f17ministersSurnames = JSON.parse(' <%- JSON.stringify(data.field_17_minister_surname) %> ');
         let f17ministersMinistry = JSON.parse(' <%- JSON.stringify(data.field_17_minister_ministry) %> ');
         let ekthesi_glk = "<%= data.ekthesi_glk%>"
-        var field_18 = '<%= data.field_18_comments%>';
-        var field_19 = '<%= data.field_19_comments %>';
-        var field_20 = '<%= data.field_20_comments %>';
+        var field_18 = `<%- data.field_18_comments%>`;
+        var field_19 = `<%= data.field_19_comments %>`;
+        var field_20 = `<%= data.field_20_comments %>`;
         let ministersRoles = JSON.parse(' <%- JSON.stringify(data.minister_role) %> ');
         let ministersNames = JSON.parse(' <%- JSON.stringify(data.minister_name) %> ');
         let ministersSurnames = JSON.parse(' <%- JSON.stringify(data.minister_surname) %> ');
@@ -1491,7 +1499,7 @@
                             $(selects).prop("disabled", true);
                         });
                         $("#pdf_download").html(`Το τελευταίο αποθηκευμένο PDF
-                                    βρίσκεται <a href="/pdf_exports/${pdf_name}.pdf">εδώ</a>.`)
+                                    βρίσκεται <a href="/pdf_exports/${pdf_name}.pdf"><b><u>εδώ</u></b></a>.`)
                         $("#pdf_download").show();
                     },
                     type: 'POST'
@@ -1507,7 +1515,7 @@
             if (pdf_name) {
                 $("#glk_pdf_name").val(pdf_name);
                 setDate("#field_16_genikos_date");
-                $("#arxiki").prop("disabled", false);
+                $("#title").prop("disabled", false);
                 $.ajax({
                     url: `/form_a/export/glk/:${ekthesi_id}`,
                     //data: $("form").serialize(),
@@ -1626,7 +1634,7 @@
                 }
 
             }
-        }        
+        }
 
         // $("#egkrisi_aksiologisis_nomoparaskeyastikis,#egkrisi_kalis_nomothetisis,#egkrisi_dieuthinsis_nomoparaskeyastikis,#egkrisi_genikou_grammatea").on("change", function () {
         //     submitVisibility();
