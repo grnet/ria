@@ -9,7 +9,7 @@ const { body, check, validationResult } = require("express-validator");
 var multer = require("multer");
 const { authUser } = require("../middleware/auth");
 const tables = require("../lib/tables");
-const ministries = require("../lib/ministries")
+const ministries = require("../lib/ministries");
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "./public/uploads/");
@@ -201,14 +201,14 @@ routes.put(
           "_label",
           "_secondHeader",
           false
-        ); //data for field_9 
+        ); //data for field_9
         let checkbox_tables = tables.createStaticTable(
           req.body,
           "_cbxHeader",
           "_cbxlabel",
           "_cbxsecondHeader",
           false
-        ); //data for fields 18-20 
+        ); //data for fields 18-20
 
         let field_14_arthro = tables.createDynamicTable(
           req.body,
@@ -251,7 +251,7 @@ routes.put(
           keys,
           "minister_surname",
           entry.minister_surname,
-          'field_17'
+          "field_17"
         );
         let minister_name = tables.createDynamicTable(
           req.body,
@@ -352,7 +352,11 @@ routes.put(
             id: ekthesi_id,
           },
         });
-
+        let emd_processes = tables.createDynamicTable(
+          req.body,
+          keys,
+          "process"
+        );
         await database.ekthesi.update(
           {
             field_15_rythmiseis: req.body.f15,
@@ -373,11 +377,11 @@ routes.put(
             field_29_yfistamenes_diatakseis: field_29_yfistamenes_diatakseis,
             field_30_diatakseis_katargisi: field_30_diatakseis_katargisi,
             field_30_katargoumenes_diatakseis:
-            field_30_katargoumenes_diatakseis,
+              field_30_katargoumenes_diatakseis,
             field_31_sxetiki_diataksi: field_31_sxetiki_diataksi,
             field_31_synarmodia_ypoyrgeia: field_31_synarmodia_ypoyrgeia,
             field_31_antikeimeno_synarmodiotitas:
-            field_31_antikeimeno_synarmodiotitas,
+              field_31_antikeimeno_synarmodiotitas,
             field_32_eksousiodotiki_diataksi: field_32_eksousiodotiki_diataksi,
             field_32_eidos_praksis: field_32_eidos_praksis,
             field_32_armodio_ypoyrgeio: field_32_armodio_ypoyrgeio,
@@ -388,6 +392,7 @@ routes.put(
             field_36_upload: field36,
             signed_pdf_upload: signed_pdf,
             nomosxedio: nomosxedio,
+            emd_processes: emd_processes,
             signed_glk_pdf_upload: signed_glk_pdf_upload,
           },
           {
@@ -514,20 +519,20 @@ routes.post("/:entry_id/diff/", authUser, async function (req, res, next) {
     const diffchars = diff.diffWords(entry1.data[i], entry2.data[i]);
     diffchars.forEach((part) => {
       // green for additions, red for deletions
-     part.added
-       ? data[i]
-         ? data[i].push({ value: part.value, color: "green" })
-         : (data[i] = [{ value: part.value, color: "green" }])
-       : part.removed
-       ? data[i]
-         ? data[i].push({ value: part.value, color: "red" })
-         : (data[i] = [{ value: part.value, color: "red" }])
-       : data[i]
-       ? data[i].push({ value: part.value, color: "" })
-       : (data[i] = [{ value: part.value, color: "" }]);
+      part.added
+        ? data[i]
+          ? data[i].push({ value: part.value, color: "green" })
+          : (data[i] = [{ value: part.value, color: "green" }])
+        : part.removed
+        ? data[i]
+          ? data[i].push({ value: part.value, color: "red" })
+          : (data[i] = [{ value: part.value, color: "red" }])
+        : data[i]
+        ? data[i].push({ value: part.value, color: "" })
+        : (data[i] = [{ value: part.value, color: "" }]);
     });
   }
-res.status(200).json({ data:data })
+  res.status(200).json({ data: data });
 });
 
 module.exports = routes;

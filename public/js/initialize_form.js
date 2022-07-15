@@ -285,8 +285,13 @@ for (let j in ministersNames) {
         </td> 
     </tr>`);
   populateMinistersSurnameSelect(`minister_surname${index}`);
-  $(`#minister_surname${index}`).val(ministersSurnames[j].elem);
-  $(`#minister_ministry${index}`).val(ministersMinistry[j].elem);
+  if (ministersSurnames[j] && ministersSurnames[j].elem) {
+    $(`#minister_surname${index}`).val(ministersSurnames[j].elem);
+  }
+  if (ministersMinistry[j] && ministersMinistry[j].elem) {
+    $(`#minister_ministry${index}`).val(ministersMinistry[j].elem);
+  }
+  
 }
 
 index = $("#tbody_17").prop("rows").length;
@@ -310,14 +315,18 @@ for (let i in f17ministersNames) {
             </td> 
         </tr>`);
   populateMinistersSurnameSelect(`field_17_minister_surname${index}`);
-  $(`#field_17_minister_surname${index}`).val(f17ministersSurnames[i].elem);
-  $(`#field_17_minister_ministry${index}`).val(f17ministersMinistry[i].elem);
+  if (f17ministersSurnames[i] && f17ministersSurnames[i].elem) {
+    $(`#field_17_minister_surname${index}`).val(f17ministersSurnames[i].elem);
+  }
+  if (f17ministersMinistry[i] && f17ministersMinistry[i].elem) {
+    $(`#field_17_minister_ministry${index}`).val();
+  }
 }
 
 // TODO: refactor
 if (role === "Γενικό Λογιστήριο του Κράτους") {
   $(
-    "#edit_form :input:not(#status_ekthesis, .glk :input, .next, .previous, .export-pdf, #save_temporarily)" //, #final_save
+    "#edit_form :input:not(#status_ekthesis, .glk :input, .next, .previous, .export-pdf, #save_temporarily, #final_save)"
   ).prop("disabled", true);
   if (
     $("#status_ekthesis").val() ===
@@ -389,12 +398,14 @@ if (
 
 if (role === "Συντάκτης επισπεύδοντος Υπουργείου") {
   if ($("#status_ekthesis").val() != "Συντάσσεται") {
-    ("#edit_form :input:not(.next, .previous)").prop('disabled', true);
+    "#edit_form :input:not(.next, .previous)".prop("disabled", true);
   }
 }
 
 if ($("#status_ekthesis").val() === "Οριστικοποιήθηκε") {
-  $("#edit_form :input").prop("disabled", true);
+  $(
+    "#edit_form :input:not( .next, .previous)"
+  ).prop("disabled", true);
   //$("#edit_form :input[type=checkbox]").prop("disable",true);
 }
 

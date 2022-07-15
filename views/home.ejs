@@ -1,7 +1,7 @@
 <%- include('partials/head.ejs') %>
     <nav class="govgr-horizontal-nav">
         <div class="govgr-horizontal-nav__container"><a href=""
-                class="govgr-horizontal-nav__item govgr-horizontal-nav__item-active"> Αρχική </a><a href="./login"
+                class="govgr-horizontal-nav__item govgr-horizontal-nav__item-active"> Αρχική </a><a href="/login"
                 class="govgr-horizontal-nav__item"> Είσοδος </a><a href="#" class="govgr-horizontal-nav__item">
                 Επικοινωνία </a>
         </div>
@@ -11,9 +11,9 @@
             <div class="govgr-grid">
                 <div class="govgr-grid__col-span-6">
                     <h1 class="govgr-heading-xl">Ανάλυση Συνεπειών Ρύθμισης</h1>
-                    <p class="my-12 w-10/12 leading-loose">Νέα Ψηφιακή εποχή που διασφαλίζει τόσο την πληρότητα όσο και
-                        την ποιότητα της Ανάλυσης. <br />Μηχανισμός ελέγχου της ποιότητας της νομοπαρασκευαστικής
-                        διαδικασίας .....<br /></p>
+                    <p id="home" class="my-12 w-10/12 leading-loose"><b>Νέα Ψηφιακή εποχή </b>που διασφαλίζει τόσο την πληρότητα όσο και
+                        την ποιότητα της Ανάλυσης. <br /><b>Νέος Μηχανισμός ελέγχου</b> της ποιότητας της νομοπαρασκευαστικής
+                        διαδικασίας. <br /><b>Καταγραφή, αποτύπωση και μοντελοποίηση</b> των υφιστάμενων διοικητικών διαδικασιών των δημοσίων υπηρεσιών και φορέων.</p>
                     <a href="/login"> <button class="govgr-btn govgr-btn-primary govgr-btn-cta">
                             Είσοδος στην υπηρεσία<span class="right-arrow"></span>
                             <svg viewBox="0 0 24 24" class="govgr-arrow--right" focusable="false" aria-hidden="true">
@@ -22,7 +22,7 @@
                         </button> </a>
                 </div>
                 <div class="govgr-grid__col-span-6">
-                    <img src="images/law.png" />
+                    <img class="rounded-lg" src="img/law.png" />
                 </div>
             </div>
         </div>
@@ -32,9 +32,9 @@
         <div class="govgr-width-container">
             <div class="govgr-main-wrapper text-blue-900">
                 <div class="govgr-grid-column-one-third">
-                    <h1 class="govgr-heading-s text-center">Περιγραφή</h1>
-                    <p class="text-justify">Με τον νόμο 4622/2019, θεσμοθετήθηκε μια συνεκτική <a
-                            href="https://diavgeia.gov.gr/luminapi/api/decisions/6%CE%A8%CE%A3%CE%A846%CE%9C%CE%93%CE%A87-%CE%96%CE%A11/attachments/afaf12db-d6e5-4e33-8e78-d247e6b0109f/document"><b
+                    <h1 class="govgr-heading-m text-center" style="color: #0081d6;">Περιγραφή</h1>
+                    <p class="text-justify hyphens">Με τον νόμο 4622/2019, θεσμοθετήθηκε μια συνεκτική <a
+                            class="govgr-link" href="https://diavgeia.gov.gr/luminapi/api/decisions/6%CE%A8%CE%A3%CE%A846%CE%9C%CE%93%CE%A87-%CE%96%CE%A11/attachments/afaf12db-d6e5-4e33-8e78-d247e6b0109f/document"><b
                                 class="underline">Ανάλυση Συνεπειών Ρύθμισης (ΑΣΡ)</b></a>, η οποία ενσωματώνει, τόσο
                         όλες τις επιμέρους εκθέσεις που ήδη προβλέπονταν (αιτιολογική έκθεση, εκθέσεις του Γενικού
                         Λογιστηρίου του Κράτους, έκθεση γενικών συνεπειών, έκθεση διαβούλευσης), όσο και δύο νέες
@@ -42,38 +42,30 @@
                         καθώς και <b>πίνακα τροποποιούμενων ή καταργούμενων διατάξεων</b>.</p>
                 </div>
                 <div class="govgr-grid-column-one-third">
-                    <h1 class="govgr-heading-s text-center">Αρμόδιες Αρχές</h1>
-                    <p class="text-justify">Η <b>Γενική Γραμματεία Νομικών και Κοινοβουλευτικών Θεμάτων</b> της
+                    <h1 class="govgr-heading-m text-center" style="color: #0081d6;">Αρμόδιες Αρχές</h1>
+                    <p class="text-justify hyphens">Η <b>Γενική Γραμματεία Νομικών και Κοινοβουλευτικών Θεμάτων</b> της
                         Προεδρίας της Κυβέρνησης, ως η αρμόδια υπηρεσία για τον αποτελεσματικό συντονισμό και την
                         εφαρμογή της ρυθμιστικής διακυβέρνησης, καθώς και η <b>Επιτροπή Αξιολόγησης Ποιότητας της
                             Νομοπαρασκευαστικής Διαδικασίας</b>, ως ένα ανεξάρτητο, διεπιστημονικό, γνωμοδοτικό όργανο,
                         διασφαλίζουν τόσο την πληρότητα όσο και την ποιότητα της Ανάλυσης.</p>
                 </div>
                 <div class="govgr-grid-column-one-third">
-                    <h1 class="govgr-heading-s text-center">Ενότητες</h1>
-                    <p class="text-justify">Η ΑΣΡ αποτελείται από οκτώ (8) διακριτές ενότητες, που περιλαμβάνουν σαράντα
-                        (40) συνολικά πεδία.Η <b>Γενική Γραμματεία Νομικών και Κοινοβουλευτικών Θεμάτων</b> της
-                        Προεδρίας της Κυβέρνησης, ως η αρμόδια υπηρεσία για τον αποτελεσματικό συντονισμό και την
-                        εφαρμογή της ρυθμιστικής διακυβέρνησης, καθώς και η <b>Επιτροπή Αξιολόγησης Ποιότητας της
-                            Νομοπαρασκευαστικής Διαδικασίας</b>...................... .................. ...............
-                        ............... ........................ .................. ....................</p>
+                    <h1 class="govgr-heading-m text-center" style="color: #0081d6;">Εφαρμογή</h1>
+                    <p class="text-justify hyphens">Θα ενσωματώνει ένα μηχανισμό διαρκούς 
+			επικαιροποίησης των διαδικασιών, ώστε  να υποστηρίζει το στόχο του νομοθέτη: «η διαρκής τήρηση του <b>Εθνικού Μητρώου Διαδικασιών</b> Ελληνικής Δημόσιας Διοίκησης και η συνεχής και 
+			αποκλειστική ενημέρωσή του με τις μεταβολές απλούστευσης».Θα αποτελεί προαπαιτούμενο και προπομπό του διακριτού έργου της απλούστευσης των διαδικασιών, 
+			το οποίο έχει ως σκοπό την κατάργηση ή μείωση των απαιτούμενων βημάτων ή/και δικαιολογητικών.</p>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Load jQuery -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <!-- Load custom js -->
-    <script src="./js/components.js" type="module"></script>
-    <script src="./js/digigov-custom.js" type="module"></script>
-    <script src="./js/digigov.min.js" type="module"></script>
-    <%- include('partials/footer.ejs') %>
+        <%- include('partials/footer.ejs') %>
+ 
 
         <style>
-            a {
+           /* a {
                 color: blue;
-            }
+            }*/
 
             /* #footer {
                 position: absolute;

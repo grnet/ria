@@ -1,5 +1,5 @@
 <%- include('../partials/head.ejs') %>
-
+<div class="govgr-layout-wrapper govgr-layout-wrapper__full-height">
   <div class="govgr-width-container">
     <div class="govgr-main-wrapper">
       <div class="govgr-grid-column-two-thirds">
@@ -45,23 +45,13 @@
             </div>
       </div>
       <div class="govgr-grid-column-one-third">
-        <%- include('../user_views/menus.ejs') %>
       </div>
     </div>
     <p></p><br /><br />
   </div>
   <%- include('../partials/footer.ejs') %>
     </div>
-
-    <style>
-      a {
-        color: blue;
-      }
-
-      .exit {
-        font-size: 16px;
-      }
-    </style>
+  </div>
 
     <script>
       const userRole = "<%= user.rolos %>";

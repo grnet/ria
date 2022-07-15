@@ -5,84 +5,105 @@
                 class="govgr-header-title">Ανάλυση Συνεπειών Ρύθμισης</a>
             <!--  <img class="govgr-header-secondary-logo" src="images/e_gif_white.svg"/>-->
         </div>
-        <!-- Menu (needs to be placed here atm)-->
-        <div>
-            <div class="govgr-burger-menu govgr-burger-menu--white-bg">
-                <div id="govgr-burger-menu__line1"></div>
-                <div id="govgr-burger-menu__line2"></div>
-                <div id="govgr-burger-menu__line3"></div>
-            </div>
-        </div>
-        <!-- End of menu -->
     </div>
 </header>
-<svg class="govgr-burger-icon" id="nav-icon" focusable="true" viewBox="0 0 24 24" aria-hidden="true">
+<!--<svg class="govgr-burger-icon" id="nav-icon" focusable="true" viewBox="0 0 24 24" aria-hidden="true">
     <rect id="govgr-burger-icon__line-1" width="20" height="3.3" />
     <rect id="govgr-burger-icon__line-2" width="20" height="3.3" />
     <rect id="govgr-burger-icon__line-3" width="20" height="3.3" />
-</svg>
+</svg>-->
+
+
 <nav class="govgr-horizontal-nav" id="nav-menu">
-    <div class="govgr-horizontal-nav__container"><a href="/user_views/dashboard"
-            class="govgr-horizontal-nav__item govgr-horizontal-nav__item-active"> Αρχική </a>
-        <details class="govgr-dropdown">
-            <summary class="govgr-dropdown__button govgr-link"> Διαχείριση Χρηστών
-                <svg aria-hidden="true" class="govgr-svg-icon govgr-arrow--down" focusable="false" viewBox="0 0 24 24">
-                    <path d="M22,8.2l-2.3-2.4L12,13.4L4.4,5.8L2,8.2l10,10L22,8.2z" />
-                </svg>
-            </summary>
-            <div class="govgr-dropdown__content">
-                <nav class="govgr-vertical-nav"><a href="/user_views/create_user"
-                        class="govgr-link govgr-vertical-nav__item admin"> Δημιουργία νέου
-                        χρήστη</a><a href="/user_views/search_user" class="govgr-link govgr-vertical-nav__item admin">
-                        Επεξεργασία στοιχείων χρήστη
-                    </a><a href="/user_views/profile" class="govgr-link govgr-vertical-nav__item"> Τα στοιχεία
-                        μου</a>
-                </nav>
-            </div>
-        </details>
-        <details class="govgr-dropdown" id="new_analysis">
-            <summary class="govgr-dropdown__button govgr-link"> Νέα Ανάλυση
-                <svg aria-hidden="true" class="govgr-svg-icon govgr-arrow--down" focusable="false" viewBox="0 0 24 24">
-                    <path d="M22,8.2l-2.3-2.4L12,13.4L4.4,5.8L2,8.2l10,10L22,8.2z" />
-                </svg>
-            </summary>
-            <div class="govgr-dropdown__content">
-                <nav class="govgr-vertical-nav" id="analysis_list"><a href="/create/:sxedio_nomou"
-                        class="govgr-link govgr-vertical-nav__item"> Σχέδιο
-                        νόμου</a><a href="/create/:prosxedio_nomou" class="govgr-link govgr-vertical-nav__item">
-                        Προσχέδιο νόμου </a><a href="/create/:kateythintiries_grammes"
-                        class="govgr-link govgr-vertical-nav__item"> Κατευθυντήριες γραμμές</a><a
-                        href="/create/:epeigon_katepeigon" class="govgr-link govgr-vertical-nav__item"> Επείγον ή
-                        κατεπείγον νομοσχέδιο </a><a href="/create/:protasi_nomou"
-                        class="govgr-link govgr-vertical-nav__item vouleftis"> Πρόταση νόμου</a><a
-                        href="/create/:diethneis_symvaseis" class=" govgr-link govgr-vertical-nav__item"> Διεθνείς
-                        συμβάσεις</a>
-                    <a href="/create/:tropologies_upourgwn" class="govgr-link govgr-vertical-nav__item"> Τροπολογίες
-                        Υπουργών</a>
-                    <a href="/create/:tropologies_vouleutwn" class="govgr-link govgr-vertical-nav__item vouleftis"> Τροπολογίες
-                        Βουλευτών</a>
-                </nav>
-            </div>
-        </details>
-        <details class="govgr-dropdown">
-            <summary class="govgr-dropdown__button govgr-link"> Διαχείριση Αναλύσεων
-                <svg aria-hidden="true" class="govgr-svg-icon govgr-arrow--down" focusable="false" viewBox="0 0 24 24">
-                    <path d="M22,8.2l-2.3-2.4L12,13.4L4.4,5.8L2,8.2l10,10L22,8.2z" />
-                </svg>
-            </summary>
-            <div class="govgr-dropdown__content">
-                <nav class="govgr-vertical-nav">
-                    <a class="govgr-link govgr-vertical-nav__item admin" href="" id="ministries"> Επικαιροποίηση
-                        Υπουργείων</a>
-                    <a href="/user_views/summaries" class="govgr-link govgr-vertical-nav__item admin"> Συνοπτικά
-                        στοιχεία</a><a href="/user_views/history" class="govgr-link govgr-vertical-nav__item">
-                        Ιστορικό </a>
-                </nav>
-            </div>
-        </details>
-        <div>
-            <a href="/login" class="govgr-horizontal-nav__item govgr-horizontal-nav__item-active" id="exit"> Έξοδος </a>
-        </div>
-    </div>
-   
+    <div class="govgr-horizontal-nav__container topnav" id="myTopnav">
+        <ul class="menu_ul">
+            <li><a href="/user_views/dashboard" class="govgr-link active">Αρχική</a>
+            </li>
+            <li>
+                <a href="#" class="govgr-link">Διαχείριση Χρηστών
+
+
+
+                    <svg aria-hidden="true" class="govgr-svg-icon govgr-arrow--down" focusable="false"
+                        viewBox="0 0 24 24">
+                        <path d="M22,8.2l-2.3-2.4L12,13.4L4.4,5.8L2,8.2l10,10L22,8.2z"></path>
+                    </svg></a>
+
+                <ul class="dropdown_ul govgr-dropdown__content" aria-label="submenu">
+                    <li class="admin"><a class="govgr-link govgr-vertical-nav__item" href="/user_views/create_user">Δημιουργία
+                            νέου
+                            χρήστη</a>
+                    </li>
+                    <li class="admin"><a class="govgr-link govgr-vertical-nav__item" href="/user_views/search_user">Επεξεργασία
+                            στοιχείων χρήστη
+                        </a>
+                    </li>
+                    <li><a class="govgr-link govgr-vertical-nav__item" href="/user_views/profile">Τα στοιχεία
+                            μου</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li id="new_analysis">
+                <a href="#" class="govgr-link">Νέα Ανάλυση
+
+
+
+                    <svg aria-hidden="true" class="govgr-svg-icon govgr-arrow--down" focusable="false"
+                        viewBox="0 0 24 24">
+                        <path d="M22,8.2l-2.3-2.4L12,13.4L4.4,5.8L2,8.2l10,10L22,8.2z"></path>
+                    </svg></a>
+
+                <ul id="analysis_list" class="dropdown_ul govgr-dropdown__content" aria-label="submenu">
+                    <li><a class="govgr-link" href="/create/:sxedio_nomou">Σχέδιο Νόμου</a>
+                    </li>
+                    <li><a class="govgr-link" href="/create/:prosxedio_nomou">Προσχέδιο νόμου</a>
+                    </li>
+                    <li><a class="govgr-link" href="/create/:kateythintiries_grammes">Κατευθυντήριες γραμμές</a>
+                    </li>
+                    <li><a class="govgr-link" href="/create/:epeigon_katepeigon">Επείγον ή κατεπείγον νομοσχέδιο</a>
+                    </li>
+
+                    <li class="vouleftis"><a class="govgr-link" href="/create/:protasi_nomou">Πρόταση νόμου</a>
+                    </li>
+
+                    <li><a class="govgr-link" href="/create/:diethneis_symvaseis">Διεθνείς
+                            συμβάσεις</a>
+                    </li>
+
+                    <li><a class="govgr-link" href="/create/:tropologies_upourgwn">Τροπολογίες Υπουργών</a>
+                    </li>
+
+                    <li class="vouleftis"><a class="govgr-link" href="/create/:tropologies_vouleutwn">Τροπολογίες
+                            Βουλευτών</a>
+                    </li>
+
+                </ul>
+            </li>
+            <li>
+                <a href="#" class="govgr-link">Διαχείριση Αναλύσεων
+
+
+
+                    <svg aria-hidden="true" class="govgr-svg-icon govgr-arrow--down" focusable="false"
+                        viewBox="0 0 24 24">
+                        <path d="M22,8.2l-2.3-2.4L12,13.4L4.4,5.8L2,8.2l10,10L22,8.2z"></path>
+                    </svg></a>
+
+                <ul class="dropdown_ul govgr-dropdown__content" aria-label="submenu">
+                    <li class="admin"><a class="govgr-link" href="" id="ministries">Επικαιροποίηση
+                            Υπουργείων</a>
+                    </li>
+                    <li class="admin"><a class="govgr-link" href="/user_views/summaries">Συνοπτικά
+                            στοιχεία</a>
+                    </li>
+                    <li><a class="govgr-link" href="/user_views/history">Ιστορικό</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li><a class="govgr-link" href="/login" id="exit">Έξοδος</a>
+            </li>
+        </ul>
+    </div><a href="javascript:void(0);" id="burger-icon" class="icon" onclick="myFunction()">&#9776;</a>
 </nav>

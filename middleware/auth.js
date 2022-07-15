@@ -20,7 +20,7 @@ exports.authRole = (
         if (!req.session.dikaiwmata_diaxeirisis) {
             req.session.errors = [];
             req.session.errors.push({ msg: 'Δεν έχετε δικαιώματα διαχείρισης.' })
-            return res.redirect("./user_dashboard");
+            return res.redirect("./dashboard");
         } else {
             return next();
         }

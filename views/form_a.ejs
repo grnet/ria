@@ -1,17 +1,13 @@
 <%- include('partials/head.ejs') %>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/countable/3.0.1/Countable.min.js"></script>
-    <!-- Development version. Change to production version later-->
-    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
-    <script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
+    <a href="/user_views/history" class="govgr-back-link" id="back" name="back"> <svg class="govgr-caret--left"
+            viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M18,22V2L6,12L18,22z" />
+        </svg> Επιστροφή στο ιστορικό</a>
+
     <div class="govgr-width-container">
         <div class="govgr-main-wrapper">
             <div class="govgr-grid-column-two-thirds">
 
-                <br>
-                <a href="/user_views/history" class="govgr-back-link" id="back" name="back"> <svg
-                        class="govgr-caret--left" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M18,22V2L6,12L18,22z" />
-                    </svg> Επιστροφή στο ιστορικό</a>
                 <form id="edit_form" enctype="multipart/form-data">
 
                     <div id="errors" style="display: none;">
@@ -27,11 +23,11 @@
                     </div>
                     <fieldset id="arxiki" name="arxiki">
 
-                        <h2 class="govgr-heading-m">Ανάλυση Συνεπειών Ρύθμισης</h2>
+                        <h2 class="govgr-heading-l">Ανάλυση Συνεπειών Ρύθμισης</h2>
                         <div>
-                            <h4 id="subtitle"></h4>
-                            <p id="subtext"></p>
-                            <br><br>
+                            <h4 class="govgr-heading-m" id="subtitle"></h4>
+                            <p class="govgr-body" id="subtext"></p>
+                            <br />
                         </div>
                         <!-- Button trigger modal -->
                         <!-- <button type="button" class="btn btn-primary" style="float: right;" data-toggle="modal"
@@ -108,18 +104,13 @@
                                     </div>
                                 </div>
                             </div> -->
-                        <div>
-                            <input type="button" name="delete" id="delete"
-                                class=" delete-analysis govgr-btn govgr-btn-warning action-button-delete"
-                                style="float: right;" value="Διαγραφή" />
-                            <br><br><br><br>
-                        </div>
+
 
                         <div>
                             <input type="button" name="convert"
                                 class="govgr-btn govgr-btn-warning convert action-button-convert"
                                 style="display: none; float: right;" value="Μετατροπή" />
-                            <br /><br /><br><br>
+                            <br /><br>
                         </div>
 
 
@@ -129,8 +120,11 @@
                                     ρύθμισης</label>
                             </div>
                             <div class="govgr-grid__col-span-6">
-                                <input type="text" class="govgr-input form-control" id="title" name="title"
-                                    value="<%= data.title%>" />
+                                <textarea class="govgr-textarea form-control" id="title" name="title"
+                                    rows="3"><%= data.title%></textarea>
+
+                                <!--<input type="text" class="govgr-input form-control" id="title" name="title"
+                                    value="<%= data.title%>" />-->
                             </div>
                         </div>
                         <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
@@ -165,7 +159,7 @@
                                     name="last_updated" value="<%= data.last_updated %>" readonly>
                             </div>
                         </div>
-                        <br>
+
                         <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
                         <div class="govgr-grid">
                             <div class="govgr-grid__col-span-6">
@@ -303,13 +297,13 @@
                     </fieldset>
 
                     <fieldset id="tautotita_ruthmisis">
-                        <h2>Α. Αιτιολογική έκθεση</h2>
-                        <br>
-                        <h2>Η «ταυτότητα» της αξιολογούμενης ρύθμισης</h2>
-                        <br>
+                        <h1 class="govgr-heading-l">Α. Αιτιολογική έκθεση</h1>
 
-                        <div class="govgr-grid">
-                            <div class="govgr-grid__col-span-6">
+                        <h2>Η «ταυτότητα» της αξιολογούμενης ρύθμισης</h2>
+                        <br /><br />
+
+                        <div class="govgr-field">
+                            <div class="govgr-label">
                                 <label for="field_1" class="govgr-label-row required">1. Ποιο ζήτημα αντιμετωπίζει η
                                     αξιολογούμενη
                                     ρύθμιση;
@@ -323,8 +317,8 @@
                             </div>
                         </div>
                         <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
-                        <div class="govgr-grid">
-                            <div class="govgr-grid__col-span-6">
+                        <div class="govgr-field">
+                            <div class="govgr-label">
                                 <label for="field_2" class="govgr-label-row required">2. Γιατί αποτελεί
                                     πρόβλημα;</label>
                             </div>
@@ -336,8 +330,8 @@
                             </div>
                         </div>
                         <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
-                        <div class="govgr-grid">
-                            <div class="govgr-grid__col-span-6">
+                        <div class=govgr-field">
+                            <div class="govgr-label">
                                 <label for="field_3" class="govgr-label-row required">3. Ποιους φορείς ή πληθυσμιακές
                                     ομάδες αφορά;</label>
                             </div>
@@ -370,8 +364,8 @@
 
                     <fieldset id="anagkaiotita_rythmisis_1">
                         <h2 class="govgr-heading-m">Η αναγκαιότητα της αξιολογούμενης ρύθμισης (i)</h2> <br />
-                        <div class="govgr-grid">
-                            <div class="govgr-grid__col-span-9">
+                        <div class="govgr-field">
+                            <div class="govgr-label">
                                 <label for="field_4" class="govgr-label-row required">4. Το εν λόγω ζήτημα έχει
                                     αντιμετωπιστεί με νομοθετική ρύθμιση στο παρελθόν;
                                 </label>
@@ -384,8 +378,8 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="govgr-grid" id="field_4_wrap" style="display:none;">
-                            <div class="govgr-grid__col-span-6">
+                        <div class="govgr-field" id="field_4_wrap" style="display:none;">
+                            <div class="govgr-label">
                                 <label for="field_4_1" class="govgr-label-row required">4.1 Ποιο είναι το ισχύον νομικό
                                     πλαίσιο που ρυθμίζει το
                                     ζήτημα;
@@ -420,12 +414,13 @@
 
                     <fieldset id="anagkaiotita_rythmisis_2">
                         <h2 class="govgr-heading-m">Η αναγκαιότητα της αξιολογούμενης ρύθμισης (ii)</h2>
-                        <label>5. Γιατί δεν είναι δυνατό να αντιμετωπιστεί στο πλαίσιο της υφιστάμενης
+                        <label class="govgr-label">5. Γιατί δεν είναι δυνατό να αντιμετωπιστεί στο πλαίσιο της
+                            υφιστάμενης
                             νομοθεσίας:</label>
                         <br />
                         <div class="index_field_5"></div> <br />
-                        <div class="govgr-grid">
-                            <div class="govgr-grid__col-span-6">
+                        <div class="govgr-field">
+                            <div class="govgr-label">
                                 <label for="field_5_1" class="govgr-label-row required">5.1 με αλλαγή προεδρικού
                                     διατάγματος, υπουργικής απόφασης ή
                                     άλλης κανονιστικής πράξης;
@@ -439,8 +434,8 @@
                             </div>
                         </div>
                         <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
-                        <div class="govgr-grid">
-                            <div class="govgr-grid__col-span-6">
+                        <div class="govgr-field">
+                            <div class="govgr-label">
                                 <label for="field_5_2" class="govgr-label-row required">5.2 με αλλαγή διοικητικής
                                     πρακτικής συμπεριλαμβανομένης της
                                     δυνατότητας νέας ερμηνευτικής προσέγγισης της υφιστάμενης νομοθεσίας;
@@ -454,8 +449,8 @@
                             </div>
                         </div>
                         <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
-                        <div class="govgr-grid">
-                            <div class="govgr-grid__col-span-6">
+                        <div class="govgr-field">
+                            <div class="govgr-label">
                                 <label for="field_5_3" class="govgr-label-row required">5.3 με διάθεση περισσότερων
                                     ανθρώπινων και υλικών
                                     πόρων;
@@ -490,8 +485,8 @@
 
                     <fieldset id="sunafeis_praktikes">
                         <h2 class="govgr-heading-m">Συναφείς Πρακτικές</h2> <br />
-                        <div class="govgr-grid">
-                            <div class="govgr-grid__col-span-9">
+                        <div class="govgr-field">
+                            <div class="govgr-label">
                                 <label for="field_6" class="govgr-label-row required">6. Έχετε λάβει υπόψη συναφείς
                                     πρακτικές;
                                 </label>
@@ -504,9 +499,9 @@
                                 </select>
                             </div>
                         </div> <br />
-                        <div id="field_6_wrap" class="govgr-grid" style="display:none;">
-                            <div class="govgr-grid">
-                                <div class="govgr-grid__col-span-6">
+                        <div id="field_6_wrap" style="display:none;">
+                            <div class="govgr-field">
+                                <div class="govgr-label">
                                     <label for="field_6_1" class="govgr-label-row required">6.1 Σε άλλη/ες χώρα/ες
                                         της
                                         Ε.Ε. ή του ΟΟΣΑ:
@@ -520,8 +515,8 @@
                                 </div>
                             </div>
                             <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
-                            <div class="govgr-grid">
-                                <div class="govgr-grid__col-span-6">
+                            <div class="govgr-field">
+                                <div class="govgr-label">
                                     <label for="field_6_2" class="govgr-label-row required">6.2 Σε όργανα της Ε.Ε.:
                                     </label>
                                 </div>
@@ -533,8 +528,8 @@
                                 </div>
                             </div>
                             <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
-                            <div class="govgr-grid">
-                                <div class="govgr-grid__col-span-6">
+                            <div class="govgr-field">
+                                <div class="govgr-label">
                                     <label for="field_6_3" class="govgr-label-row required">6.3 Σε διεθνείς
                                         οργανισμούς:
                                     </label>
@@ -780,8 +775,8 @@
                         <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
                         <h2 class="govgr-heading-m">8. Ποιοι είναι οι στόχοι της αξιολογούμενης ρύθμισης;</h2> <br />
                         <div class="index_field_8"></div>
-                        <div class="govgr-grid">
-                            <div class="govgr-grid__col-span-6">
+                        <div class="govgr-field">
+                            <div class="govgr-label">
                                 <label for="field_8_1" class="govgr-label-row required">8.1 βραχυπρόθεσμοι:
                                 </label>
                             </div>
@@ -794,8 +789,8 @@
                         </div>
 
                         <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
-                        <div class="govgr-grid">
-                            <div class="govgr-grid__col-span-6">
+                        <div class="govgr-field">
+                            <div class="govgr-label">
                                 <label for="field_8_2" class="govgr-label-row required">8.2 μακροπρόθεσμοι:</label>
                             </div>
                             <div class="govgr-grid__col-span-6">
@@ -830,7 +825,7 @@
                         <fieldset id="digital_governance">
                             <h2 class="govgr-heading-m">Ψηφιακή διακυβέρνηση</h2> <br />
                             <div class="govgr-grid__col-span-12">
-                                <label class="col-sm-8 col-form-label digital-gov-label">10. Σε περίπτωση που
+                                <label class="govgr-label-row col-form-label digital-gov-label">10. Σε περίπτωση που
                                     προβλέπεται η
                                     χρήση
                                     πληροφοριακού συστήματος, ποια θα είναι η συμβολή αυτού στην επίτευξη των στόχων της
@@ -840,12 +835,13 @@
                             </div>
                             <div class="checkbox-group form-group row">
                                 <div class="col-2"></div>
-                                <label class="col-3 col-form-label">ΑΜΕΣΗ</label>
+                                <label class="col-3 col-form-label">ΑΜΕΣΗ &nbsp;</label>
                                 <input class="col-2 form-check-input position-static" type="checkbox"
                                     id="field_10_amesi" name="field_10_amesi" />
                             </div>
                             <div id="amesi_wrap" class="form-group digital_gov" style="display:none;">
-                                <label for="field_10_amesi_comments" class="digital-gov-label">Εάν είναι άμεση,
+                                <label for="field_10_amesi_comments" class="govgr-label-row digital-gov-label">Εάν είναι
+                                    άμεση,
                                     εξηγήστε:
                                 </label>
                                 <textarea class="govgr-textarea" id="field_10_amesi_comments"
@@ -856,7 +852,7 @@
                             </div>
                             <div class="checkbox-group form-group row">
                                 <div class="col-2"></div>
-                                <label class="col-3 col-form-label">ΕΜΜΕΣΗ</label>
+                                <label class="col-3 col-form-label">ΕΜΜΕΣΗ &nbsp;</label>
                                 <input class="col-2 form-check-input position-static" type="checkbox"
                                     id="field_10_emmesi" name="field_10_emmesi" />
                             </div>
@@ -888,7 +884,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
+
                             <div id="field_11_wrap" class="form-group digital_gov" style="display:none;">
                                 <label for="field_11_comments" class="digital-gov-label">Εξηγήστε</label>
                                 <textarea class="govgr-textarea" name="field_11_comments" id="field_11_comments"
@@ -912,7 +908,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
+
                             <div id="field_12_wrap" class="form-group digital_gov" style="display:none;">
                                 <label for="field_12_comments" class="digital-gov-label">Αναφέρατε ποια είναι αυτά τα
                                     συστήματα:
@@ -938,7 +934,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
+
                             <div id="field_13_wrap" class="form-group digital_gov" style="display:none;">
                                 <label for="field_13_comments" class="digital-gov-label">Εξηγήστε</label>
                                 <textarea class="govgr-textarea" name="field_13_comments" id="field_13_comments"
@@ -946,6 +942,7 @@
                                     onpaste="wordsCounter('field_13_comments','words13', event)"><%= data.field_13_comments %></textarea>
                                 <p style="float: right;">Λέξεις: <span id="words13"></span></p>
                             </div>
+                            <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" /><br />
                             <div class="govgr-button-group">
                                 <button type="button"
                                     class="govgr-btn govgr-btn-primary previous action-button-previous" name="previous">
@@ -1051,11 +1048,20 @@
                                             <%- include('view_form/view_form_g.ejs') %>
                                                 <%- include('view_form/view_form_h.ejs') %>
 
-                                                    <button type="button" class="govgr-btn govgr-btn-secondary"
-                                                        id="save_temporarily" name="save_temporarily"
-                                                        style="float: right;">
-                                                        Προσωρινή αποθήκευση
-                                                    </button>
+
+                                                    <div class="govgr-button-group"> <input type="button" name="delete"
+                                                            id="delete"
+                                                            class=" delete-analysis govgr-btn govgr-btn-warning action-button-delete"
+                                                            style="float: right;" value="Διαγραφή" />
+
+
+
+                                                        <button type="button" class="govgr-btn govgr-btn-secondary"
+                                                            id="save_temporarily" name="save_temporarily"
+                                                            style="float: right;">
+                                                            Προσωρινή αποθήκευση
+                                                        </button>
+                                                    </div>
                 </form>
             </div>
             <%- include('sidebar.ejs') %>
@@ -1063,51 +1069,7 @@
     </div>
 
     <style>
-        .action-button,
-        /* .back {
-            font-size: 16px;
-        } */
-
-        /* table {
-            border: 1px solid black;
-            width: 100%;
-            padding: 20px;
-            text-align: left;
-        }
-
-        table th {
-            background-color: grey;
-            text-align: center;
-            padding: 10px;
-        }
-
-        table td {
-            border: 1px dotted black;
-        } */
-
-        li.active {
-            border-color: blue;
-            border-width: 1px;
-            border-style: dashed;
-        }
-
-        .tooltip_text[data-show] {
-            display: block;
-        }
-
-        .tooltip_text {
-
-            background: #333;
-            color: white;
-            font-weight: bold;
-            padding: 4px;
-            font-size: 13px;
-            border-radius: 4px;
-            /* width: 50%; */
-            display: none;
-
-        }
-
+        /*
         .arxiki_menu {
             display: none
         }
@@ -1179,7 +1141,10 @@
 
         .ekthesi_efarmogis_rythmisis_list:hover .ekthesi_efarmogis_rythmisis_menu {
             display: initial
-        }
+        }   
+        */
+
+
 
         .flex-form-group {
             display: flex;
@@ -1214,9 +1179,7 @@
             margin-top: 0px;
         }
 
-        label {
-            font-weight: 700;
-        }
+
 
         .parent {
             display: flex;
@@ -1225,11 +1188,13 @@
 
         .child {
             flex: 1 0 21%;
-            /* explanation below */
+
             margin: 5px;
             height: 100px;
             background-color: blue;
         }
+
+
 
         form label.required:after {
             color: red;
@@ -1251,7 +1216,7 @@
             overflow: auto;
         }
 
-        /* .table-wrapper-scroll-y {
+        /*.table-wrapper-scroll-y {
             display: block;
         } */
     </style>
@@ -1286,10 +1251,11 @@
         let ministersArray = [];
         for (let i in ministries) {
             ministriesArray.push(ministries[i].ministry)
-        }        
+        }
         for (let j in ministers) {
             ministersArray.push(ministers[j].lastName)
         }
+        ministriesArray.sort();
         ministersArray.sort();
 
         var tables = "<%= JSON.stringify(tables) %>";
@@ -1527,7 +1493,7 @@
                     },
                     success: function (data) {
                         $("#glk_pdf_download").html(`Το τελευταίο αποθηκευμένο PDF
-                                    βρίσκεται <a href="/pdf_exports/${pdf_name}.pdf">εδώ</a>.`)
+                                    βρίσκεται <a href="/pdf_exports/${pdf_name}.pdf"><b><u>εδώ</u></b></a>.`)
                         $("#glk_pdf_download").show();
                         $("#arxiki").prop("disabled", true);
                     },
@@ -1634,6 +1600,9 @@
                 }
 
             }
+            else if (role === "Γενικό Λογιστήριο του Κράτους" && $('#status_ekthesis').val("Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους")) {
+                $('#status_ekthesis').val("Ελέγχθηκε από το Γενικό Λογιστήριο του Κράτους");
+            }
         }
 
         // $("#egkrisi_aksiologisis_nomoparaskeyastikis,#egkrisi_kalis_nomothetisis,#egkrisi_dieuthinsis_nomoparaskeyastikis,#egkrisi_genikou_grammatea").on("change", function () {
@@ -1716,7 +1685,7 @@
             var bttn = $(this);
             if ($("#deleted_file").val()) {
                 $.ajax({
-                    url: '/form_a/' + ekthesi_id + '/delete_file',
+                    url: `/form_a/${ekthesi_id}/delete_file`,
                     data: $("form").serialize(),
                     error: function (error) {
                         console.log(error);

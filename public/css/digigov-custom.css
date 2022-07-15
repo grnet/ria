@@ -1,10 +1,10 @@
 :root {
-    --primary-color: #013375;
+    --primary-color: #003375;
 }
 
 h1 {
-    @apply govgr-heading-xl
-    /*font-size: 3rem;*/
+    /*@apply govgr-heading-xl*/
+    font-size: 2.5rem;
 ;
 }
 
@@ -28,6 +28,16 @@ h6 {
     font-size: 1.1475rem;
 }
 
+
+.active{
+font-weight: bold;
+
+}
+
+:focus-visible{
+    outline:1px solid red;
+
+}
 
 a:active {
  color:#00122a;
@@ -75,7 +85,7 @@ for hover ----.link {
 }
 
 .govgr-heading-l {
-    margin-top: 2rem;
+    margin-top: 0.5rem;
 }
 
 .govgr-heading-m {
@@ -119,7 +129,7 @@ for hover ----.link {
 } */
 .govgr-section-break--m {
     margin-bottom: 0.5rem;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
 }
 
 @media (min-width:768px) {
@@ -168,6 +178,39 @@ for hover ----.link {
  }
 }
 
+hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 5px;
+}
+
+/* Input */
+@media (min-width:768px) {
+    .govgr-input,
+    .govgr-select,
+    .govgr-textarea {
+     font-size:1.10rem;
+    }
+   }
+
+   .govgr-checkboxes__item {
+    
+    margin-bottom:.5rem;
+   }
+   
+@media (min-width:768px) {
+    .govgr-label,.govgr-label-row {
+     font-size:1.10rem;
+     font-weight: 700
+    }
+}
+
+   .govgr-checkboxes__input {
+   
+    height:1.5rem;
+    width:1.5rem;
+    top: 0rem;
+   }
+
 
 .govgr-dropdown__content {
  
@@ -183,9 +226,9 @@ for hover ----.link {
 }
 
 /* New menu */
-.menu_ul  li  a {
+/*.menu_ul  li  a {*/
     /*text-decoration: none;*/
-}
+/*}*/
 
 .menu_ul,.menu_ul ul,
 .dropdown_ul ul {
@@ -205,12 +248,12 @@ for hover ----.link {
     /* transition-duration: 0.5s; */
 }
 
-.menu_ul li:hover,
+/*.menu_ul li:hover,
 .menu_ul li:focus-within {
   
     /*background-color: #003375;*/
     /*color: white;*/
-}
+}*/
 
 .menu_ul li:focus-within a {
     outline: none;
@@ -347,22 +390,40 @@ text-decoration:underline;
 }
 
 
+.tooltip_text {
 
-#home /*li::marker,*/
-::before {
+    background: #fff;
+  color: #0f5cae;
+  /*! font-weight: bold; */
+  padding: 4px;
+  font-size: 13px;
+  border-radius: 4px;
+  /*! width: 50%; */
+  display: none;
+
+  border: 1px solid;
+  border-color: #0f5cae;
+      }
+
+.tooltip_text[data-show] {
+        display: block;
+    }
+
+       
+    #home::before { /*li::marker,*/
     font-family: 'Font Awesome 6 Free';
     font-weight: 900;
     content: '\f35a';
     /*color: coral;*/
 	margin-right: 8px; 
-}
+     }
 
 
-.hyphens {
+     .hyphens {
     -webkit-hyphens: auto;
     -moz-hyphens: auto;
     hyphens: auto;
-}
+    }
 
 
     .govgr-accordion__section .govgr-accordion__section-content {
@@ -472,7 +533,7 @@ text-decoration:underline;
         width: 100%;
         margin-right: auto;
         margin-left: auto;
-        max-width: 80rem;
+        max-width: 120rem;
 
         /* 1280px */
         padding: 1rem 1rem;
@@ -481,7 +542,7 @@ text-decoration:underline;
     /* .govgr-width-container {
     max-width: 64rem;
     padding: 2rem 1rem;
-} */
+    } */
     /* GovGR Header-container max-width 64rem fix for big screens */
     .govgr-header__container {
         display: flex;

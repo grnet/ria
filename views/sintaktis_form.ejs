@@ -1,7 +1,4 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/countable/3.0.1/Countable.min.js"></script>
-<!-- Development version. Change to production version later-->
-<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
-<script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
+
 <div class="">
     <!--<input type="button" name="back" class="back" value="Πίσω"/> <br/>--> <a href="#" class="govgr-back-link"
         id="back" name="back"> <svg class="govgr-caret--left" viewBox="0 0 24 24" aria-hidden="true">
@@ -15,16 +12,23 @@
                     <fieldset id="arxiki" name="arxiki">
                         <h2 class="govgr-heading-m">Ανάλυση Συνεπειών Ρύθμισης</h2>
                         <div>
-                            <h4 id="subtitle"></h4>
-                            <p id="subtext"></p>
+                            <h4 class="govgr-heading-m" id="subtitle"></h4>
+                            <p class="govgr-body"id="subtext"></p>
                         </div>
                         <div class="govgr-grid">
                             <div class="govgr-grid__col-span-6">
                                 <label for="title" class="govgr-label-row required">Τίτλος αξιολογούμενης
                                     ρύθμισης</label>
                             </div>
+                            <!-- <div class="govgr-grid__col-span-3 tooltip_div">
+                                <img src="/img/information.png" id="title_tooltip_img" aria-describedby="title_tooltip_img"
+                                    onmouseover="tooltipEvents('title_tooltip_img', 'title_tooltip'); setTooltip('title_tooltip','title');"
+                                    width="20px">
+                                <div id="title_tooltip" class="tooltip_text" role="tooltip"></div>
+                            </div> -->
                             <div class="govgr-grid__col-span-6">
-                                <input type="text" class="govgr-input form-control" id="title" name="title" />
+                                <textarea class="govgr-textarea form-control" name="title" rows="3" > </textarea>
+                               <!-- <input type="text" class="govgr-input " id="title" name="title" />-->
                             </div>
                         </div>
                         <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
@@ -271,8 +275,8 @@
                             νομοθεσίας:</label>
                         <br />
                         <div class="index_field_5"></div> <br />
-                        <div class="govgr-grid">
-                            <div class="govgr-grid__col-span-6">
+                        <div class="govgr-field">
+                            <div class="govgr-label">
                                 <label for="field_5_1" class="govgr-label-row required">5.1 με αλλαγή προεδρικού
                                     διατάγματος, υπουργικής απόφασης ή
                                     άλλης κανονιστικής πράξης;
@@ -286,8 +290,8 @@
                             </div>
                         </div>
                         <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
-                        <div class="govgr-grid">
-                            <div class="govgr-grid__col-span-6">
+                        <div class="govgr-field">
+                            <div class="govgr-label">
                                 <label for="field_5_2" class="govgr-label-row required">5.2 με αλλαγή διοικητικής
                                     πρακτικής συμπεριλαμβανομένης της
                                     δυνατότητας νέας ερμηνευτικής προσέγγισης της υφιστάμενης νομοθεσίας;
@@ -301,8 +305,8 @@
                             </div>
                         </div>
                         <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
-                        <div class="govgr-grid">
-                            <div class="govgr-grid__col-span-6">
+                        <div class="govgr-field">
+                            <div class="govgr-label">
                                 <label for="field_5_3" class="govgr-label-row required">5.3 με διάθεση περισσότερων
                                     ανθρώπινων και υλικών
                                     πόρων;
@@ -337,8 +341,8 @@
 
                     <fieldset id="sunafeis_praktikes">
                         <h2 class="govgr-heading-m">Συναφείς Πρακτικές</h2> <br />
-                        <div class="govgr-grid">
-                            <div class="govgr-grid__col-span-9">
+                        <div class="govgr-field">
+                            <div class="govgr-label">
                                 <label for="field_6" class="govgr-label-row required">6. Έχετε λάβει υπόψη συναφείς
                                     πρακτικές;
                                 </label>
@@ -351,9 +355,9 @@
                                 </select>
                             </div>
                         </div> <br />
-                        <div id="field_6_wrap" class="govgr-grid" style="display:none;">
-                            <div class="govgr-grid">
-                                <div class="govgr-grid__col-span-6">
+                        <div id="field_6_wrap" style="display:none;">
+                            <div class="govgr-field">
+                                <div class="govgr-label">
                                     <label for="field_6_1" class="govgr-label-row required">6.1 Σε άλλη/ες χώρα/ες της
                                         Ε.Ε. ή του ΟΟΣΑ:
                                     </label>
@@ -366,8 +370,8 @@
                                 </div>
                             </div>
                             <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
-                            <div class="govgr-grid">
-                                <div class="govgr-grid__col-span-6">
+                            <div class="govgr-field">
+                                <div class="govgr-label">
                                     <label for="field_6_2" class="govgr-label-row required">6.2 Σε όργανα της Ε.Ε.:
                                     </label>
                                 </div>
@@ -379,8 +383,8 @@
                                 </div>
                             </div>
                             <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
-                            <div class="govgr-grid">
-                                <div class="govgr-grid__col-span-6">
+                            <div class="govgr-field">
+                                <div class="govgr-label">
                                     <label for="field_6_3" class="govgr-label-row required">6.3 Σε διεθνείς οργανισμούς:
                                     </label>
                                 </div>
@@ -554,8 +558,8 @@
                         <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
                         <h2 class="govgr-heading-m">8. Ποιοι είναι οι στόχοι της αξιολογούμενης ρύθμισης;</h2> <br />
                         <div class="index_field_8"></div>
-                        <div class="govgr-grid">
-                            <div class="govgr-grid__col-span-6">
+                        <div class="govgr-field">
+                            <div class="govgr-label">
                                 <label for="field_8_1" class="govgr-label-row required">8.1 βραχυπρόθεσμοι:
                                 </label>
                             </div>
@@ -567,8 +571,8 @@
                             </div>
                         </div>
                         <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
-                        <div class="govgr-grid">
-                            <div class="govgr-grid__col-span-6">
+                        <div class="govgr-field">
+                            <div class="govgr-label">
                                 <label for="field_8_2" class="govgr-label-row required">8.2 μακροπρόθεσμοι:</label>
                             </div>
                             <div class="govgr-grid__col-span-6">
@@ -660,7 +664,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
+                            
                             <div id="field_11_wrap" class="form-group digital_gov" style="display:none;">
                                 <label for="field_11_comments" class="digital-gov-label">Εξηγήστε</label>
                                 <textarea class="govgr-textarea" name="field_11_comments" id="field_11_comments"
@@ -684,7 +688,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
+                           
                             <div id="field_12_wrap" class="form-group digital_gov" style="display:none;">
                                 <label for="field_12_comments" class="digital-gov-label">Αναφέρατε ποια είναι αυτά τα
                                     συστήματα:
@@ -710,7 +714,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
+                            
                             <div id="field_13_wrap" class="form-group digital_gov" style="display:none;">
                                 <label for="field_13_comments" class="digital-gov-label">Εξηγήστε</label>
                                 <textarea class="govgr-textarea" name="field_13_comments" id="field_13_comments"
@@ -718,6 +722,7 @@
                                     onpaste="wordsCounter('field_13_comments','words13', event)"></textarea>
                                 <p style="float: right;">Λέξεις: <span id="words13"></span></p>
                             </div>
+                            <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
                             <div class="govgr-button-group">
                                 <button type="button"
                                     class="govgr-btn govgr-btn-primary previous action-button-previous" name="previous">
@@ -797,7 +802,7 @@
                                                 <%- include('fill_form/fill_form_h.ejs') %> <br />
                                                     <button type="button" class="govgr-btn govgr-btn-secondary"
                                                         id="save_temporarily" name="save_temporarily"
-                                                        style="float: right;">
+                                                        style="float: left;">
                                                         Προσωρινή αποθήκευση
                                                     </button>
                 </form>
@@ -809,65 +814,8 @@
 
 
 <style>
-    /* .content_div {
-            width: 90%;
-            overflow: hidden;
-            float: left;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-        }
 
-        .tootltip_div {
-            width: 10%;
-            overflow: hidden;
-            float: right;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-        } */
-    .exit {
-        font-size: 16px;
-    }
-
-    .tooltip_text[data-show] {
-        display: block;
-    }
-
-    .tooltip_text {
-        background: #333;
-        color: white;
-        font-weight: bold;
-        padding: 4px;
-        font-size: 13px;
-        border-radius: 4px;
-        /* width: 50%; */
-        display: none;
-    }
-
-    /* table {
-        border: 1px solid black;
-        width: 100%;
-        padding: 20px;
-        text-align: left;
-    }
-
-    table th {
-        background-color: grey;
-        text-align: center;
-        padding: 10px;
-    }
-
-    table td {
-        border: 1px dotted black;
-    } */
-
-    li.active {
-        border-color: blue;
-        border-width: 1px;
-        border-style: dashed;
-    }
-
+/*
     .arxiki_menu {
         display: none;
     }
@@ -939,6 +887,7 @@
     .ekthesi_efarmogis_rythmisis_list:hover .ekthesi_efarmogis_rythmisis_menu {
         display: initial;
     }
+    */
 
     .flex-form-group {
         display: flex;
@@ -973,9 +922,7 @@
         margin-top: 0px;
     }
 
-    label {
-        font-weight: 700;
-    }
+    
 
     .parent {
         display: flex;

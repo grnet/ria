@@ -106,7 +106,7 @@
                     <td> <textarea class="govgr-textarea" id="field_32_armodio_ypoyrgeio<%=i%>"
                             name="field_32_armodio_ypoyrgeio<%=i%>"
                             rows="4"><%= Object.values(data.field_32_armodio_ypoyrgeio[i]) %></textarea> </td>
-                    <td>                         
+                    <td>
                         <textarea class="govgr-textarea" id="field_32_antikeimeno<%=i%>"
                             name="field_32_antikeimeno<%=i%>"
                             onkeypress="wordsCounter('field_32_antikeimeno<%=i%>','words32_<%=i%>',50, event)"
@@ -291,9 +291,7 @@
                     <tr class="govgr-table__row">
                         <td class="govgr-table__cell">
                             <textarea class="govgr-textarea" id="process<%=i%>" name="process<%=i%>"
-                                onkeypress="wordsCounter('process<%=i%>','words32_<%=i%>',50, event)"
-                                onpaste="wordsCounter('process<%=i%>','words32_<%=i%>',50, event)"
-                                rows="4"><%= Object.values(data.emd_processes[i]) %></textarea>
+                                rows="1"><%= Object.values(data.emd_processes[i]) %></textarea>
                         </td>
                     </tr>
                     <% } }%>
@@ -396,7 +394,7 @@
 
     <div>
         <input type="button" name="pdfExport" class="govgr-btn govgr-btn-warning export-pdf action-button-export"
-             value="Εξαγωγή σε PDF" />
+            value="Εξαγωγή σε PDF" />
     </div> <br /><br />
 
     <div class="govgr-button-group">
@@ -405,7 +403,7 @@
             Προηγούμενα πεδία
         </button>
     </div> <br />
-    <div class="flex justify-center">
+    <div class="flex">
         <input type="submit" id="final_save"
             class="govgr-btn govgr-btn-primary govgr-btn-cta action-button action-button-create create-new"
             value="Οριστική Αποθήκευση" style="float: right;" />

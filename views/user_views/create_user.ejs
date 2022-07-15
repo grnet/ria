@@ -1,11 +1,14 @@
 <%- include('../partials/head.ejs') %>
-    <div class=""> <br />
+    <div class=""> 
         <!--<input type="button" name="back" class="back" value="Πίσω"/> <br/>--> <a href="#" class="govgr-back-link"
             name="back" id="back"> <svg class="govgr-caret--left" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M18,22V2L6,12L18,22z" />
             </svg>
-            Επιστροφή στην αρχική</a> <br />
-        <div class="govgr-width-container">
+            Επιστροφή στην αρχική</a> 
+            <div class="govgr-layout-wrapper govgr-layout-wrapper__full-height">
+                 <div class="govgr-width-container">
+             <div class="govgr-main-wrapper">
+			  <div class="govgr-grid-column-two-thirds">
             <form>
                 <div id="errors" style="display: none;">
                     <!--Display validation errors here-->
@@ -22,28 +25,28 @@
                 <h1 class="govgr-heading-xl">Δημιουργία Νέου Χρήστη</h1>
                 <div class="govgr-field">
                     <label class="govgr-label" for="fname"> <span>Όνομα χρήστη:</span>
-                        <input class="govgr-input govgr-!-width-full" type="text" id="fname" name="fname"
+                        <input class="govgr-input govgr-!-width-one-half" type="text" id="fname" name="fname"
                             placeholder="Όνομα χρήστη" required minlength="5" />
                     </label>
                 </div>
                 <hr />
                 <div class="govgr-field">
                     <label class="govgr-label" for="lname"> <span>Επώνυμο χρήστη:</span>
-                        <input class="govgr-input govgr-!-width-full" type="text" id="lname" name="lname"
+                        <input class="govgr-input govgr-!-width-one-half" type="text" id="lname" name="lname"
                             placeholder="Επώνυμο χρήστη" required minlength="5" />
                     </label>
                 </div>
                 <hr />
                 <div class="govgr-field">
                     <label class="govgr-label" for="username"> <span>Username:</span>
-                        <input class="govgr-input govgr-!-width-full" type="text" id="username" name="username"
+                        <input class="govgr-input govgr-!-width-one-half" type="text" id="username" name="username"
                             placeholder="Username" required minlength="5" />
                     </label>
                 </div>
                 <hr />
                 <div class="govgr-field">
                     <label class="govgr-label" for="password"> <span>Κωδικός Πρόσβασης:</span>
-                        <input class="govgr-input govgr-!-width-full" type="password" id="password" name="password"
+                        <input class="govgr-input govgr-!-width-one-half" type="password" id="password" name="password"
                             required minlength="8"
                             pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$"
                             oninvalid="this.setCustomValidity('Ο κωδικός πρέπει να περιέχει τουλάχιστον ένα πεζό και ένα κεφαλαίο γράμμα, έναν αριθμό και ένα σύμβολο(!@#$%^&*_=+-).')"
@@ -51,8 +54,8 @@
                     </label>
                 </div>
                 <div class="govgr-field">
-                    <label for="password"> <span>Επανάληψη κωδικού πρόσβασης χρήστη:</span>
-                        <input type="password" size="20" id="password_repeat" name="password_repeat" required
+                    <label class="govgr-label" for="password"> <span>Επανάληψη κωδικού πρόσβασης χρήστη:</span>
+                        <input class="govgr-input govgr-!-width-one-half" type="password" size="20" id="password_repeat" name="password_repeat" required
                             minlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$"
                             oninvalid="this.setCustomValidity('Ο κωδικός πρέπει να περιέχει τουλάχιστον ένα πεζό και ένα κεφαλαίο γράμμα, έναν αριθμό και ένα σύμβολο(!@#$%^&*_=+-).')"
                             oninput="this.setCustomValidity('')" />
@@ -63,7 +66,7 @@
                 <div class="govgr-field">
                     <label class="govgr-label" for="ypoyrgeio">
                         Υπουργείο:
-                        <select class="govgr-select" id="ypoyrgeio" name="ypoyrgeio" required>
+                        <select class="govgr-select govgr-!-width-two-thirds" id="ypoyrgeio" name="ypoyrgeio" required>
                             <option value="" selected disabled>Eπιλογή</option>
                         </select>
                     </label>
@@ -72,7 +75,7 @@
                 <div class="govgr-field">
                     <label class="govgr-label" for="rolos">
                         Ρόλος:
-                        <select class="govgr-select" id="rolos" name="rolos" required>
+                        <select class="govgr-select govgr-!-width-two-thirds" id="rolos" name="rolos" required>
                             <option value="" selected disabled>Eπιλογή</option>
                             <option value="Συντάκτης επισπεύδοντος Υπουργείου">Συντάκτης επισπεύδοντος Υπουργείου
                             </option>
@@ -95,7 +98,7 @@
                     </label>
                 </div> <br />
                 <div class="govgr-field">
-                    <fieldset class="govgr-fieldset">
+                    <fieldset class="govgr-fieldset govgr-!-width-two-thirds">
                         <legend for="dikaiwmata_diaxeirisis" role="heading" aria-level="1"
                             class="govgr-fieldset__legend govgr-heading-l">
                             Δικαιώματα Διαχείρισης
@@ -115,17 +118,14 @@
                 <hr /> <br />
                 <input type="submit" id=" create_new" name="action-button" class="govgr-btn govgr-btn-primary"
                     value="Δημιουργία" />
-            </form>
+            </form></div></div>
         </div>
     </div>
     <%- include('../partials/footer.ejs') %>
-        </div>
+        </div> </div>
 
         <style>
-            body {
-                font-family: Arial, Helvetica, sans-serif;
-                background-color: white;
-            }
+           
 
             * {
                 box-sizing: border-box;
@@ -137,7 +137,7 @@
             }
 
             /* Full-width input fields */
-            input[type=text],
+            /*input[type=text],
             input[type=password] {
                 width: 100%;
                 padding: 15px;
@@ -146,19 +146,16 @@
                 border: 2px solid #ccc;
                 border-radius: 4px;
                 background: #f1f1f1;
-            }
+            }*/
 
-            input[type=text]:focus,
+           /* input[type=text]:focus,
             input[type=password]:focus {
                 background-color: #ddd;
                 outline: none;
-            }
+            }*/
 
-            /* Overwrite default styles of hr */
-            hr {
-                border: 1px solid #f1f1f1;
-                margin-bottom: 25px;
-            }
+          
+           
 
             .flex-form-group {
                 display: flex;
@@ -175,18 +172,7 @@
                 margin-top: 0px;
             }
 
-            label {
-                font-weight: 700;
-            }
-
-            .action-button,
-            .back {
-                font-size: 16px;
-            }
-
-            a {
-                color: blue;
-            }
+            
         </style>
 
         <script>

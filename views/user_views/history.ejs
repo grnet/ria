@@ -1,5 +1,5 @@
 <%- include('../partials/head.ejs') %>
-<script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+
   <div id="content">
     <div class=""> <br />
       <!--<input type="button" name="back" class="back" value="Πίσω"/> <br/>--> <a href="#" class="govgr-back-link"
@@ -7,14 +7,14 @@
           <path d="M18,22V2L6,12L18,22z" />
         </svg>
         Επιστροφή στην αρχική</a> <br />
-      <div class="govgr-width-container"> <br />
+        <div class="govgr-layout-wrapper govgr-layout-wrapper__full-height"><div class="govgr-width-container"> <br />
         <div class="govgr-button-group">
           <input type="button" id="user_button" class="govgr-btn govgr-btn-primary" value="Οι αναλύσεις μου" />
           <input type="button" id="entries_button" class="govgr-btn govgr-btn-primary"
             value="Διαθέσιμες αναλύσεις του Φορέα" /> <br />
           <br />
         </div>
-        <div>
+        <div id="user_div" style="display: none;">
           <table id="user_data" class="govgr-table--zebra govgr-table--dense govgr-table--dark govgr-table">
             <thead class="govgr-table__head">
               <tr class="govgr-table__row">
@@ -53,7 +53,7 @@
             </tbody>
           </table>
         </div>
-        <div>
+        <div id="entries_div" style="display: none;">
           <table id="entries_data" class="govgr-table--zebra govgr-table--dense govgr-table--dark govgr-table">
             <thead class="govgr-table__head">
               <tr class="govgr-table__row">
@@ -94,46 +94,34 @@
             </tbody>
           </table>
         </div> <br />
-        <%- include('../user_views/menus.ejs') %>
       </div>
     </div>
-  </div>
+  </div></div>
+  
   <%- include('../partials/footer.ejs') %>
 
     <style>
-      a {
-        color: blue;
-      }
+    
 
       .display {
         table-layout: fixed;
         overflow-wrap: break-word;
       }
 
-      .exit,
-      .back,
-      .display-table-button {
-        font-size: 16px;
-      }
-
-      #footer {
-        position: relative;
-        bottom: 0%;
-      }
+     
     </style>
 
     <script>
-      $(document).ready(function () {
-        $("#user_data").dataTable();
-        hideDataTable("#user_data", "#user_data_wrapper");
-        $('#entries_data').DataTable();
-        hideDataTable("#entries_data", "#entries_data_wrapper");
+      // $(document).ready(function () {
+      //   $("#user_data").dataTable();
+      //   hideDataTable("#user_data", "#user_data_wrapper");
+      //   $('#entries_data').DataTable();
+      //   hideDataTable("#entries_data", "#entries_data_wrapper");
 
-      });
+      // });
 
       function setReferer(id) {
         sessionStorage.setItem("referer", id);
-        console.log(sessionStorage.getItem("referer"));
         window.location.href = '/form_a/' + id;
       }
 
@@ -162,12 +150,16 @@
       }
 
       $("#user_button").on("click", function (ev) {
-        hideDataTable("#entries_data", "#entries_data_wrapper");
-        showDataTable("#user_data", "#user_data_wrapper");
+        $("#entries_div").hide();
+        $("#user_div").show();
+        // hideDataTable("#entries_data", "#entries_data_wrapper");
+        // showDataTable("#user_data", "#user_data_wrapper");
       });
       $("#entries_button").on("click", function (ev) {
-        hideDataTable("#user_data", "#user_data_wrapper");
-        showDataTable("#entries_data", "#entries_data_wrapper");
+        $("#entries_div").show();
+        $("#user_div").hide();
+        // hideDataTable("#user_data", "#user_data_wrapper");
+        // showDataTable("#entries_data", "#entries_data_wrapper");
       });
 
       $("#back").on("click", function (ev) {

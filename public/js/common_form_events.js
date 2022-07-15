@@ -13,7 +13,7 @@ $(".next").click(function () {
   next_fs = $(this).closest("fieldset").next();
 
   //activate next step on progressbar using the index of next_fs
-  // $(".progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+   $(".progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
 
   //show the next fieldset
   next_fs.show();
@@ -286,7 +286,7 @@ $("#add_row_table_17").on("click", function () {
                 <textarea class="govgr-textarea" id="field_17_minister_name${index}" name="field_17_minister_name${index}" rows="1"></textarea> 
             </td>    
             <td> 
-                <select id="field_17_minister_surname${index}" name="field_17_minister_surname${index}" class="govgr-select" onchange="ministerSurnameOnChange('field_17_minister_name${index}', 'field_17_minister_surname${index}', 'field_17_minister_role${index}', 'field_17_minister_ministry${index}')" required></select>
+                <select id="field_17_minister_surname${index}" name="field_17_minister_surname${index}" class="govgr-select" onchange="ministerSurnameOnChange('field_17_minister_name${index}', 'field_17_minister_surname${index}', 'field_17_minister_role${index}', 'field_17_minister_ministry${index}')"></select>
             </td> 
             <td>
                 <br> 
@@ -306,7 +306,7 @@ $("#add_row_ministers_table").on("click", function () {
                 <textarea class="govgr-textarea" id="minister_name${index}" name="minister_name${index}" rows="1" readonly></textarea> 
             </td>    
             <td> 
-                <select id="minister_surname${index}" name="minister_surname${index}" class="govgr-select" onchange="ministerSurnameOnChange('minister_name${index}', 'minister_surname${index}', 'minister_role${index}', 'minister_ministry${index}')" required></select>
+                <select id="minister_surname${index}" name="minister_surname${index}" class="govgr-select" onchange="ministerSurnameOnChange('minister_name${index}', 'minister_surname${index}', 'minister_role${index}', 'minister_ministry${index}')"></select>
             </td> 
             <td>
                 <br> 

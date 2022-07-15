@@ -1,11 +1,14 @@
 <%- include('../partials/head.ejs') %>
-  <div class=""> <br />
+  <div class=""> 
     <!--<input type="button" name="back" class="back" value="Πίσω"/> <br/>--> <a href="#" class="govgr-back-link"
       id="back" name="back"> <svg class="govgr-caret--left" viewBox="0 0 24 24" aria-hidden="true">
         <path d="M18,22V2L6,12L18,22z" />
       </svg>
       Επιστροφή στην αρχική</a> <br />
-    <div class="govgr-width-container">
+      <div class="govgr-layout-wrapper govgr-layout-wrapper__full-height">
+        <div class="govgr-width-container">
+    <div class="govgr-main-wrapper">
+<div class="govgr-grid-column-two-thirds">
       <table id="data" class="govgr-table--zebra govgr-table--dense govgr-table--dark govgr-table">
         <thead class="govgr-table__head">
           <tr class="govgr-table__row">
@@ -70,20 +73,10 @@
             </b> </td>
         </tr>
       </table>
-      <%- include('../user_views/menus.ejs') %>
-    </div>
-  </div>
-
-    <style>
-      a {
-        color: blue;
-      }
-
-      .exit,
-      .back {
-        font-size: 16px;
-      }
-    </style>
+    </div> </div>
+  </div></div>
+  </div> 
+  <%- include('../partials/footer.ejs') %>
 
     <script>
       $("#back").on("click", function (ev) {
