@@ -515,10 +515,14 @@ routes.post("/:entry_id/diff/", authUser, async function (req, res, next) {
   });
 
   let data = {};
+  // console.log(entry1);
+  // console.log(entry1.data);
   for (i in entry1.data) {
+    if (i.includes('header') || i.includes('Header') || i.includes('label')) continue;
     const diffchars = diff.diffWords(entry1.data[i], entry2.data[i]);
     diffchars.forEach((part) => {
       // green for additions, red for deletions
+      console.log(i);
       part.added
         ? data[i]
           ? data[i].push({ value: part.value, color: "green" })
@@ -532,8 +536,7 @@ routes.post("/:entry_id/diff/", authUser, async function (req, res, next) {
         : (data[i] = [{ value: part.value, color: "" }]);
     });
   }
-  req.diff.data = data;
-  console.log(req.diff.data);
+  req.diffData = data;
   res.status(200).json({ data: data });
 });
 
