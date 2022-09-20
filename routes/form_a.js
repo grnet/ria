@@ -532,6 +532,8 @@ routes.post("/:entry_id/diff/", authUser, async function (req, res, next) {
         : (data[i] = [{ value: part.value, color: "" }]);
     });
   }
+  req.diff.data = data;
+  console.log(req.diff.data);
   res.status(200).json({ data: data });
 });
 

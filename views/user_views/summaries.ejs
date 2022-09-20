@@ -1,83 +1,85 @@
 <%- include('../partials/head.ejs') %>
-  <div class=""> 
+  <div class="">
     <!--<input type="button" name="back" class="back" value="Πίσω"/> <br/>--> <a href="#" class="govgr-back-link"
       id="back" name="back"> <svg class="govgr-caret--left" viewBox="0 0 24 24" aria-hidden="true">
         <path d="M18,22V2L6,12L18,22z" />
       </svg>
       Επιστροφή στην αρχική</a> <br />
-      <div class="govgr-layout-wrapper govgr-layout-wrapper__full-height">
-        <div class="govgr-width-container">
-    <div class="govgr-main-wrapper">
-<div class="govgr-grid-column-two-thirds">
-      <table id="data" class="govgr-table--zebra govgr-table--dense govgr-table--dark govgr-table">
-        <thead class="govgr-table__head">
-          <tr class="govgr-table__row">
-            <th class="govgr-table__header" scope="col">Κατηγορία</th>
-            <th class="govgr-table__header" scope="col">Εκθέσεις</th>
-          </tr>
-        </thead>
-        <tbody class="govgr-table__body">
-          <tr class="govgr-table__row">
-            <td class="govgr-table__cell">Προσχέδιο νόμου</td>
-            <td class="govgr-table__cell">
-              <%= prosxedio%>
-            </td>
-          </tr>
-          <tr class="govgr-table__row">
-            <td class="govgr-table__cell">Σχέδιο νόμου</td>
-            <td class="govgr-table__cell">
-              <%= sxedio%>
-            </td>
-          </tr>
-          <tr class="govgr-table__row">
-            <td class="govgr-table__cell">Κατευθυντήριες γραμμές</td>
-            <td class="govgr-table__cell">
-              <%= kateythintiries%>
-            </td>
-          </tr>
-          <tr class="govgr-table__row">
-            <td class="govgr-table__cell">Επείγοντα και κατεπείγοντα νομοσχέδια</td>
-            <td class="govgr-table__cell">
-              <%= epeigon%>
-            </td>
-          </tr>
-          <tr class="govgr-table__row">
-            <td class="govgr-table__cell">Πρόταση νόμου</td>
-            <td class="govgr-table__cell">
-              <%= protasi%>
-            </td>
-          </tr>
-          <tr class="govgr-table__row">
-            <td class="govgr-table__cell">Κύρωση διεθνών συμβάσεων</td>
-            <td class="govgr-table__cell">
-              <%= symvaseis%>
-            </td>
-          </tr>
-          <tr class="govgr-table__row">
-            <td class="govgr-table__cell">Τροπολογίες Υπουργών</td>
-            <td class="govgr-table__cell">
-              <%= tropologies_upourgwn%>
-            </td>
-          </tr>
-          <tr class="govgr-table__row">
-            <td class="govgr-table__cell">Τροπολογίες Βουλευτών</td>
-            <td class="govgr-table__cell">
-              <%= tropologies_vouleftwn%>
-            </td>
-          </tr>
-        </tbody>
-        <tr class="govgr-table__row">
-          <td class="govgr-table__cell"><b>Σύνολο</b></td>
-          <td class="govgr-table__cell"> <b>
-              <%= entries %>
-            </b> </td>
-        </tr>
-      </table>
-    </div> </div>
-  </div></div>
-  </div> 
+    <div class="govgr-layout-wrapper govgr-layout-wrapper__full-height">
+      <div class="govgr-width-container">
+        <div class="govgr-main-wrapper">
+          <div class="govgr-grid-column-two-thirds">
+            <table id="data" class="govgr-table--zebra govgr-table--dense govgr-table--dark govgr-table">
+              <thead class="govgr-table__head">
+                <tr class="govgr-table__row">
+                  <th class="govgr-table__header" scope="col">Κατηγορία</th>
+                  <th class="govgr-table__header" scope="col">Εκθέσεις</th>
+                </tr>
+              </thead>
+              <tbody class="govgr-table__body">
+                <tr class="govgr-table__row">
+                  <td class="govgr-table__cell">Προσχέδιο νόμου</td>
+                  <td class="govgr-table__cell">
+                    <%= prosxedio%>
+                  </td>
+                </tr>
+                <tr class="govgr-table__row">
+                  <td class="govgr-table__cell">Σχέδιο νόμου</td>
+                  <td class="govgr-table__cell">
+                    <%= sxedio%>
+                  </td>
+                </tr>
+                <tr class="govgr-table__row">
+                  <td class="govgr-table__cell">Κατευθυντήριες γραμμές</td>
+                  <td class="govgr-table__cell">
+                    <%= kateythintiries%>
+                  </td>
+                </tr>
+                <tr class="govgr-table__row">
+                  <td class="govgr-table__cell">Επείγοντα και κατεπείγοντα νομοσχέδια</td>
+                  <td class="govgr-table__cell">
+                    <%= epeigon%>
+                  </td>
+                </tr>
+                <tr class="govgr-table__row">
+                  <td class="govgr-table__cell">Πρόταση νόμου</td>
+                  <td class="govgr-table__cell">
+                    <%= protasi%>
+                  </td>
+                </tr>
+                <tr class="govgr-table__row">
+                  <td class="govgr-table__cell">Κύρωση διεθνών συμβάσεων</td>
+                  <td class="govgr-table__cell">
+                    <%= symvaseis%>
+                  </td>
+                </tr>
+                <tr class="govgr-table__row">
+                  <td class="govgr-table__cell">Τροπολογίες Υπουργών</td>
+                  <td class="govgr-table__cell">
+                    <%= tropologies_upourgwn%>
+                  </td>
+                </tr>
+                <tr class="govgr-table__row">
+                  <td class="govgr-table__cell">Τροπολογίες Βουλευτών</td>
+                  <td class="govgr-table__cell">
+                    <%= tropologies_vouleftwn%>
+                  </td>
+                </tr>
+              </tbody>
+              <tr class="govgr-table__row">
+                <td class="govgr-table__cell"><b>Σύνολο</b></td>
+                <td class="govgr-table__cell"> <b>
+                    <%= entries %>
+                  </b> </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <%- include('../partials/footer.ejs') %>
-
+    <script type="text/javascript" src="/js/nav_scripts.js"></script>
     <script>
       $("#back").on("click", function (ev) {
         window.location.href = "/user_views/dashboard";
@@ -85,7 +87,7 @@
 
       const userRole = "<%= user.rolos %>";
       setUserRestrictions(userRole);
-      
+
       let isAdmin = '<%= user.dikaiwmata_diaxeirisis %>';
 
       isAdmin ? $(".user").hide() : $(".admin").hide();//display admin info if user has administration rights

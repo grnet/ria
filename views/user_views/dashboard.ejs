@@ -1,68 +1,71 @@
 <%- include('../partials/head.ejs') %>
-<div class="govgr-layout-wrapper govgr-layout-wrapper__full-height">
-  <div class="govgr-width-container">
-    <div class="govgr-main-wrapper">
-      <div class="govgr-grid-column-two-thirds">
-        <% if( typeof errors !=="undefined" ) { for (i in errors) {%>
-          <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert"> <a
-              href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> <strong>
-              <%= errors[i].msg%>
-            </strong>
-          </div>
-          <% } } %> <br />
-            <div class="user">
-              <p class="govgr-body">
-                Ως <b>Χρήστης</b> του συστήματος μπορείτε, επιλέγοντας τον αντίστοιχο σύνδεσμο, να: <br />
-              <ul>
-                <li>
-                  <span>&#10004;</span> Διαχειριστείτε τα στοιχεία του προφίλ σας
-                </li>
-                <li>
-                  <span>&#10004;</span>
-                  Να ξεκινήσετε μια νέα έκθεση
-                </li>
-                <li>
-                  <span>&#10004;</span> Να δείτε τις καταχωρημένες εκθέσεις σε κάθε κατηγορία και να συνεχίσετε μια θεση
-                  που έχετε
-                  αποθηκεύσει
-                  προσωρινά
-                </li>
-              </ul>
-              </p>
-            </div> <br />
-            <div class="admin">
-              <p class="govgr-body">
-                Ως <b>Διαχειριστής</b> του συστήματος μπορείτε, επιλέγοντας τον αντίστοιχο σύνδεσμο, να: <br />
-              <ul>
-                <li><span>&#10004;</span> Διαχειριστείτε τους χρήστες και ρόλους του συστήματος
-                </li>
-                <li><span>&#10004;</span> Να δείτε συγκεντρωτικά στοιχεία για τις εκθέσεις που έχουν καταχωρηθεί
-                </li>
-                <li><span>&#10004;</span> Να δείτε και να επεξεργαστείτε καταχωρημένες εκθέσεις
-                </li>
-              </ul>
-              </p>
+  <div class="govgr-layout-wrapper govgr-layout-wrapper__full-height">
+    <div class="govgr-width-container">
+      <div class="govgr-main-wrapper">
+        <div class="govgr-grid-column-two-thirds">
+          <% if( typeof errors !=="undefined" ) { for (i in errors) {%>
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert"> <a
+                href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> <strong>
+                <%= errors[i].msg%>
+              </strong>
             </div>
+            <% } } %> <br />
+              <div class="user">
+                <p class="govgr-body">
+                  Ως <b>Χρήστης</b> του συστήματος μπορείτε, επιλέγοντας τον αντίστοιχο σύνδεσμο, να: <br />
+                <ul>
+                  <li>
+                    <span>&#10004;</span> Διαχειριστείτε τα στοιχεία του προφίλ σας
+                  </li>
+                  <li>
+                    <span>&#10004;</span>
+                    Να ξεκινήσετε μια νέα έκθεση
+                  </li>
+                  <li>
+                    <span>&#10004;</span> Να δείτε τις καταχωρημένες εκθέσεις σε κάθε κατηγορία και να συνεχίσετε μια
+                    θεση
+                    που έχετε
+                    αποθηκεύσει
+                    προσωρινά
+                  </li>
+                </ul>
+                </p>
+              </div> <br />
+              <div class="admin">
+                <p class="govgr-body">
+                  Ως <b>Διαχειριστής</b> του συστήματος μπορείτε, επιλέγοντας τον αντίστοιχο σύνδεσμο, να: <br />
+                <ul>
+                  <li><span>&#10004;</span> Διαχειριστείτε τους χρήστες και ρόλους του συστήματος
+                  </li>
+                  <li><span>&#10004;</span> Να δείτε συγκεντρωτικά στοιχεία για τις εκθέσεις που έχουν καταχωρηθεί
+                  </li>
+                  <li><span>&#10004;</span> Να δείτε και να επεξεργαστείτε καταχωρημένες εκθέσεις
+                  </li>
+                </ul>
+                </p>
+              </div>
+        </div>
+        <div class="govgr-grid-column-one-third">
+        </div>
       </div>
-      <div class="govgr-grid-column-one-third">
-      </div>
+      <p></p><br /><br />
     </div>
-    <p></p><br /><br />
+    <%- include('../partials/footer.ejs') %>
   </div>
-  <%- include('../partials/footer.ejs') %>
-    </div>
   </div>
 
-    <script>
-      const userRole = "<%= user.rolos %>";
+  <script type="text/javascript" src="/js/nav_scripts.js"></script>
 
-      let isAdmin = '<%= user.dikaiwmata_diaxeirisis %>';
+  <script>
+    const userRole = "<%= user.rolos %>";
 
-      isAdmin ? $(".user").hide() : $(".admin").hide(); //hide admin menu options if user does not have administration rights
-      setUserRestrictions(userRole);
-      
+    let isAdmin = '<%= user.dikaiwmata_diaxeirisis %>';
 
-    </script>
-    </body>
+    isAdmin ? $(".user").hide() : $(".admin").hide(); //hide admin menu options if user does not have administration rights
+    setUserRestrictions(userRole);
 
-    </html>
+
+  </script>
+  </body>
+
+  </html>
