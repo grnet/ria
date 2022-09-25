@@ -2,6 +2,7 @@ const routes = require("express").Router();
 let database = require("../services/database");
 const fs = require("fs");
 let pdf_export = require("../middleware/export");
+let diffPdf = require("../middleware/diff");
 let glk_pdf_export = require("../middleware/export_glk");
 const csv = require("csv-parser");
 const diff = require("diff");
@@ -195,14 +196,14 @@ routes.put(
 
         let keys = Object.keys(req.body);
 
-        let field_9 = tables.createStaticTable(
+        let field_9 = await tables.createStaticTable(
           req.body,
           "_header",
           "_label",
           "_secondHeader",
           false
         ); //data for field_9
-        let checkbox_tables = tables.createStaticTable(
+        let checkbox_tables = await tables.createStaticTable(
           req.body,
           "_cbxHeader",
           "_cbxlabel",
@@ -210,137 +211,138 @@ routes.put(
           false
         ); //data for fields 18-20
 
-        let field_14_arthro = tables.createDynamicTable(
+        let field_14_arthro = await tables.createDynamicTable(
           req.body,
           keys,
           "field_14_arthro",
           entry.field_14_arthro
         );
-        let field_14_stoxos = tables.createDynamicTable(
+        let field_14_stoxos = await tables.createDynamicTable(
           req.body,
           keys,
           "field_14_stoxos",
           entry.field_14_stoxos
         );
-        let field_17_minister_name = tables.createDynamicTable(
+        let field_17_minister_name = await tables.createDynamicTable(
           req.body,
           keys,
           "field_17_minister_name",
           entry.field_17_minister_name
         );
-        let field_17_minister_surname = tables.createDynamicTable(
+        let field_17_minister_surname = await tables.createDynamicTable(
           req.body,
           keys,
           "field_17_minister_surname",
           entry.field_17_minister_surname
         );
-        let field_17_minister_role = tables.createDynamicTable(
+        let field_17_minister_role = await tables.createDynamicTable(
           req.body,
           keys,
           "field_17_minister_role",
           entry.field_17_minister_role
         );
-        let field_17_minister_ministry = tables.createDynamicTable(
+        let field_17_minister_ministry = await tables.createDynamicTable(
           req.body,
           keys,
           "field_17_minister_ministry",
           entry.field_17_minister_ministry
         );
-        let minister_surname = tables.createDynamicTable(
+        let minister_surname = await tables.createDynamicTable(
           req.body,
           keys,
           "minister_surname",
           entry.minister_surname,
           "field_17"
         );
-        let minister_name = tables.createDynamicTable(
+        let minister_name = await tables.createDynamicTable(
           req.body,
           keys,
           "minister_name",
           entry.minister_name,
           "field_17"
         );
-        let minister_role = tables.createDynamicTable(
+        let minister_role = await tables.createDynamicTable(
           req.body,
           keys,
           "minister_role",
           entry.minister_role,
           "field_17"
         );
-        let minister_ministry = tables.createDynamicTable(
+        let minister_ministry = await tables.createDynamicTable(
           req.body,
           keys,
           "minister_ministry",
           entry.minister_ministry,
           "field_17"
         );
-        let field_29_diatakseis_rythmisis = tables.createDynamicTable(
+        let field_29_diatakseis_rythmisis = await tables.createDynamicTable(
           req.body,
           keys,
           "field_29_diatakseis_rythmisis",
           entry.field_29_diatakseis_rythmisis
         );
-        let field_29_yfistamenes_diatakseis = tables.createDynamicTable(
+        let field_29_yfistamenes_diatakseis = await tables.createDynamicTable(
           req.body,
           keys,
           "field_29_yfistamenes_diatakseis",
           entry.field_29_yfistamenes_diatakseis
         );
-        let field_30_diatakseis_katargisi = tables.createDynamicTable(
+        let field_30_diatakseis_katargisi = await tables.createDynamicTable(
           req.body,
           keys,
           "field_30_diatakseis_katargisi",
           entry.field_30_diatakseis_katargisi
         );
-        let field_30_katargoumenes_diatakseis = tables.createDynamicTable(
+        let field_30_katargoumenes_diatakseis = await tables.createDynamicTable(
           req.body,
           keys,
           "field_30_katargoumenes_diatakseis",
           entry.field_30_katargoumenes_diatakseis
         );
-        let field_31_sxetiki_diataksi = tables.createDynamicTable(
+        let field_31_sxetiki_diataksi = await tables.createDynamicTable(
           req.body,
           keys,
           "field_31_sxetiki_diataksi",
           entry.field_31_sxetiki_diataksi
         );
-        let field_31_synarmodia_ypoyrgeia = tables.createDynamicTable(
+        let field_31_synarmodia_ypoyrgeia = await tables.createDynamicTable(
           req.body,
           keys,
           "field_31_synarmodia_ypoyrgeia",
           entry.field_31_synarmodia_ypoyrgeia
         );
-        let field_31_antikeimeno_synarmodiotitas = tables.createDynamicTable(
-          req.body,
-          keys,
-          "field_31_antikeimeno_synarmodiotitas",
-          entry.field_31_antikeimeno_synarmodiotitas
-        );
-        let field_32_eksousiodotiki_diataksi = tables.createDynamicTable(
+        let field_31_antikeimeno_synarmodiotitas =
+          await tables.createDynamicTable(
+            req.body,
+            keys,
+            "field_31_antikeimeno_synarmodiotitas",
+            entry.field_31_antikeimeno_synarmodiotitas
+          );
+        let field_32_eksousiodotiki_diataksi = await tables.createDynamicTable(
           req.body,
           keys,
           "field_32_eksousiodotiki_diataksi",
           entry.field_32_eksousiodotiki_diataksi
         );
-        let field_32_eidos_praksis = tables.createDynamicTable(
+        let field_32_eidos_praksis = await tables.createDynamicTable(
           req.body,
           keys,
           "field_32_eidos_praksis",
           entry.field_32_eidos_praksis
         );
-        let field_32_armodio_ypoyrgeio = tables.createDynamicTable(
+        let field_32_armodio_ypoyrgeio = await tables.createDynamicTable(
           req.body,
           keys,
           "field_32_armodio_ypoyrgeio",
           entry.field_32_armodio_ypoyrgeio
         );
-        let field_32_antikeimeno = tables.createDynamicTable(
+        let field_32_antikeimeno = await tables.createDynamicTable(
           req.body,
           keys,
           "field_32_antikeimeno",
           entry.field_32_antikeimeno
         );
-        let field_32_xronodiagramma = tables.createDynamicTable(
+        let field_32_xronodiagramma = await tables.createDynamicTable(
           req.body,
           keys,
           "field_32_xronodiagramma",
@@ -352,7 +354,7 @@ routes.put(
             id: ekthesi_id,
           },
         });
-        let emd_processes = tables.createDynamicTable(
+        let emd_processes = await tables.createDynamicTable(
           req.body,
           keys,
           "process"
@@ -504,40 +506,45 @@ routes.post("/:entry_id/versions", authUser, async function (req, res, next) {
     : res.sendStatus(404).send("Versions not found.");
 });
 
-routes.post("/:entry_id/diff/", authUser, async function (req, res, next) {
-  let target1 = req.body.target1;
-  let target2 = req.body.target2;
-  let entry1 = await database.audit.findOne({
-    where: { id: target1 },
-  });
-  let entry2 = await database.audit.findOne({
-    where: { id: target2 },
-  });
-
-  let data = {};
-  // console.log(entry1);
-  // console.log(entry1.data);
-  for (i in entry1.data) {
-    if (i.includes('header') || i.includes('Header') || i.includes('label')) continue;
-    const diffchars = diff.diffWords(entry1.data[i], entry2.data[i]);
-    diffchars.forEach((part) => {
-      // green for additions, red for deletions
-      console.log(i);
-      part.added
-        ? data[i]
-          ? data[i].push({ value: part.value, color: "green" })
-          : (data[i] = [{ value: part.value, color: "green" }])
-        : part.removed
-        ? data[i]
-          ? data[i].push({ value: part.value, color: "red" })
-          : (data[i] = [{ value: part.value, color: "red" }])
-        : data[i]
-        ? data[i].push({ value: part.value, color: "" })
-        : (data[i] = [{ value: part.value, color: "" }]);
+routes.post(
+  "/:entry_id/diff/",
+  authUser,
+  async function (req, res, next) {
+    let target1 = req.body.firstTargetDate;
+    let target2 = req.body.secondTargetDate;
+    let entry1 = await database.audit.findOne({
+      where: { id: target1 },
     });
-  }
-  req.diffData = data;
-  res.status(200).json({ data: data });
-});
+    let entry2 = await database.audit.findOne({
+      where: { id: target2 },
+    });
+
+    let data = {};
+    for (i in entry1.data) {
+      if (i.includes("allos")) continue;
+      if (entry1.data[i] === undefined) continue;
+      if (entry2.data[i] === undefined) continue;
+      const diffchars = diff.diffWords(entry1.data[i], entry2.data[i]);
+      diffchars.forEach((part) => {
+        // green for additions, red for deletions
+        part.added
+          ? data[i]
+            ? data[i].push({ value: part.value, color: "green" })
+            : (data[i] = [{ value: part.value, color: "green" }])
+          : part.removed
+          ? data[i]
+            ? data[i].push({ value: part.value, color: "red" })
+            : (data[i] = [{ value: part.value, color: "red" }])
+          : data[i]
+          ? data[i].push({ value: part.value, color: "" })
+          : (data[i] = [{ value: part.value, color: "" }]);
+      });
+    }
+    req.diffData = data;
+    // res.status(200).json({ data: data });
+    next();
+  },
+  diffPdf.exportPDF
+);
 
 module.exports = routes;

@@ -1,6 +1,6 @@
 <%- include('partials/head.ejs') %>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <a href="/user_views/history" class="govgr-back-link" id="back" name="back"> <svg class="govgr-caret--left"
             viewBox="0 0 24 24" aria-hidden="true">
@@ -32,80 +32,51 @@
                             <p class="govgr-body" id="subtext"></p>
                             <br />
                         </div>
-                        
+
                         <button type="button" class="btn btn-primary" style="float: right;" data-toggle="modal"
-                                data-target="#versioningModal" id="modalButton">
-                                Launch demo modal
-                            </button>
+                            data-target="#versioningModal" id="modalButton">
+                            Launch demo modal
+                        </button>
 
                         <div class="modal fade" id="versioningModal" tabindex="-1" role="dialog"
-                                aria-labelledby="versioningModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="versioningModalLabel">Ιστορικό Ανάλυσης</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body" id="modal_body">
-                                            <div id="versions_table">
-                                                <table id="versions" class="display">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Επιλογή</th>
-                                                            <th>Ημερομηνία αποθήκευσης</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
+                            aria-labelledby="versioningModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="versioningModalLabel">Ιστορικό Ανάλυσης</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body" id="modal_body">
+                                        <div id="versions_table">
+                                            <table id="versions" class="display">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Επιλογή</th>
+                                                        <th>Ημερομηνία αποθήκευσης</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
 
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                                </tbody>
+                                            </table>
                                         </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Κλείσιμο</button>
-                                            <button type="button" id="modal_submit"
-                                                class="btn btn-primary">Υποβολή</button>
-                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Κλείσιμο</button>
+                                        <button type="button" id="modal_submit" class="btn btn-primary">Υποβολή</button>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-                        <div class="modal fade" id="versioningResultsModal" tabindex="-1" role="dialog"
-                                aria-labelledby="versioningResultsModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="versioningResultsModalLabel">Αποτελέσματα</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body" id="results_body">
-                                            <div id="results_table" class="table-wrapper-scroll-y my-custom-scrollbar">
-                                                <table id="results" class="display">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Πεδίο</th>
-                                                            <th>Διαφορές</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Κλείσιμο</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
+                        <div>
+                            <input type="hidden" name="pdf_diff_name" id="pdf_diff_name" />
+                            <p id="pdf_diff_download" class="pdf-diff-download action-button" style="display: none;">
+                            </p>
+                        </div>
 
                         <div>
                             <input type="button" name="convert"
@@ -1546,10 +1517,12 @@
 
         $("#modal_submit").on("click", function (ev) {
             ev.preventDefault();
+            $("#pdf_diff_download").hide();
+            
             let selected = {};
             let ids = $($("#versioningModal input:checked"))
-            selected['target1'] = ids[0].name
-            selected['target2'] = ids[1].name
+            selected['firstTargetDate'] = ids[0].name
+            selected['secondTargetDate'] = ids[1].name
             $.ajax({
                 url: `/form_a/${ekthesi_id}/diff`,
                 data: selected,
@@ -1557,34 +1530,39 @@
                     console.log(error);
                 },
                 success: function (result) {
-                    console.log(result)
-                    $("#results_table tbody").empty()
-                    for (i in result.data) {
-                        //TODO: check if result.data[i] is an array and has length to limit recursions      
-                        let elem = result.data[i];
-                        if (elem.length > 0) { //minimum lenght is 1
-                            for (j in elem) {
-                                let row = `<span style = "color: ${elem[j].color};">${elem[j].value}</span >`
+                    // console.log(result)
+                    // $("#results_table tbody").empty()
+                    // for (i in result.data) {
+                    //     //TODO: check if result.data[i] is an array and has length to limit recursions      
+                    //     let elem = result.data[i];
+                    //     if (elem.length > 0) { //minimum lenght is 1
+                    //         for (j in elem) {
+                    //             let row = `<span style = "color: ${elem[j].color};">${elem[j].value}</span >`
 
-                                if (j == 0) {
-                                    $("#results_table tbody").append(`
-                                                    <tr> 
-                                                        <td> 
-                                                            ${i}
-                                                        </td> 
-                                                        <td>
-                                                            ${row}
-                                                        </td>                                               
-                                                    </tr>`
-                                    );
-                                } else {
-                                    $("#results_table tbody tr:last td:last").append(` ${row}`)
-                                }
-                            }
-                        }
-                    }
-                    $('#versioningModal').modal('toggle');
-                    $('#versioningResultsModal').modal('toggle');
+                    //             if (j == 0) {
+                    //                 $("#results_table tbody").append(`
+                    //                                 <tr> 
+                    //                                     <td> 
+                    //                                         ${i}
+                    //                                     </td> 
+                    //                                     <td>
+                    //                                         ${row}
+                    //                                     </td>                                               
+                    //                                 </tr>`
+                    //                 );
+                    //             } else {
+                    //                 $("#results_table tbody tr:last td:last").append(` ${row}`)
+                    //             }
+                    //         }
+                    //     }
+                    // }
+                    // $('#versioningModal').modal('toggle');
+                    // $('#versioningResultsModal').modal('toggle');
+                    
+                    //TODO: decide name
+                    $("#pdf_diff_download").html(`Το τελευταίο αποθηκευμένο PDF
+                                    βρίσκεται <a href="/pdf_exports/diff.pdf"><b><u>εδώ</u></b></a>.`)
+                    $("#pdf_diff_download").show();
                 },
                 type: 'POST'
             });

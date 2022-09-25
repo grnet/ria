@@ -110,13 +110,11 @@
     </style>
     <script type="text/javascript" src="/js/nav_scripts.js"></script>
     <script>
-      // $(document).ready(function () {
-      //   $("#user_data").dataTable();
-      //   hideDataTable("#user_data", "#user_data_wrapper");
-      //   $('#entries_data').DataTable();
-      //   hideDataTable("#entries_data", "#entries_data_wrapper");
+      $(document).ready(function () {
+        $("#user_data").dataTable();
+        $('#entries_data').dataTable();
 
-      // });
+      });
 
       function setReferer(id) {
         sessionStorage.setItem("referer", id);
