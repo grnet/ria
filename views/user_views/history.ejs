@@ -16,7 +16,7 @@
             <br />
           </div>
           <div id="user_div" style="display: none;">
-            <table id="user_data" class="govgr-table--zebra govgr-table--dense govgr-table--dark govgr-table">
+            <table id="user_data" class="govgr-table--zebra govgr-table--dense govgr-table--dark govgr-table hover">
               <thead class="govgr-table__head">
                 <tr class="govgr-table__row">
                   <th class="govgr-table__header" scope="col">Τίτλος</th>
@@ -30,7 +30,7 @@
               <tbody class="govgr-table__body">
                 <% for(var i=0; i<user.ekthesis.length; i++) {%>
                   <tr class="govgr-table__row" onclick="setReferer('<%=  user.ekthesis[i].id %>')">
-                    <td class="govgr-table__cell">
+                    <td class="govgr-table__cell hover:underline">
                       <%= user.ekthesis[i].title %>
                     </td>
                     <td class="govgr-table__cell">
@@ -55,7 +55,7 @@
             </table>
           </div>
           <div id="entries_div" style="display: none;">
-            <table id="entries_data" class="govgr-table--zebra govgr-table--dense govgr-table--dark govgr-table">
+            <table id="entries_data" class="govgr-table--zebra govgr-table--dense govgr-table--dark govgr-table hover">
               <thead class="govgr-table__head">
                 <tr class="govgr-table__row">
                   <th class="govgr-table__header" scope="col">Τίτλος</th>
@@ -70,7 +70,7 @@
                 <% if (entries !=null) {%>
                   <% for(var i=0; i<entries.length; i++) {%>
                     <tr class="govgr-table__row" onclick="setReferer('<%= entries[i].id %>')">
-                      <td class="govgr-table__cell">
+                      <td class="govgr-table__cell hover:underline">
                         <%= entries[i].title %>
                       </td>
                       <td class="govgr-table__cell">

@@ -249,7 +249,7 @@ routes.post(
         field_31_sxetiki_diataksi: field_31_sxetiki_diataksi,
         field_31_synarmodia_ypoyrgeia: field_31_synarmodia_ypoyrgeia,
         field_31_antikeimeno_synarmodiotitas:
-          field_31_antikeimeno_synarmodiotitas,
+        field_31_antikeimeno_synarmodiotitas,
         field_32_eksousiodotiki_diataksi: field_32_eksousiodotiki_diataksi,
         field_32_eidos_praksis: field_32_eidos_praksis,
         field_32_armodio_ypoyrgeio: field_32_armodio_ypoyrgeio,
