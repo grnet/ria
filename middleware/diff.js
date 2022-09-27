@@ -489,67 +489,67 @@ exports.exportPDF = async function (req, res, next) {
           },
         ],
       },
-      // {
-      //   reportTitle: "Δ.  Έκθεση γενικών συνεπειών ",
-      //   fields: [
-      //     {
-      //       category: {
-      //         categoryFields: [
-      //           {
-      //             field: {
-      //               fieldId: 18,
-      //               fieldHeader:
-      //                 "Σχόλια στο πλαίσιο της διαβούλευσης μέσω της ηλεκτρονικής πλατφόρμας www.opengov.gr (ηλεκτρονική επισύναψη της έκθεσης)",
-      //               fieldCreatedBy: createField18(field_18, data),
-      //             },
-      //           },
-      //         ],
-      //       },
-      //     },
-      //     {
-      //       category: {
-      //         categoryFields: [
-      //           {
-      //             field: {
-      //               fieldId: 19,
-      //               fieldHeader:
-      //                 "Σχόλια στο πλαίσιο της διαβούλευσης μέσω της ηλεκτρονικής πλατφόρμας www.opengov.gr (ηλεκτρονική επισύναψη της έκθεσης)",
-      //               fieldCreatedBy: createField19(field_19, data),
-      //             },
-      //           },
-      //         ],
-      //       },
-      //     },
-      //     {
-      //       category: {
-      //         categoryFields: [
-      //           {
-      //             field: {
-      //               fieldId: 20,
-      //               fieldHeader:
-      //                 "Σχόλια στο πλαίσιο της διαβούλευσης μέσω της ηλεκτρονικής πλατφόρμας www.opengov.gr (ηλεκτρονική επισύναψη της έκθεσης)",
-      //               fieldCreatedBy: createField20(field_20, data),
-      //             },
-      //           },
-      //         ],
-      //       },
-      //     },
-      //     {
-      //       category: {
-      //         categoryFields: [
-      //           {
-      //             field: {
-      //               fieldId: 21,
-      //               fieldHeader:
-      //                 "Γνώμες ή πορίσματα αρμόδιων υπηρεσιών και ανεξάρτητων αρχών (ηλεκτρονική επισύναψη). Ειδική αιτιολογία σε περίπτωση σημαντικής απόκλισης μεταξύ της γνωμοδότησης και της αξιολογούμενης ρύθμισης.",
-      //               fieldText: "Δείτε το Παράρτημα",
-      //             },
-      //           },
-      //         ],
-      //       },
-      //     },
-      //   ],
-      // },
+      {
+        reportTitle: "Δ.  Έκθεση γενικών συνεπειών ",
+        fields: [
+          {
+            category: {
+              categoryFields: [
+                {
+                  field: {
+                    fieldId: 18,
+                    fieldHeader:
+                      "Σχόλια στο πλαίσιο της διαβούλευσης μέσω της ηλεκτρονικής πλατφόρμας www.opengov.gr (ηλεκτρονική επισύναψη της έκθεσης)",
+                    fieldCreatedBy: createField18(field_18, data),
+                  },
+                },
+              ],
+            },
+          },
+          {
+            category: {
+              categoryFields: [
+                {
+                  field: {
+                    fieldId: 19,
+                    fieldHeader:
+                      "Σχόλια στο πλαίσιο της διαβούλευσης μέσω της ηλεκτρονικής πλατφόρμας www.opengov.gr (ηλεκτρονική επισύναψη της έκθεσης)",
+                    fieldCreatedBy: createField19(field_19, data),
+                  },
+                },
+              ],
+            },
+          },
+          {
+            category: {
+              categoryFields: [
+                {
+                  field: {
+                    fieldId: 20,
+                    fieldHeader:
+                      "Σχόλια στο πλαίσιο της διαβούλευσης μέσω της ηλεκτρονικής πλατφόρμας www.opengov.gr (ηλεκτρονική επισύναψη της έκθεσης)",
+                    fieldCreatedBy: createField20(field_20, data),
+                  },
+                },
+              ],
+            },
+          },
+          {
+            category: {
+              categoryFields: [
+                {
+                  field: {
+                    fieldId: 21,
+                    fieldHeader:
+                      "Γνώμες ή πορίσματα αρμόδιων υπηρεσιών και ανεξάρτητων αρχών (ηλεκτρονική επισύναψη). Ειδική αιτιολογία σε περίπτωση σημαντικής απόκλισης μεταξύ της γνωμοδότησης και της αξιολογούμενης ρύθμισης.",
+                    fieldText: "Δείτε το Παράρτημα",
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
       {
         reportTitle: "Ε.  Έκθεση διαβούλευσης",
         fields: [
@@ -797,38 +797,38 @@ exports.exportPDF = async function (req, res, next) {
           },
         ],
       },
-      // {
-      //   reportTitle: "Ζ.  Πίνακας τροποποιούμενων ή καταργούμενων διατάξεων",
-      //   fields: [
-      //     {
-      //       category: {
-      //         categoryFields: [
-      //           {
-      //             field: {
-      //               fieldId: 29,
-      //               fieldHeader:
-      //                 "Τροποποίηση – αντικατάσταση – συμπλήρωση διατάξεων",
-      //               fieldCreatedBy: createTables(field_29, field_29_headers),
-      //             },
-      //           },
-      //         ],
-      //       },
-      //     },
-      //     {
-      //       category: {
-      //         categoryFields: [
-      //           {
-      //             field: {
-      //               fieldId: 30,
-      //               fieldHeader: "Κατάργηση διατάξεων",
-      //               fieldCreatedBy: createTables(field_30, field_30_headers),
-      //             },
-      //           },
-      //         ],
-      //       },
-      //     },
-      //   ],
-      // },
+      {
+        reportTitle: "Ζ.  Πίνακας τροποποιούμενων ή καταργούμενων διατάξεων",
+        fields: [
+          {
+            category: {
+              categoryFields: [
+                {
+                  field: {
+                    fieldId: 29,
+                    fieldHeader:
+                      "Τροποποίηση – αντικατάσταση – συμπλήρωση διατάξεων",
+                    fieldCreatedBy: createTables(field_29, field_29_headers),
+                  },
+                },
+              ],
+            },
+          },
+          {
+            category: {
+              categoryFields: [
+                {
+                  field: {
+                    fieldId: 30,
+                    fieldHeader: "Κατάργηση διατάξεων",
+                    fieldCreatedBy: createTables(field_30, field_30_headers),
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
       {
         reportTitle: "Η.  Έκθεση εφαρμογής της ρύθμισης",
         fields: [
@@ -1127,7 +1127,12 @@ function createCover(data) {
   });
   cover.push({
     text:
-      "\nΣτοιχεία επικοινωνίας: " + getDiffText(data.stoixeia_epikoinwnias),
+      "\nΣτοιχεία επικοινωνίας: ",
+    alignment: "center",
+    bold: true,
+  });
+  cover.push({
+    text: getDiffText(data.stoixeia_epikoinwnias),
     alignment: "center",
     bold: true,
   });
@@ -1433,7 +1438,7 @@ function handleCategoryFields(reportTable, category) {
     if (category.field.fieldOptions[0].title) {
       reportTable[reportTable.length - 1][1].colSpan = 3; //update colspan for previous entry
       reportTable[reportTable.length - 1].push({ text: "" });
-      for (fieldOption in category.field.fieldOptions) {
+      for (fieldOption in category.field.fieldOptions) {        
         reportTable.push([
           { text: "", border: [false, false, false, false] },
           {
@@ -1483,7 +1488,7 @@ function handleCategoryFields(reportTable, category) {
         ]);
         retractPosition = 2;
       }
-      for (k in category.field.fieldOptions) {
+      for (k in category.field.fieldOptions) {        
         if (category.field.fieldOptions[k].hasCheckbox) {
           if (!alteredColumns) {
             reportTable[reportTable.length - retractPosition][1].colSpan = 3; // increase column span
@@ -1504,7 +1509,7 @@ function handleCategoryFields(reportTable, category) {
               text: category.field.fieldOptions[k].option,
             },
             {
-              text: hasValidValue(category.field.fieldOptions[k].optionText),
+              text: category.field.fieldOptions[k].optionText,
             },
           ]);
         } else {
@@ -1514,7 +1519,7 @@ function handleCategoryFields(reportTable, category) {
               text: category.field.fieldOptions[k].option,
             },
             {
-              text: hasValidValue(category.field.fieldOptions[k].optionText),
+              text: category.field.fieldOptions[k].optionText,
             },
           ]);
         }
@@ -2372,7 +2377,8 @@ function createField19(field_19, data) {
   };
 
   fieldData.push(fieldTable);
-  fieldData.push({ text: "\nΣχολιασμός / ποιοτική αποτίμηση:" });
+  fieldData.push({ text: "\n" });
+  fieldData.push({ text: "Σχολιασμός / ποιοτική αποτίμηση:" });
   fieldData.push({
     table: {
       widths: ["100%"],

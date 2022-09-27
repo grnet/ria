@@ -993,11 +993,10 @@
     $("#save_temporarily").on("click", function (ev) {
         ev.preventDefault();
         var fd = new FormData($("form").get(0));
-        // console.log([...fd])        
-        // var checkbox = $("form").find("input[type=checkbox]:not(:checked)");//find all unchecked checkboxes 
-        // $.each(checkbox, function (key, chckbx) {
-        //     fd.append($(chckbx).prop('name'), $(chckbx).value = '')//append to fd without value 
-        // });
+        var checkbox = $("form").find("input[type=checkbox]:not(:checked)");//find all unchecked checkboxes 
+        $.each(checkbox, function (key, chckbx) {
+            fd.append($(chckbx).prop('name'), $(chckbx).value = '')//append to fd without value 
+        });
         $.ajax({
             url: '/create/<%= analysis %>',
             data: fd,
