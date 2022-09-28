@@ -33,9 +33,9 @@
                             <br />
                         </div>
 
-                        <button type="button" class="btn btn-primary" style="float: right;" data-toggle="modal"
+                        <button type="button" class="govgr-btn govgr-btn-secondary" style="float: right;" data-toggle="modal"
                             data-target="#versioningModal" id="modalButton">
-                            Launch demo modal
+                            Ιστορικό Ανάλυσης
                         </button>
 
                         <div class="modal fade" id="versioningModal" tabindex="-1" role="dialog"
@@ -50,34 +50,39 @@
                                     </div>
                                     <div class="modal-body" id="modal_body">
                                         <div id="versions_table">
-                                            <table id="versions" class="display">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Επιλογή</th>
-                                                        <th>Ημερομηνία αποθήκευσης</th>
+                                            <table id="versions"
+                                                class="display govgr-table--zebra govgr-table--dense govgr-table--dark govgr-table versions-table">
+                                                <thead class="govgr-table__head">
+                                                    <tr class="govgr-table__row">
+                                                        <th class="govgr-table__header" scope="col">Επιλογή</th>
+                                                        <th class="govgr-table__header" scope="col">Ημερομηνία
+                                                            αποθήκευσης</th>
+                                                        <th class="govgr-table__header" scope="col">Ενημερώθηκε από</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
+                                                <tbody class="govgr-table__body">
 
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
+                                        <button type="button" class="govgr-btn govgr-btn-warning action-button-delete"
                                             data-dismiss="modal">Κλείσιμο</button>
-                                        <button type="button" id="modal_submit" class="btn btn-primary">Υποβολή</button>
+                                        <button type="button" id="modal_submit"
+                                            class="govgr-btn govgr-btn-primary action-button">Υποβολή</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
+                        <br>
                         <div>
                             <input type="hidden" name="pdf_diff_name" id="pdf_diff_name" />
                             <p id="pdf_diff_download" class="pdf-diff-download action-button" style="display: none;">
                             </p>
                         </div>
-
+                        <br>
                         <div>
                             <input type="button" name="convert"
                                 class="govgr-btn govgr-btn-warning convert action-button-convert"
@@ -85,7 +90,7 @@
                             <br /><br>
                         </div>
 
-
+                        <br>
                         <div class="govgr-grid">
                             <div class="govgr-grid__col-span-6">
                                 <label for="title" class="govgr-label-row required">Τίτλος αξιολογούμενης
@@ -1021,12 +1026,10 @@
                                                 <%- include('view_form/view_form_h.ejs') %>
 
 
-                                                    <div class="govgr-button-group"> <input type="button" name="delete"
-                                                            id="delete"
+                                                    <div class="govgr-button-group">
+                                                        <input type="button" name="delete" id="delete"
                                                             class=" delete-analysis govgr-btn govgr-btn-warning action-button-delete"
                                                             style="float: right;" value="Διαγραφή" />
-
-
 
                                                         <button type="button" class="govgr-btn govgr-btn-secondary"
                                                             id="save_temporarily" name="save_temporarily"
@@ -1166,7 +1169,22 @@
             background-color: blue;
         }
 
+        .versions-table tbody {
+            display: block;
+            max-height: 500px;
+            overflow-y: auto;
+        }
 
+        .versions-table thead,
+        tbody tr {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        .versions-table thead {
+            width: calc(100% - 1em)
+        }
 
         form label.required:after {
             color: red;
@@ -1485,7 +1503,7 @@
         //ajax call to find all versions of current analysis
         $("#modalButton").on("click", function (ev) {
             ev.preventDefault();
-            console.log("clicked")
+            $("#versions tbody").empty();
             $.ajax({
                 url: `/form_a/${ekthesi_id}/versions`,
                 error: function (error) {
@@ -1493,17 +1511,21 @@
                 },
                 success: function (result) {
                     var rowCount = $('#versions_table tbody tr').length;
-                    console.log(rowCount)
                     if (rowCount === 0) {
                         for (i in result.entries) { //populate modal table
                             $("#versions_table tbody").append(`
-                                        <tr> 
-                                            <td> 
-                                                <input type="checkbox" id="${result.entries[i].id}" name="${result.entries[i].id}">
+                                        <tr class="govgr-table__row" > 
+                                            <td class="govgr-table__cell"> 
+                                                <div class="govgr-checkboxes__item">
+                                                    <input type="checkbox" id="checkbox${result.entries[i].id}" name="checkbox${result.entries[i].id}" class="govgr-checkboxes__input">
+                                                </div>                                                
                                             </td> 
                                             <td>
                                                 ${result.entries[i].timestamp}
-                                            </td>                                               
+                                            </td>   
+                                            <td class="govgr-table__cell">
+                                                ${result.entries[i].user}
+                                            </td>                                             
                                         </tr>`
                             );
                         }
@@ -1512,17 +1534,15 @@
                 },
                 type: 'POST'
             });
-        });
-
+        })
 
         $("#modal_submit").on("click", function (ev) {
             ev.preventDefault();
             $("#pdf_diff_download").hide();
-            
             let selected = {};
             let ids = $($("#versioningModal input:checked"))
-            selected['firstTargetDate'] = ids[0].name
-            selected['secondTargetDate'] = ids[1].name
+            selected['firstTargetDate'] = ids[0].name.replace('checkbox', '');
+            selected['secondTargetDate'] = ids[1].name.replace('checkbox', '');
             $.ajax({
                 url: `/form_a/${ekthesi_id}/diff`,
                 data: selected,
@@ -1530,35 +1550,6 @@
                     console.log(error);
                 },
                 success: function (result) {
-                    // console.log(result)
-                    // $("#results_table tbody").empty()
-                    // for (i in result.data) {
-                    //     //TODO: check if result.data[i] is an array and has length to limit recursions      
-                    //     let elem = result.data[i];
-                    //     if (elem.length > 0) { //minimum lenght is 1
-                    //         for (j in elem) {
-                    //             let row = `<span style = "color: ${elem[j].color};">${elem[j].value}</span >`
-
-                    //             if (j == 0) {
-                    //                 $("#results_table tbody").append(`
-                    //                                 <tr> 
-                    //                                     <td> 
-                    //                                         ${i}
-                    //                                     </td> 
-                    //                                     <td>
-                    //                                         ${row}
-                    //                                     </td>                                               
-                    //                                 </tr>`
-                    //                 );
-                    //             } else {
-                    //                 $("#results_table tbody tr:last td:last").append(` ${row}`)
-                    //             }
-                    //         }
-                    //     }
-                    // }
-                    // $('#versioningModal').modal('toggle');
-                    // $('#versioningResultsModal').modal('toggle');
-                    
                     //TODO: decide name
                     $("#pdf_diff_download").html(`Το τελευταίο αποθηκευμένο PDF
                                     βρίσκεται <a href="/pdf_exports/diff.pdf"><b><u>εδώ</u></b></a>.`)

@@ -17,6 +17,22 @@ $(".close").on("click", function () {
   $("#errors").hide();
 });
 
+$("#versions").on("click", function () {
+  var selected = [];
+  $("#versions input:checked").each(function () {
+    selected.push($(this).attr("name"));
+  });
+  if (selected.length >= 2) {
+    $("#versions tbody tr td input:checkbox:not(:checked)").each(function () {
+      $(this).prop("disabled", true);
+    });
+  } else {
+    $("#versions tbody tr td input:checkbox:not(:checked)").each(function () {
+      $(this).prop("disabled", false);
+    });
+  }
+});
+
 $("#ekthesi_glk").on("change", function (ev) {
   //actions to take when ΓΛΚ checks checkbox
   if (role === "Γενικό Λογιστήριο του Κράτους") {

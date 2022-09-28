@@ -995,7 +995,7 @@
         var fd = new FormData($("form").get(0));
         var checkbox = $("form").find("input[type=checkbox]:not(:checked)");//find all unchecked checkboxes 
         $.each(checkbox, function (key, chckbx) {
-            fd.append($(chckbx).prop('name'), $(chckbx).value = '')//append to fd without value 
+            fd.append($(chckbx).prop('name'), $(chckbx).value = '')//append to fd with empty value 
         });
         $.ajax({
             url: '/create/<%= analysis %>',
