@@ -264,15 +264,16 @@ $("#field_36").on("change", function (ev) {
 //click event to add a row
 $("#add_row_table_14").on("click", function () {
   let index = $("#tbody_14").prop("rows").length;
+  console.log($('#field_14_table'));
   $("#tbody_14").append(`
          <tr id="table_14_row${++index}"> 
         <td> 
-            <textarea class="govgr-textarea" id="field_14_arthro${index}" name="field_14_arthro${index}" rows="1" ></textarea>                                   
+            <textarea class="govgr-textarea" id="field_14_arthro${index-1}" name="field_14_arthro${index-1}" rows="1" ></textarea>                                   
         </td>    
         <td>
             <br> 
-            <textarea class="govgr-textarea" id="field_14_stoxos${index}" name="field_14_stoxos${index}" onkeypress="wordsCounter('field_14_stoxos${index}','words14_${index}', event)" onpaste="wordsCounter('field_14_stoxos${index}','words14_${index}', event)" rows="1"></textarea>
-            <p style="float: right;">Λέξεις: <span id="words14_${index}" ></span></p>            
+            <textarea class="govgr-textarea" id="field_14_stoxos${index-1}" name="field_14_stoxos${index-1}" onkeypress="wordsCounter('field_14_stoxos${index-1}','words14_${index-1}', event)" onpaste="wordsCounter('field_14_stoxos${index-1}','words14_${index-1}', event)" rows="1"></textarea>
+            <p style="float: right;">Λέξεις: <span id="words14_${index-1}" ></span></p>            
             <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
         </td>    
         </tr>`);
@@ -283,19 +284,19 @@ $("#add_row_table_17").on("click", function () {
   $("#tbody_17").append(`
         <tr id="R${++index}">  
             <td> 
-                <textarea class="govgr-textarea" id="field_17_minister_name${index}" name="field_17_minister_name${index}" rows="1"></textarea> 
+                <textarea class="govgr-textarea" id="field_17_minister_name${index-1}" name="field_17_minister_name${index-1}" rows="1"></textarea> 
             </td>    
             <td> 
-                <select id="field_17_minister_surname${index}" name="field_17_minister_surname${index}" class="govgr-select" onchange="ministerSurnameOnChange('field_17_minister_name${index}', 'field_17_minister_surname${index}', 'field_17_minister_role${index}', 'field_17_minister_ministry${index}')"></select>
+                <select id="field_17_minister_surname${index-1}" name="field_17_minister_surname${index-1}" class="govgr-select" onchange="ministerSurnameOnChange('field_17_minister_name${index-1}', 'field_17_minister_surname${index-1}', 'field_17_minister_role${index-1}', 'field_17_minister_ministry${index-1}')"></select>
             </td> 
             <td>
                 <br> 
-                <textarea class="govgr-textarea" id="field_17_minister_role${index}" name="field_17_minister_role${index}" rows="1" readonly></textarea>
+                <textarea class="govgr-textarea" id="field_17_minister_role${index-1}" name="field_17_minister_role${index-1}" rows="1" readonly></textarea>
                 <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
-                <input type="hidden" id="field_17_minister_ministry${index}" name="field_17_minister_ministry${index}">
+                <input type="hidden" id="field_17_minister_ministry${index-1}" name="field_17_minister_ministry${index-1}">
             </td> 
         </tr>`);
-  populateMinistersSurnameSelect(`field_17_minister_surname${index}`);
+  populateMinistersSurnameSelect(`field_17_minister_surname${index-1}`);
 });
 
 $("#add_row_ministers_table").on("click", function () {
@@ -303,19 +304,19 @@ $("#add_row_ministers_table").on("click", function () {
   $("#tbody_ministers").append(`
         <tr id="R${++index}">  
             <td> 
-                <textarea class="govgr-textarea" id="minister_name${index}" name="minister_name${index}" rows="1" readonly></textarea> 
+                <textarea class="govgr-textarea" id="minister_name${index-1}" name="minister_name${index-1}" rows="1" readonly></textarea> 
             </td>    
             <td> 
-                <select id="minister_surname${index}" name="minister_surname${index}" class="govgr-select" onchange="ministerSurnameOnChange('minister_name${index}', 'minister_surname${index}', 'minister_role${index}', 'minister_ministry${index}')"></select>
+                <select id="minister_surname${index-1}" name="minister_surname${index-1}" class="govgr-select" onchange="ministerSurnameOnChange('minister_name${index-1}', 'minister_surname${index-1}', 'minister_role${index-1}', 'minister_ministry${index-1}')"></select>
             </td> 
             <td>
                 <br> 
-                <textarea class="govgr-textarea" id="minister_role${index}" name="minister_role${index}" rows="1" readonly></textarea>
+                <textarea class="govgr-textarea" id="minister_role${index-1}" name="minister_role${index-1}" rows="1" readonly></textarea>
                 <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
-                <input type="hidden" id="minister_ministry${index}" name="minister_ministry${index}">
+                <input type="hidden" id="minister_ministry${index-1}" name="minister_ministry${index-1}">
             </td>             
         </tr>`);
-  populateMinistersSurnameSelect(`minister_surname${index}`);
+  populateMinistersSurnameSelect(`minister_surname${index-1}`);
 });
 
 $("#add_row_table_29").on("click", function () {
@@ -323,12 +324,12 @@ $("#add_row_table_29").on("click", function () {
   $("#tbody_29").append(`
         <tr id="R${++index}"> 
             <td> 
-                <textarea class="govgr-textarea" id="field_29_diatakseis_rythmisis${index}" name="field_29_diatakseis_rythmisis${index}" onkeypress="wordsCounter('field_29_diatakseis_rythmisis${index}','words29_diatakeis_rythm_${index}')" onpaste="wordsCounter('field_29_diatakseis_rythmisis${index}','words29_diatakeis_rythm_${index}')" rows="1"></textarea>
-                <p style="float: right;">Λέξεις: <span id="words29_diatakeis_rythm_${index}" ></span></p>   
+                <textarea class="govgr-textarea" id="field_29_diatakseis_rythmisis${index-1}" name="field_29_diatakseis_rythmisis${index-1}" onkeypress="wordsCounter('field_29_diatakseis_rythmisis${index-1}','words29_diatakeis_rythm_${index-1}')" onpaste="wordsCounter('field_29_diatakseis_rythmisis${index-1}','words29_diatakeis_rythm_${index-1}')" rows="1"></textarea>
+                <p style="float: right;">Λέξεις: <span id="words29_diatakeis_rythm_${index-1}" ></span></p>   
             </td> 
             <td> 
-                <textarea class="govgr-textarea" id="field_29_yfistamenes_diatakseis${index}" name="field_29_yfistamenes_diatakseis${index}" onkeypress="wordsCounter('field_29_yfistamenes_diatakseis${index}','words29_diatakeis_yfist_${index}')" onpaste="wordsCounter('field_29_yfistamenes_diatakseis${index}','words29_diatakeis_yfist_${index}')" rows="1"></textarea>
-                <p style="float: right;">Λέξεις: <span id="words29_diatakeis_yfist_${index}" ></span></p>   
+                <textarea class="govgr-textarea" id="field_29_yfistamenes_diatakseis${index-1}" name="field_29_yfistamenes_diatakseis${index-1}" onkeypress="wordsCounter('field_29_yfistamenes_diatakseis${index-1}','words29_diatakeis_yfist_${index-1}')" onpaste="wordsCounter('field_29_yfistamenes_diatakseis${index-1}','words29_diatakeis_yfist_${index-1}')" rows="1"></textarea>
+                <p style="float: right;">Λέξεις: <span id="words29_diatakeis_yfist_${index-1}" ></span></p>   
                 <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
             </td>     
         </tr>`);
@@ -339,12 +340,12 @@ $("#add_row_table_30").on("click", function () {
   $("#tbody_30").append(`
         <tr id="R${++index}"> 
             <td> 
-                <textarea class="govgr-textarea" id="field_30_diatakseis_katargisi${index}" name="field_30_diatakseis_katargisi${index}" onkeypress="wordsCounter('field_30_diatakseis_katargisi${index}','words30_diatakeis_katarg_${index}')" onpaste="wordsCounter('field_30_diatakseis_katargisi${index}','words30_diatakeis_katarg_${index}')" rows="2"></textarea>
-                <p style="float: right;">Λέξεις: <span id="words30_diatakeis_katarg_${index}" ></span></p>
+                <textarea class="govgr-textarea" id="field_30_diatakseis_katargisi${index-1}" name="field_30_diatakseis_katargisi${index-1}" onkeypress="wordsCounter('field_30_diatakseis_katargisi${index-1}','words30_diatakeis_katarg_${index-1}')" onpaste="wordsCounter('field_30_diatakseis_katargisi${index-1}','words30_diatakeis_katarg_${index-1}')" rows="2"></textarea>
+                <p style="float: right;">Λέξεις: <span id="words30_diatakeis_katarg_${index-1}" ></span></p>
             </td> 
             <td> 
-                <textarea class="govgr-textarea" id="field_30_katargoumenes_diatakseis${index}" name="field_30_katargoumenes_diatakseis${index}" onkeypress="wordsCounter('field_30_katargoumenes_diatakseis${index}','words30_diatakeis_katargoum_${index}')" onpaste="wordsCounter('field_30_katargoumenes_diatakseis${index}','words30_diatakeis_katargoum_${index}')" rows="2"></textarea>
-                <p style="float: right;">Λέξεις: <span id="words30_diatakeis_katargoum_${index}" ></span></p>
+                <textarea class="govgr-textarea" id="field_30_katargoumenes_diatakseis${index-1}" name="field_30_katargoumenes_diatakseis${index-1}" onkeypress="wordsCounter('field_30_katargoumenes_diatakseis${index-1}','words30_diatakeis_katargoum_${index-1}')" onpaste="wordsCounter('field_30_katargoumenes_diatakseis${index-1}','words30_diatakeis_katargoum_${index-1}')" rows="2"></textarea>
+                <p style="float: right;">Λέξεις: <span id="words30_diatakeis_katargoum_${index-1}" ></span></p>
                 <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
             </td>
         </tr>`);
@@ -355,15 +356,15 @@ $("#add_row_table_31").on("click", function () {
   $("#tbody_31").append(`
         <tr id="R${++index}"> 
             <td> 
-                <textarea class="govgr-textarea" id="field_31_sxetiki_diataksi${index}" name="field_31_sxetiki_diataksi${index}" rows="2" ></textarea>                                                            
+                <textarea class="govgr-textarea" id="field_31_sxetiki_diataksi${index-1}" name="field_31_sxetiki_diataksi${index-1}" rows="2" ></textarea>                                                            
             </td> 
             <td> 
-                <textarea class="govgr-textarea" id="field_31_synarmodia_ypoyrgeia${index}" name="field_31_synarmodia_ypoyrgeia${index}" rows="2"></textarea>
+                <textarea class="govgr-textarea" id="field_31_synarmodia_ypoyrgeia${index-1}" name="field_31_synarmodia_ypoyrgeia${index-1}" rows="2"></textarea>
             </td> 
             <td> 
                 <br>
-                <textarea class="govgr-textarea" id="field_31_antikeimeno_synarmodiotitas${index}" name="field_31_antikeimeno_synarmodiotitas${index}" rows="2" onkeypress="wordsCounter('field_31_antikeimeno_synarmodiotitas${index}','words31_${index}',50, event)" onpaste="wordsCounter('field_31_antikeimeno_synarmodiotitas${index}','words31_${index}',50, event)"></textarea>
-                <p style="float: right;">Λέξεις: <span id="words31_${index}" ></span> /50</p>
+                <textarea class="govgr-textarea" id="field_31_antikeimeno_synarmodiotitas${index-1}" name="field_31_antikeimeno_synarmodiotitas${index-1}" rows="2" onkeypress="wordsCounter('field_31_antikeimeno_synarmodiotitas${index-1}','words31_${index-1}',50, event)" onpaste="wordsCounter('field_31_antikeimeno_synarmodiotitas${index-1}','words31_${index-1}',50, event)"></textarea>
+                <p style="float: right;">Λέξεις: <span id="words31_${index-1}" ></span> /50</p>
                 <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
             </td>    
         </tr>`);
@@ -374,22 +375,22 @@ $("#add_row_table_32").on("click", function () {
   $("#tbody_32").append(`
         <tr id="R${++index}"> 
             <td> 
-                <textarea class="govgr-textarea" id="field_32_eksousiodotiki_diataksi${index}" name="field_32_eksousiodotiki_diataksi${index}" placeholder="Εξουσιοδοτική διάταξη" rows="4"></textarea>
+                <textarea class="govgr-textarea" id="field_32_eksousiodotiki_diataksi${index-1}" name="field_32_eksousiodotiki_diataksi${index-1}" placeholder="Εξουσιοδοτική διάταξη" rows="4"></textarea>
             </td> 
             <td> 
-                <textarea class="govgr-textarea" id="field_32_eidos_praksis${index}" name="field_32_eidos_praksis${index}" placeholder="Είδος πράξης" rows="4"></textarea>
+                <textarea class="govgr-textarea" id="field_32_eidos_praksis${index-1}" name="field_32_eidos_praksis${index-1}" placeholder="Είδος πράξης" rows="4"></textarea>
             </td> 
             <td> 
-                <textarea class="govgr-textarea" id="field_32_armodio_ypoyrgeio${index}" name="field_32_armodio_ypoyrgeio${index}" placeholder="Αρμόδιο ή επισπεύδον Υπουργείο ή υπηρεσία" rows="4"></textarea>
-            </td> 
-            <td> 
-                <br>
-                <textarea class="govgr-textarea" id="field_32_antikeimeno${index}" name="field_32_antikeimeno${index}" placeholder="Αντικείμενο" rows="4" onkeypress="wordsCounter('field_32_antikeimeno${index}','words32_${index}',50, event)" onpaste="wordsCounter('field_32_antikeimeno${index}','words32_${index}',50, event)"></textarea>
-                <p style="float: right;">Λέξεις: <span id="words32_${index}" ></span> /50</p>                                            
+                <textarea class="govgr-textarea" id="field_32_armodio_ypoyrgeio${index-1}" name="field_32_armodio_ypoyrgeio${index-1}" placeholder="Αρμόδιο ή επισπεύδον Υπουργείο ή υπηρεσία" rows="4"></textarea>
             </td> 
             <td> 
                 <br>
-                <textarea class="govgr-textarea" id="field_32_xronodiagramma${index}" name="field_32_xronodiagramma${index}" placeholder="Χρονοδιάγραμμα (ενδεικτική ή αποκλειστική προθεσμία)" rows="4"></textarea>
+                <textarea class="govgr-textarea" id="field_32_antikeimeno${index-1}" name="field_32_antikeimeno${index-1}" placeholder="Αντικείμενο" rows="4" onkeypress="wordsCounter('field_32_antikeimeno${index-1}','words32_${index-1}',50, event)" onpaste="wordsCounter('field_32_antikeimeno${index-1}','words32_${index-1}',50, event)"></textarea>
+                <p style="float: right;">Λέξεις: <span id="words32_${index-1}" ></span> /50</p>                                            
+            </td> 
+            <td> 
+                <br>
+                <textarea class="govgr-textarea" id="field_32_xronodiagramma${index-1}" name="field_32_xronodiagramma${index-1}" placeholder="Χρονοδιάγραμμα (ενδεικτική ή αποκλειστική προθεσμία)" rows="4"></textarea>
                 <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
             </td>    
         </tr>`);
@@ -400,10 +401,10 @@ $("#add_row_emd_table").on("click", function () {
   $("#emd_processes_tbody").append(`
         <tr id="R${++index}">  
             <td> 
-                <textarea id="process${index}" name="process${index}" class="govgr-textarea" rows="1" ></textarea> 
+                <textarea id="process${index-1}" name="process${index-1}" class="govgr-textarea" rows="1" ></textarea> 
             </td>                
         </tr>`);
-  populateMinistersSurnameSelect(`minister_surname${index}`);
+  populateMinistersSurnameSelect(`minister_surname${index-1}`);
 });
 
     $("#eidikoteroi_stoxoi_analogws_tomea table").addClass(

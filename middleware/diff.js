@@ -276,9 +276,7 @@ exports.exportPDF = async function (req, res, next) {
                       },
                       {
                         option: "ii)  Εάν είναι έμμεση, εξηγήστε:",
-                        optionText: getDiffText(
-                          data.field_10_emmesi_comments
-                        ),
+                        optionText: getDiffText(data.field_10_emmesi_comments),
                       },
                     ],
                   },
@@ -361,9 +359,7 @@ exports.exportPDF = async function (req, res, next) {
                   field: {
                     fieldHeader:
                       "Στο σχέδιο νόμου ή στην τροπολογία επί του σχεδίου νόμου",
-                    fieldText: isEmpty(
-                      getDiffText(data.field_15_sxedio_nomou)
-                    ),
+                    fieldText: isEmpty(getDiffText(data.field_15_sxedio_nomou)),
                   },
                 },
                 {
@@ -451,9 +447,7 @@ exports.exportPDF = async function (req, res, next) {
                   field: {
                     fieldHeader:
                       "Στο σχέδιο νόμου ή στην τροπολογία επί του σχεδίου νόμου",
-                    fieldText: isEmpty(
-                      getDiffText(data.field_17_sxedio_nomou)
-                    ),
+                    fieldText: isEmpty(getDiffText(data.field_17_sxedio_nomou)),
                   },
                 },
                 {
@@ -701,9 +695,7 @@ exports.exportPDF = async function (req, res, next) {
                       {
                         hasCheckbox: true,
                         option: "Απόφαση",
-                        optionText: getDiffText(
-                          data.field_25_apofasi_comment
-                        ),
+                        optionText: getDiffText(data.field_25_apofasi_comment),
                       },
                     ],
                   },
@@ -1126,8 +1118,7 @@ function createCover(data) {
     alignment: "center",
   });
   cover.push({
-    text:
-      "\nΣτοιχεία επικοινωνίας: ",
+    text: "\nΣτοιχεία επικοινωνίας: ",
     alignment: "center",
     bold: true,
   });
@@ -1438,7 +1429,7 @@ function handleCategoryFields(reportTable, category) {
     if (category.field.fieldOptions[0].title) {
       reportTable[reportTable.length - 1][1].colSpan = 3; //update colspan for previous entry
       reportTable[reportTable.length - 1].push({ text: "" });
-      for (fieldOption in category.field.fieldOptions) {        
+      for (fieldOption in category.field.fieldOptions) {
         reportTable.push([
           { text: "", border: [false, false, false, false] },
           {
@@ -1488,7 +1479,7 @@ function handleCategoryFields(reportTable, category) {
         ]);
         retractPosition = 2;
       }
-      for (k in category.field.fieldOptions) {        
+      for (k in category.field.fieldOptions) {
         if (category.field.fieldOptions[k].hasCheckbox) {
           if (!alteredColumns) {
             reportTable[reportTable.length - retractPosition][1].colSpan = 3; // increase column span
@@ -1802,12 +1793,11 @@ function createTables(tableData, headers) {
       { text: headers[0], alignment: "center" },
       { text: headers[1], alignment: "center" },
     ]);
-    let len = tableData.data.length;
-    for (let i = 0; i < tableData.data.length / 2; i++) {
+    for (let i = 0; i < tableData.data.length; i += 2) {
       rows.push([
         { text: "", border: [false, false, false, false] },
         { text: getDiffText(tableData.data[i]) },
-        { text: getDiffText(tableData.data[i + 3]) },
+        { text: getDiffText(tableData.data[tableData.data.length - i]) },
       ]);
     }
     table = {
@@ -1970,7 +1960,10 @@ function createField9(josnData) {
 
 function checkboxValue(array) {
   if (Array.isArray(array)) {
-    return array[0].color ? { text: "X", color: array[0].color } : "";
+    if (array[0].value) {
+      return array[0].color ? { text: "X", color: array[0].color } : "X";
+    }
+    return "";
   }
   return "";
 }
@@ -1979,7 +1972,24 @@ function createField18(field_18, data) {
   let table = [];
   let fieldTable;
   let fieldData = [];
-  let count = 11;
+  let sameCategoryCounter = 0;
+  let directCategories = [
+    "Αύξηση εσόδων",
+    "Μείωση δαπανών",
+    "Εξοικονόμηση χρόνου",
+    "Μεγαλύτερη αποδοτικότητα",
+    "Άλλο",
+  ];
+  let indirectCategories = [
+    "Βελτίωση παρεχόμενων υπηρεσιών",
+    "Δίκαιη μεταχείριση πολιτών",
+    "Αυξημένη αξιοπιστία / διαφάνεια θεσμών",
+    "Βελτιωμένη διαχείριση κινδύνων",
+    "Άλλο",
+  ];
+  let firstElementIndex = field_18.findIndex(
+    (x) => x[0].value === directCategories[0]
+  );
   table.push([
     { text: "", border: [false, false, false, false] },
     { text: "", border: [false, false, false, false] },
@@ -2026,67 +2036,80 @@ function createField18(field_18, data) {
       fontSize: 10,
     },
     {
-      text: hasValidValue(field_18[0]),
+      text: directCategories[0],
       alignment: "center",
       fontSize: 8,
     },
     {
-      text: checkboxValue(field_18[1]),
+      text: checkboxValue(field_18[firstElementIndex++]),
       alignment: "center",
     },
     {
-      text: checkboxValue(field_18[2]),
+      text: checkboxValue(field_18[firstElementIndex++]),
       alignment: "center",
     },
     {
-      text: checkboxValue(field_18[3]),
+      text: checkboxValue(field_18[firstElementIndex++]),
       alignment: "center",
     },
     {
-      text: checkboxValue(field_18[4]),
+      text: checkboxValue(field_18[firstElementIndex++]),
       alignment: "center",
     },
     {
-      text: checkboxValue(field_18[5]),
+      text: checkboxValue(field_18[firstElementIndex++]),
       alignment: "center",
     },
   ]);
-  for (let i = 0; i < 4; i++) {
-    table.push([
-      {
-        text: "",
-      },
-      {
-        text: "",
-      },
-      {
-        text: hasValidValue(field_18[count - 5]),
-        alignment: "center",
-        fontSize: 8,
-      },
-      {
-        text: checkboxValue(field_18[count - 4]),
-        alignment: "center",
-      },
-      {
-        text: checkboxValue(field_18[count - 3]),
-        alignment: "center",
-      },
-      {
-        text: checkboxValue(field_18[count - 2]),
-        alignment: "center",
-      },
-      {
-        text: checkboxValue(field_18[count - 1]),
-        alignment: "center",
-      },
-      {
-        text: checkboxValue(field_18[count]),
-        alignment: "center",
-      },
-    ]);
-    count += 6;
+
+  for (let i = 1; i < directCategories.length; i++) {
+    for (let j in field_18) {
+      if (directCategories[i] === field_18[j][0].value) {
+        if (directCategories[i] === "Άλλο") {
+          sameCategoryCounter++;
+        }
+        table.push([
+          {
+            text: "",
+          },
+          {
+            text: "",
+          },
+          {
+            text: directCategories[i],
+            alignment: "center",
+            fontSize: 8,
+          },
+          {
+            text: checkboxValue(field_18[++j]),
+            alignment: "center",
+          },
+          {
+            text: checkboxValue(field_18[++j]),
+            alignment: "center",
+          },
+          {
+            text: checkboxValue(field_18[++j]),
+            alignment: "center",
+          },
+          {
+            text: checkboxValue(field_18[++j]),
+            alignment: "center",
+          },
+          {
+            text: checkboxValue(field_18[++j]),
+            alignment: "center",
+          },
+        ]);
+        break;
+      }
+    }
   }
+
+  firstElementIndex = field_18.findIndex(
+    (x) => x[0].value === indirectCategories[0]
+  );
+
   table.push([
     {
       text: "",
@@ -2099,68 +2122,77 @@ function createField18(field_18, data) {
       fillColor: "#C1E1C1",
     },
     {
-      text: hasValidValue(field_18[count - 5]),
+      text: indirectCategories[0],
       alignment: "center",
       fontSize: 8,
     },
     {
-      text: checkboxValue(field_18[count - 4]),
+      text: checkboxValue(field_18[firstElementIndex++]),
       alignment: "center",
     },
     {
-      text: checkboxValue(field_18[count - 3]),
+      text: checkboxValue(field_18[firstElementIndex++]),
       alignment: "center",
     },
     {
-      text: checkboxValue(field_18[count - 2]),
+      text: checkboxValue(field_18[firstElementIndex++]),
       alignment: "center",
     },
     {
-      text: checkboxValue(field_18[count - 1]),
+      text: checkboxValue(field_18[firstElementIndex++]),
       alignment: "center",
     },
     {
-      text: checkboxValue(field_18[count]),
+      text: checkboxValue(field_18[firstElementIndex++]),
       alignment: "center",
     },
   ]);
-  count += 6;
-  for (let i = 0; i < 4; i++) {
-    table.push([
-      {
-        text: "",
-      },
-      {
-        text: "",
-      },
-      {
-        text: hasValidValue(field_18[count - 5]),
-        alignment: "center",
-        fontSize: 8,
-      },
-      {
-        text: checkboxValue(field_18[count - 4]),
-        alignment: "center",
-      },
-      {
-        text: checkboxValue(field_18[count - 3]),
-        alignment: "center",
-      },
-      {
-        text: checkboxValue(field_18[count - 2]),
-        alignment: "center",
-      },
-      {
-        text: checkboxValue(field_18[count - 1]),
-        alignment: "center",
-      },
-      {
-        text: checkboxValue(field_18[count]),
-        alignment: "center",
-      },
-    ]);
-    count += 6;
+
+  for (let i = 1; i < indirectCategories.length; i++) {
+    for (let j in field_18) {
+      if (indirectCategories[i] === field_18[j][0].value) {
+        if (directCategories[i] === "Άλλο" && sameCategoryCounter != 0) {
+          sameCategoryCounter--;
+          continue;
+        }
+        table.push([
+          {
+            text: "",
+          },
+          {
+            text: "",
+          },
+          {
+            text: indirectCategories[i],
+            alignment: "center",
+            fontSize: 8,
+          },
+          {
+            text: checkboxValue(field_18[++j]),
+            alignment: "center",
+          },
+          {
+            text: checkboxValue(field_18[++j]),
+            alignment: "center",
+          },
+          {
+            text: checkboxValue(field_18[++j]),
+            alignment: "center",
+          },
+          {
+            text: checkboxValue(field_18[++j]),
+            alignment: "center",
+          },
+          {
+            text: checkboxValue(field_18[++j]),
+            alignment: "center",
+          },
+        ]);
+        break;
+      }
+    }
   }
+
   fieldTable = {
     table: {
       headerRows: 0,
@@ -2185,8 +2217,23 @@ function createField19(field_19, data) {
   let table = [];
   let fieldTable;
   let fieldData = [];
-  let count = 11;
-
+  let sameCategoryCounter = 0;
+  let regulationCategories = [
+    "Σχεδιασμός / προετοιμασία",
+    "Υποδομή / εξοπλισμός",
+    "Προσλήψεις / κινητικότητα",
+    "Ενημέρωση εκπαίδευση εμπλεκομένων",
+    "Άλλο",
+  ];
+  let functionalityCategories = [
+    "Στήριξη και λειτουργία διαχείρισης",
+    "Διαχείριση αλλαγών κατά την εκτέλεση",
+    "Κόστος συμμετοχής στη νέα ρύθμιση",
+    "Άλλο",
+  ];
+  let firstElementIndex = field_19.findIndex(
+    (x) => x[0].value === regulationCategories[0]
+  );
   table.push([
     { text: "", border: [false, false, false, false] },
     { text: "", border: [false, false, false, false] },
@@ -2233,67 +2280,80 @@ function createField19(field_19, data) {
       fontSize: 10,
     },
     {
-      text: hasValidValue(field_19[0]),
+      text: regulationCategories[0],
       alignment: "center",
       fontSize: 8,
     },
     {
-      text: checkboxValue(field_19[1]),
+      text: checkboxValue(field_19[firstElementIndex++]),
       alignment: "center",
     },
     {
-      text: checkboxValue(field_19[2]),
+      text: checkboxValue(field_19[firstElementIndex++]),
       alignment: "center",
     },
     {
-      text: checkboxValue(field_19[3]),
+      text: checkboxValue(field_19[firstElementIndex++]),
       alignment: "center",
     },
     {
-      text: checkboxValue(field_19[4]),
+      text: checkboxValue(field_19[firstElementIndex++]),
       alignment: "center",
     },
     {
-      text: checkboxValue(field_19[5]),
+      text: checkboxValue(field_19[firstElementIndex++]),
       alignment: "center",
     },
   ]);
-  for (let i = 0; i < 4; i++) {
-    table.push([
-      {
-        text: "",
-      },
-      {
-        text: "",
-      },
-      {
-        text: hasValidValue(field_19[count - 5]),
-        alignment: "center",
-        fontSize: 8,
-      },
-      {
-        text: checkboxValue(field_19[count - 4]),
-        alignment: "center",
-      },
-      {
-        text: checkboxValue(field_19[count - 3]),
-        alignment: "center",
-      },
-      {
-        text: checkboxValue(field_19[count - 2]),
-        alignment: "center",
-      },
-      {
-        text: checkboxValue(field_19[count - 1]),
-        alignment: "center",
-      },
-      {
-        text: checkboxValue(field_19[count]),
-        alignment: "center",
-      },
-    ]);
-    count += 6;
+
+  for (let i = 1; i < regulationCategories.length; i++) {
+    for (let j in field_19) {
+      if (regulationCategories[i] === field_19[j][0].value) {
+        if (regulationCategories[i] === "Άλλο") {
+          sameCategoryCounter++;
+        }
+        table.push([
+          {
+            text: "",
+          },
+          {
+            text: "",
+          },
+          {
+            text: regulationCategories[i],
+            alignment: "center",
+            fontSize: 8,
+          },
+          {
+            text: checkboxValue(field_19[++j]),
+            alignment: "center",
+          },
+          {
+            text: checkboxValue(field_19[++j]),
+            alignment: "center",
+          },
+          {
+            text: checkboxValue(field_19[++j]),
+            alignment: "center",
+          },
+          {
+            text: checkboxValue(field_19[++j]),
+            alignment: "center",
+          },
+          {
+            text: checkboxValue(field_19[++j]),
+            alignment: "center",
+          },
+        ]);
+        break;
+      }
+    }
   }
+
+  firstElementIndex = field_19.findIndex(
+    (x) => x[0].value === functionalityCategories[0]
+  );
+
   table.push([
     {
       text: "",
@@ -2306,68 +2366,77 @@ function createField19(field_19, data) {
       fontSize: 10,
     },
     {
-      text: hasValidValue(field_19[count - 5]),
+      text: functionalityCategories[0],
       alignment: "center",
       fontSize: 8,
     },
     {
-      text: checkboxValue(field_19[count - 4]),
+      text: checkboxValue(field_19[firstElementIndex++]),
       alignment: "center",
     },
     {
-      text: checkboxValue(field_19[count - 3]),
+      text: checkboxValue(field_19[firstElementIndex++]),
       alignment: "center",
     },
     {
-      text: checkboxValue(field_19[count - 2]),
+      text: checkboxValue(field_19[firstElementIndex++]),
       alignment: "center",
     },
     {
-      text: checkboxValue(field_19[count - 1]),
+      text: checkboxValue(field_19[firstElementIndex++]),
       alignment: "center",
     },
     {
-      text: checkboxValue(field_19[count]),
+      text: checkboxValue(field_19[firstElementIndex++]),
       alignment: "center",
     },
   ]);
-  count += 6;
-  for (let i = 0; i < 3; i++) {
-    table.push([
-      {
-        text: "",
-      },
-      {
-        text: "",
-      },
-      {
-        text: hasValidValue(field_19[count - 5]),
-        alignment: "center",
-        fontSize: 8,
-      },
-      {
-        text: checkboxValue(field_19[count - 4]),
-        alignment: "center",
-      },
-      {
-        text: checkboxValue(field_19[count - 3]),
-        alignment: "center",
-      },
-      {
-        text: checkboxValue(field_19[count - 2]),
-        alignment: "center",
-      },
-      {
-        text: checkboxValue(field_19[count - 1]),
-        alignment: "center",
-      },
-      {
-        text: checkboxValue(field_19[count]),
-        alignment: "center",
-      },
-    ]);
-    count += 6;
+
+  for (let i = 1; i < functionalityCategories.length; i++) {
+    for (let j in field_19) {
+      if (functionalityCategories[i] === field_19[j][0].value) {
+        if (functionalityCategories[i] === "Άλλο" && sameCategoryCounter != 0) {
+          sameCategoryCounter--;
+          continue;
+        }
+        table.push([
+          {
+            text: "",
+          },
+          {
+            text: "",
+          },
+          {
+            text: functionalityCategories[i],
+            alignment: "center",
+            fontSize: 8,
+          },
+          {
+            text: checkboxValue(field_19[++j]),
+            alignment: "center",
+          },
+          {
+            text: checkboxValue(field_19[++j]),
+            alignment: "center",
+          },
+          {
+            text: checkboxValue(field_19[++j]),
+            alignment: "center",
+          },
+          {
+            text: checkboxValue(field_19[++j]),
+            alignment: "center",
+          },
+          {
+            text: checkboxValue(field_19[++j]),
+            alignment: "center",
+          },
+        ]);
+        break;
+      }
+    }
   }
+
   fieldTable = {
     table: {
       headerRows: 0,
@@ -2393,8 +2462,23 @@ function createField20(field_20, data) {
   let table = [];
   let fieldTable;
   let fieldData = [];
-  let count = 11;
 
+  let sameCategoryCounter = 0;
+  let dangerManagementCategories = [
+    "Αναγνώριση / εντοπισμός κινδύνου",
+    "Διαπίστωση συνεπειών κινδύνων στους στόχους",
+    "Σχεδιασμός αποτροπής / αντιστάθμισης κινδύνων",
+    "Άλλο",
+  ];
+  let dangerDecreaseCategories = [
+    "Πιλοτική εφαρμογή",
+    "Ανάδειξη καλών πρακτικών κατά την υλοποίηση της ρύθμισης",
+    "Συνεχής αξιολόγηση διαδικασιών διαχείρισης κινδύνων",
+    "Άλλο",
+  ];
+  let firstElementIndex = field_20.findIndex(
+    (x) => x[0].value === dangerManagementCategories[0]
+  );
   table.push([
     { text: "", border: [false, false, false, false] },
     { text: "", border: [false, false, false, false] },
@@ -2441,67 +2525,78 @@ function createField20(field_20, data) {
       fontSize: 10,
     },
     {
-      text: hasValidValue(field_20[0]),
+      text: dangerManagementCategories[0],
       alignment: "center",
       fontSize: 8,
     },
     {
-      text: checkboxValue(field_20[1]),
+      text: checkboxValue(field_20[firstElementIndex++]),
       alignment: "center",
     },
     {
-      text: checkboxValue(field_20[2]),
+      text: checkboxValue(field_20[firstElementIndex++]),
       alignment: "center",
     },
     {
-      text: checkboxValue(field_20[3]),
+      text: checkboxValue(field_20[firstElementIndex++]),
       alignment: "center",
     },
     {
-      text: checkboxValue(field_20[4]),
+      text: checkboxValue(field_20[firstElementIndex++]),
       alignment: "center",
     },
     {
-      text: checkboxValue(field_20[5]),
+      text: checkboxValue(field_20[firstElementIndex++]),
       alignment: "center",
     },
   ]);
-  for (let i = 0; i < 3; i++) {
-    table.push([
-      {
-        text: "",
-      },
-      {
-        text: "",
-      },
-      {
-        text: hasValidValue(field_20[count - 5]),
-        alignment: "center",
-        fontSize: 8,
-      },
-      {
-        text: checkboxValue(field_20[count - 4]),
-        alignment: "center",
-      },
-      {
-        text: checkboxValue(field_20[count - 3]),
-        alignment: "center",
-      },
-      {
-        text: checkboxValue(field_20[count - 2]),
-        alignment: "center",
-      },
-      {
-        text: checkboxValue(field_20[count - 1]),
-        alignment: "center",
-      },
-      {
-        text: checkboxValue(field_20[count]),
-        alignment: "center",
-      },
-    ]);
-    count += 6;
+
+  for (let i = 1; i < dangerManagementCategories.length; i++) {
+    for (let j in field_20) {
+      if (dangerManagementCategories[i] === field_20[j][0].value) {
+        if (dangerManagementCategories[i] === "Άλλο") {
+          sameCategoryCounter++;
+        }
+        table.push([
+          {
+            text: "",
+          },
+          {
+            text: "",
+          },
+          {
+            text: dangerManagementCategories[i],
+            alignment: "center",
+            fontSize: 8,
+          },
+          {
+            text: checkboxValue(field_20[++j]),
+            alignment: "center",
+          },
+          {
+            text: checkboxValue(field_20[++j]),
+            alignment: "center",
+          },
+          {
+            text: checkboxValue(field_20[++j]),
+            alignment: "center",
+          },
+          {
+            text: checkboxValue(field_20[++j]),
+            alignment: "center",
+          },
+          {
+            text: checkboxValue(field_20[++j]),
+            alignment: "center",
+          },
+        ]);
+        break;
+      }
+    }
   }
+  firstElementIndex = field_20.findIndex(
+    (x) => x[0].value === dangerDecreaseCategories[0]
+  );
   table.push([
     {
       text: "",
@@ -2514,68 +2609,76 @@ function createField20(field_20, data) {
       fontSize: 10,
     },
     {
-      text: hasValidValue(field_20[count - 5]),
+      text: dangerDecreaseCategories[0],
       alignment: "center",
       fontSize: 8,
     },
     {
-      text: checkboxValue(field_20[count - 4]),
+      text: checkboxValue(field_20[firstElementIndex++]),
       alignment: "center",
     },
     {
-      text: checkboxValue(field_20[count - 3]),
+      text: checkboxValue(field_20[firstElementIndex++]),
       alignment: "center",
     },
     {
-      text: checkboxValue(field_20[count - 2]),
+      text: checkboxValue(field_20[firstElementIndex++]),
       alignment: "center",
     },
     {
-      text: checkboxValue(field_20[count - 1]),
+      text: checkboxValue(field_20[firstElementIndex++]),
       alignment: "center",
     },
     {
-      text: checkboxValue(field_20[count]),
+      text: checkboxValue(field_20[firstElementIndex++]),
       alignment: "center",
     },
   ]);
-  count += 6;
-  for (let i = 0; i < 3; i++) {
-    table.push([
-      {
-        text: "",
-      },
-      {
-        text: "",
-      },
-      {
-        text: hasValidValue(field_20[count - 5]),
-        alignment: "center",
-        fontSize: 8,
-      },
-      {
-        text: checkboxValue(field_20[count - 4]),
-        alignment: "center",
-      },
-      {
-        text: checkboxValue(field_20[count - 3]),
-        alignment: "center",
-      },
-      {
-        text: checkboxValue(field_20[count - 2]),
-        alignment: "center",
-      },
-      {
-        text: checkboxValue(field_20[count - 1]),
-        alignment: "center",
-      },
-      {
-        text: checkboxValue(field_20[count]),
-        alignment: "center",
-      },
-    ]);
-    count += 6;
+
+  for (let i = 1; i < dangerDecreaseCategories.length; i++) {
+    for (let j in field_20) {
+      if (dangerDecreaseCategories[i] === field_20[j][0].value) {
+        if (dangerDecreaseCategories[i] === "Άλλο") {
+          sameCategoryCounter++;
+        }
+        table.push([
+          {
+            text: "",
+          },
+          {
+            text: "",
+          },
+          {
+            text: dangerDecreaseCategories[i],
+            alignment: "center",
+            fontSize: 8,
+          },
+          {
+            text: checkboxValue(field_20[++j]),
+            alignment: "center",
+          },
+          {
+            text: checkboxValue(field_20[++j]),
+            alignment: "center",
+          },
+          {
+            text: checkboxValue(field_20[++j]),
+            alignment: "center",
+          },
+          {
+            text: checkboxValue(field_20[++j]),
+            alignment: "center",
+          },
+          {
+            text: checkboxValue(field_20[++j]),
+            alignment: "center",
+          },
+        ]);
+        break;
+      }
+    }
   }
+  
   fieldTable = {
     table: {
       headerRows: 0,
@@ -2782,7 +2885,7 @@ function getDiffText(data) {
       else diffText.push(applyTextDecorations(data[i].value, data[i].color));
     }
   } else {
-    return data.value;
+    return data;
   }
   return diffText;
 }
@@ -2801,7 +2904,6 @@ function applyTextDecorations(value, color) {
 }
 
 function hasValidValue(array) {
-  // console.log(array[0].value);
   if (array === undefined) return "";
   return array[0].value;
   // array && array[0] === undefined ? "" : array[0].value;

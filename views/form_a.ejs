@@ -78,12 +78,6 @@
 
                         <br>
                         <div>
-                            <input type="hidden" name="pdf_diff_name" id="pdf_diff_name" />
-                            <p id="pdf_diff_download" class="pdf-diff-download action-button" style="display: none;">
-                            </p>
-                        </div>
-                        <br>
-                        <div>
                             <input type="button" name="convert"
                                 class="govgr-btn govgr-btn-warning convert action-button-convert"
                                 style="display: none; float: right;" value="Μετατροπή" />
@@ -1044,82 +1038,6 @@
     </div>
 
     <style>
-        /*
-        .arxiki_menu {
-            display: none
-        }
-
-        .arxiki_list:hover .arxiki_menu {
-            display: initial
-        }
-
-
-        .aitiologiki_menu {
-            display: none
-        }
-
-        .aitiologiki_list:hover .aitiologiki_menu {
-            display: initial
-        }
-
-        .ekthesi_syntagmatos_menu {
-            display: none
-        }
-
-        .ekthesi_syntagmatos_list:hover .ekthesi_syntagmatos_menu {
-            display: initial
-        }
-
-        .eidiki_ekthesi_menu {
-            display: none
-        }
-
-        .eidiki_ekthesi_list:hover .eidiki_ekthesi_menu {
-            display: initial
-        }
-
-        .ekthesi_genikwn_synepeiwn_menu {
-            display: none
-        }
-
-        .ekthesi_genikwn_synepeiwn_list:hover .ekthesi_genikwn_synepeiwn_menu {
-            display: initial
-        }
-
-        .ekthesi_diavouleusis_menu {
-            display: none
-        }
-
-        .ekthesi_diavouleusis_list:hover .ekthesi_diavouleusis_menu {
-            display: initial
-        }
-
-        .ekthesi_nomimotitas_menu {
-            display: none
-        }
-
-        .ekthesi_nomimotitas_list:hover .ekthesi_nomimotitas_menu {
-            display: initial
-        }
-
-        .pinakas_tropopoioymenwn_katargoymenwn_diataksewn_menu {
-            display: none
-        }
-
-        .pinakas_tropopoioymenwn_katargoymenwn_diataksewn_list:hover .pinakas_tropopoioymenwn_katargoymenwn_diataksewn_menu {
-            display: initial
-        }
-
-        .ekthesi_efarmogis_rythmisis_menu {
-            display: none
-        }
-
-        .ekthesi_efarmogis_rythmisis_list:hover .ekthesi_efarmogis_rythmisis_menu {
-            display: initial
-        }   
-        */
-
-
 
         .flex-form-group {
             display: flex;
@@ -1176,7 +1094,7 @@
         }
 
         .versions-table thead,
-        tbody tr {
+        .versions-table tbody tr {
             display: table;
             width: 100%;
             table-layout: fixed;
@@ -1206,9 +1124,6 @@
             overflow: auto;
         }
 
-        /*.table-wrapper-scroll-y {
-            display: block;
-        } */
     </style>
 
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
@@ -1451,6 +1366,7 @@
                         });
                     },
                     success: function (data) {
+                        window.open(`/pdf_exports/${pdf_name}.pdf`)
                         $.each(textareas, () => {
                             $(textareas).prop("disabled", true);
                         });//enable fields to be passed down to req.body to be exported
@@ -1540,7 +1456,7 @@
             ev.preventDefault();
             $("#pdf_diff_download").hide();
             let selected = {};
-            let ids = $($("#versioningModal input:checked"))
+            let ids = $($("#versions_table tbody input:checked"))
             selected['firstTargetDate'] = ids[0].name.replace('checkbox', '');
             selected['secondTargetDate'] = ids[1].name.replace('checkbox', '');
             $.ajax({
@@ -1549,11 +1465,10 @@
                 error: function (error) {
                     console.log(error);
                 },
-                success: function (result) {
-                    //TODO: decide name
-                    $("#pdf_diff_download").html(`Το τελευταίο αποθηκευμένο PDF
-                                    βρίσκεται <a href="/pdf_exports/diff.pdf"><b><u>εδώ</u></b></a>.`)
-                    $("#pdf_diff_download").show();
+                success: function (result) {                    
+                    //TODO: add new name
+                    window.open('/pdf_exports/diff.pdf');
+                    $('#versioningModal').modal('toggle');
                 },
                 type: 'POST'
             });
