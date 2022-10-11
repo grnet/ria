@@ -17,146 +17,7 @@ exports.exportGlk = async function (req, res, next) {
     "field_17_minister_ministry",
     "field_17_minister_role"
   );
-  let field_16_signatory = [
-    data.field_16_genikos_onoma,
-    data.field_16_genikos_epitheto,
-  ];
-  const Report = {
-    cover: createCover(data),
-    reports: [
-      {
-        reportTitle:
-          "Β. Έκθεση Γενικού Λογιστηρίου του Κράτους (άρθρο 75 παρ. 1 ή 2 του Συντάγματος)",
-        fields: [
-          {
-            category: {
-              categoryFields: [
-                {
-                  field: {
-                    fieldHeader:
-                      "Στο σχέδιο νόμου ή στην τροπολογία επί του σχεδίου νόμου",
-                    fieldText: isEmpty(data.field_15_sxedio_nomou),
-                  },
-                },
-                {
-                  field: {
-                    fieldHeader: "του Υπουργείου:",
-                    fieldText: isEmpty(data.field_15_ypoyrgeio),
-                  },
-                },
-                {
-                  field: {
-                    fieldId: 15,
-                    fieldHeader:
-                      "15.Συνοπτική ανάλυση των άρθρων της αξιολογούμενης ρύθμισης",
-                    fieldText: isEmpty(data.field_15_rythmiseis, true),
-                    hasHTML: true,
-                  },
-                },
-              ],
-            },
-          },
-          {
-            category: {
-              categoryHeader: "Στόχοι αξιολογούμενης ρύθμισης",
-              categoryFields: [
-                {
-                  field: {
-                    fieldId: 16,
-                    fieldHeader:
-                      "16.Οικονομικά αποτελέσματα επί του Κρατικού Προϋπολογισμού ή/και επί του προϋπολογισμού του/των αρμόδιου/ων φορέα/ων",
-                  },
-                },
-                {
-                  field: {
-                    fieldHeader:
-                      "Από τις προτεινόμενες διατάξεις προκαλούνται τα ακόλουθα οικονομικά αποτελέσματα:",
-                  },
-                },
-                {
-                  field: {
-                    fieldHeader: "Επί του Κρατικού Προϋπολογισμού",
-                    fieldText: isEmpty(data.field_16_kratikos_proypologismos),
-                    hasHTML: true,
-                  },
-                },
-                {
-                  field: {
-                    fieldHeader:
-                      "Επί του Προϋπολογισμού του/των αρμόδιου/ων φορέα/ων",
-                    fieldText: isEmpty(
-                      data.field_16_proypologismos_forea,
-                      true
-                    ),
-                    hasHTML: true,
-                  },
-                },
-              ],
-            },
-          },
-          {
-            category: {
-              categoryFields: [
-                {
-                  field: {
-                    fieldCreatedBy:
-                      createGlkDirectorSignature(field_16_signatory),
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-      {
-        reportTitle: "Γ. Ειδική Έκθεση (άρθρο 75 παρ. 3 του Συντάγματος)",
-        fields: [
-          {
-            category: {
-              categoryFields: [
-                {
-                  field: {
-                    fieldHeader:
-                      "Στο σχέδιο νόμου ή στην τροπολογία επί του σχεδίου νόμου",
-                    fieldText: isEmpty(data.field_17_sxedio_nomou),
-                  },
-                },
-                {
-                  field: {
-                    fieldHeader: "του Υπουργείου:",
-                    fieldText: isEmpty(data.field_17_ypoyrgeio),
-                  },
-                },
-                {
-                  field: {
-                    fieldId: 17,
-                    fieldHeader: "17.Οικονομικά αποτελέσματα ",
-                    fieldText: isEmpty(
-                      data.field_17_oikonomika_apotelesmata,
-                      true
-                    ),
-                    hasHTML: true,
-                  },
-                },
-              ],
-            },
-          },
-          {
-            category: {
-              categoryFields: [
-                {
-                  field: {
-                    fieldCreatedBy: createSignatories(field_17_ministers),
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    ],
-    // annex: "Παράρτημα",
-  };
+
   // download default Roboto font from cdnjs.com
   fonts = {
     Roboto: {
@@ -171,7 +32,437 @@ exports.exportGlk = async function (req, res, next) {
 
   let docDefinition = {
     pageSize: "A4",
-    content: [[createContainerTable(Report)]],
+    styles: {
+      header1: {
+        fontSize: 17,
+        bold: true,
+        decoration: "underline",
+        alignment: "center",
+      },
+      header2: {
+        alignment: "center",
+        bold: true,
+        color: "#5c3d3d",
+        fontSize: 15,
+      },
+      header3: {
+        alignment: "center",
+        bold: true,
+        fontSize: 13,
+      },
+    },
+    defaultStyle: {
+      fontSize: 11,
+      alignment: "center",
+    },
+    content: [
+      [
+        {
+          text: "ΑΝΑΛΥΣΗ ΣΥΝΕΠΕΙΩΝ ΡΥΘΜΙΣΗΣ\n\n",
+          style: "header1",
+        },
+        { text: data.title + "\n\n", style: "header1" },
+        {
+          text: "Επισπεύδον Υπουργείο:\n\n",
+          style: "header3",
+        },
+        {
+          text: data.epispeudon_foreas,
+          style: "header3",
+        },
+        {
+          text: "\nΣτοιχεία επικοινωνίας: " + data.stoixeia_epikoinwnias + "\n",
+          style: "header3",
+        },
+        {
+          text: "Β. Έκθεση Γενικού Λογιστηρίου του Κράτους (άρθρο 75 παρ. 1 ή 2 του Συντάγματος)\n\n\n",
+          style: "header2",
+          pageBreak: "before",
+        },
+        {
+          table: {
+            widths: ["5%", "95%"],
+            body: [
+              [
+                {
+                  text: "",
+                  border: [false, false, false, false],
+                  fillColor: "white",
+                },
+                {
+                  text: "Στο σχέδιο νόμου ή στην τροπολογία επί του σχεδίου νόμου\n",
+                  style: "header3",
+                },
+              ],
+            ],
+          },
+        },
+        {
+          table: {
+            widths: ["5%", "95%"],
+            body: [
+              [
+                {
+                  text: "",
+                  border: [false, false, false, false],
+                  fillColor: "white",
+                },
+                { text: isEmpty(data.field_15_sxedio_nomou) },
+              ],
+            ],
+          },
+        },
+        {
+          text: "\n\n",
+        },
+        {
+          table: {
+            widths: ["5%", "95%"],
+            body: [
+              [
+                {
+                  text: "",
+                  border: [false, false, false, false],
+                  fillColor: "white",
+                },
+                {
+                  text: "του Υπουργείου:\n",
+                  style: "header3",
+                },
+              ],
+            ],
+          },
+        },
+        {
+          table: {
+            widths: ["5%", "95%"],
+            body: [
+              [
+                {
+                  text: "",
+                  border: [false, false, false, false],
+                  fillColor: "white",
+                },
+                { text: isEmpty(data.field_15_ypoyrgeio) },
+              ],
+            ],
+          },
+        },
+        {
+          text: "\n\n",
+        },
+        {
+          table: {
+            widths: ["5%", "95%"],
+            body: [
+              [
+                {
+                  text: "15",
+                  fillColor: "#dcdcdc",
+                  style: "header3",
+                },
+
+                {
+                  text: "15.Συνοπτική ανάλυση των άρθρων της αξιολογούμενης ρύθμισης\n",
+                  style: "header3",
+                  fillColor: "#dcdcdc",
+                },
+              ],
+            ],
+          },
+        },
+        {
+          table: {
+            widths: ["5%", "95%"],
+            body: [
+              [
+                {
+                  text: "",
+                  border: [false, false, false, false],
+                  fillColor: "white",
+                },
+                { text: isEmpty(data.field_15_rythmiseis, true) },
+              ],
+            ],
+          },
+        },
+        {
+          text: "\n\n",
+        },
+        {
+          table: {
+            widths: ["5%", "95%"],
+            body: [
+              [
+                {
+                  text: "",
+                  border: [false, false, false, false],
+                  fillColor: "white",
+                },
+                {
+                  text: "Στόχοι αξιολογούμενης ρύθμισης\n",
+                  style: "header3",
+                  fillColor: "#a9a9a9",
+                },
+              ],
+            ],
+          },
+        },
+        {
+          table: {
+            widths: ["5%", "95%"],
+            body: [
+              [
+                {
+                  text: "16",
+                  fillColor: "#dcdcdc",
+                  style: "header3",
+                },
+                {
+                  text: "16.Οικονομικά αποτελέσματα επί του Κρατικού Προϋπολογισμού ή/και επί του προϋπολογισμού του/των αρμόδιου/ων φορέα/ων\n",
+                  fillColor: "#dcdcdc",
+                  style: "header3",
+                },
+              ],
+            ],
+          },
+        },
+        {
+          table: {
+            widths: ["5%", "95%"],
+            body: [
+              [
+                {
+                  text: "",
+                  border: [false, false, false, false],
+                  fillColor: "white",
+                },
+                {
+                  text: "Από τις προτεινόμενες διατάξεις προκαλούνται τα ακόλουθα οικονομικά αποτελέσματα:\n",
+                  style: "header3",
+                },
+              ],
+            ],
+          },
+        },
+        {
+          table: {
+            widths: ["5%", "95%"],
+            body: [
+              [
+                {
+                  text: "",
+                  border: [false, false, false, false],
+                  fillColor: "white",
+                },
+                {
+                  text: "Επί του Κρατικού Προϋπολογισμού\n",
+                  style: "header3",
+                },
+              ],
+            ],
+          },
+        },
+        {
+          table: {
+            widths: ["5%", "95%"],
+            body: [
+              [
+                {
+                  text: "",
+                  border: [false, false, false, false],
+                  fillColor: "white",
+                },
+                { text: isEmpty(data.field_16_kratikos_proypologismos, true) },
+              ],
+            ],
+          },
+        },
+        {
+          table: {
+            widths: ["5%", "95%"],
+            body: [
+              [
+                {
+                  text: "",
+                  border: [false, false, false, false],
+                  fillColor: "white",
+                },
+                {
+                  text: "Επί του Προϋπολογισμού του/των αρμόδιου/ων φορέα/ων\n",
+                  style: "header3",
+                },
+              ],
+            ],
+          },
+        },
+        {
+          table: {
+            widths: ["5%", "95%"],
+            body: [
+              [
+                {
+                  text: "",
+                  border: [false, false, false, false],
+                  fillColor: "white",
+                },
+                { text: isEmpty(data.field_16_proypologismos_forea, true) },
+              ],
+            ],
+          },
+        },
+        {
+          text: "\n\n",
+        },
+        {
+          text: "Ο/Η ΥΠΟΓΡΑΦΩΝ/ΟΥΣΑ ΓΕΝΙΚΟΣ/Η ΔΙΕΥΘΥΝΤΗΣ/ΡΙΑ \n",
+          style: "header3",
+        },
+        {
+          table: {
+            widths: ["20%", "60%", "20%"],
+            body: [
+              [
+                {
+                  text: "",
+                  border: [false, false, false, false],
+                  fillColor: "white",
+                },
+                {
+                  text:
+                    "\n\n\n" +
+                    data.field_16_genikos_onoma +
+                    " " +
+                    data.field_16_genikos_epitheto,
+                  style: "header3",
+                },
+                {
+                  text: "",
+                  border: [false, false, false, false],
+                  fillColor: "white",
+                },
+              ],
+            ],
+          },
+        },
+        {
+          text: "\n\n",
+        },
+
+        {
+          text: "Γ. Ειδική Έκθεση (άρθρο 75 παρ. 3 του Συντάγματος)\n\n\n",
+          style: "header2",
+          pageBreak: "before",
+        },
+        {
+          table: {
+            widths: ["5%", "95%"],
+            body: [
+              [
+                {
+                  text: "",
+                  border: [false, false, false, false],
+                  fillColor: "white",
+                },
+                {
+                  text: "Στο σχέδιο νόμου ή στην τροπολογία επί του σχεδίου νόμου\n",
+                  style: "header3",
+                },
+              ],
+            ],
+          },
+        },
+        {
+          table: {
+            widths: ["5%", "95%"],
+            body: [
+              [
+                {
+                  text: "",
+                  border: [false, false, false, false],
+                  fillColor: "white",
+                },
+                { text: isEmpty(data.field_17_sxedio_nomou) },
+              ],
+            ],
+          },
+        },
+        {
+          text: "\n\n",
+        },
+        {
+          table: {
+            widths: ["5%", "95%"],
+            body: [
+              [
+                {
+                  text: "",
+                  border: [false, false, false, false],
+                  fillColor: "white",
+                },
+                {
+                  text: "του Υπουργείου:\n",
+                  style: "header3",
+                },
+              ],
+            ],
+          },
+        },
+        {
+          table: {
+            widths: ["5%", "95%"],
+            body: [
+              [
+                {
+                  text: "",
+                  border: [false, false, false, false],
+                  fillColor: "white",
+                },
+                { text: isEmpty(data.field_17_ypoyrgeio) },
+              ],
+            ],
+          },
+        },
+        {
+          text: "\n\n",
+        },
+        {
+          table: {
+            widths: ["5%", "95%"],
+            body: [
+              [
+                {
+                  text: "17",
+                  fillColor: "#dcdcdc",
+                  style: "header3",
+                },
+
+                {
+                  text: "17.Οικονομικά αποτελέσματα \n",
+                  style: "header3",
+                  fillColor: "#dcdcdc",
+                },
+              ],
+            ],
+          },
+        },
+        {
+          table: {
+            widths: ["5%", "95%"],
+            body: [
+              [
+                {
+                  text: "",
+                  border: [false, false, false, false],
+                  fillColor: "white",
+                },
+                { text: isEmpty(data.field_17_oikonomika_apotelesmata, true) },
+              ],
+            ],
+          },
+        },
+      ],
+    ],
   };
 
   var pdfDoc = printer.createPdfKitDocument(docDefinition);
@@ -190,420 +481,21 @@ exports.exportGlk = async function (req, res, next) {
   }
 };
 
-function isEmpty(val, hasHTML) {
+function isEmpty(value, isRichText) {
   let text;
-  if (hasHTML) {
-    !htmlToPdfmake(val, { window: window }).length
+  if (isRichText) {
+    !htmlToPdfmake(value, { window: window }).length
       ? (text = "\n\n")
-      : (text = val);
+      : (text = htmlToPdfmake(value, {
+          window: window,
+          replaceText: function (richText) {
+            return richText.replace(/(?:\r\n|\r|\n)/g, "<br>");
+          },
+        }));
   } else {
-    val === "" && !val ? (text = "\n\n") : (text = val);
+    value === "" || !value ? (text = "\n\n") : (text = value);
   }
   return text;
-}
-
-function createCover(data) {
-  let cover = [];
-
-  cover.push({
-    text: "ΑΝΑΛΥΣΗ ΣΥΝΕΠΕΙΩΝ ΡΥΘΜΙΣΗΣ\n\n",
-    fontSize: 17,
-    bold: true,
-    decoration: "underline",
-    alignment: "center",
-  });
-  // cover.push({
-  //   text: "",
-  // });
-  cover.push({
-    text: "ΤΙΤΛΟΣ ΑΞΙΟΛΟΓΟΥΜΕΝΗΣ ΡΥΘΜΙΣΗΣ",
-    fontSize: 15,
-    bold: true,
-    alignment: "center",
-  });
-  cover.push({
-    table: {
-      // headerRows: 0,
-      widths: ["100%"],
-      body: [[{ text: data.title, alignment: "center" }]],
-    },
-  });
-  cover.push({
-    text: "Επισπεύδον Υπουργείο:\n\n",
-    alignment: "center",
-    bold: true,
-  });
-  cover.push({
-    text: data.epispeudon_foreas,
-    fontSize: 15,
-    bold: true,
-    alignment: "center",
-  });
-  cover.push({
-    text: "\nΣτοιχεία επικοινωνίας: " + data.stoixeia_epikoinwnias,
-    alignment: "center",
-    bold: true,
-  });
-  cover.push({
-    text: "\n",
-  });
-  cover.push({
-    table: {
-      headerRows: 0,
-      widths: ["50%", "50%"],
-      body: [
-        [
-          {
-            text: "Επιλέξατε από τον παρακάτω κατάλογο τον τομέα ή τους τομείς νομοθέτησης στους οποίους αφορούν οι βασικές διατάξεις της αξιολογούμενης ρύθμισης:",
-            alignment: "center",
-            colSpan: 2,
-          },
-          { text: "" },
-        ],
-        [{ text: "ΤΟΜΕΙΣ ΝΟΜΟΘΕΤΗΣΗΣ" }, { text: "(X)", alignment: "center" }],
-        [
-          {
-            columns: [
-              {
-                text: "ΕΚΠΑΙΔΕΥΣΗ - ΠΟΛΙΤΙΣΜΟΣ",
-                width: "auto",
-                fontSize: 11,
-              },
-              { text: "1", width: "auto", fontSize: 7 },
-            ],
-          },
-          {
-            text: checkboxValue(data.ekpedeusi_politismos),
-            alignment: "center",
-          },
-        ],
-        [
-          {
-            columns: [
-              {
-                text: "ΕΘΝΙΚΗ ΑΜΥΝΑ – ΕΞΩΤΕΡΙΚΗ ΠΟΛΙΤΙΚΗ",
-                width: "auto",
-                fontSize: 11,
-              },
-              { text: "2", width: "auto", fontSize: 7 },
-            ],
-          },
-          {
-            text: checkboxValue(data.eksoteriki_politiki),
-            alignment: "center",
-          },
-        ],
-        [
-          {
-            columns: [
-              {
-                text: "ΟΙΚΟΝΟΜΙΚΗ / ΔΗΜΟΣΙΟΝΟΜΙΚΗ / ΦΟΡΟΛΟΓΙΚΗ ΠΟΛΙΤΙΚΗ",
-                width: "auto",
-                fontSize: 11,
-              },
-              { text: "3", width: "auto", fontSize: 7 },
-            ],
-          },
-          {
-            text: checkboxValue(data.forologiki_politiki),
-            alignment: "center",
-          },
-        ],
-        [
-          {
-            columns: [
-              {
-                text: "ΚΟΙΝΩΝΙΚΗ ΠΟΛΙΤΙΚΗ",
-                width: "auto",
-                fontSize: 11,
-              },
-              { text: "4", width: "auto", fontSize: 7 },
-            ],
-          },
-          {
-            text: checkboxValue(data.koinoniki_politiki),
-            alignment: "center",
-          },
-        ],
-        [
-          {
-            columns: [
-              {
-                text: "ΔΗΜΟΣΙΑ ΔΙΟΙΚΗΣΗ – ΔΗΜΟΣΙΑ ΤΑΞΗ – ΔΙΚΑΙΟΣΥΝΗ",
-                width: "auto",
-                fontSize: 11,
-              },
-              { text: "5", width: "auto", fontSize: 7 },
-            ],
-          },
-          {
-            text: checkboxValue(data.dimosia_dioikisi),
-            alignment: "center",
-          },
-        ],
-        [
-          {
-            columns: [
-              {
-                text: "ΑΝΑΠΤΥΞΗ – ΕΠΕΝΔΥΤΙΚΗ ΔΡΑΣΤΗΡΙΟΤΗΤΑ",
-                width: "auto",
-                fontSize: 11,
-              },
-              { text: "6", width: "auto", fontSize: 7 },
-            ],
-          },
-          {
-            text: checkboxValue(data.anaptiksi),
-            alignment: "center",
-          },
-        ],
-      ],
-    },
-  });
-  cover.push({
-    text: "\n",
-  });
-  cover.push(
-    {
-      columns: [
-        { text: "1", width: "auto", fontSize: 8 },
-        {
-          text: "Τομέας νομοθέτησης επί θεμάτων Υπουργείου Παιδείας & Θρησκευμάτων και Υπουργείου Πολιτισμού & Αθλητισμού.",
-          width: "auto",
-          fontSize: 10,
-        },
-      ],
-    },
-    {
-      columns: [
-        { text: "2", width: "auto", fontSize: 8 },
-        {
-          text: "Τομέας νομοθέτησης επί θεμάτων Υπουργείου Εθνικής Άμυνας και Υπουργείου Εξωτερικών.",
-          width: "auto",
-          fontSize: 10,
-        },
-      ],
-    },
-    {
-      columns: [
-        { text: "3", width: "auto", fontSize: 8 },
-        {
-          text: "Τομέας νομοθέτησης επί θεμάτων Υπουργείου Οικονομικών.",
-          width: "auto",
-          fontSize: 10,
-        },
-      ],
-    },
-    {
-      columns: [
-        { text: "4", width: "auto", fontSize: 8 },
-        {
-          text: "Τομέας νομοθέτησης επί θεμάτων Υπουργείου Εργασίας και Κοινωνικών Υποθέσεων και Υπουργείου Υγείας.",
-          width: "auto",
-          fontSize: 10,
-        },
-      ],
-    },
-    {
-      columns: [
-        { text: "5", width: "auto", fontSize: 8 },
-        {
-          text: "Τομέας νομοθέτησης επί θεμάτων Υπουργείου Εσωτερικών, Υπουργείου Ψηφιακής Διακυβέρνησης, Υπουργείου Προστασίας του Πολίτη και Υπουργείου Δικαιοσύνης.",
-          width: "auto",
-          fontSize: 10,
-        },
-      ],
-    },
-    {
-      columns: [
-        { text: "6", width: "auto", fontSize: 8 },
-        {
-          text: "Τομέας νομοθέτησης επί θεμάτων Υπουργείου Ανάπτυξης & Επενδύσεων, Υπουργείου Περιβάλλοντος & Ενέργειας, Υπουργείου Υποδομών & Μεταφορών, Υπουργείου Ναυτιλίας & Νησιωτικής Πολιτικής, Υπουργείου Αγροτικής Ανάπτυξης & Τροφίμων και Υπουργείου Τουρισμού.",
-          width: "auto",
-          fontSize: 10,
-        },
-      ],
-    }
-  );
-  return cover;
-}
-
-function createContainerTable(report) {
-  const header = { text: report.header, fillColor: "#6c541e" }; //"#808080",}
-  let reportTables = [];
-  let tempTables;
-  reportTables.push(report.cover);
-  // TODO: add header NOT as table row
-  for (let i in report.reports) {
-    // return reportTable;
-    reportTables.push({
-      text: report.reports[i].reportTitle,
-      pageBreak: "before",
-      fontSize: 15,
-      color: "#5c3d3d",
-      bold: true,
-    });
-    reportTables.push({ text: "\n\n" });
-    for (let j in report.reports[i].fields) {
-      tempTables = createTable(report.reports[i].fields[j]);
-      if (tempTables[1]) {
-        reportTables.push({ text: "\n\n" });
-        reportTables.push(tempTables[0]);
-        reportTables.push(tempTables[1]);
-      } else {
-        reportTables.push({ text: "\n\n" });
-        reportTables.push(tempTables);
-      }
-    }
-  }
-  return reportTables;
-}
-
-function createTable(categoryData) {
-  let reportTable = [];
-  let reportTables;
-  let generatedFields;
-
-  if (categoryData.category.categoryHeader) {
-    reportTable.push([
-      {
-        text: "",
-        border: [false, false, false, false],
-        fillColor: "white",
-      },
-      {
-        text: categoryData.category.categoryHeader,
-        alignment: "center",
-        fillColor: "#a9a9a9",
-        colSpan: 2,
-      },
-      { text: "" },
-    ]);
-  }
-
-  for (j in categoryData.category.categoryFields) {
-    handleCategoryFields(reportTable, categoryData.category.categoryFields[j]);
-
-    if (categoryData.category.categoryFields[j].field.fieldCreatedBy) {
-      generatedFields =
-        categoryData.category.categoryFields[j].field.fieldCreatedBy;
-    }
-  }
-
-  let len = reportTable.length;
-  if (reportTable[len - 1].length === 4) {
-    reportTables = {
-      table: {
-        headerRows: 0,
-        widths: ["5%", "10%", "25%", "60%"],
-        body: reportTable,
-      },
-    };
-  } else {
-    reportTables = {
-      table: {
-        headerRows: 0,
-        widths: ["5%", "20%", "75%"],
-        body: reportTable,
-      },
-    };
-  }
-
-  if (generatedFields) {
-    return [reportTables, generatedFields];
-  } else {
-    return reportTables;
-  }
-}
-
-function handleCategoryFields(reportTable, category) {
-  if (category.field.fieldId) {
-    reportTable.push([
-      {
-        text: category.field.fieldId,
-        alignment: "center",
-        fillColor: "#dcdcdc",
-      },
-      {
-        text: category.field.fieldHeader,
-        alignment: "center",
-        fillColor: "#dcdcdc",
-        colSpan: 2,
-      },
-      { text: "" },
-    ]);
-  } else {
-    reportTable.push([
-      { text: "", border: [false, false, false, false] },
-      {
-        text: category.field.fieldHeader,
-        alignment: "center",
-        colSpan: 2,
-      },
-      { text: "" },
-    ]);
-  }
-  if (category.field.fieldText) {
-    if (category.field.hasHTML) {
-      category.field.fieldText === "\n\n"
-        ? reportTable.push([
-            { text: "", border: [false, false, false, false], colSpan: 2 },
-            { text: "" },
-            { text: category.field.fieldText },
-          ])
-        : reportTable.push([
-            { text: "", border: [false, false, false, false], colSpan: 2 },
-            { text: "" },
-            htmlToPdfmake(category.field.fieldText, {
-              window: window,
-              replaceText: function (text) {
-                return text.replace(/(?:\r\n|\r|\n)/g, "<br>");
-              },
-            }),
-          ]);
-    } else {
-      reportTable.push([
-        { text: "", border: [false, false, false, false] },
-        {
-          text: category.field.fieldText,
-          colSpan: 2,
-        },
-        { text: "" },
-      ]);
-    }
-  }
-}
-
-function createGlkDirectorSignature(data) {
-  let signatory = [
-    {
-      text: "\n\n\nΟ/Η ΥΠΟΓΡΑΦΩΝ/ΟΥΣΑ ΓΕΝΙΚΟΣ/Η ΔΙΕΥΘΥΝΤΗΣ/ΡΙΑ ",
-      bold: true,
-      alignment: "center",
-    },
-  ];
-  signatory.push({
-    columns: [
-      { width: "30%", text: "" },
-      {
-        table: {
-          headerRows: 0,
-          widths: ["50%"],
-          body: [
-            [
-              {
-                text: "\n\n\n" + data[0] + " " + data[1],
-                bold: true,
-                alignment: "center",
-              },
-            ],
-          ],
-        },
-      },
-      { width: "20%", text: "" },
-    ],
-  });
-  return signatory;
 }
 
 function createSignatories(ministers) {
@@ -762,6 +654,3 @@ function isMinister(data, step, type) {
   }
 }
 
-function checkboxValue(value) {
-  return value !== "" ? "X" : value;
-}

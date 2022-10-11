@@ -33,8 +33,8 @@
                             <br />
                         </div>
 
-                        <button type="button" class="govgr-btn govgr-btn-secondary" style="float: right;" data-toggle="modal"
-                            data-target="#versioningModal" id="modalButton">
+                        <button type="button" class="govgr-btn govgr-btn-secondary" style="float: right;"
+                            data-toggle="modal" data-target="#versioningModal" id="modalButton">
                             Ιστορικό Ανάλυσης
                         </button>
 
@@ -1038,7 +1038,6 @@
     </div>
 
     <style>
-
         .flex-form-group {
             display: flex;
             justify-content: space-between;
@@ -1123,7 +1122,6 @@
             height: 200px;
             overflow: auto;
         }
-
     </style>
 
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
@@ -1465,7 +1463,7 @@
                 error: function (error) {
                     console.log(error);
                 },
-                success: function (result) {                    
+                success: function (result) {
                     //TODO: add new name
                     window.open('/pdf_exports/diff.pdf');
                     $('#versioningModal').modal('toggle');
@@ -1495,11 +1493,11 @@
             else if (role === "Γενικό Λογιστήριο του Κράτους" && $('#status_ekthesis').val("Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους")) {
                 $('#status_ekthesis').val("Ελέγχθηκε από το Γενικό Λογιστήριο του Κράτους");
             }
-        }
-
-        // $("#egkrisi_aksiologisis_nomoparaskeyastikis,#egkrisi_kalis_nomothetisis,#egkrisi_dieuthinsis_nomoparaskeyastikis,#egkrisi_genikou_grammatea").on("change", function () {
-        //     submitVisibility();
-        // });                                       
+            //TODO: refactor
+            if (role === "Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)" && $('#status_ekthesis').val() === "Οριστικοποιήθηκε" && $("#signed_pdf tbody>tr").length > 0) {
+                $('#status_ekthesis').val("Οριστικοποιήθηκε");
+            }
+        }                                      
 
         // TODO: review validation
         //check if required fields are empty

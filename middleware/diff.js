@@ -11,6 +11,7 @@ const tablesLib = require("../lib/tables");
 
 exports.exportPDF = async function (req, res, next) {
   let data = req.diffData;
+  console.log("data.dimosioi_ypalliloi_header", data.dimosioi_ypalliloi_header);
   let ministers = tablesLib.getDiffMinisters(
     data,
     "minister_name",
@@ -1337,6 +1338,14 @@ function createContainerTable(report) {
       }
     }
   }
+  // reportTables.push(report.signatories.createdBy);
+  // reportTables.push({ //uncomment if annex is neede
+  //   text: report.annex,
+  //   fontSize: 17,
+  //   decoration: "underline",
+  //   bold: true,
+  //   pageBreak: "before",
+  // });
   return reportTables;
 }
 
@@ -1796,8 +1805,8 @@ function createTables(tableData, headers) {
     for (let i = 0; i < tableData.data.length; i += 2) {
       rows.push([
         { text: "", border: [false, false, false, false] },
+        { text: getDiffText(tableData.data[i-1]) },
         { text: getDiffText(tableData.data[i]) },
-        { text: getDiffText(tableData.data[tableData.data.length - i]) },
       ]);
     }
     table = {
@@ -1813,12 +1822,12 @@ function createTables(tableData, headers) {
       { text: headers[1], alignment: "center" },
       { text: headers[2], alignment: "center" },
     ]);
-    for (let i = 0; i < tableData.data.length / 3; i++) {
+    for (let i = 0; i < tableData.data.length; i++) {
       rows.push([
         { text: "", border: [false, false, false, false] },
+        { text: getDiffText(tableData.data[i - 2]) },
+        { text: getDiffText(tableData.data[i - 1]) },
         { text: getDiffText(tableData.data[i]) },
-        { text: getDiffText(tableData.data[i + 3]) },
-        { text: getDiffText(tableData.data[i + 6]) },
       ]);
     }
     table = {
@@ -1860,7 +1869,8 @@ function createTables(tableData, headers) {
 function createField9Tables(jsonTableData) {
   let tableRows = [];
   for (i in jsonTableData) {
-    if (!hasValidValue(jsonTableData[i].header)) {
+    if (jsonTableData[i].header) {
+      console.log(jsonTableData[i].header);
       tableRows.push([
         {
           text: getDiffText(jsonTableData[i].header),
@@ -1894,7 +1904,8 @@ function createField9Tables(jsonTableData) {
         },
       ]);
     }
-
+    // console.log(jsonTableData[0].label);
+    // console.log(jsonTableData[0].values);
     tableRows.push([
       {
         text: isEmpty(getDiffText(jsonTableData[i].label)),
@@ -2678,7 +2689,7 @@ function createField20(field_20, data) {
       }
     }
   }
-  
+
   fieldTable = {
     table: {
       headerRows: 0,
@@ -2722,6 +2733,7 @@ function createGlkDirectorSignature(data) {
 function createSignatories(ministers) {
   let signatories = [];
   let table = [];
+  // console.log(ministers.undersecretaries)
   if (ministers.ministers && ministers.ministers.length) {
     signatories.push({ text: "\n\n" });
     signatories.push({
@@ -2731,9 +2743,10 @@ function createSignatories(ministers) {
     });
     signatories.push({ text: "\n" });
     for (i = 0; i < ministers.ministers.length; i += 2) {
+      // console.log(ministers.ministers[i])
       table.push([
         {
-          text: getDiffText(ministers.ministers[i][2]),
+          text: getDiffText(ministers.ministers[i]),
           bold: true,
           alignment: "center",
         },
@@ -2779,7 +2792,7 @@ function createSignatories(ministers) {
     for (i = 0; i < ministers.substitutes.length; i += 2) {
       table.push([
         {
-          text: ministers.substitutes[i][2],
+          text: getDiffText(ministers.substitutes[i][2]),
           bold: true,
           alignment: "center",
         },
@@ -2825,7 +2838,7 @@ function createSignatories(ministers) {
     for (i = 0; i < ministers.undersecretaries.length; i += 2) {
       table.push([
         {
-          text: ministers.undersecretaries[i][2],
+          text: getDiffText(ministers.undersecretaries[i][2]),
           bold: true,
           alignment: "center",
         },
@@ -2858,12 +2871,13 @@ function createSignatories(ministers) {
       },
     });
   }
-  if (signatories) {
+  if (signatories.length) {
     return signatories;
   }
 }
 
 function isMinister(data, step, type) {
+  // console.log(data)
   if (data[step + 1]) {
     if (type === "name") {
       return "\n\n\n" + data[step + 1][0] + " " + data[step + 1][1];

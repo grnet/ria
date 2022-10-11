@@ -45,13 +45,14 @@ function viewFormRoleRestriction() {
   let roleRestrictions = {
     //this role should be able to edit/complete a form only when analysis status is 'Συντάσσεται'
     "Συντάκτης επισπεύδοντος Υπουργείου": () => {
+      $("#final_save").prop("disabled", true);
       if ($("#status_ekthesis").val() != "Συντάσσεται") {
         $("#edit_form :input:not(.next, .previous)").prop("disable", true);
       }
     },
     "Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)": () => {
       if (
-        role === "Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)" &&
+        // role === "Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)" &&
         $("#pdf_download").prop("hidden") === false &&
         $("#status_ekthesis").val() === "Οριστικοποιήθηκε"
       ) {
