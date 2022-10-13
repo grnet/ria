@@ -120,7 +120,7 @@
                                     </select>
                                 </label>
                             </div> <br />
-                            <div class="govgr-field">
+                            <div class="govgr-field isAdmin">
                                 <fieldset class="govgr-fieldset">
                                     <legend for="dikaiwmata_diaxeirisis" role="heading" aria-level="1"
                                         class="govgr-fieldset__legend govgr-heading-l">
@@ -235,6 +235,7 @@
                     $("#dikaiwmata_diaxeirisis_checkbox").show();
                     $("#dikaiwmata_diaxeirisis").prop('checked', true);
                 } else {
+                    $(".isAdmin").hide();
                     $("#dikaiwmata_diaxeirisis_checkbox").hide();
                 }
 

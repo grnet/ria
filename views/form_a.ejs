@@ -1213,7 +1213,7 @@
         function updateForm(ev) {
             ev.preventDefault();
             setDate("#last_updated");
-            var inputs = $("form").find("input:disabled");
+            var inputs = $("form").find("input:disabled:not('.approvals')");
             $.each(inputs, () => {
                 $(inputs).prop("disabled", false);
             });
@@ -1324,7 +1324,7 @@
             let pdf_name = prompt("Παρακαλώ εισάγετε το όνομα του PDF");
             if (pdf_name) {
                 $("#pdf_name").val(pdf_name);
-                let inputs = $("form").find("input:disabled");
+                let inputs = $("form").find("input:disabled:not('.approvals')");
                 let textareas = $("form").find("textarea:disabled");//find all textareas 
                 let selects = $("form").find("select:disabled");
                 $.each(textareas, () => {
@@ -1392,6 +1392,8 @@
                 $("#glk_pdf_name").val(pdf_name);
                 setDate("#field_16_genikos_date");
                 $("#title").prop("disabled", false);
+                $("#epispeudon_foreas").prop("disabled", false);
+                $("#stoixeia_epikoinwnias").prop("disabled", false);
                 $.ajax({
                     url: `/form_a/export/glk/:${ekthesi_id}`,
                     //data: $("form").serialize(),
@@ -1402,6 +1404,7 @@
                         console.log(error);
                     },
                     success: function (data) {
+                        window.open(`/pdf_exports/${pdf_name}.pdf`)
                         $("#glk_pdf_download").html(`Το τελευταίο αποθηκευμένο PDF
                                     βρίσκεται <a href="/pdf_exports/${pdf_name}.pdf"><b><u>εδώ</u></b></a>.`)
                         $("#glk_pdf_download").show();
@@ -1497,7 +1500,7 @@
             if (role === "Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)" && $('#status_ekthesis').val() === "Οριστικοποιήθηκε" && $("#signed_pdf tbody>tr").length > 0) {
                 $('#status_ekthesis').val("Οριστικοποιήθηκε");
             }
-        }                                      
+        }
 
         // TODO: review validation
         //check if required fields are empty
