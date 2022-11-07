@@ -17,9 +17,8 @@
             <% if( data.field_21_upload && data.field_21_upload.length ) { for (var i=0; i<
                 data.field_21_upload.length;i++) { %>
                 <tr class="govgr-table__row">
-                    <td class="govgr-table__cell"> <a href="/uploads/<%= data.field_21_upload[i] %> ">
-                            <%= data.field_21_upload[i] %>
-                        </a>
+                    <td class="govgr-table__cell">
+                         <a href="/uploads/<%= data.field_21_upload[i] %> "><%= data.field_21_upload[i] %></a>
                         <button class="btn remove-file float-right" type="button">
                             <img src="/img/delete.png" width="20px" />
                         </button>
@@ -122,9 +121,8 @@
                 <% if( data.field_23_upload && data.field_23_upload.length ) { for (var i=0; i <
                     data.field_23_upload.length;i++) { %>
                     <tr>
-                        <td> <a href="/uploads/<%= data.field_23_upload[i] %> ">
-                                <%= data.field_23_upload[i] %>
-                            </a>
+                        <td> 
+                            <a href="/uploads/<%= data.field_23_upload[i] %> "><%= data.field_23_upload[i] %></a>
                             <button class="btn remove-file float-right" type="button">
                                 <img src="/img/delete.png" width="20px" />
                             </button>

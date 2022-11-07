@@ -204,9 +204,8 @@
                     <% if( data.field_36_upload && data.field_36_upload.length) { for (var i=0; i<
                         data.field_36_upload.length;i++) { %>
                         <tr class="govgr-table__row">
-                            <td class="govgr-table__cell"> <a href="/uploads/<%= data.field_36_upload[i] %> ">
-                                    <%= data.field_36_upload[i] %>
-                                </a>
+                            <td class="govgr-table__cell">
+                                <a href="/uploads/<%= data.field_36_upload[i] %> "><%= data.field_36_upload[i] %></a>
                                 <button class="btn remove-file float-right" type="button">
                                     <img src="/img/delete.png" width="20px" />
                                 </button>
