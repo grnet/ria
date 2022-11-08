@@ -9,7 +9,7 @@ const sequelize = new Sequelize({
   dialect: process.env.DATABASE_DIALECT,
   host: process.env.DATABASE_HOST,
   port: process.env.DATABASE_PORT,
-  pool: { max: 40, min: 0, acquire: 30000, idle: 10000 },
+  pool: { max: 100, min: 0, acquire: 30000, idle: 10000 },
 });
 
 const db = {};

@@ -27,7 +27,8 @@ let memoryStore = new session.MemoryStore({checkPeriod: 86400000 }); //We will s
  app.use(session({                                 
     secret: process.env.SECRET, //The secret is used to hash the session with HMAC. Value retrieved from docker-compose.                                         
     store: memoryStore,
-    
+    resave: false,
+    saveUninitialized: false
 }));
 
 app.set('views', path.join(__dirname, 'views'));

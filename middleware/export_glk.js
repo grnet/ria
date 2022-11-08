@@ -6,7 +6,7 @@ var jsdom = require("jsdom");
 var { JSDOM } = jsdom;
 var { window } = new JSDOM("");
 const htmlToPdfmake = require("html-to-pdfmake");
-const tablesLib = require("../lib/tables");
+const tablesLib = require("../lib/tables").default;
 
 exports.exportGlk = async function (req, res, next) {
   let data = req.body;
@@ -50,6 +50,10 @@ exports.exportGlk = async function (req, res, next) {
         bold: true,
         fontSize: 13,
       },
+      header4: {
+        alignment: "center",
+        fontSize: 13,
+      },
     },
     defaultStyle: {
       fontSize: 11,
@@ -61,7 +65,17 @@ exports.exportGlk = async function (req, res, next) {
           text: "ΑΝΑΛΥΣΗ ΣΥΝΕΠΕΙΩΝ ΡΥΘΜΙΣΗΣ\n\n",
           style: "header1",
         },
-        { text: data.title + "\n\n", style: "header1" },
+        {
+          text: "ΤΙΤΛΟΣ ΑΞΙΟΛΟΓΟΥΜΕΝΗΣ ΡΥΘΜΙΣΗΣ\n\n",
+          style: "header3",
+        },
+        {
+          table: {
+            headerRows: 0,
+            widths: ["100%"],
+            body: [[{ text: data.title, style: "header4" }]],
+          },
+        },
         {
           text: "Επισπεύδον Υπουργείο:\n\n",
           style: "header3",
@@ -71,9 +85,17 @@ exports.exportGlk = async function (req, res, next) {
           style: "header3",
         },
         {
-          text: "\nΣτοιχεία επικοινωνίας: " + data.stoixeia_epikoinwnias + "\n",
+          text: "\n\nΣτοιχεία επικοινωνίας:",
           style: "header3",
         },
+        {
+          table: {
+            headerRows: 0,
+            widths: ["100%"],
+            body: [[{ text: data.stoixeia_epikoinwnias, style: "header4" }]],
+          },
+        },
+        { text: "\n\n" },
         {
           text: "Β. Έκθεση Γενικού Λογιστηρίου του Κράτους (άρθρο 75 παρ. 1 ή 2 του Συντάγματος)\n\n\n",
           style: "header2",
@@ -91,16 +113,9 @@ exports.exportGlk = async function (req, res, next) {
                 },
                 {
                   text: "Στο σχέδιο νόμου ή στην τροπολογία επί του σχεδίου νόμου\n",
-                  style: "header3",
+                  style: "header4",
                 },
               ],
-            ],
-          },
-        },
-        {
-          table: {
-            widths: ["5%", "95%"],
-            body: [
               [
                 {
                   text: "",
@@ -127,16 +142,9 @@ exports.exportGlk = async function (req, res, next) {
                 },
                 {
                   text: "του Υπουργείου:\n",
-                  style: "header3",
+                  style: "header4",
                 },
               ],
-            ],
-          },
-        },
-        {
-          table: {
-            widths: ["5%", "95%"],
-            body: [
               [
                 {
                   text: "",
@@ -159,22 +167,15 @@ exports.exportGlk = async function (req, res, next) {
                 {
                   text: "15",
                   fillColor: "#dcdcdc",
-                  style: "header3",
+                  style: "header4",
                 },
 
                 {
-                  text: "15.Συνοπτική ανάλυση των άρθρων της αξιολογούμενης ρύθμισης\n",
-                  style: "header3",
+                  text: "Συνοπτική ανάλυση των άρθρων της αξιολογούμενης ρύθμισης\n",
+                  style: "header4",
                   fillColor: "#dcdcdc",
                 },
               ],
-            ],
-          },
-        },
-        {
-          table: {
-            widths: ["5%", "95%"],
-            body: [
               [
                 {
                   text: "",
@@ -201,36 +202,22 @@ exports.exportGlk = async function (req, res, next) {
                 },
                 {
                   text: "Στόχοι αξιολογούμενης ρύθμισης\n",
-                  style: "header3",
+                  style: "header4",
                   fillColor: "#a9a9a9",
                 },
               ],
-            ],
-          },
-        },
-        {
-          table: {
-            widths: ["5%", "95%"],
-            body: [
               [
                 {
                   text: "16",
                   fillColor: "#dcdcdc",
-                  style: "header3",
+                  style: "header4",
                 },
                 {
-                  text: "16.Οικονομικά αποτελέσματα επί του Κρατικού Προϋπολογισμού ή/και επί του προϋπολογισμού του/των αρμόδιου/ων φορέα/ων\n",
+                  text: "Οικονομικά αποτελέσματα επί του Κρατικού Προϋπολογισμού ή/και επί του προϋπολογισμού του/των αρμόδιου/ων φορέα/ων\n",
                   fillColor: "#dcdcdc",
-                  style: "header3",
+                  style: "header4",
                 },
               ],
-            ],
-          },
-        },
-        {
-          table: {
-            widths: ["5%", "95%"],
-            body: [
               [
                 {
                   text: "",
@@ -239,16 +226,9 @@ exports.exportGlk = async function (req, res, next) {
                 },
                 {
                   text: "Από τις προτεινόμενες διατάξεις προκαλούνται τα ακόλουθα οικονομικά αποτελέσματα:\n",
-                  style: "header3",
+                  style: "header4",
                 },
               ],
-            ],
-          },
-        },
-        {
-          table: {
-            widths: ["5%", "95%"],
-            body: [
               [
                 {
                   text: "",
@@ -257,16 +237,9 @@ exports.exportGlk = async function (req, res, next) {
                 },
                 {
                   text: "Επί του Κρατικού Προϋπολογισμού\n",
-                  style: "header3",
+                  style: "header4",
                 },
               ],
-            ],
-          },
-        },
-        {
-          table: {
-            widths: ["5%", "95%"],
-            body: [
               [
                 {
                   text: "",
@@ -275,13 +248,6 @@ exports.exportGlk = async function (req, res, next) {
                 },
                 { text: isEmpty(data.field_16_kratikos_proypologismos, true) },
               ],
-            ],
-          },
-        },
-        {
-          table: {
-            widths: ["5%", "95%"],
-            body: [
               [
                 {
                   text: "",
@@ -290,16 +256,9 @@ exports.exportGlk = async function (req, res, next) {
                 },
                 {
                   text: "Επί του Προϋπολογισμού του/των αρμόδιου/ων φορέα/ων\n",
-                  style: "header3",
+                  style: "header4",
                 },
               ],
-            ],
-          },
-        },
-        {
-          table: {
-            widths: ["5%", "95%"],
-            body: [
               [
                 {
                   text: "",
@@ -334,7 +293,7 @@ exports.exportGlk = async function (req, res, next) {
                     data.field_16_genikos_onoma +
                     " " +
                     data.field_16_genikos_epitheto,
-                  style: "header3",
+                  style: "header4",
                 },
                 {
                   text: "",
@@ -348,7 +307,6 @@ exports.exportGlk = async function (req, res, next) {
         {
           text: "\n\n",
         },
-
         {
           text: "Γ. Ειδική Έκθεση (άρθρο 75 παρ. 3 του Συντάγματος)\n\n\n",
           style: "header2",
@@ -366,16 +324,9 @@ exports.exportGlk = async function (req, res, next) {
                 },
                 {
                   text: "Στο σχέδιο νόμου ή στην τροπολογία επί του σχεδίου νόμου\n",
-                  style: "header3",
+                  style: "header4",
                 },
               ],
-            ],
-          },
-        },
-        {
-          table: {
-            widths: ["5%", "95%"],
-            body: [
               [
                 {
                   text: "",
@@ -401,17 +352,10 @@ exports.exportGlk = async function (req, res, next) {
                   fillColor: "white",
                 },
                 {
-                  text: "του Υπουργείου:\n",
-                  style: "header3",
+                  text: "του Υπουργείου:",
+                  style: "header4",
                 },
               ],
-            ],
-          },
-        },
-        {
-          table: {
-            widths: ["5%", "95%"],
-            body: [
               [
                 {
                   text: "",
@@ -434,22 +378,15 @@ exports.exportGlk = async function (req, res, next) {
                 {
                   text: "17",
                   fillColor: "#dcdcdc",
-                  style: "header3",
+                  style: "header4",
                 },
 
                 {
-                  text: "17.Οικονομικά αποτελέσματα \n",
-                  style: "header3",
+                  text: "Οικονομικά αποτελέσματα \n",
+                  style: "header4",
                   fillColor: "#dcdcdc",
                 },
               ],
-            ],
-          },
-        },
-        {
-          table: {
-            widths: ["5%", "95%"],
-            body: [
               [
                 {
                   text: "",
@@ -461,6 +398,8 @@ exports.exportGlk = async function (req, res, next) {
             ],
           },
         },
+        { text: "\n\n" },
+        createSignatories(field_17_ministers),
       ],
     ],
   };
