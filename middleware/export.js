@@ -182,7 +182,7 @@ exports.exportPDF = async function (req, res, next) {
           style: "header3",
         },
         {
-          text: data.epispeudon_foreas,
+          text: isEmpty(data.epispeudon_foreas),
           style: "header3",
         },
         {
@@ -194,7 +194,7 @@ exports.exportPDF = async function (req, res, next) {
             headerRows: 0,
             widths: ["100%"],
             body: [
-              [{ text: data.stoixeia_epikoinwnias, style: "header4" }],
+              [{ text: isEmpty(data.stoixeia_epikoinwnias), style: "header4" }],
             ],
           },
         },
