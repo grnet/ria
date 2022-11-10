@@ -75,7 +75,6 @@ routes.post(
     let nomosxedio = [];
     try {
       const file = req.files;
-      console.log(req.body.ekthesi_glk);
       if (file.field_21_upload) {
         for (i in file.field_21_upload) {
           field21.push(file.field_21_upload[i].filename);
@@ -100,13 +99,13 @@ routes.post(
     } catch (e) {
       console.log("Error message: " + e.message);
     }
-    let field_9 = tables.createStaticTable(
+    let field_9 = await tables.createStaticTable(
       req.body,
       "_header",
       "_label",
       "_secondHeader"
     ); //data for field_9 as json
-    let checkbox_tables = tables.createStaticTable(
+    let checkbox_tables = await tables.createStaticTable(
       req.body,
       "_cbxHeader",
       "_cbxlabel",
@@ -121,113 +120,103 @@ routes.post(
     });
 
     let keys = Object.keys(req.body);
-
-    let field_14_arthro = tables.createDynamicTable(
+//  let field_14_arthro = await tables.createDynamicTable(
+//    req.body,
+//    keys,
+//    "field_14_arthro",
+//    entry.field_14_arthro
+//  );
+    let field_14_arthro = await tables.createDynamicTable(
       req.body,
       keys,
       "field_14_arthro"
     );
-    let field_14_stoxos = tables.createDynamicTable(
+    let field_14_stoxos = await tables.createDynamicTable(
       req.body,
       keys,
       "field_14_stoxos"
     );
-    let field_17_onoma = tables.createDynamicTable(
-      req.body,
-      keys,
-      "field_17_onoma"
-    );
-    let field_17_epitheto = tables.createDynamicTable(
-      req.body,
-      keys,
-      "field_17_epitheto"
-    );
-    let field_17_idiotita = tables.createDynamicTable(
-      req.body,
-      keys,
-      "field_17_idiotita"
-    );
-    let minister_surname = tables.createDynamicTable(
+    let minister_surname = await tables.createDynamicTable(
       req.body,
       keys,
       "minister_surname"
     );
-    let minister_name = tables.createDynamicTable(
+    let minister_name = await tables.createDynamicTable(
       req.body,
       keys,
       "minister_name"
     );
-    let minister_role = tables.createDynamicTable(
+    let minister_role = await tables.createDynamicTable(
       req.body,
       keys,
       "minister_role"
     );
-    let minister_ministry = tables.createDynamicTable(
+    let minister_ministry = await tables.createDynamicTable(
       req.body,
       keys,
       "minister_ministry"
     );
-    let field_29_diatakseis_rythmisis = tables.createDynamicTable(
+    let field_29_diatakseis_rythmisis = await tables.createDynamicTable(
       req.body,
       keys,
       "field_29_diatakseis_rythmisis"
     );
-    let field_29_yfistamenes_diatakseis = tables.createDynamicTable(
+    let field_29_yfistamenes_diatakseis = await tables.createDynamicTable(
       req.body,
       keys,
       "field_29_yfistamenes_diatakseis"
     );
-    let field_30_diatakseis_katargisi = tables.createDynamicTable(
+    let field_30_diatakseis_katargisi = await tables.createDynamicTable(
       req.body,
       keys,
       "field_30_diatakseis_katargisi"
     );
-    let field_30_katargoumenes_diatakseis = tables.createDynamicTable(
+    let field_30_katargoumenes_diatakseis = await tables.createDynamicTable(
       req.body,
       keys,
       "field_30_katargoumenes_diatakseis"
     );
-    let field_31_sxetiki_diataksi = tables.createDynamicTable(
+    let field_31_sxetiki_diataksi = await tables.createDynamicTable(
       req.body,
       keys,
       "field_31_sxetiki_diataksi"
     );
-    let field_31_synarmodia_ypoyrgeia = tables.createDynamicTable(
+    let field_31_synarmodia_ypoyrgeia = await tables.createDynamicTable(
       req.body,
       keys,
       "field_31_synarmodia_ypoyrgeia"
     );
-    let field_31_antikeimeno_synarmodiotitas = tables.createDynamicTable(
+    let field_31_antikeimeno_synarmodiotitas = await tables.createDynamicTable(
       req.body,
       keys,
       "field_31_antikeimeno_synarmodiotitas"
     );
-    let field_32_eksousiodotiki_diataksi = tables.createDynamicTable(
+    let field_32_eksousiodotiki_diataksi = await tables.createDynamicTable(
       req.body,
       keys,
       "field_32_eksousiodotiki_diataksi"
     );
-    let field_32_eidos_praksis = tables.createDynamicTable(
+    let field_32_eidos_praksis = await tables.createDynamicTable(
       req.body,
       keys,
       "field_32_eidos_praksis"
     );
-    let field_32_armodio_ypoyrgeio = tables.createDynamicTable(
+    let field_32_armodio_ypoyrgeio = await tables.createDynamicTable(
       req.body,
       keys,
       "field_32_armodio_ypoyrgeio"
     );
-    let field_32_antikeimeno = tables.createDynamicTable(
+    let field_32_antikeimeno = await tables.createDynamicTable(
       req.body,
       keys,
       "field_32_antikeimeno"
     );
-    let field_32_xronodiagramma = tables.createDynamicTable(
+    let field_32_xronodiagramma = await tables.createDynamicTable(
       req.body,
       keys,
       "field_32_xronodiagramma"
     );
-    let emd_processes = tables.createDynamicTable(req.body, keys, "process");
+    let emd_processes = await tables.createDynamicTable(req.body, keys, "process");
 
     var author = req.session.username;
     await database.ekthesi.update(
@@ -235,9 +224,6 @@ routes.post(
         author: author,
         field_14_arthro: field_14_arthro,
         field_14_stoxos: field_14_stoxos,
-        field_17_onoma: field_17_onoma,
-        field_17_epitheto: field_17_epitheto,
-        field_17_idiotita: field_17_idiotita,
         minister_name: minister_name,
         minister_surname: minister_surname,
         minister_role: minister_role,

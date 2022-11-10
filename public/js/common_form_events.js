@@ -310,7 +310,6 @@ $("#field_36").on("change", function (ev) {
 //click event to add a row
 $("#add_row_table_14").on("click", function () {
   let index = $("#tbody_14").prop("rows").length;
-  console.log($("#field_14_table"));
   $("#tbody_14").append(`
          <tr id="table_14_row${++index}"> 
         <td> 

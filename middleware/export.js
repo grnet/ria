@@ -1249,6 +1249,7 @@ exports.exportPDF = async function (req, res, next) {
           },
         },
         createField18(field_18, data),
+        { text: "", pageBreak: "before" },
         {
           table: {
             widths: ["5%", "95%"],
@@ -1290,6 +1291,7 @@ exports.exportPDF = async function (req, res, next) {
             ],
           },
         },
+        { text: "", pageBreak: "before" },
         createField20(field_20, data),
         { text: "\n\n" },
         {

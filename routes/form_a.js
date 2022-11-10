@@ -348,17 +348,18 @@ routes.put(
           "field_32_xronodiagramma",
           entry.field_32_xronodiagramma
         );
+        let emd_processes = await tables.createDynamicTable(
+          req.body,
+          keys,
+          "process"
+        );
 
         let ekthesi = await database.ekthesi.update(req.body, {
           where: {
             id: ekthesi_id,
           },
         });
-        let emd_processes = await tables.createDynamicTable(
-          req.body,
-          keys,
-          "process"
-        );
+
         await database.ekthesi.update(
           {
             field_15_rythmiseis: req.body.f15,
@@ -521,10 +522,15 @@ routes.post(
 
     let data = {};
     for (i in entry1.data) {
-      if (i.includes("allos")) continue;
-      if (entry1.data[i] === undefined) continue;
-      if (entry2.data[i] === undefined) continue;
-      const diffchars = diff.diffWords(entry1.data[i], entry2.data[i]);
+      if (entry1.data[i] === undefined) entry1.data[i] = "";
+      if (entry2.data[i] === undefined) entry2.data[i] = "";
+      let diffchars;
+      if (Array.isArray(entry1.data[i]) || Array.isArray(entry2.data[i])) {
+        diffchars = diff.diffWords(entry2.data[i][0], entry2.data[i][1]);
+      } else {
+        diffchars = diff.diffWords(entry1.data[i], entry2.data[i]);
+      }
+
       diffchars.forEach((part) => {
         // green for additions, red for deletions
         part.added

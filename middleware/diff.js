@@ -175,7 +175,6 @@ exports.exportPDF = async function (req, res, next) {
         },
         {
           table: {
-            headerRows: 0,
             widths: ["100%"],
             body: [
               [{ text: isEmpty(getTextDiff(data.title)), style: "header4" }],
@@ -1261,6 +1260,25 @@ exports.exportPDF = async function (req, res, next) {
         createField18(field_18, data),
         {
           table: {
+            widths: ["100%"],
+            body: [
+              [
+                {
+                  text: "Σχολιασμός / ποιοτική αποτίμηση:",
+                  style: "header4",
+                },
+              ],
+              [
+                {
+                  text: isEmpty(getTextDiff(data.field_18_comments)),
+                },
+              ],
+            ],
+          },
+        },
+        { text: "", pageBreak: "before" },
+        {
+          table: {
             widths: ["5%", "95%"],
             body: [
               [
@@ -1282,6 +1300,25 @@ exports.exportPDF = async function (req, res, next) {
         createField19(field_19, data),
         {
           table: {
+            widths: ["100%"],
+            body: [
+              [
+                {
+                  text: "Σχολιασμός / ποιοτική αποτίμηση:",
+                  style: "header4",
+                },
+              ],
+              [
+                {
+                  text: isEmpty(getTextDiff(data.field_19_comments)),
+                },
+              ],
+            ],
+          },
+        },
+        { text: "", pageBreak: "before" },
+        {
+          table: {
             widths: ["5%", "95%"],
             body: [
               [
@@ -1300,8 +1337,27 @@ exports.exportPDF = async function (req, res, next) {
             ],
           },
         },
-        createField20(field_20, data),
+        createField20(field_20),
         { text: "\n\n" },
+        {
+          table: {
+            widths: ["100%"],
+            body: [
+              [
+                {
+                  text: "Σχολιασμός / ποιοτική αποτίμηση:",
+                  fillColor: "#dcdcdc",
+                  style: "header4",
+                },
+              ],
+              [
+                {
+                  text: isEmpty(getTextDiff(data.field_20_comments)),
+                },
+              ],
+            ],
+          },
+        },
         {
           table: {
             widths: ["5%", "95%"],
@@ -2338,24 +2394,27 @@ function isDirectOrIndirect(text, array1, array2) {
 function isEmpty(val, hasHTML) {
   let text;
   if (hasHTML) {
-    // !htmlToPdfmake(val, { window: window }).length
-    //   ? (text = "\n\n")
-    //   : (text = val);
-    // return val;
-    // !htmlToPdfmake(val, { window: window }).length
-    //   ? (text = "\n\n")
-    text = htmlToPdfmake(val[0].value, {
+    if (Array.isArray(val)) {
+      text = htmlToPdfmake(val[0].value, {
+        window: window,
+        replaceText: function (richText) {
+          return richText.replace(/(?:\r\n|\r|\n)/g, "<br>");
+        },
+      });
+      let result = applyRichTextDecorations(text, val[0].color);
+      return result;
+    }
+    text = htmlToPdfmake(val, {
       window: window,
       replaceText: function (richText) {
         return richText.replace(/(?:\r\n|\r|\n)/g, "<br>");
       },
     });
-    let result = applyRichTextDecorations(text, val[0].color);
-    return result;
+    return text.text !== "undefined" ? text : { text: "\n\n" };
   } else {
     val === "" && !val ? (text = "\n\n") : (text = val);
   }
-  return text;
+  return text ? text : "\n\n";
 }
 
 //create field7 alignment using columns and stacks
@@ -2757,7 +2816,7 @@ function createField9(josnData) {
 
 function checkboxValue(array) {
   if (Array.isArray(array)) {
-    if (array[0].value) {
+    if (array[0].value || array[0].text) {
       return array[0].color ? { text: "X", color: array[0].color } : "X";
     }
     return "";
@@ -2997,23 +3056,13 @@ function createField18(field_18, data) {
       body: table,
     },
   };
-
-  fieldData.push(fieldTable);
-  fieldData.push({ text: "\nΣχολιασμός / ποιοτική αποτίμηση:" });
-  fieldData.push({
-    table: {
-      widths: ["100%"],
-
-      body: [[isEmpty(getTextDiff(data.field_18_comments))]],
-    },
-  });
-  return fieldData;
+  // fieldData.push(fieldTable);
+  return fieldTable;
 }
 
-function createField19(field_19, data) {
+function createField19(field_19) {
   let table = [];
   let fieldTable;
-  let fieldData = [];
   let sameCategoryCounter = 0;
   let regulationCategories = [
     "Σχεδιασμός / προετοιμασία",
@@ -3031,77 +3080,79 @@ function createField19(field_19, data) {
   let firstElementIndex = field_19.findIndex(
     (x) => x[0].value === regulationCategories[0]
   );
-  table.push([
-    { text: "", border: [false, false, false, false] },
-    { text: "", border: [false, false, false, false] },
-    { text: "", border: [false, false, false, false] },
-    {
-      text: "ΘΕΣΜΟΙ, ΔΗΜΟΣΙΑ ΔΙΟΙΚΗΣΗ, ΔΙΑΦΑΝΕΙΑ",
-      alignment: "center",
-      fontSize: 10,
-    },
-    {
-      text: "ΑΓΟΡΑ, ΟΙΚΟΝΟΜΙΑ, ΑΝΤΑΓΩΝΙΣΜΟΣ",
-      alignment: "center",
-      fontSize: 10,
-    },
-    {
-      text: "ΚΟΙΝΩΝΙΑ & ΚΟΙΝΩΝΙΚΕΣ ΟΜΑΔΕΣ",
-      alignment: "center",
-      fontSize: 10,
-    },
-    {
-      text: "ΦΥΣΙΚΟ, ΑΣΤΙΚΟ ΚΑΙ ΠΟΛΙΤΙΣΤΙΚΟ ΠΕΡΙΒΑΛΛΟΝ",
-      alignment: "center",
-      fontSize: 10,
-    },
-    {
-      text: "ΝΗΣΙΩΤΙΚΟΤΗΤΑ",
-      alignment: "center",
-      fontSize: 10,
-    },
-  ]);
-  table.push([
-    {
-      text: "ΚΟΣΤΟΣ ΡΥΘΜΙΣΗΣ",
-      alignment: "center",
-      rowSpan: 9,
-      fillColor: "#EF9759",
-      fontSize: 10,
-    },
-    {
-      text: "ΓΙΑ ΤΗΝ ΕΝΑΡΞΗ ΕΦΑΡΜΟΓΗΣ ΤΗΣ ΡΥΘΜΙΣΗΣ",
-      alignment: "center",
-      rowSpan: 5,
-      fillColor: "#F9B483",
-      fontSize: 10,
-    },
-    {
-      text: regulationCategories[0],
-      alignment: "center",
-      fontSize: 8,
-    },
-    {
-      text: checkboxValue(field_19[firstElementIndex++]),
-      alignment: "center",
-    },
-    {
-      text: checkboxValue(field_19[firstElementIndex++]),
-      alignment: "center",
-    },
-    {
-      text: checkboxValue(field_19[firstElementIndex++]),
-      alignment: "center",
-    },
-    {
-      text: checkboxValue(field_19[firstElementIndex++]),
-      alignment: "center",
-    },
-    {
-      text: checkboxValue(field_19[firstElementIndex++]),
-      alignment: "center",
-    },
-  ]);
+  table.push(
+    [
+      { text: "", border: [false, false, false, false] },
+      { text: "", border: [false, false, false, false] },
+      { text: "", border: [false, false, false, false] },
+      {
+        text: "ΘΕΣΜΟΙ, ΔΗΜΟΣΙΑ ΔΙΟΙΚΗΣΗ, ΔΙΑΦΑΝΕΙΑ",
+        alignment: "center",
+        fontSize: 10,
+      },
+      {
+        text: "ΑΓΟΡΑ, ΟΙΚΟΝΟΜΙΑ, ΑΝΤΑΓΩΝΙΣΜΟΣ",
+        alignment: "center",
+        fontSize: 10,
+      },
+      {
+        text: "ΚΟΙΝΩΝΙΑ & ΚΟΙΝΩΝΙΚΕΣ ΟΜΑΔΕΣ",
+        alignment: "center",
+        fontSize: 10,
+      },
+      {
+        text: "ΦΥΣΙΚΟ, ΑΣΤΙΚΟ ΚΑΙ ΠΟΛΙΤΙΣΤΙΚΟ ΠΕΡΙΒΑΛΛΟΝ",
+        alignment: "center",
+        fontSize: 10,
+      },
+      {
+        text: "ΝΗΣΙΩΤΙΚΟΤΗΤΑ",
+        alignment: "center",
+        fontSize: 10,
+      },
+    ],
+    [
+      {
+        text: "ΚΟΣΤΟΣ ΡΥΘΜΙΣΗΣ",
+        alignment: "center",
+        rowSpan: 9,
+        fillColor: "#EF9759",
+        fontSize: 10,
+      },
+      {
+        text: "ΓΙΑ ΤΗΝ ΕΝΑΡΞΗ ΕΦΑΡΜΟΓΗΣ ΤΗΣ ΡΥΘΜΙΣΗΣ",
+        alignment: "center",
+        rowSpan: 5,
+        fillColor: "#F9B483",
+        fontSize: 10,
+      },
+      {
+        text: regulationCategories[0],
+        alignment: "center",
+        fontSize: 8,
+      },
+      {
+        text: checkboxValue(field_19[firstElementIndex++]),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(field_19[firstElementIndex++]),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(field_19[firstElementIndex++]),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(field_19[firstElementIndex++]),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(field_19[firstElementIndex++]),
+        alignment: "center",
+      },
+    ]
+  );
 
   for (let i = 1; i < regulationCategories.length; i++) {
     for (let j in field_19) {
@@ -3241,24 +3292,16 @@ function createField19(field_19, data) {
       body: table,
     },
   };
-  fieldData.push(fieldTable);
-  fieldData.push({ text: "\n" });
-  fieldData.push({ text: "Σχολιασμός / ποιοτική αποτίμηση:" });
-  fieldData.push({
-    table: {
-      widths: ["100%"],
-      body: [[getTextDiff(data.field_19_comments)]],
-    },
-  });
-  return fieldData;
+  // fieldData.push(fieldTable);
+  return fieldTable;
 }
 
 function createField20(field_20, data) {
   let table = [];
   let fieldTable;
   let fieldData = [];
-
   let sameCategoryCounter = 0;
+
   let dangerManagementCategories = [
     "Αναγνώριση / εντοπισμός κινδύνου",
     "Διαπίστωση συνεπειών κινδύνων στους στόχους",
@@ -3482,36 +3525,8 @@ function createField20(field_20, data) {
     },
   };
 
-  fieldData.push(fieldTable);
-  fieldData.push({ text: "\nΣχολιασμός / ποιοτική αποτίμηση:" });
-  fieldData.push({
-    table: {
-      widths: ["100%"],
-
-      body: [[isEmpty(getTextDiff(data.field_20_comments))]],
-    },
-  });
-  return fieldData;
-}
-
-function createGlkDirectorSignature(data) {
-  let signatory = [
-    {
-      text: "\n\n\nΟ/Η ΥΠΟΓΡΑΦΩΝ/ΟΥΣΑ ΓΕΝΙΚΟΣ/Η ΔΙΕΥΘΥΝΤΗΣ/ΡΙΑ ",
-      bold: true,
-      alignment: "center",
-    },
-  ];
-  signatory.push({
-    columns: [
-      { width: "30%", text: "" },
-      { text: getTextDiff(data[0]), width: "25%" },
-      { text: getTextDiff(data[1]), width: "25%" },
-      { width: "20%", text: "" },
-      { width: "20%", text: "" },
-    ],
-  });
-  return signatory;
+  // fieldData.push(fieldTable);
+  return fieldTable;
 }
 
 function createSignatories(ministers) {
@@ -3525,6 +3540,7 @@ function createSignatories(ministers) {
       alignment: "center",
     });
     signatories.push({ text: "\n" });
+    console.log(ministers.ministers);
     for (i = 0; i < ministers.ministers.length; i += 2) {
       table.push([
         {
@@ -3675,9 +3691,11 @@ function getTextDiff(data) {
   if (!data) return "\n\n";
   if (Array.isArray(data)) {
     for (let i in data) {
-      if (data[i].text)
-        diffText.push(applyTextDecorations(data[i].text, data[i].color));
-      else diffText.push(applyTextDecorations(data[i].value, data[i].color));
+      if (data[i]) {
+        if (data[i].text)
+          diffText.push(applyTextDecorations(data[i].text, data[i].color));
+        else diffText.push(applyTextDecorations(data[i].value, data[i].color));
+      }
     }
   } else {
     return data;
