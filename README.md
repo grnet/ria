@@ -2,6 +2,26 @@
 
 Repository for the Regulatory Impact Analysis project, which aims to digitalize the Legislative Procedure.
 
+**Frontend**
+
+Frontend is implemented using html with ejs templating and jquery.
+
+**Backend**
+
+Backend is implemented using express.js and sequelize.
+
+**Structure**
+
+- etc: Configurations.
+- init: Initial sql script to be run if database tables are empty.
+- lib: Contains helper functions.
+- middleware: Includes express.js middleware, such as pdf generation.
+- models: Database models.
+- public: Contains images, fonts, scripts and files.
+- routes: Contains express.js routes.
+- services: Includes database connection setup.
+- views: Contains ejs pages. 
+
 **Prerequisites**
 
 - npm
@@ -11,13 +31,13 @@ Repository for the Regulatory Impact Analysis project, which aims to digitalize 
 
 **How to run**
 
-1. Download and istall the Prerequisites.
+1. Download and istall Prerequisites.
 2. Clone project.
-3. Run `cp .env.sample .env` and make necessary changes to the parameters found within.
-4. Make sure that the ports defined inside Dockerfile and docker-compose.yml are free, otherwise make appropiate changes.
-4. Build image: 
+3. Run `cp .env.sample .env`.
+4. Free ports defined in Dockerfile and docker-compose.yml.
+5. Build image: 
 `docker-compose build`
-5. Start app:
+6. Start app:
 `docker-compose up -d`
 
 **Development**
