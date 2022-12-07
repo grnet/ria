@@ -6,7 +6,7 @@ var jsdom = require("jsdom");
 var { JSDOM } = jsdom;
 var { window } = new JSDOM("");
 const htmlToPdfmake = require("html-to-pdfmake");
-const tablesLib = require("../lib/tables").default;
+const tablesLib = require("../lib/tables");
 
 exports.exportGlk = async function (req, res, next) {
   let data = req.body;
