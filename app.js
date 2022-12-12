@@ -42,7 +42,7 @@ app.disable('x-powered-by');
 
 app.use('/', homeRoute);
 app.use('/login', loginRoute);
-app.use('/operator/login', oauth2pa); //Path have to be changed to /palogin or something, after KED is done
+app.use(process.env.OAUTH2PA_LOGIN_PATH, oauth2pa); //Path have to be changed to /palogin or something, after KED is done
 app.use('/logout', logoutRoute);
 app.use('/create', createRoute);
 app.use('/form_a', form_aRoute);
