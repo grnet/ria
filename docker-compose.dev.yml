@@ -35,6 +35,7 @@ services:
             - database       
         command: ["./etc/assets/wait-for-it.sh", "database:3306", "--", "npm", "start"]        
         environment: 
+            - DEBUG=$DEBUG
             - SECRET=$SECRET
             - DATABASE_PORT=$DATABASE_PORT
             - DATABASE_HOST=$DATABASE_HOST
@@ -42,6 +43,10 @@ services:
             - DATABASE_PASSWORD=$DATABASE_PASSWORD
             - DATABASE_NAME=$DATABASE_NAME
             - DATABASE_DIALECT=$DATABASE_DIALECT
+            - SITE=$SITE
+            - GSIS_SITE=$GSIS_SITE
+            - CLIENT_ID_GOV=$CLIENT_ID_GOV
+            - CLIENT_SECRET_GOV=$CLIENT_SECRET_GOV
 
     database:
         image: mysql:8
