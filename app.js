@@ -7,6 +7,7 @@ let cookieParser = require('cookie-parser');
 //app routes/endpoints
 let homeRoute = require('./routes/home')
 let loginRoute = require('./routes/login')
+let oauth2pa = require('./routes/oauth2pa')
 let logoutRoute = require('./routes/logout')
 let createRoute = require('./routes/create')
 let form_aRoute = require('./routes/form_a')
@@ -41,6 +42,7 @@ app.disable('x-powered-by');
 
 app.use('/', homeRoute);
 app.use('/login', loginRoute);
+app.use('/operator/login', oauth2pa); //Path have to be changed to /palogin or something, after KED is done
 app.use('/logout', logoutRoute);
 app.use('/create', createRoute);
 app.use('/form_a', form_aRoute);
