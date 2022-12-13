@@ -27,7 +27,9 @@
     "path": "^0.12.7",
     "pdf-merger-js": "^3.0.5",
     "pdfmake": "^0.1.68",
-    "sequelize": "^6.3.3"
+    "sequelize": "^6.3.3",
+    "fast-xml-parser": "^4.0.8",
+    "node-fetch": "^3.3.0"
   },
   "devDependencies": {
     "countable": "^3.0.1"
