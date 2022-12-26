@@ -1,9 +1,21 @@
-
 <div class="">
     <!--<input type="button" name="back" class="back" value="Πίσω"/> <br/>--> <a href="#" class="govgr-back-link"
         id="back" name="back"> <svg class="govgr-caret--left" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M18,22V2L6,12L18,22z" />
         </svg> Επιστροφή στο ιστορικό</a>
+
+    <nav class="govgr-horizontal-nav" id="nav-menu">
+        <div class="govgr-horizontal-nav__container topnav" id="myTopnav">
+            <div class="govgr-button-group">
+
+                <input type="submit" id="final_save" class="govgr-btn govgr-btn-primary govgr-btn-cta create-new"
+                    value="Οριστική Αποθήκευση" style="float: right;" />
+
+                <input type="submit" id="save_temporarily" class="govgr-btn govgr-btn-secondary"
+                    value="Προσωρινή αποθήκευση" style="float: right;" />
+            </div>
+    </nav>
+
     <div class="govgr-width-container">
         <div class="govgr-main-wrapper">
             <div class="govgr-grid-column-two-thirds">
@@ -13,7 +25,7 @@
                         <h2 class="govgr-heading-m">Ανάλυση Συνεπειών Ρύθμισης</h2>
                         <div>
                             <h4 class="govgr-heading-m" id="subtitle"></h4>
-                            <p class="govgr-body"id="subtext"></p>
+                            <p class="govgr-body" id="subtext"></p>
                         </div>
                         <div class="govgr-grid">
                             <div class="govgr-grid__col-span-6">
@@ -27,8 +39,8 @@
                                 <div id="title_tooltip" class="tooltip_text" role="tooltip"></div>
                             </div> -->
                             <div class="govgr-grid__col-span-6">
-                                <textarea class="govgr-textarea form-control" name="title" rows="3" > </textarea>
-                               <!-- <input type="text" class="govgr-input " id="title" name="title" />-->
+                                <textarea class="govgr-textarea form-control" name="title" rows="3"> </textarea>
+                                <!-- <input type="text" class="govgr-input " id="title" name="title" />-->
                             </div>
                         </div>
                         <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
@@ -664,7 +676,7 @@
                                     </select>
                                 </div>
                             </div>
-                            
+
                             <div id="field_11_wrap" class="form-group digital_gov" style="display:none;">
                                 <label for="field_11_comments" class="digital-gov-label">Εξηγήστε</label>
                                 <textarea class="govgr-textarea" name="field_11_comments" id="field_11_comments"
@@ -688,7 +700,7 @@
                                     </select>
                                 </div>
                             </div>
-                           
+
                             <div id="field_12_wrap" class="form-group digital_gov" style="display:none;">
                                 <label for="field_12_comments" class="digital-gov-label">Αναφέρατε ποια είναι αυτά τα
                                     συστήματα:
@@ -714,7 +726,7 @@
                                     </select>
                                 </div>
                             </div>
-                            
+
                             <div id="field_13_wrap" class="form-group digital_gov" style="display:none;">
                                 <label for="field_13_comments" class="digital-gov-label">Εξηγήστε</label>
                                 <textarea class="govgr-textarea" name="field_13_comments" id="field_13_comments"
@@ -798,12 +810,7 @@
                                     <%- include('fill_form/fill_form_e.ejs') %>
                                         <%- include('fill_form/fill_form_f.ejs') %>
                                             <%- include('fill_form/fill_form_g.ejs') %>
-                                                <%- include('fill_form/fill_form_h.ejs') %> <br />
-                                                    <button type="button" class="govgr-btn govgr-btn-secondary"
-                                                        id="save_temporarily" name="save_temporarily"
-                                                        style="float: left;">
-                                                        Προσωρινή αποθήκευση
-                                                    </button>
+                                                <%- include('fill_form/fill_form_h.ejs') %>
                 </form>
             </div>
             <%- include('sidebar.ejs') %>
@@ -813,7 +820,6 @@
 
 
 <style>
-
     .flex-form-group {
         display: flex;
         justify-content: space-between;
@@ -847,7 +853,7 @@
         margin-top: 0px;
     }
 
-    
+
 
     .parent {
         display: flex;

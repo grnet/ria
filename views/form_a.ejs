@@ -6,6 +6,30 @@
             viewBox="0 0 24 24" aria-hidden="true">
             <path d="M18,22V2L6,12L18,22z" />
         </svg> Επιστροφή στο ιστορικό</a>
+    <nav class="govgr-horizontal-nav" id="nav-menu">
+        <div class="govgr-horizontal-nav__container topnav" id="myTopnav">
+            <div class="govgr-button-group">
+
+                <input type="submit" id="final_save" class="govgr-btn govgr-btn-primary govgr-btn-cta create-new"
+                    value="Οριστική Αποθήκευση" style="float: right;" />
+
+                <input type="submit" id="save_temporarily" class="govgr-btn govgr-btn-secondary"
+                    value="Προσωρινή αποθήκευση" style="float: right;" />
+
+                <input type="button" name="delete" id="delete" class=" delete-analysis govgr-btn govgr-btn-warning "
+                    style="float: right;" value="Διαγραφή" />
+
+                <input type="button" name="pdfExport" class="govgr-btn govgr-btn-warning export-pdf"
+                    value="Εξαγωγή σε PDF" />
+
+                <input type="button" class="govgr-btn govgr-btn-secondary" style="float: right;" data-toggle="modal"
+                    data-target="#versioningModal" id="modalButton" value="Ιστορικό Ανάλυσης" />
+
+
+                <input type="button" name="convert" class="govgr-btn govgr-btn-warning convert"
+                    style="display: none; float: right;" value="Μετατροπή" />
+            </div>
+    </nav>
 
     <div class="govgr-width-container">
         <div class="govgr-main-wrapper">
@@ -32,11 +56,6 @@
                             <p class="govgr-body" id="subtext"></p>
                             <br />
                         </div>
-
-                        <button type="button" class="govgr-btn govgr-btn-secondary" style="float: right;"
-                            data-toggle="modal" data-target="#versioningModal" id="modalButton">
-                            Ιστορικό Ανάλυσης
-                        </button>
 
                         <div class="modal fade" id="versioningModal" tabindex="-1" role="dialog"
                             aria-labelledby="versioningModalLabel" aria-hidden="true">
@@ -74,14 +93,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <br>
-                        <div>
-                            <input type="button" name="convert"
-                                class="govgr-btn govgr-btn-warning convert action-button-convert"
-                                style="display: none; float: right;" value="Μετατροπή" />
-                            <br /><br>
                         </div>
 
                         <br>
@@ -1018,19 +1029,6 @@
                                         <%- include('view_form/view_form_f.ejs') %>
                                             <%- include('view_form/view_form_g.ejs') %>
                                                 <%- include('view_form/view_form_h.ejs') %>
-
-
-                                                    <div class="govgr-button-group">
-                                                        <input type="button" name="delete" id="delete"
-                                                            class=" delete-analysis govgr-btn govgr-btn-warning action-button-delete"
-                                                            style="float: right;" value="Διαγραφή" />
-
-                                                        <button type="button" class="govgr-btn govgr-btn-secondary"
-                                                            id="save_temporarily" name="save_temporarily"
-                                                            style="float: right;">
-                                                            Προσωρινή αποθήκευση
-                                                        </button>
-                                                    </div>
                 </form>
             </div>
             <%- include('sidebar.ejs') %>

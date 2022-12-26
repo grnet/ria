@@ -1,5 +1,6 @@
 const routes = require('express').Router();
-const fetch = require('node-fetch');// consider upgrage nodejs to use internal fetch
+const fetch = (...args) =>
+import("node-fetch").then(({ default: fetch }) => fetch(...args)); // consider upgrage nodejs to use internal fetch
 const fxmlparser = require('fast-xml-parser');
 let database = require('../services/database');
 

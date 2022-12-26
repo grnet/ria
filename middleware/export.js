@@ -130,9 +130,9 @@ exports.exportPDF = async function (req, res, next) {
       medium: "public/fonts/Roboto-Medium.ttf",
     },
   };
-  let printer = new PdfPrinter(fonts);
+  const printer = new PdfPrinter(fonts);
 
-  let docDefinition = {
+  const docDefinition = {
     pageSize: "A4",
     styles: {
       header1: {
@@ -1350,907 +1350,1035 @@ exports.exportPDF = async function (req, res, next) {
             ],
           },
         },
-        {
-          text: "Ε. Έκθεση διαβούλευσης\n\n\n",
-          style: "header2",
-          pageBreak: "before",
-        },
-        {
-          table: {
-            widths: ["5%", "95%"],
-            body: [
-              [
-                {
-                  text: "22",
-                  fillColor: "#dcdcdc",
-                  style: "header4",
-                },
-                {
-                  text: "Διαβούλευση κατά τη διάρκεια της νομοπαρασκευαστικής διαδικασίας από την έναρξη κατάρτισης της αξιολογούμενης ρύθμισης μέχρι την υπογραφή από τους συναρμόδιους Υπουργούς",
-                  fillColor: "#dcdcdc",
-                  style: "header4",
-                },
-              ],
+      ],
+    ],
+  };
+
+  const docDefinition_b = {
+    pageSize: "A4",
+    styles: {
+      header1: {
+        fontSize: 17,
+        bold: true,
+        decoration: "underline",
+        alignment: "center",
+      },
+      header2: {
+        alignment: "center",
+        bold: true,
+        color: "#5c3d3d",
+        fontSize: 15,
+      },
+      header3: {
+        alignment: "center",
+        bold: true,
+        fontSize: 13,
+      },
+      header4: {
+        alignment: "center",
+        fontSize: 13,
+      },
+    },
+    defaultStyle: {
+      fontSize: 11,
+    },
+    content: [
+      {
+        text: "Ε. Έκθεση διαβούλευσης\n\n\n",
+        style: "header2",
+      },
+      {
+        table: {
+          widths: ["5%", "95%"],
+          body: [
+            [
+              {
+                text: "22",
+                fillColor: "#dcdcdc",
+                style: "header4",
+              },
+              {
+                text: "Διαβούλευση κατά τη διάρκεια της νομοπαρασκευαστικής διαδικασίας από την έναρξη κατάρτισης της αξιολογούμενης ρύθμισης μέχρι την υπογραφή από τους συναρμόδιους Υπουργούς",
+                fillColor: "#dcdcdc",
+                style: "header4",
+              },
             ],
-          },
+          ],
         },
-        {
-          table: {
-            widths: ["5%", "10%", "25%", "60%"],
-            body: [
-              [
-                {
-                  text: "",
-                  border: [false, false, false, false],
-                  fillColor: "white",
-                },
-                {
-                  image: `./public/img/empty-checkbox.jpg`,
-                  width: 30,
-                  height: 30,
-                },
-                {
-                  text: "Συνεργασία με άλλα υπουργεία / υπηρεσίες",
-                },
-                { text: isEmpty(data.field_22_sinergasia_ypoyrgeiwn) },
-              ],
-              [
-                {
-                  text: "",
-                  border: [false, false, false, false],
-                  fillColor: "white",
-                },
-                {
-                  image: `./public/img/empty-checkbox.jpg`,
-                  width: 30,
-                  height: 30,
-                },
-                {
-                  text: "Συνεργασία με κοινωνικούς φορείς / Ανεξάρτητες Αρχές",
-                },
-                { text: isEmpty(data.field_22_sinergasia_forewn_arxwn) },
-              ],
-              [
-                {
-                  text: "",
-                  border: [false, false, false, false],
-                  fillColor: "white",
-                },
-                {
-                  image: `./public/img/empty-checkbox.jpg`,
-                  width: 30,
-                  height: 30,
-                },
-                {
-                  text: "Διεθνής διαβούλευση",
-                },
-                { text: isEmpty(data.field_22_diethnis_diavouleusi) },
-              ],
+      },
+      {
+        table: {
+          widths: ["5%", "10%", "25%", "60%"],
+          body: [
+            [
+              {
+                text: "",
+                border: [false, false, false, false],
+                fillColor: "white",
+              },
+              {
+                image: `./public/img/empty-checkbox.jpg`,
+                width: 30,
+                height: 30,
+              },
+              {
+                text: "Συνεργασία με άλλα υπουργεία / υπηρεσίες",
+              },
+              { text: isEmpty(data.field_22_sinergasia_ypoyrgeiwn) },
             ],
-          },
-        },
-        {
-          text: "\n\n",
-        },
-        {
-          table: {
-            widths: ["5%", "95%"],
-            body: [
-              [
-                {
-                  text: "23",
-                  fillColor: "#dcdcdc",
-                  style: "header4",
-                },
-                {
-                  text: "Σχόλια στο πλαίσιο της διαβούλευσης μέσω της ηλεκτρονικής πλατφόρμας www.opengov.gr (ηλεκτρονική επισύναψη της έκθεσης)",
-                  fillColor: "#dcdcdc",
-                  style: "header4",
-                },
-              ],
+            [
+              {
+                text: "",
+                border: [false, false, false, false],
+                fillColor: "white",
+              },
+              {
+                image: `./public/img/empty-checkbox.jpg`,
+                width: 30,
+                height: 30,
+              },
+              {
+                text: "Συνεργασία με κοινωνικούς φορείς / Ανεξάρτητες Αρχές",
+              },
+              { text: isEmpty(data.field_22_sinergasia_forewn_arxwn) },
             ],
-          },
-        },
-        {
-          table: {
-            widths: ["5%", "10%", "25%", "60%"],
-            headerRows: 6,
-            body: [
-              [
-                {
-                  text: "",
-                  border: [false, false, false, false],
-                },
-                {
-                  text: "Επί των γενικών αρχών («επί της αρχής») της αξιολογούμενης ρύθμισης",
-                  rowSpan: 3,
-                },
-                { text: "Αριθμός συμμετασχόντων" },
-                { text: isEmpty(data.field_23_arxes_symmetasxontes) },
-              ],
-              [
-                {
-                  text: "",
-                  border: [false, false, false, false],
-                },
-                { text: "" },
-                {
-                  text: "Σχόλια που υιοθετήθηκαν",
-                },
-                { text: isEmpty(data.field_23_arxes_sxolia_yiothetithikan) },
-              ],
-              [
-                {
-                  text: "",
-                  border: [false, false, false, false],
-                },
-                { text: "" },
-                {
-                  text: "Σχόλια που δεν υιοθετήθηκαν (συμπεριλαμβανομένης επαρκούς αιτιολόγησης)",
-                },
-                {
-                  text: isEmpty(data.field_23_arxes_sxolia_den_yiothetithikan),
-                },
-              ],
-              [
-                {
-                  text: "",
-                  border: [false, false, false, false],
-                  fillColor: "white",
-                },
-                {
-                  text: "Επί των γενικών αρχών («επί της αρχής») της αξιολογούμενης ρύθμισης",
-                  rowSpan: 3,
-                },
-                { text: "Αριθμός συμμετασχόντων" },
-                { text: isEmpty(data.field_23_arthra_symmetasxontes) },
-              ],
-              [
-                {
-                  text: "",
-                  border: [false, false, false, false],
-                  fillColor: "white",
-                },
-                { text: "" },
-                {
-                  text: "Σχόλια που υιοθετήθηκαν",
-                },
-                { text: isEmpty(data.field_23_arthra_sxolia_yiothetithikan) },
-              ],
-              [
-                {
-                  text: "",
-                  border: [false, false, false, false],
-                  fillColor: "white",
-                },
-                { text: "" },
-                {
-                  text: "Σχόλια που δεν υιοθετήθηκαν (συμπεριλαμβανομένης επαρκούς αιτιολόγησης)",
-                },
-                {
-                  text: isEmpty(data.field_23_arthra_sxolia_den_yiothetithikan),
-                },
-              ],
+            [
+              {
+                text: "",
+                border: [false, false, false, false],
+                fillColor: "white",
+              },
+              {
+                image: `./public/img/empty-checkbox.jpg`,
+                width: 30,
+                height: 30,
+              },
+              {
+                text: "Διεθνής διαβούλευση",
+              },
+              { text: isEmpty(data.field_22_diethnis_diavouleusi) },
             ],
-          },
+          ],
         },
-        {
-          text: "Στ. Έκθεση νομιμότητας\n\n\n",
-          style: "header2",
-          pageBreak: "before",
-        },
-        {
-          table: {
-            widths: ["5%", "95%"],
-            body: [
-              [
-                {
-                  text: "24",
-                  fillColor: "#dcdcdc",
-                  style: "header4",
-                },
-                {
-                  text: "Συναφείς συνταγματικές διατάξεις",
-                  style: "header4",
-                  fillColor: "#dcdcdc",
-                },
-              ],
+      },
+      {
+        text: "\n\n",
+      },
+      {
+        table: {
+          widths: ["5%", "95%"],
+          body: [
+            [
+              {
+                text: "23",
+                fillColor: "#dcdcdc",
+                style: "header4",
+              },
+              {
+                text: "Σχόλια στο πλαίσιο της διαβούλευσης μέσω της ηλεκτρονικής πλατφόρμας www.opengov.gr (ηλεκτρονική επισύναψη της έκθεσης)",
+                fillColor: "#dcdcdc",
+                style: "header4",
+              },
             ],
-          },
+          ],
         },
-        {
-          table: {
-            widths: ["5%", "95%"],
-            body: [
-              [
-                {
-                  text: "",
-                  border: [false, false, false, false],
-                  fillColor: "white",
-                },
-                { text: isEmpty(data.field_24) },
-              ],
+      },
+      {
+        table: {
+          widths: ["5%", "10%", "25%", "60%"],
+          headerRows: 6,
+          body: [
+            [
+              {
+                text: "",
+                border: [false, false, false, false],
+              },
+              {
+                text: "Επί των γενικών αρχών («επί της αρχής») της αξιολογούμενης ρύθμισης",
+                rowSpan: 3,
+              },
+              { text: "Αριθμός συμμετασχόντων" },
+              { text: isEmpty(data.field_23_arxes_symmetasxontes) },
             ],
-          },
-        },
-        {
-          table: {
-            widths: ["5%", "95%"],
-            body: [
-              [
-                {
-                  text: "25",
-                  fillColor: "#dcdcdc",
-                  style: "header4",
-                },
-                {
-                  text: "Ενωσιακό δίκαιο",
-                  fillColor: "#dcdcdc",
-                  style: "header4",
-                },
-              ],
+            [
+              {
+                text: "",
+                border: [false, false, false, false],
+              },
+              { text: "" },
+              {
+                text: "Σχόλια που υιοθετήθηκαν",
+              },
+              { text: isEmpty(data.field_23_arxes_sxolia_yiothetithikan) },
             ],
-          },
-        },
-        {
-          table: {
-            widths: ["5%", "10%", "25%", "60%"],
-            body: [
-              [
-                {
-                  text: "",
-                  border: [false, false, false, false],
-                  fillColor: "white",
-                },
-                {
-                  image: `./public/img/empty-checkbox.jpg`,
-                  width: 30,
-                  height: 30,
-                },
-                {
-                  text: "Πρωτογενές ενωσιακό δίκαιο (συμπεριλαμβανομένου του Χάρτη Θεμελιωδών Δικαιωμάτων)",
-                  fillColor: "white",
-                },
-                { text: isEmpty(data.field_25_dikaio_comment) },
-              ],
-              [
-                {
-                  text: "",
-                  border: [false, false, false, false],
-                  fillColor: "white",
-                },
-                {
-                  image: `./public/img/empty-checkbox.jpg`,
-                  width: 30,
-                  height: 30,
-                },
-                {
-                  text: "Κανονισμός",
-                  fillColor: "white",
-                },
-                { text: isEmpty(data.field_25_kanonismos_comment) },
-              ],
-              [
-                {
-                  text: "",
-                  border: [false, false, false, false],
-                  fillColor: "white",
-                },
-                {
-                  image: `./public/img/empty-checkbox.jpg`,
-                  width: 30,
-                  height: 30,
-                },
-                {
-                  text: "Οδηγία/Ανακοινώσεις",
-                  fillColor: "white",
-                },
-                { text: isEmpty(data.field_25_odigia_comment) },
-              ],
-              [
-                {
-                  text: "",
-                  border: [false, false, false, false],
-                  fillColor: "white",
-                },
-                {
-                  image: `./public/img/empty-checkbox.jpg`,
-                  width: 30,
-                  height: 30,
-                },
-                {
-                  text: "Απόφαση",
-                  fillColor: "white",
-                },
-                { text: isEmpty(data.field_25_apofasi_comment) },
-              ],
+            [
+              {
+                text: "",
+                border: [false, false, false, false],
+              },
+              { text: "" },
+              {
+                text: "Σχόλια που δεν υιοθετήθηκαν (συμπεριλαμβανομένης επαρκούς αιτιολόγησης)",
+              },
+              {
+                text: isEmpty(data.field_23_arxes_sxolia_den_yiothetithikan),
+              },
             ],
-          },
-        },
-        {
-          table: {
-            widths: ["5%", "95%"],
-            body: [
-              [
-                {
-                  text: "26",
-                  fillColor: "#dcdcdc",
-                  style: "header4",
-                },
-                {
-                  text: "Συναφείς διατάξεις διεθνών συνθηκών ή συμφωνιών",
-                  fillColor: "#dcdcdc",
-                  style: "header4",
-                },
-              ],
+            [
+              {
+                text: "",
+                border: [false, false, false, false],
+                fillColor: "white",
+              },
+              {
+                text: "Επί των γενικών αρχών («επί της αρχής») της αξιολογούμενης ρύθμισης",
+                rowSpan: 3,
+              },
+              { text: "Αριθμός συμμετασχόντων" },
+              { text: isEmpty(data.field_23_arthra_symmetasxontes) },
             ],
-          },
-        },
-        {
-          table: {
-            widths: ["5%", "10%", "25%", "60%"],
-            body: [
-              [
-                {
-                  text: "",
-                  border: [false, false, false, false],
-                  fillColor: "white",
-                },
-                {
-                  image: `./public/img/empty-checkbox.jpg`,
-                  width: 30,
-                  height: 30,
-                },
-                {
-                  text: "Ευρωπαϊκή Σύμβαση των Δικαιωμάτων του Ανθρώπου",
-                  fillColor: "white",
-                },
-                { text: isEmpty(data.field_26_antrwpina_dikaiwmata_comment) },
-              ],
-              [
-                {
-                  text: "",
-                  border: [false, false, false, false],
-                  fillColor: "white",
-                },
-                {
-                  image: `./public/img/empty-checkbox.jpg`,
-                  width: 30,
-                  height: 30,
-                },
-                {
-                  text: "Διεθνείς συμβάσεις",
-                  fillColor: "white",
-                },
-                { text: isEmpty(data.field_26_symvaseis_comment) },
-              ],
+            [
+              {
+                text: "",
+                border: [false, false, false, false],
+                fillColor: "white",
+              },
+              { text: "" },
+              {
+                text: "Σχόλια που υιοθετήθηκαν",
+              },
+              { text: isEmpty(data.field_23_arthra_sxolia_yiothetithikan) },
             ],
-          },
-        },
-        {
-          text: "\n\n",
-        },
-        {
-          table: {
-            widths: ["5%", "95%"],
-            body: [
-              [
-                {
-                  text: "27",
-                  fillColor: "#dcdcdc",
-                  style: "header4",
-                },
-                {
-                  text: "Συναφής νομολογία των ανωτάτων και άλλων εθνικών δικαστηρίων, καθώς και αποφάσεις των Ανεξάρτητων Αρχών",
-                  fillColor: "#dcdcdc",
-                  style: "header4",
-                },
-              ],
+            [
+              {
+                text: "",
+                border: [false, false, false, false],
+                fillColor: "white",
+              },
+              { text: "" },
+              {
+                text: "Σχόλια που δεν υιοθετήθηκαν (συμπεριλαμβανομένης επαρκούς αιτιολόγησης)",
+              },
+              {
+                text: isEmpty(data.field_23_arthra_sxolia_den_yiothetithikan),
+              },
             ],
-          },
+          ],
         },
-        {
-          table: {
-            widths: ["5%", "10%", "25%", "60%"],
-            body: [
-              [
-                {
-                  text: "",
-                  border: [false, false, false, false],
-                  fillColor: "white",
-                },
-                {
-                  text: "",
-                },
-                {
-                  text: "",
-                },
-                { text: "Στοιχεία & βασικό περιεχόμενο απόφασης" },
-              ],
-              [
-                {
-                  text: "",
-                  border: [false, false, false, false],
-                  fillColor: "white",
-                },
-                {
-                  image: `./public/img/empty-checkbox.jpg`,
-                  width: 30,
-                  height: 30,
-                },
-                {
-                  text: "Ανώτατο ή άλλο εθνικό δικαστήριο (αναφέρατε)",
-                  fillColor: "white",
-                },
-                { text: isEmpty(data.field_27_dikastirio_comment) },
-              ],
-              [
-                {
-                  text: "",
-                  border: [false, false, false, false],
-                  fillColor: "white",
-                },
-                {
-                  image: `./public/img/empty-checkbox.jpg`,
-                  width: 30,
-                  height: 30,
-                },
-                {
-                  text: "Ανεξάρτητη Αρχή (αναφέρατε)",
-                  fillColor: "white",
-                },
-                { text: isEmpty(data.field_27_arxi_comment) },
-              ],
+      },
+    ],
+  };
+
+  const docDefinition_c = {
+    pageSize: "A4",
+    styles: {
+      header1: {
+        fontSize: 17,
+        bold: true,
+        decoration: "underline",
+        alignment: "center",
+      },
+      header2: {
+        alignment: "center",
+        bold: true,
+        color: "#5c3d3d",
+        fontSize: 15,
+      },
+      header3: {
+        alignment: "center",
+        bold: true,
+        fontSize: 13,
+      },
+      header4: {
+        alignment: "center",
+        fontSize: 13,
+      },
+    },
+    defaultStyle: {
+      fontSize: 11,
+    },
+    content: [
+      {
+        text: "Στ. Έκθεση νομιμότητας\n\n\n",
+        style: "header2",
+      },
+      {
+        table: {
+          widths: ["5%", "95%"],
+          body: [
+            [
+              {
+                text: "24",
+                fillColor: "#dcdcdc",
+                style: "header4",
+              },
+              {
+                text: "Συναφείς συνταγματικές διατάξεις",
+                style: "header4",
+                fillColor: "#dcdcdc",
+              },
             ],
-          },
+          ],
         },
-        {
-          table: {
-            widths: ["5%", "95%"],
-            body: [
-              [
-                {
-                  text: "28",
-                  fillColor: "#dcdcdc",
-                  style: "header4",
-                },
-                {
-                  text: "Συναφής ευρωπαϊκή και διεθνής νομολογία",
-                  fillColor: "#dcdcdc",
-                  style: "header4",
-                },
-              ],
+      },
+      {
+        table: {
+          widths: ["5%", "95%"],
+          body: [
+            [
+              {
+                text: "",
+                border: [false, false, false, false],
+                fillColor: "white",
+              },
+              { text: isEmpty(data.field_24) },
             ],
-          },
+          ],
         },
-        {
-          table: {
-            widths: ["5%", "10%", "25%", "60%"],
-            body: [
-              [
-                {
-                  text: "",
-                  border: [false, false, false, false],
-                  fillColor: "white",
-                },
-                {
-                  text: "",
-                },
-                {
-                  text: "",
-                },
-                { text: "Στοιχεία & βασικό περιεχόμενο απόφασης" },
-              ],
-              [
-                {
-                  text: "",
-                  border: [false, false, false, false],
-                  fillColor: "white",
-                },
-                {
-                  image: `./public/img/empty-checkbox.jpg`,
-                  width: 30,
-                  height: 30,
-                },
-                {
-                  text: "Νομολογία Δικαστηρίου Ε.Ε.",
-                  fillColor: "white",
-                },
-                { text: isEmpty(data.field_28_nomologia_comment) },
-              ],
-              [
-                {
-                  text: "",
-                  border: [false, false, false, false],
-                  fillColor: "white",
-                },
-                {
-                  image: `./public/img/empty-checkbox.jpg`,
-                  width: 30,
-                  height: 30,
-                },
-                {
-                  text: "Νομολογία Ευρωπαϊκού Δικαστηρίου Δικαιωμάτων του Ανθρώπου",
-                  fillColor: "white",
-                },
-                {
-                  text: isEmpty(
-                    data.field_28_nomologia_dikaiwmatwn_anthrwpou_comment
-                  ),
-                },
-              ],
-              [
-                {
-                  text: "",
-                  border: [false, false, false, false],
-                  fillColor: "white",
-                },
-                {
-                  image: `./public/img/empty-checkbox.jpg`,
-                  width: 30,
-                  height: 30,
-                },
-                {
-                  text: "Άλλα ευρωπαϊκά ή διεθνή δικαστήρια ή διαιτητικά όργανα",
-                  fillColor: "white",
-                },
-                { text: isEmpty(data.field_28_alla_dikastiria_comment) },
-              ],
+      },
+      {
+        table: {
+          widths: ["5%", "95%"],
+          body: [
+            [
+              {
+                text: "25",
+                fillColor: "#dcdcdc",
+                style: "header4",
+              },
+              {
+                text: "Ενωσιακό δίκαιο",
+                fillColor: "#dcdcdc",
+                style: "header4",
+              },
             ],
-          },
+          ],
         },
-        {
-          text: "Ζ. Πίνακας τροποποιούμενων ή καταργούμενων διατάξεων\n\n\n",
-          style: "header2",
-          pageBreak: "before",
-        },
-        {
-          table: {
-            widths: ["5%", "95%"],
-            body: [
-              [
-                {
-                  text: "29",
-                  fillColor: "#dcdcdc",
-                  style: "header4",
-                },
-                {
-                  text: "Τροποποίηση – αντικατάσταση – συμπλήρωση διατάξεων",
-                  style: "header4",
-                  fillColor: "#dcdcdc",
-                },
-              ],
+      },
+      {
+        table: {
+          widths: ["5%", "10%", "25%", "60%"],
+          body: [
+            [
+              {
+                text: "",
+                border: [false, false, false, false],
+                fillColor: "white",
+              },
+              {
+                image: `./public/img/empty-checkbox.jpg`,
+                width: 30,
+                height: 30,
+              },
+              {
+                text: "Πρωτογενές ενωσιακό δίκαιο (συμπεριλαμβανομένου του Χάρτη Θεμελιωδών Δικαιωμάτων)",
+                fillColor: "white",
+              },
+              { text: isEmpty(data.field_25_dikaio_comment) },
             ],
-          },
-        },
-        createTables(field_29),
-        { text: "\n\n" },
-        {
-          table: {
-            widths: ["5%", "95%"],
-            body: [
-              [
-                {
-                  text: "30",
-                  fillColor: "#dcdcdc",
-                  style: "header4",
-                },
-                {
-                  text: "Κατάργηση διατάξεων",
-                  style: "header4",
-                  fillColor: "#dcdcdc",
-                },
-              ],
+            [
+              {
+                text: "",
+                border: [false, false, false, false],
+                fillColor: "white",
+              },
+              {
+                image: `./public/img/empty-checkbox.jpg`,
+                width: 30,
+                height: 30,
+              },
+              {
+                text: "Κανονισμός",
+                fillColor: "white",
+              },
+              { text: isEmpty(data.field_25_kanonismos_comment) },
             ],
-          },
-        },
-        createTables(field_30),
-        {
-          text: "Η. Έκθεση εφαρμογής της ρύθμισης\n\n\n",
-          style: "header2",
-          pageBreak: "before",
-        },
-        {
-          table: {
-            widths: ["5%", "95%"],
-            body: [
-              [
-                {
-                  text: "31",
-                  fillColor: "#dcdcdc",
-                  style: "header4",
-                },
-                {
-                  text: "Συναρμοδιότητα Υπουργείων / υπηρεσιών / φορέων",
-                  style: "header4",
-                  fillColor: "#dcdcdc",
-                },
-              ],
+            [
+              {
+                text: "",
+                border: [false, false, false, false],
+                fillColor: "white",
+              },
+              {
+                image: `./public/img/empty-checkbox.jpg`,
+                width: 30,
+                height: 30,
+              },
+              {
+                text: "Οδηγία/Ανακοινώσεις",
+                fillColor: "white",
+              },
+              { text: isEmpty(data.field_25_odigia_comment) },
             ],
-          },
-        },
-        createTables(field_31),
-        { text: "\n\n" },
-        {
-          table: {
-            widths: ["5%", "95%"],
-            body: [
-              [
-                {
-                  text: "32",
-                  fillColor: "#dcdcdc",
-                  style: "header4",
-                },
-                {
-                  text: "Έκδοση κανονιστικών πράξεων και εγκυκλίων",
-                  style: "header4",
-                  fillColor: "#dcdcdc",
-                },
-              ],
+            [
+              {
+                text: "",
+                border: [false, false, false, false],
+                fillColor: "white",
+              },
+              {
+                image: `./public/img/empty-checkbox.jpg`,
+                width: 30,
+                height: 30,
+              },
+              {
+                text: "Απόφαση",
+                fillColor: "white",
+              },
+              { text: isEmpty(data.field_25_apofasi_comment) },
             ],
-          },
+          ],
         },
-        createTables(field_32),
-        { text: "\n\n" },
-        {
-          table: {
-            widths: ["5%", "95%"],
-            body: [
-              [
-                {
-                  text: "",
-                  border: [false, false, false, false],
-                  fillColor: "white",
-                },
-                {
-                  text: "Ανάγκη σύστασης νέου νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας υπηρεσίας",
-                  style: "header4",
-                  fillColor: "#a9a9a9",
-                },
-              ],
-              [
-                {
-                  text: "33",
-                  style: "header4",
-                  fillColor: "#dcdcdc",
-                },
-                {
-                  text: "Ποιες διατάξεις της αξιολογούμενης ρύθμισης προβλέπουν τη σύσταση νέου νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας υπηρεσίας;",
-                  style: "header4",
-                  fillColor: "#dcdcdc",
-                },
-              ],
-              [
-                {
-                  text: "",
-                  border: [false, false, false, false],
-                  fillColor: "white",
-                },
-                { text: isEmpty(data.field_33) },
-              ],
-              [
-                {
-                  text: "34",
-                  style: "header4",
-                  fillColor: "#dcdcdc",
-                },
-                {
-                  text: "Γιατί προτείνεται η σύσταση αυτού του νέου οργάνου και δεν επαρκούν οι υφιστάμενες διοικητικές δομές για να επιτευχθεί ο στόχος της αξιολογούμενηςρύθμισης;",
-                  style: "header4",
-                  fillColor: "#dcdcdc",
-                },
-              ],
-              [
-                {
-                  text: "",
-                  border: [false, false, false, false],
-                  fillColor: "white",
-                },
-                { text: isEmpty(data.field_34) },
-              ],
-              [
-                {
-                  text: "35",
-                  style: "header4",
-                  fillColor: "#dcdcdc",
-                },
-                {
-                  text: "Χρόνος έναρξης λειτουργίας του νέου οργάνου",
-                  style: "header4",
-                  fillColor: "#dcdcdc",
-                },
-              ],
-              [
-                {
-                  text: "",
-                  border: [false, false, false, false],
-                  fillColor: "white",
-                },
-                { text: isEmpty(data.field_35) },
-              ],
-              [
-                {
-                  text: "36",
-                  style: "header4",
-                  fillColor: "#dcdcdc",
-                },
-                {
-                  text: isSelect(
-                    `Έχει γίνει η σχετική οικονομοτεχνική μελέτη αναφορικά με τη σύσταση του νέου οργάνου; 
+      },
+      {
+        table: {
+          widths: ["5%", "95%"],
+          body: [
+            [
+              {
+                text: "26",
+                fillColor: "#dcdcdc",
+                style: "header4",
+              },
+              {
+                text: "Συναφείς διατάξεις διεθνών συνθηκών ή συμφωνιών",
+                fillColor: "#dcdcdc",
+                style: "header4",
+              },
+            ],
+          ],
+        },
+      },
+      {
+        table: {
+          widths: ["5%", "10%", "25%", "60%"],
+          body: [
+            [
+              {
+                text: "",
+                border: [false, false, false, false],
+                fillColor: "white",
+              },
+              {
+                image: `./public/img/empty-checkbox.jpg`,
+                width: 30,
+                height: 30,
+              },
+              {
+                text: "Ευρωπαϊκή Σύμβαση των Δικαιωμάτων του Ανθρώπου",
+                fillColor: "white",
+              },
+              { text: isEmpty(data.field_26_antrwpina_dikaiwmata_comment) },
+            ],
+            [
+              {
+                text: "",
+                border: [false, false, false, false],
+                fillColor: "white",
+              },
+              {
+                image: `./public/img/empty-checkbox.jpg`,
+                width: 30,
+                height: 30,
+              },
+              {
+                text: "Διεθνείς συμβάσεις",
+                fillColor: "white",
+              },
+              { text: isEmpty(data.field_26_symvaseis_comment) },
+            ],
+          ],
+        },
+      },
+      {
+        text: "\n\n",
+      },
+      {
+        table: {
+          widths: ["5%", "95%"],
+          body: [
+            [
+              {
+                text: "27",
+                fillColor: "#dcdcdc",
+                style: "header4",
+              },
+              {
+                text: "Συναφής νομολογία των ανωτάτων και άλλων εθνικών δικαστηρίων, καθώς και αποφάσεις των Ανεξάρτητων Αρχών",
+                fillColor: "#dcdcdc",
+                style: "header4",
+              },
+            ],
+          ],
+        },
+      },
+      {
+        table: {
+          widths: ["5%", "10%", "25%", "60%"],
+          body: [
+            [
+              {
+                text: "",
+                border: [false, false, false, false],
+                fillColor: "white",
+              },
+              {
+                text: "",
+              },
+              {
+                text: "",
+              },
+              { text: "Στοιχεία & βασικό περιεχόμενο απόφασης" },
+            ],
+            [
+              {
+                text: "",
+                border: [false, false, false, false],
+                fillColor: "white",
+              },
+              {
+                image: `./public/img/empty-checkbox.jpg`,
+                width: 30,
+                height: 30,
+              },
+              {
+                text: "Ανώτατο ή άλλο εθνικό δικαστήριο (αναφέρατε)",
+                fillColor: "white",
+              },
+              { text: isEmpty(data.field_27_dikastirio_comment) },
+            ],
+            [
+              {
+                text: "",
+                border: [false, false, false, false],
+                fillColor: "white",
+              },
+              {
+                image: `./public/img/empty-checkbox.jpg`,
+                width: 30,
+                height: 30,
+              },
+              {
+                text: "Ανεξάρτητη Αρχή (αναφέρατε)",
+                fillColor: "white",
+              },
+              { text: isEmpty(data.field_27_arxi_comment) },
+            ],
+          ],
+        },
+      },
+      {
+        table: {
+          widths: ["5%", "95%"],
+          body: [
+            [
+              {
+                text: "28",
+                fillColor: "#dcdcdc",
+                style: "header4",
+              },
+              {
+                text: "Συναφής ευρωπαϊκή και διεθνής νομολογία",
+                fillColor: "#dcdcdc",
+                style: "header4",
+              },
+            ],
+          ],
+        },
+      },
+      {
+        table: {
+          widths: ["5%", "10%", "25%", "60%"],
+          body: [
+            [
+              {
+                text: "",
+                border: [false, false, false, false],
+                fillColor: "white",
+              },
+              {
+                text: "",
+              },
+              {
+                text: "",
+              },
+              { text: "Στοιχεία & βασικό περιεχόμενο απόφασης" },
+            ],
+            [
+              {
+                text: "",
+                border: [false, false, false, false],
+                fillColor: "white",
+              },
+              {
+                image: `./public/img/empty-checkbox.jpg`,
+                width: 30,
+                height: 30,
+              },
+              {
+                text: "Νομολογία Δικαστηρίου Ε.Ε.",
+                fillColor: "white",
+              },
+              { text: isEmpty(data.field_28_nomologia_comment) },
+            ],
+            [
+              {
+                text: "",
+                border: [false, false, false, false],
+                fillColor: "white",
+              },
+              {
+                image: `./public/img/empty-checkbox.jpg`,
+                width: 30,
+                height: 30,
+              },
+              {
+                text: "Νομολογία Ευρωπαϊκού Δικαστηρίου Δικαιωμάτων του Ανθρώπου",
+                fillColor: "white",
+              },
+              {
+                text: isEmpty(
+                  data.field_28_nomologia_dikaiwmatwn_anthrwpou_comment
+                ),
+              },
+            ],
+            [
+              {
+                text: "",
+                border: [false, false, false, false],
+                fillColor: "white",
+              },
+              {
+                image: `./public/img/empty-checkbox.jpg`,
+                width: 30,
+                height: 30,
+              },
+              {
+                text: "Άλλα ευρωπαϊκά ή διεθνή δικαστήρια ή διαιτητικά όργανα",
+                fillColor: "white",
+              },
+              { text: isEmpty(data.field_28_alla_dikastiria_comment) },
+            ],
+          ],
+        },
+      },
+      {
+        text: "Ζ. Πίνακας τροποποιούμενων ή καταργούμενων διατάξεων\n\n\n",
+        style: "header2",
+        pageBreak: "before",
+      },
+      {
+        table: {
+          widths: ["5%", "95%"],
+          body: [
+            [
+              {
+                text: "29",
+                fillColor: "#dcdcdc",
+                style: "header4",
+              },
+              {
+                text: "Τροποποίηση – αντικατάσταση – συμπλήρωση διατάξεων",
+                style: "header4",
+                fillColor: "#dcdcdc",
+              },
+            ],
+          ],
+        },
+      },
+      createTables(field_29),
+      { text: "\n\n" },
+      {
+        table: {
+          widths: ["5%", "95%"],
+          body: [
+            [
+              {
+                text: "30",
+                fillColor: "#dcdcdc",
+                style: "header4",
+              },
+              {
+                text: "Κατάργηση διατάξεων",
+                style: "header4",
+                fillColor: "#dcdcdc",
+              },
+            ],
+          ],
+        },
+      },
+      createTables(field_30),
+      {
+        text: "Η. Έκθεση εφαρμογής της ρύθμισης\n\n\n",
+        style: "header2",
+        pageBreak: "before",
+      },
+      {
+        table: {
+          widths: ["5%", "95%"],
+          body: [
+            [
+              {
+                text: "31",
+                fillColor: "#dcdcdc",
+                style: "header4",
+              },
+              {
+                text: "Συναρμοδιότητα Υπουργείων / υπηρεσιών / φορέων",
+                style: "header4",
+                fillColor: "#dcdcdc",
+              },
+            ],
+          ],
+        },
+      },
+      createTables(field_31),
+      { text: "\n\n" },
+      {
+        table: {
+          widths: ["5%", "95%"],
+          body: [
+            [
+              {
+                text: "32",
+                fillColor: "#dcdcdc",
+                style: "header4",
+              },
+              {
+                text: "Έκδοση κανονιστικών πράξεων και εγκυκλίων",
+                style: "header4",
+                fillColor: "#dcdcdc",
+              },
+            ],
+          ],
+        },
+      },
+      createTables(field_32),
+      { text: "\n\n" },
+      {
+        table: {
+          widths: ["5%", "95%"],
+          body: [
+            [
+              {
+                text: "",
+                border: [false, false, false, false],
+                fillColor: "white",
+              },
+              {
+                text: "Ανάγκη σύστασης νέου νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας υπηρεσίας",
+                style: "header4",
+                fillColor: "#a9a9a9",
+              },
+            ],
+            [
+              {
+                text: "33",
+                style: "header4",
+                fillColor: "#dcdcdc",
+              },
+              {
+                text: "Ποιες διατάξεις της αξιολογούμενης ρύθμισης προβλέπουν τη σύσταση νέου νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας υπηρεσίας;",
+                style: "header4",
+                fillColor: "#dcdcdc",
+              },
+            ],
+            [
+              {
+                text: "",
+                border: [false, false, false, false],
+                fillColor: "white",
+              },
+              { text: isEmpty(data.field_33) },
+            ],
+            [
+              {
+                text: "34",
+                style: "header4",
+                fillColor: "#dcdcdc",
+              },
+              {
+                text: "Γιατί προτείνεται η σύσταση αυτού του νέου οργάνου και δεν επαρκούν οι υφιστάμενες διοικητικές δομές για να επιτευχθεί ο στόχος της αξιολογούμενηςρύθμισης;",
+                style: "header4",
+                fillColor: "#dcdcdc",
+              },
+            ],
+            [
+              {
+                text: "",
+                border: [false, false, false, false],
+                fillColor: "white",
+              },
+              { text: isEmpty(data.field_34) },
+            ],
+            [
+              {
+                text: "35",
+                style: "header4",
+                fillColor: "#dcdcdc",
+              },
+              {
+                text: "Χρόνος έναρξης λειτουργίας του νέου οργάνου",
+                style: "header4",
+                fillColor: "#dcdcdc",
+              },
+            ],
+            [
+              {
+                text: "",
+                border: [false, false, false, false],
+                fillColor: "white",
+              },
+              { text: isEmpty(data.field_35) },
+            ],
+            [
+              {
+                text: "36",
+                style: "header4",
+                fillColor: "#dcdcdc",
+              },
+              {
+                text: isSelect(
+                  `Έχει γίνει η σχετική οικονομοτεχνική μελέτη αναφορικά με τη σύσταση του νέου οργάνου; 
                       ΝΑΙ ΟΧΙ
                       Εάν ΝΑΙ, να επισυναφθεί ηλεκτρονικά.`,
-                    data.field_36
-                  ),
-                  style: "header4",
-                  fillColor: "#dcdcdc",
-                },
-              ],
-              [
-                {
-                  text: "",
-                  border: [false, false, false, false],
-                  fillColor: "white",
-                },
-                { text: "Δείτε το Παράρτημα" },
-              ],
+                  data.field_36
+                ),
+                style: "header4",
+                fillColor: "#dcdcdc",
+              },
             ],
-          },
+          ],
         },
-        { text: "\n\n" },
-        {
-          table: {
-            widths: ["5%", "95%"],
-            body: [
-              [
-                {
-                  text: "",
-                  border: [false, false, false, false],
-                  fillColor: "white",
-                },
-                {
-                  text: "Στοιχεία νέου νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας υπηρεσίας",
-                  style: "header4",
-                  fillColor: "#a9a9a9",
-                },
-              ],
+      },
+    ],
+  };
+
+  const docDefinition_d = {
+    pageSize: "A4",
+    styles: {
+      header1: {
+        fontSize: 17,
+        bold: true,
+        decoration: "underline",
+        alignment: "center",
+      },
+      header2: {
+        alignment: "center",
+        bold: true,
+        color: "#5c3d3d",
+        fontSize: 15,
+      },
+      header3: {
+        alignment: "center",
+        bold: true,
+        fontSize: 13,
+      },
+      header4: {
+        alignment: "center",
+        fontSize: 13,
+      },
+    },
+    defaultStyle: {
+      fontSize: 11,
+    },
+    content: [
+      {
+        table: {
+          widths: ["5%", "95%"],
+          body: [
+            [
+              {
+                text: "",
+                border: [false, false, false, false],
+                fillColor: "white",
+              },
+              {
+                text: "Στοιχεία νέου νομικού προσώπου, ανώνυμης εταιρίας ή δημόσιας υπηρεσίας",
+                style: "header4",
+                fillColor: "#a9a9a9",
+              },
             ],
-          },
+          ],
         },
-        {
-          table: {
-            widths: ["5%", "95%"],
-            body: [
-              [
-                {
-                  text: "37",
-                  style: "header4",
-                  fillColor: "#dcdcdc",
-                },
-                {
-                  text: "Επωνυμία ή ονομασία και νομική μορφή",
-                  style: "header4",
-                  fillColor: "#dcdcdc",
-                },
-              ],
-              [
-                {
-                  text: "",
-                  border: [false, false, false, false],
-                  fillColor: "white",
-                },
-                { text: isEmpty(data.field_37) },
-              ],
-              [
-                {
-                  text: "38",
-                  style: "header4",
-                  fillColor: "#dcdcdc",
-                },
-                {
-                  text: "Χώρος λειτουργίας του νέου οργάνου",
-                  style: "header4",
-                  fillColor: "#dcdcdc",
-                },
-              ],
-              [
-                {
-                  text: "",
-                  border: [false, false, false, false],
-                  fillColor: "white",
-                },
-                { text: isEmpty(data.field_38) },
-              ],
-              [
-                {
-                  text: "39",
-                  style: "header4",
-                  fillColor: "#dcdcdc",
-                },
-                {
-                  text: "Διασφάλιση επαρκούς υλικοτεχνικού & ηλεκτρονικού εξοπλισμού",
-                  style: "header4",
-                  fillColor: "#dcdcdc",
-                },
-              ],
-              [
-                {
-                  text: "",
-                  border: [false, false, false, false],
-                  fillColor: "white",
-                },
-                { text: isEmpty(data.field_39) },
-              ],
-              [
-                {
-                  text: "40",
-                  style: "header4",
-                  fillColor: "#dcdcdc",
-                },
-                {
-                  text: "Τρόπος στελέχωσης του νέου οργάνου",
-                  style: "header4",
-                  fillColor: "#dcdcdc",
-                },
-              ],
-              [
-                {
-                  text: "",
-                  border: [false, false, false, false],
-                  fillColor: "white",
-                },
-                { text: isEmpty(data.field_40) },
-              ],
+      },
+      {
+        table: {
+          widths: ["5%", "95%"],
+          body: [
+            [
+              {
+                text: "37",
+                style: "header4",
+                fillColor: "#dcdcdc",
+              },
+              {
+                text: "Επωνυμία ή ονομασία και νομική μορφή",
+                style: "header4",
+                fillColor: "#dcdcdc",
+              },
             ],
-          },
+            [
+              {
+                text: "",
+                border: [false, false, false, false],
+                fillColor: "white",
+              },
+              { text: isEmpty(data.field_37) },
+            ],
+            [
+              {
+                text: "38",
+                style: "header4",
+                fillColor: "#dcdcdc",
+              },
+              {
+                text: "Χώρος λειτουργίας του νέου οργάνου",
+                style: "header4",
+                fillColor: "#dcdcdc",
+              },
+            ],
+            [
+              {
+                text: "",
+                border: [false, false, false, false],
+                fillColor: "white",
+              },
+              { text: isEmpty(data.field_38) },
+            ],
+            [
+              {
+                text: "39",
+                style: "header4",
+                fillColor: "#dcdcdc",
+              },
+              {
+                text: "Διασφάλιση επαρκούς υλικοτεχνικού & ηλεκτρονικού εξοπλισμού",
+                style: "header4",
+                fillColor: "#dcdcdc",
+              },
+            ],
+            [
+              {
+                text: "",
+                border: [false, false, false, false],
+                fillColor: "white",
+              },
+              { text: isEmpty(data.field_39) },
+            ],
+            [
+              {
+                text: "40",
+                style: "header4",
+                fillColor: "#dcdcdc",
+              },
+              {
+                text: "Τρόπος στελέχωσης του νέου οργάνου",
+                style: "header4",
+                fillColor: "#dcdcdc",
+              },
+            ],
+            [
+              {
+                text: "",
+                border: [false, false, false, false],
+                fillColor: "white",
+              },
+              { text: isEmpty(data.field_40) },
+            ],
+          ],
         },
-        { text: "\n\n" },
-        createSignatories(ministers),
-      ],
+      },
+      { text: "\n\n" },
+      createSignatories(ministers),
     ],
   };
 
   let pdfDoc = printer.createPdfKitDocument(docDefinition);
   let pdf_name = data.pdf_name + ".pdf";
-  //pdf_name = pdf_name.replace(/\s+/g, '');
-  let export_path = "public/pdf_exports/";
-  let pdf_path = path.resolve(export_path, pdf_name);
-  pdf_path = path.resolve(export_path, pdf_name);
+  const export_path = "public/pdf_exports/";
+  const pdf_path = path.resolve(export_path, pdf_name);
   pdfDoc.pipe(fs.createWriteStream(pdf_path));
   pdfDoc.end();
-  await new Promise((resolve) => setTimeout(resolve, 1000)); //add some extra delay
+  await new Promise((resolve) => setTimeout(resolve, 1000)); //adding some extra delay since current pdfmake version does not support asyncs
+
+  pdfDoc = printer.createPdfKitDocument(docDefinition_b);
+  pdf_name = data.pdf_name + "_b.pdf";
+  const pdf_path_b = path.resolve(export_path, pdf_name);
+  pdfDoc.pipe(fs.createWriteStream(pdf_path_b));
+  pdfDoc.end();
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+
+  pdfDoc = printer.createPdfKitDocument(docDefinition_c);
+  pdf_name = data.pdf_name + "_c.pdf";
+  const pdf_path_c = path.resolve(export_path, pdf_name);
+  pdfDoc.pipe(fs.createWriteStream(pdf_path_c));
+  pdfDoc.end();
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+
+  pdfDoc = printer.createPdfKitDocument(docDefinition_d);
+  pdf_name = data.pdf_name + "_d.pdf";
+  const pdf_path_d = path.resolve(export_path, pdf_name);
+  pdfDoc.pipe(fs.createWriteStream(pdf_path_d));
+  pdfDoc.end();
+  await new Promise((resolve) => setTimeout(resolve, 1000));
 
   try {
-    let entry = await database.ekthesi.findOne({
+    const entry = await database.ekthesi.findOne({
       where: {
         id: req.params.entry_id,
       },
     });
-    let merger = new PDFMerger();
-    merger.add(pdf_path);
+    const merger = new PDFMerger();
+    await merger.add(pdf_path);
     if (entry.dataValues.field_21_upload) {
       for (i in entry.dataValues.field_21_upload) {
-        merger.add("public/uploads/" + entry.field_21_upload[i]);
+        await merger.add("public/uploads/" + entry.field_21_upload[i]);
       }
     }
+
+    await merger.add(pdf_path_b);
+    fs.unlink(pdf_path_b, async function (err) {
+      console.error(err);
+    });
     if (entry.dataValues.field_23_upload) {
       for (i in entry.dataValues.field_23_upload) {
-        merger.add("public/uploads/" + entry.field_23_upload[i]);
+        await merger.add("public/uploads/" + entry.field_23_upload[i]);
       }
     }
+
+    await merger.add(pdf_path_c);
+    fs.unlink(pdf_path_c, async function (err) {
+      console.error(err);
+    });
+
     if (entry.dataValues.field_36_upload) {
       for (i in entry.dataValues.field_36_upload) {
-        merger.add("public/uploads/" + entry.field_36_upload[i]);
+        await merger.add("public/uploads/" + entry.field_36_upload[i]);
       }
     }
+
+    await merger.add(pdf_path_d);
+    fs.unlink(pdf_path_d, async function (err) {
+      console.error(err);
+    });
+
     await merger.save(pdf_path); //save under given name
 
     if (fs.existsSync(pdf_path)) {
       res.sendStatus(200);
     } else {
+      req.session.errors.push({
+        msg: "Προέκυψε πρόβλημα κατά την παραγωγή του pdf. Παρακαλώ δοκιμάστε ξανά.",
+      }); //custom error message
       res.sendStatus(500);
     }
   } catch (err) {
     console.log(err);
+    req.session.errors.push({
+      msg: "Προέκυψε πρόβλημα κατά την παραγωγή του pdf. Παρακαλώ δοκιμάστε ξανά.",
+    }); //custom error message
+    res.sendStatus(500).send();
   }
 };
 
