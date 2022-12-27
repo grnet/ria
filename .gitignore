@@ -1,3 +1,4 @@
 node_modules/
 .env
-public/pdf_export
+public/pdf_exports
+public/uploads

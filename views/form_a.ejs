@@ -1137,9 +1137,9 @@
 
     <script>
 
-        const userRole = "<%= user.rolos %>";
+        const userRole = "<%= user.role %>";
         setUserRestrictions(userRole);
-        const isAdmin = '<%= user.dikaiwmata_diaxeirisis %>';
+        const isAdmin = '<%= isAdmin %>';
         isAdmin ? $(".user").hide() : $(".admin").hide();
 
         let answer;
@@ -1149,7 +1149,7 @@
             window.location.href = "/user_views/history"
         }
         let analysisStatus = "<%= data.status_ekthesis %>";
-        let role = "<%= rolos%>";
+        let role = "<%= role%>";
         let analysis = "<%= data.typos_analysis %>";
         let pdf_exists = "<%= pdf_exists %>";
         let ministries = JSON.parse(' <%- JSON.stringify(ministries) %> ');

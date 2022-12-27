@@ -77,9 +77,9 @@
                             </div>
                             <hr />
                             <div class="govgr-field">
-                                <label class="govgr-label" for="rolos">
+                                <label class="govgr-label" for="role">
                                     Ρόλος:
-                                    <select class="govgr-select govgr-!-width-two-thirds" id="rolos" name="rolos"
+                                    <select class="govgr-select govgr-!-width-two-thirds" id="role" name="role"
                                         required>
                                         <option value="" selected disabled>Eπιλογή</option>
                                         <option value="Συντάκτης επισπεύδοντος Υπουργείου">Συντάκτης επισπεύδοντος
@@ -113,17 +113,17 @@
                             </div> <br />
                             <div class="govgr-field">
                                 <fieldset class="govgr-fieldset govgr-!-width-two-thirds">
-                                    <legend for="dikaiwmata_diaxeirisis" role="heading" aria-level="1"
+                                    <legend for="isAdmin" role="heading" aria-level="1"
                                         class="govgr-fieldset__legend govgr-heading-l">
                                         Δικαιώματα Διαχείρισης
                                     </legend>
                                     <p class="govgr-hint">
                                         Ο χρήστης έχει δικαιώματα διαχείρισης: </p>
-                                    <div class="govgr-checkboxes" id="dikaiwmata_diaxeirisis_checkbox">
+                                    <div class="govgr-checkboxes" id="isAdmin_checkbox">
                                         <div class="govgr-checkboxes__item">
                                             <label class="govgr-label govgr-checkboxes__label">
                                                 <input class="govgr-checkboxes__input" type="checkbox"
-                                                    id="dikaiwmata_diaxeirisis" name="dikaiwmata_diaxeirisis" />
+                                                    id="isAdmin" name="isAdmin" />
                                             </label>
                                         </div>
                                     </div>
@@ -189,9 +189,9 @@
     </style>
     <script type="text/javascript" src="/js/nav_scripts.js"></script>
     <script>
-        const userRole = "<%= user.rolos %>";
+        const userRole = "<%= user.role %>";
         setUserRestrictions(userRole);
-        const isAdmin = '<%= user.dikaiwmata_diaxeirisis %>';
+        const isAdmin = '<%= user.isAdmin %>';
         isAdmin ? $(".user").hide() : $(".admin").hide();
 
         $("form").on("submit", function (ev) {

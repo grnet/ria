@@ -892,9 +892,9 @@
         ministersArray.push(ministers[j].lastName)
     }
     let analysis = "<%= analysis%>";
-    const role = "<%= rolos%>";
+    const role = "<%= role%>";
     setUserRestrictions(role);
-    const isAdmin = '<%= user.dikaiwmata_diaxeirisis %>';
+    const isAdmin = '<%= isAdmin %>';
     isAdmin ? $(".user").hide() : $(".admin").hide();
 
     $("form").on("submit", function (ev) {

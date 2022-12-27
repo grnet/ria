@@ -30,10 +30,10 @@
                 <%= users[i].username %>
               </td>
               <td class="govgr-table__cell">
-                <%= users[i].rolos %>
+                <%= users[i].role %>
               </td>
               <td class="govgr-table__cell">
-                <%= users[i].ypoyrgeio %>
+                <%= users[i].agency %>
               </td>
             </tr>
             <% } %>
@@ -48,9 +48,9 @@
       $("#back").on("click", function (ev) {
         window.location.href = "/user_views/dashboard";
       })
-      const userRole = "<%= user.rolos %>";
+      const userRole = "<%= user.role %>";
       setUserRestrictions(userRole);
-      const isAdmin = '<%= user.dikaiwmata_diaxeirisis %>';
+      const isAdmin = '<%= user.isAdmin %>';
       isAdmin ? $(".user").hide() : $(".admin").hide();
 
     </script>

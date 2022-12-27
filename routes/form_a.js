@@ -31,7 +31,7 @@ var upload = multer({ storage: storage }).fields([
 
 routes.get("/:entry_id", authUser, async (req, res, next) => {
   try {
-    let entry = await database.ekthesi.findOne({
+    let entry = await database.analysis.findOne({
       where: {
         id: req.params.entry_id,
       }, //, include: [{ model: database.ekthesi_tables }] //join tables
@@ -78,7 +78,7 @@ routes.get("/:entry_id", authUser, async (req, res, next) => {
           res.render("form_a", {
             data: entry.dataValues,
             tables: ekthesi_tables.dataValues,
-            rolos: req.session.rolos,
+            role: req.session.role,
             pdf_exists: pdf_exists,
             tooltips: results,
             ministries: ministriesArray,
@@ -132,7 +132,7 @@ routes.put(
   // body('field_40').if(body('field_33').notEmpty()).notEmpty().withMessage('Το πεδίο 40 είναι υποχρεωτικό.'),
   // ],
   async function (req, res, next) {
-    let ekthesi_id = req.params.entry_id;
+    let analysis_id = req.params.entry_id;
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       // if array exists
@@ -140,7 +140,7 @@ routes.put(
       //return res.status(422).json(errors.array());
     } else {
       try {
-        let entry = await database.ekthesi.findOne({
+        let entry = await database.analysis.findOne({
           where: {
             id: req.params.entry_id,
           },
@@ -354,13 +354,13 @@ routes.put(
           "process"
         );
 
-        let ekthesi = await database.ekthesi.update(req.body, {
+        let analysis = await database.analysis.update(req.body, {
           where: {
-            id: ekthesi_id,
+            id: analysis_id,
           },
         });
 
-        await database.ekthesi.update(
+        await database.analysis.update(
           {
             field_15_rythmiseis: req.body.f15,
             field_16_kratikos_proypologismos: req.body.f16_1,
@@ -400,7 +400,7 @@ routes.put(
           },
           {
             where: {
-              id: ekthesi_id,
+              id: analysis_id,
             },
           }
         );
@@ -409,7 +409,7 @@ routes.put(
           { static_tables: field_9, checkbox_tables: checkbox_tables },
           {
             where: {
-              ekthesi_tablesId: ekthesi_id,
+              ekthesi_tablesId: analysis_id,
             },
           }
         );
@@ -420,11 +420,11 @@ routes.put(
           data: req.body,
           timestamp: req.body.last_updated,
           action: req.method,
-          auditId: ekthesi_id,
+          auditId: analysis_id,
         });
 
-        if (!ekthesi) {
-          res.status(404).send("Error in updating ekthesi.");
+        if (!analysis) {
+          res.status(404).send("Error in updating analysis.");
         } else {
           res.send({ redirect: "../user_views/history" });
         }
@@ -436,7 +436,7 @@ routes.put(
 );
 
 routes.put("/:entry_id/delete_file", authUser, async (req, res, next) => {
-  let entry = await database.ekthesi.findOne({
+  let entry = await database.analysis.findOne({
     where: {
       id: req.params.entry_id,
     },
@@ -448,21 +448,21 @@ routes.put("/:entry_id/delete_file", authUser, async (req, res, next) => {
     if (entry.field_21_upload.includes(req.body.deleted_file)) {
       let index21 = entry.field_21_upload.indexOf(req.body.deleted_file); //find index of file to be deleted
       entry.field_21_upload.splice(index21, 1); //delete position of index, count 1
-      await database.ekthesi.update(
+      await database.analysis.update(
         { field_21_upload: entry.field_21_upload },
         { where: { id: entry.id } }
       );
     } else if (entry.field_23_upload.includes(req.body.deleted_file)) {
       let index23 = entry.field_23_upload.indexOf(req.body.deleted_file); //find index of file to be deleted
       entry.field_23_upload.splice(index23, 1); //delete position of index, count 1
-      await database.ekthesi.update(
+      await database.analysis.update(
         { field_23_upload: entry.field_23_upload },
         { where: { id: entry.id } }
       );
     } else if (entry.field_36_upload.includes(req.body.deleted_file)) {
       let index36 = entry.field_36_upload.indexOf(req.body.deleted_file); //find index of file to be deleted
       entry.field_36_upload.splice(index36, 1); //delete position of index, count 1
-      await database.ekthesi.update(
+      await database.analysis.update(
         { field_36_upload: entry.field_36_upload },
         { where: { id: entry.id } }
       );
@@ -490,7 +490,7 @@ routes.delete(
   "/:entry_id/delete_analysis",
   authUser,
   async function (req, res, next) {
-    let entry = await database.ekthesi.findOne({
+    let entry = await database.analysis.findOne({
       where: { id: req.params.entry_id },
     });
     entry ? entry.destroy().then(res.sendStatus(200)) : res.sendStatus(404);

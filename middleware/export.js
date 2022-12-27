@@ -2324,7 +2324,7 @@ exports.exportPDF = async function (req, res, next) {
   await new Promise((resolve) => setTimeout(resolve, 1000));
 
   try {
-    const entry = await database.ekthesi.findOne({
+    const entry = await database.analysis.findOne({
       where: {
         id: req.params.entry_id,
       },

@@ -46,9 +46,9 @@ routes.put('/:username', authUser, async function (req, res, next) {
               fname: req.body.fname,
               lname: req.body.lname,
               username: req.body.username,
-              rolos: req.body.rolos,
-              dikaiwmata_diaxeirisis: req.body.dikaiwmata_diaxeirisis,
-              ypoyrgeio: req.body.ypoyrgeio,
+              role: req.body.role,
+              isAdmin: req.body.isAdmin,
+              agency: req.body.ypoyrgeio,
             },
             {
               where: {
@@ -70,9 +70,9 @@ routes.put('/:username', authUser, async function (req, res, next) {
                       lname: req.body.lname,
                       username: req.body.username,
                       password: hash,
-                      rolos: req.body.rolos,
-                      dikaiwmata_diaxeirisis: req.body.dikaiwmata_diaxeirisis,
-                      ypoyrgeio: req.body.ypoyrgeio,
+                      role: req.body.role,
+                      isAdmin: req.body.isAdmin,
+                      agency: req.body.ypoyrgeio,
                     },
                     {
                       where: {

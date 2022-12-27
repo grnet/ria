@@ -13,7 +13,6 @@ routes.get('/:username', authUser, authRole, async (req, res, next) => {
         }
     })
     if (entry && entry.dataValues) {
-        const user = req.session.user;
         let latest_entry = await database.ministries.max('id').catch((error) => { console.log(error) }); // get entry with highest id 
         let res_data = await database.ministries.findOne({ where: { id: latest_entry } }).catch((error) => { console.log(error) });
         let ministries = [];
@@ -22,7 +21,7 @@ routes.get('/:username', authUser, authRole, async (req, res, next) => {
             if (value && String(value).trim()) { ministries.push({ ministry: value }) }
         }
 
-        res.render("user_views/edit_user", { data: entry.dataValues, ministries: ministries, user:user });
+        res.render("user_views/edit_user", { user: entry.dataValues, ministries: ministries});
     } else {
         res.status(404).send("Not found");
     }
@@ -55,12 +54,23 @@ routes.put('/:username', authUser, authRole, async (req, res, next) => {
     });
     if (user && user.dataValues) {
         if (!password) { //if password not provided update everything but the password
-            await database.user.update({ fname: req.body.fname, lname: req.body.lname, username: req.body.username, rolos: req.body.rolos, dikaiwmata_diaxeirisis: req.body.dikaiwmata_diaxeirisis, ypoyrgeio: req.body.ypoyrgeio },
+            await database.user
+              .update(
                 {
-                    where: {
-                        username: req.params.username
-                    }
-                }).then(res.send({ redirect: "../search_user" }));
+                  fname: req.body.fname,
+                  lname: req.body.lname,
+                  username: req.body.username,
+                  role: req.body.role,
+                  isAdmin: req.body.isAdmin,
+                  agency: req.body.ypoyrgeio,
+                },
+                {
+                  where: {
+                    username: req.params.username,
+                  },
+                }
+              )
+              .then(res.send({ redirect: "../search_user" }));
         }
         else {
             bcrypt.compare(password, user.password, function (err, result) {//compare user passwords
@@ -68,12 +78,22 @@ routes.put('/:username', authUser, authRole, async (req, res, next) => {
                     if (newPassword === repeatPassword) {
                         bcrypt.hash(newPassword, 10, async function (err, hash) {
                             if (hash) {
-                                await database.user.update({ fname: req.body.fname, lname: req.body.lname, username: req.body.username, password: hash, rolos: req.body.rolos, dikaiwmata_diaxeirisis: req.body.dikaiwmata_diaxeirisis, ypoyrgeio: req.body.ypoyrgeio },
-                                    {
-                                        where: {
-                                            username: req.params.username
-                                        }
-                                    });
+                                await database.user.update(
+                                  {
+                                    fname: req.body.fname,
+                                    lname: req.body.lname,
+                                    username: req.body.username,
+                                    password: hash,
+                                    role: req.body.role,
+                                    isAdmin: req.body.isAdmin,
+                                    agency: req.body.ypoyrgeio,
+                                  },
+                                  {
+                                    where: {
+                                      username: req.params.username,
+                                    },
+                                  }
+                                );
                                 res.send({ redirect: "../search_user" });
 
                             }

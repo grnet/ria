@@ -38,10 +38,10 @@
                         <%= user.lname%>
                     </td>
                     <td class="govgr-table__cell">
-                      <%= user.rolos%>
+                      <%= user.role%>
                     </td>
                     <td class="govgr-table__cell">
-                      <%= user.ypoyrgeio %>
+                      <%= user.agency %>
                     </td>
                     <td class="govgr-table__cell">
                       <%= user.ekthesis[i].typos_analysis %>
@@ -78,10 +78,10 @@
                           <%= entries[i].user.lname%>
                       </td>
                       <td class="govgr-table__cell">
-                        <%= entries[i].user.rolos%>
+                        <%= entries[i].user.role%>
                       </td>
                       <td class="govgr-table__cell">
-                        <%= entries[i].user.ypoyrgeio %>
+                        <%= entries[i].user.agency %>
                       </td>
                       <td class="govgr-table__cell">
                         <%= entries[i].typos_analysis %>
@@ -121,10 +121,10 @@
         window.location.href = '/form_a/' + id;
       }
 
-      const userRole = "<%= user.rolos %>";
+      const userRole = "<%= user.role %>";
       setUserRestrictions(userRole);
 
-      let isAdmin = '<%= user.dikaiwmata_diaxeirisis %>';
+      let isAdmin = '<%= isAdmin %>';
 
       isAdmin ? $(".user").hide() : $(".admin").hide();//display admin info if user has administration rights
 

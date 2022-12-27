@@ -49,7 +49,7 @@ routes.get("/:analysis", authUser, async (req, res, next) => {
         results = JSON.stringify(results);
         res.render("create", {
           analysis: analysis,
-          rolos: req.session.rolos,
+          role: req.session.role,
           errors: valid_errors,
           tooltips: results,
           ministers: ministers,
@@ -111,8 +111,8 @@ routes.post(
       "_cbxlabel",
       "_cbxsecondHeader"
     ); //data for fields 18-20 as json
-    //add row to ekthesi model, map values from req.body
-    let res_data = await database.ekthesi.create(req.body);
+    //add row to analysis model, map values from req.body
+    let res_data = await database.analysis.create(req.body);
     await database.ekthesi_tables.create({
       static_tables: field_9,
       checkbox_tables: checkbox_tables,
@@ -219,7 +219,7 @@ routes.post(
     let emd_processes = await tables.createDynamicTable(req.body, keys, "process");
 
     var author = req.session.username;
-    await database.ekthesi.update(
+    await database.analysis.update(
       {
         author: author,
         field_14_arthro: field_14_arthro,

@@ -84,9 +84,9 @@
                             </div>
                             <hr />
                             <div class="govgr-field">
-                                <label class="govgr-label" for="rolos">
+                                <label class="govgr-label" for="role">
                                     Ρόλος:
-                                    <select class="govgr-select govgr-!-width-two-thirds" id="rolos" name="rolos">
+                                    <select class="govgr-select govgr-!-width-two-thirds" id="role" name="role">
                                         <option selected disabled>Eπιλογή</option>
                                         <option value="Συντάκτης επισπεύδοντος Υπουργείου">Συντάκτης επισπεύδοντος
                                             Υπουργείου
@@ -115,34 +115,32 @@
                                         <option value="Γενικός Γραμματέας Νομικών και Κοινοβουλευτικών Θεμάτων">Γενικός
                                             Γραμματέας
                                             Νομικών και Κοινοβουλευτικών Θεμάτων
-                                        <option>
+                                        </option>
                                         <option value="Βουλή">Βουλή</option>
                                     </select>
                                 </label>
                             </div> <br />
                             <div class="govgr-field isAdmin">
                                 <fieldset class="govgr-fieldset">
-                                    <legend for="dikaiwmata_diaxeirisis" role="heading" aria-level="1"
+                                    <legend for="isAdmin" role="heading" aria-level="1"
                                         class="govgr-fieldset__legend govgr-heading-l">
                                         Δικαιώματα Διαχείρισης
                                     </legend>
                                     <p class="govgr-hint">
                                         Ο χρήστης έχει δικαιώματα διαχείρισης: </p>
-                                    <div class="govgr-checkboxes" id="dikaiwmata_diaxeirisis_checkbox">
-                                        <% if(user.dikaiwmata_diaxeirisis){ %>
+                                    <div class="govgr-checkboxes" id="isAdmin_checkbox">
+                                        <% if(user.isAdmin){ %>
                                             <div class="govgr-checkboxes__item">
                                                 <label class="govgr-label govgr-checkboxes__label">
-                                                    <input class="govgr-checkboxes__input" type="checkbox"
-                                                        id="dikaiwmata_diaxeirisis" name="dikaiwmata_diaxeirisis"
-                                                        value="dikaiwmata_diaxeirisis" checked />
+                                                    <input class="govgr-checkboxes__input" type="checkbox" id="isAdmin"
+                                                        name="isAdmin" value="isAdmin" checked />
                                                 </label>
                                             </div>
                                             <% }else{ %>
                                                 <div class="govgr-checkboxes__item">
                                                     <label class="govgr-label govgr-checkboxes__label">
                                                         <input class="govgr-checkboxes__input" type="checkbox"
-                                                            id="dikaiwmata_diaxeirisis" name="dikaiwmata_diaxeirisis"
-                                                            value="dikaiwmata_diaxeirisis" />
+                                                            id="isAdmin" name="isAdmin" value="isAdmin" />
                                                     </label>
                                                 </div>
                                                 <% } %>
@@ -161,9 +159,9 @@
     <%- include('../partials/footer.ejs') %>
         <script type="text/javascript" src="/js/nav_scripts.js"></script>
         <script>
-            const userRole = "<%= user.rolos %>";
+            const userRole = "<%= user.role %>";
             setUserRestrictions(userRole);
-            let isAdmin = '<%= user.dikaiwmata_diaxeirisis %>';
+            let isAdmin = '<%= user.isAdmin %>';
             isAdmin ? $(".user").hide() : $(".admin").hide();
 
             let username = $("#username").val();
@@ -220,23 +218,22 @@
             for (i in ministries) {
                 $("#ypoyrgeio").append(`<option value="${ministries[i].ministry}">${ministries[i].ministry}</option>`);
             }
-            let ministryValue = "<%= user.ypoyrgeio %>";
-            let roleValue = "<%= user.rolos %>";
+            let ministryValue = "<%= user.agency %>";
+            let roleValue = "<%= user.role %>";
             $("#ypoyrgeio").val(ministryValue ? ministryValue : $("#ypoyrgeio option:first").val());//if user is assigned a ministry, set dropdown accordingly, else set to first option
-            $("#rolos").val(roleValue ? roleValue : $("#ypoyrgeio option:first").val());//if user is assigned a role, set dropdown accordingly, else set to first option
+            $("#role").val(roleValue ? roleValue : $("#ypoyrgeio option:first").val());//if user is assigned a role, set dropdown accordingly, else set to first option
 
 
 
             /////////////////////////////////////////////////////////////////////////////////////  
 
             $(document).ready(function () {
-                console.log("<%= user.dikaiwmata_diaxeirisis %>")
-                if ("<%= user.dikaiwmata_diaxeirisis %>") {
-                    $("#dikaiwmata_diaxeirisis_checkbox").show();
-                    $("#dikaiwmata_diaxeirisis").prop('checked', true);
+                if ("<%= user.isAdmin %>") {
+                    $("#isAdmin_checkbox").show();
+                    $("#isAdmin").prop('checked', true);
                 } else {
                     $(".isAdmin").hide();
-                    $("#dikaiwmata_diaxeirisis_checkbox").hide();
+                    $("#isAdmin_checkbox").hide();
                 }
 
                 $("#password_repeat, #new_password").keyup(function () {

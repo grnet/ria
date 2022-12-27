@@ -4,9 +4,9 @@ CREATE TABLE IF NOT EXISTS `user`(
     lname VARCHAR(100),
     username VARCHAR(100),
     password VARCHAR(100),
-    rolos VARCHAR(200),
-    dikaiwmata_diaxeirisis VARCHAR(100),
-    ypoyrgeio VARCHAR(100),
+    role VARCHAR(200),
+    isAdmin VARCHAR(100),
+    agency VARCHAR(100),
     createdAt VARCHAR(100),
     updatedAt VARCHAR(100),
     PRIMARY KEY (id)

@@ -1,6 +1,5 @@
-const { Sequelize, Model, DataTypes } = require("sequelize");
+const { Sequelize } = require("sequelize");
 const { applyAssoc } = require("../models/associations.js");
-const fs = require("fs");
 
 const sequelize = new Sequelize({
   database: process.env.DATABASE_NAME,
@@ -17,7 +16,7 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 //models
-db.ekthesi = require("../models/ekthesi.model.js")(sequelize, Sequelize);
+db.analysis = require("../models/analysis.model.js")(sequelize, Sequelize);
 db.ekthesi_tables = require("../models/ekthesi_tables.model.js")(
   sequelize,
   Sequelize

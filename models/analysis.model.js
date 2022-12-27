@@ -1,8 +1,8 @@
 'use strict';
 
 module.exports = (sequelize, DataTypes) => {
-    var ekthesi = sequelize.define(
-      "ekthesi",
+    var analysis = sequelize.define(
+      "analysis",
       {
         id: {
           primaryKey: true,
@@ -187,5 +187,5 @@ module.exports = (sequelize, DataTypes) => {
       }
     );
 
-    return ekthesi;
+    return analysis;
   };

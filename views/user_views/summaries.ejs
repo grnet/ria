@@ -85,10 +85,10 @@
         window.location.href = "/user_views/dashboard";
       })
 
-      const userRole = "<%= user.rolos %>";
+      const userRole = "<%= user.role %>";
       setUserRestrictions(userRole);
 
-      let isAdmin = '<%= user.dikaiwmata_diaxeirisis %>';
+      let isAdmin = '<%= isAdmin %>';
 
       isAdmin ? $(".user").hide() : $(".admin").hide();//display admin info if user has administration rights
 

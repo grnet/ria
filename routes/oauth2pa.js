@@ -226,8 +226,8 @@ const gsispa = async (req, res) => {
             req.session.username = user.username;//store data to session variables
             req.session.fname = user.fname;
             req.session.lname = user.lname;
-            req.session.dikaiwmata_diaxeirisis = user.dikaiwmata_diaxeirisis;
-            req.session.rolos = user.rolos;
+            req.session.isAdmin = isAdmin;
+            req.session.role = user.role;
             if (debug) console.log("App Session", req.session)
             res.redirect(302, "/user_views/dashboard?ref=gsis");
         } else {

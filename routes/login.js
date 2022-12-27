@@ -37,8 +37,8 @@ routes.post('/', [
                         req.session.username = user.username;//store data to session variables
                         req.session.fname = user.fname;
                         req.session.lname = user.lname;
-                        req.session.dikaiwmata_diaxeirisis = user.dikaiwmata_diaxeirisis;
-                        req.session.rolos = user.rolos;
+                        req.session.isAdmin = user.isAdmin;
+                        req.session.role = user.role;
                         res.send({ redirect: "user_views/dashboard" });                       
                     } else {
                         req.session.errors.push({ msg: 'Δε βρέθηκε χρήστης με αυτό το όνομα ή κωδικό.' })//custom error message
