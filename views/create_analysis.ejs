@@ -1,3 +1,4 @@
+
 <div class="">
     <!--<input type="button" name="back" class="back" value="Πίσω"/> <br/>--> <a href="#" class="govgr-back-link"
         id="back" name="back"> <svg class="govgr-caret--left" viewBox="0 0 24 24" aria-hidden="true">
@@ -891,10 +892,10 @@
     for (let j in ministers) {
         ministersArray.push(ministers[j].lastName)
     }
-    let analysis = "<%= analysis%>";
+    let analysis = "<%= analysis %>";
     const role = "<%= role%>";
     setUserRestrictions(role);
-    const isAdmin = '<%= isAdmin %>';
+    const isAdmin = '<%= user.isAdmin %>';
     isAdmin ? $(".user").hide() : $(".admin").hide();
 
     $("form").on("submit", function (ev) {

@@ -20,49 +20,49 @@
                 <tr class="govgr-table__row">
                   <td class="govgr-table__cell">Προσχέδιο νόμου</td>
                   <td class="govgr-table__cell">
-                    <%= prosxedio%>
+                    <%= draftLaws %>
                   </td>
                 </tr>
                 <tr class="govgr-table__row">
                   <td class="govgr-table__cell">Σχέδιο νόμου</td>
                   <td class="govgr-table__cell">
-                    <%= sxedio%>
+                    <%= plans %>
                   </td>
                 </tr>
                 <tr class="govgr-table__row">
                   <td class="govgr-table__cell">Κατευθυντήριες γραμμές</td>
                   <td class="govgr-table__cell">
-                    <%= kateythintiries%>
+                    <%= guidelines %>
                   </td>
                 </tr>
                 <tr class="govgr-table__row">
                   <td class="govgr-table__cell">Επείγοντα και κατεπείγοντα νομοσχέδια</td>
                   <td class="govgr-table__cell">
-                    <%= epeigon%>
+                    <%= urgent %>
                   </td>
                 </tr>
                 <tr class="govgr-table__row">
                   <td class="govgr-table__cell">Πρόταση νόμου</td>
                   <td class="govgr-table__cell">
-                    <%= protasi%>
+                    <%= proposals %>
                   </td>
                 </tr>
                 <tr class="govgr-table__row">
                   <td class="govgr-table__cell">Κύρωση διεθνών συμβάσεων</td>
                   <td class="govgr-table__cell">
-                    <%= symvaseis%>
+                    <%= conventions %>
                   </td>
                 </tr>
                 <tr class="govgr-table__row">
                   <td class="govgr-table__cell">Τροπολογίες Υπουργών</td>
                   <td class="govgr-table__cell">
-                    <%= tropologies_upourgwn%>
+                    <%= ministerAmendments %>
                   </td>
                 </tr>
                 <tr class="govgr-table__row">
                   <td class="govgr-table__cell">Τροπολογίες Βουλευτών</td>
                   <td class="govgr-table__cell">
-                    <%= tropologies_vouleftwn%>
+                    <%= parliamentariansAmendments%>
                   </td>
                 </tr>
               </tbody>
@@ -88,7 +88,7 @@
       const userRole = "<%= user.role %>";
       setUserRestrictions(userRole);
 
-      let isAdmin = '<%= isAdmin %>';
+      let isAdmin = '<%= user.isAdmin %>';
 
       isAdmin ? $(".user").hide() : $(".admin").hide();//display admin info if user has administration rights
 

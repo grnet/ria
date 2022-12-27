@@ -1,19 +1,7 @@
 "use strict";
 
 function applyAssoc(sequelize) {
-  const { analysis, ekthesi_tables, user, audit } = sequelize.models;
-
-  //establishing one to one association between ekthesi and ekthesi_tables models
-  analysis.hasOne(ekthesi_tables, {
-    sourceKey: "id",
-    foreignKey: "ekthesi_tablesId",
-    foreignKeyConstraint: true,
-  });
-  ekthesi_tables.belongsTo(analysis, {
-    foreignKey: "ekthesi_tablesId",
-    targetKey: "id",
-    foreignKeyConstraint: true,
-  });
+  const { analysis, user, audit } = sequelize.models;
 
   //establishing one to many association between user and ekthesi models
   user.hasMany(analysis, {

@@ -16,22 +16,24 @@
             <br />
           </div>
           <div id="user_div" style="display: none;">
+            <h4 class="govgr-heading-m">Οι αναλύσεις μου</h4>
             <table id="user_data" class="govgr-table--zebra govgr-table--dense govgr-table--dark govgr-table hover">
               <thead class="govgr-table__head">
                 <tr class="govgr-table__row">
                   <th class="govgr-table__header" scope="col">Τίτλος</th>
-                  <th class="govgr-table__header" scope="col">Ονοματεπώνυμο συντάκτη</th>
-                  <th class="govgr-table__header" scope="col">Ρόλος συντάκτη</th>
-                  <th class="govgr-table__header" scope="col">Φορέας συντάκτη</th>
+                  <th class="govgr-table__header" scope="col">Αρχικοποίηση από</th>
+                  <th class="govgr-table__header" scope="col">Τελευταία τροποποίηση από</th>
+                  <th class="govgr-table__header" scope="col">Ρόλος τελευταίου συντάκτη</th>
+                  <th class="govgr-table__header" scope="col">Φορέας τελευταίου συντάκτη</th>
                   <th class="govgr-table__header" scope="col">Τύπος ανάλυσης</th>
-                  <th class="govgr-table__header" scope="col">Κατάσταση αίτησης</th>
+                  <th class="govgr-table__header" scope="col">Κατάσταση ανάλυσης</th>
                 </tr>
               </thead>
               <tbody class="govgr-table__body">
-                <% for(var i=0; i<user.ekthesis.length; i++) {%>
-                  <tr class="govgr-table__row" onclick="setReferer('<%=  user.ekthesis[i].id %>')">
+                <% for(var i=0; i<user.analyses.length; i++) {%>
+                  <tr class="govgr-table__row" onclick="setReferer('<%=  user.analyses[i].id %>')">
                     <td class="govgr-table__cell hover:underline">
-                      <%= user.ekthesis[i].title %>
+                      <%= user.analyses[i].title %>
                     </td>
                     <td class="govgr-table__cell">
                       <%= user.fname%>
@@ -44,18 +46,22 @@
                       <%= user.agency %>
                     </td>
                     <td class="govgr-table__cell">
-                      <%= user.ekthesis[i].typos_analysis %>
+                      <%= user.analyses[i].author %>
                     </td>
                     <td class="govgr-table__cell">
-                      <%= user.ekthesis[i].status_ekthesis %>
+                      <%= user.analyses[i].type %>
+                    </td>
+                    <td class="govgr-table__cell">
+                      <%= user.analyses[i].status %>
                     </td>
                   </tr>
                   <% } %>
               </tbody>
             </table>
           </div>
-          <div id="entries_div" style="display: none;">
-            <table id="entries_data" class="govgr-table--zebra govgr-table--dense govgr-table--dark govgr-table hover">
+          <div id="agency_div" style="display: none;">
+            <h4 class="govgr-heading-m">Αναλύσεις του Φορέα μου</h4>
+            <table id="agency_data" class="govgr-table--zebra govgr-table--dense govgr-table--dark govgr-table hover">
               <thead class="govgr-table__head">
                 <tr class="govgr-table__row">
                   <th class="govgr-table__header" scope="col">Τίτλος</th>
@@ -63,7 +69,7 @@
                   <th class="govgr-table__header" scope="col">Ρόλος συντάκτη</th>
                   <th class="govgr-table__header" scope="col">Φορέας συντάκτη</th>
                   <th class="govgr-table__header" scope="col">Τύπος ανάλυσης</th>
-                  <th class="govgr-table__header" scope="col">Κατάσταση αίτησης</th>
+                  <th class="govgr-table__header" scope="col">Κατάσταση ανάλυσης</th>
                 </tr>
               </thead>
               <tbody class="govgr-table__body">
@@ -84,10 +90,10 @@
                         <%= entries[i].user.agency %>
                       </td>
                       <td class="govgr-table__cell">
-                        <%= entries[i].typos_analysis %>
+                        <%= entries[i].type %>
                       </td>
                       <td class="govgr-table__cell">
-                        <%= entries[i].status_ekthesis %>
+                        <%= entries[i].status %>
                       </td>
                     </tr>
                     <% } %>
@@ -110,11 +116,8 @@
     </style>
     <script type="text/javascript" src="/js/nav_scripts.js"></script>
     <script>
-      $(document).ready(function () {
-        $("#user_data").dataTable();
-        $('#entries_data').dataTable();
-
-      });
+      $("#user_data").dataTable();
+      $('#agency_data').dataTable();
 
       function setReferer(id) {
         sessionStorage.setItem("referer", id);
@@ -124,38 +127,27 @@
       const userRole = "<%= user.role %>";
       setUserRestrictions(userRole);
 
-      let isAdmin = '<%= isAdmin %>';
+      const isAdmin = '<%= user.isAdmin %>';
+      isAdmin ? $(".user").hide() : $(".admin").hide();
 
-      isAdmin ? $(".user").hide() : $(".admin").hide();//display admin info if user has administration rights
+      const userEntries = '<%= entries %>';
+      const agencyEntries = '<%= user.analyses %>';
 
-      //set width of column x
-      /*$('#entries_data').dataTable({
-        "columnDefs": [
-          { "width": "20%", "targets": [5,6] }
-        ]
-      });*/
-
-      function hideDataTable(table, table_wrapper) {
-        $(table).hide();
-        $(table_wrapper).hide();
-      }
-
-      function showDataTable(table, table_wrapper) {
-        $(table).show();
-        $(table_wrapper).show();
+      if (userEntries.length > 0 && agencyEntries.length === 0) {
+        $("#agency_div").show();
+      } else if ((userEntries.length === 0 && agencyEntries.length > 0)) {
+        $("#user_div").show();
+      } else {
+        $("#user_div").show();
       }
 
       $("#user_button").on("click", function (ev) {
-        $("#entries_div").hide();
+        $("#agency_div").hide();
         $("#user_div").show();
-        // hideDataTable("#entries_data", "#entries_data_wrapper");
-        // showDataTable("#user_data", "#user_data_wrapper");
       });
       $("#entries_button").on("click", function (ev) {
-        $("#entries_div").show();
+        $("#agency_div").show();
         $("#user_div").hide();
-        // hideDataTable("#user_data", "#user_data_wrapper");
-        // showDataTable("#entries_data", "#entries_data_wrapper");
       });
 
       $("#back").on("click", function (ev) {

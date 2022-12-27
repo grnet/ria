@@ -1,12 +1,12 @@
 const routes = require("express").Router();
 let database = require("../services/database");
-const csv = require("csv-parser");
-const fs = require("fs");
 const { body, check, validationResult } = require("express-validator");
 var multer = require("multer");
 const { authUser } = require("../middleware/auth");
 const tables = require("../lib/tables");
 const ministries = require("../lib/ministries");
+const tooltipsCsv = require("../lib/tooltips");
+
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "./public/uploads/");
@@ -26,37 +26,36 @@ var upload = multer({ storage: storage }).fields([
 routes.get("/:analysis", authUser, async (req, res, next) => {
   let analysis = req.params.analysis.substring(1); //removing first character
   try {
-    var results = [];
     const valid_errors = req.session.errors;
     req.session.errors = null;
     const user = req.session.user;
+
     let ministers, ministriesArray;
     let latest_entry = await database.ministries.max("id").catch((error) => {
       console.log(error);
+      res.status(404).send("Could no locate latest ministries.");
     }); // get entry with highest id
     let res_data = await database.ministries
       .findOne({ where: { id: latest_entry } })
       .catch((error) => {
         console.log(error);
+        res.status(404).send("Could no locate ministries.");
       });
+
     res_data = res_data.dataValues.ministries;
     ministers = ministries.getMinisters(res_data);
     ministriesArray = ministries.getMinistries(res_data);
-    fs.createReadStream("./public/csvs/ASR_Tooltips.csv")
-      .pipe(csv())
-      .on("data", (data) => results.push(data))
-      .on("end", () => {
-        results = JSON.stringify(results);
-        res.render("create", {
-          analysis: analysis,
-          role: req.session.role,
-          errors: valid_errors,
-          tooltips: results,
-          ministers: ministers,
-          ministries: ministries,
-          user:user
-        });
-      });
+    const tooltips = JSON.stringify(await tooltipsCsv.getTooltips());
+
+    res.render("create", {
+      analysis: analysis,
+      role: req.session.role,
+      errors: valid_errors,
+      tooltips: tooltips,
+      ministers: ministers,
+      ministries: ministries,
+      user: user,
+    });
   } catch (err) {
     console.log("error: " + err);
   }
@@ -120,12 +119,12 @@ routes.post(
     });
 
     let keys = Object.keys(req.body);
-//  let field_14_arthro = await tables.createDynamicTable(
-//    req.body,
-//    keys,
-//    "field_14_arthro",
-//    entry.field_14_arthro
-//  );
+    //  let field_14_arthro = await tables.createDynamicTable(
+    //    req.body,
+    //    keys,
+    //    "field_14_arthro",
+    //    entry.field_14_arthro
+    //  );
     let field_14_arthro = await tables.createDynamicTable(
       req.body,
       keys,
@@ -216,7 +215,11 @@ routes.post(
       keys,
       "field_32_xronodiagramma"
     );
-    let emd_processes = await tables.createDynamicTable(req.body, keys, "process");
+    let emd_processes = await tables.createDynamicTable(
+      req.body,
+      keys,
+      "process"
+    );
 
     var author = req.session.username;
     await database.analysis.update(
@@ -235,7 +238,7 @@ routes.post(
         field_31_sxetiki_diataksi: field_31_sxetiki_diataksi,
         field_31_synarmodia_ypoyrgeia: field_31_synarmodia_ypoyrgeia,
         field_31_antikeimeno_synarmodiotitas:
-        field_31_antikeimeno_synarmodiotitas,
+          field_31_antikeimeno_synarmodiotitas,
         field_32_eksousiodotiki_diataksi: field_32_eksousiodotiki_diataksi,
         field_32_eidos_praksis: field_32_eidos_praksis,
         field_32_armodio_ypoyrgeio: field_32_armodio_ypoyrgeio,

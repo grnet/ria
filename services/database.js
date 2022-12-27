@@ -17,10 +17,6 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 //models
 db.analysis = require("../models/analysis.model.js")(sequelize, Sequelize);
-db.ekthesi_tables = require("../models/ekthesi_tables.model.js")(
-  sequelize,
-  Sequelize
-);
 db.user = require("../models/user.model.js")(sequelize, Sequelize);
 db.audit = require("../models/audit.model.js")(sequelize, Sequelize);
 db.ministries = require("../models/ministries.model.js")(sequelize, Sequelize);
