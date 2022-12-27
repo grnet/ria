@@ -6,7 +6,7 @@ $("#ministries").on("click", function (ev) {
       console.log(error);
     },
     success: function (data) {
-      window.location.href = "./dashboard";
+      window.location.href = "/user_views/dashboard";
     },
     type: "POST",
   });

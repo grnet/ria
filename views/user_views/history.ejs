@@ -29,11 +29,12 @@
                   <th class="govgr-table__header" scope="col">Κατάσταση ανάλυσης</th>
                 </tr>
               </thead>
+              <!-- TODO: fix table headers and rows to display correct information -->
               <tbody class="govgr-table__body">
                 <% for(var i=0; i<user.analyses.length; i++) {%>
                   <tr class="govgr-table__row" onclick="setReferer('<%=  user.analyses[i].id %>')">
                     <td class="govgr-table__cell hover:underline">
-                      <%= user.analyses[i].title %>
+                      <%= user.analyses[i].data.title %>
                     </td>
                     <td class="govgr-table__cell">
                       <%= user.fname%>
@@ -77,7 +78,7 @@
                   <% for(var i=0; i<entries.length; i++) {%>
                     <tr class="govgr-table__row" onclick="setReferer('<%= entries[i].id %>')">
                       <td class="govgr-table__cell hover:underline">
-                        <%= entries[i].title %>
+                        <%= entries[i].data.title %>
                       </td>
                       <td class="govgr-table__cell">
                         <%= entries[i].user.fname%>

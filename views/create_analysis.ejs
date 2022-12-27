@@ -21,7 +21,7 @@
         <div class="govgr-main-wrapper">
             <div class="govgr-grid-column-two-thirds">
                 <form enctype="multipart/form-data">
-                    <input type="hidden" id="status_ekthesis" name="status_ekthesis" value="Συντάσσεται" />
+                    <input type="hidden" id="status" name="status" value="Συντάσσεται" />
                     <fieldset id="arxiki" name="arxiki">
                         <h2 class="govgr-heading-m">Ανάλυση Συνεπειών Ρύθμισης</h2>
                         <div>
@@ -47,11 +47,11 @@
                         <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
                         <div class="govgr-grid">
                             <div class="govgr-grid__col-span-6">
-                                <label for="typos_analysis" class="govgr-label-row required">Τύπος ανάλυσης</label>
+                                <label for="type" class="govgr-label-row required">Τύπος ανάλυσης</label>
                             </div>
                             <div class="govgr-grid__col-span-6">
-                                <input type="text" class="govgr-input form-control" id="typos_analysis"
-                                    name="typos_analysis" readonly />
+                                <input type="text" class="govgr-input form-control" id="type"
+                                    name="type" readonly />
                             </div>
                         </div>
                         <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
@@ -908,7 +908,7 @@
         });
         if ($('#nomosxedio') != '') { getFullDate($('#upload_date')); }
         $.ajax({
-            url: '/create/<%= analysis %>',
+            url: '/create_analysis/<%= analysis %>',
             data: fd,
             contentType: false,
             processData: false,
@@ -930,7 +930,7 @@
             fd.append($(chckbx).prop('name'), $(chckbx).value = '')//append to fd with empty value 
         });
         $.ajax({
-            url: '/create/<%= analysis %>',
+            url: '/create_analysis/<%= analysis %>',
             data: fd,
             contentType: false,
             processData: false,
@@ -950,8 +950,8 @@
             alert("Για την ανάλυση εκκρεμεί ο έλεγχος του Γενικού Λογιστηρίου του Κράτους που έχετε ζητήσει. Επικοινωνήστε με το Γενικό Λογιστήριο του Κράτους για να τον ολοκληρώσει ή ενημερώστε τον αρμόδιο του Υπουργείου σας για να το επιλύσει.");
             // ev.preventDefault();
         } else {
-            if ($('#status_ekthesis').val("Συντάσσεται")) {
-                $('#status_ekthesis').val("Ολοκληρώθηκε");
+            if ($('#status').val("Συντάσσεται")) {
+                $('#status').val("Ολοκληρώθηκε");
             }
         }
     }
@@ -963,7 +963,7 @@
 
     function setAnalysisType() {
         let analysisType = getAnalysisType();
-        $("#typos_analysis").prop('value', analysisType);
+        $("#type").prop('value', analysisType);
     }
 
     function getAnalysisType() {
