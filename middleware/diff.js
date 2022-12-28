@@ -36,9 +36,9 @@ exports.exportPDF = async function (req, res, next) {
     "_label",
     "_secondHeader"
   ); //data for field_9
-  let field_18 = tablesLib.getPdfCheckboxTableData(data, "field_18");
-  let field_19 = tablesLib.getPdfCheckboxTableData(data, "field_19");
-  let field_20 = tablesLib.getPdfCheckboxTableData(data, "field_20");
+  let field_18 = tablesLib.getCheckboxTableData(data, "field_18");
+  let field_19 = tablesLib.getCheckboxTableData(data, "field_19");
+  let field_20 = tablesLib.getCheckboxTableData(data, "field_20");
 
   let field_14 = {
     columns: 2,

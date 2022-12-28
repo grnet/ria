@@ -14,11 +14,12 @@
             </tr>
         </thead>
         <tbody class="govgr-table__body">
-            <% if( data.field_21_upload && data.field_21_upload.length ) { for (var i=0; i<
-                data.field_21_upload.length;i++) { %>
+            <% if( uploads.field21 && uploads.field21.length ) { for (var i=0; i< uploads.field21.length;i++) { %>
                 <tr class="govgr-table__row">
                     <td class="govgr-table__cell">
-                         <a href="/uploads/<%= data.field_21_upload[i] %> "><%= data.field_21_upload[i] %></a>
+                        <a href="/uploads/<%= uploads.field21[i] %> ">
+                            <%= uploads.field21[i] %>
+                        </a>
                         <button class="btn remove-file float-right" type="button">
                             <img src="/img/delete.png" width="20px" />
                         </button>
@@ -64,27 +65,24 @@
         <div class="index_field22"></div> <br />
         <label id="field_22_sinergasia_ypoyrgeiwn_label" class="field-22-label vouleutes-label required"
             for="field_22_sinergasia_ypoyrgeiwn">Συνεργασία με άλλα υπουργεία / υπηρεσίες</label>
-        <textarea class="govgr-textarea " id="field_22_sinergasia_ypoyrgeiwn"
-            name="field_22_sinergasia_ypoyrgeiwn" rows="5"
-            onkeypress="wordsCounter('field_22_sinergasia_ypoyrgeiwn','words22_1',150, event)"
+        <textarea class="govgr-textarea " id="field_22_sinergasia_ypoyrgeiwn" name="field_22_sinergasia_ypoyrgeiwn"
+            rows="5" onkeypress="wordsCounter('field_22_sinergasia_ypoyrgeiwn','words22_1',150, event)"
             onpaste="wordsCounter('field_22_sinergasia_ypoyrgeiwn','words22_1',150, event)"><%= data.field_22_sinergasia_ypoyrgeiwn %></textarea>
         <p style="float: right;">Λέξεις: <span id="words22_1"></span> /150</p>
     </div> <br /> <br />
     <div class="form-group">
         <label id="field_22_sinergasia_forewn_arxwn_label" class="required field-22-label vouleutes-label"
             for="field_22_sinergasia_forewn_arxwn">Συνεργασία με κοινωνικούς φορείς / Ανεξάρτητες Αρχές</label>
-        <textarea class="govgr-textarea " id="field_22_sinergasia_forewn_arxwn"
-            name="field_22_sinergasia_forewn_arxwn" rows="5"
-            onkeypress="wordsCounter('field_22_sinergasia_forewn_arxwn','words22_2',150, event)"
+        <textarea class="govgr-textarea " id="field_22_sinergasia_forewn_arxwn" name="field_22_sinergasia_forewn_arxwn"
+            rows="5" onkeypress="wordsCounter('field_22_sinergasia_forewn_arxwn','words22_2',150, event)"
             onpaste="wordsCounter('field_22_sinergasia_forewn_arxwn','words22_2',150, event)"><%= data.field_22_sinergasia_forewn_arxwn %></textarea>
         <p style="float: right;">Λέξεις: <span id="words22_2"></span> /150</p>
     </div> <br /> <br />
     <div class="form-group">
         <label id="field_22_diethnis_diavouleusi_label" class="required vouleutes-label field-22-label"
             for="field_22_diethnis_diavouleusi">Διεθνής διαβούλευση</label>
-        <textarea class="govgr-textarea " id="field_22_diethnis_diavouleusi"
-            name="field_22_diethnis_diavouleusi" rows="5"
-            onkeypress="wordsCounter('field_22_diethnis_diavouleusi','words22_3',150, event)"
+        <textarea class="govgr-textarea " id="field_22_diethnis_diavouleusi" name="field_22_diethnis_diavouleusi"
+            rows="5" onkeypress="wordsCounter('field_22_diethnis_diavouleusi','words22_3',150, event)"
             onpaste="wordsCounter('field_22_diethnis_diavouleusi','words22_3',150, event)"><%= data.field_22_diethnis_diavouleusi %></textarea>
         <p style="float: right;">Λέξεις: <span id="words22_3"></span> /150</p>
     </div> <br /> <br />
@@ -118,11 +116,13 @@
                 </tr>
             </thead>
             <tbody class="govgr-table__body">
-                <% if( data.field_23_upload && data.field_23_upload.length ) { for (var i=0; i <
-                    data.field_23_upload.length;i++) { %>
+                <% if( uploads.field23 && uploads.field23.length ) { for (var i=0; i <
+                    uploads.field23.length;i++) { %>
                     <tr>
-                        <td> 
-                            <a href="/uploads/<%= data.field_23_upload[i] %> "><%= data.field_23_upload[i] %></a>
+                        <td>
+                            <a href="/uploads/<%= uploads.field23[i] %> ">
+                                <%= uploads.field23[i] %>
+                            </a>
                             <button class="btn remove-file float-right" type="button">
                                 <img src="/img/delete.png" width="20px" />
                             </button>
@@ -137,9 +137,8 @@
         <div class="form-group">
             <label id="field_23_arxes_symmetasxontes_label" class="required optional mostly-optional field-23-label"
                 for="field_23_arxes_symmetasxontes">Αριθμός συμμετασχόντων</label>
-            <textarea class="govgr-textarea " id="field_23_arxes_symmetasxontes"
-                name="field_23_arxes_symmetasxontes" rows="3"
-                onkeypress="wordsCounter('field_23_arxes_symmetasxontes','words23_1', event)"
+            <textarea class="govgr-textarea " id="field_23_arxes_symmetasxontes" name="field_23_arxes_symmetasxontes"
+                rows="3" onkeypress="wordsCounter('field_23_arxes_symmetasxontes','words23_1', event)"
                 onpaste="wordsCounter('field_23_arxes_symmetasxontes','words23_1', event)"><%= data.field_23_arxes_symmetasxontes %></textarea>
             <p style="float: right;">Λέξεις: <span id="words23_1"></span></p>
         </div> <br />
@@ -173,9 +172,8 @@
         <div class="form-group">
             <label id="field_23_arthra_symmetasxontes_label" class="required optional mostly-optional field-23-label"
                 for="field_23_arthra_symmetasxontes">Αριθμός συμμετασχόντων</label>
-            <textarea class="govgr-textarea " id="field_23_arthra_symmetasxontes"
-                name="field_23_arthra_symmetasxontes" rows="3"
-                onkeypress="wordsCounter('field_23_arthra_symmetasxontes','words23_4', event)"
+            <textarea class="govgr-textarea " id="field_23_arthra_symmetasxontes" name="field_23_arthra_symmetasxontes"
+                rows="3" onkeypress="wordsCounter('field_23_arthra_symmetasxontes','words23_4', event)"
                 onpaste="wordsCounter('field_23_arthra_symmetasxontes','words23_4', event)"><%= data.field_23_arthra_symmetasxontes %></textarea>
             <p style="float: right;">Λέξεις: <span id="words23_4"></span></p>
         </div> <br />
@@ -204,7 +202,8 @@
         </div>
     </div> <br /> <br />
     <div class="govgr-button-group">
-        <button type="button" class="govgr-btn govgr-btn-primary govgr-btn-cta previous action-button-previous" name="previous">
+        <button type="button" class="govgr-btn govgr-btn-primary govgr-btn-cta previous action-button-previous"
+            name="previous">
             <svg viewBox="0 0 24 24" class="govgr-arrow--left" focusable="false" aria-hidden="true">
                 <path d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z" />
                 <!--  <path d="M8.5,2L6.1,4.3l7.6,7.7l-7.6,7.6L8.5,22l10-10L8.5,2z"/>-->

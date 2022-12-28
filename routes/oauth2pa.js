@@ -212,33 +212,41 @@ const gsispa = async (req, res) => {
     const userinfo = await gsis_flow(req, res, GSIS_TAG)
     if (debug) console.log("GSIS UserInfo", userinfo)
     if (userinfo) {
-        //chect to db if user exist
-        //if not create user?
-        //if yes update user?
-        let user = await database.user.findOne({//find a user with matching username & password
-            where: {
-                username: userinfo.taxid,
-            }
-        })
-        if (debug) console.log("App UserInfo", user)
-        if (user && user.dataValues) {
-            req.session.user = user;
-            req.session.username = user.username;//store data to session variables
-            req.session.fname = user.fname;
-            req.session.lname = user.lname;
-            req.session.isAdmin = isAdmin;
-            req.session.role = user.role;
-            if (debug) console.log("App Session", req.session)
-            res.redirect(302, "/user_views/dashboard?ref=gsis");
-        } else {
-            req.session.errors.push({ msg: 'Δε βρέθηκε χρήστης με αυτό το ΑΦΜ.' })//custom error message
-            res.redirect(302, "./login");//redirect and display errors
-        }
+      //chect to db if user exist
+      //if not create user?
+      //if yes update user?
+      let user = await database.user.findOne({
+        //find a user with matching username & password
+        where: {
+          username: userinfo.taxid,
+        },
+      });
+      if (debug) console.log("App UserInfo", user);
+      if (user && user.dataValues) {
+        req.session.user = user;
+        req.session.username = user.username; //store data to session variables
+        req.session.fname = user.fname;
+        req.session.lname = user.lname;
+        req.session.isAdmin = isAdmin;
+        req.session.role = user.role;
+        if (debug) console.log("App Session", req.session);
+        res.redirect(302, "/user_views/dashboard?ref=gsis");
+      } else {
+        await database.user.create({
+          fname: userinfo.firstname,
+          lname: userinfo.lastname,
+        });
+        req.session.errors.push({ msg: "Παρακαλώ επικοινωνήστε με έναν διαχειριστή για να σας αναθέσει Φορέα, ρόλο και λοιπά δικαιώματα." }); //custom error message
+        res.redirect(302, "./login"); //redirect and display errors
+      }
+    } else {
+      req.session.errors.push({ msg: "Δε βρέθηκε χρήστης με αυτό το ΑΦΜ." }); //custom error message
+      res.redirect(302, "./login"); //redirect and display errors
     }
     res.end();
 };
 
-routes.get('/', async function (req, res, next) {
+routes.post('/', async function (req, res, next) {
     req.session.errors = null;
     gsispa(req, res)
 });

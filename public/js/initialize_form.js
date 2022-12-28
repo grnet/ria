@@ -209,43 +209,27 @@ if ($("#uploads_36 tbody tr").length > 0) {
 }
 
 if (tables) {
-  tables = tables
-    .replace(/\\n/g, "\\n")
-    .replace(/&#34;/g, '"')
-    .replace(/\\'/g, "\\'")
-    .replace(/\\"/g, '\\"')
-    .replace(/\\&/g, "\\&")
-    .replace(/\\r/g, "\\r")
-    .replace(/\\t/g, "\\t")
-    .replace(/\\b/g, "\\b")
-    .replace(/\\f/g, "\\f")
-    .replace(/\\n/g, "");
-  tables = JSON.parse(tables);
-  var prefix;
-
-  for (var i in tables.checkbox_tables) {
-    for (var j in tables.checkbox_tables[i].table) {
-      for (var k in tables.checkbox_tables[i].table[j].row) {
-        var cbxname = Object.keys(tables.checkbox_tables[i].table[j].row[k]); //get key
-        var cbxvalue = Object.values(tables.checkbox_tables[i].table[j].row[k]);
-        if (cbxvalue[0]) {
-          $("input[name='" + cbxname + "']").prop("checked", true); //if value, target checkbox is checked
-        }
-      }
-    }
+  if (tables.field_18 && Array.isArray(tables.field_18)) {
+    fillTable(tables.field_18);
+  }
+  if (tables.field_19 && Array.isArray(tables.field_19)) {
+    fillTable(tables.field_19);
+  }
+  if (tables.field_20 && Array.isArray(tables.field_20)) {
+    fillTable(tables.field_20);
   }
 
-  for (var i in tables.static_tables) {
-    for (var j in tables.static_tables[i].table) {
-      for (var k in tables.static_tables[i].table[j].row) {
-        var sttcname = Object.keys(tables.static_tables[i].table[j].row[k]);
-        var sttcvalue = Object.values(tables.static_tables[i].table[j].row[k]);
-        if (sttcvalue[0]) {
-          $("input[name='" + sttcname + "']").prop("value", sttcvalue);
-        }
-      }
-    }
-  }
+  // for (var i in tables.static_tables) {
+  //   for (var j in tables.static_tables[i].table) {
+  //     for (var k in tables.static_tables[i].table[j].row) {
+  //       var sttcname = Object.keys(tables.static_tables[i].table[j].row[k]);
+  //       var sttcvalue = Object.values(tables.static_tables[i].table[j].row[k]);
+  //       if (sttcvalue[0]) {
+  //         $("input[name='" + sttcname + "']").prop("value", sttcvalue);
+  //       }
+  //     }
+  //   }
+  // }
 }
 
 for (let i in ministriesArray) {
@@ -257,71 +241,71 @@ for (let i in ministriesArray) {
   );
 }
 
-$("#field_15_ypoyrgeio").val(
-  f15ministry ? f15ministry : $("#field_15_ypoyrgeio option:first").val()
-);
-$("#field_17_ypoyrgeio").val(
-  f17ministry ? f17ministry : $("#field_17_ypoyrgeio option:first").val()
-);
+// $("#field_15_ypoyrgeio").val(
+//   f15ministry ? f15ministry : $("#field_15_ypoyrgeio option:first").val()
+// );
+// $("#field_17_ypoyrgeio").val(
+//   f17ministry ? f17ministry : $("#field_17_ypoyrgeio option:first").val()
+// );
 
 let index = $("#tbody_ministers").prop("rows").length;
-for (let j in ministersNames) {
-  $("#tbody_ministers").append(`
-    <tr id="R${++index}">  
-      <td> 
-        <textarea class="form-control" id="minister_name${index}" name="minister_name${index}" rows="1" readonly>${
-    ministersNames[j].elem
-  }</textarea> 
-      </td>    
-      <td> 
-        <select id="minister_surname${index}" name="minister_surname${index}" class="col-sm-8 form-control" onchange="ministerSurnameOnChange('minister_name${index}', 'minister_surname${index}', 'minister_role${index}', 'minister_ministry${index}')" required></select>
-      </td> 
-      <td> 
-        <textarea class="form-control" id="minister_role${index}" name="minister_role${index}" rows="1" readonly>${
-    ministersRoles[j].elem
-  }</textarea>
-        <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
-        <input type="hidden" id="minister_ministry${index}" name="minister_ministry${index}" >
-        </td> 
-    </tr>`);
-  populateMinistersSurnameSelect(`minister_surname${index}`);
-  if (ministersSurnames[j] && ministersSurnames[j].elem) {
-    $(`#minister_surname${index}`).val(ministersSurnames[j].elem);
-  }
-  if (ministersMinistry[j] && ministersMinistry[j].elem) {
-    $(`#minister_ministry${index}`).val(ministersMinistry[j].elem);
-  }
+// for (let j in ministersNames) {
+//   $("#tbody_ministers").append(`
+//     <tr id="R${++index}">  
+//       <td> 
+//         <textarea class="form-control" id="minister_name${index}" name="minister_name${index}" rows="1" readonly>${
+//     ministersNames[j].elem
+//   }</textarea> 
+//       </td>    
+//       <td> 
+//         <select id="minister_surname${index}" name="minister_surname${index}" class="col-sm-8 form-control" onchange="ministerSurnameOnChange('minister_name${index}', 'minister_surname${index}', 'minister_role${index}', 'minister_ministry${index}')" required></select>
+//       </td> 
+//       <td> 
+//         <textarea class="form-control" id="minister_role${index}" name="minister_role${index}" rows="1" readonly>${
+//     ministersRoles[j].elem
+//   }</textarea>
+//         <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
+//         <input type="hidden" id="minister_ministry${index}" name="minister_ministry${index}" >
+//         </td> 
+//     </tr>`);
+//   populateMinistersSurnameSelect(`minister_surname${index}`);
+//   if (ministersSurnames[j] && ministersSurnames[j].elem) {
+//     $(`#minister_surname${index}`).val(ministersSurnames[j].elem);
+//   }
+//   if (ministersMinistry[j] && ministersMinistry[j].elem) {
+//     $(`#minister_ministry${index}`).val(ministersMinistry[j].elem);
+//   }
   
-}
+// }
 
-index = $("#tbody_17").prop("rows").length;
-for (let i in f17ministersNames) {
-  $("#tbody_17").append(`
-        <tr id="R${++index}">  
-            <td> 
-                <textarea class="form-control" id="field_17_minister_name${index}" name="field_17_minister_name${index}" readonly rows="1">${
-    f17ministersNames[i].elem
-  }</textarea> 
-            </td>    
-            <td> 
-              <select id="field_17_minister_surname${index}" name="field_17_minister_surname${index}" class="col-sm-8 form-control" onchange="ministerSurnameOnChange('field_17_minister_name${index}', 'field_17_minister_surname${index}', 'field_17_minister_role${index}', 'field_17_minister_ministry${index}')" required></select>    
-            </td> 
-            <td> 
-                <textarea class="form-control" id="field_17_minister_role${index}" name="field_17_minister_role${index}" readonly rows="1">${
-    f17ministersRoles[i].elem
-  }</textarea>
-                <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
-                <input type="hidden" id="field_17_minister_ministry${index}" name="field_17_minister_ministry${index}">
-            </td> 
-        </tr>`);
-  populateMinistersSurnameSelect(`field_17_minister_surname${index}`);
-  if (f17ministersSurnames[i] && f17ministersSurnames[i].elem) {
-    $(`#field_17_minister_surname${index}`).val(f17ministersSurnames[i].elem);
-  }
-  if (f17ministersMinistry[i] && f17ministersMinistry[i].elem) {
-    $(`#field_17_minister_ministry${index}`).val();
-  }
-}
+// index = $("#tbody_17").prop("rows").length;
+// for (let i in f17ministersNames) {
+//   $("#tbody_17").append(`
+//         <tr id="R${++index}">  
+//             <td> 
+//                 <textarea class="form-control" id="field_17_minister_name${index}" name="field_17_minister_name${index}" readonly rows="1">${
+//     f17ministersNames[i].elem
+//   }</textarea> 
+//             </td>    
+//             <td> 
+//               <select id="field_17_minister_surname${index}" name="field_17_minister_surname${index}" class="col-sm-8 form-control" onchange="ministerSurnameOnChange('field_17_minister_name${index}', 'field_17_minister_surname${index}', 'field_17_minister_role${index}', 'field_17_minister_ministry${index}')" required></select>    
+//             </td> 
+//             <td> 
+//                 <textarea class="form-control" id="field_17_minister_role${index}" name="field_17_minister_role${index}" readonly rows="1">${
+//     f17ministersRoles[i].elem
+//   }</textarea>
+//                 <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
+//                 <input type="hidden" id="field_17_minister_ministry${index}" name="field_17_minister_ministry${index}">
+//             </td> 
+//         </tr>`);
+//   populateMinistersSurnameSelect(`field_17_minister_surname${index}`);
+//   if (f17ministersSurnames[i] && f17ministersSurnames[i].elem) {
+//     $(`#field_17_minister_surname${index}`).val(f17ministersSurnames[i].elem);
+//   }
+//   if (f17ministersMinistry[i] && f17ministersMinistry[i].elem) {
+//     $(`#field_17_minister_ministry${index}`).val();
+//   }
+// }
 
 // TODO: refactor
 if (role === "Γενικό Λογιστήριο του Κράτους") {

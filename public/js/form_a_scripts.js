@@ -123,3 +123,11 @@ function viewFormAnalysisRestriction() {
   };
   restrictions[analysis];
 }
+
+function fillTable (table) {
+  for (let i in table) {
+    const key = Object.keys(table[i]);
+    const value = Object.values(table[i]);
+    $(`#${key}`).val(value);
+  }
+}

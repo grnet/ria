@@ -33,22 +33,25 @@ exports.exportPDF = async function (req, res, next) {
     "_label",
     "_secondHeader"
   ); //data for field_9
-  let field_18 = tablesLib.getPdfCheckboxTableData(data, "field_18");
-  let field_19 = tablesLib.getPdfCheckboxTableData(data, "field_19");
-  let field_20 = tablesLib.getPdfCheckboxTableData(data, "field_20");
+  let field_18 = await tablesLib.getCheckboxTableData(data, "field_18");
+  let field_19 = await tablesLib.getCheckboxTableData(data, "field_19");
+  let field_20 = await tablesLib.getCheckboxTableData(data, "field_20");
 
   let field_14 = {
     columns: 2,
     headers: ["Άρθρο", "Στόχος"],
     keys: ["field_14_arthro", "field_14_stoxos"],
-    data: tablesLib.getTableData(["field_14_arthro", "field_14_stoxos"], data),
+    data: await tablesLib.getTableData(
+      ["field_14_arthro", "field_14_stoxos"],
+      data
+    ),
   };
 
   let field_29 = {
     columns: 2,
     headers: ["Διατάξεις αξιολογούμενης ρύθμισης", "Υφιστάμενες διατάξεις"],
     keys: ["field_29_diatakseis_rythmisis", "field_29_yfistamenes_diatakseis"],
-    data: tablesLib.getTableData(
+    data: await tablesLib.getTableData(
       ["field_29_diatakseis_rythmisis", "field_29_yfistamenes_diatakseis"],
       data
     ),
@@ -64,7 +67,7 @@ exports.exportPDF = async function (req, res, next) {
       "field_30_diatakseis_katargisi",
       "field_30_katargoumenes_diatakseis",
     ],
-    data: tablesLib.getTableData(
+    data: await tablesLib.getTableData(
       ["field_30_diatakseis_katargisi", "field_30_katargoumenes_diatakseis"],
       data
     ),
@@ -82,7 +85,7 @@ exports.exportPDF = async function (req, res, next) {
       "field_31_synarmodia_ypoyrgeia",
       "field_31_antikeimeno_synarmodiotitas",
     ],
-    data: tablesLib.getTableData(
+    data: await tablesLib.getTableData(
       [
         "field_31_sxetiki_diataksi",
         "field_31_synarmodia_ypoyrgeia",
@@ -108,7 +111,7 @@ exports.exportPDF = async function (req, res, next) {
       "field_32_antikeimeno",
       "field_32_xronodiagramma",
     ],
-    data: tablesLib.getTableData(
+    data: await tablesLib.getTableData(
       [
         "field_32_eksousiodotiki_diataksi",
         "field_32_eidos_praksis",

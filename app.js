@@ -39,7 +39,7 @@ app.set("view engine", "ejs");
 
 app.use(express.json({ limit: "600mb" }));
 app.use(
-  express.urlencoded({ limit: "1000mb", extended: true, parameterLimit: 10000 })
+  express.urlencoded({ limit: "1000mb", extended: true, parameterLimit: 35000 })
 ); //change limit if parser has too many parameters
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));

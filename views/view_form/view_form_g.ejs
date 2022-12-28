@@ -17,14 +17,14 @@
                 </tr>
             </thead>
             <tbody class="govgr-table__body" id="tbody_29">
-                <% if(data.field_29_diatakseis_rythmisis !=null && data.field_29_diatakseis_rythmisis.length ){
-                    for (var i=0; i < data.field_29_diatakseis_rythmisis.length; i++) { %>
+                <% if(tables.field_29.field_29_diatakseis_rythmisis !=null && tables.field_29.field_29_diatakseis_rythmisis.length ){
+                    for (var i=0; i < tables.field_29.field_29_diatakseis_rythmisis.length; i++) { %>
                     <tr id="table_29_row<%=i%>">
                         <td> <textarea class="govgr-textarea " id="field_29_diatakseis_rythmisis<%=i%>"
                                 name="field_29_diatakseis_rythmisis<%=i%>"
                                 onkeypress="wordsCounter('field_29_diatakseis_rythmisis<%=i%>','words29_diatakeis_rythm_<%=i%>')"
                                 onpaste="wordsCounter('field_29_diatakseis_rythmisis<%=i%>','words29_diatakeis_rythm_<%=i%>')"
-                                rows="1"><%= Object.values(data.field_29_diatakseis_rythmisis[i]) %></textarea>
+                                rows="1"><%= tables.field_29.field_29_diatakseis_rythmisis[i] %></textarea>
                             <p style="float: right;">Λέξεις: <span id="words29_diatakeis_rythm_<%=i%>"></span></p>
                         </td>
                         <td>
@@ -33,7 +33,7 @@
                                 name="field_29_yfistamenes_diatakseis<%=i%>"
                                 onkeypress="wordsCounter('field_29_yfistamenes_diatakseis<%=i%>','words29_diatakeis_yfist_<%=i%>')"
                                 onpaste="wordsCounter('field_29_yfistamenes_diatakseis<%=i%>','words29_diatakeis_yfist_<%=i%>')"
-                                rows="1"><%= Object.values(data.field_29_yfistamenes_diatakseis[i]) %></textarea>
+                                rows="1"><%= tables.field_29.field_29_yfistamenes_diatakseis[i] %></textarea>
                             <p style="float: right;">Λέξεις: <span id="words29_diatakeis_yfist_<%=i%>"></span></p>
                             <br />
                             <br />
@@ -84,14 +84,14 @@
                 </tr>
             </thead>
             <tbody class="govgr-table__body" id="tbody_30">
-                <% if(data.field_30_diatakseis_katargisi !=null && data.field_30_diatakseis_katargisi.length ){
-                    for (var i=0; i < data.field_30_diatakseis_katargisi.length; i++) { %>
+                <% if(tables.field_30.field_30_diatakseis_katargisi !=null && tables.field_30.field_30_diatakseis_katargisi.length ){
+                    for (var i=0; i < tables.field_30.field_30_diatakseis_katargisi.length; i++) { %>
                     <tr id="table_30_row<%=i%>">
                         <td> <textarea class="govgr-textarea " id="field_30_diatakseis_katargisi<%=i%>"
                                 name="field_30_diatakseis_katargisi<%=i%>"
                                 onkeypress="wordsCounter('field_30_diatakseis_katargisi$<%=i%>','words30_diatakeis_katarg_<%=i%>')"
                                 onpaste="wordsCounter('field_30_diatakseis_katargisi<%=i%>','words30_diatakeis_katarg_${table30RowIndex}')"
-                                rows="2"><%= Object.values(data.field_30_diatakseis_katargisi[i]) %></textarea>
+                                rows="2"><%= tables.field_30.field_30_diatakseis_katargisi[i] %></textarea>
                             <p style="float: right;">Λέξεις: <span id="words30_diatakeis_katarg_<%=i%>"></span></p>
                         </td>
                         <td>
@@ -100,7 +100,7 @@
                                 name="field_30_katargoumenes_diatakseis<%=i%>"
                                 onkeypress="wordsCounter('field_30_katargoumenes_diatakseis<%=i%>}','words30_diatakeis_katargoum_<%=i%>')"
                                 onpaste="wordsCounter('field_30_katargoumenes_diatakseis${table30RowIndex}','words30_diatakeis_katargoum_<%=i%>')"
-                                rows="2"><%= Object.values(data.field_30_katargoumenes_diatakseis[i]) %></textarea>
+                                rows="2"><%= tables.field_30.field_30_katargoumenes_diatakseis[i] %></textarea>
                             <p style="float: right;">Λέξεις: <span id="words30_diatakeis_katargoum_<%=i%>"></span></p>
                             <br /><br />
                             <button class="btn remove float-right" type="button">

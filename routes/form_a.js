@@ -4,7 +4,7 @@ const fs = require("fs");
 let pdf_export = require("../middleware/export");
 let diffPdf = require("../middleware/diff");
 let glk_pdf_export = require("../middleware/export_glk");
-const csv = require("csv-parser");
+const tooltipsCsv = require("../lib/tooltips");
 const diff = require("diff");
 const { body, check, validationResult } = require("express-validator");
 var multer = require("multer");
@@ -34,20 +34,13 @@ routes.get("/:entry_id", authUser, async (req, res, next) => {
     let entry = await database.analysis.findOne({
       where: {
         id: req.params.entry_id,
-      }, //, include: [{ model: database.ekthesi_tables }] //join tables
-    });
+      },
+    }); //TODO: add error handling
 
     const user = req.session.user;
-    let ekthesi_tables = await database.ekthesi_tables.findOne({
-      where: {
-        ekthesi_tablesId: req.params.entry_id,
-      },
-    });
-
     pdf_name = `${entry.title}.pdf`;
     pdf_name = pdf_name.replace(/\s+/g, ""); //buggy?
     var pdf_exists;
-    var results = [];
     let ministers, ministriesArray;
     fs.existsSync(`./public/pdf_exports/${pdf_name}`)
       ? (pdf_exists = true)
@@ -62,32 +55,89 @@ routes.get("/:entry_id", authUser, async (req, res, next) => {
         .catch((error) => {
           console.log(error);
         });
+
+      const data = entry.dataValues.data;
+      const uploads = entry.dataValues.uploads;
+
+      const field_18 = await tables.getCheckboxTableData(
+        data,
+        "field_18",
+        true
+      );
+      const field_19 = await tables.getCheckboxTableData(
+        data,
+        "field_19",
+        true
+      );
+      const field_20 = await tables.getCheckboxTableData(
+        data,
+        "field_20",
+        true
+      );
+      const field_14 = await tables.getTableData(
+        ["field_14_arthro", "field_14_stoxos"],
+        data
+      );
+      const field_29 = await tables.getTableData(
+        ["field_29_diatakseis_rythmisis", "field_29_yfistamenes_diatakseis"],
+        data
+      );
+      const field_30 = await tables.getTableData(
+        ["field_30_diatakseis_katargisi", "field_30_katargoumenes_diatakseis"],
+        data
+      );
+      const field_31 = await tables.getTableData(
+        [
+          "field_31_sxetiki_diataksi",
+          "field_31_synarmodia_ypoyrgeia",
+          "field_31_antikeimeno_synarmodiotitas",
+        ],
+        data
+      );
+      const field_32 = await tables.getTableData(
+        [
+          "field_32_eksousiodotiki_diataksi",
+          "field_32_eidos_praksis",
+          "field_32_armodio_ypoyrgeio",
+          "field_32_antikeimeno",
+          "field_32_xronodiagramma",
+        ],
+        data
+      );
+      const processes = await tables.getTableData(
+        [
+          "processes",          
+        ],
+        data
+      );
+
       res_data = res_data.dataValues.ministries;
       ministers = ministries.getMinisters(res_data);
       ministriesArray = ministries.getMinistries(res_data);
-      //review using commented code bellow
-      // let form = JSON.parse(fs.readFileSync(`./public/jsons/forms/${id}.json`, 'utf8', (err) => {
-      //     if (err) return console.error(err);
-      // }));
-      fs.createReadStream("./public/csvs/ASR_Tooltips.csv")
-        .pipe(csv())
-        .on("data", (data) => results.push(data))
-        .on("end", () => {
-          results = JSON.stringify(results);
-          req.session.ekthesi_id = req.params.entry_id;
-          res.render("form_a", {
-            data: entry.dataValues,
-            tables: ekthesi_tables.dataValues,
-            role: req.session.role,
-            pdf_exists: pdf_exists,
-            tooltips: results,
-            ministries: ministriesArray,
-            ministers: ministers,
-            user: user,
-          });
-        });
-    } else {
-      res.status(404).send("Not found");
+      const tooltips = JSON.stringify(await tooltipsCsv.getTooltips());
+
+      res.render("form_a", {
+        //TODO: review endpoint name
+        data: data,
+        tables: {
+          field_14: field_14,
+          field_18: field_18,
+          field_19: field_19,
+          field_20: field_20,
+          field_29: field_29,
+          field_30: field_30,
+          field_31: field_31,
+          field_32: field_32,
+          processes: processes
+        }, // TODO: create tables
+        role: req.session.role,
+        pdf_exists: pdf_exists,
+        tooltips: tooltips,
+        ministries: ministriesArray,
+        ministers: ministers,
+        user: user,
+        uploads: uploads[0]
+      });
     }
   } catch (err) {
     console.log("error: " + err);
@@ -195,21 +245,6 @@ routes.put(
         }
 
         let keys = Object.keys(req.body);
-
-        let field_9 = await tables.createStaticTable(
-          req.body,
-          "_header",
-          "_label",
-          "_secondHeader",
-          false
-        ); //data for field_9
-        let checkbox_tables = await tables.createStaticTable(
-          req.body,
-          "_cbxHeader",
-          "_cbxlabel",
-          "_cbxsecondHeader",
-          false
-        ); //data for fields 18-20
 
         let field_14_arthro = await tables.createDynamicTable(
           req.body,

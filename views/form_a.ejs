@@ -198,19 +198,18 @@
                             </thead>
                             <tbody class="govgr-table__body">
 
-                                <% if( data.nomosxedio && data.nomosxedio.length) { for (var i=data.nomosxedio.length-1;
-                                    i>=0 ; i--) { %>
+                                <% if( uploads.bill && uploads.bill.length > 1) { %>
                                     <tr govgr-table__row>
                                         <td class="govgr-table__cell">
-                                            <a href="/uploads/<%= data.nomosxedio[i].filename %> ">
-                                                <%= data.nomosxedio[i].filename %>
+                                            <a href="/uploads/<%= uploads.bill[0].filename %> ">
+                                                <%= uploads.bill[0].filename %>
                                             </a>
                                         </td>
                                         <td class="govgr-table__cell">
-                                            <%= data.nomosxedio[i].upload_date %>
+                                            <%= uploads.bill[0].upload_date %>
                                         </td>
                                     </tr>
-                                    <% } }%>
+                                    <% } %>
 
                             </tbody>
                         </table>
@@ -968,13 +967,13 @@
                                 </thead>
                                 <tbody class="govgr-table__body" id="tbody_14">
 
-                                    <% if( data.field_14_arthro && data.field_14_arthro.length ) { for (var i=0; i <
-                                        data.field_14_arthro.length; i++) { %>
+                                    <% if( tables.field_14.field_14_arthro && tables.field_14.field_14_arthro.length ) {
+                                        for (var i=0; i < tables.field_14.field_14_arthro.length; i++) { %>
                                         <tr class="govgr-table__row" id="table_14_row<%=i%>">
 
                                             <td class="govgr-table__cell"><textarea class="govgr-textarea"
                                                     id="field_14_arthro<%=i%>" name="field_14_arthro<%=i%>"
-                                                    rows="1"><%= Object.values(data.field_14_arthro[i]) %></textarea>
+                                                    rows="1"><%= tables.field_14.field_14_arthro[i] %></textarea>
                                             </td>
                                             <td class="govgr-table__cell">
                                                 <div style="position: relative;">
@@ -982,7 +981,7 @@
                                                     <textarea class="govgr-textarea" id="field_14_stoxos<%=i%>"
                                                         name="field_14_stoxos<%=i%>" rows="1"
                                                         onkeypress="wordsCounter('field_14_stoxos<%=i%>','words14_<%=i%>', event)"
-                                                        onpaste="wordsCounter('field_14_stoxos<%=i%>','words14_<%=i%>', event)"><%= Object.values(data.field_14_stoxos[i]) %></textarea>
+                                                        onpaste="wordsCounter('field_14_stoxos<%=i%>','words14_<%=i%>', event)"><%= tables.field_14.field_14_stoxos[i] %></textarea>
                                                     <p style="float: right;">Λέξεις: <span id="words14_<%=i%>"></span>
                                                     </p>
                                                     <button class="btn remove float-right" type="button"><img
@@ -1139,15 +1138,15 @@
 
         const userRole = "<%= user.role %>";
         setUserRestrictions(userRole);
-        const isAdmin = '<%= isAdmin %>';
+        const isAdmin = '<%= user.isAdmin %>';
         isAdmin ? $(".user").hide() : $(".admin").hide();
 
         let answer;
         let ekthesi_id = "<%= data.id %>";
         //prevent user from going to a different form through url
-        if (sessionStorage.getItem("referer") != ekthesi_id) {
-            window.location.href = "/user_views/history"
-        }
+        // if (sessionStorage.getItem("referer") != ekthesi_id) {
+        //     window.location.href = "/user_views/history"
+        // }
         let analysisStatus = "<%= data.status_ekthesis %>";
         let role = "<%= role%>";
         let analysis = "<%= data.typos_analysis %>";
@@ -1165,27 +1164,18 @@
         ministriesArray.sort();
         ministersArray.sort();
 
-        var tables = "<%= JSON.stringify(tables) %>";
         var field4 = "<%= data.field_4%>";
         var field6 = "<%= data.field_6%>";
         var field11 = "<%= data.field_11%>";
         var field12 = "<%= data.field_12%>";
         var field13 = "<%= data.field_13%>";
         var field36 = "<%= data.field_36%>";
-        let f17ministersRoles = JSON.parse(' <%- JSON.stringify(data.field_17_minister_role) %> ');
-        let f17ministersNames = JSON.parse(' <%- JSON.stringify(data.field_17_minister_name) %> ');
-        let f17ministersSurnames = JSON.parse(' <%- JSON.stringify(data.field_17_minister_surname) %> ');
-        let f17ministersMinistry = JSON.parse(' <%- JSON.stringify(data.field_17_minister_ministry) %> ');
+
         let ekthesi_glk = "<%= data.ekthesi_glk%>"
         var field_18 = `<%- data.field_18_comments%>`;
         var field_19 = `<%= data.field_19_comments %>`;
         var field_20 = `<%= data.field_20_comments %>`;
-        let ministersRoles = JSON.parse(' <%- JSON.stringify(data.minister_role) %> ');
-        let ministersNames = JSON.parse(' <%- JSON.stringify(data.minister_name) %> ');
-        let ministersSurnames = JSON.parse(' <%- JSON.stringify(data.minister_surname) %> ');
-        let ministersMinistry = JSON.parse(' <%- JSON.stringify(data.minister_ministry) %> ');
-        let f15ministry = "<%= data.field_15_ypoyrgeio %>"
-        let f17ministry = "<%= data.field_17_ypoyrgeio %>"
+
         let ekpedeusi_politismos = "<%= data.ekpedeusi_politismos %>";
         let eksoteriki_politiki = "<%= data.eksoteriki_politiki %>";
         let forologiki_politiki = "<%= data.forologiki_politiki %>";
@@ -1199,7 +1189,11 @@
         let field_28 = ["<%= data.field_28_nomologia %>", "<%= data.field_28_nomologia_dikaiwmatwn_anthrwpou %>", "<%= data.field_28_alla_dikastiria %>"];
         let approvals = ["<%= data.egkrisi_aksiologisis_nomoparaskeyastikis %>", "<%= data.egkrisi_dieuthinsis_nomoparaskeyastikis %>", "<%= data.egkrisi_kalis_nomothetisis %>", "<%= data.egkrisi_genikou_grammatea %>"];
 
-        var tooltips = '<%= tooltips %>';
+        const tables = JSON.parse(' <%- JSON.stringify(tables) %> ');
+        console.log(tables);
+        const uploads = JSON.parse(' <%- JSON.stringify(uploads) %> ');
+        console.log(uploads);
+        let tooltips = '<%= tooltips %>';
         tooltips = textCleanUp(tooltips);
         createTooltips(tooltips);
 
