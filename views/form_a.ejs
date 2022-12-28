@@ -1190,9 +1190,6 @@
         let approvals = ["<%= data.egkrisi_aksiologisis_nomoparaskeyastikis %>", "<%= data.egkrisi_dieuthinsis_nomoparaskeyastikis %>", "<%= data.egkrisi_kalis_nomothetisis %>", "<%= data.egkrisi_genikou_grammatea %>"];
 
         const tables = JSON.parse(' <%- JSON.stringify(tables) %> ');
-        console.log(tables);
-        const uploads = JSON.parse(' <%- JSON.stringify(uploads) %> ');
-        console.log(uploads);
         let tooltips = '<%= tooltips %>';
         tooltips = textCleanUp(tooltips);
         createTooltips(tooltips);

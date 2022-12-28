@@ -190,18 +190,18 @@ routes.put(
       //return res.status(422).json(errors.array());
     } else {
       try {
-        let entry = await database.analysis.findOne({
+        const entry = await database.analysis.findOne({
           where: {
             id: req.params.entry_id,
           },
         });
 
-        let field21 = entry.field_21_upload;
-        let field23 = entry.field_23_upload;
-        let field36 = entry.field_36_upload;
-        let signed_pdf = entry.signed_pdf_upload;
-        let nomosxedio = entry.nomosxedio;
-        let signed_glk_pdf_upload = entry.signed_glk_pdf_upload;
+        const field21 = entry.field_21_upload;
+        const field23 = entry.field_23_upload;
+        const field36 = entry.field_36_upload;
+        const signed_pdf = entry.signed_pdf_upload;
+        const bill = entry.bill;
+        const signed_accounting_office_pdf = entry.signed_glk_pdf_upload;
         try {
           const file = req.files;
           if (file.field_21_upload) {
@@ -226,212 +226,40 @@ routes.put(
             }
           }
           if (file.nomosxedio) {
-            nomosxedio.push({
+            bill.push({
               filename: file.nomosxedio[0].filename,
               upload_date: req.body.last_updated,
             });
           }
           if (file.signed_glk_pdf_upload) {
-            let date = new Date().toLocaleString("el-GR", {
+            const date = new Date().toLocaleString("el-GR", {
               timeZone: "Europe/Athens",
             });
-            signed_glk_pdf_upload.push({
+            signed_accounting_office_pdf.push({
               filename: file.signed_glk_pdf_upload[0].filename,
               upload_date: date,
             });
           }
         } catch (e) {
           console.log("Error message: " + e.message);
-        }
+        }      
 
-        let keys = Object.keys(req.body);
-
-        let field_14_arthro = await tables.createDynamicTable(
-          req.body,
-          keys,
-          "field_14_arthro",
-          entry.field_14_arthro
-        );
-        let field_14_stoxos = await tables.createDynamicTable(
-          req.body,
-          keys,
-          "field_14_stoxos",
-          entry.field_14_stoxos
-        );
-        let field_17_minister_name = await tables.createDynamicTable(
-          req.body,
-          keys,
-          "field_17_minister_name",
-          entry.field_17_minister_name
-        );
-        let field_17_minister_surname = await tables.createDynamicTable(
-          req.body,
-          keys,
-          "field_17_minister_surname",
-          entry.field_17_minister_surname
-        );
-        let field_17_minister_role = await tables.createDynamicTable(
-          req.body,
-          keys,
-          "field_17_minister_role",
-          entry.field_17_minister_role
-        );
-        let field_17_minister_ministry = await tables.createDynamicTable(
-          req.body,
-          keys,
-          "field_17_minister_ministry",
-          entry.field_17_minister_ministry
-        );
-        let minister_surname = await tables.createDynamicTable(
-          req.body,
-          keys,
-          "minister_surname",
-          entry.minister_surname,
-          "field_17"
-        );
-        let minister_name = await tables.createDynamicTable(
-          req.body,
-          keys,
-          "minister_name",
-          entry.minister_name,
-          "field_17"
-        );
-        let minister_role = await tables.createDynamicTable(
-          req.body,
-          keys,
-          "minister_role",
-          entry.minister_role,
-          "field_17"
-        );
-        let minister_ministry = await tables.createDynamicTable(
-          req.body,
-          keys,
-          "minister_ministry",
-          entry.minister_ministry,
-          "field_17"
-        );
-        let field_29_diatakseis_rythmisis = await tables.createDynamicTable(
-          req.body,
-          keys,
-          "field_29_diatakseis_rythmisis",
-          entry.field_29_diatakseis_rythmisis
-        );
-        let field_29_yfistamenes_diatakseis = await tables.createDynamicTable(
-          req.body,
-          keys,
-          "field_29_yfistamenes_diatakseis",
-          entry.field_29_yfistamenes_diatakseis
-        );
-        let field_30_diatakseis_katargisi = await tables.createDynamicTable(
-          req.body,
-          keys,
-          "field_30_diatakseis_katargisi",
-          entry.field_30_diatakseis_katargisi
-        );
-        let field_30_katargoumenes_diatakseis = await tables.createDynamicTable(
-          req.body,
-          keys,
-          "field_30_katargoumenes_diatakseis",
-          entry.field_30_katargoumenes_diatakseis
-        );
-        let field_31_sxetiki_diataksi = await tables.createDynamicTable(
-          req.body,
-          keys,
-          "field_31_sxetiki_diataksi",
-          entry.field_31_sxetiki_diataksi
-        );
-        let field_31_synarmodia_ypoyrgeia = await tables.createDynamicTable(
-          req.body,
-          keys,
-          "field_31_synarmodia_ypoyrgeia",
-          entry.field_31_synarmodia_ypoyrgeia
-        );
-        let field_31_antikeimeno_synarmodiotitas =
-          await tables.createDynamicTable(
-            req.body,
-            keys,
-            "field_31_antikeimeno_synarmodiotitas",
-            entry.field_31_antikeimeno_synarmodiotitas
-          );
-        let field_32_eksousiodotiki_diataksi = await tables.createDynamicTable(
-          req.body,
-          keys,
-          "field_32_eksousiodotiki_diataksi",
-          entry.field_32_eksousiodotiki_diataksi
-        );
-        let field_32_eidos_praksis = await tables.createDynamicTable(
-          req.body,
-          keys,
-          "field_32_eidos_praksis",
-          entry.field_32_eidos_praksis
-        );
-        let field_32_armodio_ypoyrgeio = await tables.createDynamicTable(
-          req.body,
-          keys,
-          "field_32_armodio_ypoyrgeio",
-          entry.field_32_armodio_ypoyrgeio
-        );
-        let field_32_antikeimeno = await tables.createDynamicTable(
-          req.body,
-          keys,
-          "field_32_antikeimeno",
-          entry.field_32_antikeimeno
-        );
-        let field_32_xronodiagramma = await tables.createDynamicTable(
-          req.body,
-          keys,
-          "field_32_xronodiagramma",
-          entry.field_32_xronodiagramma
-        );
-        let emd_processes = await tables.createDynamicTable(
-          req.body,
-          keys,
-          "process"
-        );
-
-        let analysis = await database.analysis.update(req.body, {
-          where: {
-            id: analysis_id,
-          },
-        });
-
-        await database.analysis.update(
+        const uploads = [
           {
-            field_15_rythmiseis: req.body.f15,
-            field_16_kratikos_proypologismos: req.body.f16_1,
-            field_16_proypologismos_forea: req.body.f16_2,
-            field_17_oikonomika_apotelesmata: req.body.f17,
-            field_14_arthro: field_14_arthro,
-            field_14_stoxos: field_14_stoxos,
-            field_17_minister_name: field_17_minister_name,
-            field_17_minister_surname: field_17_minister_surname,
-            field_17_minister_role: field_17_minister_role,
-            field_17_minister_ministry: field_17_minister_ministry,
-            minister_name: minister_name,
-            minister_surname: minister_surname,
-            minister_role: minister_role,
-            minister_ministry: minister_ministry,
-            field_29_diatakseis_rythmisis: field_29_diatakseis_rythmisis,
-            field_29_yfistamenes_diatakseis: field_29_yfistamenes_diatakseis,
-            field_30_diatakseis_katargisi: field_30_diatakseis_katargisi,
-            field_30_katargoumenes_diatakseis:
-              field_30_katargoumenes_diatakseis,
-            field_31_sxetiki_diataksi: field_31_sxetiki_diataksi,
-            field_31_synarmodia_ypoyrgeia: field_31_synarmodia_ypoyrgeia,
-            field_31_antikeimeno_synarmodiotitas:
-              field_31_antikeimeno_synarmodiotitas,
-            field_32_eksousiodotiki_diataksi: field_32_eksousiodotiki_diataksi,
-            field_32_eidos_praksis: field_32_eidos_praksis,
-            field_32_armodio_ypoyrgeio: field_32_armodio_ypoyrgeio,
-            field_32_antikeimeno: field_32_antikeimeno,
-            field_32_xronodiagramma: field_32_xronodiagramma,
-            field_21_upload: field21,
-            field_23_upload: field23,
-            field_36_upload: field36,
-            signed_pdf_upload: signed_pdf,
-            nomosxedio: nomosxedio,
-            emd_processes: emd_processes,
-            signed_glk_pdf_upload: signed_glk_pdf_upload,
+            field21: field21,
+            field23: field23,
+            field36: field36,
+            bill: bill,
+            signed_pdf: signed_pdf,
+            signed_accounting_office_pdf:signed_accounting_office_pdf,
+          },
+        ];
+
+        let analysis = await database.analysis.update(
+          {
+            data: req.body,
+            uploads: uploads,
+            author: req.session.username,
           },
           {
             where: {
@@ -440,15 +268,7 @@ routes.put(
           }
         );
 
-        await database.ekthesi_tables.update(
-          { static_tables: field_9, checkbox_tables: checkbox_tables },
-          {
-            where: {
-              ekthesi_tablesId: analysis_id,
-            },
-          }
-        );
-        var author = req.session.fname + " " + req.session.lname;
+        const author = req.session.fname + " " + req.session.lname;
 
         await database.audit.create({
           user: author,
