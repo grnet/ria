@@ -116,7 +116,7 @@
                             </div>
                             <div class="govgr-grid__col-span-6">
                                 <input type="text" class="govgr-input form-control" id="typos_analysis"
-                                    name="typos_analysis" value="<%= data.typos_analysis%>" readonly />
+                                    name="typos_analysis" value="<%= type%>" readonly />
                             </div>
                         </div>
                         <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
@@ -198,7 +198,7 @@
                             </thead>
                             <tbody class="govgr-table__body">
 
-                                <% if( uploads.bill && uploads.bill.length > 1) { %>
+                                <% if( uploads.bill && uploads.bill.length> 1) { %>
                                     <tr govgr-table__row>
                                         <td class="govgr-table__cell">
                                             <a href="/uploads/<%= uploads.bill[0].filename %> ">
@@ -1133,13 +1133,10 @@
     <script type="text/javascript" src="/js/common_form_events.js"></script>
     <script type="text/javascript" src="/js/form_a_scripts.js"></script>
     <script type="text/javascript" src="/js/form_a_events.js"></script>
-
+    <script type="text/javascript" src="/js/enums.js"></script>
     <script>
 
-        const userRole = "<%= user.role %>";
-        setUserRestrictions(userRole);
         const isAdmin = '<%= user.isAdmin %>';
-        isAdmin ? $(".user").hide() : $(".admin").hide();
 
         let answer;
         let ekthesi_id = "<%= data.id %>";
@@ -1149,20 +1146,13 @@
         // }
         let analysisStatus = "<%= data.status_ekthesis %>";
         let role = "<%= role%>";
-        let analysis = "<%= data.typos_analysis %>";
+        let type = "<%= type %>";
         let pdf_exists = "<%= pdf_exists %>";
         let ministries = JSON.parse(' <%- JSON.stringify(ministries) %> ');
         let ministers = JSON.parse(' <%- JSON.stringify(ministers) %> ');
         let ministriesArray = [];
         let ministersArray = [];
-        for (let i in ministries) {
-            ministriesArray.push(ministries[i].ministry)
-        }
-        for (let j in ministers) {
-            ministersArray.push(ministers[j].lastName)
-        }
-        ministriesArray.sort();
-        ministersArray.sort();
+        
 
         var field4 = "<%= data.field_4%>";
         var field6 = "<%= data.field_6%>";
@@ -1253,7 +1243,7 @@
             setDate($("#last_updated"));
             var fd = new FormData($("form").get(0));
             $.ajax({
-                url: `/create/${analysis}`,
+                url: `/create/${type}`,
                 data: fd,
                 contentType: false,
                 processData: false,
@@ -1582,7 +1572,7 @@
         });
 
     </script>
-    <script type="text/javascript" src="/js/initialize_form.js"></script>
+    <script type="text/javascript" src="/js/initialize_edit_form.js"></script>
     </div>
     </div>
     <%- include('partials/footer.ejs') %>

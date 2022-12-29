@@ -1,4 +1,3 @@
-
 <div class="">
     <!--<input type="button" name="back" class="back" value="Πίσω"/> <br/>--> <a href="#" class="govgr-back-link"
         id="back" name="back"> <svg class="govgr-caret--left" viewBox="0 0 24 24" aria-hidden="true">
@@ -50,8 +49,7 @@
                                 <label for="type" class="govgr-label-row required">Τύπος ανάλυσης</label>
                             </div>
                             <div class="govgr-grid__col-span-6">
-                                <input type="text" class="govgr-input form-control" id="type"
-                                    name="type" readonly />
+                                <input type="text" class="govgr-input form-control" id="type" name="type" readonly />
                             </div>
                         </div>
                         <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
@@ -614,7 +612,7 @@
                             </button>
                         </div>
                     </fieldset>
-                    
+
                     <%- include('fill_form/field_9.ejs') %>
 
                         <fieldset id="digital_governance">
@@ -880,36 +878,31 @@
 <script type="text/javascript" src="/js/common_form_scripts.js"></script>
 <script type="text/javascript" src="/js/tooltips.js"></script>
 <script type="text/javascript" src="/js/common_form_events.js"></script>
-<script type="text/javascript" src="/js/syntaktis_scripts.js"></script>
+<script type="text/javascript" src="/js/create_form_scripts.js"></script>
+<script type="text/javascript" src="/js/enums.js"></script>
 <script>
 
-    let ministries = JSON.parse(' <%- JSON.stringify(ministries) %> ');
-    let ministers = JSON.parse(' <%- JSON.stringify(ministers) %> ');
-    let ministriesArray = [];
-    let ministersArray = [];
-    for (let i in ministries) {
-        ministriesArray.push(ministries[i].ministry)
-    }
-    for (let j in ministers) {
-        ministersArray.push(ministers[j].lastName)
-    }
-    let analysis = "<%= analysis %>";
+    const ministries = JSON.parse(' <%- JSON.stringify(ministries) %> ');
+    const ministers = JSON.parse(' <%- JSON.stringify(ministers) %> ');
+    const ministriesArray = [];
+    const ministersArray = [];
+
+    let type = "<%= type %>";
     const role = "<%= role%>";
-    setUserRestrictions(role);
     const isAdmin = '<%= user.isAdmin %>';
-    isAdmin ? $(".user").hide() : $(".admin").hide();
+
+    let tooltips = '<%= tooltips %>';
+    tooltips = textCleanUp(tooltips);
 
     $("form").on("submit", function (ev) {
         ev.preventDefault();
-        onSubmitStatus();
+        setStatus();
         var fd = new FormData($("form").get(0));
-        var checkbox = $("form").find("input[type=checkbox]:not(:checked)");//find all unchecked checkboxes 
-        $.each(checkbox, function (key, chckbx) {
-            fd.append($(chckbx).prop('name'), $(chckbx).value = '')//append to fd without value 
-        });
-        if ($('#nomosxedio') != '') { getFullDate($('#upload_date')); }
+        if ($("#nomosxedio") != "") {
+            getFullDate($("#upload_date"));
+        }
         $.ajax({
-            url: '/create_analysis/<%= analysis %>',
+            url: "/create_analysis/<%= type %>",
             data: fd,
             contentType: false,
             processData: false,
@@ -919,19 +912,15 @@
             success: function (data) {
                 window.location.href = "/user_views/history";
             },
-            type: 'POST'
+            type: "POST",
         });
-    })
+    });
 
     $("#save_temporarily").on("click", function (ev) {
         ev.preventDefault();
         var fd = new FormData($("form").get(0));
-        var checkbox = $("form").find("input[type=checkbox]:not(:checked)");//find all unchecked checkboxes 
-        $.each(checkbox, function (key, chckbx) {
-            fd.append($(chckbx).prop('name'), $(chckbx).value = '')//append to fd with empty value 
-        });
         $.ajax({
-            url: '/create_analysis/<%= analysis %>',
+            url: "/create_analysis/<%= type %>",
             data: fd,
             contentType: false,
             processData: false,
@@ -939,65 +928,14 @@
                 console.log(error);
             },
             success: function (data) {
-                console.log(data);
                 window.location.href = "/user_views/history";
             },
-            type: 'POST'
+            type: "POST",
         });
-    })
-
-    function onSubmitStatus() {
-        if ($("#ekthesi_glk").prop("checked") && role === 'Συντάκτης επισπεύδοντος Υπουργείου') {
-            alert("Για την ανάλυση εκκρεμεί ο έλεγχος του Γενικού Λογιστηρίου του Κράτους που έχετε ζητήσει. Επικοινωνήστε με το Γενικό Λογιστήριο του Κράτους για να τον ολοκληρώσει ή ενημερώστε τον αρμόδιο του Υπουργείου σας για να το επιλύσει.");
-            // ev.preventDefault();
-        } else {
-            if ($('#status').val("Συντάσσεται")) {
-                $('#status').val("Ολοκληρώθηκε");
-            }
-        }
-    }
-
-    setUserRestrictions(role);
-    function addLabelClass(fieldLabel, className) {
-        $(fieldLabel).addClass(className);//remove required class from label
-    };
-
-    function setAnalysisType() {
-        let analysisType = getAnalysisType();
-        $("#type").prop('value', analysisType);
-    }
-
-    function getAnalysisType() {
-
-        let analysisType = {
-            'sxedio_nomou': 'Σχέδιο νόμου',
-            'kateythintiries_grammes': 'Κατευθυντήριες γραμμές',
-            'prosxedio_nomou': 'Προσχέδιο νόμου',
-            'epeigon_katepeigon': 'Επείγον ή κατεπείγον νομοσχέδιο',
-            'diethneis_symvaseis': 'Διεθνείς συμβάσεις',
-            'tropologies_upourgwn': 'Τροπολογίες Υπουργών',
-            'tropologies_vouleutwn': 'Τροπολογίες Βουλευτών',
-            'protasi_nomou': 'Πρόταση νόμου',
-        }
-        return analysisType[analysis];
-    }
-
-    setAnalysisType();
-    analysis = getAnalysisType();//renew analysis
-    setSubtitle();
-    setSubText();
-    analysisRestrictions();
-    //initial_submit date - will be updated again when actually submitted
-    getFullDate("#initial_submit");
-
-    requiredDigitalGov();
-    requiredLegalistics();
-
-    var tooltips = '<%= tooltips %>';
-    tooltips = textCleanUp(tooltips);
-    createTooltips(tooltips);
+    });
 
     $(".submit").click(function () {
         return false;
-    })
+    });
 </script>
+<script type="text/javascript" src="/js/initialize_create_form.js"></script>

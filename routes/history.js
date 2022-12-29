@@ -2,7 +2,7 @@ const routes = require("express").Router();
 let database = require("../services/database");
 const { Op } = require("sequelize");
 const { authUser } = require("../middleware/auth");
-const Enums = require("../lib/Enums/analysis");
+const Enums = require("../lib/enums/analysis");
 
 routes.get("/", authUser, async function (req, res, next) {
   let user = await database.user.findOne({

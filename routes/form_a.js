@@ -58,6 +58,7 @@ routes.get("/:entry_id", authUser, async (req, res, next) => {
 
       const data = entry.dataValues.data;
       const uploads = entry.dataValues.uploads;
+      const type = entry.dataValues.type;
 
       const field_18 = await tables.getCheckboxTableData(
         data,
@@ -104,12 +105,7 @@ routes.get("/:entry_id", authUser, async (req, res, next) => {
         ],
         data
       );
-      const processes = await tables.getTableData(
-        [
-          "processes",          
-        ],
-        data
-      );
+      const processes = await tables.getTableData(["processes"], data);
 
       res_data = res_data.dataValues.ministries;
       ministers = ministries.getMinisters(res_data);
@@ -118,6 +114,7 @@ routes.get("/:entry_id", authUser, async (req, res, next) => {
 
       res.render("form_a", {
         //TODO: review endpoint name
+        type: type,
         data: data,
         tables: {
           field_14: field_14,
@@ -128,7 +125,7 @@ routes.get("/:entry_id", authUser, async (req, res, next) => {
           field_30: field_30,
           field_31: field_31,
           field_32: field_32,
-          processes: processes
+          processes: processes,
         }, // TODO: create tables
         role: req.session.role,
         pdf_exists: pdf_exists,
@@ -136,7 +133,7 @@ routes.get("/:entry_id", authUser, async (req, res, next) => {
         ministries: ministriesArray,
         ministers: ministers,
         user: user,
-        uploads: uploads[0]
+        uploads: uploads[0],
       });
     }
   } catch (err) {
@@ -242,7 +239,7 @@ routes.put(
           }
         } catch (e) {
           console.log("Error message: " + e.message);
-        }      
+        }
 
         const uploads = [
           {
@@ -251,7 +248,7 @@ routes.put(
             field36: field36,
             bill: bill,
             signed_pdf: signed_pdf,
-            signed_accounting_office_pdf:signed_accounting_office_pdf,
+            signed_accounting_office_pdf: signed_accounting_office_pdf,
           },
         ];
 

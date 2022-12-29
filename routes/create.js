@@ -24,7 +24,7 @@ var upload = multer({ storage: storage }).fields([
 ]);
 
 routes.get("/:analysis", authUser, async (req, res, next) => {
-  let analysis = req.params.analysis.substring(1); //removing first character
+  const type = req.params.analysis.substring(1); //removing first character
   try {
     const valid_errors = req.session.errors;
     req.session.errors = null;
@@ -33,7 +33,7 @@ routes.get("/:analysis", authUser, async (req, res, next) => {
     let ministers, ministriesArray;
     let latest_entry = await database.ministries.max("id").catch((error) => {
       console.log(error);
-      res.status(404).send("Could no locate latest ministries.");
+      res.status(404).send("Could no locate latest ministries."); // TODO: redirect to dashboard, add msg
     }); // get entry with highest id
     let res_data = await database.ministries
       .findOne({ where: { id: latest_entry } })
@@ -48,7 +48,7 @@ routes.get("/:analysis", authUser, async (req, res, next) => {
     const tooltips = JSON.stringify(await tooltipsCsv.getTooltips());
 
     res.render("create", {
-      analysis: analysis,
+      type: type,
       role: req.session.role,
       errors: valid_errors,
       tooltips: tooltips,

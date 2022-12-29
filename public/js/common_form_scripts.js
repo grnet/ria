@@ -52,86 +52,87 @@ function getSubText() {
     "Τροπολογίες Υπουργών": `Σύμφωνα με την παρ. 1 του άρθρου 62 του ν. 4622/2019 «Κάθε σχέδιο νόμου, προσθήκη ή τροπολογία, καθώς και κανονιστική απόφαση μείζονος οικονομικής ή κοινωνικής σημασίας, συνοδεύεται από Ανάλυση Συνεπειών Ρύθμισης (εφεξής Ανάλυση).».<br>Ειδικότερα, για τις τροπολογίες Υπουργών, στην παρ. 2 του άρθρου 88 του Κανονισμού της Βουλής προβλέπεται ότι συνοδεύονται από «σύντομη συνοπτική Ανάλυση Συνεπειών Ρύθμισης που συμπεριλαμβάνει κατ’ ελάχιστον τις ενότητες (α) και (ε), καθώς και στοιχεία από τις ενότητες (β) και (δ) της παρ. 3 του άρθρου 85», δηλαδή την αιτιολογική έκθεση και τον πίνακα τροποποιούμενων ή καταργούμενων διατάξεων, καθώς και στοιχεία της έκθεσης γενικών συνεπειών και της έκθεσης νομιμότητας. <br>Επίσης, σύμφωνα με την παρ. 5 του άρθρου 88 του Κανονισμού της Βουλής «Oι τρoπoλoγίες που συνεπάγονται επιβάρυνση του πρoϋπoλoγισμoύ του Κράτους διαβιβάζονται πριν από τη συζήτησή τoυς στo Γενικό Λoγιστήριo τoυ Kράτoυς, αν το ζητήσουν oι αρμόδιοι Yπoυργoί. Σ’ αυτήν την περίπτωση τo Γενικό Λογιστήριο τoυ Kράτoυς υπoχρεoύται να υποβάλει στη Boυλή την έκθεσή τoυ μέσα σε τρεις ημέρες από την παραλαβή τoυς. Mόνo αν η προθεσμία αυτή περάσει άπρακτη, oι τρoπoλoγίες μπoρoύν να συζητηθoύν και χωρίς την έκθεση.».`,
     "Τροπολογίες Βουλευτών": `«Κάθε σχέδιο νόμου, προσθήκη ή τροπολογία, καθώς και κανονιστική απόφαση μείζονος οικονομικής ή κοινωνικής σημασίας, συνοδεύεται από Ανάλυση Συνεπειών Ρύθμισης (εφεξής Ανάλυση).». Ειδικότερα, για τις τροπολογίες Βουλευτών, στην παρ. 2 του άρθρου 88 του Κανονισμού της Βουλής προβλέπεται ότι συνοδεύονται «υποχρεωτικώς από συνοπτική Ανάλυση Συνεπειών Ρύθμισης, η οποία συμπεριλαμβάνει κατ’ ελάχιστον τις ενότητες (α) και (ε) της παρ. 3 του άρθρου 85», δηλαδή την αιτιολογική έκθεση και τον πίνακα τροποποιούμενων ή καταργούμενων διατάξεων.Επίσης, σύμφωνα με την παρ. 5 του άρθρου 88 του Κανονισμού της Βουλής «Oι τρoπoλoγίες που συνεπάγονται επιβάρυνση του πρoϋπoλoγισμoύ του Κράτους διαβιβάζονται πριν από τη συζήτησή τoυς στo Γενικό Λoγιστήριo τoυ Kράτoυς, αν το ζητήσουν oι αρμόδιοι Yπoυργoί. Σ’ αυτήν την περίπτωση τo Γενικό Λογιστήριο τoυ Kράτoυς υπoχρεoύται να υποβάλει στη Boυλή την έκθεσή τoυ μέσα σε τρεις ημέρες από την παραλαβή τoυς. Mόνo αν η προθεσμία αυτή περάσει άπρακτη, oι τρoπoλoγίες μπoρoύν να συζητηθoύν και χωρίς την έκθεση.».`,
   };
-  return subTextList[analysis];
+  return subTextList[type];
 }
 
 function setSubText() {
-  let subText = getSubText(analysis);
+  let subText = getSubText(type);
   $("#subtext").html(subText);
 }
 
 function setSubtitle() {
-  if (analysis !== "Σχέδιο νόμου") {
-    //sxedio_nomou by default has no subtitle
-    analysis === "Προσχέδιο νόμου" || analysis === "Κατευθυντήριες γραμμές"
+  if (type !== Type.LawPlan) {
+    //law plan by default has no subtitle
+    type === Type.DraftLaw || type === Type.Guidelines
       ? $("#subtitle").html("«Προκαταρκτική Ανάλυση Συνεπειών Ρύθμισης»")
       : $("#subtitle").html("««Συνοπτική Ανάλυση Συνεπειών Ρύθμισης»»");
   }
 }
 
-//set restrictions based on analysis
+//set restrictions based on type
 function analysisRestrictions() {
   let restrictions = {
     "Σχέδιο νόμου": function () {
-      setAnalysisRestrictions("sxedio");
+      setAnalysisRestrictions("lawPlan");
     },
     "Κατευθυντήριες γραμμές": function () {
-      setAnalysisRestrictions("kateuthintiries");
+      setAnalysisRestrictions("guidelines");
     },
     "Προσχέδιο νόμου": function () {
-      setAnalysisRestrictions("prosxedio");
+      setAnalysisRestrictions("draftLaw");
     },
     "Επείγον ή κατεπείγον νομοσχέδιο": function () {
-      setAnalysisRestrictions("upourgoi");
+      setAnalysisRestrictions("ministers");
     },
     "Διεθνείς συμβάσεις": function () {
-      setAnalysisRestrictions("upourgoi");
+      setAnalysisRestrictions("ministers");
     },
     "Τροπολογίες Υπουργών": function () {
-      setAnalysisRestrictions("upourgoi");
+      setAnalysisRestrictions("ministers");
     },
     "Τροπολογίες Βουλευτών": function () {
-      setAnalysisRestrictions("vouleutes");
+      setAnalysisRestrictions("parliamentarians");
     },
     "Πρόταση νόμου": function () {
-      setAnalysisRestrictions("vouleutes");
+      setAnalysisRestrictions("parliamentarians");
     },
   };
 
-  restrictions[analysis](); //calling object literal's function
+  restrictions[type](); //calling object literal's function
 }
 
 function setAnalysisRestrictions(type) {
   let restrictions = {
-    sxedio: () => {
+    lawPlan: () => {
       return;
     },
-    kateuthintiries: function () {
-      $(
-        ".mostly-optional :input, .optional :input, .table-14 :input"
-      ).prop("disabled", true);
+    guidelines: function () {
+      $(".mostly-optional :input, .optional :input, .table-14 :input").prop(
+        "disabled",
+        true
+      );
       // $(".create-new, .next, .previous").prop("disabled", false);
       $(
-        ".mostly-optional-label, .optional-label, .table-14-label, .table-29-label, .table-30-label"
+        ".mostly-optional-label, .optional-label, .field-23-label, .table-14-label, .table-29-label, .table-30-label"
       ).removeClass("required");
     },
-    prosxedio: function () {
+    draftLaw: function () {
       $(".mostly-optional :input").prop("disabled", true);
       // $(".create-new, .next, .previous").prop("disabled", false);
-      $(".mostly-optional-label, .field-23-label, .glk").removeClass("required");
+      $(".mostly-optional-label, .field-23-label, .glk").removeClass(
+        "required"
+      );
     },
-    upourgoi: function () {
+    ministers: function () {
       $(".optional :input, .field-22 :input").prop("disabled", true);
       // $(".create-new, .next, .previous").prop("disabled", false);
       $(".optional-label, .field-22-label, .field-23-label").removeClass(
         "required"
       );
     },
-    vouleutes: function () {
+    parliamentarians: function () {
       $(".optional :input, .vouleutes :input").prop("disabled", true);
-      $(
-        ".table-31 :input, .table-32 :input"
-      ).prop("disabled", false);
+      $(".table-31 :input, .table-32 :input").prop("disabled", false);
       $(".optional-label, .vouleutes-label, .field-23-label").removeClass(
         "required"
       );
@@ -142,11 +143,11 @@ function setAnalysisRestrictions(type) {
   $(".glk :input:not(.create-new, .next, .previous, #ekthesi_glk)").prop(
     "disabled",
     true
-  ); //disable fields accessible only by Γενικό Λογιστήριο
+  ); //disable fields accessible only by General Accounting Office
   restrictions[type]();
   $(
     ".export-pdf, #add_row_ministers_table, #add_row_emd_table, .next, .previous, .create-new"
-  ).prop("disabled", false);  
+  ).prop("disabled", false);
 }
 
 function populateMinistersSurnameSelect(ministerSurnameSelectId) {

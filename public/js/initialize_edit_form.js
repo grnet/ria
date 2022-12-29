@@ -5,6 +5,15 @@ setDropdown();
 requiredDigitalGov(); //set initial state for fields 10-13
 requiredLegalistics(); //set initial state for fields 33-40
 
+for (let i in ministries) {
+  ministriesArray.push(ministries[i].ministry);
+}
+for (let j in ministers) {
+  ministersArray.push(ministers[j].lastName);
+}
+ministriesArray.sort();
+ministersArray.sort();
+
 if (field_18) {
   $("#field_18_comments").val(field_18);
 }

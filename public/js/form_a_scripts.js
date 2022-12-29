@@ -1,12 +1,12 @@
 function convertAnalysis() {
-  if (analysis == "Κατευθυντήριες γραμμές") {
-    $("#typos_analysis").prop("value", "Προσχέδιο νόμου");
+  if (type == Type.Guidelines) {
+    $("#typos_analysis").prop("value", Type.DraftLaw);
     $("#title").prop("value", "Αντίγραφο - " + $("#title").val());
-  } else if (analysis == "Προσχέδιο νόμου") {
-    $("#typos_analysis").prop("value", "Σχέδιο νόμου");
+  } else if (type == Type.DraftLaw) {
+    $("#typos_analysis").prop("value", Type.LawPlan);
     $("#title").prop("value", "Αντίγραφο - " + $("#title").val());
   }
-  $("#status_ekthesis").val("Συντάσσεται");
+  $("#status_ekthesis").val(Status.Composing);
   getFullDate($("#initial_submit"));
   getFullDate("#last_updated");
 }
@@ -18,9 +18,9 @@ function submitVisibility() {
     $("#egkrisi_dieuthinsis_nomoparaskeyastikis").prop("checked") &&
     $("#egkrisi_genikou_grammatea").prop("checked")
   ) {
-    $(".create-new").prop("disabled", false);
+    $(".create-new").show();
   } else {
-    $(".create-new").prop("disabled", true);
+    $(".create-new").hide();
   }
 }
 
@@ -46,7 +46,7 @@ function viewFormRoleRestriction() {
     //this role should be able to edit/complete a form only when analysis status is 'Συντάσσεται'
     "Συντάκτης επισπεύδοντος Υπουργείου": () => {
       $("#final_save").prop("disabled", true);
-      if ($("#status_ekthesis").val() != "Συντάσσεται") {
+      if ($("#status_ekthesis").val() != Status.Composing) {
         $("#edit_form :input:not(.next, .previous)").prop("disable", true);
       }
     },
@@ -54,7 +54,7 @@ function viewFormRoleRestriction() {
       if (
         // role === "Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)" &&
         $("#pdf_download").prop("hidden") === false &&
-        $("#status_ekthesis").val() === "Οριστικοποιήθηκε"
+        $("#status_ekthesis").val() === Status.Finalized
       ) {
         $("#signed_pdf_div").show();
         $(
@@ -94,6 +94,7 @@ function viewFormRoleRestriction() {
   roleRestrictions[role];
 }
 
+//TODO: complete
 function viewFormStatusRestriction() {
   let statusRestrictions = {
     //object with analysis' types as keys and subtext as value
@@ -107,9 +108,10 @@ function viewFormStatusRestriction() {
       $("#edit_form :input").prop("disabled", true);
     }, //once this status is reached no more editing should be permitted
   };
-  restrictions[analysis];
+  restrictions[type];
 }
 
+//TODO: complete
 function viewFormAnalysisRestriction() {
   let restrictions = {
     //object with analysis' types as keys and subtext as value
@@ -121,10 +123,10 @@ function viewFormAnalysisRestriction() {
     "Τροπολογίες Υπουργών": () => {},
     "Τροπολογίες Βουλευτών": () => {},
   };
-  restrictions[analysis];
+  restrictions[type];
 }
 
-function fillTable (table) {
+function fillTable(table) {
   for (let i in table) {
     const key = Object.keys(table[i]);
     const value = Object.values(table[i]);

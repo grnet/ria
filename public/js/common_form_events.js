@@ -93,6 +93,7 @@ $("#back").on("click", function (ev) {
   window.location.href = "/user_views/history";
 });
 
+//TODO: after field 9 refactoring use a unique to refer to tables to reduce redundant code
 //for each checkbox certain tables have to show up or be hidden. Hidden tables have their inputs disabled.
 $("#ekpedeusi_politismos").on("change", function (ev) {
   this.checked
@@ -512,6 +513,7 @@ $("#add_row_emd_table").on("click", function () {
   populateMinistersSurnameSelect(`minister_surname${index - 1}`);
 });
 
+//TODO: remove after field_9 refactoring
 $("#eidikoteroi_stoxoi_analogws_tomea table").addClass(
   "govgr-table--light govgr-table govgr-table--with-vertical-header govgr-table--with-vertical-lines"
 );

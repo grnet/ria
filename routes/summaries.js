@@ -1,9 +1,8 @@
 const routes = require("express").Router();
 const { authUser, authRole } = require("../middleware/auth");
 let database = require("../services/database");
-const Enums = require("../lib/Enums/analysis");
+const Enums = require("../lib/enums/analysis");
 
-// TODO: use enums
 routes.get("/", authUser, authRole, async (req, res, next) => {
   let entries = await database.analysis.count();
   let draftLaws = await database.analysis.count({
