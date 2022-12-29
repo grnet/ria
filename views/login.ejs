@@ -1,41 +1,53 @@
 <%- include('partials/head.ejs') %>
+
   <div class="govgr-width-container">
     <div class="govgr-main-wrapper">
       <div class="govgr-grid-column-two-thirds">
-        <form>
-          <% if( typeof errors !=="undefined" ) { for (i in errors) {%>
-            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert"> <a
-                href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> <strong>
+        <form id="loginForm">
+          <div id="errors">
+            <% if( typeof errors !=="undefined" ) { for (i in errors) {%>
+              <div
+                class="alert alert-warning alert-dismissible fade show bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+                role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
                 <%= errors[i].msg%>
-              </strong>
-            </div>
-            <% } } %> <br />
-              <div>
-                <h2 class="govgr-heading-xl">Απαιτείται ταυτοποίηση</h2>
-                <h2 class="govgr-heading-l">Για να προχωρήσετε πρέπει πρώτα να συνδεθείτε.</h2>
               </div>
-              <div class="govgr-field">
-                <label class="govgr-label">
-                  <span>Όνομα Χρήστη</span>
-                  <input class="govgr-input govgr-!-width-one-half" type="text" id="username" name="username"
-                    required />
-                </label>
-              </div>
-              <div class="govgr-field">
-                <label class="govgr-label">
-                  <span>Κωδικός Πρόσβασης</span>
-                  <input type="password" class="govgr-input govgr-!-width-one-half" id="password" name="password"
-                    required />
-                </label>
-              </div>
-              <input type="submit" name="login" class=" govgr-btn govgr-btn-primary" value="Σύνδεση" /> <br /><br />
-              <p>ή</p>
-              <br />
-                 συνδεθειτε μέ <a href="/oauth2pa"><strong>Κωδικούς Δημόσιας Διοίκησης</strong></a>. Αν δεν έχετε ήδη μπορείτε να μπορείτε να τους εκδώσετε από <a href="https://www.gov.gr/upourgeia/upourgeio-psephiakes-diakuberneses/psephiakes-diakuberneses/ekdose-kodikon-demosias-dioikeses">εδώ</a>
-        </form>
+          </div>
+          <% } } %> <br />
       </div>
+      <div>
+        <h2 class="govgr-heading-xl">Απαιτείται ταυτοποίηση</h2>
+        <h2 class="govgr-heading-l">Για να προχωρήσετε πρέπει πρώτα να συνδεθείτε.</h2>
+      </div>
+      <div class="govgr-field">
+        <label class="govgr-label">
+          <span>Όνομα Χρήστη</span>
+          <input class="govgr-input govgr-!-width-one-half" type="text" id="username" name="username" required />
+        </label>
+      </div>
+      <div class="govgr-field">
+        <label class="govgr-label">
+          <span>Κωδικός Πρόσβασης</span>
+          <input type="password" class="govgr-input govgr-!-width-one-half" id="password" name="password" required />
+        </label>
+      </div>
+      <!-- <input type="submit" name="login" class=" govgr-btn govgr-btn-primary" value="Σύνδεση" /> <br /><br /> -->
+      <div class="govgr-button-group">
+        <input type="button" id="login" name="login" class=" govgr-btn govgr-btn-primary"
+          value="Σύνδεση με κωδικούς πλατφόρμας" /> <br /><br />
+        <input type="button" id="oauth2pa" name="oauth2pa" class=" govgr-btn govgr-btn-primary"
+          value="Σύνδεση με Κωδικούς Δημόσιας Διοίκησης" /> <br /><br />
+      </div>
+      <p> Αν δεν έχετε ήδη Κωδικούς Δημόσιας Διοίκησης
+        μπορείτε να μπορείτε να τους εκδώσετε από <a class="info-link"
+          href="https://www.gov.gr/upourgeia/upourgeio-psephiakes-diakuberneses/psephiakes-diakuberneses/ekdose-kodikon-demosias-dioikeses">εδώ</a>
+      </p>
+      </form>
     </div>
-    <p></p><br /><br />
+  </div>
+  <p></p><br /><br />
   </div>
 
   <%- include('partials/footer.ejs') %>
@@ -88,18 +100,44 @@
 
     <script>
 
-      $("form").on("submit", function (ev) {
+      $("#login").on("click", function (ev) {
         ev.preventDefault();
+        console.log($(this));
+
         $.ajax({
           url: '/login',
-          data: $(this).serialize(),
+          data: $('#loginForm').serialize(),
+          error: function (error) {
+            console.log(error);
+            for (let i in error.responseJSON) {
+              $('#errors').append(`              
+                  <div class="alert alert-warning alert-dismissible fade show bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>     
+                    ${error.responseJSON[i].msg}                                 
+              `)
+            }
+          },
+          success: function (data) {
+            window.location = data.redirect
+          },
+          type: 'POST'
+        });
+      })
+
+      $("#oauth2pa").on("click", function (ev) {
+        ev.preventDefault();
+        $.ajax({
+          url: '/oauth2pa',
+          data: $('#loginForm').serialize(),
           error: function (error) {
             console.log(error)
           },
           success: function (data) {
             window.location = data.redirect
           },
-          type: 'POST'
+          type: 'GET'
         });
       })
       $("#nav-menu").hide();
