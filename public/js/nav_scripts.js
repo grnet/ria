@@ -28,11 +28,11 @@ $("#exit").on("click", function (ev) {
 
 
 function setUserRestrictions(userRole) {
-  if (userRole === "Βουλευτής") {
+  if (userRole === Roles.Parliamentarian) {
     $("#analysis_list").children(":not(.vouleftis)").hide(); //hide all children elements without class vouleftis
   } else if (
-    userRole === "Συντάκτης επισπεύδοντος Υπουργείου" ||
-    userRole == "Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)"
+    userRole === Roles.Composer ||
+    userRole == Roles.LegislativeCommittee
   ) {
     $("#analysis_list").children(".vouleftis").hide(); //hide all children elements with class vouleftis
   } else {

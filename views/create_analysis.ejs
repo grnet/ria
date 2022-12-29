@@ -886,11 +886,9 @@
     const ministers = JSON.parse(' <%- JSON.stringify(ministers) %> ');
     const ministriesArray = [];
     const ministersArray = [];
-
     let type = "<%= type %>";
     const role = "<%= role%>";
     const isAdmin = '<%= user.isAdmin %>';
-
     let tooltips = '<%= tooltips %>';
     tooltips = textCleanUp(tooltips);
 
@@ -938,4 +936,5 @@
         return false;
     });
 </script>
+<script type="text/javascript" src="/js/common_user_scripts.js"></script>
 <script type="text/javascript" src="/js/initialize_create_form.js"></script>

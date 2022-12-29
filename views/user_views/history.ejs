@@ -115,6 +115,7 @@
         overflow-wrap: break-word;
       }
     </style>
+    <script type="text/javascript" src="/js/enums.js"></script>
     <script type="text/javascript" src="/js/nav_scripts.js"></script>
     <script>
       $("#user_data").dataTable();
@@ -129,8 +130,6 @@
       setUserRestrictions(userRole);
 
       const isAdmin = '<%= user.isAdmin %>';
-      isAdmin ? $(".user").hide() : $(".admin").hide();
-
       const userEntries = '<%= entries %>';
       const agencyEntries = '<%= user.analyses %>';
 
@@ -156,6 +155,7 @@
       });
 
     </script>
+    <script type="text/javascript" src="/js/common_user_scripts.js"></script>
     </body>
 
     </html>

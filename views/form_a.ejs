@@ -1131,8 +1131,8 @@
     <script type="text/javascript" src="/js/common_form_scripts.js"></script>
     <script type="text/javascript" src="/js/tooltips.js"></script>
     <script type="text/javascript" src="/js/common_form_events.js"></script>
-    <script type="text/javascript" src="/js/form_a_scripts.js"></script>
-    <script type="text/javascript" src="/js/form_a_events.js"></script>
+    <script type="text/javascript" src="/js/edit_form_scripts.js"></script>
+    <script type="text/javascript" src="/js/edit_form_events.js"></script>
     <script type="text/javascript" src="/js/enums.js"></script>
     <script>
 
@@ -1185,7 +1185,7 @@
         createTooltips(tooltips);
 
         $("form").on("submit", function (ev) {
-            onSubmitStatus();
+            setStatus();
             updateForm(ev);
         })
 
@@ -1454,7 +1454,7 @@
             });
         });
 
-        function onSubmitStatus() {
+        function setStatus() {
 
             if ((role === "Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων" || role === "Βουλευτής") || (role === "Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)" && $('#status_ekthesis').val("Συντάσσεται"))) {
                 $('#status_ekthesis').val("Ολοκληρώθηκε");
@@ -1573,6 +1573,7 @@
 
     </script>
     <script type="text/javascript" src="/js/initialize_edit_form.js"></script>
+    <script type="text/javascript" src="/js/common_user_scripts.js"></script>
     </div>
     </div>
     <%- include('partials/footer.ejs') %>

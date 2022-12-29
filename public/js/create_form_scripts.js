@@ -9,14 +9,15 @@ $("#ekthesi_glk").on("change", function (ev) {
     : $("#status_ekthesis").val(Status.Composing);
 });
 
-function onSubmitStatus(ev) {
-  $("#ekthesi_glk").prop("checked")
-    ? (alert(
-        "Για την ανάλυση εκκρεμεί ο έλεγχος του Γενικού Λογιστηρίου του Κράτους που έχετε ζητήσει. Επικοινωνήστε με το Γενικό Λογιστήριο του Κράτους για να τον ολοκληρώσει ή ενημερώστε τον αρμόδιο του Υπουργείου σας για να το επιλύσει."
-      ),
-      ev.preventDefault())
-    : $("#status_ekthesis").val("Ολοκληρώθηκε");
-}
+//TODO: if not needed remove
+// function setStatus(ev) {
+//   $("#ekthesi_glk").prop("checked")
+//     ? (alert(
+//         "Για την ανάλυση εκκρεμεί ο έλεγχος του Γενικού Λογιστηρίου του Κράτους που έχετε ζητήσει. Επικοινωνήστε με το Γενικό Λογιστήριο του Κράτους για να τον ολοκληρώσει ή ενημερώστε τον αρμόδιο του Υπουργείου σας για να το επιλύσει."
+//       ),
+//       ev.preventDefault())
+//     : $("#status_ekthesis").val(Status.Completed);
+// }
 
 function setStatus() {
   if ($("#ekthesi_glk").prop("checked") && role === Roles.Composer) {

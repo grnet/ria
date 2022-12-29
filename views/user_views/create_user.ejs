@@ -188,11 +188,11 @@
         }
     </style>
     <script type="text/javascript" src="/js/nav_scripts.js"></script>
+    <script type="text/javascript" src="/js/enums.js"></script>
     <script>
         const userRole = "<%= user.role %>";
         setUserRestrictions(userRole);
         const isAdmin = '<%= user.isAdmin %>';
-        isAdmin ? $(".user").hide() : $(".admin").hide();
 
         $("form").on("submit", function (ev) {
             ev.preventDefault();
@@ -234,6 +234,7 @@
         });
 
     </script>
+    <script type="text/javascript" src="/js/common_user_scripts.js"></script>
     </body>
 
     </html>

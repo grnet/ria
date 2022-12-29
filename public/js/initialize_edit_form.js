@@ -44,6 +44,7 @@ if (pdf_exists) {
   $("#pdf_download").show();
 }
 
+//TODO: add classes to reduce code
 ekpedeusi_politismos
   ? ($(".ekpaideysi-politismos :input").prop("disabled", false),
     $("#ekpedeusi_politismos").prop("checked", true),
@@ -172,11 +173,7 @@ if (field_28[2] !== undefined && field_28[2] && field_28[2] === "on") {
   $("#alla_dikastiria_wrap").toggle();
 }
 
-if (
-  ekthesi_glk ||
-  $("#status_ekthesis").val() ===
-    "Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους"
-) {
+if (ekthesi_glk || $("#status_ekthesis").val() === Status.Pending) {
   $("#ekthesi_glk").prop("checked", true);
 }
 
@@ -202,9 +199,9 @@ if (approvals[3] !== undefined && approvals[3]) {
 // to here
 
 if (
-  role === "Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)" &&
-  ($("#typos_analysis").val() == "Προσχέδιο νόμου" ||
-    $("#typos_analysis").val() == "Κατευθυντήριες γραμμές")
+  role === Roles.LegislativeCommittee &&
+  ($("#typos_analysis").val() == Type.DraftLaw ||
+    $("#typos_analysis").val() == Type.Guidelines)
 ) {
   $(".convert").show();
 }
@@ -260,22 +257,22 @@ for (let i in ministriesArray) {
 let index = $("#tbody_ministers").prop("rows").length;
 // for (let j in ministersNames) {
 //   $("#tbody_ministers").append(`
-//     <tr id="R${++index}">  
-//       <td> 
+//     <tr id="R${++index}">
+//       <td>
 //         <textarea class="form-control" id="minister_name${index}" name="minister_name${index}" rows="1" readonly>${
 //     ministersNames[j].elem
-//   }</textarea> 
-//       </td>    
-//       <td> 
+//   }</textarea>
+//       </td>
+//       <td>
 //         <select id="minister_surname${index}" name="minister_surname${index}" class="col-sm-8 form-control" onchange="ministerSurnameOnChange('minister_name${index}', 'minister_surname${index}', 'minister_role${index}', 'minister_ministry${index}')" required></select>
-//       </td> 
-//       <td> 
+//       </td>
+//       <td>
 //         <textarea class="form-control" id="minister_role${index}" name="minister_role${index}" rows="1" readonly>${
 //     ministersRoles[j].elem
 //   }</textarea>
 //         <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
 //         <input type="hidden" id="minister_ministry${index}" name="minister_ministry${index}" >
-//         </td> 
+//         </td>
 //     </tr>`);
 //   populateMinistersSurnameSelect(`minister_surname${index}`);
 //   if (ministersSurnames[j] && ministersSurnames[j].elem) {
@@ -284,28 +281,28 @@ let index = $("#tbody_ministers").prop("rows").length;
 //   if (ministersMinistry[j] && ministersMinistry[j].elem) {
 //     $(`#minister_ministry${index}`).val(ministersMinistry[j].elem);
 //   }
-  
+
 // }
 
 // index = $("#tbody_17").prop("rows").length;
 // for (let i in f17ministersNames) {
 //   $("#tbody_17").append(`
-//         <tr id="R${++index}">  
-//             <td> 
+//         <tr id="R${++index}">
+//             <td>
 //                 <textarea class="form-control" id="field_17_minister_name${index}" name="field_17_minister_name${index}" readonly rows="1">${
 //     f17ministersNames[i].elem
-//   }</textarea> 
-//             </td>    
-//             <td> 
-//               <select id="field_17_minister_surname${index}" name="field_17_minister_surname${index}" class="col-sm-8 form-control" onchange="ministerSurnameOnChange('field_17_minister_name${index}', 'field_17_minister_surname${index}', 'field_17_minister_role${index}', 'field_17_minister_ministry${index}')" required></select>    
-//             </td> 
-//             <td> 
+//   }</textarea>
+//             </td>
+//             <td>
+//               <select id="field_17_minister_surname${index}" name="field_17_minister_surname${index}" class="col-sm-8 form-control" onchange="ministerSurnameOnChange('field_17_minister_name${index}', 'field_17_minister_surname${index}', 'field_17_minister_role${index}', 'field_17_minister_ministry${index}')" required></select>
+//             </td>
+//             <td>
 //                 <textarea class="form-control" id="field_17_minister_role${index}" name="field_17_minister_role${index}" readonly rows="1">${
 //     f17ministersRoles[i].elem
 //   }</textarea>
 //                 <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
 //                 <input type="hidden" id="field_17_minister_ministry${index}" name="field_17_minister_ministry${index}">
-//             </td> 
+//             </td>
 //         </tr>`);
 //   populateMinistersSurnameSelect(`field_17_minister_surname${index}`);
 //   if (f17ministersSurnames[i] && f17ministersSurnames[i].elem) {
@@ -317,28 +314,21 @@ let index = $("#tbody_ministers").prop("rows").length;
 // }
 
 // TODO: refactor
-if (role === "Γενικό Λογιστήριο του Κράτους") {
+if (role === Roles.GeneralAccountingOffice) {
   $(
     "#edit_form :input:not(#status_ekthesis, .glk :input, .next, .previous, .export-pdf, #save_temporarily, #final_save)"
   ).prop("disabled", true);
-  if (
-    $("#status_ekthesis").val() ===
-    "Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους"
-  ) {
+  if ($("#status_ekthesis").val() === Status.Pending) {
     $("#export_glk").hide();
   }
-} else if (role == "Βουλή") {
+} else if (role == Roles.Parliament) {
   $("#edit_form :input:not(.next, .previous)").prop("disabled", true);
 } else {
   $(".glk :input:not(#ekthesi_glk, .next, .previous)").prop("disabled", true);
 }
 
-if (
-  role ===
-    "Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων" ||
-  role === "Βουλευτής"
-) {
-  if ($("#status_ekthesis").val() === "Ολοκληρώθηκε") {
+if (role === Roles.ResponsibleForMinistry || role === Roles.Parliamentarian) {
+  if ($("#status_ekthesis").val() === Status.Completed) {
     $("#edit_form :input:not(.export-pdf, .next, .previous)").prop(
       "disabled",
       true
@@ -348,22 +338,22 @@ if (
 
 if (
   role ===
-  "Επιτροπή Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)"
+  Roles.QualityEvaluationCommittee
 ) {
   $(
     ".egkrisi_kalis_nomothetisis, .egkrisi_dieuthinsis_nomoparaskeyastikis, .egkrisi_genikou_grammatea, #final_save"
   ).prop("disabled", true);
-} else if (role === "Γραφείο Καλής Νομοθέτησης (ΓΓΝΚΘ)") {
+} else if (role === Roles.GoodLegislationOffice) {
   $(
     ".egkrisi_aksiologisis_nomoparaskeyastikis, .egkrisi_dieuthinsis_nomoparaskeyastikis, .egkrisi_genikou_grammatea, #final_save"
   ).prop("disabled", true);
-} else if (role === "Διεύθυνση Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)") {
+} else if (role === Roles.LegislativeProcedureDirectorate) {
   $(
     ".egkrisi_aksiologisis_nomoparaskeyastikis, .egkrisi_kalis_nomothetisis, .egkrisi_genikou_grammatea, #final_save"
   ).prop("disabled", true);
 } else if (
-  role === "Γενικός Γραμματέας Νομικών και Κοινοβουλευτικών Θεμάτων" &&
-  $("#status_ekthesis").val() !== "Οριστικοποιήθηκε"
+  role === Roles.GeneralSecretary &&
+  $("#status_ekthesis").val() !== Status.Finalized
 ) {
   $(
     ".egkrisi_aksiologisis_nomoparaskeyastikis, .egkrisi_kalis_nomothetisis, .egkrisi_dieuthinsis_nomoparaskeyastikis, #final_save"
@@ -371,43 +361,40 @@ if (
 }
 
 if (
-  role ===
-    "Επιτροπή Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)" ||
-  role === "Γραφείο Καλής Νομοθέτησης (ΓΓΝΚΘ)" ||
-  role === "Διεύθυνση Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)" ||
-  role === "Γενικός Γραμματέας Νομικών και Κοινοβουλευτικών Θεμάτων"
+  role === Roles.QualityEvaluationCommittee ||
+  role === Roles.GoodLegislationOffice ||
+  role === Roles.LegislativeProcedureDirectorate ||
+  role === Roles.GeneralSecretary
 ) {
   if (
-    $("#status_ekthesis").val() === "Ολοκληρώθηκε" ||
+    $("#status_ekthesis").val() === Status.Completed ||
     $("#status_ekthesis").val() ===
-      "Ελέγχθηκε από το Γενικό Λογιστήριο του Κράτους"
+      Status.Checked
   ) {
     $(".ggnkth").show();
-  } else if ($("#status_ekthesis").val() === "Οριστικοποιήθηκε") {
+  } else if ($("#status_ekthesis").val() === Status.Finalized) {
     $(".ggnkth").show();
     $(".ggnkth input[type=checkbox]").prop("disabled", true);
   }
 }
 
-if (role === "Συντάκτης επισπεύδοντος Υπουργείου") {
-  if ($("#status_ekthesis").val() != "Συντάσσεται") {
+if (role === Roles.Composer) {
+  if ($("#status_ekthesis").val() != Status.Composing) {
     "#edit_form :input:not(.next, .previous)".prop("disabled", true);
   }
 }
 
-if ($("#status_ekthesis").val() === "Οριστικοποιήθηκε") {
-  $(
-    "#edit_form :input:not( .next, .previous)"
-  ).prop("disabled", true);
+if ($("#status_ekthesis").val() === Status.Finalized) {
+  $("#edit_form :input:not( .next, .previous)").prop("disabled", true);
   //$("#edit_form :input[type=checkbox]").prop("disable",true);
 }
 
 if (
-  (role === "Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)" &&
+  (role === Roles.LegislativeCommittee &&
     $("#pdf_download").prop("hidden") === false &&
-    $("#status_ekthesis").val() === "Οριστικοποιήθηκε") ||
-  ($("#status_ekthesis").val() === "Οριστικοποιήθηκε" &&
-    role === "Γενικός Γραμματέας Νομικών και Κοινοβουλευτικών Θεμάτων")
+    $("#status_ekthesis").val() === Status.Finalized) ||
+  ($("#status_ekthesis").val() === Status.Finalized &&
+    role === Roles.GeneralSecretary)
 ) {
   $("#signed_pdf_div").show();
   $("#pdf_download, #signed_pdf_upload, .export-pdf").prop("disabled", false);
@@ -418,7 +405,7 @@ if (
   $(".previous").prop("disabled", false);
 }
 
-if ($("#status_ekthesis").val() === "Κατατέθηκε") {
+if ($("#status_ekthesis").val() === Status.Uploaded) {
   $(
     "#edit_form :input:not(#signed_pdf_div, #upload_signed_pdf, .next, .previous)"
   ).prop("disabled", true);

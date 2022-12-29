@@ -35,7 +35,7 @@ $("#versions").on("click", function () {
 
 $("#ekthesi_glk").on("change", function (ev) {
   //actions to take when ΓΛΚ checks checkbox
-  if (role === "Γενικό Λογιστήριο του Κράτους") {
+  if (role === Roles.GeneralAccountingOffice) {
     if (!this.checked) {
       answer = window.confirm(
         "Με την ενέργειά σας αυτή η έκθεση θεωρείται ολοκληρωμένη από μεριά σας και επιστρέφει στον Αρμόδιο Συντάκτη ή στο Αρμόδιο Υπουργείο. Θέλετε να συνεχίσετε;"
@@ -43,14 +43,14 @@ $("#ekthesi_glk").on("change", function (ev) {
       if (answer) {
         $("#status_ekthesis")
           .prop("disabled", false)
-          .val("Ελέγχθηκε από το Γενικό Λογιστήριο του Κράτους"); //change status value
+          .val(Status.Checked); 
         setDate("#field_16_genikos_date");
         updateForm(ev); //once unchecked form is submitted/updated
       } else {
         $("#ekthesi_glk").prop("checked", true);
         $("#status_ekthesis")
           .prop("disabled", false)
-          .val("Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους"); //change status value
+          .val(Status.Pending); 
       }
     }
   } else if (this.checked) {
@@ -59,7 +59,7 @@ $("#ekthesi_glk").on("change", function (ev) {
     );
     if (answer) {
       $("#status_ekthesis").val(
-        "Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους"
+        Status.Pending
       );
     } else {
       $("#status_ekthesis").val(analysisStatus);

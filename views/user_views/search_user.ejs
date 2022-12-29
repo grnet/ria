@@ -44,6 +44,7 @@
   </div>
   <%- include('../partials/footer.ejs') %>
     <script type="text/javascript" src="/js/nav_scripts.js"></script>
+    <script type="text/javascript" src="/js/enums.js"></script>
     <script>
       $("#back").on("click", function (ev) {
         window.location.href = "/user_views/dashboard";
@@ -51,6 +52,5 @@
       const userRole = "<%= user.role %>";
       setUserRestrictions(userRole);
       const isAdmin = '<%= user.isAdmin %>';
-      isAdmin ? $(".user").hide() : $(".admin").hide();
-
     </script>
+    <script type="text/javascript" src="/js/common_user_scripts.js"></script>

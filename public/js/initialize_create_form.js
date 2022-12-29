@@ -8,7 +8,6 @@ ministriesArray.sort();
 ministersArray.sort();
 
 setUserRestrictions(role);
-setUserRestrictions(role);
 setAnalysisType();
 type = getAnalysisType(); //renew analysis
 setSubtitle();

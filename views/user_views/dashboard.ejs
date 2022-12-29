@@ -54,6 +54,7 @@
   </div>
   </div>
 
+  <script type="text/javascript" src="/js/enums.js"></script>
   <script type="text/javascript" src="/js/nav_scripts.js"></script>
 
   <script>
@@ -61,11 +62,9 @@
 
     let isAdmin = '<%= user.isAdmin %>';
 
-    isAdmin ? $(".user").hide() : $(".admin").hide(); //hide admin menu options if user does not have administration rights
     setUserRestrictions(userRole);
-
-
   </script>
+  <script type="text/javascript" src="/js/common_user_scripts.js"></script>
   </body>
 
   </html>
