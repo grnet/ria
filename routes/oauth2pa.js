@@ -224,29 +224,27 @@ const gsispa = async (req, res) => {
       if (debug) console.log("App UserInfo", user);
       if (user && user.dataValues) {
         req.session.user = user;
-        req.session.username = user.username; //store data to session variables
-        req.session.fname = user.fname;
-        req.session.lname = user.lname;
-        req.session.isAdmin = isAdmin;
-        req.session.role = user.role;
         if (debug) console.log("App Session", req.session);
+        //TODO: check if user has role and agency, if not redirect to login with msg, else proceed as bellow
         res.redirect(302, "/user_views/dashboard?ref=gsis");
       } else {
+        //TODO: add more data, figure out what else is inside userInfo
         await database.user.create({
           fname: userinfo.firstname,
           lname: userinfo.lastname,
+          afm: userinfo.taxid
         });
         req.session.errors.push({ msg: "Παρακαλώ επικοινωνήστε με έναν διαχειριστή για να σας αναθέσει Φορέα, ρόλο και λοιπά δικαιώματα." }); //custom error message
         res.redirect(302, "./login"); //redirect and display errors
       }
     } else {
       req.session.errors.push({ msg: "Δε βρέθηκε χρήστης με αυτό το ΑΦΜ." }); //custom error message
-      res.redirect(302, "./login"); //redirect and display errors
+      res.redirect(404, "./login"); //redirect and display errors
     }
     res.end();
 };
 
-routes.post('/', async function (req, res, next) {
+routes.get('/', async function (req, res, next) {
     req.session.errors = null;
     gsispa(req, res)
 });

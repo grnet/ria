@@ -17,7 +17,7 @@ exports.authUser = (
 exports.authRole = (
 
     async function (req, res, next) {
-        if (!req.session.isAdmin) {
+        if (!req.session.user.isAdmin) {
             req.session.errors = [];
             req.session.errors.push({ msg: 'Δεν έχετε δικαιώματα διαχείρισης.' })
             return res.redirect("./dashboard");

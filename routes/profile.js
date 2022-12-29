@@ -8,7 +8,7 @@ routes.get('/', authUser, async function (req, res, next) {
 
     let user = await database.user.findOne({
         where: {
-            username: req.session.username
+            username: req.session.user.username
         }
     })
     if (user && user.dataValues) {

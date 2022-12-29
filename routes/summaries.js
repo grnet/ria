@@ -32,7 +32,7 @@ routes.get("/", authUser, authRole, async (req, res, next) => {
 
   let user = await database.user.findOne({
     where: {
-      username: req.session.username,
+      username: req.session.user.username,
     },
   });
   res.render("user_views/summaries", {

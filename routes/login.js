@@ -34,11 +34,6 @@ routes.post('/', [
                 bcrypt.compare(userPassword, user.password, function (err, result) {
                     if (result) {
                         req.session.user = user;
-                        req.session.username = user.username;//store data to session variables
-                        req.session.fname = user.fname;
-                        req.session.lname = user.lname;
-                        req.session.isAdmin = user.isAdmin;
-                        req.session.role = user.role;
                         res.send({ redirect: "user_views/dashboard" });                       
                     } else {
                         req.session.errors.push({ msg: 'Δε βρέθηκε χρήστης με αυτό το όνομα ή κωδικό.' })//custom error message

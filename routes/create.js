@@ -49,7 +49,7 @@ routes.get("/:analysis", authUser, async (req, res, next) => {
 
     res.render("create", {
       type: type,
-      role: req.session.role,
+      role: req.session.user.role,
       errors: valid_errors,
       tooltips: tooltips,
       ministers: ministers,
@@ -107,11 +107,11 @@ routes.post(
       uploads: uploads,
       type: req.body.type,
       status: req.body.status,
-      author: req.session.username,
+      author: req.session.user.username,
     });
 
     await database.audit.create({
-      user: req.session.fname + " " + req.session.lname,
+      user: req.session.user.fname + " " + req.session.user.lname,
       data: req.body,
       timestamp: req.body.initial_submit,
       action: req.method,

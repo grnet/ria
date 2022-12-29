@@ -4,7 +4,7 @@ let database = require("../services/database")
 
 routes.get('/', authUser,async (req,res,next) =>{
     let user = await database.user.findOne({where:{
-        username: req.session.username
+        username: req.session.user.username
     }});
     if(user && user.dataValues){
         res.render("user_views/dashboard",{user:user.dataValues})

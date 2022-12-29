@@ -127,7 +127,7 @@ routes.get("/:entry_id", authUser, async (req, res, next) => {
           field_32: field_32,
           processes: processes,
         }, // TODO: create tables
-        role: req.session.role,
+        role: req.session.user.role,
         pdf_exists: pdf_exists,
         tooltips: tooltips,
         ministries: ministriesArray,
@@ -256,7 +256,7 @@ routes.put(
           {
             data: req.body,
             uploads: uploads,
-            author: req.session.username,
+            author: req.session.user.username,
           },
           {
             where: {
@@ -265,7 +265,7 @@ routes.put(
           }
         );
 
-        const author = req.session.fname + " " + req.session.lname;
+        const author = req.session.user.fname + " " + req.session.user.lname;
 
         await database.audit.create({
           user: author,
