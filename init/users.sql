@@ -24,6 +24,6 @@ INSERT INTO user VALUES
 (8,'000000008','Καλή Νομοθέτηση','Καλή Νομοθέτηση','kalinomothetisi', '$2b$10$xbn8eBWw0pq49yRzsGc4sOBfV0HAvnyN6LRLGZakJGO03sReNx6SS', 'Γραφείο Καλής Νομοθέτησης (ΓΓΝΚΘ)', '', 'ΥΠΟΥΡΓΕΙΟ ΟΙΚΟΝΟΜΙΚΩΝ', NOW(), NOW()),
 (9,'000000009','Νομοπαρασκευαστική','Επιτροπή','nomoparaskeuastiki', '$2b$10$62YscmFbslJs7rwae8peh.ZR4fqQayEkOT/d6Ap0k37gT7.0xlQSq', 'Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)', 'on', 'ΥΠΟΥΡΓΕΙΟ ΟΙΚΟΝΟΜΙΚΩΝ', NOW(), NOW()),
 (10,'000000010','Συντάκτης','Συντάκτης','syntaktis', '$2b$10$hcDOjbHxGWaTypEG24kPV.QXQYsi1wepufmT95aYkzIuxLUkZhp4K', 'Συντάκτης επισπεύδοντος Υπουργείου', '', 'ΥΠΟΥΡΓΕΙΟ ΟΙΚΟΝΟΜΙΚΩΝ', NOW(), NOW()),
-(11,'100365110','Βουλευτής','Βουλευτής (oauth2pa)','100365110', '$2b$10$hcDOjbHxGWaTypEG24kPV.QXQYsi1wepufmT95aYkzIuxLUkZhp4K', 'Βουλευτής', '', 'Βουλή', NOW(), NOW()),
-(12,'660074100','Διεύθυνση Νομοπαρασκευαστικής','Διαδικασίας (oauth2pa)','660074100', '$2b$10$hcDOjbHxGWaTypEG24kPV.QXQYsi1wepufmT95aYkzIuxLUkZhp4K', 'Διεύθυνση Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)', '', 'ΥΠΟΥΡΓΕΙΟ ΟΙΚΟΝΟΜΙΚΩΝ', NOW(), NOW()),
-(13,'660074111','Συντάκτης','Συντάκτης (oauth2pa)','660074111', '$2b$10$hcDOjbHxGWaTypEG24kPV.QXQYsi1wepufmT95aYkzIuxLUkZhp4K', 'Συντάκτης επισπεύδοντος Υπουργείου', '', 'ΥΠΟΥΡΓΕΙΟ ΟΙΚΟΝΟΜΙΚΩΝ', NOW(), NOW());
+(11,'100365110','Βουλευτής','Βουλευτής (oauth2)','100365110', '$2b$10$hcDOjbHxGWaTypEG24kPV.QXQYsi1wepufmT95aYkzIuxLUkZhp4K', 'Βουλευτής', '', 'Βουλή', NOW(), NOW()),
+(12,'660074100','Διεύθυνση Νομοπαρασκευαστικής','Διαδικασίας (oauth2)','660074100', '$2b$10$hcDOjbHxGWaTypEG24kPV.QXQYsi1wepufmT95aYkzIuxLUkZhp4K', 'Διεύθυνση Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)', '', 'ΥΠΟΥΡΓΕΙΟ ΟΙΚΟΝΟΜΙΚΩΝ', NOW(), NOW()),
+(13,'660074111','Συντάκτης','Συντάκτης (oauth2)','660074111', '$2b$10$hcDOjbHxGWaTypEG24kPV.QXQYsi1wepufmT95aYkzIuxLUkZhp4K', 'Συντάκτης επισπεύδοντος Υπουργείου', '', 'ΥΠΟΥΡΓΕΙΟ ΟΙΚΟΝΟΜΙΚΩΝ', NOW(), NOW());

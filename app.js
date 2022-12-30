@@ -7,7 +7,7 @@ const cookieParser = require("cookie-parser");
 //declare routes
 const homeRoute = require("./routes/home");
 const loginRoute = require("./routes/login");
-const oauth2pa = require("./routes/oauth2pa");
+const oauth2 = require("./routes/oauth2");
 const logoutRoute = require("./routes/logout");
 const createRoute = require("./routes/create");
 const form_aRoute = require("./routes/form_a");
@@ -47,8 +47,8 @@ app.disable("x-powered-by");
 
 app.use("/", homeRoute);
 app.use("/login", loginRoute);
-app.use(process.env.OAUTH2PA_LOGIN_PATH, oauth2pa); //Path have to be changed to /palogin or something, after KED is done
-app.use("/oauth2pa", oauth2pa); //this may not needed if the OAUTH2PA_LOGIN_PATH already starts with /oauth2pa
+app.use(process.env.OAUTH2_LOGIN_PATH, oauth2); //Path have to be changed to /palogin or something, after KED is done
+app.use("/oauth2", oauth2); //this may not needed if the OAUTH2_LOGIN_PATH already starts with /oauth2
 app.use("/logout", logoutRoute);
 app.use("/create_analysis", createRoute);
 app.use("/form_a", form_aRoute); //TODO: rename route to edit_analysis
