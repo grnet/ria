@@ -37,13 +37,9 @@
       <div class="govgr-button-group">
         <input type="button" id="login" name="login" class=" govgr-btn govgr-btn-primary"
           value="Σύνδεση με κωδικούς πλατφόρμας" /> <br /><br />
-        <input type="button" id="oauth2pa" name="oauth2pa" class=" govgr-btn govgr-btn-primary"
-          value="Σύνδεση με Κωδικούς Δημόσιας Διοίκησης" /> <br /><br />
+        <input type="button" id="oauth2" name="oauth2" class=" govgr-btn govgr-btn-primary"
+          value="Σύνδεση με Κωδικούς TAXISNET" /> <br /><br />
       </div>
-      <p> Αν δεν έχετε ήδη Κωδικούς Δημόσιας Διοίκησης
-        μπορείτε να μπορείτε να τους εκδώσετε από <a class="info-link"
-          href="https://www.gov.gr/upourgeia/upourgeio-psephiakes-diakuberneses/psephiakes-diakuberneses/ekdose-kodikon-demosias-dioikeses">εδώ</a>
-      </p>
       </form>
     </div>
   </div>
@@ -126,10 +122,10 @@
         });
       })
 
-      $("#oauth2pa").on("click", function (ev) {
+      $("#oauth2").on("click", function (ev) {
         ev.preventDefault();
         $.ajax({
-          url: '/oauth2pa',
+          url: '/oauth2',
           data: $('#loginForm').serialize(),
           error: function (error) {
             console.log(error)

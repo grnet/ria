@@ -8,15 +8,15 @@ let debug = process.env.DEBUG || false;
 
 //Settings
 let gsisSetings = {
-  path: process.env.OAUTH2PA_LOGIN_PATH,
-  redirectUrl: process.env.SITE + process.env.OAUTH2PA_LOGIN_PATH,
+  path: process.env.OAUTH2_LOGIN_PATH,
+  redirectUrl: process.env.SITE + process.env.OAUTH2_LOGIN_PATH,
   scope: "read",
   grant_type: "authorization_code",
-  accessTokenUrl: process.env.GSIS_SITE + "/oauth2servergov/oauth/token",
-  authorizationUrl: process.env.GSIS_SITE + "/oauth2servergov/oauth/authorize",
-  profileUrl: process.env.GSIS_SITE + "/oauth2servergov/userinfo",
-  clientId: process.env.CLIENT_ID_GOV,
-  clientSecret: process.env.CLIENT_SECRET_GOV,
+  accessTokenUrl: process.env.GSIS_SITE + "/oauth2server"+process.env.GSIS_GOV+"/oauth/token",
+  authorizationUrl: process.env.GSIS_SITE + "/oauth2server"+process.env.GSIS_GOV+"/oauth/authorize",
+  profileUrl: process.env.GSIS_SITE + "/oauth2server"+process.env.GSIS_GOV+"/userinfo",
+  clientId: process.env.CLIENT_ID,
+  clientSecret: process.env.CLIENT_SECRET,
 };
 ////////////////////////////////////////////////////////////
 const makeTag = () => {
