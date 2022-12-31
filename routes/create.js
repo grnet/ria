@@ -26,27 +26,21 @@ var upload = multer({ storage: storage }).fields([
 routes.get("/:analysis", authUser, async (req, res, next) => {
   const type = req.params.analysis.substring(1); //removing first character
   try {
+    //TODO: remove errors
     const valid_errors = req.session.errors;
     req.session.errors = null;
     const user = req.session.user;
 
-    let ministers, ministriesArray;
-    let latest_entry = await database.ministries.max("id").catch((error) => {
-      console.log(error);
-      res.status(404).send("Could no locate latest ministries."); // TODO: redirect to dashboard, add msg
-    }); // get entry with highest id
-    let res_data = await database.ministries
-      .findOne({ where: { id: latest_entry } })
-      .catch((error) => {
-        console.log(error);
-        res.status(404).send("Could no locate ministries.");
-      });
+    //TODO: should collect all status errors to app.js
+    let ministries = await database.ministries.findAll().catch(() => {res.status(404).send("Could no locate latest ministries."); });
+    let ministers = await  database.minister.findAll().catch(() => {
+      res.status(404).send("Could no locate latest ministers.");
+    });;
 
-    res_data = res_data.dataValues.ministries;
-    ministers = ministries.getMinisters(res_data);
-    ministriesArray = ministries.getMinistries(res_data);
     const tooltips = JSON.stringify(await tooltipsCsv.getTooltips());
 
+    console.log(ministers);
+    console.log(ministries);
     res.render("create", {
       type: type,
       role: req.session.user.role,
@@ -60,7 +54,6 @@ routes.get("/:analysis", authUser, async (req, res, next) => {
     console.log("error: " + err);
   }
 });
-//routes.post('/', form_create.upload_files, form_submit.create_update_form
 
 routes.post(
   "/:analysis",

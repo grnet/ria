@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        ministries: DataTypes.JSON,
+        name: DataTypes.STRING,
   
     },{
         freezeTableName: true //table name same as model name

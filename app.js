@@ -47,7 +47,7 @@ app.disable("x-powered-by");
 
 app.use("/", homeRoute);
 app.use("/login", loginRoute);
-app.use(process.env.OAUTH2_LOGIN_PATH, oauth2); //Path have to be changed to /palogin or something, after KED is done
+// app.use(process.env.OAUTH2_LOGIN_PATH, oauth2); //Path have to be changed to /palogin or something, after KED is done
 app.use("/oauth2", oauth2); //this may not needed if the OAUTH2_LOGIN_PATH already starts with /oauth2
 app.use("/logout", logoutRoute);
 app.use("/create_analysis", createRoute);

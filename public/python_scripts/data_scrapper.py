@@ -45,6 +45,7 @@ class RoleEncoder(JSONEncoder):
         return o.__dict__
 
 allministries=[]
+ministries=[]
 roles=[]
 minname=None
 for i in items:
@@ -82,6 +83,8 @@ for i in items:
 
   else:
     if (len(i.text)>0):
+      if 'ΥΠΟΥΡΓΕΙΟ' in i.text:
+        ministries.append(i.text)
       if len(roles)==0:
         min=Ministry(i.text)
       else:
@@ -93,7 +96,12 @@ for i in items:
         roles=[]
         min=Ministry(i.text)
 
-
-json_string = json.dumps(allministries,ensure_ascii=False,cls=MinistryEncoder)
+result = []
+result.append(allministries)
+result.append(ministries)
+json_string = json.dumps(result,ensure_ascii=False,cls=MinistryEncoder)
+# ministries_string = json.dumps(
+    # ministries, ensure_ascii=False, cls=MinistryEncoder)
 print(json_string)
+# print(ministries)
 

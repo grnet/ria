@@ -20,6 +20,7 @@ db.analysis = require("../models/analysis.model.js")(sequelize, Sequelize);
 db.user = require("../models/user.model.js")(sequelize, Sequelize);
 db.audit = require("../models/audit.model.js")(sequelize, Sequelize);
 db.ministries = require("../models/ministries.model.js")(sequelize, Sequelize);
+db.minister = require("../models/minister.model.js")(sequelize, Sequelize);
 
 applyAssoc(sequelize);
 

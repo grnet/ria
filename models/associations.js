@@ -1,9 +1,9 @@
 "use strict";
 
 function applyAssoc(sequelize) {
-  const { analysis, user, audit } = sequelize.models;
+  const { analysis, user, audit, ministries, minister } = sequelize.models;
 
-  //establishing one to many association between user and ekthesi models
+  //establishing one to many association between user and analysis models
   user.hasMany(analysis, {
     sourceKey: "username",
     foreignKey: "author",
@@ -15,7 +15,7 @@ function applyAssoc(sequelize) {
     foreignKeyConstraint: true,
   });
 
-  //establishing one to many association between ekthesi and audit models
+  //establishing one to many association between analysis and audit models
   analysis.hasMany(audit, {
     sourceKey: "id",
     foreignKey: "auditId",
@@ -23,6 +23,18 @@ function applyAssoc(sequelize) {
   });
   audit.belongsTo(analysis, {
     foreignKey: "auditId",
+    targetKey: "id",
+    foreignKeyConstraint: true,
+  });
+
+  //establishing one to many association between ministers and ministries models
+  ministries.hasMany(minister, {
+    sourceKey: "id",
+    foreignKey: "ministryId",
+    foreignKeyConstraint: true,
+  });
+  minister.belongsTo(ministries, {
+    foreignKey: "ministryId",
     targetKey: "id",
     foreignKeyConstraint: true,
   });
