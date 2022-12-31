@@ -288,12 +288,12 @@
                 </tr>
             </thead>
             <tbody class="govgr-table__body" id="emd_processes_tbody">
-                <% if( tables.processes.emd_processes && tables.processes.emd_processes.length) { for (var i=0; i<
-                    data.emd_processes.length;i++) { %>
+                <% if( tables.processes.process && tables.processes.process.length) { for (var i=0; i<
+                    tables.processes.process.length;i++) { %>
                     <tr class="govgr-table__row">
                         <td class="govgr-table__cell">
                             <textarea class="govgr-textarea" id="process<%=i%>" name="process<%=i%>"
-                                rows="1"><%= tables.processes.emd_processes[i] %></textarea>
+                                rows="1"><%= tables.processes.process[i] %></textarea>
                         </td>
                     </tr>
                     <% } }%>

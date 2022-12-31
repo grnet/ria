@@ -351,7 +351,7 @@ $("#add_row_table_17").on("click", function () {
                 }" name="field_17_minister_ministry${index - 1}">
             </td> 
         </tr>`);
-  populateMinistersNameSelect(`field_17_minister_surname${index - 1}`);
+  populateMinistersNameSelect(`field_17_minister_name${index - 1}`);
 });
 
 $("#add_row_ministers_table").on("click", function () {

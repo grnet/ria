@@ -41,108 +41,103 @@ routes.get("/:entry_id", authUser, async (req, res, next) => {
     pdf_name = `${entry.title}.pdf`;
     pdf_name = pdf_name.replace(/\s+/g, ""); //buggy?
     var pdf_exists;
-    let ministers, ministriesArray;
+
     fs.existsSync(`./public/pdf_exports/${pdf_name}`)
       ? (pdf_exists = true)
       : (pdf_exists = false);
 
-    if (entry && entry.dataValues) {
-      let latest_entry = await database.ministries.max("id").catch((error) => {
-        console.log(error);
-      }); // get entry with highest id
-      let res_data = await database.ministries
-        .findOne({ where: { id: latest_entry } })
-        .catch((error) => {
-          console.log(error);
-        });
+    const data = entry.dataValues.data;
+    const uploads = entry.dataValues.uploads;
+    const type = entry.dataValues.type;
 
-      const data = entry.dataValues.data;
-      const uploads = entry.dataValues.uploads;
-      const type = entry.dataValues.type;
+    const field_18 = await tables.getCheckboxTableData(data, "field_18", true);
+    const field_19 = await tables.getCheckboxTableData(data, "field_19", true);
+    const field_20 = await tables.getCheckboxTableData(data, "field_20", true);
+    const field_14 = await tables.getTableData(
+      ["field_14_arthro", "field_14_stoxos"],
+      data
+    );
+    const field_29 = await tables.getTableData(
+      ["field_29_diatakseis_rythmisis", "field_29_yfistamenes_diatakseis"],
+      data
+    );
+    const field_30 = await tables.getTableData(
+      ["field_30_diatakseis_katargisi", "field_30_katargoumenes_diatakseis"],
+      data
+    );
+    const field_31 = await tables.getTableData(
+      [
+        "field_31_sxetiki_diataksi",
+        "field_31_synarmodia_ypoyrgeia",
+        "field_31_antikeimeno_synarmodiotitas",
+      ],
+      data
+    );
+    const field_32 = await tables.getTableData(
+      [
+        "field_32_eksousiodotiki_diataksi",
+        "field_32_eidos_praksis",
+        "field_32_armodio_ypoyrgeio",
+        "field_32_antikeimeno",
+        "field_32_xronodiagramma",
+      ],
+      data
+    );
+    const signatories = await tables.getTableData(
+      ["minister_name", "minister_role", "minister_ministry"],
+      data
+    );
+    const field_17_signatories = await tables.getTableData(
+      [
+        "field_17_minister_name",
+        "field_17_minister_role",
+        "field_17_minister_ministry",
+      ],
 
-      const field_18 = await tables.getCheckboxTableData(
-        data,
-        "field_18",
-        true
-      );
-      const field_19 = await tables.getCheckboxTableData(
-        data,
-        "field_19",
-        true
-      );
-      const field_20 = await tables.getCheckboxTableData(
-        data,
-        "field_20",
-        true
-      );
-      const field_14 = await tables.getTableData(
-        ["field_14_arthro", "field_14_stoxos"],
-        data
-      );
-      const field_29 = await tables.getTableData(
-        ["field_29_diatakseis_rythmisis", "field_29_yfistamenes_diatakseis"],
-        data
-      );
-      const field_30 = await tables.getTableData(
-        ["field_30_diatakseis_katargisi", "field_30_katargoumenes_diatakseis"],
-        data
-      );
-      const field_31 = await tables.getTableData(
-        [
-          "field_31_sxetiki_diataksi",
-          "field_31_synarmodia_ypoyrgeia",
-          "field_31_antikeimeno_synarmodiotitas",
-        ],
-        data
-      );
-      const field_32 = await tables.getTableData(
-        [
-          "field_32_eksousiodotiki_diataksi",
-          "field_32_eidos_praksis",
-          "field_32_armodio_ypoyrgeio",
-          "field_32_antikeimeno",
-          "field_32_xronodiagramma",
-        ],
-        data
-      );
-      const processes = await tables.getTableData(["processes"], data);
+      data
+    );
+    const processes = await tables.getTableData(["process"], data);
 
-      res_data = res_data.dataValues.ministries;
-      ministers = ministries.getMinisters(res_data);
-      ministriesArray = ministries.getMinistries(res_data);
-      const tooltips = JSON.stringify(await tooltipsCsv.getTooltips());
+    const tooltips = JSON.stringify(await tooltipsCsv.getTooltips());
+    const ministriesResult = await ministries.getMinistries();
+    const ministersResult = await ministries.getMinisters(ministriesResult);
 
-      res.render("edit", {
-        //TODO: review endpoint name
-        type: type,
-        data: data,
-        tables: {
-          field_14: field_14,
-          field_18: field_18,
-          field_19: field_19,
-          field_20: field_20,
-          field_29: field_29,
-          field_30: field_30,
-          field_31: field_31,
-          field_32: field_32,
-          processes: processes,
-        }, // TODO: create tables
-        role: req.session.user.role,
-        pdf_exists: pdf_exists,
-        tooltips: tooltips,
-        ministries: ministriesArray,
-        ministers: ministers,
-        user: user,
-        uploads: uploads[0],
-      });
-    }
+    res.render("edit_analysis", {
+      //TODO: review endpoint name
+      type: type,
+      data: data,
+      tables: {
+        field_14: field_14,
+        field_17_signatories: field_17_signatories,
+        field_18: field_18,
+        field_19: field_19,
+        field_20: field_20,
+        field_29: field_29,
+        field_30: field_30,
+        field_31: field_31,
+        field_32: field_32,
+        processes: processes,
+        signatories: signatories,
+      }, // TODO: create tables
+      role: req.session.user.role,
+      pdf_exists: pdf_exists,
+      tooltips: tooltips,
+      ministries: ministriesResult,
+      ministers: ministersResult,
+      user: user,
+      uploads: uploads[0],
+    });
   } catch (err) {
     console.log("error: " + err);
   }
 });
 
-routes.post("/export/accounting/:entry_id", authUser, accounting_pdf_export.exportGlk); //router calls controller to handle the export
-routes.post("/:entry_id", authUser, pdf_export.exportPDF); //router calls controller to handle the export
+routes.post(
+  "/:entry_id/export/accounting",
+  authUser,
+  accounting_pdf_export.exportGlk
+); //router calls controller to handle the export
+routes.post("/:entry_id/export", authUser, pdf_export.exportPDF); //router calls controller to handle the export
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 

@@ -1149,20 +1149,19 @@
         const type = "<%= type %>";
         const pdf_exists = "<%= pdf_exists %>";
         const ministries = JSON.parse(' <%- JSON.stringify(ministries) %> ');
-        const ministers = JSON.parse(' <%- JSON.stringify(ministers) %> ');        
-
+        const ministers = JSON.parse(' <%- JSON.stringify(ministers) %> ');
         const field4 = "<%= data.field_4%>";
         const field6 = "<%= data.field_6%>";
         const field11 = "<%= data.field_11%>";
         const field12 = "<%= data.field_12%>";
         const field13 = "<%= data.field_13%>";
+        const field_15_ministry = "<%= data.field_15_ypoyrgeio%>";
+        const field_17_ministry = "<%= data.field_17_ypoyrgeio%>";
         const field36 = "<%= data.field_36%>";
-
         const ekthesi_glk = "<%= data.ekthesi_glk%>"
         const field_18 = `<%- data.field_18_comments%>`;
         const field_19 = `<%= data.field_19_comments %>`;
         const field_20 = `<%= data.field_20_comments %>`;
-
         const ekpedeusi_politismos = "<%= data.ekpedeusi_politismos %>";
         const eksoteriki_politiki = "<%= data.eksoteriki_politiki %>";
         const forologiki_politiki = "<%= data.forologiki_politiki %>";
@@ -1189,15 +1188,7 @@
         function updateForm(ev) {
             ev.preventDefault();
             setDate("#last_updated");
-            var inputs = $("form").find("input:disabled:not('.approvals')");
-            $.each(inputs, () => {
-                $(inputs).prop("disabled", false);
-            });
             var fd = new FormData($("form").get(0));
-            var checkbox = $("form").find("input[type=checkbox]:not(:checked)");//find all unchecked checkboxes 
-            $.each(checkbox, function (key, chckbx) {
-                fd.append($(chckbx).prop('name'), $(chckbx).value = '')//append to fd without value 
-            });
 
             fd.append('f15', $('#field_15_rythmiseis').value = CKEDITOR.instances['field_15_rythmiseis'].getData());
             fd.append('f16_2', $('#field_16_kratikos_proypologismos').value = CKEDITOR.instances['field_16_kratikos_proypologismos'].getData());
@@ -1205,8 +1196,7 @@
             fd.append('f17', $('#field_17_oikonomika_apotelesmata').value = CKEDITOR.instances['field_17_oikonomika_apotelesmata'].getData());
 
             $.ajax({
-                url: '/edit/' + ekthesi_id,
-                //data: $("form").serialize(),
+                url: '/edit_analysis/' + ekthesi_id,
                 data: fd,
                 contentType: false,
                 processData: false,
@@ -1240,7 +1230,7 @@
             setDate($("#last_updated"));
             var fd = new FormData($("form").get(0));
             $.ajax({
-                url: `/create/${type}`,
+                url: `/create_analysis/${type}`,
                 data: fd,
                 contentType: false,
                 processData: false,
@@ -1259,7 +1249,7 @@
             answer = window.confirm("Είστε σίγουροι ότι θέλετε να διαγράψετε την ανάλυση;");
             if (answer) {
                 $.ajax({
-                    url: `/edit/${ekthesi_id}/delete_analysis`,
+                    url: `/edit_analysis/${ekthesi_id}/delete_analysis`,
                     error: function (error) {
                         console.log(error);
                     },
@@ -1272,14 +1262,6 @@
         });
 
         $("#save_temporarily").on("click", function (ev) {
-            // var validationFlag;
-            // validationFlag = validateRequiredFields(validationFlag);
-            // console.log('validationFlag: ' + validationFlag)
-            // if (validationFlag) {
-            //     updateForm(ev);
-            // } else {
-            //     ev.preventDefault();
-            // }
             updateForm(ev);
         });
 
@@ -1300,56 +1282,17 @@
             let pdf_name = prompt("Παρακαλώ εισάγετε το όνομα του PDF");
             if (pdf_name) {
                 $("#pdf_name").val(pdf_name);
-                let inputs = $("form").find("input:disabled:not('.approvals')");
-                let textareas = $("form").find("textarea:disabled");//find all textareas 
-                let selects = $("form").find("select:disabled");
-                $.each(textareas, () => {
-                    $(textareas).prop("disabled", false);
-                });//enable fields to be passed down to req.body to be exported
-                $.each(inputs, () => {
-                    $(inputs).prop("disabled", false);
-                });
-                $.each(selects, () => {
-                    $(selects).prop("disabled", false);
-                });
-                $("#ekpedeusi_politismos").prop("checked") ? $(".ekpaideysi-politismos :input").prop('disabled', false) : $(".ekpaideysi-politismos :input").prop('disabled', true)
-                $("#forologiki_politiki").prop("checked") ? $(".oikonomia :input").prop('disabled', false) : $(".oikonomia :input").prop('disabled', true)
-                $("#koinoniki_politiki").prop("checked") ? $(".koinoniki-politiki :input").prop('disabled', false) : $(".koinoniki-politiki :input").prop('disabled', true)
-                $("#dimosia_dioikisi").prop("checked") ? $(".dimosia-dioikisi :input").prop('disabled', false) : $(".dimosia-dioikisi :input").prop('disabled', true)
-                $("#anaptiksi").prop("checked") ? $(".ependyseis :input").prop('disabled', false) : $(".ependyseis :input").prop('disabled', true)
-                let fd = new FormData($("form").get(0));
-                let checkbox = $("form").find("input[type=checkbox]:not(:checked)");//find all unchecked checkboxes 
-                $.each(checkbox, function (key, chckbx) {
-                    fd.append($(chckbx).prop('name'), $(chckbx).value = '')//append to fd without value 
-                });
-                fd = JSON.stringify(Object.fromEntries(fd));
                 $("#pdf_download").hide();
                 $.ajax({
-                    url: '/edit/' + ekthesi_id,
-                    //data: $("form").serialize(),
-                    data: fd,
+                    url: `/edit_analysis/${ekthesi_id}/export`,
+                    data: $(this).serialize(), //data: $("form").serialize(),
                     contentType: 'application/json',
                     processData: false,
                     error: function (error) {
                         console.log(error);
-                        $.each(textareas, () => {
-                            $(textareas).prop("disabled", true);
-                        });//enable fields to be passed down to req.body to be exported
-                        $.each(inputs, () => {
-                            $(inputs).prop("disabled", true);
-                        });
                     },
                     success: function (data) {
                         window.open(`/pdf_exports/${pdf_name}.pdf`)
-                        $.each(textareas, () => {
-                            $(textareas).prop("disabled", true);
-                        });//enable fields to be passed down to req.body to be exported
-                        $.each(inputs, () => {
-                            $(inputs).prop("disabled", true);
-                        });
-                        $.each(selects, () => {
-                            $(selects).prop("disabled", true);
-                        });
                         $("#pdf_download").html(`Το τελευταίο αποθηκευμένο PDF
                                     βρίσκεται <a href="/pdf_exports/${pdf_name}.pdf"><b><u>εδώ</u></b></a>.`)
                         $("#pdf_download").show();
@@ -1367,16 +1310,11 @@
             if (pdf_name) {
                 $("#glk_pdf_name").val(pdf_name);
                 setDate("#field_16_genikos_date");
-                $("#title").prop("disabled", false);
-                $("#epispeudon_foreas").prop("disabled", false);
-                $("#stoixeia_epikoinwnias").prop("disabled", false);
                 $.ajax({
-                    url: `/edit/export/accounting/:${ekthesi_id}`,
-                    //data: $("form").serialize(),
-                    data: $("form").serialize(),
+                    url: `/edit_analysis/:${ekthesi_id}/export/accounting`,
+                    data: $(this).serialize(), //data: $("form").serialize(),
                     processData: false,
                     error: function (error) {
-                        $("#arxiki").prop("disabled", true);
                         console.log(error);
                     },
                     success: function (data) {
@@ -1384,7 +1322,6 @@
                         $("#glk_pdf_download").html(`Το τελευταίο αποθηκευμένο PDF
                                     βρίσκεται <a href="/pdf_exports/${pdf_name}.pdf"><b><u>εδώ</u></b></a>.`)
                         $("#glk_pdf_download").show();
-                        $("#arxiki").prop("disabled", true);
                     },
                     type: 'POST'
                 })
@@ -1398,7 +1335,7 @@
             ev.preventDefault();
             $("#versions tbody").empty();
             $.ajax({
-                url: `/edit/${ekthesi_id}/versions`,
+                url: `/edit_analysis/${ekthesi_id}/versions`,
                 error: function (error) {
                     console.log(error);
                 },
@@ -1437,7 +1374,7 @@
             selected['firstTargetDate'] = ids[0].name.replace('checkbox', '');
             selected['secondTargetDate'] = ids[1].name.replace('checkbox', '');
             $.ajax({
-                url: `/edit/${ekthesi_id}/diff`,
+                url: `/edit_analysis/${ekthesi_id}/diff`,
                 data: selected,
                 error: function (error) {
                     console.log(error);

@@ -187,7 +187,6 @@ if (approvals[3] !== undefined && approvals[3]) {
   $("#egkrisi_genikou_grammatea").prop("checked", true);
   submitVisibility();
 }
-// to here
 
 if (
   role === Roles.LegislativeCommittee &&
@@ -229,80 +228,84 @@ if (tables) {
   // }
 }
 
-for (let i in ministriesArray) {
+for (let i in ministries) {
   $("#field_15_ypoyrgeio").append(
-    `<option value="${ministriesArray[i]}">${ministriesArray[i]}</option>`
+    `<option value="${ministries[i]}">${ministries[i]}</option>`
   );
   $("#field_17_ypoyrgeio").append(
-    `<option value="${ministriesArray[i]}">${ministriesArray[i]}</option>`
+    `<option value="${ministries[i]}">${ministries[i]}</option>`
   );
 }
 
-// $("#field_15_ypoyrgeio").val(
-//   f15ministry ? f15ministry : $("#field_15_ypoyrgeio option:first").val()
-// );
-// $("#field_17_ypoyrgeio").val(
-//   f17ministry ? f17ministry : $("#field_17_ypoyrgeio option:first").val()
-// );
+$("#field_15_ypoyrgeio").val(
+  field_15_ministry
+    ? field_15_ministry
+    : $("#field_15_ypoyrgeio option:first").val()
+);
+$("#field_17_ypoyrgeio").val(
+  field_17_ministry
+    ? field_17_ministry
+    : $("#field_17_ypoyrgeio option:first").val()
+);
 
 let index = $("#tbody_ministers").prop("rows").length;
-// for (let j in ministersNames) {
-//   $("#tbody_ministers").append(`
-//     <tr id="R${++index}">
-//       <td>
-//         <textarea class="form-control" id="minister_name${index}" name="minister_name${index}" rows="1" readonly>${
-//     ministersNames[j].elem
-//   }</textarea>
-//       </td>
-//       <td>
-//         <select id="minister_surname${index}" name="minister_surname${index}" class="col-sm-8 form-control" onchange="ministerSurnameOnChange('minister_name${index}', 'minister_surname${index}', 'minister_role${index}', 'minister_ministry${index}')" required></select>
-//       </td>
-//       <td>
-//         <textarea class="form-control" id="minister_role${index}" name="minister_role${index}" rows="1" readonly>${
-//     ministersRoles[j].elem
-//   }</textarea>
-//         <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
-//         <input type="hidden" id="minister_ministry${index}" name="minister_ministry${index}" >
-//         </td>
-//     </tr>`);
-//   populateMinistersSurnameSelect(`minister_surname${index}`);
-//   if (ministersNames[j] && ministersNames[j].elem) {
-//     $(`#minister_surname${index}`).val(ministersNames[j].elem);
-//   }
-//   if (ministersMinistry[j] && ministersMinistry[j].elem) {
-//     $(`#minister_ministry${index}`).val(ministersMinistry[j].elem);
-//   }
+for (let j in tables.signatories.minister_name) {
+  $("#tbody_ministers").append(`
+  <tr id="R${++index}">
+      </td>
+      <td>
+        <select id="minister_name${index}" name="minister_name${index}" class="govgr-select" onchange="ministerNameOnChange('minister_name${index}', 'minister_role${index}', 'minister_ministry${index}')" required></select>
+      </td>
+      <td>
+        <textarea class="form-control" id="minister_role${index}" name="minister_role${index}" rows="1" readonly>${
+    tables.signatories.minister_role[j]
+  }</textarea>
+        <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
+        <input type="hidden" id="minister_ministry${index}" name="minister_ministry${index}" >
+        </td>
+    </tr>`);
+  populateMinistersNameSelect(`minister_name${index}`);
+  if (tables.signatories && tables.signatories.minister_name[j]) {
+    $(`#minister_name${index}`).val(tables.signatories.minister_name[j]);
+  }
+  if (tables.signatories && tables.signatories.minister_ministry[j]) {
+    $(`#minister_ministry${index}`).val(tables.signatories.minister_ministry[j]);
+  }
+}
 
-// }
-
-// index = $("#tbody_17").prop("rows").length;
-// for (let i in f17ministersNames) {
-//   $("#tbody_17").append(`
-//         <tr id="R${++index}">
-//             <td>
-//                 <textarea class="form-control" id="field_17_minister_name${index}" name="field_17_minister_name${index}" readonly rows="1">${
-//     f17ministersNames[i].elem
-//   }</textarea>
-//             </td>
-//             <td>
-//               <select id="field_17_minister_surname${index}" name="field_17_minister_surname${index}" class="col-sm-8 form-control" onchange="ministerSurnameOnChange('field_17_minister_name${index}', 'field_17_minister_surname${index}', 'field_17_minister_role${index}', 'field_17_minister_ministry${index}')" required></select>
-//             </td>
-//             <td>
-//                 <textarea class="form-control" id="field_17_minister_role${index}" name="field_17_minister_role${index}" readonly rows="1">${
-//     f17ministersRoles[i].elem
-//   }</textarea>
-//                 <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
-//                 <input type="hidden" id="field_17_minister_ministry${index}" name="field_17_minister_ministry${index}">
-//             </td>
-//         </tr>`);
-//   populateMinistersSurnameSelect(`field_17_minister_surname${index}`);
-//   if (f17ministersNames[i] && f17ministersNames[i].elem) {
-//     $(`#field_17_minister_surname${index}`).val(f17ministersNames[i].elem);
-//   }
-//   if (f17ministersMinistry[i] && f17ministersMinistry[i].elem) {
-//     $(`#field_17_minister_ministry${index}`).val();
-//   }
-// }
+index = $("#tbody_17").prop("rows").length;
+for (let i in tables.field_17_signatories.field_17_minister_name) {
+  $("#tbody_17").append(`
+        <tr id="R${++index}">            
+            <td>
+              <select id="field_17_minister_name${index}" name="field_17_minister_name${index}" class="col-sm-8 form-control" onchange="ministerSurnameOnChange('field_17_minister_name${index}', 'field_17_minister_role${index}', 'field_17_minister_ministry${index}')" required></select>
+            </td>
+            <td>
+                <textarea class="form-control" id="field_17_minister_role${index}" name="field_17_minister_role${index}" readonly rows="1">${
+    tables.field_17_signatories.field_17_minister_role[j]
+  }</textarea>
+                <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
+                <input type="hidden" id="field_17_minister_ministry${index}" name="field_17_minister_ministry${index}">
+            </td>
+        </tr>`);
+  populateMinistersNameSelect(`field_17_minister_surname${index}`);
+  if (
+    tables.field_17_signatories &&
+    tables.field_17_signatories.field_17_minister_name[j]
+  ) {
+    $(`#field_17_minister_name${index}`).val(
+      tables.field_17_signatories.field_17_minister_name[j]
+    );
+  }
+  if (
+    tables.field_17_signatories &&
+    tables.field_17_signatories.field_17_minister_ministry[j]
+  ) {
+    $(`#field_17_minister_ministry${index}`).val(
+      tables.field_17_signatories.field_17_minister_ministry[j]
+    );
+  }
+}
 
 // TODO: refactor
 if (role === Roles.GeneralAccountingOffice) {
@@ -327,10 +330,7 @@ if (role === Roles.ResponsibleForMinistry || role === Roles.Parliamentarian) {
   }
 }
 
-if (
-  role ===
-  Roles.QualityEvaluationCommittee
-) {
+if (role === Roles.QualityEvaluationCommittee) {
   $(
     ".egkrisi_kalis_nomothetisis, .egkrisi_dieuthinsis_nomoparaskeyastikis, .egkrisi_genikou_grammatea, #final_save"
   ).prop("disabled", true);
@@ -359,8 +359,7 @@ if (
 ) {
   if (
     $("#status_ekthesis").val() === Status.Completed ||
-    $("#status_ekthesis").val() ===
-      Status.Checked
+    $("#status_ekthesis").val() === Status.Checked
   ) {
     $(".ggnkth").show();
   } else if ($("#status_ekthesis").val() === Status.Finalized) {

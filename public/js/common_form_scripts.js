@@ -155,7 +155,6 @@ function populateMinistersNameSelect(ministerNameSelectId) {
   $(`#${ministerNameSelectId}`).append(
     `<option value="" selected disabled>Eπιλογή</option>`
   );
-  console.log(ministers);
   for (i in ministers) {
     $(`#${ministerNameSelectId}`).append(
       `<option value="${ministers[i].name}">${ministers[i].name}</option>`
