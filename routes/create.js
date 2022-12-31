@@ -30,27 +30,23 @@ routes.get("/:analysis", authUser, async (req, res, next) => {
     const valid_errors = req.session.errors;
     req.session.errors = null;
     const user = req.session.user;
-
-    //TODO: should collect all status errors to app.js
-    let ministries = await database.ministries.findAll().catch(() => {res.status(404).send("Could no locate latest ministries."); });
-    let ministers = await  database.minister.findAll().catch(() => {
-      res.status(404).send("Could no locate latest ministers.");
-    });;
-
+    
     const tooltips = JSON.stringify(await tooltipsCsv.getTooltips());
+    const ministriesResult = await ministries.getMinistries();
+    const ministersResult = await ministries.getMinisters(ministriesResult);
 
-    console.log(ministers);
-    console.log(ministries);
     res.render("create", {
       type: type,
       role: req.session.user.role,
       errors: valid_errors,
       tooltips: tooltips,
-      ministers: ministers,
-      ministries: ministries,
+      ministers: ministersResult,
+      ministries: ministriesResult,
       user: user,
     });
   } catch (err) {
+    // TODO: add status error code
+    //TODO: should collect all status errors to app.js
     console.log("error: " + err);
   }
 });

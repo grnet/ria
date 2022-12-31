@@ -1139,45 +1139,42 @@
         const isAdmin = '<%= user.isAdmin %>';
 
         let answer;
-        let ekthesi_id = "<%= data.id %>";
+        const ekthesi_id = "<%= data.id %>";
         //prevent user from going to a different form through url
         // if (sessionStorage.getItem("referer") != ekthesi_id) {
         //     window.location.href = "/user_views/history"
         // }
         let analysisStatus = "<%= data.status_ekthesis %>";
-        let role = "<%= role%>";
-        let type = "<%= type %>";
-        let pdf_exists = "<%= pdf_exists %>";
-        let ministries = JSON.parse(' <%- JSON.stringify(ministries) %> ');
-        let ministers = JSON.parse(' <%- JSON.stringify(ministers) %> ');
-        let ministriesArray = [];
-        let ministersArray = [];
-        
+        const role = "<%= role%>";
+        const type = "<%= type %>";
+        const pdf_exists = "<%= pdf_exists %>";
+        const ministries = JSON.parse(' <%- JSON.stringify(ministries) %> ');
+        const ministers = JSON.parse(' <%- JSON.stringify(ministers) %> ');        
 
-        var field4 = "<%= data.field_4%>";
-        var field6 = "<%= data.field_6%>";
-        var field11 = "<%= data.field_11%>";
-        var field12 = "<%= data.field_12%>";
-        var field13 = "<%= data.field_13%>";
-        var field36 = "<%= data.field_36%>";
+        const field4 = "<%= data.field_4%>";
+        const field6 = "<%= data.field_6%>";
+        const field11 = "<%= data.field_11%>";
+        const field12 = "<%= data.field_12%>";
+        const field13 = "<%= data.field_13%>";
+        const field36 = "<%= data.field_36%>";
 
-        let ekthesi_glk = "<%= data.ekthesi_glk%>"
-        var field_18 = `<%- data.field_18_comments%>`;
-        var field_19 = `<%= data.field_19_comments %>`;
-        var field_20 = `<%= data.field_20_comments %>`;
+        const ekthesi_glk = "<%= data.ekthesi_glk%>"
+        const field_18 = `<%- data.field_18_comments%>`;
+        const field_19 = `<%= data.field_19_comments %>`;
+        const field_20 = `<%= data.field_20_comments %>`;
 
-        let ekpedeusi_politismos = "<%= data.ekpedeusi_politismos %>";
-        let eksoteriki_politiki = "<%= data.eksoteriki_politiki %>";
-        let forologiki_politiki = "<%= data.forologiki_politiki %>";
-        let koinoniki_politiki = "<%= data.koinoniki_politiki %>";
-        let dimosia_dioikisi = "<%= data.dimosia_dioikisi %>";
-        let anaptiksi = "<%= data.anaptiksi %>";
-        let field_10 = ["<%= data.field_10_amesi%>", "<%= data.field_10_emmesi%>"];
-        let field_25 = ["<%= data.field_25_dikaio %>", "<%= data.field_25_kanonismos %>", "<%= data.field_25_odigia %>", "<%= data.field_25_apofasi %>"];
-        let field_26 = ["<%= data.field_26_antrwpina_dikaiwmata %>", "<%= data.field_26_symvaseis %>"]
-        let field_27 = ["<%= data.field_27_dikastirio %>", "<%= data.field_27_arxi %>"]
-        let field_28 = ["<%= data.field_28_nomologia %>", "<%= data.field_28_nomologia_dikaiwmatwn_anthrwpou %>", "<%= data.field_28_alla_dikastiria %>"];
-        let approvals = ["<%= data.egkrisi_aksiologisis_nomoparaskeyastikis %>", "<%= data.egkrisi_dieuthinsis_nomoparaskeyastikis %>", "<%= data.egkrisi_kalis_nomothetisis %>", "<%= data.egkrisi_genikou_grammatea %>"];
+        const ekpedeusi_politismos = "<%= data.ekpedeusi_politismos %>";
+        const eksoteriki_politiki = "<%= data.eksoteriki_politiki %>";
+        const forologiki_politiki = "<%= data.forologiki_politiki %>";
+        const koinoniki_politiki = "<%= data.koinoniki_politiki %>";
+        const dimosia_dioikisi = "<%= data.dimosia_dioikisi %>";
+        const anaptiksi = "<%= data.anaptiksi %>";
+        const field_10 = ["<%= data.field_10_amesi%>", "<%= data.field_10_emmesi%>"];
+        const field_25 = ["<%= data.field_25_dikaio %>", "<%= data.field_25_kanonismos %>", "<%= data.field_25_odigia %>", "<%= data.field_25_apofasi %>"];
+        const field_26 = ["<%= data.field_26_antrwpina_dikaiwmata %>", "<%= data.field_26_symvaseis %>"]
+        const field_27 = ["<%= data.field_27_dikastirio %>", "<%= data.field_27_arxi %>"]
+        const field_28 = ["<%= data.field_28_nomologia %>", "<%= data.field_28_nomologia_dikaiwmatwn_anthrwpou %>", "<%= data.field_28_alla_dikastiria %>"];
+        const approvals = ["<%= data.egkrisi_aksiologisis_nomoparaskeyastikis %>", "<%= data.egkrisi_dieuthinsis_nomoparaskeyastikis %>", "<%= data.egkrisi_kalis_nomothetisis %>", "<%= data.egkrisi_genikou_grammatea %>"];
 
         const tables = JSON.parse(' <%- JSON.stringify(tables) %> ');
         let tooltips = '<%= tooltips %>';
@@ -1208,7 +1205,7 @@
             fd.append('f17', $('#field_17_oikonomika_apotelesmata').value = CKEDITOR.instances['field_17_oikonomika_apotelesmata'].getData());
 
             $.ajax({
-                url: '/form_a/' + ekthesi_id,
+                url: '/edit/' + ekthesi_id,
                 //data: $("form").serialize(),
                 data: fd,
                 contentType: false,
@@ -1262,7 +1259,7 @@
             answer = window.confirm("Είστε σίγουροι ότι θέλετε να διαγράψετε την ανάλυση;");
             if (answer) {
                 $.ajax({
-                    url: `/form_a/${ekthesi_id}/delete_analysis`,
+                    url: `/edit/${ekthesi_id}/delete_analysis`,
                     error: function (error) {
                         console.log(error);
                     },
@@ -1328,7 +1325,7 @@
                 fd = JSON.stringify(Object.fromEntries(fd));
                 $("#pdf_download").hide();
                 $.ajax({
-                    url: '/form_a/' + ekthesi_id,
+                    url: '/edit/' + ekthesi_id,
                     //data: $("form").serialize(),
                     data: fd,
                     contentType: 'application/json',
@@ -1374,7 +1371,7 @@
                 $("#epispeudon_foreas").prop("disabled", false);
                 $("#stoixeia_epikoinwnias").prop("disabled", false);
                 $.ajax({
-                    url: `/form_a/export/glk/:${ekthesi_id}`,
+                    url: `/edit/export/accounting/:${ekthesi_id}`,
                     //data: $("form").serialize(),
                     data: $("form").serialize(),
                     processData: false,
@@ -1401,7 +1398,7 @@
             ev.preventDefault();
             $("#versions tbody").empty();
             $.ajax({
-                url: `/form_a/${ekthesi_id}/versions`,
+                url: `/edit/${ekthesi_id}/versions`,
                 error: function (error) {
                     console.log(error);
                 },
@@ -1440,7 +1437,7 @@
             selected['firstTargetDate'] = ids[0].name.replace('checkbox', '');
             selected['secondTargetDate'] = ids[1].name.replace('checkbox', '');
             $.ajax({
-                url: `/form_a/${ekthesi_id}/diff`,
+                url: `/edit/${ekthesi_id}/diff`,
                 data: selected,
                 error: function (error) {
                     console.log(error);
@@ -1557,7 +1554,7 @@
             var bttn = $(this);
             if ($("#deleted_file").val()) {
                 $.ajax({
-                    url: `/form_a/${ekthesi_id}/delete_file`,
+                    url: `/edit/${ekthesi_id}/delete_file`,
                     data: $("form").serialize(),
                     error: function (error) {
                         console.log(error);

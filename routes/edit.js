@@ -3,7 +3,7 @@ let database = require("../services/database");
 const fs = require("fs");
 let pdf_export = require("../middleware/export");
 let diffPdf = require("../middleware/diff");
-let glk_pdf_export = require("../middleware/export_glk");
+let accounting_pdf_export = require("../middleware/export_glk");
 const tooltipsCsv = require("../lib/tooltips");
 const diff = require("diff");
 const { body, check, validationResult } = require("express-validator");
@@ -112,7 +112,7 @@ routes.get("/:entry_id", authUser, async (req, res, next) => {
       ministriesArray = ministries.getMinistries(res_data);
       const tooltips = JSON.stringify(await tooltipsCsv.getTooltips());
 
-      res.render("form_a", {
+      res.render("edit", {
         //TODO: review endpoint name
         type: type,
         data: data,
@@ -141,7 +141,7 @@ routes.get("/:entry_id", authUser, async (req, res, next) => {
   }
 });
 
-routes.post("/export/glk/:entry_id", authUser, glk_pdf_export.exportGlk); //router calls controller to handle the export
+routes.post("/export/accounting/:entry_id", authUser, accounting_pdf_export.exportGlk); //router calls controller to handle the export
 routes.post("/:entry_id", authUser, pdf_export.exportPDF); //router calls controller to handle the export
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////

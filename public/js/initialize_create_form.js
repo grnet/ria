@@ -1,12 +1,3 @@
-for (let i in ministries) {
-  ministriesArray.push(ministries[i].ministry);
-}
-for (let j in ministers) {
-  ministersArray.push(ministers[j].lastName);
-}
-ministriesArray.sort();
-ministersArray.sort();
-
 setUserRestrictions(role);
 setAnalysisType();
 type = getAnalysisType(); //renew analysis

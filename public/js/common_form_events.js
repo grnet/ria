@@ -334,16 +334,11 @@ $("#add_row_table_14").on("click", function () {
 $("#add_row_table_17").on("click", function () {
   let index = $("#tbody_17").prop("rows").length;
   $("#tbody_17").append(`
-        <tr id="R${++index}">  
+        <tr id="R${++index}">   
             <td> 
-                <textarea class="govgr-textarea" id="field_17_minister_name${
+                <select id="field_17_minister_name${
                   index - 1
-                }" name="field_17_minister_name${index - 1}" rows="1"></textarea> 
-            </td>    
-            <td> 
-                <select id="field_17_minister_surname${
-                  index - 1
-                }" name="field_17_minister_surname${index - 1}" class="govgr-select" onchange="ministerSurnameOnChange('field_17_minister_name${index - 1}', 'field_17_minister_surname${index - 1}', 'field_17_minister_role${index - 1}', 'field_17_minister_ministry${index - 1}')"></select>
+                }" name="field_17_minister_name${index - 1}" class="govgr-select" onchange="ministerNameOnChange('field_17_minister_name${index - 1}', 'field_17_minister_role${index - 1}', 'field_17_minister_ministry${index - 1}')"></select>
             </td> 
             <td>
                 <br> 
@@ -356,22 +351,17 @@ $("#add_row_table_17").on("click", function () {
                 }" name="field_17_minister_ministry${index - 1}">
             </td> 
         </tr>`);
-  populateMinistersSurnameSelect(`field_17_minister_surname${index - 1}`);
+  populateMinistersNameSelect(`field_17_minister_surname${index - 1}`);
 });
 
 $("#add_row_ministers_table").on("click", function () {
   let index = $("#tbody_ministers").prop("rows").length;
   $("#tbody_ministers").append(`
-        <tr id="R${++index}">  
+        <tr id="R${++index}">              
             <td> 
-                <textarea class="govgr-textarea" id="minister_name${
+                <select id="minister_name${
                   index - 1
-                }" name="minister_name${index - 1}" rows="1" readonly></textarea> 
-            </td>    
-            <td> 
-                <select id="minister_surname${
-                  index - 1
-                }" name="minister_surname${index - 1}" class="govgr-select" onchange="ministerSurnameOnChange('minister_name${index - 1}', 'minister_surname${index - 1}', 'minister_role${index - 1}', 'minister_ministry${index - 1}')"></select>
+                }" name="minister_name${index - 1}" class="govgr-select" onchange="ministerNameOnChange('minister_name${index - 1}', 'minister_role${index - 1}', 'minister_ministry${index - 1}')"></select>
             </td> 
             <td>
                 <br> 
@@ -384,7 +374,7 @@ $("#add_row_ministers_table").on("click", function () {
                 }" name="minister_ministry${index - 1}">
             </td>             
         </tr>`);
-  populateMinistersSurnameSelect(`minister_surname${index - 1}`);
+  populateMinistersNameSelect(`minister_name${index - 1}`);
 });
 
 $("#add_row_table_29").on("click", function () {
@@ -510,7 +500,6 @@ $("#add_row_emd_table").on("click", function () {
                 }" name="process${index - 1}" class="govgr-textarea" rows="1" ></textarea> 
             </td>                
         </tr>`);
-  populateMinistersSurnameSelect(`minister_surname${index - 1}`);
 });
 
 //TODO: remove after field_9 refactoring

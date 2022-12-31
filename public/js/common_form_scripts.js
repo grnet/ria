@@ -150,30 +150,30 @@ function setAnalysisRestrictions(type) {
   ).prop("disabled", false);
 }
 
-function populateMinistersSurnameSelect(ministerSurnameSelectId) {
-  $(`#${ministerSurnameSelectId}`).empty();
-
-  $(`#${ministerSurnameSelectId}`).append(
+function populateMinistersNameSelect(ministerNameSelectId) {
+  $(`#${ministerNameSelectId}`).empty();
+  $(`#${ministerNameSelectId}`).append(
     `<option value="" selected disabled>Eπιλογή</option>`
   );
-  for (i in ministersArray) {
-    $(`#${ministerSurnameSelectId}`).append(
-      `<option value="${ministersArray[i]}">${ministersArray[i]}</option>`
+  console.log(ministers);
+  for (i in ministers) {
+    $(`#${ministerNameSelectId}`).append(
+      `<option value="${ministers[i].name}">${ministers[i].name}</option>`
     );
   }
 }
 
-function ministerSurnameOnChange(
-  ministerNameTextareaId,
-  ministerSurnameSelectId,
+function ministerNameOnChange(
+  ministerNameSelectId,
   ministerRoleTextareaId,
   ministerMinistryInputId
 ) {
-  let surname = $(`#${ministerSurnameSelectId}`).val();
+  let name = $(`#${ministerNameSelectId}`).val();
   for (i in ministers) {
-    if (ministers[i].lastName.includes(surname)) {
-      $(`#${ministerNameTextareaId}`).val(ministers[i].firstName);
-      $(`#${ministerRoleTextareaId}`).val(ministers[i].role);
+    if (ministers[i].name === name) {
+      $(`#${ministerRoleTextareaId}`).val(
+        ministers[i].role + " " + ministers[i].responsibility
+      );
       $(`#${ministerMinistryInputId}`).val(ministers[i].ministry);
       break;
     }

@@ -88,11 +88,9 @@ for i in items:
       if len(roles)==0:
         min=Ministry(i.text)
       else:
-        # allministries.append(roles)
         for r in roles:
           min.add_role(r)
         allministries.append(min)  
-        # print(json.dumps(min,ensure_ascii=False,cls=MinistryEncoder))
         roles=[]
         min=Ministry(i.text)
 
@@ -100,8 +98,4 @@ result = []
 result.append(allministries)
 result.append(ministries)
 json_string = json.dumps(result,ensure_ascii=False,cls=MinistryEncoder)
-# ministries_string = json.dumps(
-    # ministries, ensure_ascii=False, cls=MinistryEncoder)
 print(json_string)
-# print(ministries)
-

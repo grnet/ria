@@ -10,7 +10,7 @@ const loginRoute = require("./routes/login");
 const oauth2 = require("./routes/oauth2");
 const logoutRoute = require("./routes/logout");
 const createRoute = require("./routes/create");
-const form_aRoute = require("./routes/form_a");
+const editRoute = require("./routes/edit");
 const database = require("./services/database");
 const createUserRoute = require("./routes/create_user");
 const searchUserRoute = require("./routes/search_user");
@@ -51,7 +51,7 @@ app.use("/login", loginRoute);
 app.use("/oauth2", oauth2); //this may not needed if the OAUTH2_LOGIN_PATH already starts with /oauth2
 app.use("/logout", logoutRoute);
 app.use("/create_analysis", createRoute);
-app.use("/form_a", form_aRoute); //TODO: rename route to edit_analysis
+app.use("/edit_analysis", editRoute); //TODO: rename route to edit_analysis
 app.use("/user_views/dashboard", dashboardRoute);
 app.use("/user_views/create_user", createUserRoute);
 app.use("/user_views/search_user", searchUserRoute);

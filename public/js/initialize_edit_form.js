@@ -5,15 +5,6 @@ setDropdown();
 requiredDigitalGov(); //set initial state for fields 10-13
 requiredLegalistics(); //set initial state for fields 33-40
 
-for (let i in ministries) {
-  ministriesArray.push(ministries[i].ministry);
-}
-for (let j in ministers) {
-  ministersArray.push(ministers[j].lastName);
-}
-ministriesArray.sort();
-ministersArray.sort();
-
 if (field_18) {
   $("#field_18_comments").val(field_18);
 }
@@ -275,8 +266,8 @@ let index = $("#tbody_ministers").prop("rows").length;
 //         </td>
 //     </tr>`);
 //   populateMinistersSurnameSelect(`minister_surname${index}`);
-//   if (ministersSurnames[j] && ministersSurnames[j].elem) {
-//     $(`#minister_surname${index}`).val(ministersSurnames[j].elem);
+//   if (ministersNames[j] && ministersNames[j].elem) {
+//     $(`#minister_surname${index}`).val(ministersNames[j].elem);
 //   }
 //   if (ministersMinistry[j] && ministersMinistry[j].elem) {
 //     $(`#minister_ministry${index}`).val(ministersMinistry[j].elem);
@@ -305,8 +296,8 @@ let index = $("#tbody_ministers").prop("rows").length;
 //             </td>
 //         </tr>`);
 //   populateMinistersSurnameSelect(`field_17_minister_surname${index}`);
-//   if (f17ministersSurnames[i] && f17ministersSurnames[i].elem) {
-//     $(`#field_17_minister_surname${index}`).val(f17ministersSurnames[i].elem);
+//   if (f17ministersNames[i] && f17ministersNames[i].elem) {
+//     $(`#field_17_minister_surname${index}`).val(f17ministersNames[i].elem);
 //   }
 //   if (f17ministersMinistry[i] && f17ministersMinistry[i].elem) {
 //     $(`#field_17_minister_ministry${index}`).val();
