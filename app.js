@@ -61,7 +61,7 @@ app.use("/user_views/history", historyRoute);
 app.use("/user_views/summaries", summariesRoute);
 app.use("/user_views/profile", profileRoute);
 app.use("/ministries", ministriesRoute);
-app.use("/indexes", indexesRoute);
+app.use("/user_views/indexes", indexesRoute);
 
 app.listen(3000, () => {
   database.sequelize.sync();

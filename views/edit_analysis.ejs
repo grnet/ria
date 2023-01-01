@@ -1139,9 +1139,9 @@
         const isAdmin = '<%= user.isAdmin %>';
 
         let answer;
-        const ekthesi_id = "<%= data.id %>";
+        const analysis_id = "<%= id %>";
         //prevent user from going to a different form through url
-        // if (sessionStorage.getItem("referer") != ekthesi_id) {
+        // if (sessionStorage.getItem("referer") != analysis_id) {
         //     window.location.href = "/user_views/history"
         // }
         let analysisStatus = "<%= data.status_ekthesis %>";
@@ -1194,9 +1194,9 @@
             fd.append('f16_2', $('#field_16_kratikos_proypologismos').value = CKEDITOR.instances['field_16_kratikos_proypologismos'].getData());
             fd.append('f16_1', $('#field_16_proypologismos_forea').value = CKEDITOR.instances['field_16_proypologismos_forea'].getData());
             fd.append('f17', $('#field_17_oikonomika_apotelesmata').value = CKEDITOR.instances['field_17_oikonomika_apotelesmata'].getData());
-
+            console.log(analysis_id);
             $.ajax({
-                url: '/edit_analysis/' + ekthesi_id,
+                url: `/edit_analysis/${analysis_id}`,
                 data: fd,
                 contentType: false,
                 processData: false,
@@ -1249,7 +1249,7 @@
             answer = window.confirm("Είστε σίγουροι ότι θέλετε να διαγράψετε την ανάλυση;");
             if (answer) {
                 $.ajax({
-                    url: `/edit_analysis/${ekthesi_id}/delete_analysis`,
+                    url: `/edit_analysis/${analysis_id}/delete`,
                     error: function (error) {
                         console.log(error);
                     },
@@ -1284,7 +1284,7 @@
                 $("#pdf_name").val(pdf_name);
                 $("#pdf_download").hide();
                 $.ajax({
-                    url: `/edit_analysis/${ekthesi_id}/export`,
+                    url: `/edit_analysis/${analysis_id}/export`,
                     data: $(this).serialize(), //data: $("form").serialize(),
                     contentType: 'application/json',
                     processData: false,
@@ -1311,7 +1311,7 @@
                 $("#glk_pdf_name").val(pdf_name);
                 setDate("#field_16_genikos_date");
                 $.ajax({
-                    url: `/edit_analysis/:${ekthesi_id}/export/accounting`,
+                    url: `/edit_analysis/:${analysis_id}/export/accounting`,
                     data: $(this).serialize(), //data: $("form").serialize(),
                     processData: false,
                     error: function (error) {
@@ -1335,7 +1335,7 @@
             ev.preventDefault();
             $("#versions tbody").empty();
             $.ajax({
-                url: `/edit_analysis/${ekthesi_id}/versions`,
+                url: `/edit_analysis/${analysis_id}/versions`,
                 error: function (error) {
                     console.log(error);
                 },
@@ -1374,7 +1374,7 @@
             selected['firstTargetDate'] = ids[0].name.replace('checkbox', '');
             selected['secondTargetDate'] = ids[1].name.replace('checkbox', '');
             $.ajax({
-                url: `/edit_analysis/${ekthesi_id}/diff`,
+                url: `/edit_analysis/${analysis_id}/diff`,
                 data: selected,
                 error: function (error) {
                     console.log(error);
@@ -1491,7 +1491,7 @@
             var bttn = $(this);
             if ($("#deleted_file").val()) {
                 $.ajax({
-                    url: `/edit/${ekthesi_id}/delete_file`,
+                    url: `/edit/${analysis_id}/delete_file`,
                     data: $("form").serialize(),
                     error: function (error) {
                         console.log(error);

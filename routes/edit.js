@@ -49,6 +49,7 @@ routes.get("/:entry_id", authUser, async (req, res, next) => {
     const data = entry.dataValues.data;
     const uploads = entry.dataValues.uploads;
     const type = entry.dataValues.type;
+    const id = entry.dataValues.id;
 
     const field_18 = await tables.getCheckboxTableData(data, "field_18", true);
     const field_19 = await tables.getCheckboxTableData(data, "field_19", true);
@@ -104,6 +105,7 @@ routes.get("/:entry_id", authUser, async (req, res, next) => {
 
     res.render("edit_analysis", {
       //TODO: review endpoint name
+      id: id,
       type: type,
       data: data,
       tables: {
@@ -334,7 +336,7 @@ routes.put("/:entry_id/delete_file", authUser, async (req, res, next) => {
 });
 
 routes.delete(
-  "/:entry_id/delete_analysis",
+  "/:entry_id/delete",
   authUser,
   async function (req, res, next) {
     let entry = await database.analysis.findOne({
