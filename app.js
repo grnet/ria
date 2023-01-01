@@ -20,6 +20,7 @@ const historyRoute = require("./routes/history");
 const summariesRoute = require("./routes/summaries");
 const profileRoute = require("./routes/profile");
 const ministriesRoute = require("./routes/ministries");
+const indexesRoute = require("./routes/indexes");
 
 const app = express(); //app init
 app.use(cookieParser());
@@ -60,6 +61,7 @@ app.use("/user_views/history", historyRoute);
 app.use("/user_views/summaries", summariesRoute);
 app.use("/user_views/profile", profileRoute);
 app.use("/ministries", ministriesRoute);
+app.use("/indexes", indexesRoute);
 
 app.listen(3000, () => {
   database.sequelize.sync();

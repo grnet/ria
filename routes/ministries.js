@@ -3,7 +3,32 @@ const routes = require("express").Router();
 const { spawn } = require("child_process");
 const database = require("../services/database");
 
-routes.post("/", authUser, authRole, async (req, res, next) => {
+routes.get("/", authUser, authRole, async (req, res, next) => {
+  try {
+    const ministriesResult = await ministries.getMinistries();
+    res.render("ministries", {
+      ministries: ministriesResult,
+    });
+  } catch (err) {
+    console.error(err);
+  } //TODO: better handling
+});
+
+routes.get("/ministers", authUser, authRole, async (req, res, next) => {
+  try {
+    const ministriesResult = await ministries.getMinistries();
+    const ministersResult = await ministries.getMinisters(ministriesResult);
+    res.render("ministries/ministers", {
+      ministries: ministriesResult,
+      ministers: ministersResult,
+      user: req.session.user
+    });
+  } catch (err) {
+    console.error(err);
+  } //TODO: better handling
+});
+
+routes.post("/gov", authUser, authRole, async (req, res, next) => {
   const script = spawn("python3", ["./public/python_scripts/data_scrapper.py"]);
   script.stdout.on("data", async (data) => {
     req.session.success = [];
@@ -72,6 +97,119 @@ routes.post("/", authUser, authRole, async (req, res, next) => {
       msg: "Η επικαιροποίηση των Υπουργείων απέτυχε.",
     });
   });
+});
+
+routes.post("/", async (req, res, next) => {
+  try {
+    let result = await database.ministries
+      .create({ name: req.body.name })
+      .catch((err) => console.error(err));
+    if (result) {
+      res.statusCode(200).send({ msg: "Το Υπουργείο δημιουργήθηκε επιτυχώς." });
+    } else {
+      res.statusCode(500).send({
+        msg: "Προέκυψε πρόβλημα κατά τη δημιουργία του Υπουργείου. Παρακαλώ προσπαθήστε ξανά.",
+      });
+    }
+  } catch (err) {
+    console.error(err);
+  }
+});
+
+routes.post("/minister", async (req, res, next) => {
+  try {
+    let result = await database.ministries
+      .create({
+        name: req.body.name,
+        role: req.body.role,
+        responsibility: req.body.responsibility,
+        ministryId: req.body.ministryId,
+      })
+      .catch((err) => console.error(err));
+    if (result) {
+      res.statusCode(200).send({ msg: "Ο Υπουργός δημιουργήθηκε επιτυχώς." });
+    } else {
+      res.statusCode(500).send({
+        msg: "Προέκυψε πρόβλημα κατά τη δημιουργία του Υπουργού. Παρακαλώ προσπαθήστε ξανά.",
+      });
+    }
+  } catch (err) {
+    console.error(err);
+  }
+});
+
+routes.put("/:id", async (req, res, next) => {
+  try {
+    let result = await database.ministries
+      .update({ name: req.body.name }, {where: { id: req.params.id }})
+      .catch((err) => console.error(err));
+    if (result) {
+      res.statusCode(200).send({ msg: "Το Υπουργείο ενημερώθηκε επιτυχώς." });
+    } else {
+      res.statusCode(500).send({
+        msg: "Προέκυψε πρόβλημα κατά την ενημέρωση του Υπουργείου. Παρακαλώ προσπαθήστε ξανά.",
+      });
+    }
+  } catch (err) {
+    console.error(err);
+  }
+});
+
+routes.put("/:id/minister", async (req, res, next) => {
+  try {
+    let result = await database.minister
+      .update(
+        { name: req.body.name, role: req.body.role, responsibility: req.body.responsibility, ministryId: req.body.ministryId },
+        { where: { id: req.params.id } }
+      )
+      .catch((err) => console.error(err));
+    if (result) {
+      res
+        .statusCode(200)
+        .send({ msg: "Τα στοιχεία του Υπουργού ενημερώθηκαν επιτυχώς." });
+    } else {
+      res.statusCode(500).send({
+        msg: "Προέκυψε πρόβλημα κατά την ενημέρωση του Υπουργού. Παρακαλώ προσπαθήστε ξανά.",
+      });
+    }
+  } catch (err) {
+    console.error(err);
+  }
+});
+
+
+routes.delete("/:id/minister", async (req, res, next) => {
+  try {
+    let result = await database.minister
+      .destroy({ where: { id: req.params.id } })
+      .catch((err) => console.error(err));
+    if (result) {
+      res.statusCode(200).send({ msg: "Ο Υπουργός διαγράφηκε επιτυχώς." });
+    } else {
+      res.statusCode(500).send({
+        msg: "Προέκυψε πρόβλημα κατά τη διαγραφή του Υπουργού. Παρακαλώ προσπαθήστε ξανά.",
+      });
+    }
+  } catch (err) {
+    console.error(err);
+  }
+});
+
+routes.delete("/:id", async (req, res, next) => {
+  try {
+    let result = await database.ministries
+      .destroy({ where: { id: req.params.id } })
+      .catch((err) => console.error(err));
+    if (result) {
+      res.statusCode(200).send({ msg: "Το Υπουργείο διαγράφηκε επιτυχώς." });
+    } else {
+      res.statusCode(500).send({
+        msg: "Προέκυψε πρόβλημα κατά τη διαγραφή του Υπουργείου. Παρακαλώ προσπαθήστε ξανά.",
+      });
+    }
+  } catch (err) {
+    console.error(err);
+  }
 });
 
 module.exports = routes;

@@ -21,6 +21,11 @@ db.user = require("../models/user.model.js")(sequelize, Sequelize);
 db.audit = require("../models/audit.model.js")(sequelize, Sequelize);
 db.ministries = require("../models/ministries.model.js")(sequelize, Sequelize);
 db.minister = require("../models/minister.model.js")(sequelize, Sequelize);
+db.indexes = require("../models/indexes.model.js")(sequelize, Sequelize);
+db.index_tables = require("../models/index_tables.model.js")(
+  sequelize,
+  Sequelize
+);
 
 applyAssoc(sequelize);
 

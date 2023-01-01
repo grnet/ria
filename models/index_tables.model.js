@@ -1,8 +1,8 @@
 "use strict";
 
 module.exports = (sequelize, DataTypes) => {
-  var ministries = sequelize.define(
-    "ministries",
+  var index_tables = sequelize.define(
+    "index_tables",
     {
       id: {
         primaryKey: true,
@@ -17,5 +17,5 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
-  return ministries;
+  return index_tables;
 };
