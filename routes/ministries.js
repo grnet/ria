@@ -2,26 +2,16 @@ const { authRole, authUser } = require("../middleware/auth");
 const routes = require("express").Router();
 const { spawn } = require("child_process");
 const database = require("../services/database");
+const ministries = require("../lib/ministries");
 
 routes.get("/", authUser, authRole, async (req, res, next) => {
   try {
     const ministriesResult = await ministries.getMinistries();
-    res.render("ministries", {
-      ministries: ministriesResult,
-    });
-  } catch (err) {
-    console.error(err);
-  } //TODO: better handling
-});
-
-routes.get("/ministers", authUser, authRole, async (req, res, next) => {
-  try {
-    const ministriesResult = await ministries.getMinistries();
     const ministersResult = await ministries.getMinisters(ministriesResult);
-    res.render("ministries/ministers", {
+    res.render("user_views/ministries", {
       ministries: ministriesResult,
       ministers: ministersResult,
-      user: req.session.user
+      user: req.session.user,
     });
   } catch (err) {
     console.error(err);
@@ -138,7 +128,7 @@ routes.post("/minister", async (req, res, next) => {
   }
 });
 
-routes.put("/:id", async (req, res, next) => {
+routes.put("/", async (req, res, next) => {
   try {
     let result = await database.ministries
       .update({ name: req.body.name }, {where: { id: req.params.id }})
@@ -155,7 +145,7 @@ routes.put("/:id", async (req, res, next) => {
   }
 });
 
-routes.put("/:id/minister", async (req, res, next) => {
+routes.put("/minister", async (req, res, next) => {
   try {
     let result = await database.minister
       .update(
@@ -178,7 +168,7 @@ routes.put("/:id/minister", async (req, res, next) => {
 });
 
 
-routes.delete("/:id/minister", async (req, res, next) => {
+routes.delete("/minister", async (req, res, next) => {
   try {
     let result = await database.minister
       .destroy({ where: { id: req.params.id } })
@@ -195,7 +185,7 @@ routes.delete("/:id/minister", async (req, res, next) => {
   }
 });
 
-routes.delete("/:id", async (req, res, next) => {
+routes.delete("/", async (req, res, next) => {
   try {
     let result = await database.ministries
       .destroy({ where: { id: req.params.id } })

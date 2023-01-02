@@ -35,6 +35,27 @@ routes.get("/:analysis", authUser, async (req, res, next) => {
     const ministriesResult = await ministries.getMinistries();
     const ministersResult = await ministries.getMinisters(ministriesResult);
 
+    const indexesResult = await database.indexes.findAll();
+    const indexTablesResult = await database.index_tables.findAll();
+    const indexes = {};
+    const indexTables = [];
+    for (i in indexTablesResult) {
+      indexTables.push(indexTablesResult[i].dataValues.name);
+    }
+
+    for (let i in indexTables) {
+      indexes[`${indexTables[i]}`] = [];
+      for (let j in indexesResult) {
+        if (
+          indexesResult[i].dataValues.id ===
+          indexesResult[j].dataValues.indexTableId
+        ) {
+          indexes[`${indexTables[i]}`].push(indexesResult[j].name);
+        }
+      }
+      indexes[`${indexTables[i]}`].sort();
+    }
+
     res.render("create", {
       type: type,
       role: req.session.user.role,
@@ -43,6 +64,7 @@ routes.get("/:analysis", authUser, async (req, res, next) => {
       ministers: ministersResult,
       ministries: ministriesResult,
       user: user,
+      indexes:indexes
     });
   } catch (err) {
     // TODO: add status error code

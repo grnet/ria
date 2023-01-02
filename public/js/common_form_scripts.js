@@ -150,6 +150,22 @@ function setAnalysisRestrictions(type) {
   ).prop("disabled", false);
 }
 
+function populateIndexSelect(select, category) {
+  
+  $(`#${select}`).empty();
+  $(`#${select}`).append(
+    `<option value="" selected disabled>Eπιλογή</option>`
+  );
+  console.log(indexes[`${category}`]);
+  for (i in indexes[`${category}`]) {
+    $(`#${select}`).append(
+      `<option value="${indexes[`${category}`][i]}">${
+        indexes[`${category}`][i]
+      }</option>`
+    );
+  }
+}
+
 function populateMinistersNameSelect(ministerNameSelectId) {
   $(`#${ministerNameSelectId}`).empty();
   $(`#${ministerNameSelectId}`).append(

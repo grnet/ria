@@ -51,6 +51,27 @@ routes.get("/:entry_id", authUser, async (req, res, next) => {
     const type = entry.dataValues.type;
     const id = entry.dataValues.id;
 
+    const indexesResult = await database.indexes.findAll();
+    const indexTablesResult = await database.index_tables.findAll();
+    const indexes = {};
+    const indexTables = [];
+    for (i in indexTablesResult) {
+      indexTables.push(indexTablesResult[i].dataValues.name);
+    }
+
+    for (let i in indexTables) {
+      indexes[`${indexTables[i]}`] = [];
+      for (let j in indexesResult) {
+        if (
+          indexesResult[i].dataValues.id ===
+          indexesResult[j].dataValues.indexTableId
+        ) {
+          indexes[`${indexTables[i]}`].push(indexesResult[j].name);
+        }
+      }
+      indexes[`${indexTables[i]}`].sort();
+    }
+
     const field_18 = await tables.getCheckboxTableData(data, "field_18", true);
     const field_19 = await tables.getCheckboxTableData(data, "field_19", true);
     const field_20 = await tables.getCheckboxTableData(data, "field_20", true);
@@ -98,6 +119,8 @@ routes.get("/:entry_id", authUser, async (req, res, next) => {
       data
     );
     const processes = await tables.getTableData(["process"], data);
+    const field_9 = await tables.getField9(data);
+    console.log(field_9);
 
     const tooltips = JSON.stringify(await tooltipsCsv.getTooltips());
     const ministriesResult = await ministries.getMinistries();
@@ -109,6 +132,7 @@ routes.get("/:entry_id", authUser, async (req, res, next) => {
       type: type,
       data: data,
       tables: {
+        field_9: field_9,
         field_14: field_14,
         field_17_signatories: field_17_signatories,
         field_18: field_18,
@@ -127,6 +151,7 @@ routes.get("/:entry_id", authUser, async (req, res, next) => {
       ministries: ministriesResult,
       ministers: ministersResult,
       user: user,
+      indexes: indexes,
       uploads: uploads[0],
     });
   } catch (err) {
@@ -335,16 +360,12 @@ routes.put("/:entry_id/delete_file", authUser, async (req, res, next) => {
   }
 });
 
-routes.delete(
-  "/:entry_id/delete",
-  authUser,
-  async function (req, res, next) {
-    let entry = await database.analysis.findOne({
-      where: { id: req.params.entry_id },
-    });
-    entry ? entry.destroy().then(res.sendStatus(200)) : res.sendStatus(404);
-  }
-);
+routes.delete("/:entry_id/delete", authUser, async function (req, res, next) {
+  let entry = await database.analysis.findOne({
+    where: { id: req.params.entry_id },
+  });
+  entry ? entry.destroy().then(res.sendStatus(200)) : res.sendStatus(404);
+});
 
 routes.post("/:entry_id/versions", authUser, async function (req, res, next) {
   let entries = await database.audit.findAll({

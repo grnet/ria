@@ -37,26 +37,26 @@ if (pdf_exists) {
 
 //TODO: add classes to reduce code
 ekpedeusi_politismos
-  ? ($(".ekpaideysi-politismos :input").prop("disabled", false),
+  ? ($(".ekpaideysi-politismos").show(),
     $("#ekpedeusi_politismos").prop("checked", true),
     $("#politismos_table").show(),
     $("#ekpaideysi_table").show())
-  : $(".ekpaideysi-politismos :input").prop("disabled", true);
+  : $(".ekpaideysi-politismos").hide();
 
 if (eksoteriki_politiki) {
-  $("#eksoteriki_politiki").prop("checked", true);
+  $("#eksoteriki_politiki").prop("checked", true).hide();
 }
 
 forologiki_politiki
-  ? ($(".oikonomia :input").prop("disabled", false),
+  ? ($(".oikonomia").show(),
     $("#forologiki_politiki").prop("checked", true),
     $("#oikonomia_table").show(),
     $("#forologia_table").show(),
     $("#ergasiakes_sxeseis_table").show())
-  : $(".oikonomia :input").prop("disabled", true);
+  : $(".oikonomia").hide();
 
 koinoniki_politiki
-  ? ($(".koinoniki-politiki :input").prop("disabled", false),
+  ? ($(".koinoniki-politiki").show(),
     $("#koinoniki_politiki").prop("checked", true),
     $("#apasxolisi_table").show(),
     $("#koinoniki_asfalisi_table").show(),
@@ -64,22 +64,22 @@ koinoniki_politiki
     $("#ygeia_table").show(),
     $("#isotita_fylwn_table").show(),
     $("#metanasteytiki_prosfygiki_politiki_table").show())
-  : $(".koinoniki-politiki :input").prop("disabled", true);
+  : $(".koinoniki-politiki").hide();
 
 dimosia_dioikisi
-  ? ($(".dimosia-dioikisi :input").prop("disabled", false),
+  ? ($(".dimosia-dioikisi").show(),
     $("#dimosia_dioikisi").prop("checked", true),
     $("#dimosia_dioikisi_table").show(),
     $("#dimosia_asfaleia_table").show(),
     $("#dikaiosini_table").show())
-  : $(".dimosia-dioikisi :input").prop("disabled", true);
+  : $(".dimosia-dioikisi").hide();
 
 anaptiksi
-  ? ($(".ependyseis :input").prop("disabled", false),
+  ? ($(".ependyseis").show(),
     $("#anaptiksi").prop("checked", true),
     $("#ependytiki_drastiriotita_table").show(),
     $("#perivallon_energeia_table").show())
-  : $(".ependyseis :input").prop("disabled", true);
+  : $(".ependyseis :input").hide();
 
 if ($("#field_4").val() === "Ναι") {
   $("#field_4_wrap").show();

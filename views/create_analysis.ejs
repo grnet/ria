@@ -889,6 +889,8 @@
     const isAdmin = '<%= user.isAdmin %>';
     let tooltips = '<%= tooltips %>';
     tooltips = textCleanUp(tooltips);
+    const indexes = JSON.parse(' <%- JSON.stringify(indexes) %> ');
+
 
     $("form").on("submit", function (ev) {
         ev.preventDefault();

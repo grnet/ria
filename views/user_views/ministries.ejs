@@ -1,0 +1,282 @@
+<%- include('../partials/head.ejs') %>
+
+    <div class="govgr-layout-wrapper govgr-layout-wrapper__full-height">
+        <div class="govgr-width-container">
+            <a href="/user_views/dashboard" class="govgr-back-link" id="back" name="back"> <svg
+                    class="govgr-caret--left" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M18,22V2L6,12L18,22z" />
+                </svg> Επιστροφή στο ιστορικό</a>
+            <div class="govgr-main-wrapper">
+                <div class="govgr-button-group">
+                    <input type="button" id="create_ministry" class="govgr-btn govgr-btn-primary"
+                        value="Καταχώρηση Υπουργείου" />
+                    <input type="button" id="edit_ministry" class="govgr-btn govgr-btn-primary"
+                        value="Επεξεργασία Υπουργείου" />
+                    <input type="button" id="create_minister" class="govgr-btn govgr-btn-primary"
+                        value="Καταχώρηση Υπουργού" />
+                    <input type="button" id="edit_minister" class="govgr-btn govgr-btn-primary"
+                        value="Επεξεργασία Υπουργού" />
+                    <br />
+                </div>
+            </div>
+            <form id="createMinistry">
+                <h1 class="govgr-heading-xl">Νέο Υπουργείο</h1>
+                <div class="govgr-field">
+                    <label class="govgr-label" for="ministryName"> <span>Όνομα Υπουργείου:</span>
+                        <input class="govgr-input govgr-!-width-one-half" type="text" id="ministryName"
+                            name="ministryName" required minlength="10" />
+                    </label>
+                </div>
+                <div class="govgr-button-group">
+                    <input type="submit" id="create_ministry_submit" name="create_ministry_submit"
+                        class="govgr-btn govgr-btn-primary" value="Καταχώρηση" />
+                </div>
+            </form>
+            <form id="createMinister" style="display: none;" disabled>
+                <h1 class="govgr-heading-xl">Νέος Υπουργός</h1>
+                <div class="govgr-field">
+                    <label class="govgr-label" for="ministerName"> <span>Ονοματεπώνυμο Υπουργού:</span>
+                        <input class="govgr-input govgr-!-width-one-half" type="text" id="ministerName"
+                            name="ministerName" required minlength="10" />
+                    </label>
+                </div>
+                <div class="govgr-field">
+                    <label class="govgr-label" for="ministerRole"> <span>Ρόλος Υπουργού:</span>
+                        <input class="govgr-input govgr-!-width-one-half" type="text" id="ministerRole"
+                            name="ministerRole" />
+                    </label>
+                </div>
+                <div class="govgr-field">
+                    <label class="govgr-label" for="ministerResponsibility"> <span>Αρμοδιότητα:</span>
+                        <input class="govgr-input govgr-!-width-one-half" type="text" id="ministerResponsibility"
+                            name="ministerResponsibility" />
+                    </label>
+                </div>
+                <div class="govgr-field">
+                    <label class="govgr-label" for="ministerMinistry">
+                        Υπουργείο:
+                        <select class="govgr-select govgr-!-width-one-half" id="ministerMinistry"
+                            name="ministerMinistry" required>
+                            <option selected disabled value="">Eπιλογή</option>
+                        </select>
+                    </label>
+                </div> <br />
+                <div class="govgr-button-group">
+                    <input type="submit" id="create_minister_submit" name="create_minister_submit"
+                        class="govgr-btn govgr-btn-primary" value="Καταχώρηση" />
+                </div>
+            </form>
+            <form id="editMinistry" style="display: none;" disabled>
+                <h1 class="govgr-heading-xl">Επεξεργασία Υπουργείου</h1>
+                <div class="govgr-field">
+                    <label class="govgr-label" for="editMinistrySelect">
+                        Υπουργείο:
+                        <select class="govgr-select govgr-!-width-one-half" id="editMinistrySelect"
+                            name="editMinistrySelect" required>
+                            <option selected disabled value="">Eπιλογή</option>
+                        </select>
+                    </label>
+                </div> <br />
+                <div class="govgr-field">
+                    <label class="govgr-label" for="newMinistryName"> <span>Όνομα Υπουργείου:</span>
+                        <textarea class="govgr-input govgr-!-width-one-half" type="text" id="newMinistryName"
+                            name="newMinistryName" required minlength="10"></textarea>
+                    </label>
+                </div>
+                <div class="govgr-button-group">
+                    <input type="submit" id="edit_ministry_submit" name="edit_ministry_submit"
+                        class="govgr-btn govgr-btn-primary" value="Επεξεργασία" />
+                    <button id="deleteMinistry" class="govgr-btn govgr-btn-warning">Διαγραφή</button>
+                </div>
+            </form>
+            <form id="editMinister" style="display: none;" disabled>
+                <h1 class="govgr-heading-xl">Επεξεργασία Υπουργού</h1>
+                <div class="govgr-field">
+                    <label class="govgr-label" for="editMinister">
+                        Υπουργός:
+                        <select class="govgr-select govgr-!-width-one-half" id="editMinister" name="editMinister"
+                            required>
+                            <option selected disabled value="">Eπιλογή</option>
+                        </select>
+                    </label>
+                    <div class="govgr-field">
+                        <label class="govgr-label" for="editMinisterName"> <span>Ονοματεπώνυμο Υπουργού:</span>
+                            <input class="govgr-input govgr-!-width-one-half" type="text" id="editMinisterName"
+                                name="editMinisterName" required minlength="10" />
+                        </label>
+                    </div>
+                    <div class="govgr-field">
+                        <label class="govgr-label" for="editMinisterRole"> <span>Ρόλος Υπουργού:</span>
+                            <input class="govgr-input govgr-!-width-one-half" type="text" id="editMinisterRole"
+                                name="editMinisterRole" />
+                        </label>
+                    </div>
+                    <div class="govgr-field">
+                        <label class="govgr-label" for="editMinisterResponsibility"> <span>Αρμοδιότητα:</span>
+                            <input class="govgr-input govgr-!-width-one-half" type="text"
+                                id="editMinisterResponsibility" name="editMinisterResponsibility" />
+                        </label>
+                    </div>
+                    <label class="govgr-label" for="editMinisterMinistry">
+                        Υπουργείο:
+                        <select class="govgr-select govgr-!-width-one-half" id="editMinisterMinistry"
+                            name="editMinisterMinistry" required>
+                            <option selected disabled value="">Eπιλογή</option>
+                        </select>
+                    </label>
+                </div> <br />
+                <div class="govgr-button-group">
+                    <input type="submit" id="edit_minister_submit" name="edit_minister_submit"
+                        class="govgr-btn govgr-btn-primary" value="Επεξεργασία" />
+                    <button id="deleteMinister" class="govgr-btn govgr-btn-warning">Διαγραφή</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <%- include('../partials/footer.ejs') %>
+
+        <style>
+            .display {
+                table-layout: fixed;
+                overflow-wrap: break-word;
+            }
+        </style>
+        <script type="text/javascript" src="/js/enums.js"></script>
+        <script type="text/javascript" src="/js/nav_scripts.js"></script>
+        <script>
+            const userRole = "<%= user.role %>";
+            setUserRestrictions(userRole);
+            const isAdmin = '<%= user.isAdmin %>';
+            const ministries = JSON.parse('<%- JSON.stringify(ministries) %>');
+            const ministers = JSON.parse('<%- JSON.stringify(ministers) %>');
+            for (i in ministries) {
+                $('#ministerMinistry').append(
+                    `<option value="${ministries[i]}">${ministries[i]}</option>`
+                );
+                $('#editMinistrySelect').append(
+                    `<option value="${ministries[i]}">${ministries[i]}</option>`
+                );
+                $('#editMinisterMinistry').append(
+                    `<option value="${ministries[i]}">${ministries[i]}</option>`
+                );
+            }
+
+            $('#create_ministry').on('click', () => {
+                $('#createMinistry').prop('disabled', false);
+                $('#createMinister').prop('disabled', true);
+                $('#editMinistry').prop('disabled', true);
+                $('#editMinister').prop('disabled', true);
+                $('#createMinistry').show();
+                $('#createMinister').hide();
+                $('#editMinistry').hide();
+                $('#editMinister').hide();
+            });
+
+            $('#create_minister').on('click', () => {
+                $('#createMinistry').prop('disabled', true);
+                $('#createMinister').prop('disabled', false);
+                $('#editMinistry').prop('disabled', true);
+                $('#editMinister').prop('disabled', true);
+                $('#createMinistry').hide();
+                $('#createMinister').show();
+                $('#editMinistry').hide();
+                $('#editMinister').hide();
+            });
+
+            $('#edit_minister').on('click', () => {
+                $('#createMinistry').prop('disabled', true);
+                $('#createMinister').prop('disabled', true);
+                $('#editMinistry').prop('disabled', true);
+                $('#editMinister').prop('disabled', false);
+                $('#createMinistry').hide();
+                $('#createMinister').hide();
+                $('#editMinistry').hide();
+                $('#editMinister').show();
+            });
+
+            $('#edit_ministry').on('click', () => {
+                $('#createMinistry').prop('disabled', true);
+                $('#createMinister').prop('disabled',);
+                $('#editMinistry').prop('disabled', false);
+                $('#editMinister').prop('disabled', true);
+                $('#createMinistry').hide();
+                $('#createMinister').hide();
+                $('#editMinistry').show();
+                $('#editMinister').hide();
+            });
+
+            // $('#editMinistrySelect').on('change', () => {
+            //     $('#newMinistryName').empty();
+            //     const editMinistrySelectValue = $('#editIndexTable').val();
+            //     $('#indexSelect').append(
+            //         `<option value="" selected disabled>Eπιλογή</option>`
+            //     );
+            //     for (let i in ) {
+            //         $('#indexSelect').append(
+            //             `<option value="${indexes[indexTableValue][i]}">${indexes[indexTableValue][i]}</option>`
+            //         );
+            //     }
+            // });
+
+            $('#editMinistrySelect').on('change', () => {
+                $('#newMinistryName').empty();
+                const editMinistrySelectValue = $('#editMinistrySelect').val();
+                $('#newMinistryName').val(editMinistrySelectValue);
+            });
+
+            $('#editMinister').on('change', () => {
+                // TODO: add AJAX call to get minister's data
+                $('#editMinisterName').empty();
+                const ministerNameValue = $('#editMinister').val();
+                $('#editMinisterName').val(ministerNameValue);
+            });
+
+            $("#createIndex").on("submit", function (ev) {
+                ev.preventDefault();
+                $.ajax({
+                    url: `/user_views/indexes`,
+                    data: $('#createIndex').serialize(),
+                    error: function (error) {
+                        console.log(error);
+                    },
+                    success: function (data) {
+                        window.location.href = "/user_views/dashboard";
+                    },
+                    type: 'POST'
+                });
+            });
+
+            $("#editIndex").on("submit", function (ev) {
+                ev.preventDefault();
+                $.ajax({
+                    url: `/user_views/indexes`,
+                    data: $('#editIndex').serialize(),
+                    error: function (error) {
+                        console.log(error);
+                    },
+                    success: function (data) {
+                        window.location.href = "/user_views/dashboard";
+                    },
+                    type: 'PUT'
+                });
+            });
+
+            $("#deleteIndex").on("click", function (ev) {
+                ev.preventDefault();
+                $.ajax({
+                    url: `/user_views/indexes`,
+                    data: $('#editIndex').serialize(),
+                    error: function (error) {
+                        console.log(error);
+                    },
+                    success: function (data) {
+                        window.location.href = "/user_views/dashboard";
+                    },
+                    type: 'DELETE'
+                });
+            });
+        </script>
+        <script type="text/javascript" src="/js/common_user_scripts.js"></script>
+        </body>
+
+        </html>

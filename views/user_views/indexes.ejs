@@ -18,8 +18,8 @@
             <form id="createIndex">
                 <h1 class="govgr-heading-xl">Νέος δείκτης</h1>
                 <div class="govgr-field">
-                    <label class="govgr-label" for="fname"> <span>Όνομα δείκτη:</span>
-                        <textarea class="govgr-input govgr-!-width-one-half" type="text" id="name" name="name" required
+                    <label class="govgr-label" for="name"> <span>Όνομα δείκτη:</span>
+                        <textarea class="govgr-input govgr-!-width-one-half" id="name" name="name" required
                             minlength="10"></textarea>
                     </label>
                 </div>
@@ -32,14 +32,14 @@
                     </label>
                 </div> <br />
                 <div class="govgr-button-group">
-                    <input type="submit" id="edit_submit" name="edit_submit" class="govgr-btn govgr-btn-primary"
+                    <input type="submit" id="create_submit" name="create_submit" class="govgr-btn govgr-btn-primary"
                         value="Καταχώρηση" />
                 </div>
             </form>
             <form id="editIndex" style="display: none;" disabled>
                 <h1 class="govgr-heading-xl">Επεξεργασία δείκτη</h1>
                 <div class="govgr-field">
-                    <label class="govgr-label" for="role">
+                    <label class="govgr-label" for="editIndexTable">
                         Πίνακας:
                         <select class="govgr-select govgr-!-width-one-half" id="editIndexTable" name="editIndexTable"
                             required>
@@ -48,7 +48,7 @@
                     </label>
                 </div> <br />
                 <div class="govgr-field">
-                    <label class="govgr-label" for="role">
+                    <label class="govgr-label" for="indexSelect">
                         Επιλογή δείκτη:
                         <select class="govgr-select govgr-!-width-one-half" id="indexSelect" name="indexSelect">
                             <option selected disabled>Eπιλογή</option>
@@ -56,8 +56,8 @@
                     </label>
                 </div>
                 <div class="govgr-field">
-                    <label class="govgr-label" for="fname"> <span>Όνομα δείκτη:</span>
-                        <textarea class="govgr-input govgr-!-width-one-half" type="text" id="edit_name" name="edit_name"
+                    <label class="govgr-label" for="edit_name"> <span>Όνομα δείκτη:</span>
+                        <textarea class="govgr-input govgr-!-width-one-half" id="edit_name" name="edit_name"
                             required minlength="10"></textarea>
                     </label>
                 </div>

@@ -10,3 +10,9 @@ getFullDate("#initial_submit");
 requiredDigitalGov();
 requiredLegalistics();
 createTooltips(tooltips);
+
+$(".ekpaideysi-politismos").hide();
+$(".oikonomia").hide();
+$(".koinoniki-politiki").hide();
+$(".dimosia-dioikisi").hide();
+$(".ependyseis").hide();
