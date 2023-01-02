@@ -9,7 +9,8 @@ const htmlToPdfmake = require("html-to-pdfmake");
 const tablesLib = require("../lib/tables");
 
 exports.exportGlk = async function (req, res, next) {
-  let data = req.body;
+  let result = await database.analysis.findOne({where: {id: req.params.id}});
+  let data = result.dataValues;
   let field_17_ministers = tablesLib.getMinisters(
     data,
     "field_17_minister_name",

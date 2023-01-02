@@ -44,8 +44,8 @@
                             </div> -->
                     </div>
                     <div>
-                        <input type="hidden" id="status_ekthesis" name="status_ekthesis"
-                            value="<%= data.status_ekthesis%>">
+                        <input type="hidden" id="status" name="status"
+                            value="<%= data.status%>">
                         <input type="hidden" id="author" name="author" value="<%= data.author%>">
                     </div>
                     <fieldset id="arxiki" name="arxiki">
@@ -1144,7 +1144,7 @@
         // if (sessionStorage.getItem("referer") != analysis_id) {
         //     window.location.href = "/user_views/history"
         // }
-        let analysisStatus = "<%= data.status_ekthesis %>";
+        let analysisStatus = "<%= data.status %>";
         const role = "<%= role%>";
         const type = "<%= type %>";
         const pdf_exists = "<%= pdf_exists %>";
@@ -1181,7 +1181,7 @@
         tooltips = textCleanUp(tooltips);
         createTooltips(tooltips);
 
-        $("form").on("submit", function (ev) {
+        $("#final_save").on("click", function (ev) {
             setStatus();
             updateForm(ev);
         })
@@ -1190,12 +1190,11 @@
             ev.preventDefault();
             setDate("#last_updated");
             var fd = new FormData($("form").get(0));
-
+            console.log($("#status").val())
             fd.append('f15', $('#field_15_rythmiseis').value = CKEDITOR.instances['field_15_rythmiseis'].getData());
             fd.append('f16_2', $('#field_16_kratikos_proypologismos').value = CKEDITOR.instances['field_16_kratikos_proypologismos'].getData());
             fd.append('f16_1', $('#field_16_proypologismos_forea').value = CKEDITOR.instances['field_16_proypologismos_forea'].getData());
             fd.append('f17', $('#field_17_oikonomika_apotelesmata').value = CKEDITOR.instances['field_17_oikonomika_apotelesmata'].getData());
-            console.log(analysis_id);
             $.ajax({
                 url: `/edit_analysis/${analysis_id}`,
                 data: fd,
@@ -1390,29 +1389,29 @@
         });
 
         function setStatus() {
-
-            if ((role === "Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων" || role === "Βουλευτής") || (role === "Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)" && $('#status_ekthesis').val("Συντάσσεται"))) {
-                $('#status_ekthesis').val("Ολοκληρώθηκε");
-            } else if (role === "Επιτροπή Αξιολόγησης0 Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)" || role === "Γραφείο Καλής Νομοθέτησης (ΓΓΝΚΘ)" || role === "Διεύθυνση Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)") {
+            console.log('asdkjlfhlkasjdhflakjsdfh');
+            if (( role === Roles.Parliamentarian) || (role === Roles.LegislativeCommittee && $('#status').val(Status.Composing))) {
+                $('#status').val(Status.Completed);
+            } else if (role === Roles.QualityEvaluationCommittee || role === GoodLegislationOffice || role === Roles.LegislativeProcedureDirectorate) {
                 if ($("#egkrisi_aksiologisis_nomoparaskeyastikis").prop("checked") && $("#egkrisi_kalis_nomothetisis").prop("checked") && $("#egkrisi_dieuthinsis_nomoparaskeyastikis").prop("checked") && $("#egkrisi_genikou_grammatea").prop("checked")) {
-                    $('#status_ekthesis').val("Οριστικοποιήθηκε");
+                    $('#status').val(Status.Finalized);
                 }
-            } else if (role === "Γενικός Γραμματέας Νομικών και Κοινοβουλευτικών Θεμάτων") {
-                if ($('#status_ekthesis').val() === "Οριστικοποιήθηκε" && ($("#signed_pdf tbody>tr").length > 0 || $('#signed_pdf_upload').get(0).files.length > 0)) {
-                    $('#status_ekthesis').prop("disabled", false);
-                    $('#status_ekthesis').val("Κατατέθηκε");
+            } else if (role === Roles.GeneralSecretary) {
+                if ($('#status').val() === Status.Finalized && ($("#signed_pdf tbody>tr").length > 0 || $('#signed_pdf_upload').get(0).files.length > 0)) {
+                    $('#status').prop("disabled", false);
+                    $('#status').val(Status.Uploaded);
 
                 } else if ($("#egkrisi_aksiologisis_nomoparaskeyastikis").prop("checked") && $("#egkrisi_kalis_nomothetisis").prop("checked") && $("#egkrisi_dieuthinsis_nomoparaskeyastikis").prop("checked") && $("#egkrisi_genikou_grammatea").prop("checked")) {
-                    $('#status_ekthesis').val("Οριστικοποιήθηκε");
+                    $('#status').val(Status.Finalized);
                 }
 
             }
-            else if (role === "Γενικό Λογιστήριο του Κράτους" && $('#status_ekthesis').val("Εκκρεμεί η έκθεση Γενικού Λογιστηρίου του Κράτους")) {
-                $('#status_ekthesis').val("Ελέγχθηκε από το Γενικό Λογιστήριο του Κράτους");
+            else if (role === Roles.GeneralAccountingOffice && $('#status').val(Status.Pending)) {
+                $('#status').val(Status.Checked);
             }
             //TODO: refactor
-            if (role === "Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)" && $('#status_ekthesis').val() === "Οριστικοποιήθηκε" && $("#signed_pdf tbody>tr").length > 0) {
-                $('#status_ekthesis').val("Οριστικοποιήθηκε");
+            if (role === Roles.LegislativeCommittee && $('#status').val() === Status.Finalized && $("#signed_pdf tbody>tr").length > 0) {
+                $('#status').val(Status.Finalized);
             }
         }
 

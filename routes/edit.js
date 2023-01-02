@@ -278,6 +278,7 @@ routes.put(
             data: req.body,
             uploads: uploads,
             author: req.session.user.username,
+            status: req.body.status
           },
           {
             where: {

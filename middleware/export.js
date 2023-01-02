@@ -10,29 +10,32 @@ const htmlToPdfmake = require("html-to-pdfmake");
 const tablesLib = require("../lib/tables");
 
 exports.exportPDF = async function (req, res, next) {
-  let data = req.body;
+  let result = await database.analysis.findOne({
+    where: { id: req.params.entry_id },
+  });
+  let data = result.dataValues;
 
-  let ministers = tablesLib.getMinisters(
-    data,
-    "minister_name",
-    "minister_surname",
-    "minister_ministry",
-    "minister_role",
-    "field_17"
-  );
-  let field_17_ministers = tablesLib.getMinisters(
-    data,
-    "field_17_minister_name",
-    "field_17_minister_surname",
-    "field_17_minister_ministry",
-    "field_17_minister_role"
-  );
-  let field_9_data = tablesLib.getDataForPdfField9(
-    data,
-    "_header",
-    "_label",
-    "_secondHeader"
-  ); //data for field_9
+  // let ministers = tablesLib.getMinisters(
+  //   data,
+  //   "minister_name",
+  //   "minister_surname",
+  //   "minister_ministry",
+  //   "minister_role",
+  //   "field_17"
+  // );
+  // let field_17_ministers = tablesLib.getMinisters(
+  //   data,
+  //   "field_17_minister_name",
+  //   "field_17_minister_surname",
+  //   "field_17_minister_ministry",
+  //   "field_17_minister_role"
+  // );
+  // let field_9_data = tablesLib.getDataForPdfField9(
+  //   data,
+  //   "_header",
+  //   "_label",
+  //   "_secondHeader"
+  // ); //data for field_9
   let field_18 = await tablesLib.getCheckboxTableData(data, "field_18");
   let field_19 = await tablesLib.getCheckboxTableData(data, "field_19");
   let field_20 = await tablesLib.getCheckboxTableData(data, "field_20");
@@ -750,7 +753,7 @@ exports.exportPDF = async function (req, res, next) {
             ],
           },
         },
-        createField9(field_9_data),
+        // createField9(field_9_data),
         {
           text: "\n\n",
         },
@@ -1222,7 +1225,7 @@ exports.exportPDF = async function (req, res, next) {
           },
         },
         { text: "\n\n" },
-        createSignatories(field_17_ministers),
+        // createSignatories(field_17_ministers),
         {
           text: "\n\n",
         },
@@ -1251,7 +1254,7 @@ exports.exportPDF = async function (req, res, next) {
             ],
           },
         },
-        createField18(field_18, data),
+        // createField18(field_18, data),
         { text: "", pageBreak: "before" },
         {
           table: {
@@ -1273,7 +1276,7 @@ exports.exportPDF = async function (req, res, next) {
             ],
           },
         },
-        createField19(field_19, data),
+        // createField19(field_19, data),
         {
           table: {
             widths: ["5%", "95%"],
@@ -1295,7 +1298,7 @@ exports.exportPDF = async function (req, res, next) {
           },
         },
         { text: "", pageBreak: "before" },
-        createField20(field_20, data),
+        // createField20(field_20, data),
         { text: "\n\n" },
         {
           table: {
@@ -2293,7 +2296,7 @@ exports.exportPDF = async function (req, res, next) {
         },
       },
       { text: "\n\n" },
-      createSignatories(ministers),
+      // createSignatories(ministers),
     ],
   };
 
@@ -2327,14 +2330,10 @@ exports.exportPDF = async function (req, res, next) {
   await new Promise((resolve) => setTimeout(resolve, 1000));
 
   try {
-    const entry = await database.analysis.findOne({
-      where: {
-        id: req.params.entry_id,
-      },
-    });
+
     const merger = new PDFMerger();
     await merger.add(pdf_path);
-    if (entry.dataValues.field_21_upload) {
+    if (data.field_21_upload) {
       for (i in entry.dataValues.field_21_upload) {
         await merger.add("public/uploads/" + entry.field_21_upload[i]);
       }
@@ -2344,7 +2343,7 @@ exports.exportPDF = async function (req, res, next) {
     fs.unlink(pdf_path_b, async function (err) {
       console.error(err);
     });
-    if (entry.dataValues.field_23_upload) {
+    if (data.field_23_upload) {
       for (i in entry.dataValues.field_23_upload) {
         await merger.add("public/uploads/" + entry.field_23_upload[i]);
       }
@@ -2355,7 +2354,7 @@ exports.exportPDF = async function (req, res, next) {
       console.error(err);
     });
 
-    if (entry.dataValues.field_36_upload) {
+    if (data.field_36_upload) {
       for (i in entry.dataValues.field_36_upload) {
         await merger.add("public/uploads/" + entry.field_36_upload[i]);
       }
@@ -2365,7 +2364,6 @@ exports.exportPDF = async function (req, res, next) {
     fs.unlink(pdf_path_d, async function (err) {
       console.error(err);
     });
-
     await merger.save(pdf_path); //save under given name
 
     if (fs.existsSync(pdf_path)) {

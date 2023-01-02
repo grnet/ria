@@ -891,7 +891,7 @@
     tooltips = textCleanUp(tooltips);
     const indexes = JSON.parse(' <%- JSON.stringify(indexes) %> ');
 
-    $("form").on("submit", function (ev) {
+    $("#final_save").on("click", function (ev) {
         ev.preventDefault();
         setStatus();
         var fd = new FormData($("form").get(0));

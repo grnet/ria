@@ -630,7 +630,7 @@ if (field_28[2] !== undefined && field_28[2] && field_28[2] === "on") {
   $("#alla_dikastiria_wrap").toggle();
 }
 
-if (ekthesi_glk || $("#status_ekthesis").val() === Status.Pending) {
+if (ekthesi_glk || $("#status").val() === Status.Pending) {
   $("#ekthesi_glk").prop("checked", true);
 }
 
@@ -766,9 +766,9 @@ for (let i in tables.field_17_signatories.field_17_minister_name) {
 // TODO: refactor
 if (role === Roles.GeneralAccountingOffice) {
   $(
-    "#edit_form :input:not(#status_ekthesis, .glk :input, .next, .previous, .export-pdf, #save_temporarily, #final_save)"
+    "#edit_form :input:not(#status, .glk :input, .next, .previous, .export-pdf, #save_temporarily, #final_save)"
   ).prop("disabled", true);
-  if ($("#status_ekthesis").val() === Status.Pending) {
+  if ($("#status").val() === Status.Pending) {
     $("#export_glk").hide();
   }
 } else if (role == Roles.Parliament) {
@@ -778,7 +778,7 @@ if (role === Roles.GeneralAccountingOffice) {
 }
 
 if (role === Roles.ResponsibleForMinistry || role === Roles.Parliamentarian) {
-  if ($("#status_ekthesis").val() === Status.Completed) {
+  if ($("#status").val() === Status.Completed) {
     $("#edit_form :input:not(.export-pdf, .next, .previous)").prop(
       "disabled",
       true
@@ -800,7 +800,7 @@ if (role === Roles.QualityEvaluationCommittee) {
   ).prop("disabled", true);
 } else if (
   role === Roles.GeneralSecretary &&
-  $("#status_ekthesis").val() !== Status.Finalized
+  $("#status").val() !== Status.Finalized
 ) {
   $(
     ".egkrisi_aksiologisis_nomoparaskeyastikis, .egkrisi_kalis_nomothetisis, .egkrisi_dieuthinsis_nomoparaskeyastikis, #final_save"
@@ -814,23 +814,23 @@ if (
   role === Roles.GeneralSecretary
 ) {
   if (
-    $("#status_ekthesis").val() === Status.Completed ||
-    $("#status_ekthesis").val() === Status.Checked
+    $("#status").val() === Status.Completed ||
+    $("#status").val() === Status.Checked
   ) {
     $(".ggnkth").show();
-  } else if ($("#status_ekthesis").val() === Status.Finalized) {
+  } else if ($("#status").val() === Status.Finalized) {
     $(".ggnkth").show();
     $(".ggnkth input[type=checkbox]").prop("disabled", true);
   }
 }
 
 if (role === Roles.Composer) {
-  if ($("#status_ekthesis").val() != Status.Composing) {
+  if ($("#status").val() != Status.Composing) {
     "#edit_form :input:not(.next, .previous)".prop("disabled", true);
   }
 }
 
-if ($("#status_ekthesis").val() === Status.Finalized) {
+if ($("#status").val() === Status.Finalized) {
   $("#edit_form :input:not( .next, .previous)").prop("disabled", true);
   //$("#edit_form :input[type=checkbox]").prop("disable",true);
 }
@@ -838,8 +838,8 @@ if ($("#status_ekthesis").val() === Status.Finalized) {
 if (
   (role === Roles.LegislativeCommittee &&
     $("#pdf_download").prop("hidden") === false &&
-    $("#status_ekthesis").val() === Status.Finalized) ||
-  ($("#status_ekthesis").val() === Status.Finalized &&
+    $("#status").val() === Status.Finalized) ||
+  ($("#status").val() === Status.Finalized &&
     role === Roles.GeneralSecretary)
 ) {
   $("#signed_pdf_div").show();
@@ -851,7 +851,7 @@ if (
   $(".previous").prop("disabled", false);
 }
 
-if ($("#status_ekthesis").val() === Status.Uploaded) {
+if ($("#status").val() === Status.Uploaded) {
   $(
     "#edit_form :input:not(#signed_pdf_div, #upload_signed_pdf, .next, .previous)"
   ).prop("disabled", true);

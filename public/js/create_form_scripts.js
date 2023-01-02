@@ -4,9 +4,9 @@ $("#ekthesi_glk").on("change", function (ev) {
         "Με την ενέργειά σας αυτή η έκθεση θα αποσταλλεί στο Γενικό Λογιστήριο του κράτους. Συνέχεια;"
       )),
       answer
-        ? $("#status_ekthesis").val(Status.Pending)
+        ? $("#status").val(Status.Pending)
         : $(this).prop("checked", false))
-    : $("#status_ekthesis").val(Status.Composing);
+    : $("#status").val(Status.Composing);
 });
 
 //TODO: if not needed remove
@@ -16,7 +16,7 @@ $("#ekthesi_glk").on("change", function (ev) {
 //         "Για την ανάλυση εκκρεμεί ο έλεγχος του Γενικού Λογιστηρίου του Κράτους που έχετε ζητήσει. Επικοινωνήστε με το Γενικό Λογιστήριο του Κράτους για να τον ολοκληρώσει ή ενημερώστε τον αρμόδιο του Υπουργείου σας για να το επιλύσει."
 //       ),
 //       ev.preventDefault())
-//     : $("#status_ekthesis").val(Status.Completed);
+//     : $("#status").val(Status.Completed);
 // }
 
 function setStatus() {

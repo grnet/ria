@@ -1,7 +1,7 @@
 $("#ministries").on("click", function (ev) {
   ev.preventDefault();
   $.ajax({
-    url: `/ministries/gov`,
+    url: `/user_views/ministries/gov`,
     error: function (error) {
       console.log(error);
     },

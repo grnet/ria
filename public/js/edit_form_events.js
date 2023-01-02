@@ -41,14 +41,14 @@ $("#ekthesi_glk").on("change", function (ev) {
         "Με την ενέργειά σας αυτή η έκθεση θεωρείται ολοκληρωμένη από μεριά σας και επιστρέφει στον Αρμόδιο Συντάκτη ή στο Αρμόδιο Υπουργείο. Θέλετε να συνεχίσετε;"
       );
       if (answer) {
-        $("#status_ekthesis")
+        $("#status")
           .prop("disabled", false)
           .val(Status.Checked); 
         setDate("#field_16_genikos_date");
         updateForm(ev); //once unchecked form is submitted/updated
       } else {
         $("#ekthesi_glk").prop("checked", true);
-        $("#status_ekthesis")
+        $("#status")
           .prop("disabled", false)
           .val(Status.Pending); 
       }
@@ -58,14 +58,14 @@ $("#ekthesi_glk").on("change", function (ev) {
       "Με την ενέργειά σας αυτή η έκθεση θα αποσταλλεί στο Γενικό Λογιστήριο του κράτους. Θέλετε να συνεχίσετε;"
     );
     if (answer) {
-      $("#status_ekthesis").val(
+      $("#status").val(
         Status.Pending
       );
     } else {
-      $("#status_ekthesis").val(analysisStatus);
+      $("#status").val(analysisStatus);
     }
   } else {
     $("#ekthesi_glk").prop("checked", false);
-    $("#status_ekthesis").val(analysisStatus); //change hidden input's value
+    $("#status").val(analysisStatus); //change hidden input's value
   }
 });

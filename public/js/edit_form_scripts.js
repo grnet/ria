@@ -6,7 +6,7 @@ function convertAnalysis() {
     $("#typos_analysis").prop("value", Type.LawPlan);
     $("#title").prop("value", "Αντίγραφο - " + $("#title").val());
   }
-  $("#status_ekthesis").val(Status.Composing);
+  $("#status").val(Status.Composing);
   getFullDate($("#initial_submit"));
   getFullDate("#last_updated");
 }
@@ -46,7 +46,7 @@ function viewFormRoleRestriction() {
     //this role should be able to edit/complete a form only when analysis status is 'Συντάσσεται'
     "Συντάκτης επισπεύδοντος Υπουργείου": () => {
       $("#final_save").prop("disabled", true);
-      if ($("#status_ekthesis").val() != Status.Composing) {
+      if ($("#status").val() != Status.Composing) {
         $("#edit_form :input:not(.next, .previous)").prop("disable", true);
       }
     },
@@ -54,7 +54,7 @@ function viewFormRoleRestriction() {
       if (
         // role === "Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)" &&
         $("#pdf_download").prop("hidden") === false &&
-        $("#status_ekthesis").val() === Status.Finalized
+        $("#status").val() === Status.Finalized
       ) {
         $("#signed_pdf_div").show();
         $(
@@ -71,7 +71,7 @@ function viewFormRoleRestriction() {
       }
     },
     "Γενικός Γραμματέας Νομικών και Κοινοβουλευτικών Θεμάτων": () => {
-      if ($("#status_ekthesis").val() === "Οριστικοποιήθηκε") {
+      if ($("#status").val() === "Οριστικοποιήθηκε") {
         $("#signed_pdf_div").show();
         $(
           "#pdf_download, .next, #signed_pdf_upload, .export-pdf, .previous"
