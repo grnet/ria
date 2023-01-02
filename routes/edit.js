@@ -120,7 +120,6 @@ routes.get("/:entry_id", authUser, async (req, res, next) => {
     );
     const processes = await tables.getTableData(["process"], data);
     const field_9 = await tables.getField9(data);
-    console.log(field_9);
 
     const tooltips = JSON.stringify(await tooltipsCsv.getTooltips());
     const ministriesResult = await ministries.getMinistries();

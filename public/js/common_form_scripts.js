@@ -156,7 +156,6 @@ function populateIndexSelect(select, category) {
   $(`#${select}`).append(
     `<option value="" selected disabled>Eπιλογή</option>`
   );
-  console.log(indexes[`${category}`]);
   for (i in indexes[`${category}`]) {
     $(`#${select}`).append(
       `<option value="${indexes[`${category}`][i]}">${
