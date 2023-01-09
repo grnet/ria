@@ -16,7 +16,7 @@
             σχέδιο νόμου ή στην τροπολογία επί του σχεδίου νόμου
         </label>
         <textarea class="govgr-textarea" id="field_15_sxedio_nomou" name="field_15_sxedio_nomou"
-            rows="1"> <%= data.field_15_sxedio_nomou %></textarea>
+            rows="1"> <%= data.accountingData.field_15_sxedio_nomou %></textarea>
     </div>
     <div class="govgr-field">
         <label id="field_15_ypoyrgeio_label" for="field_15_ypoyrgeio"
@@ -35,7 +35,7 @@
             15.Συνοπτική ανάλυση των άρθρων της αξιολογούμενης ρύθμισης
         </label>
         <textarea class="govgr-textarea form-control glk-text" id="field_15_rythmiseis" name="field_15_rythmiseis"
-            rows="5"><%= data.field_15_rythmiseis %></textarea>
+            rows="5"><%= data.accountingData.field_15_rythmiseis %></textarea>
     </div> <br />
     <div class="govgr-button-group">
         <button type="button" class="govgr-btn govgr-btn-primary previous action-button-previous" name="previous">
@@ -64,13 +64,13 @@
         <label id="field_16_kratikos_proypologismos_label" for="field_16_kratikos_proypologismos"
             class="mostly-optional-label required">Επί του Κρατικού Προϋπολογισμού</label>
         <textarea class="form-control glk-text" id="field_16_kratikos_proypologismos"
-            name="field_16_kratikos_proypologismos" rows="5"><%= data.field_16_kratikos_proypologismos %></textarea>
+            name="field_16_kratikos_proypologismos" rows="5"><%= data.accountingData.field_16_kratikos_proypologismos %></textarea>
     </div>
     <div class="form-group">
         <label id="field_16_proypologismos_forea_label" for="field_16_proypologismos_forea"
             class="mostly-optional-label required">Επί του Προϋπολογισμού του/των αρμόδιου/ων φορέα/ων</label>
         <textarea class="form-control glk-text" id="field_16_proypologismos_forea" name="field_16_proypologismos_forea"
-            rows="5"><%= data.field_16_proypologismos_forea %></textarea>
+            rows="5"><%= data.accountingData.field_16_proypologismos_forea %></textarea>
     </div> <br />
     <table class="table " id="field_16_table">
         <thead class="thead ">
@@ -90,11 +90,11 @@
         <tbody id="tbody_16">
             <tr>
                 <td> <textarea class="govgr-textarea" id="field_16_genikos_onoma" name="field_16_genikos_onoma"
-                        placeholder="Όνομα" rows="1"><%= data.field_16_genikos_onoma %></textarea> </td>
+                        placeholder="Όνομα" rows="1"><%= data.accountingData.field_16_genikos_onoma %></textarea> </td>
                 <td> <textarea class="govgr-textarea" id="field_16_genikos_epitheto" name="field_16_genikos_epitheto"
-                        placeholder="Επώνυμο" rows="1"><%= data.field_16_genikos_epitheto %></textarea> </td>
+                        placeholder="Επώνυμο" rows="1"><%= data.accountingData.field_16_genikos_epitheto %></textarea> </td>
                 <td> <textarea class="govgr-textarea" id="field_16_genikos_date" name="field_16_genikos_date"
-                        placeholder="Ημερομηνία" rows="1" readonly><%= data.field_16_genikos_date %></textarea> </td>
+                        placeholder="Ημερομηνία" rows="1" readonly><%= data.accountingData.field_16_genikos_date %></textarea> </td>
             </tr>
         </tbody>
     </table> <br /> <br />
@@ -124,14 +124,14 @@
                     </tr>
                 </thead>
                 <tbody class="govgr-table__body">
-                    <% if( data.signed_glk_pdf_upload && data.signed_glk_pdf_upload.length) { for (var
-                        i=data.signed_glk_pdf_upload.length-1; i>=0;i--) { %>
+                    <% if( data.uploads.signed_glk_pdf_upload && data.uploads.signed_glk_pdf_upload.length) { for (var
+                        i=data.uploads.signed_glk_pdf_upload.length-1; i>=0;i--) { %>
                         <tr>
-                            <td> <a href="/uploads/<%= data.signed_glk_pdf_upload[i].filename %>">
-                                    <%= data.signed_glk_pdf_upload[i].filename %>
+                            <td> <a href="/uploads/<%= data.uploads.signed_glk_pdf_upload[i].filename %>">
+                                    <%= data.uploads.signed_glk_pdf_upload[i].filename %>
                                 </a> </td>
                             <td>
-                                <%= data.signed_glk_pdf_upload[i].upload_date %>
+                                <%= data.uploads.signed_glk_pdf_upload[i].upload_date %>
                             </td>
                         </tr>
                         <% } }%>

@@ -13,7 +13,7 @@ exports.exportPDF = async function (req, res, next) {
   let result = await database.analysis.findOne({
     where: { id: req.params.entry_id },
   });
-  let data = result.dataValues;
+  let data = result.dataValues.data;
 
   // let ministers = tablesLib.getMinisters(
   //   data,
@@ -30,12 +30,7 @@ exports.exportPDF = async function (req, res, next) {
   //   "field_17_minister_ministry",
   //   "field_17_minister_role"
   // );
-  // let field_9_data = tablesLib.getDataForPdfField9(
-  //   data,
-  //   "_header",
-  //   "_label",
-  //   "_secondHeader"
-  // ); //data for field_9
+  let field_9 = await tablesLib.getField9(data); //data for field_9
   let field_18 = await tablesLib.getCheckboxTableData(data, "field_18");
   let field_19 = await tablesLib.getCheckboxTableData(data, "field_19");
   let field_20 = await tablesLib.getCheckboxTableData(data, "field_20");
@@ -753,7 +748,7 @@ exports.exportPDF = async function (req, res, next) {
             ],
           },
         },
-        // createField9(field_9_data),
+        createField9(field_9),
         {
           text: "\n\n",
         },
@@ -1254,7 +1249,7 @@ exports.exportPDF = async function (req, res, next) {
             ],
           },
         },
-        // createField18(field_18, data),
+        createField18(field_18, data),
         { text: "", pageBreak: "before" },
         {
           table: {
@@ -1276,7 +1271,7 @@ exports.exportPDF = async function (req, res, next) {
             ],
           },
         },
-        // createField19(field_19, data),
+        createField19(field_19, data),
         {
           table: {
             widths: ["5%", "95%"],
@@ -1298,7 +1293,7 @@ exports.exportPDF = async function (req, res, next) {
           },
         },
         { text: "", pageBreak: "before" },
-        // createField20(field_20, data),
+        createField20(field_20, data),
         { text: "\n\n" },
         {
           table: {
@@ -2301,36 +2296,35 @@ exports.exportPDF = async function (req, res, next) {
   };
 
   let pdfDoc = printer.createPdfKitDocument(docDefinition);
-  let pdf_name = data.pdf_name + ".pdf";
+  let pdf_name = data.title + ".pdf";
   const export_path = "public/pdf_exports/";
   const pdf_path = path.resolve(export_path, pdf_name);
   pdfDoc.pipe(fs.createWriteStream(pdf_path));
   pdfDoc.end();
-  await new Promise((resolve) => setTimeout(resolve, 1000)); //adding some extra delay since current pdfmake version does not support asyncs
+  await new Promise((resolve) => setTimeout(resolve, 1000)); //adding some extra delay since current pdfmake version does not support async functions
 
   pdfDoc = printer.createPdfKitDocument(docDefinition_b);
-  pdf_name = data.pdf_name + "_b.pdf";
+  pdf_name = data.title + "_b.pdf";
   const pdf_path_b = path.resolve(export_path, pdf_name);
   pdfDoc.pipe(fs.createWriteStream(pdf_path_b));
   pdfDoc.end();
   await new Promise((resolve) => setTimeout(resolve, 1000));
 
   pdfDoc = printer.createPdfKitDocument(docDefinition_c);
-  pdf_name = data.pdf_name + "_c.pdf";
+  pdf_name = data.title + "_c.pdf";
   const pdf_path_c = path.resolve(export_path, pdf_name);
   pdfDoc.pipe(fs.createWriteStream(pdf_path_c));
   pdfDoc.end();
   await new Promise((resolve) => setTimeout(resolve, 1000));
 
   pdfDoc = printer.createPdfKitDocument(docDefinition_d);
-  pdf_name = data.pdf_name + "_d.pdf";
+  pdf_name = data.title + "_d.pdf";
   const pdf_path_d = path.resolve(export_path, pdf_name);
   pdfDoc.pipe(fs.createWriteStream(pdf_path_d));
   pdfDoc.end();
   await new Promise((resolve) => setTimeout(resolve, 1000));
 
   try {
-
     const merger = new PDFMerger();
     await merger.add(pdf_path);
     if (data.field_21_upload) {
@@ -2716,84 +2710,79 @@ function createTables(tableData) {
   return table;
 }
 
-function createField9Tables(jsonTableData) {
+function getField9Table(data, header) {
   let tableRows = [];
-  for (i in jsonTableData) {
-    if (
-      jsonTableData[i].header !== undefined &&
-      jsonTableData[i].header !== null
-    ) {
-      tableRows.push([
-        {
-          text: jsonTableData[i].header,
-          alignment: "center",
-          fillColor: "#87CEEB",
-          bold: true,
-        },
-        {
-          text: "Εξέλιξη την τελευταία 5ετία",
-          alignment: "center",
-          fillColor: "#87CEEB",
-          bold: true,
-          colSpan: 5,
-        },
+  tableRows.push([
+    {
+      text: header,
+      alignment: "center",
+      fillColor: "#87CEEB",
+      bold: true,
+    },
+    {
+      text: "Εξέλιξη την τελευταία 5ετία",
+      alignment: "center",
+      fillColor: "#87CEEB",
+      bold: true,
+      colSpan: 5,
+    },
 
-        {},
-        {},
-        {},
-        {},
-        {
-          text: "Πρόσφατα στοιχεία",
-          alignment: "center",
-          fillColor: "#87CEEB",
-          bold: true,
-        },
-        {
-          text: "Επιδιωκόμενος στόχος (3ετία)",
-          alignment: "center",
-          fillColor: "#87CEEB",
-          bold: true,
-        },
-      ]);
-    }
+    {},
+    {},
+    {},
+    {},
+    {
+      text: "Πρόσφατα στοιχεία",
+      alignment: "center",
+      fillColor: "#87CEEB",
+      bold: true,
+    },
+    {
+      text: "Επιδιωκόμενος στόχος (3ετία)",
+      alignment: "center",
+      fillColor: "#87CEEB",
+      bold: true,
+    },
+  ]);
+  for (i in data) {
     tableRows.push([
       {
-        text: isEmpty(jsonTableData[i].label),
+        text: data[i].row[0],
         alignment: "center",
         fontSize: 7,
       },
       {
-        text: jsonTableData[i].values[0].value,
+        text: data[i].row[1],
         alignment: "center",
         fontSize: 7,
       },
       {
-        text: jsonTableData[i].values[1].value,
+        text: data[i].row[2],
         alignment: "center",
         fontSize: 7,
       },
       {
-        text: jsonTableData[i].values[2].value,
+        text: data[i].row[3],
         alignment: "center",
         fontSize: 7,
       },
       {
-        text: jsonTableData[i].values[3].value,
+        text: data[i].row[4],
         alignment: "center",
         fontSize: 7,
       },
       {
-        text: jsonTableData[i].values[4].value,
+        text: data[i].row[5],
         alignment: "center",
         fontSize: 7,
       },
       {
-        text: jsonTableData[i].values[5].value,
+        text: data[i].row[6],
         alignment: "center",
         fontSize: 7,
       },
       {
-        text: jsonTableData[i].values[6].value,
+        text: data[i].row[7],
         alignment: "center",
         fontSize: 7,
       },
@@ -2810,11 +2799,40 @@ function createField9Tables(jsonTableData) {
   return table;
 }
 
-function createField9(josnData) {
+function createField9(data) {
   let tables = [];
-  for (i in josnData) {
-    tables.push({ text: "\n\n" });
-    tables.push(createField9Tables(josnData[i]));
+  const prefixes = [
+    "ekpaideysi",
+    "politismos",
+    "oikonomia",
+    "forologia",
+    "ergasiakes_sxeseis",
+    "apasxolisi",
+    "koinoniki_asfalisi",
+    "koinoniki_pronoia",
+    "ygeia",
+    "isotita_fylwn",
+    "metanasteytiki_prosfygiki_politiki",
+    "dimosia_dioikisi",
+    "dimosia_asfaleia",
+    "dikaiosini",
+    "ependytiki_drastiriotita",
+    "perivallon_energeia",
+  ];
+  const headers = {
+    ekpaideysi: "ΕΚΠΑΙΔΕΥΣΗ",
+    politismos: "ΠΟΛΙΤΙΣΜΟΣ",
+    dimosia_dioikisi: "ΔΗΜΟΣΙΑ ΔΙΟΙΚΗΣΗ",
+    dimosia_asfaleia: "ΔΗΜΟΣΙΑ ΑΣΦΑΛΕΙΑ",
+    dikaiosini: "ΔΙΚΑΙΟΣΥΝΗ",
+  };
+  for (i in prefixes) {
+    if (data[`${prefixes[i]}`].length > 0) {
+      tables.push(
+        getField9Table(data[`${prefixes[i]}`], headers[`${prefixes[i]}`])
+      );
+      tables.push({ text: "\n\n" });
+    }
   }
   return tables;
 }

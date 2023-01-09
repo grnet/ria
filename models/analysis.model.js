@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       status: DataTypes.STRING,
       uploads: DataTypes.JSON,
       data: DataTypes.JSON,
+      accountingData: DataTypes.JSON,
     },
     {
       freezeTableName: true, //table name same as model name
