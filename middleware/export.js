@@ -15,27 +15,32 @@ exports.exportPDF = async function (req, res, next) {
   });
   let data = result.dataValues.data;
 
-  // let ministers = tablesLib.getMinisters(
-  //   data,
-  //   "minister_name",
-  //   "minister_surname",
-  //   "minister_ministry",
-  //   "minister_role",
-  //   "field_17"
-  // );
-  // let field_17_ministers = tablesLib.getMinisters(
-  //   data,
-  //   "field_17_minister_name",
-  //   "field_17_minister_surname",
-  //   "field_17_minister_ministry",
-  //   "field_17_minister_role"
-  // );
-  let field_9 = await tablesLib.getField9(data); //data for field_9
-  let field_18 = await tablesLib.getCheckboxTableData(data, "field_18");
-  let field_19 = await tablesLib.getCheckboxTableData(data, "field_19");
-  let field_20 = await tablesLib.getCheckboxTableData(data, "field_20");
+  const minister_names = await tablesLib.getTableData(["minister_name"], data);
+  const minister_ministries = await tablesLib.getTableData(
+    ["minister_ministry"],
+    data
+  );
+  const minister_roles = await tablesLib.getTableData(["minister_role"], data);
 
-  let field_14 = {
+  const field_17_minister_names = await tablesLib.getTableData(
+    ["field_17_minister_name"],
+    data
+  );
+  const field_17_minister_ministries = await tablesLib.getTableData(
+    ["field_17_minister_ministry"],
+    data
+  );
+  const field_17_minister_roles = await tablesLib.getTableData(
+    ["field_17_minister_role"],
+    data
+  );
+
+  const field_9 = await tablesLib.getField9(data); //data for field_9
+  const field_18 = await tablesLib.getCheckboxTableData(data, "field_18");
+  const field_19 = await tablesLib.getCheckboxTableData(data, "field_19");
+  const field_20 = await tablesLib.getCheckboxTableData(data, "field_20");
+
+  const field_14 = {
     columns: 2,
     headers: ["Άρθρο", "Στόχος"],
     keys: ["field_14_arthro", "field_14_stoxos"],
@@ -45,7 +50,7 @@ exports.exportPDF = async function (req, res, next) {
     ),
   };
 
-  let field_29 = {
+  const field_29 = {
     columns: 2,
     headers: ["Διατάξεις αξιολογούμενης ρύθμισης", "Υφιστάμενες διατάξεις"],
     keys: ["field_29_diatakseis_rythmisis", "field_29_yfistamenes_diatakseis"],
@@ -55,7 +60,7 @@ exports.exportPDF = async function (req, res, next) {
     ),
   };
 
-  let field_30 = {
+  const field_30 = {
     columns: 2,
     headers: [
       "Διατάξεις αξιολογούμενης ρύθμισης που προβλέπουν κατάργηση",
@@ -71,7 +76,7 @@ exports.exportPDF = async function (req, res, next) {
     ),
   };
 
-  let field_31 = {
+  const field_31 = {
     columns: 3,
     headers: [
       "Σχετική διάταξη αξιολογούμενης ρύθμισης",
@@ -93,7 +98,7 @@ exports.exportPDF = async function (req, res, next) {
     ),
   };
 
-  let field_32 = {
+  const field_32 = {
     columns: 5,
     headers: [
       "Εξουσιοδοτική διάταξη",
@@ -1220,7 +1225,11 @@ exports.exportPDF = async function (req, res, next) {
           },
         },
         { text: "\n\n" },
-        // createSignatories(field_17_ministers),
+        createSignatories(
+          field_17_minister_names,
+          field_17_minister_ministries,
+          field_17_minister_roles
+        ),
         {
           text: "\n\n",
         },
@@ -2291,7 +2300,7 @@ exports.exportPDF = async function (req, res, next) {
         },
       },
       { text: "\n\n" },
-      // createSignatories(ministers),
+      createSignatories(minister_names, minister_ministries, minister_roles),
     ],
   };
 
@@ -3462,41 +3471,53 @@ function createField20(field_20, data) {
   return fieldData;
 }
 
-function createSignatories(ministers) {
+function createSignatories(names, ministries, roles) {
   let signatories = [];
   let table = [];
-  if (ministers.ministers && ministers.ministers.length) {
-    signatories.push({ text: "\n\n" });
+
+  const ministerIndexes = [];
+  const substitutesIndexes = [];
+  const undersecretariesIndexes = [];
+  for (let i in roles) {
+    if (roles[i].includes("ΟΙ ΥΠΟΥΡΓΟΙ")) {
+      ministerIndexes.push(i);
+    }
+    if (roles[i].includes("ΟΙ ΥΦΥΠΟΥΡΓΟΙ")) {
+      substitutesIndexes.push(i);
+    }
+    if (roles[i].includes("ΟΙ ΑΝΑΠΛΗΡΩΤΕΣ ΥΠΟΥΡΓΟΙ")) {
+      undersecretariesIndexes.push(i);
+    }
+  }
+  if (ministerIndexes.length > 0) {
     signatories.push({
       text: "ΟΙ ΥΠΟΥΡΓΟΙ \n",
       bold: true,
       alignment: "center",
     });
     signatories.push({ text: "\n" });
-    for (i = 0; i < ministers.ministers.length; i += 2) {
+    for (i = 0; i < ministerIndexes.length; i += 2) {
       table.push([
         {
-          text: ministers.ministers[i][2],
+          text: roles[ministerIndexes[i]],
           bold: true,
           alignment: "center",
         },
         {
-          text: isMinister(ministers.ministers, i, "ministry"),
+          text: names[ministerIndexes[i]],
           bold: true,
           alignment: "center",
         },
       ]);
       table.push([
         {
-          text:
-            "\n\n\n" +
-            ministers.ministers[i][0] +
-            " " +
-            ministers.ministers[i][1],
+          text: roles[ministerIndexes[i + 1]],
+          bold: true,
           alignment: "center",
         },
         {
-          text: isMinister(ministers.ministers, i, "name"),
+          text: names[ministerIndexes[i + 1]],
+          bold: true,
           alignment: "center",
         },
       ]);
@@ -3511,38 +3532,35 @@ function createSignatories(ministers) {
     table = [];
   }
 
-  if (ministers.substitutes && ministers.substitutes.length) {
-    signatories.push({ text: "\n\n" });
+  if (substitutesIndexes.length > 0) {
     signatories.push({
       text: "ΟΙ ΥΦΥΠΟΥΡΓΟΙ \n",
       bold: true,
       alignment: "center",
     });
     signatories.push({ text: "\n" });
-    for (i = 0; i < ministers.substitutes.length; i += 2) {
+    for (i = 0; i < substitutesIndexes.length; i += 2) {
       table.push([
         {
-          text: ministers.substitutes[i][2],
+          text: roles[substitutesIndexes[i]],
           bold: true,
           alignment: "center",
         },
         {
-          text: isMinister(ministers.substitutes, i, "ministry"),
+          text: names[substitutesIndexes[i]],
           bold: true,
           alignment: "center",
         },
       ]);
       table.push([
         {
-          text:
-            "\n\n\n" +
-            ministers.substitutes[i][0] +
-            " " +
-            ministers.substitutes[i][1],
+          text: roles[substitutesIndexes[i + 1]],
+          bold: true,
           alignment: "center",
         },
         {
-          text: isMinister(ministers.substitutes, i, "name"),
+          text: names[substitutesIndexes[i + 1]],
+          bold: true,
           alignment: "center",
         },
       ]);
@@ -3556,39 +3574,35 @@ function createSignatories(ministers) {
     });
     table = [];
   }
-
-  if (ministers.undersecretaries && ministers.undersecretaries.length) {
-    signatories.push({ text: "\n\n" });
+  if (undersecretariesIndexes.length > 0) {
     signatories.push({
-      text: "ΟΙ ΑΝΑΠΛΗΡΩΤΕΣ ΥΠΟΥΡΓΟΙ \n",
+      text: "ΟΙ ΑΝΑΠΛΗΡΩΤΕΣ ΥΠΟΥΡΓΟΙ\n",
       bold: true,
       alignment: "center",
     });
     signatories.push({ text: "\n" });
-    for (i = 0; i < ministers.undersecretaries.length; i += 2) {
+    for (i = 0; i < undersecretariesIndexes.length; i += 2) {
       table.push([
         {
-          text: ministers.undersecretaries[i][2],
+          text: roles[undersecretariesIndexes[i]],
           bold: true,
           alignment: "center",
         },
         {
-          text: isMinister(ministers.undersecretaries, i, "ministry"),
+          text: names[undersecretariesIndexes[i]],
           bold: true,
           alignment: "center",
         },
       ]);
       table.push([
         {
-          text:
-            "\n\n\n" +
-            ministers.undersecretaries[i][0] +
-            " " +
-            ministers.undersecretaries[i][1],
+          text: roles[undersecretariesIndexes[i + 1]],
+          bold: true,
           alignment: "center",
         },
         {
-          text: isMinister(ministers.undersecretaries, i, "name"),
+          text: names[undersecretariesIndexes[i + 1]],
+          bold: true,
           alignment: "center",
         },
       ]);
@@ -3600,20 +3614,9 @@ function createSignatories(ministers) {
         body: table,
       },
     });
+    table = [];
   }
   if (signatories) {
     return signatories;
-  }
-}
-
-function isMinister(data, step, type) {
-  if (data[step + 1]) {
-    if (type === "name") {
-      return "\n\n\n" + data[step + 1][0] + " " + data[step + 1][1];
-    } else {
-      return data[step + 1][2];
-    }
-  } else {
-    return "";
   }
 }

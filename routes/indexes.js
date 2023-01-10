@@ -1,8 +1,8 @@
-const { authRole, authUser } = require("../middleware/auth");
+const { authAdmin, authUser } = require("../middleware/auth");
 const routes = require("express").Router();
 const database = require("../services/database");
 
-routes.get("/", authUser, authRole, async (req, res, next) => {
+routes.get("/", authUser, authAdmin, async (req, res, next) => {
   try {
     const indexesResult = await database.indexes.findAll();
     const indexTablesResult = await database.index_tables.findAll();

@@ -14,7 +14,7 @@ exports.authUser = (
     }
 )
 
-exports.authRole = (
+exports.authAdmin = (
 
     async function (req, res, next) {
         if (!req.session.user.isAdmin) {
@@ -26,3 +26,27 @@ exports.authRole = (
         }
     }
 )
+
+exports.authRole = async function (req, res, next) {
+  if (!req.session.user.role) {
+    req.session.errors = [];
+    req.session.errors.push({
+      msg: "Δε σας έχει ανατεθεί ρόλος για να περιηγηθείτε στην εφαρμογή.",
+    });
+    return res.redirect("./dashboard");
+  } else {
+    return next();
+  }
+};
+
+exports.authAgency = async function (req, res, next) {
+  if (!req.session.user.agency) {
+    req.session.errors = [];
+    req.session.errors.push({
+      msg: "Δε σας έχει ανατεθεί φορέας για να περιηγηθείτε στην εφαρμογή.",
+    });
+    return res.redirect("./dashboard");
+  } else {
+    return next();
+  }
+};

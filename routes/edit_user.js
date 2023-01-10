@@ -2,9 +2,9 @@ const routes = require("express").Router();
 let database = require("../services/database");
 const bcrypt = require("bcrypt");
 const { body, check, validationResult } = require("express-validator");
-const { authUser, authRole } = require("../middleware/auth");
+const { authUser, authAdmin } = require("../middleware/auth");
 
-routes.get("/:username", authUser, authRole, async (req, res, next) => {
+routes.get("/:username", authUser, authAdmin, async (req, res, next) => {
   let entry = await database.user.findOne({
     where: {
       username: req.params.username,
@@ -36,7 +36,7 @@ routes.get("/:username", authUser, authRole, async (req, res, next) => {
   }
 });
 
-routes.delete("/:username", authUser, authRole, async (req, res, next) => {
+routes.delete("/:username", authUser, authAdmin, async (req, res, next) => {
   let user = await database.user.findOne({
     where: { username: req.params.username },
   });
@@ -49,7 +49,7 @@ routes.delete("/:username", authUser, authRole, async (req, res, next) => {
   }
 });
 
-routes.put("/:username", authUser, authRole, async (req, res, next) => {
+routes.put("/:username", authUser, authAdmin, async (req, res, next) => {
   const password = req.body.password;
   const newPassword = req.body.new_password;
   const repeatPassword = req.body.password_repeat;

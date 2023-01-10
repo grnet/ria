@@ -1,9 +1,9 @@
 const routes = require("express").Router();
 let database = require("../services/database");
 const bcrypt = require("bcrypt");
-const { authUser, authRole } = require("../middleware/auth");
+const { authUser, authAdmin } = require("../middleware/auth");
 
-routes.get("/", authUser, authRole, async function (req, res, next) {
+routes.get("/", authUser, authAdmin, async function (req, res, next) {
   let latest_entry = await database.ministries.max("id").catch((error) => {
     console.log(error);
   }); // get entry with highest id
@@ -23,7 +23,7 @@ routes.get("/", authUser, authRole, async function (req, res, next) {
   res.render("user_views/create_user", { ministries: ministries, user:user });
 });
 
-routes.post("/", authUser, authRole, async function (req, res, next) {
+routes.post("/", authUser, authAdmin, async function (req, res, next) {
   const userPassword = req.body.password;
   bcrypt.hash(userPassword, 10, async function (err, hash) {
     //add row to user model, map values from req.body

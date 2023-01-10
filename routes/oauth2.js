@@ -266,12 +266,30 @@ const gsispa = async (req, res) => {
     });
     if (debug) console.log("App UserInfo", user);
     if (user && user.dataValues) {
+      if(!user.role) {
+        res
+          .status(400)
+          .send({
+            msg: "Δε σας έχει ανατεθεί ρόλος για να περιηγηθείτε στην εφαρμογή.",
+          });
+      }
+      if (!user.agency) {
+        res.status(400).send({
+          msg: "Δε σας έχει ανατεθεί φορέας για να περιηγηθείτε στην εφαρμογή.",
+        });
+      }
       req.session.user = user;
       if (debug) console.log("App Session", req.session);
       res.redirect(302, "/user_views/dashboard?ref=gsis");
     } else {
-      req.session.errors.push({ msg: "Δε βρέθηκε χρήστης με αυτό το ΑΦΜ." }); //custom error message
-      res.redirect(302, "./login"); //redirect and display errors
+      await database.user.create({
+        fname: userinfo.firstname,
+        lname: userinfo.lastname,
+        afm: userinfo.taxid
+      });
+      res.status(302).send({
+        msg: "Δε σας έχει ανατεθεί ρόλος για να περιηγηθείτε στην εφαρμογή.",
+      });
     }
   }
   res.end();

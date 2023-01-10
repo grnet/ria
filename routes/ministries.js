@@ -1,10 +1,10 @@
-const { authRole, authUser } = require("../middleware/auth");
+const { authAdmin, authUser } = require("../middleware/auth");
 const routes = require("express").Router();
 const { spawn } = require("child_process");
 const database = require("../services/database");
 const ministries = require("../lib/ministries");
 
-routes.get("/", authUser, authRole, async (req, res, next) => {
+routes.get("/", authUser, authAdmin, async (req, res, next) => {
   try {
     const ministriesResult = await ministries.getMinistries();
     const ministersResult = await ministries.getMinisters(ministriesResult);
@@ -18,7 +18,7 @@ routes.get("/", authUser, authRole, async (req, res, next) => {
   } //TODO: better handling
 });
 
-routes.post("/gov", authUser, authRole, async (req, res, next) => {
+routes.post("/gov", authUser, authAdmin, async (req, res, next) => {
   const script = spawn("python3", ["./public/python_scripts/data_scrapper.py"]);
   script.stdout.on("data", async (data) => {
     req.session.success = [];
