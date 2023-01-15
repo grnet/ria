@@ -2322,7 +2322,7 @@ exports.exportPDF = async function (req, res, next) {
   let pdfDoc = printer.createPdfKitDocument(docDefinition);
   let pdf_name = "diff.pdf";
   //pdf_name = pdf_name.replace(/\s+/g, '');
-  let export_path = "public/pdf_exports/";
+  let export_path = "public/exports/";
   let pdf_path = path.resolve(export_path, pdf_name);
   pdf_path = path.resolve(export_path, pdf_name);
   pdfDoc.pipe(fs.createWriteStream(pdf_path));

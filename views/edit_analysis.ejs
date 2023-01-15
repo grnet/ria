@@ -1140,9 +1140,9 @@
         let answer;
         const analysis_id = "<%= id %>";
         //prevent user from going to a different form through url
-        // if (sessionStorage.getItem("referer") != analysis_id) {
-        //     window.location.href = "/user_views/history"
-        // }
+        if (sessionStorage.getItem("referer") != analysis_id) {
+            window.location.href = "/user_views/history"
+        }
         let analysisStatus = "<%= data.status %>";
         const role = "<%= role%>";
         const type = "<%= type %>";
@@ -1155,8 +1155,8 @@
         const field11 = "<%= data.field_11%>";
         const field12 = "<%= data.field_12%>";
         const field13 = "<%= data.field_13%>";
-        const field_15_ministry = "<%= data.field_15_ypoyrgeio%>";
-        const field_17_ministry = "<%= data.field_17_ypoyrgeio%>";
+        const field_15_ministry = "<%= accountingData ? accountingData.field_15_ypoyrgeio : ''%>";
+        const field_17_ministry = "<%= accountingData ? accountingData.field_17_ypoyrgeio : ''%>";
         const field36 = "<%= data.field_36%>";
         const ekthesi_glk = "<%= data.ekthesi_glk%>"
         const field_18 = `<%- data.field_18_comments%>`;
@@ -1189,8 +1189,12 @@
         function updateForm(ev) {
             ev.preventDefault();
             setDate("#last_updated");
-            var fd = new FormData($("form").get(0));            
+            let fd = new FormData($("form").get(0));
             if (role === Roles.GeneralAccountingOffice) {
+                fd.append('field_15_rythmiseis', $('#field_15_rythmiseis').value = CKEDITOR.instances['field_15_rythmiseis'].getData());
+                fd.append('field_16_kratikos_proypologismos', $('#field_16_kratikos_proypologismos').value = CKEDITOR.instances['field_16_kratikos_proypologismos'].getData());
+                fd.append('field_16_proypologismos_forea', $('#field_16_proypologismos_forea').value = CKEDITOR.instances['field_16_proypologismos_forea'].getData());
+                fd.append('field_17_oikonomika_apotelesmata', $('#field_17_oikonomika_apotelesmata').value = CKEDITOR.instances['field_17_oikonomika_apotelesmata'].getData());
                 $.ajax({
                     url: `/edit_analysis/${analysis_id}/accounting`,
                     data: fd,
@@ -1200,16 +1204,11 @@
                         console.log(error);
                     },
                     success: function (data) {
-                        //window.location.href = "/user_views/history"
                         window.location = data.redirect
                     },
                     type: 'PUT'
                 });
             } else {
-                fd.append('f15', $('#field_15_rythmiseis').value = CKEDITOR.instances['field_15_rythmiseis'].getData());
-                fd.append('f16_2', $('#field_16_kratikos_proypologismos').value = CKEDITOR.instances['field_16_kratikos_proypologismos'].getData());
-                fd.append('f16_1', $('#field_16_proypologismos_forea').value = CKEDITOR.instances['field_16_proypologismos_forea'].getData());
-                fd.append('f17', $('#field_17_oikonomika_apotelesmata').value = CKEDITOR.instances['field_17_oikonomika_apotelesmata'].getData());
                 $.ajax({
                     url: `/edit_analysis/${analysis_id}`,
                     data: fd,
@@ -1238,7 +1237,7 @@
                     type: 'PUT'
                 });
             }
-            
+
         }
 
         function createNewForm(ev) {
@@ -1306,10 +1305,10 @@
                     console.log(error);
                 },
                 success: function (data) {
-                    
-                    window.open(`/pdf_exports/${title}.pdf`)
+
+                    window.open(`/exports/${title}.pdf`)
                     $("#pdf_download").html(`Το τελευταίο αποθηκευμένο PDF
-                                    βρίσκεται <a href="/pdf_exports/${title}.pdf"><b><u>εδώ</u></b></a>.`)
+                                    βρίσκεται <a href="/exports/${title}.pdf"><b><u>εδώ</u></b></a>.`)
                     $("#pdf_download").show();
                 },
                 type: 'POST'
@@ -1331,9 +1330,9 @@
                         console.log(error);
                     },
                     success: function (data) {
-                        window.open(`/pdf_exports/${pdf_name}.pdf`)
+                        window.open(`/exports/${pdf_name}.pdf`)
                         $("#glk_pdf_download").html(`Το τελευταίο αποθηκευμένο PDF
-                                    βρίσκεται <a href="/pdf_exports/${pdf_name}.pdf"><b><u>εδώ</u></b></a>.`)
+                                    βρίσκεται <a href="/exports/${pdf_name}.pdf"><b><u>εδώ</u></b></a>.`)
                         $("#glk_pdf_download").show();
                     },
                     type: 'POST'
@@ -1394,39 +1393,12 @@
                 },
                 success: function (result) {
                     //TODO: add new name
-                    window.open('/pdf_exports/diff.pdf');
+                    window.open('/exports/diff.pdf');
                     $('#versioningModal').modal('toggle');
                 },
                 type: 'POST'
             });
-        });
-
-        function setStatus() {
-            console.log('asdkjlfhlkasjdhflakjsdfh');
-            if ((role === Roles.Parliamentarian) || (role === Roles.LegislativeCommittee && $('#status').val(Status.Composing))) {
-                $('#status').val(Status.Completed);
-            } else if (role === Roles.QualityEvaluationCommittee || role === GoodLegislationOffice || role === Roles.LegislativeProcedureDirectorate) {
-                if ($("#egkrisi_aksiologisis_nomoparaskeyastikis").prop("checked") && $("#egkrisi_kalis_nomothetisis").prop("checked") && $("#egkrisi_dieuthinsis_nomoparaskeyastikis").prop("checked") && $("#egkrisi_genikou_grammatea").prop("checked")) {
-                    $('#status').val(Status.Finalized);
-                }
-            } else if (role === Roles.GeneralSecretary) {
-                if ($('#status').val() === Status.Finalized && ($("#signed_pdf tbody>tr").length > 0 || $('#signed_pdf_upload').get(0).files.length > 0)) {
-                    $('#status').prop("disabled", false);
-                    $('#status').val(Status.Uploaded);
-
-                } else if ($("#egkrisi_aksiologisis_nomoparaskeyastikis").prop("checked") && $("#egkrisi_kalis_nomothetisis").prop("checked") && $("#egkrisi_dieuthinsis_nomoparaskeyastikis").prop("checked") && $("#egkrisi_genikou_grammatea").prop("checked")) {
-                    $('#status').val(Status.Finalized);
-                }
-
-            }
-            else if (role === Roles.GeneralAccountingOffice && $('#status').val(Status.Pending)) {
-                $('#status').val(Status.Checked);
-            }
-            //TODO: refactor
-            if (role === Roles.LegislativeCommittee && $('#status').val() === Status.Finalized && $("#signed_pdf tbody>tr").length > 0) {
-                $('#status').val(Status.Finalized);
-            }
-        }
+        });        
 
         // TODO: review validation
         //check if required fields are empty

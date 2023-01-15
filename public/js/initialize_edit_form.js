@@ -738,7 +738,7 @@ for (let i in tables.field_17_signatories.field_17_minister_name) {
             </td>
             <td>
                 <textarea class="form-control" id="field_17_minister_role${index}" name="field_17_minister_role${index}" readonly rows="1">${
-    tables.field_17_signatories.field_17_minister_role[j]
+    tables.field_17_signatories.field_17_minister_role[i]
   }</textarea>
                 <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
                 <input type="hidden" id="field_17_minister_ministry${index}" name="field_17_minister_ministry${index}">
@@ -747,18 +747,18 @@ for (let i in tables.field_17_signatories.field_17_minister_name) {
   populateMinistersNameSelect(`field_17_minister_surname${index}`);
   if (
     tables.field_17_signatories &&
-    tables.field_17_signatories.field_17_minister_name[j]
+    tables.field_17_signatories.field_17_minister_name[i]
   ) {
     $(`#field_17_minister_name${index}`).val(
-      tables.field_17_signatories.field_17_minister_name[j]
+      tables.field_17_signatories.field_17_minister_name[i]
     );
   }
   if (
     tables.field_17_signatories &&
-    tables.field_17_signatories.field_17_minister_ministry[j]
+    tables.field_17_signatories.field_17_minister_ministry[i]
   ) {
     $(`#field_17_minister_ministry${index}`).val(
-      tables.field_17_signatories.field_17_minister_ministry[j]
+      tables.field_17_signatories.field_17_minister_ministry[i]
     );
   }
 }
@@ -790,14 +790,38 @@ if (role === Roles.QualityEvaluationCommittee) {
   $(
     ".egkrisi_kalis_nomothetisis, .egkrisi_dieuthinsis_nomoparaskeyastikis, .egkrisi_genikou_grammatea, #final_save"
   ).prop("disabled", true);
+  $(
+    "#egkrisi_kalis_nomothetisis_hidden, #egkrisi_dieuthinsis_nomoparaskeyastikis_hidden, #egkrisi_genikou_grammatea_hidden"
+  ).prop("disabled", false);
+  $("#egkrisi_dieuthinsis_nomoparaskeyastikis_hidden").val(approvals[1]);
+  $("#egkrisi_kalis_nomothetisis_hidden").val(approvals[2]);  
+  $("#egkrisi_genikou_grammatea_hidden").val(approvals[3]);
 } else if (role === Roles.GoodLegislationOffice) {
   $(
     ".egkrisi_aksiologisis_nomoparaskeyastikis, .egkrisi_dieuthinsis_nomoparaskeyastikis, .egkrisi_genikou_grammatea, #final_save"
   ).prop("disabled", true);
+  $(
+    "#egkrisi_aksiologisis_nomoparaskeyastikis_hidden, #egkrisi_dieuthinsis_nomoparaskeyastikis_hidden, #egkrisi_genikou_grammatea_hidden"
+  ).prop("disabled", false);
+  $("#egkrisi_aksiologisis_nomoparaskeyastikis_hidden").val(approvals[0]);
+  $("#egkrisi_dieuthinsis_nomoparaskeyastikis_hidden").val(approvals[1]);
+  $("#egkrisi_genikou_grammatea_hidden").val(approvals[3]);
 } else if (role === Roles.LegislativeProcedureDirectorate) {
   $(
     ".egkrisi_aksiologisis_nomoparaskeyastikis, .egkrisi_kalis_nomothetisis, .egkrisi_genikou_grammatea, #final_save"
   ).prop("disabled", true);
+  $(
+    "#egkrisi_aksiologisis_nomoparaskeyastikis_hidden, #egkrisi_kalis_nomothetisis_hidden, #egkrisi_genikou_grammatea_hidden"
+  ).prop("disabled", false);
+  $("#egkrisi_aksiologisis_nomoparaskeyastikis_hidden").val(approvals[0]);
+  $("#egkrisi_kalis_nomothetisis").val(approvals[2]);
+  $("#egkrisi_genikou_grammatea_hidden").val(approvals[3]);
+  $(
+    "#egkrisi_aksiologisis_nomoparaskeyastikis_hidden, #egkrisi_dieuthinsis_nomoparaskeyastikis_hidden, #egkrisi_genikou_grammatea_hidden"
+  ).prop("disabled", false);
+  $("#egkrisi_aksiologisis_nomoparaskeyastikis_hidden").val(approvals[0]);
+  $("#egkrisi_kalis_nomothetisis_hidden").val(approvals[2]);
+  $("#egkrisi_genikou_grammatea_hidden").val(approvals[3]);
 } else if (
   role === Roles.GeneralSecretary &&
   $("#status").val() !== Status.Finalized
@@ -805,6 +829,12 @@ if (role === Roles.QualityEvaluationCommittee) {
   $(
     ".egkrisi_aksiologisis_nomoparaskeyastikis, .egkrisi_kalis_nomothetisis, .egkrisi_dieuthinsis_nomoparaskeyastikis, #final_save"
   ).prop("disabled", true);
+  $(
+    "#egkrisi_aksiologisis_nomoparaskeyastikis_hidden, #egkrisi_dieuthinsis_nomoparaskeyastikis_hidden, #egkrisi_kalis_nomothetisis_hidden"
+  ).prop("disabled", false);
+  $("#egkrisi_aksiologisis_nomoparaskeyastikis_hidden").val(approvals[0]);
+  $("#egkrisi_dieuthinsis_nomoparaskeyastikis_hidden").val(approvals[1]);
+  $("#egkrisi_kalis_nomothetisis_hidden").val(approvals[2]);
 }
 
 if (
@@ -839,8 +869,7 @@ if (
   (role === Roles.LegislativeCommittee &&
     $("#pdf_download").prop("hidden") === false &&
     $("#status").val() === Status.Finalized) ||
-  ($("#status").val() === Status.Finalized &&
-    role === Roles.GeneralSecretary)
+  ($("#status").val() === Status.Finalized && role === Roles.GeneralSecretary)
 ) {
   $("#signed_pdf_div").show();
   $("#pdf_download, #signed_pdf_upload, .export-pdf").prop("disabled", false);

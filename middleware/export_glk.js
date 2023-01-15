@@ -408,7 +408,7 @@ exports.exportGlk = async function (req, res, next) {
   var pdfDoc = printer.createPdfKitDocument(docDefinition);
   var pdf_name = data.glk_pdf_name + ".pdf";
   //pdf_name = pdf_name.replace(/\s+/g, '');
-  var export_path = "public/pdf_exports/";
+  var export_path = "public/exports/";
   var pdf_path = path.resolve(export_path, pdf_name);
   pdf_path = path.resolve(export_path, pdf_name);
   pdfDoc.pipe(fs.createWriteStream(pdf_path));

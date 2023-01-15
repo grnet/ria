@@ -42,7 +42,7 @@ routes.get("/:entry_id", authUser, async (req, res, next) => {
     pdf_name = pdf_name.replace(/\s+/g, ""); //buggy?
     var pdf_exists;
 
-    fs.existsSync(`./public/pdf_exports/${pdf_name}`)
+    fs.existsSync(`./public/exports/${pdf_name}`)
       ? (pdf_exists = true)
       : (pdf_exists = false);
 
@@ -131,6 +131,7 @@ routes.get("/:entry_id", authUser, async (req, res, next) => {
       id: id,
       type: type,
       data: data,
+      accountingData: accountingData,
       tables: {
         field_9: field_9,
         field_14: field_14,

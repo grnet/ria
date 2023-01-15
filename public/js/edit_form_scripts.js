@@ -18,7 +18,7 @@ function submitVisibility() {
     $("#egkrisi_dieuthinsis_nomoparaskeyastikis").prop("checked") &&
     $("#egkrisi_genikou_grammatea").prop("checked")
   ) {
-    $(".create-new").show();
+    $(".create-new").show().prop('disabled', false);
   } else {
     $(".create-new").hide();
   }
@@ -131,5 +131,55 @@ function fillTable(table) {
     const key = Object.keys(table[i]);
     const value = Object.values(table[i]);
     $(`#${key}`).val(value);
+  }
+}
+
+function setStatus() {
+  if (
+    role === Roles.Parliamentarian ||
+    (role === Roles.LegislativeCommittee && $("#status").val(Status.Composing))
+  ) {
+    if (
+      role === Roles.LegislativeCommittee &&
+      $("#status").val() === Status.Finalized &&
+      $("#signed_pdf tbody>tr").length > 0
+    ) {
+      $("#status").val(Status.Finalized);
+    }
+    $("#status").val(Status.Completed);
+  } else if (
+    role === Roles.QualityEvaluationCommittee ||
+    role === Roles.GoodLegislationOffice ||
+    role === Roles.LegislativeProcedureDirectorate
+  ) {
+    if (
+      $("#egkrisi_aksiologisis_nomoparaskeyastikis").prop("checked") &&
+      $("#egkrisi_kalis_nomothetisis").prop("checked") &&
+      $("#egkrisi_dieuthinsis_nomoparaskeyastikis").prop("checked") &&
+      $("#egkrisi_genikou_grammatea").prop("checked")
+    ) {
+      $("#status").val(Status.Finalized);
+    }
+  } else if (role === Roles.GeneralSecretary) {
+    if (
+      $("#status").val() === Status.Finalized &&
+      ($("#signed_pdf tbody>tr").length > 0 ||
+        $("#signed_pdf_upload").get(0).files.length > 0)
+    ) {
+      $("#status").prop("disabled", false);
+      $("#status").val(Status.Uploaded);
+    } else if (
+      $("#egkrisi_aksiologisis_nomoparaskeyastikis").prop("checked") &&
+      $("#egkrisi_kalis_nomothetisis").prop("checked") &&
+      $("#egkrisi_dieuthinsis_nomoparaskeyastikis").prop("checked") &&
+      $("#egkrisi_genikou_grammatea").prop("checked")
+    ) {
+      $("#status").val(Status.Finalized);
+    }
+  } else if (
+    role === Roles.GeneralAccountingOffice &&
+    $("#status").val(Status.Pending)
+  ) {
+    $("#status").val(Status.Checked);
   }
 }
