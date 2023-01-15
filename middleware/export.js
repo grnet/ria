@@ -1009,7 +1009,7 @@ exports.exportPDF = async function (req, res, next) {
                   border: [false, false, false, false],
                   fillColor: "white",
                 },
-                { text: isEmpty(accountingData.field_15_rythmiseis, true) },
+                { text: richText(accountingData.regulations) },
               ],
             ],
           },
@@ -1074,10 +1074,7 @@ exports.exportPDF = async function (req, res, next) {
                   fillColor: "white",
                 },
                 {
-                  text: isEmpty(
-                    accountingData.field_16_kratikos_proypologismos,
-                    true
-                  ),
+                  text: richText(accountingData.state_budget),
                 },
               ],
               [
@@ -1098,10 +1095,7 @@ exports.exportPDF = async function (req, res, next) {
                   fillColor: "white",
                 },
                 {
-                  text: isEmpty(
-                    accountingData.field_16_proypologismos_forea,
-                    true
-                  ),
+                  text: richText(accountingData.agency_budget),
                 },
               ],
             ],
@@ -1231,10 +1225,7 @@ exports.exportPDF = async function (req, res, next) {
                   fillColor: "white",
                 },
                 {
-                  text: isEmpty(
-                    accountingData.field_17_oikonomika_apotelesmata,
-                    true
-                  ),
+                  text: richText(accountingData.results),
                 },
               ],
             ],
@@ -2430,21 +2421,22 @@ function isDirectOrIndirect(text, value1, value2) {
   return newText ? newText : text;
 }
 
-function isEmpty(value, isRichText) {
-  let text;
-  if (isRichText) {
-    !htmlToPdfmake(value, { window: window }).length
-      ? (text = "\n\n")
-      : (text = htmlToPdfmake(value, {
-          window: window,
-          replaceText: function (richText) {
-            return richText.replace(/(?:\r\n|\r|\n)/g, "<br>");
-          },
-        }));
-  } else {
-    value === "" || !value ? (text = "\n\n") : (text = value);
-  }
-  return text;
+function isEmpty(value) {
+  return value === "" || !value ? "\n\n\n" : value;
+}
+
+function richText(value) {
+  return htmlToPdfmake(value, {
+    window: window,
+    replaceText: function (richText) {
+      return richText.replace(/(?:\r\n|\r|\n)/g, "<br>");
+    },
+  });
+  // !htmlToPdfmake(value, { window: window }).length
+    // ? !value
+    //   ? (text = "\n\n\n")
+    //   : value
+    // : (text = );
 }
 
 //create field7 alignment using columns and stacks
@@ -3496,7 +3488,6 @@ function createSignatories(names, roles) {
   const undersecretariesIndexes = [];
   for (let i in roles) {
     if (roles[i].includes("ΥΠΟΥΡΓΟΣ") && !roles[i].includes("ΥΦΥΠΟΥΡΓΟΣ")) {
-      console.log(roles[i]);
       ministerIndexes.push(i);
     }
     if (roles[i].includes("ΥΦΥΠΟΥΡΓΟΣ")) {
@@ -3506,9 +3497,6 @@ function createSignatories(names, roles) {
       undersecretariesIndexes.push(i);
     }
   }
-  console.log("ministerIndexes", ministerIndexes);
-  console.log("substitutesIndexes", substitutesIndexes);
-  console.log("undersecretariesIndexes", undersecretariesIndexes);
   if (ministerIndexes.length > 0) {
     signatories.push({
       text: "ΟΙ ΥΠΟΥΡΓΟΙ \n",
@@ -3533,7 +3521,7 @@ function createSignatories(names, roles) {
       alignment: "center",
     });
     signatories.push({ text: "\n" });
-    
+
     signatories.push({
       table: {
         headerRows: 0,
@@ -3549,7 +3537,7 @@ function createSignatories(names, roles) {
       bold: true,
       alignment: "center",
     });
-    signatories.push({ text: "\n" });       
+    signatories.push({ text: "\n" });
     signatories.push({
       table: {
         headerRows: 0,
@@ -3564,16 +3552,15 @@ function createSignatories(names, roles) {
   }
 }
 
-function createMinisterRows (indexes, roles, names) {
+function createMinisterRows(indexes, roles, names) {
   const table = [];
   for (i = 0; i < indexes.length; i += 2) {
     table.push([
       {
-        text: roles[indexes[i]] + '\n\n\n\n\n\n' + names[indexes[i]],
+        text: roles[indexes[i]] + "\n\n\n\n\n\n" + names[indexes[i]],
         bold: true,
         alignment: "center",
       },
-      
     ]);
     if (indexes[i + 1]) {
       table.push([

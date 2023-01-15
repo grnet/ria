@@ -1191,10 +1191,10 @@
             setDate("#last_updated");
             let fd = new FormData($("form").get(0));
             if (role === Roles.GeneralAccountingOffice) {
-                fd.append('field_15_rythmiseis', $('#field_15_rythmiseis').value = CKEDITOR.instances['field_15_rythmiseis'].getData());
-                fd.append('field_16_kratikos_proypologismos', $('#field_16_kratikos_proypologismos').value = CKEDITOR.instances['field_16_kratikos_proypologismos'].getData());
-                fd.append('field_16_proypologismos_forea', $('#field_16_proypologismos_forea').value = CKEDITOR.instances['field_16_proypologismos_forea'].getData());
-                fd.append('field_17_oikonomika_apotelesmata', $('#field_17_oikonomika_apotelesmata').value = CKEDITOR.instances['field_17_oikonomika_apotelesmata'].getData());
+                fd.append('regulations', $('#field_15_rythmiseis').value = CKEDITOR.instances['field_15_rythmiseis'].getData());
+                fd.append('state_budget', $('#field_16_kratikos_proypologismos').value = CKEDITOR.instances['field_16_kratikos_proypologismos'].getData());
+                fd.append('agency_budget', $('#field_16_proypologismos_forea').value = CKEDITOR.instances['field_16_proypologismos_forea'].getData());
+                fd.append('results', $('#field_17_oikonomika_apotelesmata').value = CKEDITOR.instances['field_17_oikonomika_apotelesmata'].getData());
                 $.ajax({
                     url: `/edit_analysis/${analysis_id}/accounting`,
                     data: fd,
