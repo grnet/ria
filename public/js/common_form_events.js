@@ -62,7 +62,7 @@ $("a.menu").click(function () {
 
 //click event to remove a row from any table
 $(
-  "#tbody_14, #tbody_17, #tbody_ministers, #tbody_29, #tbody_30, #tbody_31, #tbody_32"
+  "#tbody_14, #tbody_17, #tbody_ministers, #tbody_29, #tbody_30, #tbody_31, #tbody_32, #ekpaideysi_table_tbody ,#politismos_table_tbody, #oikonomia_table_tbody, #forologia_table_tbody, #ergasiakes_sxeseis_table_tbody, #apasxolisi_table_tbody, #koinoniki_asfalisi_table_tbody, #koinoniki_pronoia_table_tbody, #ygeia_table_tbody, #isotita_fylwn_table_tbody, #metanasteytiki_prosfygiki_politiki_table_tbody, #dimosia_dioikisi_table_tbody, #dimosia_asfaleia_table_tbody, #dikaiosini_table_tbody, #ependytiki_drastiriotita_table_tbody, #perivallon_energeia_table_tbody"
 ).on("click", ".remove", function () {
   // Getting all the rows close to the one to be removed
   var child = $(this).closest("tr").nextAll();

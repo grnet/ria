@@ -14,6 +14,7 @@ exports.exportPDF = async function (req, res, next) {
     where: { id: req.params.entry_id },
   });
   let data = result.dataValues.data;
+  let accountingData = result.dataValues.accountingData;
 
   const minister_names = await tablesLib.getTableData(["minister_name"], data);
   const minister_ministries = await tablesLib.getTableData(
@@ -24,15 +25,15 @@ exports.exportPDF = async function (req, res, next) {
 
   const field_17_minister_names = await tablesLib.getTableData(
     ["field_17_minister_name"],
-    data
+    accountingData
   );
   const field_17_minister_ministries = await tablesLib.getTableData(
     ["field_17_minister_ministry"],
-    data
+    accountingData
   );
   const field_17_minister_roles = await tablesLib.getTableData(
     ["field_17_minister_role"],
-    data
+    accountingData
   );
 
   const field_9 = await tablesLib.getField9(data); //data for field_9
@@ -948,7 +949,7 @@ exports.exportPDF = async function (req, res, next) {
                   border: [false, false, false, false],
                   fillColor: "white",
                 },
-                { text: isEmpty(data.field_15_sxedio_nomou) },
+                { text: isEmpty(accountingData.field_15_sxedio_nomou) },
               ],
             ],
           },
@@ -977,7 +978,7 @@ exports.exportPDF = async function (req, res, next) {
                   border: [false, false, false, false],
                   fillColor: "white",
                 },
-                { text: isEmpty(data.field_15_ypoyrgeio) },
+                { text: isEmpty(accountingData.field_15_ypoyrgeio) },
               ],
             ],
           },
@@ -1008,7 +1009,7 @@ exports.exportPDF = async function (req, res, next) {
                   border: [false, false, false, false],
                   fillColor: "white",
                 },
-                { text: isEmpty(data.field_15_rythmiseis, true) },
+                { text: isEmpty(accountingData.field_15_rythmiseis, true) },
               ],
             ],
           },
@@ -1072,7 +1073,12 @@ exports.exportPDF = async function (req, res, next) {
                   border: [false, false, false, false],
                   fillColor: "white",
                 },
-                { text: isEmpty(data.field_16_kratikos_proypologismos, true) },
+                {
+                  text: isEmpty(
+                    accountingData.field_16_kratikos_proypologismos,
+                    true
+                  ),
+                },
               ],
               [
                 {
@@ -1091,7 +1097,12 @@ exports.exportPDF = async function (req, res, next) {
                   border: [false, false, false, false],
                   fillColor: "white",
                 },
-                { text: isEmpty(data.field_16_proypologismos_forea, true) },
+                {
+                  text: isEmpty(
+                    accountingData.field_16_proypologismos_forea,
+                    true
+                  ),
+                },
               ],
             ],
           },
@@ -1116,9 +1127,9 @@ exports.exportPDF = async function (req, res, next) {
                 {
                   text:
                     "\n\n\n" +
-                    data.field_16_genikos_onoma +
+                    accountingData.field_16_genikos_onoma +
                     " " +
-                    data.field_16_genikos_epitheto,
+                    accountingData.field_16_genikos_epitheto,
                   style: "header4",
                 },
                 {
@@ -1159,7 +1170,7 @@ exports.exportPDF = async function (req, res, next) {
                   border: [false, false, false, false],
                   fillColor: "white",
                 },
-                { text: isEmpty(data.field_17_sxedio_nomou) },
+                { text: isEmpty(accountingData.field_17_sxedio_nomou) },
               ],
             ],
           },
@@ -1188,7 +1199,7 @@ exports.exportPDF = async function (req, res, next) {
                   border: [false, false, false, false],
                   fillColor: "white",
                 },
-                { text: isEmpty(data.field_17_ypoyrgeio) },
+                { text: isEmpty(accountingData.field_17_ypoyrgeio) },
               ],
             ],
           },
@@ -1219,16 +1230,20 @@ exports.exportPDF = async function (req, res, next) {
                   border: [false, false, false, false],
                   fillColor: "white",
                 },
-                { text: isEmpty(data.field_17_oikonomika_apotelesmata, true) },
+                {
+                  text: isEmpty(
+                    accountingData.field_17_oikonomika_apotelesmata,
+                    true
+                  ),
+                },
               ],
             ],
           },
         },
         { text: "\n\n" },
         createSignatories(
-          field_17_minister_names,
-          field_17_minister_ministries,
-          field_17_minister_roles
+          field_17_minister_names.field_17_minister_name,
+          field_17_minister_roles.field_17_minister_role
         ),
         {
           text: "\n\n",
@@ -2300,7 +2315,10 @@ exports.exportPDF = async function (req, res, next) {
         },
       },
       { text: "\n\n" },
-      createSignatories(minister_names, minister_ministries, minister_roles),
+      createSignatories(
+        minister_names.minister_name,
+        minister_roles.minister_role
+      ),
     ],
   };
 
@@ -3471,24 +3489,26 @@ function createField20(field_20, data) {
   return fieldData;
 }
 
-function createSignatories(names, ministries, roles) {
+function createSignatories(names, roles) {
   let signatories = [];
-  let table = [];
-
   const ministerIndexes = [];
   const substitutesIndexes = [];
   const undersecretariesIndexes = [];
   for (let i in roles) {
-    if (roles[i].includes("ΟΙ ΥΠΟΥΡΓΟΙ")) {
+    if (roles[i].includes("ΥΠΟΥΡΓΟΣ") && !roles[i].includes("ΥΦΥΠΟΥΡΓΟΣ")) {
+      console.log(roles[i]);
       ministerIndexes.push(i);
     }
-    if (roles[i].includes("ΟΙ ΥΦΥΠΟΥΡΓΟΙ")) {
+    if (roles[i].includes("ΥΦΥΠΟΥΡΓΟΣ")) {
       substitutesIndexes.push(i);
     }
-    if (roles[i].includes("ΟΙ ΑΝΑΠΛΗΡΩΤΕΣ ΥΠΟΥΡΓΟΙ")) {
+    if (roles[i].includes("ΑΝΑΠΛΗΡΩΤΗΣ ΥΠΟΥΡΓΟΣ")) {
       undersecretariesIndexes.push(i);
     }
   }
+  console.log("ministerIndexes", ministerIndexes);
+  console.log("substitutesIndexes", substitutesIndexes);
+  console.log("undersecretariesIndexes", undersecretariesIndexes);
   if (ministerIndexes.length > 0) {
     signatories.push({
       text: "ΟΙ ΥΠΟΥΡΓΟΙ \n",
@@ -3496,37 +3516,11 @@ function createSignatories(names, ministries, roles) {
       alignment: "center",
     });
     signatories.push({ text: "\n" });
-    for (i = 0; i < ministerIndexes.length; i += 2) {
-      table.push([
-        {
-          text: roles[ministerIndexes[i]],
-          bold: true,
-          alignment: "center",
-        },
-        {
-          text: names[ministerIndexes[i]],
-          bold: true,
-          alignment: "center",
-        },
-      ]);
-      table.push([
-        {
-          text: roles[ministerIndexes[i + 1]],
-          bold: true,
-          alignment: "center",
-        },
-        {
-          text: names[ministerIndexes[i + 1]],
-          bold: true,
-          alignment: "center",
-        },
-      ]);
-    }
     signatories.push({
       table: {
         headerRows: 0,
         widths: ["50%", "50%"],
-        body: table,
+        body: createMinisterRows(ministerIndexes, roles, names),
       },
     });
     table = [];
@@ -3539,37 +3533,12 @@ function createSignatories(names, ministries, roles) {
       alignment: "center",
     });
     signatories.push({ text: "\n" });
-    for (i = 0; i < substitutesIndexes.length; i += 2) {
-      table.push([
-        {
-          text: roles[substitutesIndexes[i]],
-          bold: true,
-          alignment: "center",
-        },
-        {
-          text: names[substitutesIndexes[i]],
-          bold: true,
-          alignment: "center",
-        },
-      ]);
-      table.push([
-        {
-          text: roles[substitutesIndexes[i + 1]],
-          bold: true,
-          alignment: "center",
-        },
-        {
-          text: names[substitutesIndexes[i + 1]],
-          bold: true,
-          alignment: "center",
-        },
-      ]);
-    }
+    
     signatories.push({
       table: {
         headerRows: 0,
         widths: ["50%", "50%"],
-        body: table,
+        body: createMinisterRows(substitutesIndexes, roles, names),
       },
     });
     table = [];
@@ -3580,38 +3549,12 @@ function createSignatories(names, ministries, roles) {
       bold: true,
       alignment: "center",
     });
-    signatories.push({ text: "\n" });
-    for (i = 0; i < undersecretariesIndexes.length; i += 2) {
-      table.push([
-        {
-          text: roles[undersecretariesIndexes[i]],
-          bold: true,
-          alignment: "center",
-        },
-        {
-          text: names[undersecretariesIndexes[i]],
-          bold: true,
-          alignment: "center",
-        },
-      ]);
-      table.push([
-        {
-          text: roles[undersecretariesIndexes[i + 1]],
-          bold: true,
-          alignment: "center",
-        },
-        {
-          text: names[undersecretariesIndexes[i + 1]],
-          bold: true,
-          alignment: "center",
-        },
-      ]);
-    }
+    signatories.push({ text: "\n" });       
     signatories.push({
       table: {
         headerRows: 0,
         widths: ["50%", "50%"],
-        body: table,
+        body: createMinisterRows(undersecretariesIndexes, roles, names),
       },
     });
     table = [];
@@ -3619,4 +3562,28 @@ function createSignatories(names, ministries, roles) {
   if (signatories) {
     return signatories;
   }
+}
+
+function createMinisterRows (indexes, roles, names) {
+  const table = [];
+  for (i = 0; i < indexes.length; i += 2) {
+    table.push([
+      {
+        text: roles[indexes[i]] + '\n\n\n\n\n\n' + names[indexes[i]],
+        bold: true,
+        alignment: "center",
+      },
+      
+    ]);
+    if (indexes[i + 1]) {
+      table.push([
+        {
+          text: roles[indexes[i + 1]] + "\n\n\n\n\n\n" + names[indexes[i + 1]],
+          bold: true,
+          alignment: "center",
+        },
+      ]);
+    }
+  }
+  return table;
 }

@@ -49,8 +49,10 @@ routes.get("/:entry_id", authUser, async (req, res, next) => {
     const data = entry.dataValues.data;
     const accountingData = entry.dataValues.accountingData;
     const uploads = entry.dataValues.uploads;
+    const accountingUploads = entry.dataValues.accountingUploads;
     const type = entry.dataValues.type;
     const id = entry.dataValues.id;
+    const status = entry.dataValues.status;
 
     const indexesResult = await database.indexes.findAll();
     const indexTablesResult = await database.index_tables.findAll();
@@ -130,8 +132,10 @@ routes.get("/:entry_id", authUser, async (req, res, next) => {
       //TODO: review endpoint name
       id: id,
       type: type,
+      status:status,
       data: data,
       accountingData: accountingData,
+      accountingUploads: accountingUploads[0],
       tables: {
         field_9: field_9,
         field_14: field_14,
@@ -216,12 +220,12 @@ routes.put(
           },
         });
 
-        const field21 = entry.field_21_upload;
-        const field23 = entry.field_23_upload;
-        const field36 = entry.field_36_upload;
-        const signed_pdf = entry.signed_pdf_upload;
-        const bill = entry.bill;
-        const signed_accounting_office_pdf = entry.signed_glk_pdf_upload;
+        const field21 = entry.uploads[0].field21;
+        const field23 = entry.uploads[0].field23;
+        const field36 = entry.uploads[0].field36;
+        const signed_pdf = [];
+        // const bill = entry.uploads[0].bill;
+        const bill = [];
         try {
           const file = req.files;
           if (file.field_21_upload) {
@@ -240,7 +244,6 @@ routes.put(
             }
           }
           if (file.signed_pdf_upload) {
-            signed_pdf = [];
             for (i in file.signed_pdf_upload) {
               signed_pdf.push(file.signed_pdf_upload[i].filename);
             }
@@ -251,29 +254,21 @@ routes.put(
               upload_date: req.body.last_updated,
             });
           }
-          if (file.signed_glk_pdf_upload) {
-            const date = new Date().toLocaleString("el-GR", {
-              timeZone: "Europe/Athens",
-            });
-            signed_accounting_office_pdf.push({
-              filename: file.signed_glk_pdf_upload[0].filename,
-              upload_date: date,
-            });
-          }
         } catch (e) {
           console.log("Error message: " + e.message);
         }
 
-        const uploads = [
-          {
-            field21: field21,
-            field23: field23,
-            field36: field36,
-            bill: bill,
-            signed_pdf: signed_pdf,
-            signed_accounting_office_pdf: signed_accounting_office_pdf,
-          },
-        ];
+        const uploads = req.file
+          ? [
+              {
+                field21: field21,
+                field23: field23,
+                field36: field36,
+                bill: bill,
+                signed_pdf: signed_pdf,
+              },
+            ]
+          : entry.uploads;
 
         let analysis = await database.analysis.update(
           {
@@ -311,108 +306,63 @@ routes.put(
   }
 );
 
-routes.put("/:entry_id/accounting", authUser, upload, async function (req, res, next) {
-  let analysis_id = req.params.entry_id;
-  try {
-    const entry = await database.analysis.findOne({
-      where: {
-        id: req.params.entry_id,
-      },
-    });
-
-    const field21 = entry.field_21_upload;
-    const field23 = entry.field_23_upload;
-    const field36 = entry.field_36_upload;
-    const signed_pdf = entry.signed_pdf_upload;
-    const bill = entry.bill;
-    const signed_accounting_office_pdf = entry.signed_glk_pdf_upload;
+routes.put(
+  "/:entry_id/accounting",
+  authUser,
+  upload,
+  async function (req, res, next) {
+    let analysis_id = req.params.entry_id;
     try {
-      const file = req.files;
-      //TODO: review if checks bellow are needed
-      if (file.field_21_upload) {
-        for (i in file.field_21_upload) {
-          field21.push(file.field_21_upload[i].filename);
+      const signed_accounting_office_pdf = [];
+      try {
+        const file = req.files;
+        if (file.signed_glk_pdf_upload) {
+          const date = new Date().toLocaleString("el-GR", {
+            timeZone: "Europe/Athens",
+          });
+          signed_accounting_office_pdf.push({
+            filename: file.signed_glk_pdf_upload[0].filename,
+            upload_date: date,
+          });
         }
+      } catch (e) {
+        console.log("Error message: " + e.message);
       }
-      if (file.field_23_upload) {
-        for (i in file.field_23_upload) {
-          field23.push(file.field_23_upload[i].filename);
+
+      let analysis = await database.analysis.update(
+        {
+          accountingData: req.body,
+          accountingUploads: signed_accounting_office_pdf,
+          author: req.session.user.username,
+          status: req.body.status,
+        },
+        {
+          where: {
+            id: analysis_id,
+          },
         }
-      }
-      if (file.field_36_upload) {
-        for (i in file.field_36_upload) {
-          field36.push(file.field_36_upload[i].filename);
-        }
-      }
-      if (file.signed_pdf_upload) {
-        signed_pdf = [];
-        for (i in file.signed_pdf_upload) {
-          signed_pdf.push(file.signed_pdf_upload[i].filename);
-        }
-      }
-      if (file.nomosxedio) {
-        bill.push({
-          filename: file.nomosxedio[0].filename,
-          upload_date: req.body.last_updated,
-        });
-      }
-      if (file.signed_glk_pdf_upload) {
-        const date = new Date().toLocaleString("el-GR", {
-          timeZone: "Europe/Athens",
-        });
-        signed_accounting_office_pdf.push({
-          filename: file.signed_glk_pdf_upload[0].filename,
-          upload_date: date,
-        });
+      );
+
+      const author = req.session.user.fname + " " + req.session.user.lname;
+
+      await database.audit.create({
+        user: author,
+        data: req.body,
+        timestamp: req.body.last_updated,
+        action: req.method,
+        auditId: analysis_id,
+      });
+
+      if (!analysis) {
+        res.status(404).send("Error in updating analysis.");
+      } else {
+        res.send({ redirect: "../user_views/history" });
       }
     } catch (e) {
-      console.log("Error message: " + e.message);
+      console.log(e);
     }
-
-    const uploads = [
-      {
-        field21: field21,
-        field23: field23,
-        field36: field36,
-        bill: bill,
-        signed_pdf: signed_pdf,
-        signed_accounting_office_pdf: signed_accounting_office_pdf,
-      },
-    ];
-
-    let analysis = await database.analysis.update(
-      {
-        accountingData: req.body,
-        uploads: uploads,
-        author: req.session.user.username,
-        status: req.body.status,
-      },
-      {
-        where: {
-          id: analysis_id,
-        },
-      }
-    );
-
-    const author = req.session.user.fname + " " + req.session.user.lname;
-
-    await database.audit.create({
-      user: author,
-      data: req.body,
-      timestamp: req.body.last_updated,
-      action: req.method,
-      auditId: analysis_id,
-    });
-
-    if (!analysis) {
-      res.status(404).send("Error in updating analysis.");
-    } else {
-      res.send({ redirect: "../user_views/history" });
-    }
-  } catch (e) {
-    console.log(e);
   }
-});
+);
 
 routes.put("/:entry_id/delete_file", authUser, async (req, res, next) => {
   let entry = await database.analysis.findOne({
@@ -523,7 +473,7 @@ routes.post(
     }
     req.diffData = data;
     //TODO: add second loop to handle accountingData
-    
+
     // res.status(200).json({ data: data });
     next();
   },

@@ -115,7 +115,9 @@ routes.post(
 
     let res_data = await database.analysis.create({
       data: req.body,
+      accountingData: {},
       uploads: uploads,
+      accountingUploads: [],
       type: req.body.type,
       status: req.body.status,
       author: req.session.user.username,

@@ -44,7 +44,7 @@
                             </div> -->
                     </div>
                     <div>
-                        <input type="hidden" id="status" name="status" value="<%= data.status%>">
+                        <input type="hidden" id="status" name="status" value="<%= status%>">
                         <input type="hidden" id="author" name="author" value="<%= data.author%>">
                     </div>
                     <fieldset id="arxiki" name="arxiki">
@@ -197,7 +197,7 @@
                             </thead>
                             <tbody class="govgr-table__body">
 
-                                <% if( uploads.bill && uploads.bill.length> 1) { %>
+                                <% if( uploads.bill && uploads.bill.length > 0) { %>
                                     <tr govgr-table__row>
                                         <td class="govgr-table__cell">
                                             <a href="/uploads/<%= uploads.bill[0].filename %> ">
@@ -1143,7 +1143,7 @@
         if (sessionStorage.getItem("referer") != analysis_id) {
             window.location.href = "/user_views/history"
         }
-        let analysisStatus = "<%= data.status %>";
+        let analysisStatus = "<%= status %>";
         const role = "<%= role%>";
         const type = "<%= type %>";
         const pdf_exists = "<%= pdf_exists %>";
@@ -1476,7 +1476,7 @@
             var bttn = $(this);
             if ($("#deleted_file").val()) {
                 $.ajax({
-                    url: `/edit/${analysis_id}/delete_file`,
+                    url: `/edit_analysis/${analysis_id}/delete_file`,
                     data: $("form").serialize(),
                     error: function (error) {
                         console.log(error);
