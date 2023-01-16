@@ -28,8 +28,9 @@ services:
             - DATABASE_DIALECT=$DATABASE_DIALECT
             - SITE=$SITE
             - GSIS_SITE=$GSIS_SITE
-            - CLIENT_ID_GOV=$CLIENT_ID_GOV
-            - CLIENT_SECRET_GOV=$CLIENT_SECRET_GOV
+            - CLIENT_ID=$CLIENT_ID
+            - CLIENT_SECRET=$CLIENT_SECRET
+            - GSIS_GOV=$GSIS_GOV
     database:
         image: mysql:8
         ports:
