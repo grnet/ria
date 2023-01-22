@@ -6,13 +6,13 @@ function applyAssoc(sequelize) {
 
   //establishing one to many association between user and analysis models
   user.hasMany(analysis, {
-    sourceKey: "username",
+    sourceKey: "taxId",
     foreignKey: "author",
     foreignKeyConstraint: true,
   });
   analysis.belongsTo(user, {
     foreignKey: "author",
-    targetKey: "username",
+    targetKey: "taxId",
     foreignKeyConstraint: true,
   });
 

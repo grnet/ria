@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS `user`(
     id INTEGER AUTO_INCREMENT,
-    afm VARCHAR(100),
+    taxId VARCHAR(100),
     fname VARCHAR(100),
     lname VARCHAR(100),
     username VARCHAR(100),

@@ -120,7 +120,7 @@ routes.post(
       accountingUploads: [],
       type: req.body.type,
       status: req.body.status,
-      author: req.session.user.username,
+      author: req.session.user.taxId,
     });
 
     await database.audit.create({

@@ -37,18 +37,24 @@
                                         name="lname" placeholder="Επώνυμο χρήστη" required minlength="5" />
                                 </label>
                             </div>
+                            <div class="govgr-field">
+                                <label class="govgr-label" for="taxid"> <span>ΑΦΜ:</span>
+                                    <input class="govgr-input govgr-!-width-one-half" type="text" id="taxid" name="taxid"
+                                         required minlength="9" maxlength="9" />
+                                </label>
+                            </div>
                             <hr />
                             <div class="govgr-field">
                                 <label class="govgr-label" for="username"> <span>Username:</span>
                                     <input class="govgr-input govgr-!-width-one-half" type="text" id="username"
-                                        name="username" placeholder="Username" required minlength="5" />
+                                        name="username" placeholder="Username" minlength="5" />
                                 </label>
                             </div>
                             <hr />
                             <div class="govgr-field">
                                 <label class="govgr-label" for="password"> <span>Κωδικός Πρόσβασης:</span>
                                     <input class="govgr-input govgr-!-width-one-half" type="password" id="password"
-                                        name="password" required minlength="8"
+                                        name="password" minlength="8"
                                         pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$"
                                         oninvalid="this.setCustomValidity('Ο κωδικός πρέπει να περιέχει τουλάχιστον ένα πεζό και ένα κεφαλαίο γράμμα, έναν αριθμό και ένα σύμβολο(!@#$%^&*_=+-).')"
                                         oninput="this.setCustomValidity('')" />
@@ -58,7 +64,7 @@
                                 <label class="govgr-label" for="password"> <span>Επανάληψη κωδικού πρόσβασης
                                         χρήστη:</span>
                                     <input class="govgr-input govgr-!-width-one-half" type="password" size="20"
-                                        id="password_repeat" name="password_repeat" required minlength="8"
+                                        id="password_repeat" name="password_repeat" minlength="8"
                                         pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$"
                                         oninvalid="this.setCustomValidity('Ο κωδικός πρέπει να περιέχει τουλάχιστον ένα πεζό και ένα κεφαλαίο γράμμα, έναν αριθμό και ένα σύμβολο(!@#$%^&*_=+-).')"
                                         oninput="this.setCustomValidity('')" />
@@ -70,7 +76,7 @@
                                 <label class="govgr-label" for="ypoyrgeio">
                                     Υπουργείο:
                                     <select class="govgr-select govgr-!-width-two-thirds" id="ypoyrgeio"
-                                        name="ypoyrgeio" required>
+                                        name="ypoyrgeio">
                                         <option value="" selected disabled>Eπιλογή</option>
                                     </select>
                                 </label>

@@ -31,6 +31,7 @@ routes.post("/", authUser, authAdmin, async function (req, res, next) {
       let res_data = await database.user.create({
         fname: req.body.fname,
         lname: req.body.lname,
+        taxId: req.body.taxId,
         username: req.body.username,
         password: hash,
         role: req.body.role,

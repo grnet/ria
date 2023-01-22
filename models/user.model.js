@@ -9,14 +9,19 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      afm: DataTypes.STRING,
-      fname: DataTypes.STRING,
-      lname: DataTypes.STRING,
-      username: {
-        primaryKey: true,
+      taxId: {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      fname: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      lname: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      username: DataTypes.STRING,
       password: DataTypes.STRING,
       role: DataTypes.STRING,
       isAdmin: DataTypes.STRING,

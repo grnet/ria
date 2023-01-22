@@ -7,7 +7,7 @@ const Enums = require("../lib/enums/analysis");
 routes.get("/", authUser, async function (req, res, next) {
   let user = await database.user.findOne({
     where: {
-      username: req.session.user.username,
+      taxId: req.session.user.taxId,
     },
     include: [{ model: database.analysis }],
   });

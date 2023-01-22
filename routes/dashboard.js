@@ -3,9 +3,11 @@ const { authUser } = require('../middleware/auth');
 let database = require("../services/database")
 
 routes.get('/', authUser,async (req,res,next) =>{
-    let user = await database.user.findOne({where:{
-        username: req.session.user.username
-    }});
+    let user = await database.user.findOne({
+      where: {
+        taxId: req.session.user.taxId,
+      },
+    });
     if(user && user.dataValues){
         res.render("user_views/dashboard",{user:user.dataValues})
     }else{

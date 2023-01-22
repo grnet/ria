@@ -37,7 +37,6 @@ exports.exportPDF = async function (req, res, next) {
   );
 
   const field_9 = await tablesLib.getField9(data); //data for field_9
-  const field_18 = await tablesLib.getCheckboxTableData(data, "field_18");
   const field_19 = await tablesLib.getCheckboxTableData(data, "field_19");
   const field_20 = await tablesLib.getCheckboxTableData(data, "field_20");
 
@@ -1264,7 +1263,7 @@ exports.exportPDF = async function (req, res, next) {
             ],
           },
         },
-        createField18(field_18, data),
+        createField18(data),
         { text: "", pageBreak: "before" },
         {
           table: {
@@ -2426,6 +2425,14 @@ function isEmpty(value) {
 }
 
 function richText(value) {
+  console.log(
+    htmlToPdfmake(value, {
+      window: window,
+      replaceText: function (richText) {
+        return richText.replace(/(?:\r\n|\r|\n)/g, "<br>");
+      },
+    })
+  );
   return htmlToPdfmake(value, {
     window: window,
     replaceText: function (richText) {
@@ -2433,11 +2440,29 @@ function richText(value) {
     },
   });
   // !htmlToPdfmake(value, { window: window }).length
-    // ? !value
-    //   ? (text = "\n\n\n")
-    //   : value
-    // : (text = );
+  // ? !value
+  //   ? (text = "\n\n\n")
+  //   : value
+  // : (text = );
 }
+
+// function isEmpty(value, isRichText) {
+//   let text;
+//   if (isRichText) {
+//     !htmlToPdfmake(value, { window: window }).length
+//       ? (text = "\n\n")
+//       : (text = htmlToPdfmake(value, {
+//           window: window,
+//           replaceText: function (richText) {
+//             return richText.replace(/(?:\r\n|\r|\n)/g, "<br>");
+//           },
+//         }));
+//   } else {
+//     value === "" || !value ? (text = "\n\n") : (text = value);
+//   }
+//   return text;
+// }
+
 
 //create field7 alignment using columns and stacks
 function createField7(data) {
@@ -2857,15 +2882,13 @@ function createField9(data) {
 }
 
 function checkboxValue(value) {
-  return value !== "" ? "X" : value;
+  return value !== "" && value !== undefined ? "X" : '';
 }
 
-function createField18(field_18, data) {
+function createField18(data) {
   let table = [];
   let fieldTable;
   let fieldData = [];
-  let count = 11;
-
   table.push([
     { text: "", border: [false, false, false, false] },
     { text: "", border: [false, false, false, false] },
@@ -2912,33 +2935,33 @@ function createField18(field_18, data) {
       fontSize: 10,
     },
     {
-      text: field_18[0],
+      text: "Αύξηση εσόδων",
       alignment: "center",
       fontSize: 8,
     },
     {
-      text: checkboxValue(field_18[1]),
+      text: checkboxValue(data.field_18_amesa_esoda_thesmoi),
       alignment: "center",
     },
     {
-      text: checkboxValue(field_18[2]),
+      text: checkboxValue(data.field_18_amesa_esoda_oikonomia),
       alignment: "center",
     },
     {
-      text: checkboxValue(field_18[3]),
+      text: checkboxValue(data.field_18_amesa_esoda_kinonia),
       alignment: "center",
     },
     {
-      text: checkboxValue(field_18[4]),
+      text: checkboxValue(data.field_18_amesa_esoda_perivallon),
       alignment: "center",
     },
     {
-      text: checkboxValue(field_18[5]),
+      text: checkboxValue(data.field_18_amesa_esoda_nisiwtikotita),
       alignment: "center",
     },
   ]);
-  for (let i = 0; i < 4; i++) {
-    table.push([
+  table.push(
+    [
       {
         text: "",
       },
@@ -2946,33 +2969,133 @@ function createField18(field_18, data) {
         text: "",
       },
       {
-        text: field_18[count - 5],
+        text: "Μείωση δαπανών",
         alignment: "center",
         fontSize: 8,
       },
       {
-        text: checkboxValue(field_18[count - 4]),
+        text: checkboxValue(data.field_18_amesa_dapanes_thesmoi),
         alignment: "center",
       },
       {
-        text: checkboxValue(field_18[count - 3]),
+        text: checkboxValue(data.field_18_amesa_dapanes_oikonomia),
         alignment: "center",
       },
       {
-        text: checkboxValue(field_18[count - 2]),
+        text: checkboxValue(data.field_18_amesa_dapanes_kinonia),
         alignment: "center",
       },
       {
-        text: checkboxValue(field_18[count - 1]),
+        text: checkboxValue(data.field_18_amesa_dapanes_perivallon),
         alignment: "center",
       },
       {
-        text: checkboxValue(field_18[count]),
+        text: checkboxValue(data.field_18_amesa_dapanes_nisiwtikotita),
         alignment: "center",
       },
-    ]);
-    count += 6;
-  }
+    ],
+    [
+      {
+        text: "",
+      },
+      {
+        text: "",
+      },
+      {
+        text: "Εξοικονόμηση χρόνου",
+        alignment: "center",
+        fontSize: 8,
+      },
+      {
+        text: checkboxValue(data.field_18_amesa_eksikonomisi_xronou_thesmoi),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_amesa_eksikonomisi_xronou_oikonomia),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_amesa_eksikonomisi_xronou_kinonia),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_amesa_eksikonomisi_xronou_perivallon),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(
+          data.field_18_amesa_eksikonomisi_xronou_nisiwtikotita
+        ),
+        alignment: "center",
+      },
+    ],
+    [
+      {
+        text: "",
+      },
+      {
+        text: "",
+      },
+      {
+        text: "Μεγαλύτερη αποδοτικότητα",
+        alignment: "center",
+        fontSize: 8,
+      },
+      {
+        text: checkboxValue(data.field_18_amesa_apodotikotita_thesmoi),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_amesa_apodotikotita_oikonomia),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_amesa_apodotikotita_kinonia),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_amesa_apodotikotita_perivallon),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_amesa_apodotikotita_perivallon),
+        alignment: "center",
+      },
+    ],
+    [
+      {
+        text: "",
+      },
+      {
+        text: "",
+      },
+      {
+        text: "Άλλο",
+        alignment: "center",
+        fontSize: 8,
+      },
+      {
+        text: checkboxValue(data.field_18_amesa_allo_thesmoi),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_amesa_allo_oikonomia),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_amesa_allo_kinonia),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_amesa_allo_perivallon),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_amesa_allo_nisiwtikotita),
+        alignment: "center",
+      },
+    ]
+  );
   table.push([
     {
       text: "",
@@ -2985,34 +3108,33 @@ function createField18(field_18, data) {
       fillColor: "#C1E1C1",
     },
     {
-      text: field_18[count - 5],
+      text: "Βελτίωση παρεχόμενων υπηρεσιών",
       alignment: "center",
       fontSize: 8,
     },
     {
-      text: checkboxValue(field_18[count - 4]),
+      text: checkboxValue(data.field_18_emmesa_veltiosi_thesmoi),
       alignment: "center",
     },
     {
-      text: checkboxValue(field_18[count - 3]),
+      text: checkboxValue(data.field_18_emmesa_veltiosi_oikonomia),
       alignment: "center",
     },
     {
-      text: checkboxValue(field_18[count - 2]),
+      text: checkboxValue(data.field_18_emmesa_veltiosi_kinonia),
       alignment: "center",
     },
     {
-      text: checkboxValue(field_18[count - 1]),
+      text: checkboxValue(data.field_18_emmesa_veltiosi_perivallon),
       alignment: "center",
     },
     {
-      text: checkboxValue(field_18[count]),
+      text: checkboxValue(data.field_18_emmesa_veltiosi_nisiwtikotita),
       alignment: "center",
     },
   ]);
-  count += 6;
-  for (let i = 0; i < 4; i++) {
-    table.push([
+  table.push(
+    [
       {
         text: "",
       },
@@ -3020,33 +3142,133 @@ function createField18(field_18, data) {
         text: "",
       },
       {
-        text: field_18[count - 5],
+        text: "Δίκαιη μεταχείριση πολιτών",
         alignment: "center",
         fontSize: 8,
       },
       {
-        text: checkboxValue(field_18[count - 4]),
+        text: checkboxValue(data.field_18_emmesa_metaxirisi_thesmoi),
         alignment: "center",
       },
       {
-        text: checkboxValue(field_18[count - 3]),
+        text: checkboxValue(data.field_18_emmesa_metaxirisi_oikonomia),
         alignment: "center",
       },
       {
-        text: checkboxValue(field_18[count - 2]),
+        text: checkboxValue(data.field_18_emmesa_metaxirisi_kinonia),
         alignment: "center",
       },
       {
-        text: checkboxValue(field_18[count - 1]),
+        text: checkboxValue(data.field_18_emmesa_metaxirisi_perivallon),
         alignment: "center",
       },
       {
-        text: checkboxValue(field_18[count]),
+        text: checkboxValue(data.field_18_emmesa_metaxirisi_nisiwtikotita),
         alignment: "center",
       },
-    ]);
-    count += 6;
-  }
+    ],
+    [
+      {
+        text: "",
+      },
+      {
+        text: "",
+      },
+      {
+        text: "Αυξημένη αξιοπιστία / διαφάνεια θεσμών",
+        alignment: "center",
+        fontSize: 8,
+      },
+      {
+        text: checkboxValue(data.field_18_emmesa_diafania_thesmoi),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_emmesa_diafania_oikonomia),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_emmesa_diafania_kinonia),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_emmesa_diafania_perivallon),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_emmesa_diafania_nisiwtikotita),
+        alignment: "center",
+      },
+    ],
+    [
+      {
+        text: "",
+      },
+      {
+        text: "",
+      },
+      {
+        text: "Βελτιωμένη διαχείριση κινδύνων",
+        alignment: "center",
+        fontSize: 8,
+      },
+      {
+        text: checkboxValue(data.field_18_emmesa_diaxirisi_kindinwn_thesmoi),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_emmesa_diaxirisi_kindinwn_oikonomia),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_emmesa_diaxirisi_kindinwn_kinonia),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_emmesa_diaxirisi_kindinwn_perivallon),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(
+          data.field_18_emmesa_diaxirisi_kindinwn_nisiwtikotita
+        ),
+        alignment: "center",
+      },
+    ],
+    [
+      {
+        text: "",
+      },
+      {
+        text: "",
+      },
+      {
+        text: "Άλλο",
+        alignment: "center",
+        fontSize: 8,
+      },
+      {
+        text: checkboxValue(data.field_18_emmesa_allo_thesmoi),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_emmesa_allo_oikonomia),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_emmesa_allo_kinonia),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_emmesa_allo_perivallon),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_emmesa_allo_nisiwtikotita),
+        alignment: "center",
+      },
+    ]
+  );
   fieldTable = {
     table: {
       headerRows: 0,

@@ -259,9 +259,8 @@ const gsispa = async (req, res) => {
     //if not create user?
     //if yes update user?
     let user = await database.user.findOne({
-      //find a user with matching username & password
       where: {
-        username: userinfo.taxid,
+        taxId: userinfo.taxid,
       },
     });
     if (debug) console.log("App UserInfo", user);
@@ -285,7 +284,7 @@ const gsispa = async (req, res) => {
       await database.user.create({
         fname: userinfo.firstname,
         lname: userinfo.lastname,
-        afm: userinfo.taxid
+        taxId: userinfo.taxid
       });
       res.status(302).send({
         msg: "Δε σας έχει ανατεθεί ρόλος για να περιηγηθείτε στην εφαρμογή.",

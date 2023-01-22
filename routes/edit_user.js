@@ -4,10 +4,10 @@ const bcrypt = require("bcrypt");
 const { body, check, validationResult } = require("express-validator");
 const { authUser, authAdmin } = require("../middleware/auth");
 
-routes.get("/:username", authUser, authAdmin, async (req, res, next) => {
+routes.get("/:taxid", authUser, authAdmin, async (req, res, next) => {
   let entry = await database.user.findOne({
     where: {
-      username: req.params.username,
+      taxId: req.params.taxId,
     },
   });
   if (entry && entry.dataValues) {
@@ -36,9 +36,9 @@ routes.get("/:username", authUser, authAdmin, async (req, res, next) => {
   }
 });
 
-routes.delete("/:username", authUser, authAdmin, async (req, res, next) => {
+routes.delete("/:taxid", authUser, authAdmin, async (req, res, next) => {
   let user = await database.user.findOne({
-    where: { username: req.params.username },
+    where: { taxId: req.params.taxid },
   });
 
   if (!user) {
@@ -49,7 +49,7 @@ routes.delete("/:username", authUser, authAdmin, async (req, res, next) => {
   }
 });
 
-routes.put("/:username", authUser, authAdmin, async (req, res, next) => {
+routes.put("/:taxid", authUser, authAdmin, async (req, res, next) => {
   const password = req.body.password;
   const newPassword = req.body.new_password;
   const repeatPassword = req.body.password_repeat;
@@ -57,7 +57,7 @@ routes.put("/:username", authUser, authAdmin, async (req, res, next) => {
   req.session.errors = [];
   let user = await database.user.findOne({
     where: {
-      username: req.params.username,
+      taxId: req.params.taxid,
     },
   });
   if (user && user.dataValues) {
@@ -68,6 +68,7 @@ routes.put("/:username", authUser, authAdmin, async (req, res, next) => {
           {
             fname: req.body.fname,
             lname: req.body.lname,
+            taxId: req.body.taxid,
             username: req.body.username,
             role: req.body.role,
             isAdmin: req.body.isAdmin,
@@ -75,7 +76,7 @@ routes.put("/:username", authUser, authAdmin, async (req, res, next) => {
           },
           {
             where: {
-              username: req.params.username,
+              taxId: req.params.taxid,
             },
           }
         )
@@ -91,6 +92,7 @@ routes.put("/:username", authUser, authAdmin, async (req, res, next) => {
                   {
                     fname: req.body.fname,
                     lname: req.body.lname,
+                    taxId: req.body.taxid,
                     username: req.body.username,
                     password: hash,
                     role: req.body.role,
@@ -99,7 +101,7 @@ routes.put("/:username", authUser, authAdmin, async (req, res, next) => {
                   },
                   {
                     where: {
-                      username: req.params.username,
+                      taxId: req.params.taxid,
                     },
                   }
                 );

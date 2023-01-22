@@ -274,7 +274,7 @@ routes.put(
           {
             data: req.body,
             uploads: uploads,
-            author: req.session.user.username,
+            author: req.session.user.taxId,
             status: req.body.status,
           },
           {
@@ -333,7 +333,7 @@ routes.put(
         {
           accountingData: req.body,
           accountingUploads: signed_accounting_office_pdf,
-          author: req.session.user.username,
+          author: req.session.user.taxId,
           status: req.body.status,
         },
         {

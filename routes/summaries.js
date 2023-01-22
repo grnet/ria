@@ -32,7 +32,7 @@ routes.get("/", authUser, authAdmin, async (req, res, next) => {
 
   let user = await database.user.findOne({
     where: {
-      username: req.session.user.username,
+      taxId: req.session.user.taxId,
     },
   });
   res.render("user_views/summaries", {

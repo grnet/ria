@@ -19,15 +19,13 @@
         </thead>
         <tbody class="govgr-table__body">
           <% for(var i=0; i<users.length; i++) {%>
-            <tr class="govgr-table__row" onclick="window.location.href='./edit_user/<%= users[i].username %>'">
+            <!-- Should i replace taxId in url with username and lastname? -->
+            <tr class="govgr-table__row" onclick="window.location.href='./edit_user/<%= users[i].taxId%>'"> 
               <td class="govgr-table__cell">
                 <%= users[i].fname %>
               </td>
               <td class="govgr-table__cell">
                 <%= users[i].lname %>
-              </td>
-              <td class="govgr-table__cell">
-                <%= users[i].username %>
               </td>
               <td class="govgr-table__cell">
                 <%= users[i].role %>
