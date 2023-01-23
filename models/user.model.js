@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       taxId: {
+        primaryKey: true,
         type: DataTypes.STRING,
         allowNull: false,
       },
