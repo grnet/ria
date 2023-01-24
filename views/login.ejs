@@ -14,34 +14,35 @@
                 </button>
                 <%= errors[i].msg%>
               </div>
-          <% } } %> <br />
+              <% } } %> <br />
+          </div>
+          <div>
+            <h2 class="govgr-heading-xl">Απαιτείται ταυτοποίηση</h2>
+            <h2 class="govgr-heading-l">Για να προχωρήσετε πρέπει πρώτα να συνδεθείτε.</h2>
+          </div>
+          <div class="govgr-field">
+            <label class="govgr-label">
+              <span>Όνομα Χρήστη</span>
+              <input class="govgr-input govgr-!-width-one-half" type="text" id="username" name="username" required />
+            </label>
+          </div>
+          <div class="govgr-field">
+            <label class="govgr-label">
+              <span>Κωδικός Πρόσβασης</span>
+              <input type="password" class="govgr-input govgr-!-width-one-half" id="password" name="password"
+                required />
+            </label>
+          </div>
+          <!-- <input type="submit" name="login" class=" govgr-btn govgr-btn-primary" value="Σύνδεση" /> <br /><br /> -->
+          <div class="govgr-button-group">
+            <input type="submit" name="login" class=" govgr-btn govgr-btn-primary" value="Σύνδεση" /> <br /><br />
+            <input type="button" id="oauth2" name="oauth2" class=" govgr-btn govgr-btn-primary"
+              value="Σύνδεση με Κωδικούς TAXISNET" /> <br /><br />
+          </div>
+        </form>
       </div>
-      <div>
-        <h2 class="govgr-heading-xl">Απαιτείται ταυτοποίηση</h2>
-        <h2 class="govgr-heading-l">Για να προχωρήσετε πρέπει πρώτα να συνδεθείτε.</h2>
-      </div>
-      <div class="govgr-field">
-        <label class="govgr-label">
-          <span>Όνομα Χρήστη</span>
-          <input class="govgr-input govgr-!-width-one-half" type="text" id="username" name="username" required />
-        </label>
-      </div>
-      <div class="govgr-field">
-        <label class="govgr-label">
-          <span>Κωδικός Πρόσβασης</span>
-          <input type="password" class="govgr-input govgr-!-width-one-half" id="password" name="password" required />
-        </label>
-      </div>
-      <!-- <input type="submit" name="login" class=" govgr-btn govgr-btn-primary" value="Σύνδεση" /> <br /><br /> -->
-      <div class="govgr-button-group">
-        <input type="submit" name="login" class=" govgr-btn govgr-btn-primary" value="Σύνδεση" /> <br /><br />
-        <input type="button" id="oauth2" name="oauth2" class=" govgr-btn govgr-btn-primary"
-          value="Σύνδεση με Κωδικούς TAXISNET" /> <br /><br />
-      </div>
-      </form>
     </div>
-  </div>
-  <p></p><br /><br />
+    <p></p><br /><br />
   </div>
 
   <%- include('partials/footer.ejs') %>
@@ -95,41 +96,33 @@
     <script>
 
       $("form").on("submit", function (ev) {
-          ev.preventDefault();
-          $.ajax({
-            url: '/login',
-            data: $(this).serialize(),
-            error: function (error) {
-              for (let i in error.responseJSON) {
-                $('#errors').append(`              
+        ev.preventDefault();
+        $.ajax({
+          url: '/login',
+          data: $(this).serialize(),
+          error: function (error) {
+            for (let i in error.responseJSON) {
+              $('#errors').append(`              
                   <div class="alert alert-warning alert-dismissible fade show bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>     
                     ${error.responseJSON[i].msg} </div>                                 
               `)
-              }
-            },
-            success: function (data) {
-              window.location = data.redirect
-            },
-            type: 'POST'
-          });
-        })
-
-      $("#oauth2").on("click", function (ev) {
-        ev.preventDefault();
-        $.ajax({
-          url: '/oauth2',
-          error: function (error) {
-            console.log(error)
+            }
           },
           success: function (data) {
             window.location = data.redirect
           },
-          type: 'GET'
+          type: 'POST'
         });
       })
+
+      $("#oauth2").on("click", function (ev) {
+        ev.preventDefault();
+        window.location.replace('https://ria.demo.gov.gr/oauth2');
+      });
+
       $("#nav-menu").hide();
       $("#nav-icon").hide();
     </script>
