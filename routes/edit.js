@@ -8,7 +8,7 @@ const tooltipsCsv = require("../lib/tooltips");
 const diff = require("diff");
 const { body, check, validationResult } = require("express-validator");
 var multer = require("multer");
-const { authUser } = require("../middleware/auth");
+const { authUser, authRole, authAgency } = require("../middleware/auth");
 const tables = require("../lib/tables");
 const ministries = require("../lib/ministries");
 var storage = multer.diskStorage({
@@ -29,153 +29,181 @@ var upload = multer({ storage: storage }).fields([
   { name: "signed_glk_pdf_upload", maxCount: 1 },
 ]);
 
-routes.get("/:entry_id", authUser, async (req, res, next) => {
-  try {
-    let entry = await database.analysis.findOne({
-      where: {
-        id: req.params.entry_id,
-      },
-    }); //TODO: add error handling
+routes.get(
+  "/:entry_id",
+  authUser,
+  authRole,
+  authAgency,
+  async (req, res, next) => {
+    try {
+      let entry = await database.analysis.findOne({
+        where: {
+          id: req.params.entry_id,
+        },
+      }); //TODO: add error handling
 
-    const user = req.session.user;
-    pdf_name = `${entry.title}.pdf`;
-    pdf_name = pdf_name.replace(/\s+/g, ""); //buggy?
-    var pdf_exists;
+      const user = req.session.user;
+      pdf_name = `${entry.title}.pdf`;
+      pdf_name = pdf_name.replace(/\s+/g, ""); //buggy?
+      var pdf_exists;
 
-    fs.existsSync(`./public/exports/${pdf_name}`)
-      ? (pdf_exists = true)
-      : (pdf_exists = false);
+      fs.existsSync(`./public/exports/${pdf_name}`)
+        ? (pdf_exists = true)
+        : (pdf_exists = false);
 
-    const data = entry.dataValues.data;
-    const accountingData = entry.dataValues.accountingData;
-    const uploads = entry.dataValues.uploads;
-    const accountingUploads = entry.dataValues.accountingUploads;
-    const type = entry.dataValues.type;
-    const id = entry.dataValues.id;
-    const status = entry.dataValues.status;
+      const data = entry.dataValues.data;
+      const accountingData = entry.dataValues.accountingData;
+      const uploads = entry.dataValues.uploads;
+      const accountingUploads = entry.dataValues.accountingUploads;
+      const type = entry.dataValues.type;
+      const id = entry.dataValues.id;
+      const status = entry.dataValues.status;
 
-    const indexesResult = await database.indexes.findAll();
-    const indexTablesResult = await database.index_tables.findAll();
-    const indexes = {};
-    const indexTables = [];
-    for (i in indexTablesResult) {
-      indexTables.push(indexTablesResult[i].dataValues.name);
-    }
-
-    for (let i in indexTables) {
-      indexes[`${indexTables[i]}`] = [];
-      for (let j in indexesResult) {
-        if (
-          indexesResult[i].dataValues.id ===
-          indexesResult[j].dataValues.indexTableId
-        ) {
-          indexes[`${indexTables[i]}`].push(indexesResult[j].name);
-        }
+      const indexesResult = await database.indexes.findAll();
+      const indexTablesResult = await database.index_tables.findAll();
+      const indexes = {};
+      const indexTables = [];
+      for (i in indexTablesResult) {
+        indexTables.push(indexTablesResult[i].dataValues.name);
       }
-      indexes[`${indexTables[i]}`].sort();
+
+      for (let i in indexTables) {
+        indexes[`${indexTables[i]}`] = [];
+        for (let j in indexesResult) {
+          if (
+            indexesResult[i].dataValues.id ===
+            indexesResult[j].dataValues.indexTableId
+          ) {
+            indexes[`${indexTables[i]}`].push(indexesResult[j].name);
+          }
+        }
+        indexes[`${indexTables[i]}`].sort();
+      }
+
+      const field_18 = await tables.getCheckboxTableData(
+        data,
+        "field_18",
+        true
+      );
+      const field_19 = await tables.getCheckboxTableData(
+        data,
+        "field_19",
+        true
+      );
+      const field_20 = await tables.getCheckboxTableData(
+        data,
+        "field_20",
+        true
+      );
+      const field_14 = await tables.getTableData(
+        ["field_14_arthro", "field_14_stoxos"],
+        data
+      );
+      const field_29 = await tables.getTableData(
+        ["field_29_diatakseis_rythmisis", "field_29_yfistamenes_diatakseis"],
+        data
+      );
+      const field_30 = await tables.getTableData(
+        ["field_30_diatakseis_katargisi", "field_30_katargoumenes_diatakseis"],
+        data
+      );
+      const field_31 = await tables.getTableData(
+        [
+          "field_31_sxetiki_diataksi",
+          "field_31_synarmodia_ypoyrgeia",
+          "field_31_antikeimeno_synarmodiotitas",
+        ],
+        data
+      );
+      const field_32 = await tables.getTableData(
+        [
+          "field_32_eksousiodotiki_diataksi",
+          "field_32_eidos_praksis",
+          "field_32_armodio_ypoyrgeio",
+          "field_32_antikeimeno",
+          "field_32_xronodiagramma",
+        ],
+        data
+      );
+      const signatories = await tables.getTableData(
+        ["minister_name", "minister_role", "minister_ministry"],
+        data
+      );
+      const field_17_signatories = await tables.getTableData(
+        [
+          "field_17_minister_name",
+          "field_17_minister_role",
+          "field_17_minister_ministry",
+        ],
+
+        accountingData
+      );
+      const processes = await tables.getTableData(["process"], data);
+      const field_9 = await tables.getField9(data);
+
+      const tooltips = JSON.stringify(await tooltipsCsv.getTooltips());
+      const ministriesResult = await ministries.getMinistries();
+      const ministersResult = await ministries.getMinisters(ministriesResult);
+
+      res.render("edit_analysis", {
+        //TODO: review endpoint name
+        id: id,
+        type: type,
+        status: status,
+        data: data,
+        accountingData: accountingData,
+        accountingUploads: accountingUploads[0],
+        tables: {
+          field_9: field_9,
+          field_14: field_14,
+          field_17_signatories: field_17_signatories,
+          field_18: field_18,
+          field_19: field_19,
+          field_20: field_20,
+          field_29: field_29,
+          field_30: field_30,
+          field_31: field_31,
+          field_32: field_32,
+          processes: processes,
+          signatories: signatories,
+        }, // TODO: create tables
+        role: req.session.user.role,
+        pdf_exists: pdf_exists,
+        tooltips: tooltips,
+        ministries: ministriesResult,
+        ministers: ministersResult,
+        user: user,
+        indexes: indexes,
+        uploads: uploads[0],
+      });
+    } catch (err) {
+      console.log("error: " + err);
     }
-
-    const field_18 = await tables.getCheckboxTableData(data, "field_18", true);
-    const field_19 = await tables.getCheckboxTableData(data, "field_19", true);
-    const field_20 = await tables.getCheckboxTableData(data, "field_20", true);
-    const field_14 = await tables.getTableData(
-      ["field_14_arthro", "field_14_stoxos"],
-      data
-    );
-    const field_29 = await tables.getTableData(
-      ["field_29_diatakseis_rythmisis", "field_29_yfistamenes_diatakseis"],
-      data
-    );
-    const field_30 = await tables.getTableData(
-      ["field_30_diatakseis_katargisi", "field_30_katargoumenes_diatakseis"],
-      data
-    );
-    const field_31 = await tables.getTableData(
-      [
-        "field_31_sxetiki_diataksi",
-        "field_31_synarmodia_ypoyrgeia",
-        "field_31_antikeimeno_synarmodiotitas",
-      ],
-      data
-    );
-    const field_32 = await tables.getTableData(
-      [
-        "field_32_eksousiodotiki_diataksi",
-        "field_32_eidos_praksis",
-        "field_32_armodio_ypoyrgeio",
-        "field_32_antikeimeno",
-        "field_32_xronodiagramma",
-      ],
-      data
-    );
-    const signatories = await tables.getTableData(
-      ["minister_name", "minister_role", "minister_ministry"],
-      data
-    );
-    const field_17_signatories = await tables.getTableData(
-      [
-        "field_17_minister_name",
-        "field_17_minister_role",
-        "field_17_minister_ministry",
-      ],
-
-      accountingData
-    );
-    const processes = await tables.getTableData(["process"], data);
-    const field_9 = await tables.getField9(data);
-
-    const tooltips = JSON.stringify(await tooltipsCsv.getTooltips());
-    const ministriesResult = await ministries.getMinistries();
-    const ministersResult = await ministries.getMinisters(ministriesResult);
-
-    res.render("edit_analysis", {
-      //TODO: review endpoint name
-      id: id,
-      type: type,
-      status:status,
-      data: data,
-      accountingData: accountingData,
-      accountingUploads: accountingUploads[0],
-      tables: {
-        field_9: field_9,
-        field_14: field_14,
-        field_17_signatories: field_17_signatories,
-        field_18: field_18,
-        field_19: field_19,
-        field_20: field_20,
-        field_29: field_29,
-        field_30: field_30,
-        field_31: field_31,
-        field_32: field_32,
-        processes: processes,
-        signatories: signatories,
-      }, // TODO: create tables
-      role: req.session.user.role,
-      pdf_exists: pdf_exists,
-      tooltips: tooltips,
-      ministries: ministriesResult,
-      ministers: ministersResult,
-      user: user,
-      indexes: indexes,
-      uploads: uploads[0],
-    });
-  } catch (err) {
-    console.log("error: " + err);
   }
-});
+);
 
 routes.post(
   "/:entry_id/export/accounting",
   authUser,
+  authRole,
+  authAgency,
   accounting_pdf_export.exportGlk
 ); //router calls controller to handle the export
-routes.post("/:entry_id/export", authUser, pdf_export.exportPDF); //router calls controller to handle the export
+routes.post(
+  "/:entry_id/export",
+  authUser,
+  authRole,
+  authAgency,
+  pdf_export.exportPDF
+); //router calls controller to handle the export
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 routes.put(
   "/:entry_id",
   authUser,
+  authRole,
+  authAgency,
   upload,
   //VALIDATION RULES
   // [check('title', 'Ο τίτλος είναι υποχρεωτικός.').notEmpty(),
@@ -309,6 +337,8 @@ routes.put(
 routes.put(
   "/:entry_id/accounting",
   authUser,
+  authRole,
+  authAgency,
   upload,
   async function (req, res, next) {
     let analysis_id = req.params.entry_id;
@@ -364,77 +394,98 @@ routes.put(
   }
 );
 
-routes.put("/:entry_id/delete_file", authUser, async (req, res, next) => {
-  let entry = await database.analysis.findOne({
-    where: {
-      id: req.params.entry_id,
-    },
-  });
-  entry = entry.dataValues;
-  let filePath = `public/uploads/${req.body.deleted_file}`;
-
-  try {
-    if (entry.field_21_upload.includes(req.body.deleted_file)) {
-      let index21 = entry.field_21_upload.indexOf(req.body.deleted_file); //find index of file to be deleted
-      entry.field_21_upload.splice(index21, 1); //delete position of index, count 1
-      await database.analysis.update(
-        { field_21_upload: entry.field_21_upload },
-        { where: { id: entry.id } }
-      );
-    } else if (entry.field_23_upload.includes(req.body.deleted_file)) {
-      let index23 = entry.field_23_upload.indexOf(req.body.deleted_file); //find index of file to be deleted
-      entry.field_23_upload.splice(index23, 1); //delete position of index, count 1
-      await database.analysis.update(
-        { field_23_upload: entry.field_23_upload },
-        { where: { id: entry.id } }
-      );
-    } else if (entry.field_36_upload.includes(req.body.deleted_file)) {
-      let index36 = entry.field_36_upload.indexOf(req.body.deleted_file); //find index of file to be deleted
-      entry.field_36_upload.splice(index36, 1); //delete position of index, count 1
-      await database.analysis.update(
-        { field_36_upload: entry.field_36_upload },
-        { where: { id: entry.id } }
-      );
-    }
-    fs.unlink(filePath, async function (err) {
-      if (err && err.code == "ENOENT") {
-        // file doens't exist
-        console.info("File doesn't exist, won't remove it.");
-        res.sendStatus(404);
-      } else if (err) {
-        // other errors, e.g. maybe we don't have enough permission
-        console.error("Error occurred while trying to remove file");
-        res.sendStatus(403);
-      } else {
-        console.info(`removed`);
-        res.sendStatus(200);
-      }
+routes.put(
+  "/:entry_id/delete_file",
+  authUser,
+  authRole,
+  authAgency,
+  async (req, res, next) => {
+    let entry = await database.analysis.findOne({
+      where: {
+        id: req.params.entry_id,
+      },
     });
-  } catch (err) {
-    console.log(err);
+    entry = entry.dataValues;
+    let filePath = `public/uploads/${req.body.deleted_file}`;
+
+    try {
+      if (entry.field_21_upload.includes(req.body.deleted_file)) {
+        let index21 = entry.field_21_upload.indexOf(req.body.deleted_file); //find index of file to be deleted
+        entry.field_21_upload.splice(index21, 1); //delete position of index, count 1
+        await database.analysis.update(
+          { field_21_upload: entry.field_21_upload },
+          { where: { id: entry.id } }
+        );
+      } else if (entry.field_23_upload.includes(req.body.deleted_file)) {
+        let index23 = entry.field_23_upload.indexOf(req.body.deleted_file); //find index of file to be deleted
+        entry.field_23_upload.splice(index23, 1); //delete position of index, count 1
+        await database.analysis.update(
+          { field_23_upload: entry.field_23_upload },
+          { where: { id: entry.id } }
+        );
+      } else if (entry.field_36_upload.includes(req.body.deleted_file)) {
+        let index36 = entry.field_36_upload.indexOf(req.body.deleted_file); //find index of file to be deleted
+        entry.field_36_upload.splice(index36, 1); //delete position of index, count 1
+        await database.analysis.update(
+          { field_36_upload: entry.field_36_upload },
+          { where: { id: entry.id } }
+        );
+      }
+      fs.unlink(filePath, async function (err) {
+        if (err && err.code == "ENOENT") {
+          // file doens't exist
+          console.info("File doesn't exist, won't remove it.");
+          res.sendStatus(404);
+        } else if (err) {
+          // other errors, e.g. maybe we don't have enough permission
+          console.error("Error occurred while trying to remove file");
+          res.sendStatus(403);
+        } else {
+          console.info(`removed`);
+          res.sendStatus(200);
+        }
+      });
+    } catch (err) {
+      console.log(err);
+    }
   }
-});
+);
 
-routes.delete("/:entry_id/delete", authUser, async function (req, res, next) {
-  let entry = await database.analysis.findOne({
-    where: { id: req.params.entry_id },
-  });
-  entry ? entry.destroy().then(res.sendStatus(200)) : res.sendStatus(404);
-});
+//TODO: on delete remove uploaded and exported files
+routes.delete(
+  "/:entry_id/delete",
+  authUser,
+  authRole,
+  authAgency,
+  async function (req, res, next) {
+    let entry = await database.analysis.findOne({
+      where: { id: req.params.entry_id },
+    });
+    entry ? entry.destroy().then(res.sendStatus(200)) : res.sendStatus(404);
+  }
+);
 
-routes.post("/:entry_id/versions", authUser, async function (req, res, next) {
-  let entries = await database.audit.findAll({
-    where: { auditId: req.params.entry_id },
-  });
+routes.post(
+  "/:entry_id/versions",
+  authUser,
+  authRole,
+  authAgency,
+  async function (req, res, next) {
+    let entries = await database.audit.findAll({
+      where: { auditId: req.params.entry_id },
+    });
 
-  entries
-    ? res.status(200).json({ entries: entries })
-    : res.sendStatus(404).send("Versions not found.");
-});
+    entries
+      ? res.status(200).json({ entries: entries })
+      : res.sendStatus(404).send("Versions not found.");
+  }
+);
 
 routes.post(
   "/:entry_id/diff/",
   authUser,
+  authRole,
+  authAgency,
   async function (req, res, next) {
     let target1 = req.body.firstTargetDate;
     let target2 = req.body.secondTargetDate;

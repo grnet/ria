@@ -33,7 +33,7 @@ exports.authRole = async function (req, res, next) {
     req.session.errors.push({
       msg: "Δε σας έχει ανατεθεί ρόλος για να περιηγηθείτε στην εφαρμογή.",
     });
-    return res.redirect("./dashboard");
+    return res.redirect("/login");
   } else {
     return next();
   }
@@ -45,7 +45,7 @@ exports.authAgency = async function (req, res, next) {
     req.session.errors.push({
       msg: "Δε σας έχει ανατεθεί φορέας για να περιηγηθείτε στην εφαρμογή.",
     });
-    return res.redirect("./dashboard");
+    return res.redirect("/login");
   } else {
     return next();
   }

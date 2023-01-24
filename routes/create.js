@@ -2,7 +2,7 @@ const routes = require("express").Router();
 let database = require("../services/database");
 const { body, check, validationResult } = require("express-validator");
 var multer = require("multer");
-const { authUser } = require("../middleware/auth");
+const { authUser, authAgency, authRole } = require("../middleware/auth");
 const tables = require("../lib/tables");
 const ministries = require("../lib/ministries");
 const tooltipsCsv = require("../lib/tooltips");
@@ -23,59 +23,67 @@ var upload = multer({ storage: storage }).fields([
   { name: "nomosxedio", maxCount: 1 },
 ]);
 
-routes.get("/:analysis", authUser, async (req, res, next) => {
-  const type = req.params.analysis.substring(1); //removing first character
-  try {
-    //TODO: remove errors
-    const valid_errors = req.session.errors;
-    req.session.errors = null;
-    const user = req.session.user;
-    
-    const tooltips = JSON.stringify(await tooltipsCsv.getTooltips());
-    const ministriesResult = await ministries.getMinistries();
-    const ministersResult = await ministries.getMinisters(ministriesResult);
+routes.get(
+  "/:analysis",
+  authUser,
+  authRole,
+  authAgency,
+  async (req, res, next) => {
+    const type = req.params.analysis.substring(1); //removing first character
+    try {
+      //TODO: remove errors
+      const valid_errors = req.session.errors;
+      req.session.errors = null;
+      const user = req.session.user;
 
-    const indexesResult = await database.indexes.findAll();
-    const indexTablesResult = await database.index_tables.findAll();
-    const indexes = {};
-    const indexTables = [];
-    for (i in indexTablesResult) {
-      indexTables.push(indexTablesResult[i].dataValues.name);
-    }
+      const tooltips = JSON.stringify(await tooltipsCsv.getTooltips());
+      const ministriesResult = await ministries.getMinistries();
+      const ministersResult = await ministries.getMinisters(ministriesResult);
 
-    for (let i in indexTables) {
-      indexes[`${indexTables[i]}`] = [];
-      for (let j in indexesResult) {
-        if (
-          indexesResult[i].dataValues.id ===
-          indexesResult[j].dataValues.indexTableId
-        ) {
-          indexes[`${indexTables[i]}`].push(indexesResult[j].name);
-        }
+      const indexesResult = await database.indexes.findAll();
+      const indexTablesResult = await database.index_tables.findAll();
+      const indexes = {};
+      const indexTables = [];
+      for (i in indexTablesResult) {
+        indexTables.push(indexTablesResult[i].dataValues.name);
       }
-      indexes[`${indexTables[i]}`].sort();
-    }
 
-    res.render("create", {
-      type: type,
-      role: req.session.user.role,
-      errors: valid_errors,
-      tooltips: tooltips,
-      ministers: ministersResult,
-      ministries: ministriesResult,
-      user: user,
-      indexes:indexes
-    });
-  } catch (err) {
-    // TODO: add status error code
-    //TODO: should collect all status errors to app.js
-    console.log("error: " + err);
+      for (let i in indexTables) {
+        indexes[`${indexTables[i]}`] = [];
+        for (let j in indexesResult) {
+          if (
+            indexesResult[i].dataValues.id ===
+            indexesResult[j].dataValues.indexTableId
+          ) {
+            indexes[`${indexTables[i]}`].push(indexesResult[j].name);
+          }
+        }
+        indexes[`${indexTables[i]}`].sort();
+      }
+
+      res.render("create", {
+        type: type,
+        role: req.session.user.role,
+        errors: valid_errors,
+        tooltips: tooltips,
+        ministers: ministersResult,
+        ministries: ministriesResult,
+        user: user,
+        indexes: indexes,
+      });
+    } catch (err) {
+      // TODO: add status error code
+      //TODO: should collect all status errors to app.js
+      console.log("error: " + err);
+    }
   }
-});
+);
 
 routes.post(
   "/:analysis",
   authUser,
+  authRole,
+  authAgency,
   upload,
   [check("title", "Title is required").notEmpty()],
   async function (req, res, next) {

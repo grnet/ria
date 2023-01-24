@@ -34,8 +34,7 @@
       </div>
       <!-- <input type="submit" name="login" class=" govgr-btn govgr-btn-primary" value="Σύνδεση" /> <br /><br /> -->
       <div class="govgr-button-group">
-        <input type="button" id="login" name="login" class=" govgr-btn govgr-btn-primary"
-          value="Σύνδεση με κωδικούς πλατφόρμας" /> <br /><br />
+        <input type="submit" name="login" class=" govgr-btn govgr-btn-primary" value="Σύνδεση" /> <br /><br />
         <input type="button" id="oauth2" name="oauth2" class=" govgr-btn govgr-btn-primary"
           value="Σύνδεση με Κωδικούς TAXISNET" /> <br /><br />
       </div>
@@ -95,37 +94,33 @@
 
     <script>
 
-      $("#login").on("click", function (ev) {
-        ev.preventDefault();
-        console.log($(this));
-
-        $.ajax({
-          url: '/login',
-          data: $('#loginForm').serialize(),
-          error: function (error) {
-            console.log(error);
-            for (let i in error.responseJSON) {
-              $('#errors').append(`              
+      $("form").on("submit", function (ev) {
+          ev.preventDefault();
+          $.ajax({
+            url: '/login',
+            data: $(this).serialize(),
+            error: function (error) {
+              for (let i in error.responseJSON) {
+                $('#errors').append(`              
                   <div class="alert alert-warning alert-dismissible fade show bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>     
                     ${error.responseJSON[i].msg} </div>                                 
               `)
-            }
-          },
-          success: function (data) {
-            window.location = data.redirect
-          },
-          type: 'POST'
-        });
-      })
+              }
+            },
+            success: function (data) {
+              window.location = data.redirect
+            },
+            type: 'POST'
+          });
+        })
 
       $("#oauth2").on("click", function (ev) {
         ev.preventDefault();
         $.ajax({
           url: '/oauth2',
-          data: $('#loginForm').serialize(),
           error: function (error) {
             console.log(error)
           },

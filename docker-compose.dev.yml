@@ -50,7 +50,6 @@ services:
             - CLIENT_ID=$CLIENT_ID
             - CLIENT_SECRET=$CLIENT_SECRET
             - GSIS_GOV=$GSIS_GOV
-
     database:
         image: mysql:8
         ports:

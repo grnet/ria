@@ -31,6 +31,7 @@ services:
             - CLIENT_ID=$CLIENT_ID
             - CLIENT_SECRET=$CLIENT_SECRET
             - GSIS_GOV=$GSIS_GOV
+            - OAUTH2_LOGIN_PATH=$OAUTH2_LOGIN_PATH
     database:
         image: mysql:8
         ports:
