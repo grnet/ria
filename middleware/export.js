@@ -1008,7 +1008,7 @@ exports.exportPDF = async function (req, res, next) {
                   border: [false, false, false, false],
                   fillColor: "white",
                 },
-                { text: richText(accountingData.regulations) },
+                richText(accountingData.regulations),
               ],
             ],
           },
@@ -1072,9 +1072,7 @@ exports.exportPDF = async function (req, res, next) {
                   border: [false, false, false, false],
                   fillColor: "white",
                 },
-                {
-                  text: richText(accountingData.state_budget),
-                },
+                richText(accountingData.state_budget),
               ],
               [
                 {
@@ -1093,9 +1091,7 @@ exports.exportPDF = async function (req, res, next) {
                   border: [false, false, false, false],
                   fillColor: "white",
                 },
-                {
-                  text: richText(accountingData.agency_budget),
-                },
+                richText(accountingData.agency_budget),
               ],
             ],
           },
@@ -1223,9 +1219,7 @@ exports.exportPDF = async function (req, res, next) {
                   border: [false, false, false, false],
                   fillColor: "white",
                 },
-                {
-                  text: richText(accountingData.results),
-                },
+                richText(accountingData.results),
               ],
             ],
           },
@@ -2425,44 +2419,14 @@ function isEmpty(value) {
 }
 
 function richText(value) {
-  console.log(
-    htmlToPdfmake(value, {
-      window: window,
-      replaceText: function (richText) {
-        return richText.replace(/(?:\r\n|\r|\n)/g, "<br>");
-      },
-    })
-  );
-  return htmlToPdfmake(value, {
+  const richText = htmlToPdfmake(value, {
     window: window,
     replaceText: function (richText) {
       return richText.replace(/(?:\r\n|\r|\n)/g, "<br>");
     },
   });
-  // !htmlToPdfmake(value, { window: window }).length
-  // ? !value
-  //   ? (text = "\n\n\n")
-  //   : value
-  // : (text = );
+  return richText;
 }
-
-// function isEmpty(value, isRichText) {
-//   let text;
-//   if (isRichText) {
-//     !htmlToPdfmake(value, { window: window }).length
-//       ? (text = "\n\n")
-//       : (text = htmlToPdfmake(value, {
-//           window: window,
-//           replaceText: function (richText) {
-//             return richText.replace(/(?:\r\n|\r|\n)/g, "<br>");
-//           },
-//         }));
-//   } else {
-//     value === "" || !value ? (text = "\n\n") : (text = value);
-//   }
-//   return text;
-// }
-
 
 //create field7 alignment using columns and stacks
 function createField7(data) {
@@ -2882,7 +2846,7 @@ function createField9(data) {
 }
 
 function checkboxValue(value) {
-  return value !== "" && value !== undefined ? "X" : '';
+  return value !== "" && value !== undefined ? "X" : "";
 }
 
 function createField18(data) {
