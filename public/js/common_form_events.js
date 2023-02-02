@@ -69,10 +69,10 @@ $(
 
   // Iterating across all the rows obtained to change the index
   child.each(function () {
-    // Get <tr> id
+    // Get <tr class="govgr-table__row"> id
     var id = $(this).prop("id");
 
-    // Get row number from <tr> id
+    // Get row number from <tr class="govgr-table__row"> id
     var row_num = parseInt(id.substring(1));
 
     //Get index
@@ -308,48 +308,45 @@ $("#field_36").on("change", function (ev) {
 });
 
 //add row events for tables
-//click event to add a row
 $("#add_row_table_14").on("click", function () {
   let index = $("#tbody_14").prop("rows").length;
   $("#tbody_14").append(`
-         <tr id="table_14_row${++index}"> 
-        <td> 
-            <textarea class="govgr-textarea" id="field_14_arthro${
-              index - 1
-            }" name="field_14_arthro${index - 1}" rows="1" ></textarea>                                   
-        </td>    
-        <td>
-            <br> 
-            <textarea class="govgr-textarea" id="field_14_stoxos${
-              index - 1
-            }" name="field_14_stoxos${index - 1}" onkeypress="wordsCounter('field_14_stoxos${index - 1}','words14_${index - 1}', event)" onpaste="wordsCounter('field_14_stoxos${index - 1}','words14_${index - 1}', event)" rows="1"></textarea>
-            <p style="float: right;">Λέξεις: <span id="words14_${
-              index - 1
-            }" ></span></p>            
-            <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
-        </td>    
+         <tr class="govgr-table__row" id="table_14_row${++index}"> 
+            <td> 
+                <textarea class="govgr-textarea" id="field_14_arthro${
+                  index - 1
+                }" name="field_14_arthro${index - 1}" rows="5" ></textarea>                                   
+            </td>    
+            <td>
+                <textarea class="govgr-textarea" id="field_14_stoxos${
+                  index - 1
+                }" name="field_14_stoxos${index - 1}" onkeypress="wordsCounter('field_14_stoxos${index - 1}','words14_${index - 1}', event)" onpaste="wordsCounter('field_14_stoxos${index - 1}','words14_${index - 1}', event)" rows="5"></textarea>
+                <p style="float: right;">Λέξεις: <span id="words14_${
+                  index - 1
+                }" ></span></p>            
+            </td>    
+            <td><button class="btn remove float-right" type="button"><img src="/img/delete.png" width="50px"></button></td>    
         </tr>`);
 });
 
 $("#add_row_table_17").on("click", function () {
   let index = $("#tbody_17").prop("rows").length;
   $("#tbody_17").append(`
-        <tr id="R${++index}">   
+        <tr class="govgr-table__row" id="R${++index}">   
             <td> 
                 <select id="field_17_minister_name${
                   index - 1
-                }" name="field_17_minister_name${index - 1}" class="govgr-select" onchange="ministerNameOnChange('field_17_minister_name${index - 1}', 'field_17_minister_role${index - 1}', 'field_17_minister_ministry${index - 1}')"></select>
+                }" name="field_17_minister_name${index - 1}" class="govgr-select" onchange="ministerNameOnChange('field_17_minister_name${index - 1}', 'field_17_minister_role${index - 1}', 'field_17_minister_ministry${index - 1}')" style="width:100%;" ></select>
             </td> 
             <td>
-                <br> 
                 <textarea class="govgr-textarea" id="field_17_minister_role${
                   index - 1
-                }" name="field_17_minister_role${index - 1}" rows="1" readonly></textarea>
-                <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
+                }" name="field_17_minister_role${index - 1}" rows="2" readonly></textarea>
                 <input type="hidden" id="field_17_minister_ministry${
                   index - 1
                 }" name="field_17_minister_ministry${index - 1}">
             </td> 
+            <td><button class="btn remove float-right" type="button"><img src="/img/delete.png" width="50px"></button></td>
         </tr>`);
   populateMinistersNameSelect(`field_17_minister_name${index - 1}`);
 });
@@ -357,22 +354,21 @@ $("#add_row_table_17").on("click", function () {
 $("#add_row_ministers_table").on("click", function () {
   let index = $("#tbody_ministers").prop("rows").length;
   $("#tbody_ministers").append(`
-        <tr id="R${++index}">              
+        <tr class="govgr-table__row" id="R${++index}">              
             <td> 
                 <select id="minister_name${
                   index - 1
-                }" name="minister_name${index - 1}" class="govgr-select" onchange="ministerNameOnChange('minister_name${index - 1}', 'minister_role${index - 1}', 'minister_ministry${index - 1}')"></select>
+                }" name="minister_name${index - 1}" class="govgr-select" onchange="ministerNameOnChange('minister_name${index - 1}', 'minister_role${index - 1}', 'minister_ministry${index - 1}')" style="width:100%;" ></select>
             </td> 
             <td>
-                <br> 
                 <textarea class="govgr-textarea" id="minister_role${
                   index - 1
-                }" name="minister_role${index - 1}" rows="1" readonly></textarea>
-                <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
+                }" name="minister_role${index - 1}" rows="2" readonly></textarea>
                 <input type="hidden" id="minister_ministry${
                   index - 1
                 }" name="minister_ministry${index - 1}">
             </td>             
+            <td><button class="btn remove float-right" type="button"><img src="/img/delete.png" width="50px"></button></td>
         </tr>`);
   populateMinistersNameSelect(`minister_name${index - 1}`);
 });
@@ -380,11 +376,11 @@ $("#add_row_ministers_table").on("click", function () {
 $("#add_row_table_29").on("click", function () {
   let index = $("#tbody_29").prop("rows").length;
   $("#tbody_29").append(`
-        <tr id="R${++index}"> 
+        <tr class="govgr-table__row" id="R${++index}"> 
             <td> 
                 <textarea class="govgr-textarea" id="field_29_diatakseis_rythmisis${
                   index - 1
-                }" name="field_29_diatakseis_rythmisis${index - 1}" onkeypress="wordsCounter('field_29_diatakseis_rythmisis${index - 1}','words29_diatakeis_rythm_${index - 1}')" onpaste="wordsCounter('field_29_diatakseis_rythmisis${index - 1}','words29_diatakeis_rythm_${index - 1}')" rows="1"></textarea>
+                }" name="field_29_diatakseis_rythmisis${index - 1}" onkeypress="wordsCounter('field_29_diatakseis_rythmisis${index - 1}','words29_diatakeis_rythm_${index - 1}')" onpaste="wordsCounter('field_29_diatakseis_rythmisis${index - 1}','words29_diatakeis_rythm_${index - 1}')" rows="5"></textarea>
                 <p style="float: right;">Λέξεις: <span id="words29_diatakeis_rythm_${
                   index - 1
                 }" ></span></p>   
@@ -392,23 +388,23 @@ $("#add_row_table_29").on("click", function () {
             <td> 
                 <textarea class="govgr-textarea" id="field_29_yfistamenes_diatakseis${
                   index - 1
-                }" name="field_29_yfistamenes_diatakseis${index - 1}" onkeypress="wordsCounter('field_29_yfistamenes_diatakseis${index - 1}','words29_diatakeis_yfist_${index - 1}')" onpaste="wordsCounter('field_29_yfistamenes_diatakseis${index - 1}','words29_diatakeis_yfist_${index - 1}')" rows="1"></textarea>
+                }" name="field_29_yfistamenes_diatakseis${index - 1}" onkeypress="wordsCounter('field_29_yfistamenes_diatakseis${index - 1}','words29_diatakeis_yfist_${index - 1}')" onpaste="wordsCounter('field_29_yfistamenes_diatakseis${index - 1}','words29_diatakeis_yfist_${index - 1}')" rows="5"></textarea>
                 <p style="float: right;">Λέξεις: <span id="words29_diatakeis_yfist_${
                   index - 1
                 }" ></span></p>   
-                <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
             </td>     
+            <td><button class="btn remove float-right" type="button"><img src="/img/delete.png" width="50px"></button></td>
         </tr>`);
 });
 
 $("#add_row_table_30").on("click", function () {
   let index = $("#tbody_30").prop("rows").length;
   $("#tbody_30").append(`
-        <tr id="R${++index}"> 
+        <tr class="govgr-table__row" id="R${++index}"> 
             <td> 
                 <textarea class="govgr-textarea" id="field_30_diatakseis_katargisi${
                   index - 1
-                }" name="field_30_diatakseis_katargisi${index - 1}" onkeypress="wordsCounter('field_30_diatakseis_katargisi${index - 1}','words30_diatakeis_katarg_${index - 1}')" onpaste="wordsCounter('field_30_diatakseis_katargisi${index - 1}','words30_diatakeis_katarg_${index - 1}')" rows="2"></textarea>
+                }" name="field_30_diatakseis_katargisi${index - 1}" onkeypress="wordsCounter('field_30_diatakseis_katargisi${index - 1}','words30_diatakeis_katarg_${index - 1}')" onpaste="wordsCounter('field_30_diatakseis_katargisi${index - 1}','words30_diatakeis_katarg_${index - 1}')" rows="5"></textarea>
                 <p style="float: right;">Λέξεις: <span id="words30_diatakeis_katarg_${
                   index - 1
                 }" ></span></p>
@@ -416,119 +412,120 @@ $("#add_row_table_30").on("click", function () {
             <td> 
                 <textarea class="govgr-textarea" id="field_30_katargoumenes_diatakseis${
                   index - 1
-                }" name="field_30_katargoumenes_diatakseis${index - 1}" onkeypress="wordsCounter('field_30_katargoumenes_diatakseis${index - 1}','words30_diatakeis_katargoum_${index - 1}')" onpaste="wordsCounter('field_30_katargoumenes_diatakseis${index - 1}','words30_diatakeis_katargoum_${index - 1}')" rows="2"></textarea>
+                }" name="field_30_katargoumenes_diatakseis${index - 1}" onkeypress="wordsCounter('field_30_katargoumenes_diatakseis${index - 1}','words30_diatakeis_katargoum_${index - 1}')" onpaste="wordsCounter('field_30_katargoumenes_diatakseis${index - 1}','words30_diatakeis_katargoum_${index - 1}')" rows="5"></textarea>
                 <p style="float: right;">Λέξεις: <span id="words30_diatakeis_katargoum_${
                   index - 1
                 }" ></span></p>
-                <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
             </td>
+            <td><button class="btn remove float-right" type="button"><img src="/img/delete.png" width="50px"></button></td>
         </tr>`);
 });
 
 $("#add_row_table_31").on("click", function () {
   let index = $("#tbody_31").prop("rows").length;
   $("#tbody_31").append(`
-        <tr id="R${++index}"> 
+        <tr class="govgr-table__row" id="R${++index}"> 
             <td> 
                 <textarea class="govgr-textarea" id="field_31_sxetiki_diataksi${
                   index - 1
-                }" name="field_31_sxetiki_diataksi${index - 1}" rows="2" ></textarea>                                                            
+                }" name="field_31_sxetiki_diataksi${index - 1}" rows="5" ></textarea>                                                            
             </td> 
             <td> 
                 <textarea class="govgr-textarea" id="field_31_synarmodia_ypoyrgeia${
                   index - 1
-                }" name="field_31_synarmodia_ypoyrgeia${index - 1}" rows="2"></textarea>
+                }" name="field_31_synarmodia_ypoyrgeia${index - 1}" rows="5"></textarea>
             </td> 
             <td> 
-                <br>
                 <textarea class="govgr-textarea" id="field_31_antikeimeno_synarmodiotitas${
                   index - 1
-                }" name="field_31_antikeimeno_synarmodiotitas${index - 1}" rows="2" onkeypress="wordsCounter('field_31_antikeimeno_synarmodiotitas${index - 1}','words31_${index - 1}',50, event)" onpaste="wordsCounter('field_31_antikeimeno_synarmodiotitas${index - 1}','words31_${index - 1}',50, event)"></textarea>
+                }" name="field_31_antikeimeno_synarmodiotitas${index - 1}" rows="5" onkeypress="wordsCounter('field_31_antikeimeno_synarmodiotitas${index - 1}','words31_${index - 1}',50, event)" onpaste="wordsCounter('field_31_antikeimeno_synarmodiotitas${index - 1}','words31_${index - 1}',50, event)"></textarea>
                 <p style="float: right;">Λέξεις: <span id="words31_${
                   index - 1
                 }" ></span> /50</p>
-                <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
             </td>    
+            <td><button class="btn remove float-right" type="button"><img src="/img/delete.png" width="50px"></button></td>
         </tr>`);
 });
 
 $("#add_row_table_32").on("click", function () {
   let index = $("#tbody_32").prop("rows").length;
   $("#tbody_32").append(`
-        <tr id="R${++index}"> 
+        <tr class="govgr-table__row" id="R${++index}"> 
             <td> 
                 <textarea class="govgr-textarea" id="field_32_eksousiodotiki_diataksi${
                   index - 1
-                }" name="field_32_eksousiodotiki_diataksi${index - 1}" placeholder="Εξουσιοδοτική διάταξη" rows="4"></textarea>
+                }" name="field_32_eksousiodotiki_diataksi${index - 1}" rows="5"></textarea>
             </td> 
             <td> 
                 <textarea class="govgr-textarea" id="field_32_eidos_praksis${
                   index - 1
-                }" name="field_32_eidos_praksis${index - 1}" placeholder="Είδος πράξης" rows="4"></textarea>
+                }" name="field_32_eidos_praksis${index - 1}" rows="5"></textarea>
             </td> 
             <td> 
                 <textarea class="govgr-textarea" id="field_32_armodio_ypoyrgeio${
                   index - 1
-                }" name="field_32_armodio_ypoyrgeio${index - 1}" placeholder="Αρμόδιο ή επισπεύδον Υπουργείο ή υπηρεσία" rows="4"></textarea>
+                }" name="field_32_armodio_ypoyrgeio${index - 1}" rows="5"></textarea>
             </td> 
             <td> 
-                <br>
                 <textarea class="govgr-textarea" id="field_32_antikeimeno${
                   index - 1
-                }" name="field_32_antikeimeno${index - 1}" placeholder="Αντικείμενο" rows="4" onkeypress="wordsCounter('field_32_antikeimeno${index - 1}','words32_${index - 1}',50, event)" onpaste="wordsCounter('field_32_antikeimeno${index - 1}','words32_${index - 1}',50, event)"></textarea>
+                }" name="field_32_antikeimeno${index - 1}" rows="5" onkeypress="wordsCounter('field_32_antikeimeno${index - 1}','words32_${index - 1}',50, event)" onpaste="wordsCounter('field_32_antikeimeno${index - 1}','words32_${index - 1}',50, event)"></textarea>
                 <p style="float: right;">Λέξεις: <span id="words32_${
                   index - 1
                 }" ></span> /50</p>                                            
             </td> 
             <td> 
-                <br>
                 <textarea class="govgr-textarea" id="field_32_xronodiagramma${
                   index - 1
-                }" name="field_32_xronodiagramma${index - 1}" placeholder="Χρονοδιάγραμμα (ενδεικτική ή αποκλειστική προθεσμία)" rows="4"></textarea>
-                <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button> 
+                }" name="field_32_xronodiagramma${index - 1}" placeholder="Χρονοδιάγραμμα (ενδεικτική ή αποκλειστική προθεσμία)" rows="5"></textarea>
             </td>    
+            <td><button class="btn remove float-right" type="button"><img src="/img/delete.png" width="50px"></button></td>
         </tr>`);
 });
 
 $("#add_row_emd_table").on("click", function () {
   let index = $("#emd_processes_tbody").prop("rows").length;
   $("#emd_processes_tbody").append(`
-        <tr id="R${++index}">  
+        <tr class="govgr-table__row" id="R${++index}">  
             <td> 
                 <textarea id="process${
                   index - 1
                 }" name="process${index - 1}" class="govgr-textarea" rows="1" ></textarea> 
             </td>                
+            <td><button class="btn remove float-right" type="button"><img src="/img/delete.png" width="50px"></button></td>
         </tr>`);
 });
 
 $("#add_row_education").on("click", function () {
   let index = $("#ekpaideysi_table_tbody").prop("rows").length;
   $("#ekpaideysi_table_tbody").append(`
-        <tr id="R${++index}">
+        <tr class="govgr-table__row" id="R${++index}">
             <td>
                 <select id="ekpaideysi_index${
                   index - 1
-                }" name="ekpaideysi_index${index - 1}" class="govgr-select" style="width:40%;" ></select>
+                }" name="ekpaideysi_index${index - 1}" class="govgr-select" style="width:100%;" ></select>
             </td>
             <td>
                 <br>
                 <input class="govgr-input" id="ekpaideysi_year1_${
                   index - 1
-                }" type="text" name="ekpaideysi_year1_${index - 1}" style="width:40%;" placeholder="χρονιά 1"/>
+                }" type="text" name="ekpaideysi_year1_${index - 1}"  placeholder="έτος 1"/>
+                <br>
                 <input class="govgr-input" id="ekpaideysi_year2_${
                   index - 1
-                }" type="text" name="ekpaideysi_year2_${index - 1}" style="width:40%;" placeholder="χρονιά 2" />
+                }" type="text" name="ekpaideysi_year2_${index - 1}"  placeholder="έτος 2" />
+                <br>
                 <input class="govgr-input" id="ekpaideysi_year3_${
                   index - 1
-                }" type="text" name="ekpaideysi_year3_${index - 1}" style="width:40%;" placeholder="χρονιά 3"/>
+                }" type="text" name="ekpaideysi_year3_${index - 1}"  placeholder="έτος 3"/>
+                <br>
                 <input class="govgr-input" id="ekpaideysi_year4_${
                   index - 1
-                }" type="text" name="ekpaideysi_year4_${index - 1}" style="width:40%;" placeholder="χρονιά 4"/>
+                }" type="text" name="ekpaideysi_year4_${index - 1}"  placeholder="έτος 4"/>
+                <br>
                 <input class="govgr-input" id="ekpaideysi_year5_${
                   index - 1
-                }" type="text" name="ekpaideysi_year5_${index - 1}" style="width:40%;" placeholder="χρονιά 5"/>
-                
+                }" type="text" name="ekpaideysi_year5_${index - 1}"  placeholder="έτος 5"/>                
             </td>
             <td>
                 <input class="govgr-input" id="ekpaideysi_stoixeia_${
@@ -539,8 +536,8 @@ $("#add_row_education").on("click", function () {
                 <input class="govgr-input" id="ekpaideysi_stoxos_${
                   index - 1
                 }" type="text" name="ekpaideysi_stoxos_${index - 1}" />                               
-                <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
             </td>            
+            <td><button class="btn remove float-right" type="button"><img src="/img/delete.png" width="50px"></button></td>    
         </tr>`);
   populateIndexSelect(`ekpaideysi_index${index - 1}`, "ΕΚΠΑΙΔΕΥΣΗ");
 });
@@ -548,29 +545,33 @@ $("#add_row_education").on("click", function () {
 $("#add_row_civ").on("click", function () {
   let index = $("#politismos_table_tbody").prop("rows").length;
   $("#politismos_table_tbody").append(`
-        <tr id="R${++index}">
+        <tr class="govgr-table__row" id="R${++index}">
             <td>
                 <select id="politismos_index${
                   index - 1
-                }" name="politismos_index${index - 1}" class="govgr-select" style="width:40%;" ></select>
+                }" name="politismos_index${index - 1}" class="govgr-select" style="width:100%;" ></select>
             </td>
             <td>
                 <br>
                 <input class="govgr-input" id="politismos_year1_${
                   index - 1
-                }" type="text" name="politismos_year1_${index - 1}" style="width:40%;" placeholder="χρονιά 1"/>
+                }" type="text" name="politismos_year1_${index - 1}"  placeholder="έτος 1"/>
+                <br>
                 <input class="govgr-input" id="politismos_year2_${
                   index - 1
-                }" type="text" name="politismos_year2_${index - 1}" style="width:40%;" placeholder="χρονιά 2" />
+                }" type="text" name="politismos_year2_${index - 1}"  placeholder="έτος 2" />
+                <br>
                 <input class="govgr-input" id="politismos_year3_${
                   index - 1
-                }" type="text" name="politismos_year3_${index - 1}" style="width:40%;" placeholder="χρονιά 3"/>
+                }" type="text" name="politismos_year3_${index - 1}"  placeholder="έτος 3"/>
+                <br>
                 <input class="govgr-input" id="politismos_year4_${
                   index - 1
-                }" type="text" name="politismos_year4_${index - 1}" style="width:40%;" placeholder="χρονιά 4"/>
+                }" type="text" name="politismos_year4_${index - 1}"  placeholder="έτος 4"/>
+                <br>
                 <input class="govgr-input" id="politismos_year5_${
                   index - 1
-                }" type="text" name="politismos_year5_${index - 1}" style="width:40%;" placeholder="χρονιά 5"/>
+                }" type="text" name="politismos_year5_${index - 1}"  placeholder="έτος 5"/>
                 
             </td>
             <td>
@@ -582,8 +583,8 @@ $("#add_row_civ").on("click", function () {
                 <input class="govgr-input" id="politismos_stoxos_${
                   index - 1
                 }" type="text" name="politismos_stoxos_${index - 1}" />                               
-                <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
-            </td>            
+            </td>
+            <td><button class="btn remove float-right" type="button"><img src="/img/delete.png" width="50px"></button></td>            
         </tr>`);
   populateIndexSelect(`politismos_index${index - 1}`, "ΠΟΛΙΤΙΣΜΟΣ");
 });
@@ -591,29 +592,33 @@ $("#add_row_civ").on("click", function () {
 $("#add_row_economy").on("click", function () {
   let index = $("#oikonomia_table_tbody").prop("rows").length;
   $("#oikonomia_table_tbody").append(`
-        <tr id="R${++index}">
+        <tr class="govgr-table__row" id="R${++index}">
             <td>
                 <select id="oikonomia_index${
                   index - 1
-                }" name="oikonomia_index${index - 1}" class="govgr-select" style="width:40%;" ></select>
+                }" name="oikonomia_index${index - 1}" class="govgr-select" style="width:100%;" ></select>
             </td>
             <td>
                 <br>
                 <input class="govgr-input" id="oikonomia_year1_${
                   index - 1
-                }" type="text" name="oikonomia_year1_${index - 1}" style="width:40%;" placeholder="χρονιά 1"/>
+                }" type="text" name="oikonomia_year1_${index - 1}"  placeholder="έτος 1"/>
+                <br>
                 <input class="govgr-input" id="oikonomia_year2_${
                   index - 1
-                }" type="text" name="oikonomia_year2_${index - 1}" style="width:40%;" placeholder="χρονιά 2" />
+                }" type="text" name="oikonomia_year2_${index - 1}"  placeholder="έτος 2" />
+                <br>
                 <input class="govgr-input" id="oikonomia_year3_${
                   index - 1
-                }" type="text" name="oikonomia_year3_${index - 1}" style="width:40%;" placeholder="χρονιά 3"/>
+                }" type="text" name="oikonomia_year3_${index - 1}"  placeholder="έτος 3"/>
+                <br>
                 <input class="govgr-input" id="oikonomia_year4_${
                   index - 1
-                }" type="text" name="oikonomia_year4_${index - 1}" style="width:40%;" placeholder="χρονιά 4"/>
+                }" type="text" name="oikonomia_year4_${index - 1}"  placeholder="έτος 4"/>
+                <br>
                 <input class="govgr-input" id="oikonomia_year5_${
                   index - 1
-                }" type="text" name="oikonomia_year5_${index - 1}" style="width:40%;" placeholder="χρονιά 5"/>
+                }" type="text" name="oikonomia_year5_${index - 1}"  placeholder="έτος 5"/>
                 
             </td>
             <td>
@@ -625,8 +630,8 @@ $("#add_row_economy").on("click", function () {
                 <input class="govgr-input" id="oikonomia_stoxos_${
                   index - 1
                 }" type="text" name="oikonomia_stoxos_${index - 1}" />                               
-                <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
             </td>            
+            <td><button class="btn remove float-right" type="button"><img src="/img/delete.png" width="50px"></button></td>
         </tr>`);
   populateIndexSelect(`oikonomia_index${index - 1}`, "ΟΙΚΟΝΟΜΙΑ");
 });
@@ -634,29 +639,33 @@ $("#add_row_economy").on("click", function () {
 $("#add_row_taxation").on("click", function () {
   let index = $("#forologia_table_tbody").prop("rows").length;
   $("#forologia_table_tbody").append(`
-        <tr id="R${++index}">
+        <tr class="govgr-table__row" id="R${++index}">
             <td>
                 <select id="forologia_index${
                   index - 1
-                }" name="forologia_index${index - 1}" class="govgr-select" style="width:40%;" ></select>
+                }" name="forologia_index${index - 1}" class="govgr-select" style="width:100%;" ></select>
             </td>
             <td>
                 <br>
                 <input class="govgr-input" id="forologia_year1_${
                   index - 1
-                }" type="text" name="forologia_year1_${index - 1}" style="width:40%;" placeholder="χρονιά 1"/>
+                }" type="text" name="forologia_year1_${index - 1}"  placeholder="έτος 1"/>
+                <br>
                 <input class="govgr-input" id="forologia_year2_${
                   index - 1
-                }" type="text" name="forologia_year2_${index - 1}" style="width:40%;" placeholder="χρονιά 2" />
+                }" type="text" name="forologia_year2_${index - 1}"  placeholder="έτος 2" />
+                <br>
                 <input class="govgr-input" id="forologia_year3_${
                   index - 1
-                }" type="text" name="forologia_year3_${index - 1}" style="width:40%;" placeholder="χρονιά 3"/>
+                }" type="text" name="forologia_year3_${index - 1}"  placeholder="έτος 3"/>
+                <br>
                 <input class="govgr-input" id="forologia_year4_${
                   index - 1
-                }" type="text" name="forologia_year4_${index - 1}" style="width:40%;" placeholder="χρονιά 4"/>
+                }" type="text" name="forologia_year4_${index - 1}"  placeholder="έτος 4"/>
+                <br>
                 <input class="govgr-input" id="forologia_year5_${
                   index - 1
-                }" type="text" name="forologia_year5_${index - 1}" style="width:40%;" placeholder="χρονιά 5"/>
+                }" type="text" name="forologia_year5_${index - 1}"  placeholder="έτος 5"/>
                 
             </td>
             <td>
@@ -668,8 +677,8 @@ $("#add_row_taxation").on("click", function () {
                 <input class="govgr-input" id="forologia_stoxos_${
                   index - 1
                 }" type="text" name="forologia_stoxos_${index - 1}" />                               
-                <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
             </td>            
+            <td><button class="btn remove float-right" type="button"><img src="/img/delete.png" width="50px"></button></td>
         </tr>`);
   populateIndexSelect(`forologia_index${index - 1}`, "ΦΟΡΟΛΟΓΙΑ");
 });
@@ -677,29 +686,33 @@ $("#add_row_taxation").on("click", function () {
 $("#add_row_relations").on("click", function () {
   let index = $("#ergasiakes_sxeseis_table_tbody").prop("rows").length;
   $("#ergasiakes_sxeseis_table_tbody").append(`
-        <tr id="R${++index}">
+        <tr class="govgr-table__row" id="R${++index}">
             <td>
                 <select id="ergasiakes_sxeseis_index${
                   index - 1
-                }" name="ergasiakes_sxeseis_index${index - 1}" class="govgr-select" style="width:40%;" ></select>
+                }" name="ergasiakes_sxeseis_index${index - 1}" class="govgr-select" style="width:100%;" ></select>
             </td>
             <td>
                 <br>
                 <input class="govgr-input" id="ergasiakes_sxeseis_year1_${
                   index - 1
-                }" type="text" name="ergasiakes_sxeseis_year1_${index - 1}" style="width:40%;" placeholder="χρονιά 1"/>
+                }" type="text" name="ergasiakes_sxeseis_year1_${index - 1}"  placeholder="έτος 1"/>
+                <br>
                 <input class="govgr-input" id="ergasiakes_sxeseis_year2_${
                   index - 1
-                }" type="text" name="ergasiakes_sxeseis_year2_${index - 1}" style="width:40%;" placeholder="χρονιά 2" />
+                }" type="text" name="ergasiakes_sxeseis_year2_${index - 1}"  placeholder="έτος 2" />
+                <br>
                 <input class="govgr-input" id="ergasiakes_sxeseis_year3_${
                   index - 1
-                }" type="text" name="ergasiakes_sxeseis_year3_${index - 1}" style="width:40%;" placeholder="χρονιά 3"/>
+                }" type="text" name="ergasiakes_sxeseis_year3_${index - 1}"  placeholder="έτος 3"/>
+                <br>
                 <input class="govgr-input" id="ergasiakes_sxeseis_year4_${
                   index - 1
-                }" type="text" name="ergasiakes_sxeseis_year4_${index - 1}" style="width:40%;" placeholder="χρονιά 4"/>
+                }" type="text" name="ergasiakes_sxeseis_year4_${index - 1}"  placeholder="έτος 4"/>
+                <br>
                 <input class="govgr-input" id="ergasiakes_sxeseis_year5_${
                   index - 1
-                }" type="text" name="ergasiakes_sxeseis_year5_${index - 1}" style="width:40%;" placeholder="χρονιά 5"/>
+                }" type="text" name="ergasiakes_sxeseis_year5_${index - 1}"  placeholder="έτος 5"/>
                 
             </td>
             <td>
@@ -711,8 +724,8 @@ $("#add_row_relations").on("click", function () {
                 <input class="govgr-input" id="ergasiakes_sxeseis_stoxos_${
                   index - 1
                 }" type="text" name="ergasiakes_sxeseis_stoxos_${index - 1}" />                               
-                <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
             </td>            
+            <td><button class="btn remove float-right" type="button"><img src="/img/delete.png" width="50px"></button></td>
         </tr>`);
   populateIndexSelect(
     `ergasiakes_sxeseis_index${index - 1}`,
@@ -723,29 +736,33 @@ $("#add_row_relations").on("click", function () {
 $("#add_row_employment").on("click", function () {
   let index = $("#apasxolisi_table_tbody").prop("rows").length;
   $("#apasxolisi_table_tbody").append(`
-        <tr id="R${++index}">
+        <tr class="govgr-table__row" id="R${++index}">
             <td>
                 <select id="apasxolisi_index${
                   index - 1
-                }" name="apasxolisi_index${index - 1}" class="govgr-select" style="width:40%;" ></select>
+                }" name="apasxolisi_index${index - 1}" class="govgr-select" style="width:100%;" ></select>
             </td>
             <td>
                 <br>
                 <input class="govgr-input" id="apasxolisi_year1_${
                   index - 1
-                }" type="text" name="apasxolisi_year1_${index - 1}" style="width:40%;" placeholder="χρονιά 1"/>
+                }" type="text" name="apasxolisi_year1_${index - 1}"  placeholder="έτος 1"/>
+                <br>
                 <input class="govgr-input" id="apasxolisi_year2_${
                   index - 1
-                }" type="text" name="apasxolisi_year2_${index - 1}" style="width:40%;" placeholder="χρονιά 2" />
+                }" type="text" name="apasxolisi_year2_${index - 1}"  placeholder="έτος 2" />
+                <br>
                 <input class="govgr-input" id="apasxolisi_year3_${
                   index - 1
-                }" type="text" name="apasxolisi_year3_${index - 1}" style="width:40%;" placeholder="χρονιά 3"/>
+                }" type="text" name="apasxolisi_year3_${index - 1}"  placeholder="έτος 3"/>
+                <br>
                 <input class="govgr-input" id="apasxolisi_year4_${
                   index - 1
-                }" type="text" name="apasxolisi_year4_${index - 1}" style="width:40%;" placeholder="χρονιά 4"/>
+                }" type="text" name="apasxolisi_year4_${index - 1}"  placeholder="έτος 4"/>
+                <br>
                 <input class="govgr-input" id="apasxolisi_year5_${
                   index - 1
-                }" type="text" name="apasxolisi_year5_${index - 1}" style="width:40%;" placeholder="χρονιά 5"/>
+                }" type="text" name="apasxolisi_year5_${index - 1}"  placeholder="έτος 5"/>
                 
             </td>
             <td>
@@ -757,8 +774,8 @@ $("#add_row_employment").on("click", function () {
                 <input class="govgr-input" id="apasxolisi_stoxos_${
                   index - 1
                 }" type="text" name="apasxolisi_stoxos_${index - 1}" />                               
-                <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
             </td>            
+            <td><button class="btn remove float-right" type="button"><img src="/img/delete.png" width="50px"></button></td>
         </tr>`);
   populateIndexSelect(`apasxolisi_index${index - 1}`, "ΑΠΑΣΧΟΛΗΣΗ");
 });
@@ -766,29 +783,32 @@ $("#add_row_employment").on("click", function () {
 $("#add_row_insurance").on("click", function () {
   let index = $("#koinoniki_asfalisi_table_tbody").prop("rows").length;
   $("#koinoniki_asfalisi_table_tbody").append(`
-        <tr id="R${++index}">
+        <tr class="govgr-table__row" id="R${++index}">
             <td>
                 <select id="koinoniki_asfalisi_index${
                   index - 1
-                }" name="koinoniki_asfalisi_index${index - 1}" class="govgr-select" style="width:40%;" ></select>
+                }" name="koinoniki_asfalisi_index${index - 1}" class="govgr-select" style="width:100%;" ></select>
             </td>
             <td>
-                <br>
                 <input class="govgr-input" id="koinoniki_asfalisi_year1_${
                   index - 1
-                }" type="text" name="koinoniki_asfalisi_year1_${index - 1}" style="width:40%;" placeholder="χρονιά 1"/>
+                }" type="text" name="koinoniki_asfalisi_year1_${index - 1}"  placeholder="έτος 1"/>
+                <br>
                 <input class="govgr-input" id="koinoniki_asfalisi_year2_${
                   index - 1
-                }" type="text" name="koinoniki_asfalisi_year2_${index - 1}" style="width:40%;" placeholder="χρονιά 2" />
+                }" type="text" name="koinoniki_asfalisi_year2_${index - 1}"  placeholder="έτος 2" />
+                <br>
                 <input class="govgr-input" id="koinoniki_asfalisi_year3_${
                   index - 1
-                }" type="text" name="koinoniki_asfalisi_year3_${index - 1}" style="width:40%;" placeholder="χρονιά 3"/>
+                }" type="text" name="koinoniki_asfalisi_year3_${index - 1}"  placeholder="έτος 3"/>
+                <br>
                 <input class="govgr-input" id="koinoniki_asfalisi_year4_${
                   index - 1
-                }" type="text" name="koinoniki_asfalisi_year4_${index - 1}" style="width:40%;" placeholder="χρονιά 4"/>
+                }" type="text" name="koinoniki_asfalisi_year4_${index - 1}"  placeholder="έτος 4"/>
+                <br>
                 <input class="govgr-input" id="koinoniki_asfalisi_year5_${
                   index - 1
-                }" type="text" name="koinoniki_asfalisi_year5_${index - 1}" style="width:40%;" placeholder="χρονιά 5"/>
+                }" type="text" name="koinoniki_asfalisi_year5_${index - 1}"  placeholder="έτος 5"/>
                 
             </td>
             <td>
@@ -800,8 +820,8 @@ $("#add_row_insurance").on("click", function () {
                 <input class="govgr-input" id="koinoniki_asfalisi_stoxos_${
                   index - 1
                 }" type="text" name="koinoniki_asfalisi_stoxos_${index - 1}" />                               
-                <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
             </td>            
+            <td><button class="btn remove float-right" type="button"><img src="/img/delete.png" width="50px"></button></td>
         </tr>`);
   populateIndexSelect(
     `koinoniki_asfalisi_index${index - 1}`,
@@ -812,29 +832,33 @@ $("#add_row_insurance").on("click", function () {
 $("#add_row_welfare").on("click", function () {
   let index = $("#koinoniki_pronoia_table_tbody").prop("rows").length;
   $("#koinoniki_pronoia_table_tbody").append(`
-        <tr id="R${++index}">
+        <tr class="govgr-table__row" id="R${++index}">
             <td>
                 <select id="koinoniki_pronoia_index${
                   index - 1
-                }" name="koinoniki_pronoia_index${index - 1}" class="govgr-select" style="width:40%;" ></select>
+                }" name="koinoniki_pronoia_index${index - 1}" class="govgr-select" style="width:100%;" ></select>
             </td>
             <td>
                 <br>
                 <input class="govgr-input" id="koinoniki_pronoia_year1_${
                   index - 1
-                }" type="text" name="koinoniki_pronoia_year1_${index - 1}" style="width:40%;" placeholder="χρονιά 1"/>
+                }" type="text" name="koinoniki_pronoia_year1_${index - 1}"  placeholder="έτος 1"/>
+                <br>
                 <input class="govgr-input" id="koinoniki_pronoia_year2_${
                   index - 1
-                }" type="text" name="koinoniki_pronoia_year2_${index - 1}" style="width:40%;" placeholder="χρονιά 2" />
+                }" type="text" name="koinoniki_pronoia_year2_${index - 1}"  placeholder="έτος 2" />
+                <br>
                 <input class="govgr-input" id="koinoniki_pronoia_year3_${
                   index - 1
-                }" type="text" name="koinoniki_pronoia_year3_${index - 1}" style="width:40%;" placeholder="χρονιά 3"/>
+                }" type="text" name="koinoniki_pronoia_year3_${index - 1}"  placeholder="έτος 3"/>
+                <br>
                 <input class="govgr-input" id="koinoniki_pronoia_year4_${
                   index - 1
-                }" type="text" name="koinoniki_pronoia_year4_${index - 1}" style="width:40%;" placeholder="χρονιά 4"/>
+                }" type="text" name="koinoniki_pronoia_year4_${index - 1}"  placeholder="έτος 4"/>
+                <br>
                 <input class="govgr-input" id="koinoniki_pronoia_year5_${
                   index - 1
-                }" type="text" name="koinoniki_pronoia_year5_${index - 1}" style="width:40%;" placeholder="χρονιά 5"/>
+                }" type="text" name="koinoniki_pronoia_year5_${index - 1}"  placeholder="έτος 5"/>
                 
             </td>
             <td>
@@ -846,8 +870,8 @@ $("#add_row_welfare").on("click", function () {
                 <input class="govgr-input" id="koinoniki_pronoia_stoxos_${
                   index - 1
                 }" type="text" name="koinoniki_pronoia_stoxos_${index - 1}" />                               
-                <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
             </td>            
+            <td><button class="btn remove float-right" type="button"><img src="/img/delete.png" width="50px"></button></td>
         </tr>`);
   populateIndexSelect(
     `koinoniki_pronoia_index${index - 1}`,
@@ -858,29 +882,33 @@ $("#add_row_welfare").on("click", function () {
 $("#add_row_healthcare").on("click", function () {
   let index = $("#ygeia_table_tbody").prop("rows").length;
   $("#ygeia_table_tbody").append(`
-        <tr id="R${++index}">
+        <tr class="govgr-table__row" id="R${++index}">
             <td>
                 <select id="ygeia_index${
                   index - 1
-                }" name="ygeia_index${index - 1}" class="govgr-select" style="width:40%;" ></select>
+                }" name="ygeia_index${index - 1}" class="govgr-select" style="width:100%;" ></select>
             </td>
             <td>
                 <br>
                 <input class="govgr-input" id="ygeia_year1_${
                   index - 1
-                }" type="text" name="ygeia_year1_${index - 1}" style="width:40%;" placeholder="χρονιά 1"/>
+                }" type="text" name="ygeia_year1_${index - 1}"  placeholder="έτος 1"/>
+                <br>
                 <input class="govgr-input" id="ygeia_year2_${
                   index - 1
-                }" type="text" name="ygeia_year2_${index - 1}" style="width:40%;" placeholder="χρονιά 2" />
+                }" type="text" name="ygeia_year2_${index - 1}"  placeholder="έτος 2" />
+                <br>
                 <input class="govgr-input" id="ygeia_year3_${
                   index - 1
-                }" type="text" name="ygeia_year3_${index - 1}" style="width:40%;" placeholder="χρονιά 3"/>
+                }" type="text" name="ygeia_year3_${index - 1}"  placeholder="έτος 3"/>
+                <br>
                 <input class="govgr-input" id="ygeia_year4_${
                   index - 1
-                }" type="text" name="ygeia_year4_${index - 1}" style="width:40%;" placeholder="χρονιά 4"/>
+                }" type="text" name="ygeia_year4_${index - 1}"  placeholder="έτος 4"/>
+                <br>
                 <input class="govgr-input" id="ygeia_year5_${
                   index - 1
-                }" type="text" name="ygeia_year5_${index - 1}" style="width:40%;" placeholder="χρονιά 5"/>
+                }" type="text" name="ygeia_year5_${index - 1}"  placeholder="έτος 5"/>
                 
             </td>
             <td>
@@ -892,8 +920,8 @@ $("#add_row_healthcare").on("click", function () {
                 <input class="govgr-input" id="ygeia_stoxos_${
                   index - 1
                 }" type="text" name="ygeia_stoxos_${index - 1}" />                               
-                <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
             </td>            
+            <td><button class="btn remove float-right" type="button"><img src="/img/delete.png" width="50px"></button></td>
         </tr>`);
   populateIndexSelect(`ygeia_index${index - 1}`, "ΥΓΕΙΑ");
 });
@@ -901,29 +929,33 @@ $("#add_row_healthcare").on("click", function () {
 $("#add_row_equality").on("click", function () {
   let index = $("#isotita_fylwn_table_tbody").prop("rows").length;
   $("#isotita_fylwn_table_tbody").append(`
-        <tr id="R${++index}">
+        <tr class="govgr-table__row" id="R${++index}">
             <td>
                 <select id="isotita_fylwn_index${
                   index - 1
-                }" name="isotita_fylwn_index${index - 1}" class="govgr-select" style="width:40%;" ></select>
+                }" name="isotita_fylwn_index${index - 1}" class="govgr-select" style="width:100%;" ></select>
             </td>
             <td>
                 <br>
                 <input class="govgr-input" id="isotita_fylwn_year1_${
                   index - 1
-                }" type="text" name="isotita_fylwn_year1_${index - 1}" style="width:40%;" placeholder="χρονιά 1"/>
+                }" type="text" name="isotita_fylwn_year1_${index - 1}"  placeholder="έτος 1"/>
+                <br>
                 <input class="govgr-input" id="isotita_fylwn_year2_${
                   index - 1
-                }" type="text" name="isotita_fylwn_year2_${index - 1}" style="width:40%;" placeholder="χρονιά 2" />
+                }" type="text" name="isotita_fylwn_year2_${index - 1}"  placeholder="έτος 2" />
+                <br>
                 <input class="govgr-input" id="isotita_fylwn_year3_${
                   index - 1
-                }" type="text" name="isotita_fylwn_year3_${index - 1}" style="width:40%;" placeholder="χρονιά 3"/>
+                }" type="text" name="isotita_fylwn_year3_${index - 1}"  placeholder="έτος 3"/>
+                <br>
                 <input class="govgr-input" id="isotita_fylwn_year4_${
                   index - 1
-                }" type="text" name="isotita_fylwn_year4_${index - 1}" style="width:40%;" placeholder="χρονιά 4"/>
+                }" type="text" name="isotita_fylwn_year4_${index - 1}"  placeholder="έτος 4"/>
+                <br>
                 <input class="govgr-input" id="isotita_fylwn_year5_${
                   index - 1
-                }" type="text" name="isotita_fylwn_year5_${index - 1}" style="width:40%;" placeholder="χρονιά 5"/>
+                }" type="text" name="isotita_fylwn_year5_${index - 1}"  placeholder="έτος 5"/>
                 
             </td>
             <td>
@@ -935,8 +967,8 @@ $("#add_row_equality").on("click", function () {
                 <input class="govgr-input" id="isotita_fylwn_stoxos_${
                   index - 1
                 }" type="text" name="isotita_fylwn_stoxos_${index - 1}" />                               
-                <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
             </td>            
+            <td><button class="btn remove float-right" type="button"><img src="/img/delete.png" width="50px"></button></td>
         </tr>`);
   populateIndexSelect(`isotita_fylwn_index${index - 1}`, "ΙΣΟΤΗΤΑ ΦΥΛΩΝ");
 });
@@ -946,29 +978,33 @@ $("#add_row_immigration").on("click", function () {
     "rows"
   ).length;
   $("#metanasteytiki_prosfygiki_politiki_table_tbody").append(`
-        <tr id="R${++index}">
+        <tr class="govgr-table__row" id="R${++index}">
             <td>
                 <select id="metanasteytiki_prosfygiki_politiki_index${
                   index - 1
-                }" name="metanasteytiki_prosfygiki_politiki_index${index - 1}" class="govgr-select" style="width:40%;" ></select>
+                }" name="metanasteytiki_prosfygiki_politiki_index${index - 1}" class="govgr-select" style="width:100%;" ></select>
             </td>
             <td>
                 <br>
                 <input class="govgr-input" id="metanasteytiki_prosfygiki_politiki_year1_${
                   index - 1
-                }" type="text" name="metanasteytiki_prosfygiki_politiki_year1_${index - 1}" style="width:40%;" placeholder="χρονιά 1"/>
+                }" type="text" name="metanasteytiki_prosfygiki_politiki_year1_${index - 1}"  placeholder="έτος 1"/>
+                <br>
                 <input class="govgr-input" id="metanasteytiki_prosfygiki_politiki_year2_${
                   index - 1
-                }" type="text" name="metanasteytiki_prosfygiki_politiki_year2_${index - 1}" style="width:40%;" placeholder="χρονιά 2" />
+                }" type="text" name="metanasteytiki_prosfygiki_politiki_year2_${index - 1}"  placeholder="έτος 2" />
+                <br>
                 <input class="govgr-input" id="metanasteytiki_prosfygiki_politiki_year3_${
                   index - 1
-                }" type="text" name="metanasteytiki_prosfygiki_politiki_year3_${index - 1}" style="width:40%;" placeholder="χρονιά 3"/>
+                }" type="text" name="metanasteytiki_prosfygiki_politiki_year3_${index - 1}"  placeholder="έτος 3"/>
+                <br>
                 <input class="govgr-input" id="metanasteytiki_prosfygiki_politiki_year4_${
                   index - 1
-                }" type="text" name="metanasteytiki_prosfygiki_politiki_year4_${index - 1}" style="width:40%;" placeholder="χρονιά 4"/>
+                }" type="text" name="metanasteytiki_prosfygiki_politiki_year4_${index - 1}"  placeholder="έτος 4"/>
+                <br>
                 <input class="govgr-input" id="metanasteytiki_prosfygiki_politiki_year5_${
                   index - 1
-                }" type="text" name="metanasteytiki_prosfygiki_politiki_year5_${index - 1}" style="width:40%;" placeholder="χρονιά 5"/>
+                }" type="text" name="metanasteytiki_prosfygiki_politiki_year5_${index - 1}"  placeholder="έτος 5"/>
                 
             </td>
             <td>
@@ -980,8 +1016,8 @@ $("#add_row_immigration").on("click", function () {
                 <input class="govgr-input" id="metanasteytiki_prosfygiki_politiki_stoxos_${
                   index - 1
                 }" type="text" name="metanasteytiki_prosfygiki_politiki_stoxos_${index - 1}" />                               
-                <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
             </td>            
+            <td><button class="btn remove float-right" type="button"><img src="/img/delete.png" width="50px"></button></td>
         </tr>`);
   populateIndexSelect(
     `metanasteytiki_prosfygiki_politiki_index${index - 1}`,
@@ -992,29 +1028,33 @@ $("#add_row_immigration").on("click", function () {
 $("#add_row_administration").on("click", function () {
   let index = $("#dimosia_dioikisi_table_tbody").prop("rows").length;
   $("#dimosia_dioikisi_table_tbody").append(`
-        <tr id="R${++index}">
+        <tr class="govgr-table__row" id="R${++index}">
             <td>
                 <select id="dimosia_dioikisi_index${
                   index - 1
-                }" name="dimosia_dioikisi_index${index - 1}" class="govgr-select" style="width:40%;" ></select>
+                }" name="dimosia_dioikisi_index${index - 1}" class="govgr-select" style="width:100%;" ></select>
             </td>
             <td>
                 <br>
                 <input class="govgr-input" id="dimosia_dioikisi_year1_${
                   index - 1
-                }" type="text" name="dimosia_dioikisi_year1_${index - 1}" style="width:40%;" placeholder="χρονιά 1"/>
+                }" type="text" name="dimosia_dioikisi_year1_${index - 1}"  placeholder="έτος 1"/>
+                <br>
                 <input class="govgr-input" id="dimosia_dioikisi_year2_${
                   index - 1
-                }" type="text" name="dimosia_dioikisi_year2_${index - 1}" style="width:40%;" placeholder="χρονιά 2" />
+                }" type="text" name="dimosia_dioikisi_year2_${index - 1}"  placeholder="έτος 2" />
+                <br>
                 <input class="govgr-input" id="dimosia_dioikisi_year3_${
                   index - 1
-                }" type="text" name="dimosia_dioikisi_year3_${index - 1}" style="width:40%;" placeholder="χρονιά 3"/>
+                }" type="text" name="dimosia_dioikisi_year3_${index - 1}"  placeholder="έτος 3"/>
+                <br>
                 <input class="govgr-input" id="dimosia_dioikisi_year4_${
                   index - 1
-                }" type="text" name="dimosia_dioikisi_year4_${index - 1}" style="width:40%;" placeholder="χρονιά 4"/>
+                }" type="text" name="dimosia_dioikisi_year4_${index - 1}"  placeholder="έτος 4"/>
+                <br>
                 <input class="govgr-input" id="dimosia_dioikisi_year5_${
                   index - 1
-                }" type="text" name="dimosia_dioikisi_year5_${index - 1}" style="width:40%;" placeholder="χρονιά 5"/>
+                }" type="text" name="dimosia_dioikisi_year5_${index - 1}"  placeholder="έτος 5"/>
                 
             </td>
             <td>
@@ -1025,9 +1065,9 @@ $("#add_row_administration").on("click", function () {
             <td>
                 <input class="govgr-input" id="dimosia_dioikisi_stoxos_${
                   index - 1
-                }" type="text" name="dimosia_dioikisi_stoxos_${index - 1}" />                               
-                <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
+                }" type="text" name="dimosia_dioikisi_stoxos_${index - 1}" />                                               
             </td>            
+            <td><button class="btn remove float-right" type="button"><img src="/img/delete.png" width="50px"></button></td>
         </tr>`);
   populateIndexSelect(`dimosia_dioikisi_index${index - 1}`, "ΔΗΜΟΣΙΑ ΔΙΟΙΚΗΣΗ");
 });
@@ -1035,30 +1075,33 @@ $("#add_row_administration").on("click", function () {
 $("#add_row_security").on("click", function () {
   let index = $("#dimosia_asfaleia_table_tbody").prop("rows").length;
   $("#dimosia_asfaleia_table_tbody").append(`
-        <tr id="R${++index}">
+        <tr class="govgr-table__row" id="R${++index}">
             <td>
                 <select id="dimosia_asfaleia_index${
                   index - 1
-                }" name="dimosia_asfaleia_index${index - 1}" class="govgr-select" style="width:40%;" ></select>
+                }" name="dimosia_asfaleia_index${index - 1}" class="govgr-select" style="width:100%;" ></select>
             </td>
             <td>
                 <br>
                 <input class="govgr-input" id="dimosia_asfaleia_year1_${
                   index - 1
-                }" type="text" name="dimosia_asfaleia_year1_${index - 1}" style="width:40%;" placeholder="χρονιά 1"/>
+                }" type="text" name="dimosia_asfaleia_year1_${index - 1}"  placeholder="έτος 1"/>
+                <br>
                 <input class="govgr-input" id="dimosia_asfaleia_year2_${
                   index - 1
-                }" type="text" name="dimosia_asfaleia_year2_${index - 1}" style="width:40%;" placeholder="χρονιά 2" />
+                }" type="text" name="dimosia_asfaleia_year2_${index - 1}"  placeholder="έτος 2" />
+                <br>
                 <input class="govgr-input" id="dimosia_asfaleia_year3_${
                   index - 1
-                }" type="text" name="dimosia_asfaleia_year3_${index - 1}" style="width:40%;" placeholder="χρονιά 3"/>
+                }" type="text" name="dimosia_asfaleia_year3_${index - 1}"  placeholder="έτος 3"/>
+                <br>
                 <input class="govgr-input" id="dimosia_asfaleia_year4_${
                   index - 1
-                }" type="text" name="dimosia_asfaleia_year4_${index - 1}" style="width:40%;" placeholder="χρονιά 4"/>
+                }" type="text" name="dimosia_asfaleia_year4_${index - 1}"  placeholder="έτος 4"/>
+                <br>
                 <input class="govgr-input" id="dimosia_asfaleia_year5_${
                   index - 1
-                }" type="text" name="dimosia_asfaleia_year5_${index - 1}" style="width:40%;" placeholder="χρονιά 5"/>
-                
+                }" type="text" name="dimosia_asfaleia_year5_${index - 1}"  placeholder="έτος 5"/>                
             </td>
             <td>
                 <input class="govgr-input" id="dimosia_asfaleia_stoixeia_${
@@ -1069,8 +1112,8 @@ $("#add_row_security").on("click", function () {
                 <input class="govgr-input" id="dimosia_asfaleia_stoxos_${
                   index - 1
                 }" type="text" name="dimosia_asfaleia_stoxos_${index - 1}" />                               
-                <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
             </td>            
+            <td><button class="btn remove float-right" type="button"><img src="/img/delete.png" width="50px"></button></td>
         </tr>`);
   populateIndexSelect(`dimosia_asfaleia_index${index - 1}`, "ΔΗΜΟΣΙΑ ΑΣΦΑΛΕΙΑ");
 });
@@ -1078,30 +1121,33 @@ $("#add_row_security").on("click", function () {
 $("#add_row_justice").on("click", function () {
   let index = $("#dikaiosini_table_tbody").prop("rows").length;
   $("#dikaiosini_table_tbody").append(`
-        <tr id="R${++index}">
+        <tr class="govgr-table__row" id="R${++index}">
             <td>
                 <select id="dikaiosini_index${
                   index - 1
-                }" name="dikaiosini_index${index - 1}" class="govgr-select" style="width:40%;" ></select>
+                }" name="dikaiosini_index${index - 1}" class="govgr-select" style="width:100%;" ></select>
             </td>
             <td>
                 <br>
                 <input class="govgr-input" id="dikaiosini_year1_${
                   index - 1
-                }" type="text" name="dikaiosini_year1_${index - 1}" style="width:40%;" placeholder="χρονιά 1"/>
+                }" type="text" name="dikaiosini_year1_${index - 1}"  placeholder="έτος 1"/>
+                <br>
                 <input class="govgr-input" id="dikaiosini_year2_${
                   index - 1
-                }" type="text" name="dikaiosini_year2_${index - 1}" style="width:40%;" placeholder="χρονιά 2" />
+                }" type="text" name="dikaiosini_year2_${index - 1}"  placeholder="έτος 2" />
+                <br>
                 <input class="govgr-input" id="dikaiosini_year3_${
                   index - 1
-                }" type="text" name="dikaiosini_year3_${index - 1}" style="width:40%;" placeholder="χρονιά 3"/>
+                }" type="text" name="dikaiosini_year3_${index - 1}"  placeholder="έτος 3"/>
+                <br>
                 <input class="govgr-input" id="dikaiosini_year4_${
                   index - 1
-                }" type="text" name="dikaiosini_year4_${index - 1}" style="width:40%;" placeholder="χρονιά 4"/>
+                }" type="text" name="dikaiosini_year4_${index - 1}"  placeholder="έτος 4"/>
+                <br>
                 <input class="govgr-input" id="dikaiosini_year5_${
                   index - 1
-                }" type="text" name="dikaiosini_year5_${index - 1}" style="width:40%;" placeholder="χρονιά 5"/>
-                
+                }" type="text" name="dikaiosini_year5_${index - 1}"  placeholder="έτος 5"/>                
             </td>
             <td>
                 <input class="govgr-input" id="dikaiosini_stoixeia_${
@@ -1112,8 +1158,8 @@ $("#add_row_justice").on("click", function () {
                 <input class="govgr-input" id="dikaiosini_stoxos_${
                   index - 1
                 }" type="text" name="dikaiosini_stoxos_${index - 1}" />                               
-                <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
             </td>            
+            <td><button class="btn remove float-right" type="button"><img src="/img/delete.png" width="50px"></button></td>
         </tr>`);
   populateIndexSelect(`dikaiosini_index${index - 1}`, "ΔΙΚΑΙΟΣΥΝΗ");
 });
@@ -1121,29 +1167,33 @@ $("#add_row_justice").on("click", function () {
 $("#add_row_investments").on("click", function () {
   let index = $("#ependytiki_drastiriotita_table_tbody").prop("rows").length;
   $("#ependytiki_drastiriotita_table_tbody").append(`
-        <tr id="R${++index}">
+        <tr class="govgr-table__row" id="R${++index}">
             <td>
                 <select id="ependytiki_drastiriotita_index${
                   index - 1
-                }" name="ependytiki_drastiriotita_index${index - 1}" class="govgr-select" style="width:40%;" ></select>
+                }" name="ependytiki_drastiriotita_index${index - 1}" class="govgr-select" style="width:100%;" ></select>
             </td>
             <td>
                 <br>
                 <input class="govgr-input" id="ependytiki_drastiriotita_year1_${
                   index - 1
-                }" type="text" name="ependytiki_drastiriotita_year1_${index - 1}" style="width:40%;" placeholder="χρονιά 1"/>
+                }" type="text" name="ependytiki_drastiriotita_year1_${index - 1}"  placeholder="έτος 1"/>
+                <br>
                 <input class="govgr-input" id="ependytiki_drastiriotita_year2_${
                   index - 1
-                }" type="text" name="ependytiki_drastiriotita_year2_${index - 1}" style="width:40%;" placeholder="χρονιά 2" />
+                }" type="text" name="ependytiki_drastiriotita_year2_${index - 1}"  placeholder="έτος 2" />
+                <br>
                 <input class="govgr-input" id="ependytiki_drastiriotita_year3_${
                   index - 1
-                }" type="text" name="ependytiki_drastiriotita_year3_${index - 1}" style="width:40%;" placeholder="χρονιά 3"/>
+                }" type="text" name="ependytiki_drastiriotita_year3_${index - 1}"  placeholder="έτος 3"/>
+                <br>
                 <input class="govgr-input" id="ependytiki_drastiriotita_year4_${
                   index - 1
-                }" type="text" name="ependytiki_drastiriotita_year4_${index - 1}" style="width:40%;" placeholder="χρονιά 4"/>
+                }" type="text" name="ependytiki_drastiriotita_year4_${index - 1}"  placeholder="έτος 4"/>
+                <br>
                 <input class="govgr-input" id="ependytiki_drastiriotita_year5_${
                   index - 1
-                }" type="text" name="ependytiki_drastiriotita_year5_${index - 1}" style="width:40%;" placeholder="χρονιά 5"/>
+                }" type="text" name="ependytiki_drastiriotita_year5_${index - 1}"  placeholder="έτος 5"/>
                 
             </td>
             <td>
@@ -1155,8 +1205,8 @@ $("#add_row_investments").on("click", function () {
                 <input class="govgr-input" id="ependytiki_drastiriotita_stoxos_${
                   index - 1
                 }" type="text" name="ependytiki_drastiriotita_stoxos_${index - 1}" />                               
-                <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
             </td>            
+            <td><button class="btn remove float-right" type="button"><img src="/img/delete.png" width="50px"></button></td>
         </tr>`);
   populateIndexSelect(
     `ependytiki_drastiriotita_index${index - 1}`,
@@ -1167,30 +1217,33 @@ $("#add_row_investments").on("click", function () {
 $("#add_row_energy").on("click", function () {
   let index = $("#perivallon_energeia_table_tbody").prop("rows").length;
   $("#perivallon_energeia_table_tbody").append(`
-        <tr id="R${++index}">
+        <tr class="govgr-table__row" id="R${++index}">
             <td>
                 <select id="perivallon_energeia_index${
                   index - 1
-                }" name="perivallon_energeia_index${index - 1}" class="govgr-select" style="width:40%;" ></select>
+                }" name="perivallon_energeia_index${index - 1}" class="govgr-select" style="width:100%;" ></select>
             </td>
             <td>
                 <br>
                 <input class="govgr-input" id="perivallon_energeia_year1_${
                   index - 1
-                }" type="text" name="perivallon_energeia_year1_${index - 1}" style="width:40%;" placeholder="χρονιά 1"/>
+                }" type="text" name="perivallon_energeia_year1_${index - 1}"  placeholder="έτος 1"/>
+                <br>
                 <input class="govgr-input" id="perivallon_energeia_year2_${
                   index - 1
-                }" type="text" name="perivallon_energeia_year2_${index - 1}" style="width:40%;" placeholder="χρονιά 2" />
+                }" type="text" name="perivallon_energeia_year2_${index - 1}"  placeholder="έτος 2" />
+                <br>
                 <input class="govgr-input" id="perivallon_energeia_year3_${
                   index - 1
-                }" type="text" name="perivallon_energeia_year3_${index - 1}" style="width:40%;" placeholder="χρονιά 3"/>
+                }" type="text" name="perivallon_energeia_year3_${index - 1}"  placeholder="έτος 3"/>
+                <br>
                 <input class="govgr-input" id="perivallon_energeia_year4_${
                   index - 1
-                }" type="text" name="perivallon_energeia_year4_${index - 1}" style="width:40%;" placeholder="χρονιά 4"/>
+                }" type="text" name="perivallon_energeia_year4_${index - 1}"  placeholder="έτος 4"/>
+                <br>
                 <input class="govgr-input" id="perivallon_energeia_year5_${
                   index - 1
-                }" type="text" name="perivallon_energeia_year5_${index - 1}" style="width:40%;" placeholder="χρονιά 5"/>
-                
+                }" type="text" name="perivallon_energeia_year5_${index - 1}"  placeholder="έτος 5"/>                
             </td>
             <td>
                 <input class="govgr-input" id="perivallon_energeia_stoixeia_${
@@ -1201,8 +1254,8 @@ $("#add_row_energy").on("click", function () {
                 <input class="govgr-input" id="perivallon_energeia_stoxos_${
                   index - 1
                 }" type="text" name="perivallon_energeia_stoxos_${index - 1}" />                               
-                <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="20px"></button>
             </td>            
+            <td><button class="btn remove float-right" type="button"><img src="/img/delete.png" width="50px"></button></td>
         </tr>`);
   populateIndexSelect(
     `perivallon_energeia_index${index - 1}`,

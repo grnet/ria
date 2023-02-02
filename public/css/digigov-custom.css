@@ -66,6 +66,13 @@ for hover ----.link {
     }
 }
 
+@media (min-width:768px) {
+    .govgr-grid {
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        gap: 3rem
+    }
+}
+
 .govgr-grid-column-2-4 {
     grid-column: span 2 / span 2 ;
     display: flex;
@@ -217,6 +224,11 @@ hr {
   padding:0rem;
 }
 
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 .govgr-dropdown__content > li{
  border-bottom-width:1px;
@@ -393,17 +405,18 @@ text-decoration:underline;
 .tooltip_text {
 
     background: #fff;
-  color: #0f5cae;
-  /*! font-weight: bold; */
-  padding: 4px;
-  font-size: 13px;
-  border-radius: 4px;
-  /*! width: 50%; */
-  display: none;
+    color: #0f5cae;
+    /*! font-weight: bold; */
+    padding: 4px;
+    font-size: 13px;
+    border-radius: 4px;
+    /*! width: 50%; */
+    display: none;
 
-  border: 1px solid;
-  border-color: #0f5cae;
-      }
+    border: 1px solid;
+    border-color: #0f5cae;
+    z-index: 999999;
+}
 
 .tooltip_text[data-show] {
         display: block;
