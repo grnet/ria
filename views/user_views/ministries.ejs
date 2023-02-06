@@ -23,8 +23,8 @@
                 <h1 class="govgr-heading-xl">Νέο Υπουργείο</h1>
                 <div class="govgr-field">
                     <label class="govgr-label" for="ministryName"> <span>Όνομα Υπουργείου:</span>
-                        <input class="govgr-input govgr-!-width-one-half" type="text" id="ministryName"
-                            name="ministryName" required minlength="10" />
+                        <input class="govgr-input govgr-!-width-one-half" type="text" id="ministryName" name="ministry"
+                            required minlength="10" />
                     </label>
                 </div>
                 <div class="govgr-button-group">
@@ -36,27 +36,26 @@
                 <h1 class="govgr-heading-xl">Νέος Υπουργός</h1>
                 <div class="govgr-field">
                     <label class="govgr-label" for="ministerName"> <span>Ονοματεπώνυμο Υπουργού:</span>
-                        <input class="govgr-input govgr-!-width-one-half" type="text" id="ministerName"
-                            name="ministerName" required minlength="10" />
+                        <input class="govgr-input govgr-!-width-one-half" type="text" id="ministerName" name="minister"
+                            required minlength="10" />
                     </label>
                 </div>
                 <div class="govgr-field">
                     <label class="govgr-label" for="ministerRole"> <span>Ρόλος Υπουργού:</span>
-                        <input class="govgr-input govgr-!-width-one-half" type="text" id="ministerRole"
-                            name="ministerRole" />
+                        <input class="govgr-input govgr-!-width-one-half" type="text" id="ministerRole" name="role" />
                     </label>
                 </div>
                 <div class="govgr-field">
                     <label class="govgr-label" for="ministerResponsibility"> <span>Αρμοδιότητα:</span>
                         <input class="govgr-input govgr-!-width-one-half" type="text" id="ministerResponsibility"
-                            name="ministerResponsibility" />
+                            name="responsibility" />
                     </label>
                 </div>
                 <div class="govgr-field">
                     <label class="govgr-label" for="ministerMinistry">
                         Υπουργείο:
-                        <select class="govgr-select govgr-!-width-one-half" id="ministerMinistry"
-                            name="ministerMinistry" required>
+                        <select class="govgr-select govgr-!-width-one-half" id="ministerMinistry" name="ministry"
+                            required>
                             <option selected disabled value="">Eπιλογή</option>
                         </select>
                     </label>
@@ -80,7 +79,7 @@
                 <div class="govgr-field">
                     <label class="govgr-label" for="newMinistryName"> <span>Όνομα Υπουργείου:</span>
                         <textarea class="govgr-input govgr-!-width-one-half" type="text" id="newMinistryName"
-                            name="newMinistryName" required minlength="10"></textarea>
+                            name="ministry" required minlength="10"></textarea>
                     </label>
                 </div>
                 <div class="govgr-button-group">
@@ -102,19 +101,19 @@
                     <div class="govgr-field">
                         <label class="govgr-label" for="editMinisterName"> <span>Ονοματεπώνυμο Υπουργού:</span>
                             <input class="govgr-input govgr-!-width-one-half" type="text" id="editMinisterName"
-                                name="editMinisterName" required minlength="10" />
+                                name="name" required minlength="10" />
                         </label>
                     </div>
                     <div class="govgr-field">
                         <label class="govgr-label" for="editMinisterRole"> <span>Ρόλος Υπουργού:</span>
                             <input class="govgr-input govgr-!-width-one-half" type="text" id="editMinisterRole"
-                                name="editMinisterRole" />
+                                name="role" />
                         </label>
                     </div>
                     <div class="govgr-field">
                         <label class="govgr-label" for="editMinisterResponsibility"> <span>Αρμοδιότητα:</span>
-                            <input class="govgr-input govgr-!-width-one-half" type="text"
-                                id="editMinisterResponsibility" name="editMinisterResponsibility" />
+                            <input class="govgr-input govgr-!-width-one-half" type="text" id="responsibility"
+                                name="editMinisterResponsibility" />
                         </label>
                     </div>
                     <label class="govgr-label" for="editMinisterMinistry">
@@ -231,11 +230,11 @@
                 $('#editMinisterName').val(ministerNameValue);
             });
 
-            $("#createIndex").on("submit", function (ev) {
+            $("#createMinistry").on("submit", function (ev) {
                 ev.preventDefault();
                 $.ajax({
-                    url: `/user_views/indexes`,
-                    data: $('#createIndex').serialize(),
+                    url: `/user_views/ministries`,
+                    data: $('#createMinistry').serialize(),
                     error: function (error) {
                         console.log(error);
                     },
@@ -246,11 +245,26 @@
                 });
             });
 
-            $("#editIndex").on("submit", function (ev) {
+            $("#createMinister").on("submit", function (ev) {
                 ev.preventDefault();
                 $.ajax({
-                    url: `/user_views/indexes`,
-                    data: $('#editIndex').serialize(),
+                    url: `/user_views/ministries/minister`,
+                    data: $('#createMinister').serialize(),
+                    error: function (error) {
+                        console.log(error);
+                    },
+                    success: function (data) {
+                        window.location.href = "/user_views/dashboard";
+                    },
+                    type: 'POST'
+                });
+            });
+
+            $("#editMinistry").on("submit", function (ev) {
+                ev.preventDefault();
+                $.ajax({
+                    url: `/user_views/ministries`,
+                    data: $('#editMinistry').serialize(),
                     error: function (error) {
                         console.log(error);
                     },
@@ -261,11 +275,26 @@
                 });
             });
 
-            $("#deleteIndex").on("click", function (ev) {
+            $("#deleteMinistry").on("click", function (ev) {
                 ev.preventDefault();
                 $.ajax({
-                    url: `/user_views/indexes`,
-                    data: $('#editIndex').serialize(),
+                    url: `/user_views/ministries`,
+                    data: $('#editMinistry').serialize(),
+                    error: function (error) {
+                        console.log(error);
+                    },
+                    success: function (data) {
+                        window.location.href = "/user_views/dashboard";
+                    },
+                    type: 'DELETE'
+                });
+            });
+
+            $("#deleteMinister").on("click", function (ev) {
+                ev.preventDefault();
+                $.ajax({
+                    url: `/user_views/ministries/minister`,
+                    data: $('#editMinister').serialize(),
                     error: function (error) {
                         console.log(error);
                     },

@@ -119,14 +119,14 @@ routes.post(
   async (req, res, next) => {
     try {
       let result = await database.ministries
-        .create({ name: req.body.name })
+        .create({ name: req.body.ministry })
         .catch((err) => console.error(err));
       if (result) {
         res
-          .statusCode(200)
+          .status(200)
           .send({ msg: "Το Υπουργείο δημιουργήθηκε επιτυχώς." });
       } else {
-        res.statusCode(500).send({
+        res.status(500).send({
           msg: "Προέκυψε πρόβλημα κατά τη δημιουργία του Υπουργείου. Παρακαλώ προσπαθήστε ξανά.",
         });
       }
@@ -144,18 +144,19 @@ routes.post(
   authAgency,
   async (req, res, next) => {
     try {
-      let result = await database.ministries
+      const ministry = await database.ministries.findOne({where: {name: req.body.ministry}})
+      let result = await database.minister
         .create({
-          name: req.body.name,
+          name: req.body.minister,
           role: req.body.role,
           responsibility: req.body.responsibility,
-          ministryId: req.body.ministryId,
+          ministryId: ministry.id,
         })
         .catch((err) => console.error(err));
       if (result) {
-        res.statusCode(200).send({ msg: "Ο Υπουργός δημιουργήθηκε επιτυχώς." });
+        res.status(200).send({ msg: "Ο Υπουργός δημιουργήθηκε επιτυχώς." });
       } else {
-        res.statusCode(500).send({
+        res.status(500).send({
           msg: "Προέκυψε πρόβλημα κατά τη δημιουργία του Υπουργού. Παρακαλώ προσπαθήστε ξανά.",
         });
       }
@@ -174,12 +175,15 @@ routes.put(
   async (req, res, next) => {
     try {
       let result = await database.ministries
-        .update({ name: req.body.name }, { where: { id: req.params.id } })
+        .update(
+          { name: req.body.ministry },
+          { where: { name: req.body.editMinistrySelect } }
+        )
         .catch((err) => console.error(err));
       if (result) {
-        res.statusCode(200).send({ msg: "Το Υπουργείο ενημερώθηκε επιτυχώς." });
+        res.status(200).send({ msg: "Το Υπουργείο ενημερώθηκε επιτυχώς." });
       } else {
-        res.statusCode(500).send({
+        res.status(500).send({
           msg: "Προέκυψε πρόβλημα κατά την ενημέρωση του Υπουργείου. Παρακαλώ προσπαθήστε ξανά.",
         });
       }
@@ -203,17 +207,17 @@ routes.put(
             name: req.body.name,
             role: req.body.role,
             responsibility: req.body.responsibility,
-            ministryId: req.body.ministryId,
+            ministryId: req.body.ministry,
           },
-          { where: { id: req.params.id } }
+          { where: { name: req.body.editMinister } }
         )
         .catch((err) => console.error(err));
       if (result) {
         res
-          .statusCode(200)
+          .status(200)
           .send({ msg: "Τα στοιχεία του Υπουργού ενημερώθηκαν επιτυχώς." });
       } else {
-        res.statusCode(500).send({
+        res.status(500).send({
           msg: "Προέκυψε πρόβλημα κατά την ενημέρωση του Υπουργού. Παρακαλώ προσπαθήστε ξανά.",
         });
       }
@@ -233,12 +237,12 @@ routes.delete(
   async (req, res, next) => {
     try {
       let result = await database.minister
-        .destroy({ where: { id: req.params.id } })
+        .destroy({ where: { name: req.body.editMinister } })
         .catch((err) => console.error(err));
       if (result) {
-        res.statusCode(200).send({ msg: "Ο Υπουργός διαγράφηκε επιτυχώς." });
+        res.status(200).send({ msg: "Ο Υπουργός διαγράφηκε επιτυχώς." });
       } else {
-        res.statusCode(500).send({
+        res.status(500).send({
           msg: "Προέκυψε πρόβλημα κατά τη διαγραφή του Υπουργού. Παρακαλώ προσπαθήστε ξανά.",
         });
       }
@@ -257,12 +261,12 @@ routes.delete(
   async (req, res, next) => {
     try {
       let result = await database.ministries
-        .destroy({ where: { id: req.params.id } })
+        .destroy({ where: { name: req.body.editMinistrySelect } })
         .catch((err) => console.error(err));
       if (result) {
-        res.statusCode(200).send({ msg: "Το Υπουργείο διαγράφηκε επιτυχώς." });
+        res.status(200).send({ msg: "Το Υπουργείο διαγράφηκε επιτυχώς." });
       } else {
-        res.statusCode(500).send({
+        res.status(500).send({
           msg: "Προέκυψε πρόβλημα κατά τη διαγραφή του Υπουργείου. Παρακαλώ προσπαθήστε ξανά.",
         });
       }

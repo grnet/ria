@@ -11,53 +11,51 @@ const tablesLib = require("../lib/tables");
 
 exports.exportPDF = async function (req, res, next) {
   let data = req.diffData;
-  let ministers = tablesLib.getDiffMinisters(
-    data,
-    "minister_name",
-    "minister_surname",
-    "minister_ministry",
-    "minister_role",
-    "field_17"
+  const minister_names = await tablesLib.getTableData(["minister_name"], data);
+  const minister_ministries = await tablesLib.getTableData(
+    ["minister_ministry"],
+    data
   );
-  let field_17_ministers = tablesLib.getDiffMinisters(
-    data,
-    "field_17_minister_name",
-    "field_17_minister_surname",
-    "field_17_minister_ministry",
-    "field_17_minister_role"
-  );
-  let field_16_signatory = [
-    getTextDiff(data.field_16_genikos_onoma),
-    getTextDiff(data.field_16_genikos_epitheto),
-  ];
-  let field_9_data = tablesLib.getDataForPdfField9(
-    data,
-    "_header",
-    "_label",
-    "_secondHeader"
-  ); //data for field_9
-  let field_18 = tablesLib.getCheckboxTableData(data, "field_18");
-  let field_19 = tablesLib.getCheckboxTableData(data, "field_19");
-  let field_20 = tablesLib.getCheckboxTableData(data, "field_20");
+  const minister_roles = await tablesLib.getTableData(["minister_role"], data);
 
-  let field_14 = {
+  // const field_17_minister_names = await tablesLib.getTableData(
+  //   ["field_17_minister_name"],
+  //   accountingData
+  // );
+  // const field_17_minister_ministries = await tablesLib.getTableData(
+  //   ["field_17_minister_ministry"],
+  //   accountingData
+  // );
+  // const field_17_minister_roles = await tablesLib.getTableData(
+  //   ["field_17_minister_role"],
+  //   accountingData
+  // );
+
+  const field_9 = await tablesLib.getField9(data); //data for field_9
+  const field_19 = await tablesLib.getCheckboxTableData(data, "field_19");
+  const field_20 = await tablesLib.getCheckboxTableData(data, "field_20");
+
+  const field_14 = {
     columns: 2,
     headers: ["Άρθρο", "Στόχος"],
     keys: ["field_14_arthro", "field_14_stoxos"],
-    data: tablesLib.getTableData(["field_14_arthro", "field_14_stoxos"], data),
+    data: await tablesLib.getTableData(
+      ["field_14_arthro", "field_14_stoxos"],
+      data
+    ),
   };
 
-  let field_29 = {
+  const field_29 = {
     columns: 2,
     headers: ["Διατάξεις αξιολογούμενης ρύθμισης", "Υφιστάμενες διατάξεις"],
     keys: ["field_29_diatakseis_rythmisis", "field_29_yfistamenes_diatakseis"],
-    data: tablesLib.getTableData(
+    data: await tablesLib.getTableData(
       ["field_29_diatakseis_rythmisis", "field_29_yfistamenes_diatakseis"],
       data
     ),
   };
 
-  let field_30 = {
+  const field_30 = {
     columns: 2,
     headers: [
       "Διατάξεις αξιολογούμενης ρύθμισης που προβλέπουν κατάργηση",
@@ -67,13 +65,13 @@ exports.exportPDF = async function (req, res, next) {
       "field_30_diatakseis_katargisi",
       "field_30_katargoumenes_diatakseis",
     ],
-    data: tablesLib.getTableData(
+    data: await tablesLib.getTableData(
       ["field_30_diatakseis_katargisi", "field_30_katargoumenes_diatakseis"],
       data
     ),
   };
 
-  let field_31 = {
+  const field_31 = {
     columns: 3,
     headers: [
       "Σχετική διάταξη αξιολογούμενης ρύθμισης",
@@ -85,7 +83,7 @@ exports.exportPDF = async function (req, res, next) {
       "field_31_synarmodia_ypoyrgeia",
       "field_31_antikeimeno_synarmodiotitas",
     ],
-    data: tablesLib.getTableData(
+    data: await tablesLib.getTableData(
       [
         "field_31_sxetiki_diataksi",
         "field_31_synarmodia_ypoyrgeia",
@@ -95,7 +93,7 @@ exports.exportPDF = async function (req, res, next) {
     ),
   };
 
-  let field_32 = {
+  const field_32 = {
     columns: 5,
     headers: [
       "Εξουσιοδοτική διάταξη",
@@ -111,7 +109,7 @@ exports.exportPDF = async function (req, res, next) {
       "field_32_antikeimeno",
       "field_32_xronodiagramma",
     ],
-    data: tablesLib.getTableData(
+    data: await tablesLib.getTableData(
       [
         "field_32_eksousiodotiki_diataksi",
         "field_32_eidos_praksis",
@@ -756,7 +754,7 @@ exports.exportPDF = async function (req, res, next) {
             ],
           },
         },
-        createField9(field_9_data),
+        // createField9(field_9),
         {
           text: "\n\n",
         },
@@ -1228,7 +1226,7 @@ exports.exportPDF = async function (req, res, next) {
           },
         },
         { text: "\n\n" },
-        createSignatories(field_17_ministers),
+        // createSignatories(field_17_ministers),
         {
           text: "\n\n",
         },
@@ -1257,7 +1255,7 @@ exports.exportPDF = async function (req, res, next) {
             ],
           },
         },
-        createField18(field_18, data),
+        createField18(data),
         {
           table: {
             widths: ["100%"],
@@ -1297,7 +1295,7 @@ exports.exportPDF = async function (req, res, next) {
             ],
           },
         },
-        createField19(field_19, data),
+        // createField19(field_19, data),
         {
           table: {
             widths: ["100%"],
@@ -1337,7 +1335,7 @@ exports.exportPDF = async function (req, res, next) {
             ],
           },
         },
-        createField20(field_20),
+        // createField19(field_20, data),
         { text: "\n\n" },
         {
           table: {
@@ -2314,7 +2312,10 @@ exports.exportPDF = async function (req, res, next) {
           },
         },
         { text: "\n\n" },
-        createSignatories(ministers),
+        createSignatories(
+          minister_names.minister_name,
+          minister_roles.minister_role
+        ),
       ],
     ],
   };
@@ -2714,81 +2715,79 @@ function createTables(tableData, headers) {
   return table;
 }
 
-function createField9Tables(jsonTableData) {
+function getField9Table(data, header) {
   let tableRows = [];
-  for (i in jsonTableData) {
-    if (jsonTableData[i].header) {
-      tableRows.push([
-        {
-          text: getTextDiff(jsonTableData[i].header),
-          alignment: "center",
-          fillColor: "#87CEEB",
-          bold: true,
-        },
-        {
-          text: "Εξέλιξη την τελευταία 5ετία",
-          alignment: "center",
-          fillColor: "#87CEEB",
-          bold: true,
-          colSpan: 5,
-        },
+  tableRows.push([
+    {
+      text: header,
+      alignment: "center",
+      fillColor: "#87CEEB",
+      bold: true,
+    },
+    {
+      text: "Εξέλιξη την τελευταία 5ετία",
+      alignment: "center",
+      fillColor: "#87CEEB",
+      bold: true,
+      colSpan: 5,
+    },
 
-        {},
-        {},
-        {},
-        {},
-        {
-          text: "Πρόσφατα στοιχεία",
-          alignment: "center",
-          fillColor: "#87CEEB",
-          bold: true,
-        },
-        {
-          text: "Επιδιωκόμενος στόχος (3ετία)",
-          alignment: "center",
-          fillColor: "#87CEEB",
-          bold: true,
-        },
-      ]);
-    }
+    {},
+    {},
+    {},
+    {},
+    {
+      text: "Πρόσφατα στοιχεία",
+      alignment: "center",
+      fillColor: "#87CEEB",
+      bold: true,
+    },
+    {
+      text: "Επιδιωκόμενος στόχος (3ετία)",
+      alignment: "center",
+      fillColor: "#87CEEB",
+      bold: true,
+    },
+  ]);
+  for (i in data) {
     tableRows.push([
       {
-        text: isEmpty(getTextDiff(jsonTableData[i].label)),
+        text: data[i].row[0],
         alignment: "center",
         fontSize: 7,
       },
       {
-        text: getTextDiff(jsonTableData[i].values[0].value),
+        text: data[i].row[1],
         alignment: "center",
         fontSize: 7,
       },
       {
-        text: getTextDiff(jsonTableData[i].values[1].value),
+        text: data[i].row[2],
         alignment: "center",
         fontSize: 7,
       },
       {
-        text: getTextDiff(jsonTableData[i].values[2].value),
+        text: data[i].row[3],
         alignment: "center",
         fontSize: 7,
       },
       {
-        text: getTextDiff(jsonTableData[i].values[3].value),
+        text: data[i].row[4],
         alignment: "center",
         fontSize: 7,
       },
       {
-        text: getTextDiff(jsonTableData[i].values[4].value),
+        text: data[i].row[5],
         alignment: "center",
         fontSize: 7,
       },
       {
-        text: getTextDiff(jsonTableData[i].values[5].value),
+        text: data[i].row[6],
         alignment: "center",
         fontSize: 7,
       },
       {
-        text: getTextDiff(jsonTableData[i].values[6].value),
+        text: data[i].row[7],
         alignment: "center",
         fontSize: 7,
       },
@@ -2803,16 +2802,45 @@ function createField9Tables(jsonTableData) {
     },
   };
   return table;
-}
+};
 
-function createField9(josnData) {
+function createField9(data) {
   let tables = [];
-  for (i in josnData) {
-    tables.push({ text: "\n\n" });
-    tables.push(createField9Tables(josnData[i]));
+  const prefixes = [
+    "ekpaideysi",
+    "politismos",
+    "oikonomia",
+    "forologia",
+    "ergasiakes_sxeseis",
+    "apasxolisi",
+    "koinoniki_asfalisi",
+    "koinoniki_pronoia",
+    "ygeia",
+    "isotita_fylwn",
+    "metanasteytiki_prosfygiki_politiki",
+    "dimosia_dioikisi",
+    "dimosia_asfaleia",
+    "dikaiosini",
+    "ependytiki_drastiriotita",
+    "perivallon_energeia",
+  ];
+  const headers = {
+    ekpaideysi: "ΕΚΠΑΙΔΕΥΣΗ",
+    politismos: "ΠΟΛΙΤΙΣΜΟΣ",
+    dimosia_dioikisi: "ΔΗΜΟΣΙΑ ΔΙΟΙΚΗΣΗ",
+    dimosia_asfaleia: "ΔΗΜΟΣΙΑ ΑΣΦΑΛΕΙΑ",
+    dikaiosini: "ΔΙΚΑΙΟΣΥΝΗ",
+  };
+  for (i in prefixes) {
+    if (data[`${prefixes[i]}`].length > 0) {
+      tables.push(
+        getField9Table(data[`${prefixes[i]}`], headers[`${prefixes[i]}`])
+      );
+      tables.push({ text: "\n\n" });
+    }
   }
   return tables;
-}
+};
 
 function checkboxValue(array) {
   if (Array.isArray(array)) {
@@ -2822,30 +2850,12 @@ function checkboxValue(array) {
     return "";
   }
   return "";
-}
+};
 
-function createField18(field_18, data) {
+function createField18(data) {
   let table = [];
   let fieldTable;
   let fieldData = [];
-  let sameCategoryCounter = 0;
-  let directCategories = [
-    "Αύξηση εσόδων",
-    "Μείωση δαπανών",
-    "Εξοικονόμηση χρόνου",
-    "Μεγαλύτερη αποδοτικότητα",
-    "Άλλο",
-  ];
-  let indirectCategories = [
-    "Βελτίωση παρεχόμενων υπηρεσιών",
-    "Δίκαιη μεταχείριση πολιτών",
-    "Αυξημένη αξιοπιστία / διαφάνεια θεσμών",
-    "Βελτιωμένη διαχείριση κινδύνων",
-    "Άλλο",
-  ];
-  let firstElementIndex = field_18.findIndex(
-    (x) => x[0].value === directCategories[0]
-  );
   table.push([
     { text: "", border: [false, false, false, false] },
     { text: "", border: [false, false, false, false] },
@@ -2892,80 +2902,167 @@ function createField18(field_18, data) {
       fontSize: 10,
     },
     {
-      text: directCategories[0],
+      text: "Αύξηση εσόδων",
       alignment: "center",
       fontSize: 8,
     },
     {
-      text: checkboxValue(field_18[firstElementIndex++]),
+      text: checkboxValue(data.field_18_amesa_esoda_thesmoi),
       alignment: "center",
     },
     {
-      text: checkboxValue(field_18[firstElementIndex++]),
+      text: checkboxValue(data.field_18_amesa_esoda_oikonomia),
       alignment: "center",
     },
     {
-      text: checkboxValue(field_18[firstElementIndex++]),
+      text: checkboxValue(data.field_18_amesa_esoda_kinonia),
       alignment: "center",
     },
     {
-      text: checkboxValue(field_18[firstElementIndex++]),
+      text: checkboxValue(data.field_18_amesa_esoda_perivallon),
       alignment: "center",
     },
     {
-      text: checkboxValue(field_18[firstElementIndex++]),
+      text: checkboxValue(data.field_18_amesa_esoda_nisiwtikotita),
       alignment: "center",
     },
   ]);
-
-  for (let i = 1; i < directCategories.length; i++) {
-    for (let j in field_18) {
-      if (directCategories[i] === field_18[j][0].value) {
-        if (directCategories[i] === "Άλλο") {
-          sameCategoryCounter++;
-        }
-        table.push([
-          {
-            text: "",
-          },
-          {
-            text: "",
-          },
-          {
-            text: directCategories[i],
-            alignment: "center",
-            fontSize: 8,
-          },
-          {
-            text: checkboxValue(field_18[++j]),
-            alignment: "center",
-          },
-          {
-            text: checkboxValue(field_18[++j]),
-            alignment: "center",
-          },
-          {
-            text: checkboxValue(field_18[++j]),
-            alignment: "center",
-          },
-          {
-            text: checkboxValue(field_18[++j]),
-            alignment: "center",
-          },
-          {
-            text: checkboxValue(field_18[++j]),
-            alignment: "center",
-          },
-        ]);
-        break;
-      }
-    }
-  }
-
-  firstElementIndex = field_18.findIndex(
-    (x) => x[0].value === indirectCategories[0]
+  table.push(
+    [
+      {
+        text: "",
+      },
+      {
+        text: "",
+      },
+      {
+        text: "Μείωση δαπανών",
+        alignment: "center",
+        fontSize: 8,
+      },
+      {
+        text: checkboxValue(data.field_18_amesa_dapanes_thesmoi),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_amesa_dapanes_oikonomia),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_amesa_dapanes_kinonia),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_amesa_dapanes_perivallon),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_amesa_dapanes_nisiwtikotita),
+        alignment: "center",
+      },
+    ],
+    [
+      {
+        text: "",
+      },
+      {
+        text: "",
+      },
+      {
+        text: "Εξοικονόμηση χρόνου",
+        alignment: "center",
+        fontSize: 8,
+      },
+      {
+        text: checkboxValue(data.field_18_amesa_eksikonomisi_xronou_thesmoi),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_amesa_eksikonomisi_xronou_oikonomia),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_amesa_eksikonomisi_xronou_kinonia),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_amesa_eksikonomisi_xronou_perivallon),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(
+          data.field_18_amesa_eksikonomisi_xronou_nisiwtikotita
+        ),
+        alignment: "center",
+      },
+    ],
+    [
+      {
+        text: "",
+      },
+      {
+        text: "",
+      },
+      {
+        text: "Μεγαλύτερη αποδοτικότητα",
+        alignment: "center",
+        fontSize: 8,
+      },
+      {
+        text: checkboxValue(data.field_18_amesa_apodotikotita_thesmoi),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_amesa_apodotikotita_oikonomia),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_amesa_apodotikotita_kinonia),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_amesa_apodotikotita_perivallon),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_amesa_apodotikotita_perivallon),
+        alignment: "center",
+      },
+    ],
+    [
+      {
+        text: "",
+      },
+      {
+        text: "",
+      },
+      {
+        text: "Άλλο",
+        alignment: "center",
+        fontSize: 8,
+      },
+      {
+        text: checkboxValue(data.field_18_amesa_allo_thesmoi),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_amesa_allo_oikonomia),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_amesa_allo_kinonia),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_amesa_allo_perivallon),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_amesa_allo_nisiwtikotita),
+        alignment: "center",
+      },
+    ]
   );
-
   table.push([
     {
       text: "",
@@ -2978,86 +3075,177 @@ function createField18(field_18, data) {
       fillColor: "#C1E1C1",
     },
     {
-      text: indirectCategories[0],
+      text: "Βελτίωση παρεχόμενων υπηρεσιών",
       alignment: "center",
       fontSize: 8,
     },
     {
-      text: checkboxValue(field_18[firstElementIndex++]),
+      text: checkboxValue(data.field_18_emmesa_veltiosi_thesmoi),
       alignment: "center",
     },
     {
-      text: checkboxValue(field_18[firstElementIndex++]),
+      text: checkboxValue(data.field_18_emmesa_veltiosi_oikonomia),
       alignment: "center",
     },
     {
-      text: checkboxValue(field_18[firstElementIndex++]),
+      text: checkboxValue(data.field_18_emmesa_veltiosi_kinonia),
       alignment: "center",
     },
     {
-      text: checkboxValue(field_18[firstElementIndex++]),
+      text: checkboxValue(data.field_18_emmesa_veltiosi_perivallon),
       alignment: "center",
     },
     {
-      text: checkboxValue(field_18[firstElementIndex++]),
+      text: checkboxValue(data.field_18_emmesa_veltiosi_nisiwtikotita),
       alignment: "center",
     },
   ]);
-
-  for (let i = 1; i < indirectCategories.length; i++) {
-    for (let j in field_18) {
-      if (indirectCategories[i] === field_18[j][0].value) {
-        if (directCategories[i] === "Άλλο" && sameCategoryCounter != 0) {
-          sameCategoryCounter--;
-          continue;
-        }
-        table.push([
-          {
-            text: "",
-          },
-          {
-            text: "",
-          },
-          {
-            text: indirectCategories[i],
-            alignment: "center",
-            fontSize: 8,
-          },
-          {
-            text: checkboxValue(field_18[++j]),
-            alignment: "center",
-          },
-          {
-            text: checkboxValue(field_18[++j]),
-            alignment: "center",
-          },
-          {
-            text: checkboxValue(field_18[++j]),
-            alignment: "center",
-          },
-          {
-            text: checkboxValue(field_18[++j]),
-            alignment: "center",
-          },
-          {
-            text: checkboxValue(field_18[++j]),
-            alignment: "center",
-          },
-        ]);
-        break;
-      }
-    }
-  }
-
+  table.push(
+    [
+      {
+        text: "",
+      },
+      {
+        text: "",
+      },
+      {
+        text: "Δίκαιη μεταχείριση πολιτών",
+        alignment: "center",
+        fontSize: 8,
+      },
+      {
+        text: checkboxValue(data.field_18_emmesa_metaxirisi_thesmoi),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_emmesa_metaxirisi_oikonomia),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_emmesa_metaxirisi_kinonia),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_emmesa_metaxirisi_perivallon),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_emmesa_metaxirisi_nisiwtikotita),
+        alignment: "center",
+      },
+    ],
+    [
+      {
+        text: "",
+      },
+      {
+        text: "",
+      },
+      {
+        text: "Αυξημένη αξιοπιστία / διαφάνεια θεσμών",
+        alignment: "center",
+        fontSize: 8,
+      },
+      {
+        text: checkboxValue(data.field_18_emmesa_diafania_thesmoi),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_emmesa_diafania_oikonomia),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_emmesa_diafania_kinonia),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_emmesa_diafania_perivallon),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_emmesa_diafania_nisiwtikotita),
+        alignment: "center",
+      },
+    ],
+    [
+      {
+        text: "",
+      },
+      {
+        text: "",
+      },
+      {
+        text: "Βελτιωμένη διαχείριση κινδύνων",
+        alignment: "center",
+        fontSize: 8,
+      },
+      {
+        text: checkboxValue(data.field_18_emmesa_diaxirisi_kindinwn_thesmoi),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_emmesa_diaxirisi_kindinwn_oikonomia),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_emmesa_diaxirisi_kindinwn_kinonia),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_emmesa_diaxirisi_kindinwn_perivallon),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(
+          data.field_18_emmesa_diaxirisi_kindinwn_nisiwtikotita
+        ),
+        alignment: "center",
+      },
+    ],
+    [
+      {
+        text: "",
+      },
+      {
+        text: "",
+      },
+      {
+        text: "Άλλο",
+        alignment: "center",
+        fontSize: 8,
+      },
+      {
+        text: checkboxValue(data.field_18_emmesa_allo_thesmoi),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_emmesa_allo_oikonomia),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_emmesa_allo_kinonia),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_emmesa_allo_perivallon),
+        alignment: "center",
+      },
+      {
+        text: checkboxValue(data.field_18_emmesa_allo_nisiwtikotita),
+        alignment: "center",
+      },
+    ]
+  );
   fieldTable = {
     table: {
-      headerRows: 1,
+      headerRows: 0,
       widths: ["8%", "11%", "11%", "14%", "14%", "14%", "14%", "14%"],
       body: table,
     },
   };
-  // fieldData.push(fieldTable);
-  return fieldTable;
+
+  fieldData.push(fieldTable);
+  return fieldData;
 }
 
 function createField19(field_19) {
@@ -3529,161 +3717,106 @@ function createField20(field_20, data) {
   return fieldTable;
 }
 
-function createSignatories(ministers) {
+function createSignatories(names, roles) {
   let signatories = [];
-  let table = [];
-  if (ministers.ministers && ministers.ministers.length) {
-    signatories.push({ text: "\n\n" });
+  const ministerIndexes = [];
+  const substitutesIndexes = [];
+  const undersecretariesIndexes = [];
+  console.log('roles', roles);
+  for (let i in roles) {
+    const role = roles[i][0].value;
+    if (role.includes("ΥΠΟΥΡΓΟΣ") && !roles[i].includes("ΥΦΥΠΟΥΡΓΟΣ")) {
+      ministerIndexes.push(i);
+    }
+    if (role.includes("ΥΦΥΠΟΥΡΓΟΣ")) {
+      substitutesIndexes.push(i);
+    }
+    if (role.includes("ΑΝΑΠΛΗΡΩΤΗΣ ΥΠΟΥΡΓΟΣ")) {
+      undersecretariesIndexes.push(i);
+    }
+  }
+  if (ministerIndexes.length > 0) {
     signatories.push({
       text: "ΟΙ ΥΠΟΥΡΓΟΙ \n",
       bold: true,
       alignment: "center",
     });
     signatories.push({ text: "\n" });
-    console.log(ministers.ministers);
-    for (i = 0; i < ministers.ministers.length; i += 2) {
-      table.push([
-        {
-          text: getTextDiff(ministers.ministers[i]),
-          bold: true,
-          alignment: "center",
-        },
-        {
-          text: isMinister(ministers.ministers, i, "ministry"),
-          bold: true,
-          alignment: "center",
-        },
-      ]);
-      table.push([
-        {
-          text:
-            "\n\n\n" +
-            ministers.ministers[i][0] +
-            " " +
-            ministers.ministers[i][1],
-          alignment: "center",
-        },
-        {
-          text: isMinister(ministers.ministers, i, "name"),
-          alignment: "center",
-        },
-      ]);
-    }
     signatories.push({
       table: {
         headerRows: 0,
         widths: ["50%", "50%"],
-        body: table,
+        body: createMinisterRows(ministerIndexes, roles, names),
       },
     });
     table = [];
   }
 
-  if (ministers.substitutes && ministers.substitutes.length) {
-    signatories.push({ text: "\n\n" });
+  if (substitutesIndexes.length > 0) {
     signatories.push({
       text: "ΟΙ ΥΦΥΠΟΥΡΓΟΙ \n",
       bold: true,
       alignment: "center",
     });
     signatories.push({ text: "\n" });
-    for (i = 0; i < ministers.substitutes.length; i += 2) {
-      table.push([
-        {
-          text: getTextDiff(ministers.substitutes[i][2]),
-          bold: true,
-          alignment: "center",
-        },
-        {
-          text: isMinister(ministers.substitutes, i, "ministry"),
-          bold: true,
-          alignment: "center",
-        },
-      ]);
-      table.push([
-        {
-          text:
-            "\n\n\n" +
-            ministers.substitutes[i][0] +
-            " " +
-            ministers.substitutes[i][1],
-          alignment: "center",
-        },
-        {
-          text: isMinister(ministers.substitutes, i, "name"),
-          alignment: "center",
-        },
-      ]);
-    }
+
     signatories.push({
       table: {
         headerRows: 0,
         widths: ["50%", "50%"],
-        body: table,
+        body: createMinisterRows(substitutesIndexes, roles, names),
       },
     });
     table = [];
   }
-
-  if (ministers.undersecretaries && ministers.undersecretaries.length) {
-    signatories.push({ text: "\n\n" });
+  if (undersecretariesIndexes.length > 0) {
     signatories.push({
-      text: "ΟΙ ΑΝΑΠΛΗΡΩΤΕΣ ΥΠΟΥΡΓΟΙ \n",
+      text: "ΟΙ ΑΝΑΠΛΗΡΩΤΕΣ ΥΠΟΥΡΓΟΙ\n",
       bold: true,
       alignment: "center",
     });
     signatories.push({ text: "\n" });
-    for (i = 0; i < ministers.undersecretaries.length; i += 2) {
-      table.push([
-        {
-          text: getTextDiff(ministers.undersecretaries[i][2]),
-          bold: true,
-          alignment: "center",
-        },
-        {
-          text: isMinister(ministers.undersecretaries, i, "ministry"),
-          bold: true,
-          alignment: "center",
-        },
-      ]);
-      table.push([
-        {
-          text:
-            "\n\n\n" +
-            ministers.undersecretaries[i][0] +
-            " " +
-            ministers.undersecretaries[i][1],
-          alignment: "center",
-        },
-        {
-          text: isMinister(ministers.undersecretaries, i, "name"),
-          alignment: "center",
-        },
-      ]);
-    }
     signatories.push({
       table: {
         headerRows: 0,
         widths: ["50%", "50%"],
-        body: table,
+        body: createMinisterRows(undersecretariesIndexes, roles, names),
       },
     });
+    table = [];
   }
-  if (signatories.length) {
+  if (signatories.length > 0) {
     return signatories;
   }
 }
 
-function isMinister(data, step, type) {
-  if (data[step + 1]) {
-    if (type === "name") {
-      return "\n\n\n" + data[step + 1][0] + " " + data[step + 1][1];
-    } else {
-      return data[step + 1][2];
+function createMinisterRows(indexes, roles, names) {  
+  const table = [];
+  for (i = 0; i < indexes.length; i += 2) {
+    table.push([
+      {
+        text:
+          getTextDiff(roles[indexes[i]]) +
+          "\n\n\n\n\n\n" +
+          getTextDiff(names[indexes[i]]),
+        bold: true,
+        alignment: "center",
+      },
+    ]);
+    if (indexes[i + 1]) {
+      table.push([
+        {
+          text:
+            getTextDiff(roles[indexes[i + 1]]) +
+            "\n\n\n\n\n\n" +
+            getTextDiff(names[indexes[i + 1]]),
+          bold: true,
+          alignment: "center",
+        },
+      ]);
     }
-  } else {
-    return "";
   }
+  return table;
 }
 
 function getTextDiff(data) {

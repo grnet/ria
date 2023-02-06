@@ -524,8 +524,6 @@ routes.post(
     }
     req.diffData = data;
     //TODO: add second loop to handle accountingData
-
-    // res.status(200).json({ data: data });
     next();
   },
   diffPdf.exportPDF
