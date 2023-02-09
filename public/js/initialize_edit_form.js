@@ -727,6 +727,7 @@ for (let j in tables.signatories.minister_name) {
       tables.signatories.minister_ministry[j]
     );
   }
+    setChoicesJs(`minister_name${index}`);
 }
 
 index = $("#tbody_17").prop("rows").length;
@@ -761,6 +762,7 @@ for (let i in tables.field_17_signatories.field_17_minister_name) {
       tables.field_17_signatories.field_17_minister_ministry[i]
     );
   }
+  setChoicesJs(`minister_name${index}`);
 }
 
 // TODO: refactor

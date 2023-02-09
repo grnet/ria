@@ -188,14 +188,14 @@ routes.post(
   authRole,
   authAgency,
   accounting_pdf_export.exportGlk
-); //router calls controller to handle the export
+);
 routes.post(
   "/:entry_id/export",
   authUser,
   authRole,
   authAgency,
   pdf_export.exportPDF
-); //router calls controller to handle the export
+);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 

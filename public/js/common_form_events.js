@@ -349,6 +349,7 @@ $("#add_row_table_17").on("click", function () {
             <td><button class="btn remove float-right" type="button"><img src="/img/delete.png" width="50px"></button></td>
         </tr>`);
   populateMinistersNameSelect(`field_17_minister_name${index - 1}`);
+  setChoicesJs(`minister_name${index - 1}`);
 });
 
 $("#add_row_ministers_table").on("click", function () {
@@ -356,7 +357,7 @@ $("#add_row_ministers_table").on("click", function () {
   $("#tbody_ministers").append(`
         <tr class="govgr-table__row" id="R${++index}">              
             <td> 
-                <select id="minister_name${
+                <select one="one" id="minister_name${
                   index - 1
                 }" name="minister_name${index - 1}" class="govgr-select" onchange="ministerNameOnChange('minister_name${index - 1}', 'minister_role${index - 1}', 'minister_ministry${index - 1}')" style="width:100%;" ></select>
             </td> 
@@ -371,6 +372,7 @@ $("#add_row_ministers_table").on("click", function () {
             <td><button class="btn remove float-right" type="button"><img src="/img/delete.png" width="50px"></button></td>
         </tr>`);
   populateMinistersNameSelect(`minister_name${index - 1}`);
+  setChoicesJs(`minister_name${index - 1}`);
 });
 
 $("#add_row_table_29").on("click", function () {
