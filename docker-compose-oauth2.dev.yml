@@ -1,6 +1,8 @@
 version: "3.3"
 volumes: 
     db_storage: {}
+    redis_data: 
+        driver: local
 
 services: 
 
@@ -35,7 +37,8 @@ services:
             - ./:/app
             - /app/node_modules
         depends_on: 
-            - database       
+            - database
+            - redis       
         command: ["./etc/assets/wait-for-it.sh", "database:3306", "--", "npm", "start"]        
         environment: 
             - DEBUG=$DEBUG
@@ -68,3 +71,14 @@ services:
             - MYSQL_USER=$DATABASE_USER  
             - MYSQL_PASSWORD=$DATABASE_PASSWORD  
             - MYSQL_DATABASE=$DATABASE_NAME              
+    redis:
+        image: redis:6-bullseye
+        container_name: ria_redis
+        command:
+        - redis-server
+        - /etc/redis/redis.conf
+        ports:
+        - '127.0.0.1:6379:6379'
+        volumes:
+        - ./etc/redis/redis.conf:/etc/redis/redis.conf
+        - redis_data:/data

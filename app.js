@@ -1,6 +1,8 @@
 //dependencies
 const express = require("express");
 const session = require("express-session");
+const redis = require("redis");
+const connectRedis = require("connect-redis");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 
@@ -24,14 +26,34 @@ const indexesRoute = require("./routes/indexes");
 
 const app = express(); //app init
 app.use(cookieParser());
-// prune expired entries every 24h to avoid memory leaks
-const memoryStore = new session.MemoryStore({ checkPeriod: 86400000 }); //We will store our user session details to the memory
+
+const RedisStore = connectRedis(session);
+const redisClient = redis.createClient({
+  legacyMode: true,
+  socket: {
+    host: "ria_redis",
+    port: 6379,
+  },
+});
+redisClient.connect();
+redisClient.on("error", function (err) {
+  console.log("Could not establish a connection with redis. " + err);
+});
+redisClient.on("connect", function (err) {
+  console.log("Connected to redis successfully");
+});
+
 app.use(
   session({
     secret: process.env.SECRET, //The secret is used to hash the session with HMAC. Value retrieved from docker-compose.
-    store: memoryStore,
+    store: new RedisStore({ client: redisClient }),
     resave: false,
     saveUninitialized: false,
+    cookie: {
+      secure: false, // if true only transmit cookie over https
+      httpOnly: false, // if true prevent client side JS from reading the cookie
+      maxAge: 1000 * 720 * 10, // session max age in miliseconds -- session age is 2 hours
+    },
   })
 );
 
