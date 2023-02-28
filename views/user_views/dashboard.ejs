@@ -58,11 +58,11 @@
   <script type="text/javascript" src="/js/nav_scripts.js"></script>
 
   <script>
-    const userRole = "<%= user.role %>";
+    const user = JSON.parse(' <%- JSON.stringify(user) %> ');
 
-    let isAdmin = '<%= user.isAdmin %>';
+    let isAdmin = user.isAdmin;
 
-    setUserRestrictions(userRole);
+    setUserRestrictions(user.role);
   </script>
   <script type="text/javascript" src="/js/common_user_scripts.js"></script>
   </body>

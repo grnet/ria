@@ -6,7 +6,7 @@ const { user } = require("../services/database");
 
 routes.get("/", async function (req, res, next) {
   const valid_errors = req.session.errors;
-  req.session.errors = null;
+  delete req.session.errors;
   res.render("login", { errors: valid_errors });
 });
 
@@ -39,7 +39,7 @@ routes.post(
         bcrypt.compare(inputPassword, user.password, function (err, result) {
           if (result) {
             req.session.user = user;
-            req.session.user.loginMethod = 'application';
+            req.session.user.loginMethod = "application";
             res.status(200).send({ redirect: "user_views/dashboard" });
           } else {
             errors.errors.push({

@@ -10,8 +10,8 @@ const {
 } = require("../middleware/auth");
 const ministries = require("../lib/ministries");
 
-
-routes.get("/:taxid", authUser, authAdmin, async (req, res, next) => {
+routes.get("/:taxId", authUser, authAdmin, async (req, res, next) => {
+  console.log(req.params.taxId);
   let entry = await database.user.findOne({
     where: {
       taxId: req.params.taxId,
@@ -30,14 +30,14 @@ routes.get("/:taxid", authUser, authAdmin, async (req, res, next) => {
 });
 
 routes.delete(
-  "/:taxid",
+  "/",
   authUser,
   authRole,
   authAgency,
   authAdmin,
   async (req, res, next) => {
     let user = await database.user.findOne({
-      where: { taxId: req.params.taxid },
+      where: { taxId: req.body.taxId },
     });
 
     if (!user) {
@@ -50,7 +50,7 @@ routes.delete(
 );
 
 routes.put(
-  "/:taxid",
+  "/",
   authUser,
   authRole,
   authAgency,
@@ -63,7 +63,7 @@ routes.put(
     req.session.errors = [];
     let user = await database.user.findOne({
       where: {
-        taxId: req.params.taxid,
+        taxId: req.body.taxId,
       },
     });
     if (user && user.dataValues) {
@@ -77,7 +77,7 @@ routes.put(
             {
               fname: req.body.fname,
               lname: req.body.lname,
-              taxId: req.body.taxid,
+              taxId: req.body.taxId,
               username: req.body.username,
               role: req.body.role,
               isAdmin: req.body.isAdmin,
@@ -85,7 +85,7 @@ routes.put(
             },
             {
               where: {
-                taxId: req.params.taxid,
+                taxId: req.body.taxId,
               },
             }
           )
@@ -101,7 +101,7 @@ routes.put(
                     {
                       fname: req.body.fname,
                       lname: req.body.lname,
-                      taxId: req.body.taxid,
+                      taxId: req.body.taxId,
                       username: req.body.username,
                       password: hash,
                       role: req.body.role,
@@ -110,7 +110,7 @@ routes.put(
                     },
                     {
                       where: {
-                        taxId: req.params.taxid,
+                        taxId: req.body.taxId,
                       },
                     }
                   );

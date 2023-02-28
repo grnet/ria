@@ -12,7 +12,6 @@
           <tr class="govgr-table__row">
             <th class="govgr-table__header" scope="col">Όνομα</th>
             <th class="govgr-table__header" scope="col">Επώνυμο</th>
-            <th class="govgr-table__header" scope="col">Username</th>
             <th class="govgr-table__header" scope="col">Ρόλος</th>
             <th class="govgr-table__header" scope="col">Υπουργείο</th>
           </tr>
@@ -20,7 +19,7 @@
         <tbody class="govgr-table__body">
           <% for(var i=0; i<users.length; i++) {%>
             <!-- Should i replace taxId in url with username and lastname? -->
-            <tr class="govgr-table__row" onclick="window.location.href='./edit_user/<%= users[i].taxId%>'"> 
+            <tr class="govgr-table__row" onclick="window.location.href='./edit_user/<%= users[i].taxId%>'">
               <td class="govgr-table__cell">
                 <%= users[i].fname %>
               </td>

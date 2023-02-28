@@ -12,9 +12,21 @@ let gsisSetings = {
   redirectUrl: process.env.SITE + process.env.OAUTH2_LOGIN_PATH,
   scope: "read",
   grant_type: "authorization_code",
-  accessTokenUrl: process.env.GSIS_SITE + "/oauth2server"+process.env.GSIS_GOV+"/oauth/token",
-  authorizationUrl: process.env.GSIS_SITE + "/oauth2server"+process.env.GSIS_GOV+"/oauth/authorize",
-  profileUrl: process.env.GSIS_SITE + "/oauth2server"+process.env.GSIS_GOV+"/userinfo",
+  accessTokenUrl:
+    process.env.GSIS_SITE +
+    "/oauth2server" +
+    process.env.GSIS_GOV +
+    "/oauth/token",
+  authorizationUrl:
+    process.env.GSIS_SITE +
+    "/oauth2server" +
+    process.env.GSIS_GOV +
+    "/oauth/authorize",
+  profileUrl:
+    process.env.GSIS_SITE +
+    "/oauth2server" +
+    process.env.GSIS_GOV +
+    "/userinfo",
   clientId: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
 };
@@ -255,9 +267,7 @@ const gsispa = async (req, res) => {
   const userinfo = await gsis_flow(req, res, GSIS_TAG);
   if (debug) console.log("GSIS UserInfo", userinfo);
   if (userinfo) {
-    //chect to db if user exist
-    //if not create user?
-    //if yes update user?
+    delete req.session.errors;
     let user = await database.user.findOne({
       where: {
         taxId: userinfo.taxid,
@@ -265,18 +275,15 @@ const gsispa = async (req, res) => {
     });
     if (debug) console.log("App UserInfo", user);
     if (user && user.dataValues) {
-      if(!user.role) {
-        res
-          .redirect('login')
-          .status(400)
-          .send({
-            msg: "Δε σας έχει ανατεθεί ρόλος για να περιηγηθείτε στην εφαρμογή.",
-          });
+      if (!user.role) {
+        req.session.errors = {
+          msg: "Δε σας έχει ανατεθεί ρόλος για να περιηγηθείτε στην εφαρμογή.",
+        };
       }
       if (!user.agency) {
-        res.redirect("login").status(400).send({
+        req.session.errors = {
           msg: "Δε σας έχει ανατεθεί φορέας για να περιηγηθείτε στην εφαρμογή.",
-        });
+        };
       }
       req.session.user = user;
       if (debug) console.log("App Session", req.session);
@@ -285,11 +292,11 @@ const gsispa = async (req, res) => {
       await database.user.create({
         fname: userinfo.firstname,
         lname: userinfo.lastname,
-        taxId: userinfo.taxid
+        taxId: userinfo.taxid,
       });
-      res.redirect("login").status(302).send({
+      req.session.errors = {
         msg: "Δε σας έχει ανατεθεί ρόλος για να περιηγηθείτε στην εφαρμογή.",
-      });
+      };
     }
   }
   res.end();

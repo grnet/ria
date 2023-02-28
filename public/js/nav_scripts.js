@@ -1,5 +1,3 @@
-const { user } = require("../../services/database");
-
 $("#ministries").on("click", function (ev) {
   ev.preventDefault();
   $.ajax({
@@ -15,6 +13,7 @@ $("#ministries").on("click", function (ev) {
 });
 
 $("#exit").on("click", function (ev) {
+  console.log(user);
   if (user.loginMethod && user.loginMethod === "application") {
     ev.preventDefault();
     $.ajax({
@@ -29,7 +28,7 @@ $("#exit").on("click", function (ev) {
     });
   }
   window.location.replace(
-    "https://www1.gsis.gr/oauth2server/logout/%7bclientId%7d/?url=https://ria.gov.gr/});"
+    "https://test.gsis.gr/oauth2server/logout/TG8T4616438/?url=https://ria.demo.gov.gr/login"
   );
 });
 

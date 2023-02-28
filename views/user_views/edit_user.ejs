@@ -44,7 +44,7 @@
                             <div class="govgr-field">
                                 <label class="govgr-label" for="taxid"> <span>ΑΦΜ:</span>
                                     <input class="govgr-input govgr-!-width-one-half" type="text" id="taxid"
-                                        name="taxid" required minlength="9" maxlength="9" value="<%= user.taxId %>" />
+                                        name="taxId" required minlength="9" maxlength="9" value="<%= user.taxId %>" />
                                 </label>
                             </div>
                             <hr>
@@ -288,9 +288,14 @@
                 $("#agency").append(`<option value="${ministries[i]}">${ministries[i]}</option>`);
             }
             $("#agency").append('<option value="Άλλος">Άλλος</option>');
+            $("#agency").val(user.agency);
+            if (!$("#agency").val()) {
+                $('#other_agency_div').show();
+                $("#agency").val('Άλλος');
+            }
+
             let ministryValue = "<%= user.agency %>";
             let roleValue = "<%= user.role %>";
-            $("#ypoyrgeio").val(ministryValue ? ministryValue : $("#ypoyrgeio option:first").val());//if user is assigned a ministry, set dropdown accordingly, else set to first option
             $("#role").val(roleValue ? roleValue : $("#ypoyrgeio option:first").val());//if user is assigned a role, set dropdown accordingly, else set to first option
 
             if (!user.username) {
