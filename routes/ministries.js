@@ -122,9 +122,7 @@ routes.post(
         .create({ name: req.body.ministry })
         .catch((err) => console.error(err));
       if (result) {
-        res
-          .status(200)
-          .send({ msg: "Το Υπουργείο δημιουργήθηκε επιτυχώς." });
+        res.status(200).send({ msg: "Το Υπουργείο δημιουργήθηκε επιτυχώς." });
       } else {
         res.status(500).send({
           msg: "Προέκυψε πρόβλημα κατά τη δημιουργία του Υπουργείου. Παρακαλώ προσπαθήστε ξανά.",
@@ -144,7 +142,9 @@ routes.post(
   authAgency,
   async (req, res, next) => {
     try {
-      const ministry = await database.ministries.findOne({where: {name: req.body.ministry}})
+      const ministry = await database.ministries.findOne({
+        where: { name: req.body.ministry },
+      });
       let result = await database.minister
         .create({
           name: req.body.minister,
@@ -201,15 +201,19 @@ routes.put(
   authAgency,
   async (req, res, next) => {
     try {
+      const ministry = await database.ministries.findOne({
+        where: { name: req.body.ministry },
+      });
+      console.log(req.body);
       let result = await database.minister
         .update(
           {
             name: req.body.name,
             role: req.body.role,
             responsibility: req.body.responsibility,
-            ministryId: req.body.ministry,
+            ministryId: ministry.id,
           },
-          { where: { name: req.body.editMinister } }
+          { where: { name: req.body.selectMinister } }
         )
         .catch((err) => console.error(err));
       if (result) {
@@ -227,7 +231,6 @@ routes.put(
   }
 );
 
-
 routes.delete(
   "/minister",
   authUser,
@@ -237,7 +240,7 @@ routes.delete(
   async (req, res, next) => {
     try {
       let result = await database.minister
-        .destroy({ where: { name: req.body.editMinister } })
+        .destroy({ where: { name: req.body.selectMinister } })
         .catch((err) => console.error(err));
       if (result) {
         res.status(200).send({ msg: "Ο Υπουργός διαγράφηκε επιτυχώς." });

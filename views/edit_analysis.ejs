@@ -31,18 +31,14 @@
             </div>
     </nav>
 
+    <div id="errors" style="width: 70%;"></div>
+
     <div class="govgr-width-container">
         <div class="govgr-main-wrapper">
             <div class="govgr-grid-column-two-thirds">
 
                 <form id="edit_form" enctype="multipart/form-data">
 
-                    <div id="errors" style="display: none;">
-                        <!--Display validation errors here-->
-                        <!-- <div class="alert alert-danger">
-                                <ul id="alerts"></ul>
-                            </div> -->
-                    </div>
                     <div>
                         <input type="hidden" id="status" name="status" value="<%= status%>">
                         <input type="hidden" id="author" name="author" value="<%= data.author%>">
@@ -197,7 +193,7 @@
                             </thead>
                             <tbody class="govgr-table__body">
 
-                                <% if( uploads.bill && uploads.bill.length > 0) { %>
+                                <% if( uploads.bill && uploads.bill.length> 0) { %>
                                     <tr govgr-table__row>
                                         <td class="govgr-table__cell">
                                             <a href="/uploads/<%= uploads.bill[0].filename %> ">
@@ -290,7 +286,7 @@
                                 </label>
                             </div>
                             <div class="govgr-grid__col-span-6">
-                                <textarea class="govgr-textarea" id="field_1" name="field_1" rows="3"
+                                <textarea class="govgr-textarea" id="field_1" name="field_1" rows="15"
                                     onkeypress="wordsCounter('field_1','words1', event)"
                                     onpaste="wordsCounter('field_1','words1', event)"><%= data.field_1 %></textarea>
                                 <p style="float: right;">Λέξεις: <span id="words1"></span></p>
@@ -303,7 +299,7 @@
                                     πρόβλημα;</label>
                             </div>
                             <div class="govgr-grid__col-span-6">
-                                <textarea class="govgr-textarea" id="field_2" name="field_2" rows="3"
+                                <textarea class="govgr-textarea" id="field_2" name="field_2" rows="15"
                                     onkeypress="wordsCounter('field_2','words2', event)"
                                     onpaste="wordsCounter('field_2','words2', event)"><%= data.field_2 %></textarea>
                                 <p style="float: right;">Λέξεις: <span id="words2"></span></p>
@@ -316,7 +312,7 @@
                                     ομάδες αφορά;</label>
                             </div>
                             <div class="govgr-grid__col-span-6">
-                                <textarea class="govgr-textarea" id="field_3" name="field_3" rows="3"
+                                <textarea class="govgr-textarea" id="field_3" name="field_3" rows="15"
                                     onkeypress="wordsCounter('field_3','words3', event)"
                                     onpaste="wordsCounter('field_3','words3', event)"><%= data.field_3 %></textarea>
                                 <p style="float: right;">Λέξεις: <span id="words3"></span></p>
@@ -366,7 +362,7 @@
                                 </label>
                             </div>
                             <div class="govgr-grid__col-span-6">
-                                <textarea class="govgr-textarea" id="field_4_1" name="field_4_comments" rows="3"
+                                <textarea class="govgr-textarea" id="field_4_1" name="field_4_comments" rows="15"
                                     onkeypress="wordsCounter('field_4_1','words4')"
                                     onpaste="wordsCounter('field_4_1','words4')"><%= data.field_4_comments %></textarea>
                                 <p style="float: right;">Λέξεις: <span id="words4"></span></p>
@@ -407,7 +403,7 @@
                                 </label>
                             </div>
                             <div class="govgr-grid__col-span-6">
-                                <textarea class="govgr-textarea" id="field_5_1" name="field_5_1" rows="3"
+                                <textarea class="govgr-textarea" id="field_5_1" name="field_5_1" rows="15"
                                     onkeypress="wordsCounter('field_5_1','words5_1', event)"
                                     onpaste="wordsCounter('field_5_1','words5_1', event)"><%= data.field_5_1 %></textarea>
                                 <p style="float: right;">Λέξεις: <span id="words5_1"></span></p>
@@ -422,7 +418,7 @@
                                 </label>
                             </div>
                             <div class="govgr-grid__col-span-6">
-                                <textarea class="govgr-textarea" id="field_5_2" name="field_5_2" rows="3"
+                                <textarea class="govgr-textarea" id="field_5_2" name="field_5_2" rows="15"
                                     onkeypress="wordsCounter('field_5_2','words5_2', event)"
                                     onpaste="wordsCounter('field_5_2','words5_2', event)"><%= data.field_5_2 %></textarea>
                                 <p style="float: right;">Λέξεις: <span id="words5_2"></span></p>
@@ -437,7 +433,7 @@
                                 </label>
                             </div>
                             <div class="govgr-grid__col-span-6">
-                                <textarea class="govgr-textarea" id="field_5_3" name="field_5_3" rows="3"
+                                <textarea class="govgr-textarea" id="field_5_3" name="field_5_3" rows="15"
                                     onkeypress="wordsCounter('field_5_3','words5_3', event)"
                                     onpaste="wordsCounter('field_5_3','words5_3', event)"><%= data.field_5_3 %></textarea>
                                 <p style="float: right;">Λέξεις: <span id="words5_3"></span></p>
@@ -488,7 +484,7 @@
                                     </label>
                                 </div>
                                 <div class="govgr-grid__col-span-6">
-                                    <textarea class="govgr-textarea" id="field_6_1" name="field_6_1" rows="3"
+                                    <textarea class="govgr-textarea" id="field_6_1" name="field_6_1" rows="15"
                                         onkeypress="wordsCounter('field_6_1','words6')"
                                         onpaste="wordsCounter('field_6_1','words6')"><%= data.field_6_1 %></textarea>
                                     <p style="float: right;">Λέξεις: <span id="words6"></span></p>
@@ -501,7 +497,7 @@
                                     </label>
                                 </div>
                                 <div class="govgr-grid__col-span-6">
-                                    <textarea class="govgr-textarea" id="field_6_2" name="field_6_2" rows="3"
+                                    <textarea class="govgr-textarea" id="field_6_2" name="field_6_2" rows="15"
                                         onkeypress="wordsCounter('field_6_2','words6_2')"
                                         onpaste="wordsCounter('field_6_2','words6_2')"><%= data.field_6_2 %></textarea>
                                     <p style="float: right;">Λέξεις: <span id="words6_2"></span></p>
@@ -515,7 +511,7 @@
                                     </label>
                                 </div>
                                 <div class="govgr-grid__col-span-6">
-                                    <textarea class="govgr-textarea" id="field_6_3" name="field_6_3" rows="3"
+                                    <textarea class="govgr-textarea" id="field_6_3" name="field_6_3" rows="15"
                                         onkeypress="wordsCounter('field_6_3','words6_3')"
                                         onpaste="wordsCounter('field_6_3','words6_3')"><%= data.field_6_3 %></textarea>
                                     <p style="float: right;">Λέξεις: <span id="words6_3"></span></p>
@@ -761,7 +757,7 @@
                                 </label>
                             </div>
                             <div class="govgr-grid__col-span-6">
-                                <textarea class="govgr-textarea" id="field_8_1" name="field_8_1" rows="3"
+                                <textarea class="govgr-textarea" id="field_8_1" name="field_8_1" rows="15"
                                     onkeypress="wordsCounter('field_8_1','words8_1', event)"
                                     onpaste="wordsCounter('field_8_1','words8_1', event)"><%= data.field_8_1 %></textarea>
                                 <p style="float: right;">Λέξεις: <span id="words8_1"></span></p>
@@ -774,7 +770,7 @@
                                 <label for="field_8_2" class="govgr-label-row required">8.2 μακροπρόθεσμοι:</label>
                             </div>
                             <div class="govgr-grid__col-span-6">
-                                <textarea class="govgr-textarea" id="field_8_2" name="field_8_2" rows="3"
+                                <textarea class="govgr-textarea" id="field_8_2" name="field_8_2" rows="15"
                                     onkeypress="wordsCounter('field_8_2','words8_2', event)"
                                     onpaste="wordsCounter('field_8_2','words8_2', event)"><%= data.field_8_2 %></textarea>
                                 <p style="float: right;">Λέξεις: <span id="words8_2"></span></p>
@@ -868,7 +864,7 @@
                             <div id="field_11_wrap" class="form-group digital_gov" style="display:none;">
                                 <label for="field_11_comments" class="digital-gov-label">Εξηγήστε</label>
                                 <textarea class="govgr-textarea" name="field_11_comments" id="field_11_comments"
-                                    rows="3" onkeypress="wordsCounter('field_11_comments','words11', event)"
+                                    rows="10" onkeypress="wordsCounter('field_11_comments','words11', event)"
                                     onpaste="wordsCounter('field_11_comments','words11', event)"><%= data.field_11_comments %></textarea>
                                 <p style="float: right;">Λέξεις: <span id="words11"></span></p>
                             </div>
@@ -894,7 +890,7 @@
                                     συστήματα:
                                 </label>
                                 <textarea class="govgr-textarea" name="field_12_comments" id="field_12_comments"
-                                    rows="3" onkeypress="wordsCounter('field_12_comments','words12', event)"
+                                    rows="10" onkeypress="wordsCounter('field_12_comments','words12', event)"
                                     onpaste="wordsCounter('field_12_comments','words12', event)"><%= data.field_12_comments %></textarea>
                                 <p style="float: right;">Λέξεις: <span id="words12"></span></p>
                             </div>
@@ -918,7 +914,7 @@
                             <div id="field_13_wrap" class="form-group digital_gov" style="display:none;">
                                 <label for="field_13_comments" class="digital-gov-label">Εξηγήστε</label>
                                 <textarea class="govgr-textarea" name="field_13_comments" id="field_13_comments"
-                                    rows="3" onkeypress="wordsCounter('field_13_comments','words13', event)"
+                                    rows="10" onkeypress="wordsCounter('field_13_comments','words13', event)"
                                     onpaste="wordsCounter('field_13_comments','words13', event)"><%= data.field_13_comments %></textarea>
                                 <p style="float: right;">Λέξεις: <span id="words13"></span></p>
                             </div>
@@ -948,7 +944,7 @@
                             <table class="govgr-table--dark govgr-table" id="field_14_table">
                                 <thead class="govgr-table__head">
                                     <tr class="govgr-table__row">
-                                        <th class="govgr-table__header" colspan="2">
+                                        <th class="govgr-table__header" colspan="3">
                                             <label id="table_14_label" class="table-14-label required">14.Σύνοψη
                                                 στόχων κάθε άρθρου
                                             </label>
@@ -959,7 +955,7 @@
                                         <th class="govgr-table__header" colspan="1">Άρθρο
                                             <div class="table-cell index_article"></div>
                                         </th>
-                                        <th colspan="1">Στόχος
+                                        <th colspan="2">Στόχος
                                             <div class="table-cell index_goal"></div>
                                         </th>
                                     </tr>
@@ -983,11 +979,10 @@
                                                         onpaste="wordsCounter('field_14_stoxos<%=i%>','words14_<%=i%>', event)"><%= tables.field_14.field_14_stoxos[i] %></textarea>
                                                     <p style="float: right;">Λέξεις: <span id="words14_<%=i%>"></span>
                                                     </p>
-                                                    <button class="btn remove float-right" type="button"><img
-                                                            src="/img/delete.png" width="20px"></button>
                                                 </div>
                                             </td>
-
+                                            <td><button class="btn remove float-right" type="button"><img
+                                                        src="/img/delete.png" width="20px"></button></td>
                                         </tr>
                                         <% } } %>
 
@@ -1133,6 +1128,8 @@
     <script type="text/javascript" src="/js/edit_form_scripts.js"></script>
     <script type="text/javascript" src="/js/edit_form_events.js"></script>
     <script type="text/javascript" src="/js/enums.js"></script>
+    <script type="text/javascript" src="/js/validations.js"></script>
+    <script type="text/javascript" src="/js/common_scripts.js"></script>
     <script>
 
         const isAdmin = '<%= user.isAdmin %>';
@@ -1182,9 +1179,12 @@
         createTooltips(tooltips);
 
         $("#final_save").on("click", function (ev) {
+            // const validationFlag = validateForm()
+            // if (validationFlag) {
             setStatus();
             updateForm(ev);
-        })
+            // }
+        });
 
         function updateForm(ev) {
             ev.preventDefault();
@@ -1398,7 +1398,7 @@
                 },
                 type: 'POST'
             });
-        });        
+        });
 
         // TODO: review validation
         //check if required fields are empty
@@ -1459,16 +1459,6 @@
             return validationFlag;
         }
 
-        function focusElement(indexClass, flag) {
-            indexClass.each(function () {
-                if ($(this).val() === '') {
-                    $(this).addClass("focused");
-                    flag = false;
-                }
-            })
-            return flag;
-        }
-
         // jQuery button click event to remove a file 
         $('#uploads_21, #uploads_23, #uploads_36').on('click', '.remove-file', function (ev) {
             ev.preventDefault();
@@ -1489,6 +1479,25 @@
                 });
             }
         });
+
+        // function validateForm() {
+        //     let validationPassed = true;
+        //     $('#errors').empty();
+        //     for (i in validations) {
+        //         if (validations[i]()) {
+        //             validationPassed = false;
+        //             $('#errors').append(`              
+        //                 <div class="alert alert-danger alert-dismissible fade show bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+        //                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        //                         <span aria-hidden="true">&times;</span>
+        //                     </button>     
+        //                     ${validations[i]()} </div>                                 
+        //             `)
+        //         }
+        //         console.log(validations[i]())
+        //     }
+        //     return validationPassed;
+        // }
 
     </script>
     <script type="text/javascript" src="/js/initialize_edit_form.js"></script>

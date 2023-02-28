@@ -8,6 +8,8 @@ const {
   authRole,
   authAgency,
 } = require("../middleware/auth");
+const ministries = require("../lib/ministries");
+
 
 routes.get("/:taxid", authUser, authAdmin, async (req, res, next) => {
   let entry = await database.user.findOne({
@@ -16,25 +18,11 @@ routes.get("/:taxid", authUser, authAdmin, async (req, res, next) => {
     },
   });
   if (entry && entry.dataValues) {
-    let latest_entry = await database.ministries.max("id").catch((error) => {
-      console.log(error);
-    }); // get entry with highest id
-    let res_data = await database.ministries
-      .findOne({ where: { id: latest_entry } })
-      .catch((error) => {
-        console.log(error);
-      });
-    let ministries = [];
-    for (i in res_data.dataValues.ministries) {
-      let value = res_data.dataValues.ministries[i].ministry;
-      if (value && String(value).trim()) {
-        ministries.push({ ministry: value });
-      }
-    }
+    const ministriesResult = await ministries.getMinistries();
 
     res.render("user_views/edit_user", {
       user: entry.dataValues,
-      ministries: ministries,
+      ministries: ministriesResult,
     }); // TODO: fix bug where user here is referenced in frontend as logged in user and not as to-be-edited user, which results in bugs with permissions
   } else {
     res.status(404).send("Not found");
@@ -79,6 +67,9 @@ routes.put(
       },
     });
     if (user && user.dataValues) {
+      const agency = req.body.other_agency
+        ? req.body.other_agency
+        : req.body.agency;
       if (!password) {
         //if password not provided update everything but the password
         await database.user
@@ -90,7 +81,7 @@ routes.put(
               username: req.body.username,
               role: req.body.role,
               isAdmin: req.body.isAdmin,
-              agency: req.body.ypoyrgeio,
+              agency: agency,
             },
             {
               where: {
@@ -115,7 +106,7 @@ routes.put(
                       password: hash,
                       role: req.body.role,
                       isAdmin: req.body.isAdmin,
-                      agency: req.body.ypoyrgeio,
+                      agency: agency,
                     },
                     {
                       where: {

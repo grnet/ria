@@ -39,8 +39,8 @@
                             </div>
                             <div class="govgr-field">
                                 <label class="govgr-label" for="taxid"> <span>ΑΦΜ:</span>
-                                    <input class="govgr-input govgr-!-width-one-half" type="text" id="taxid" name="taxid"
-                                         required minlength="9" maxlength="9" />
+                                    <input class="govgr-input govgr-!-width-one-half" type="text" id="taxid"
+                                        name="taxid" required minlength="9" maxlength="9" />
                                 </label>
                             </div>
                             <hr />
@@ -73,47 +73,56 @@
                             </div>
                             <hr />
                             <div class="govgr-field">
-                                <label class="govgr-label" for="ypoyrgeio">
-                                    Υπουργείο:
-                                    <select class="govgr-select govgr-!-width-two-thirds" id="ypoyrgeio"
-                                        name="ypoyrgeio">
+                                <label class="govgr-label" for="agency">
+                                    Φορέας:
+                                    <select class="govgr-select govgr-!-width-two-thirds" id="agency" name="agency">
                                         <option value="" selected disabled>Eπιλογή</option>
                                     </select>
+                                </label>
+                            </div>
+                            <div id="other_agency_div" style="display: none;">
+                                <br>
+                                <label class="govgr-label" for="password"> <span>Άλλος φορέας:</span>
+                                    <input class="govgr-input govgr-!-width-one-half" type="text" id="other_agency"
+                                        name="other_agency" value="<%= user.agency %>" />
                                 </label>
                             </div>
                             <hr />
                             <div class="govgr-field">
                                 <label class="govgr-label" for="role">
                                     Ρόλος:
-                                    <select class="govgr-select govgr-!-width-two-thirds" id="role" name="role"
-                                        required>
-                                        <option value="" selected disabled>Eπιλογή</option>
-                                        <option value="Συντάκτης επισπεύδοντος Υπουργείου">Συντάκτης επισπεύδοντος
-                                            Υπουργείου
-                                        </option>
+                                    <select class="govgr-select govgr-!-width-two-thirds" id="role" name="role">
+                                        <option selected disabled>Eπιλογή</option>
                                         <option
                                             value="Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων">
                                             Αρμόδιος
-                                            επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων</option>
+                                            επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων
                                         <option value="Βουλευτής">Βουλευτής</option>
-                                        <option value="Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)">Νομοπαρασκευαστική Επιτροπή
-                                            (ΓΓΝΚΘ)
-                                        </option>
+                                        <option value="Βουλή">Βουλή</option>
                                         <option value="Γενικό Λογιστήριο του Κράτους">Γενικό Λογιστήριο του Κράτους
+                                        </option>
+                                        <option value="Γενικός Γραμματέας Νομικών και Κοινοβουλευτικών Θεμάτων">Γενικός
+                                            Γραμματέας
+                                            Νομικών και Κοινοβουλευτικών Θεμάτων
+                                        </option>
+                                        <option value="Γραφείο Καλής Νομοθέτησης (ΓΓΝΚΘ)">Γραφείο Καλής Νομοθέτησης
+                                            (ΓΓΝΚΘ)</option>
+                                        <option value="Διαχειριστής πλατφόρμας">Διαχειριστής πλατφόρμας</option>
+                                        </option>
+                                        <option value="Διεύθυνση Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)">Διεύθυνση
+                                            Νομοπαρασκευαστικής
+                                            Διαδικασίας (ΓΓΝΚΘ)
                                         </option>
                                         <option
                                             value="Επιτροπή Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)">
                                             Επιτροπή Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)
                                         </option>
-                                        <option value="Γραφείο Καλής Νομοθέτησης (ΓΓΝΚΘ)">Γραφείο Καλής Νομοθέτησης
-                                            (ΓΓΝΚΘ)</option>
-                                        <option value="Διεύθυνση Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)">Διεύθυνση
-                                            Νομοπαρασκευαστικής
-                                            Διαδικασίας (ΓΓΝΚΘ)</option>
-                                        <option value="Γενικός Γραμματέας Νομικών και Κοινοβουλευτικών Θεμάτων">Γενικός
-                                            Γραμματέας
-                                            Νομικών και Κοινοβουλευτικών Θεμάτων</option>
-                                        <option value="Βουλή">Βουλή</option>
+                                        <option value="Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)">Νομοπαρασκευαστική Επιτροπή
+                                            (ΓΓΝΚΘ)
+                                        </option>
+                                        <option value="Συντάκτης επισπεύδοντος Υπουργείου">Συντάκτης επισπεύδοντος
+                                            Υπουργείου
+                                        </option>
                                     </select>
                                 </label>
                             </div> <br />
@@ -128,8 +137,8 @@
                                     <div class="govgr-checkboxes" id="isAdmin_checkbox">
                                         <div class="govgr-checkboxes__item">
                                             <label class="govgr-label govgr-checkboxes__label">
-                                                <input class="govgr-checkboxes__input" type="checkbox"
-                                                    id="isAdmin" name="isAdmin" />
+                                                <input class="govgr-checkboxes__input" type="checkbox" id="isAdmin"
+                                                    name="isAdmin" />
                                             </label>
                                         </div>
                                     </div>
@@ -230,10 +239,20 @@
             }
         }
 
+        $("#agency").on('change', () => {
+            if ($("#agency").val() === 'Άλλος') {
+                $('#other_agency_div').show();
+            } else {
+                $('#other_agency_div').empty();
+                $('#other_agency_div').hide();
+            }
+        })
+
         let ministries = JSON.parse(' <%- JSON.stringify(ministries) %> ');
         for (i in ministries) {
-            $("#ypoyrgeio").append(`<option value="${ministries[i].ministry}">${ministries[i].ministry}</option>`);
+            $("#agency").append(`<option value="${ministries[i]}">${ministries[i]}</option>`);
         }
+        $("#agency").append('<option value="Άλλος">Άλλος</option>');
 
         $("#back").on("click", function (ev) {
             window.location.href = "/user_views/dashboard";

@@ -41,8 +41,8 @@
                             <hr />
                             <div class="govgr-field">
                                 <label class="govgr-label" for="taxid"> <span>ΑΦΜ:</span>
-                                    <input class="govgr-input govgr-!-width-one-half" type="text" id="taxid" name="taxid" required minlength="9"
-                                        maxlength="9" value="<%= user.taxId %>" />
+                                    <input class="govgr-input govgr-!-width-one-half" type="text" id="taxid"
+                                        name="taxid" required minlength="9" maxlength="9" value="<%= user.taxId %>" />
                                 </label>
                             </div>
                             <hr />
@@ -81,12 +81,18 @@
                             </div>
                             <hr />
                             <div class="govgr-field">
-                                <label class="govgr-label" for="ypoyrgeio">
-                                    Υπουργείο:
-                                    <select class="govgr-select govgr-!-width-two-thirds" id="ypoyrgeio"
-                                        name="ypoyrgeio">
+                                <label class="govgr-label" for="agency">
+                                    Φορέας:
+                                    <select class="govgr-select govgr-!-width-two-thirds" id="agency" name="agency">
                                         <option value="" selected disabled>Eπιλογή</option>
                                     </select>
+                                </label>
+                            </div>
+                            <div id="other_agency_div" style="display: none;">
+                                <br>
+                                <label class="govgr-label" for="password"> <span>Άλλος φορέας:</span>
+                                    <input class="govgr-input govgr-!-width-one-half" type="text" id="other_agency"
+                                        name="other_agency" value="<%= user.agency %>" />
                                 </label>
                             </div>
                             <hr />
@@ -95,35 +101,36 @@
                                     Ρόλος:
                                     <select class="govgr-select govgr-!-width-two-thirds" id="role" name="role">
                                         <option selected disabled>Eπιλογή</option>
-                                        <option value="Συντάκτης επισπεύδοντος Υπουργείου">Συντάκτης επισπεύδοντος
-                                            Υπουργείου
-                                        </option>
                                         <option
                                             value="Αρμόδιος επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων">
                                             Αρμόδιος
                                             επισπεύδοντος Υπουργείου και άλλων συναρμόδιων Υπουργείων
-                                        </option>
                                         <option value="Βουλευτής">Βουλευτής</option>
-                                        <option value="Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)">Νομοπαρασκευαστική Επιτροπή
-                                            (ΓΓΝΚΘ)
-                                        </option>
+                                        <option value="Βουλή">Βουλή</option>
                                         <option value="Γενικό Λογιστήριο του Κράτους">Γενικό Λογιστήριο του Κράτους
-                                        </option>
-                                        <option
-                                            value="Επιτροπή Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)">
-                                            Επιτροπή Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)
-                                        </option>
-                                        <option value="Γραφείο Καλής Νομοθέτησης (ΓΓΝΚΘ)">Γραφείο Καλής Νομοθέτησης
-                                            (ΓΓΝΚΘ)</option>
-                                        <option value="Διεύθυνση Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)">Διεύθυνση
-                                            Νομοπαρασκευαστικής
-                                            Διαδικασίας (ΓΓΝΚΘ)
                                         </option>
                                         <option value="Γενικός Γραμματέας Νομικών και Κοινοβουλευτικών Θεμάτων">Γενικός
                                             Γραμματέας
                                             Νομικών και Κοινοβουλευτικών Θεμάτων
                                         </option>
-                                        <option value="Βουλή">Βουλή</option>
+                                        <option value="Γραφείο Καλής Νομοθέτησης (ΓΓΝΚΘ)">Γραφείο Καλής Νομοθέτησης
+                                            (ΓΓΝΚΘ)</option>
+                                        <option value="Διαχειριστής πλατφόρμας">Διαχειριστής πλατφόρμας</option>
+                                        </option>
+                                        <option value="Διεύθυνση Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)">Διεύθυνση
+                                            Νομοπαρασκευαστικής
+                                            Διαδικασίας (ΓΓΝΚΘ)
+                                        </option>
+                                        <option
+                                            value="Επιτροπή Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)">
+                                            Επιτροπή Αξιολόγησης Ποιότητας της Νομοπαρασκευαστικής Διαδικασίας (ΓΓΝΚΘ)
+                                        </option>
+                                        <option value="Νομοπαρασκευαστική Επιτροπή (ΓΓΝΚΘ)">Νομοπαρασκευαστική Επιτροπή
+                                            (ΓΓΝΚΘ)
+                                        </option>
+                                        <option value="Συντάκτης επισπεύδοντος Υπουργείου">Συντάκτης επισπεύδοντος
+                                            Υπουργείου
+                                        </option>
                                     </select>
                                 </label>
                             </div> <br />
@@ -167,8 +174,8 @@
         <script type="text/javascript" src="/js/nav_scripts.js"></script>
         <script type="text/javascript" src="/js/enums.js"></script>
         <script>
-            const userRole = "<%= user.role %>";
-            setUserRestrictions(userRole);
+            const user = JSON.parse(' <%- JSON.stringify(user) %> ');
+            setUserRestrictions(user.role);
             let isAdmin = '<%= user.isAdmin %>';
 
             let username = $("#username").val();
@@ -183,24 +190,15 @@
                     $('#alerts').html(validationErrors);
                     $('#errors').show();
                     window.scrollTo(0, 0);
-                } else if (!username) {
-                    ev.preventDefault();
-                    validationErrors = '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><li>Έχετε εισάγει λανθασμένα στοιχεία.</li>';
-                    $('#alerts').empty();
-                    $('#alerts').html(validationErrors);
-                    $('#errors').show();
-                    window.scrollTo(0, 0);
                 } else {
                     $.ajax({
-                        url: '/user_views/profile/' + username,
+                        url: `/user_views/profile/${username}`,
                         data: $(this).serialize(),
                         error: function (error) {
-                            console.log(error)
                             let errors = JSON.parse(error.responseText);
                             $('#errors').show();
                             let alerts = '';
                             for (i in errors) {
-                                console.log(errors[i].msg)
                                 alerts += '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' + "<li>" + errors[i].msg + "</li>";
                             }
                             $('#alerts').empty();
@@ -223,29 +221,48 @@
 
             let ministries = JSON.parse(' <%- JSON.stringify(ministries) %> ');
             for (i in ministries) {
-                $("#ypoyrgeio").append(`<option value="${ministries[i].ministry}">${ministries[i].ministry}</option>`);
+                $("#agency").append(`<option value="${ministries[i]}">${ministries[i]}</option>`);
             }
+            $("#agency").append('<option value="Άλλος">Άλλος</option>');
             let ministryValue = "<%= user.agency %>";
             let roleValue = "<%= user.role %>";
-            $("#ypoyrgeio").val(ministryValue ? ministryValue : $("#ypoyrgeio option:first").val());//if user is assigned a ministry, set dropdown accordingly, else set to first option
-            $("#role").val(roleValue ? roleValue : $("#ypoyrgeio option:first").val());//if user is assigned a role, set dropdown accordingly, else set to first option
+            $("#agency").val(ministryValue ? ministryValue : $("#agency option:first").val());//if user is assigned a ministry, set dropdown accordingly, else set to first option
+            $("#role").val(roleValue ? roleValue : $("#agency option:first").val());//if user is assigned a role, set dropdown accordingly, else set to first option
 
+            if (!user.username) {
+                $('#username').prop('disabled', true);
+            }
 
+            if (!user.password) {
+                $('#password').prop('disabled', true);
+                $('#new_password').prop('disabled', true);
+                $('#password_repeat').prop('disabled', true);
+            }
 
+            $("#agency").on('change', () => {
+                if ($("#agency").val() === 'Άλλος') {
+                    $('#other_agency_div').show();
+                } else {
+                    $('#other_agency_div').empty();
+                    $('#other_agency_div').hide();
+                }
+            })
             /////////////////////////////////////////////////////////////////////////////////////  
 
-            $(document).ready(function () {
-                if ("<%= user.isAdmin %>") {
-                    $("#isAdmin_checkbox").show();
-                    $("#isAdmin").prop('checked', true);
-                } else {
-                    $(".isAdmin").hide();
-                    $("#isAdmin_checkbox").hide();
-                }
+            if (user.isAdmin) {
+                $("#isAdmin_checkbox").show();
+                $("#isAdmin").prop('checked', true);
+                $("#agency").prop('disabled', false);
+                $("#role").prop('disabled', false);
+            } else {
+                $(".isAdmin").hide();
+                $("#isAdmin_checkbox").hide();
+                $("#agency").prop('disabled', true);
+                $("#role").prop('disabled', true);
+            }
 
-                $("#password_repeat, #new_password").keyup(function () {
-                    passwordsMatch();
-                });
+            $("#password_repeat, #new_password").keyup(function () {
+                passwordsMatch();
             });
 
             function passwordsMatch() {

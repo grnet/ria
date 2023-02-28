@@ -93,7 +93,7 @@
                 <div class="govgr-field">
                     <label class="govgr-label" for="editMinister">
                         Υπουργός:
-                        <select class="govgr-select govgr-!-width-one-half" id="editMinister" name="editMinister"
+                        <select class="govgr-select govgr-!-width-one-half" id="selectMinister" name="selectMinister"
                             required>
                             <option selected disabled value="">Eπιλογή</option>
                         </select>
@@ -113,13 +113,13 @@
                     <div class="govgr-field">
                         <label class="govgr-label" for="editMinisterResponsibility"> <span>Αρμοδιότητα:</span>
                             <input class="govgr-input govgr-!-width-one-half" type="text" id="responsibility"
-                                name="editMinisterResponsibility" />
+                                name="responsibility" />
                         </label>
                     </div>
                     <label class="govgr-label" for="editMinisterMinistry">
                         Υπουργείο:
                         <select class="govgr-select govgr-!-width-one-half" id="editMinisterMinistry"
-                            name="editMinisterMinistry" required>
+                            name="ministry" required>
                             <option selected disabled value="">Eπιλογή</option>
                         </select>
                     </label>
@@ -157,6 +157,12 @@
                 );
                 $('#editMinisterMinistry').append(
                     `<option value="${ministries[i]}">${ministries[i]}</option>`
+                );
+            }
+
+            for (i in ministers) {
+                $('#selectMinister').append(
+                    `<option value="${ministers[i].name}">${ministers[i].name}</option>`
                 );
             }
 
@@ -204,30 +210,24 @@
                 $('#editMinister').hide();
             });
 
-            // $('#editMinistrySelect').on('change', () => {
-            //     $('#newMinistryName').empty();
-            //     const editMinistrySelectValue = $('#editIndexTable').val();
-            //     $('#indexSelect').append(
-            //         `<option value="" selected disabled>Eπιλογή</option>`
-            //     );
-            //     for (let i in ) {
-            //         $('#indexSelect').append(
-            //             `<option value="${indexes[indexTableValue][i]}">${indexes[indexTableValue][i]}</option>`
-            //         );
-            //     }
-            // });
-
             $('#editMinistrySelect').on('change', () => {
                 $('#newMinistryName').empty();
                 const editMinistrySelectValue = $('#editMinistrySelect').val();
                 $('#newMinistryName').val(editMinistrySelectValue);
             });
 
-            $('#editMinister').on('change', () => {
+            $('#selectMinister').on('change', () => {
                 // TODO: add AJAX call to get minister's data
                 $('#editMinisterName').empty();
-                const ministerNameValue = $('#editMinister').val();
+                let minister;                
+                const ministerNameValue = $('#selectMinister').val();
+                for (i in ministers) {
+                    if (ministers[i].name === ministerNameValue) minister = ministers[i];
+                }
                 $('#editMinisterName').val(ministerNameValue);
+                $('#editMinisterRole').val(minister.role);
+                $('#responsibility').val(minister.responsibility);
+                $('#editMinisterMinistry').val(minister.ministry);
             });
 
             $("#createMinistry").on("submit", function (ev) {
@@ -304,6 +304,21 @@
                     type: 'DELETE'
                 });
             });
+
+            $("#editMinister").on("submit", function (ev) {
+                    ev.preventDefault();
+                    $.ajax({
+                        url: `/user_views/ministries/minister`,
+                        data: $('#editMinister').serialize(),
+                        error: function (error) {
+                            console.log(error);
+                        },
+                        success: function (data) {
+                            window.location.href = "/user_views/dashboard";
+                        },
+                        type: 'PUT'
+                    });
+                });
         </script>
         <script type="text/javascript" src="/js/common_user_scripts.js"></script>
         </body>

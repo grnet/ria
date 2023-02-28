@@ -193,7 +193,3 @@ function ministerNameOnChange(
     }
   }
 }
-
-function setChoicesJs(element) {
-  const choices = new Choices($(`#${element}`)[0]);
-}

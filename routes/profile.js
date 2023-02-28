@@ -2,7 +2,7 @@ const routes = require('express').Router();
 const { authUser, authRole, authAgency } = require("../middleware/auth");
 let database = require("../services/database");
 const bcrypt = require('bcrypt');
-
+const ministries = require("../lib/ministries");
 
 routes.get(
   "/",
@@ -16,24 +16,10 @@ routes.get(
       },
     });
     if (user && user.dataValues) {
-      let latest_entry = await database.ministries.max("id").catch((error) => {
-        console.log(error);
-      }); // get entry with highest id
-      let res_data = await database.ministries
-        .findOne({ where: { id: latest_entry } })
-        .catch((error) => {
-          console.log(error);
-        });
-      let ministries = [];
-      for (i in res_data.dataValues.ministries) {
-        let value = res_data.dataValues.ministries[i].ministry;
-        if (value && String(value).trim()) {
-          ministries.push({ ministry: value });
-        }
-      }
+      const ministriesResult = await ministries.getMinistries();
       res.render("user_views/profile", {
         user: user.dataValues,
-        ministries: ministries,
+        ministries: ministriesResult,
       });
     } else {
       res.status(404).send("Not found");
@@ -57,6 +43,9 @@ routes.put(
         taxId: req.params.taxid,
       },
     });
+    const agency = req.body.other_agency
+      ? req.body.other_agency
+      : req.body.agency;
     if (user && user.dataValues) {
       if (!password) {
         //if password not provided update everything but the password
@@ -69,7 +58,7 @@ routes.put(
               taxId: req.body.taxid,
               role: req.body.role,
               isAdmin: req.body.isAdmin,
-              agency: req.body.ypoyrgeio,
+              agency: agency,
             },
             {
               where: {
@@ -94,7 +83,7 @@ routes.put(
                       password: hash,
                       role: req.body.role,
                       isAdmin: req.body.isAdmin,
-                      agency: req.body.ypoyrgeio,
+                      agency: agency,
                     },
                     {
                       where: {

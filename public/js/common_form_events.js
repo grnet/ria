@@ -318,6 +318,7 @@ $("#add_row_table_14").on("click", function () {
                 }" name="field_14_arthro${index - 1}" rows="5" ></textarea>                                   
             </td>    
             <td>
+                <br>
                 <textarea class="govgr-textarea" id="field_14_stoxos${
                   index - 1
                 }" name="field_14_stoxos${index - 1}" onkeypress="wordsCounter('field_14_stoxos${index - 1}','words14_${index - 1}', event)" onpaste="wordsCounter('field_14_stoxos${index - 1}','words14_${index - 1}', event)" rows="5"></textarea>
@@ -349,7 +350,7 @@ $("#add_row_table_17").on("click", function () {
             <td><button class="btn remove float-right" type="button"><img src="/img/delete.png" width="50px"></button></td>
         </tr>`);
   populateMinistersNameSelect(`field_17_minister_name${index - 1}`);
-  setChoicesJs(`minister_name${index - 1}`);
+  setChoicesJs(`field_17_minister_name${index - 1}`);
 });
 
 $("#add_row_ministers_table").on("click", function () {
@@ -357,7 +358,7 @@ $("#add_row_ministers_table").on("click", function () {
   $("#tbody_ministers").append(`
         <tr class="govgr-table__row" id="R${++index}">              
             <td> 
-                <select one="one" id="minister_name${
+                <select style="width:100%;" id="minister_name${
                   index - 1
                 }" name="minister_name${index - 1}" class="govgr-select" onchange="ministerNameOnChange('minister_name${index - 1}', 'minister_role${index - 1}', 'minister_ministry${index - 1}')" style="width:100%;" ></select>
             </td> 
@@ -438,6 +439,7 @@ $("#add_row_table_31").on("click", function () {
                 }" name="field_31_synarmodia_ypoyrgeia${index - 1}" rows="5"></textarea>
             </td> 
             <td> 
+                <br>
                 <textarea class="govgr-textarea" id="field_31_antikeimeno_synarmodiotitas${
                   index - 1
                 }" name="field_31_antikeimeno_synarmodiotitas${index - 1}" rows="5" onkeypress="wordsCounter('field_31_antikeimeno_synarmodiotitas${index - 1}','words31_${index - 1}',50, event)" onpaste="wordsCounter('field_31_antikeimeno_synarmodiotitas${index - 1}','words31_${index - 1}',50, event)"></textarea>
@@ -469,6 +471,7 @@ $("#add_row_table_32").on("click", function () {
                 }" name="field_32_armodio_ypoyrgeio${index - 1}" rows="5"></textarea>
             </td> 
             <td> 
+                <br>
                 <textarea class="govgr-textarea" id="field_32_antikeimeno${
                   index - 1
                 }" name="field_32_antikeimeno${index - 1}" rows="5" onkeypress="wordsCounter('field_32_antikeimeno${index - 1}','words32_${index - 1}',50, event)" onpaste="wordsCounter('field_32_antikeimeno${index - 1}','words32_${index - 1}',50, event)"></textarea>
@@ -542,6 +545,7 @@ $("#add_row_education").on("click", function () {
             <td><button class="btn remove float-right" type="button"><img src="/img/delete.png" width="50px"></button></td>    
         </tr>`);
   populateIndexSelect(`ekpaideysi_index${index - 1}`, "ΕΚΠΑΙΔΕΥΣΗ");
+  setChoicesJs(`ekpaideysi_index${index - 1}`);
 });
 
 $("#add_row_civ").on("click", function () {
@@ -589,6 +593,7 @@ $("#add_row_civ").on("click", function () {
             <td><button class="btn remove float-right" type="button"><img src="/img/delete.png" width="50px"></button></td>            
         </tr>`);
   populateIndexSelect(`politismos_index${index - 1}`, "ΠΟΛΙΤΙΣΜΟΣ");
+  setChoicesJs(`politismos_index${index - 1}`);
 });
 
 $("#add_row_economy").on("click", function () {
@@ -636,6 +641,7 @@ $("#add_row_economy").on("click", function () {
             <td><button class="btn remove float-right" type="button"><img src="/img/delete.png" width="50px"></button></td>
         </tr>`);
   populateIndexSelect(`oikonomia_index${index - 1}`, "ΟΙΚΟΝΟΜΙΑ");
+  setChoicesJs(`oikonomia_index${index - 1}`);
 });
 
 $("#add_row_taxation").on("click", function () {
@@ -683,6 +689,7 @@ $("#add_row_taxation").on("click", function () {
             <td><button class="btn remove float-right" type="button"><img src="/img/delete.png" width="50px"></button></td>
         </tr>`);
   populateIndexSelect(`forologia_index${index - 1}`, "ΦΟΡΟΛΟΓΙΑ");
+  setChoicesJs(`forologia_index${index - 1}`);
 });
 
 $("#add_row_relations").on("click", function () {
@@ -733,6 +740,7 @@ $("#add_row_relations").on("click", function () {
     `ergasiakes_sxeseis_index${index - 1}`,
     "ΕΡΓΑΣΙΑΚΕΣ ΣΧΕΣΕΙΣ"
   );
+  setChoicesJs(`ergasiakes_sxeseis_index${index - 1}`);
 });
 
 $("#add_row_employment").on("click", function () {
@@ -780,6 +788,7 @@ $("#add_row_employment").on("click", function () {
             <td><button class="btn remove float-right" type="button"><img src="/img/delete.png" width="50px"></button></td>
         </tr>`);
   populateIndexSelect(`apasxolisi_index${index - 1}`, "ΑΠΑΣΧΟΛΗΣΗ");
+  setChoicesJs(`apasxolisi_index${index - 1}`);
 });
 
 $("#add_row_insurance").on("click", function () {
@@ -829,6 +838,7 @@ $("#add_row_insurance").on("click", function () {
     `koinoniki_asfalisi_index${index - 1}`,
     "ΚΟΙΝΩΝΙΚΗ ΑΣΦΑΛΙΣΗ"
   );
+  setChoicesJs(`koinoniki_asfalisi_index${index - 1}`);
 });
 
 $("#add_row_welfare").on("click", function () {
@@ -879,6 +889,7 @@ $("#add_row_welfare").on("click", function () {
     `koinoniki_pronoia_index${index - 1}`,
     "ΚΟΙΝΩΝΙΚΗ ΠΡΟΝΟΙΑ"
   );
+  setChoicesJs(`koinoniki_pronoia_index${index - 1}`);
 });
 
 $("#add_row_healthcare").on("click", function () {
@@ -926,6 +937,7 @@ $("#add_row_healthcare").on("click", function () {
             <td><button class="btn remove float-right" type="button"><img src="/img/delete.png" width="50px"></button></td>
         </tr>`);
   populateIndexSelect(`ygeia_index${index - 1}`, "ΥΓΕΙΑ");
+  setChoicesJs(`ygeia_index${index - 1}`);
 });
 
 $("#add_row_equality").on("click", function () {
@@ -973,6 +985,7 @@ $("#add_row_equality").on("click", function () {
             <td><button class="btn remove float-right" type="button"><img src="/img/delete.png" width="50px"></button></td>
         </tr>`);
   populateIndexSelect(`isotita_fylwn_index${index - 1}`, "ΙΣΟΤΗΤΑ ΦΥΛΩΝ");
+  setChoicesJs(`isotita_fylwn_index${index - 1}`);
 });
 
 $("#add_row_immigration").on("click", function () {
@@ -1025,6 +1038,7 @@ $("#add_row_immigration").on("click", function () {
     `metanasteytiki_prosfygiki_politiki_index${index - 1}`,
     "ΜΕΤΑΝΑΣΤΕΥΤΙΚΗ-ΠΡΟΣΦΥΓΙΚΗ ΠΟΛΙΤΙΚΗ"
   );
+  setChoicesJs(`metanasteytiki_prosfygiki_politiki_index${index - 1}`);
 });
 
 $("#add_row_administration").on("click", function () {
@@ -1072,6 +1086,7 @@ $("#add_row_administration").on("click", function () {
             <td><button class="btn remove float-right" type="button"><img src="/img/delete.png" width="50px"></button></td>
         </tr>`);
   populateIndexSelect(`dimosia_dioikisi_index${index - 1}`, "ΔΗΜΟΣΙΑ ΔΙΟΙΚΗΣΗ");
+  setChoicesJs(`dimosia_dioikisi_index${index - 1}`);
 });
 
 $("#add_row_security").on("click", function () {
@@ -1118,6 +1133,7 @@ $("#add_row_security").on("click", function () {
             <td><button class="btn remove float-right" type="button"><img src="/img/delete.png" width="50px"></button></td>
         </tr>`);
   populateIndexSelect(`dimosia_asfaleia_index${index - 1}`, "ΔΗΜΟΣΙΑ ΑΣΦΑΛΕΙΑ");
+  setChoicesJs(`dimosia_asfaleia_index${index - 1}`);
 });
 
 $("#add_row_justice").on("click", function () {
@@ -1164,6 +1180,7 @@ $("#add_row_justice").on("click", function () {
             <td><button class="btn remove float-right" type="button"><img src="/img/delete.png" width="50px"></button></td>
         </tr>`);
   populateIndexSelect(`dikaiosini_index${index - 1}`, "ΔΙΚΑΙΟΣΥΝΗ");
+  setChoicesJs(`dikaiosini_index${index - 1}`);
 });
 
 $("#add_row_investments").on("click", function () {
@@ -1214,6 +1231,7 @@ $("#add_row_investments").on("click", function () {
     `ependytiki_drastiriotita_index${index - 1}`,
     "ΕΠΙΧΕΙΡΗΜΑΤΙΚΗ/ΕΠΕΝΔΥΤΙΚΗ ΔΡΑΣΤΗΡΙΟΤΗΤΑ"
   );
+  setChoicesJs(`ependytiki_drastiriotita_index${index - 1}`);
 });
 
 $("#add_row_energy").on("click", function () {
@@ -1263,6 +1281,7 @@ $("#add_row_energy").on("click", function () {
     `perivallon_energeia_index${index - 1}`,
     "ΠΕΡΙΒΑΛΛΟΝ – ΕΝΕΡΓΕΙΑ"
   );
+  setChoicesJs(`ependytiki_drastiriotita_index${index - 1}`);
 });
 
 //TODO: remove after field_9 refactoring

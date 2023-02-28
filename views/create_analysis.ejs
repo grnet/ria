@@ -619,40 +619,35 @@
                                 </label>
                                 <div class="index_field_10"></div>
                             </div>
-                            <div class="flex-form-group form-group">
-                                <div class="checkbox-group form-group row">
-                                    <div class="col-2"></div>
-                                    <label class="govgr-label govgr-checkboxes__label">ΑΜΕΣΗ</label>
-                                    <input class="govgr-checkboxes__input" type="checkbox" id="field_10_amesi"
-                                        name="field_10_amesi" />
-                                </div>
-                                <div id="amesi_wrap" class="form-group digital_gov" style="display:none;">
-                                    <label for="field_10_amesi_comments" class="digital-gov-label">Εάν είναι άμεση,
-                                        εξηγήστε:
-                                    </label>
-                                    <textarea class="govgr-textarea" id="field_10_amesi_comments"
-                                        name="field_10_amesi_comments" rows="10"
-                                        onkeypress="wordsCounter('field_10_amesi_comments','words10_1', event)"
-                                        onpaste="wordsCounter('field_10_amesi_comments','words10_1', event)"></textarea>
-                                    <p style="float: right;">Λέξεις: <span id="words10_1"></span></p>
-                                </div>
-                                <div class="checkbox-group form-group row">
-                                    <div class="col-2"></div>
-                                    <label class="govgr-label govgr-checkboxes__label">ΕΜΜΕΣΗ</label>
-                                    <input class="govgr-checkboxes__input" type="checkbox" id="field_10_emmesi"
-                                        name="field_10_emmesi" />
-                                </div>
-                                <div id="emesi_wrap" class="form-group digital_gov" style="display:none;">
-                                    <label for="field_10_emmesi_comments" class="digital-gov-label">Εάν είναι έμμεση,
-                                        εξηγήστε:
-                                    </label>
-                                    <textarea class="govgr-textarea" id="field_10_emmesi_comments"
-                                        name="field_10_emmesi_comments" rows="10"
-                                        onkeypress="wordsCounter('field_10_emmesi_comments','words10_2', event)"
-                                        onpaste="wordsCounter('field_10_emmesi_comments','words10_2', event)"></textarea>
-                                    <p style="float: right;">Λέξεις: <span id="words10_2"></span></p>
-                                </div>
+                            <div class="checkbox-group form-group row">
+                                <div class="col-2"></div>
+                                <label class="col-3 col-form-label">ΑΜΕΣΗ</label>
+                                <input class="col-2 form-check-input position-static" type="checkbox" id="field_10_amesi" name="field_10_amesi" />
                             </div>
+                            <div id="amesi_wrap" class="form-group digital_gov" style="display:none;">
+                                <label for="field_10_amesi_comments" class="digital-gov-label">Εάν είναι άμεση,
+                                    εξηγήστε:
+                                </label>
+                                <textarea class="govgr-textarea" id="field_10_amesi_comments" name="field_10_amesi_comments" rows="3"
+                                    onkeypress="wordsCounter('field_10_amesi_comments','words10_1', event)"
+                                    onpaste="wordsCounter('field_10_amesi_comments','words10_1', event)"></textarea>
+                                <p style="float: right;">Λέξεις: <span id="words10_1"></span></p>
+                            </div>
+                            <div class="checkbox-group form-group row">
+                                <div class="col-2"></div>
+                                <label class="col-3 col-form-label">ΕΜΜΕΣΗ</label>
+                                <input class="col-2 form-check-input position-static" type="checkbox" id="field_10_emmesi" name="field_10_emmesi" />
+                            </div>
+                            <div id="emesi_wrap" class="form-group digital_gov" style="display:none;">
+                                <label for="field_10_emmesi_comments" class="digital-gov-label">Εάν είναι έμμεση,
+                                    εξηγήστε:
+                                </label>
+                                <textarea class="govgr-textarea" id="field_10_emmesi_comments" name="field_10_emmesi_comments" rows="3"
+                                    onkeypress="wordsCounter('field_10_emmesi_comments','words10_2', event)"
+                                    onpaste="wordsCounter('field_10_emmesi_comments','words10_2', event)"></textarea>
+                                <p style="float: right;">Λέξεις: <span id="words10_2"></span></p>
+                            </div>
+
                             <hr class="govgr-section-break govgr-section-break--m govgr-section-break--visible" />
                             <div class="govgr-grid">
                                 <div class="govgr-grid__col-span-9">
@@ -876,6 +871,7 @@
 <script type="text/javascript" src="/js/common_form_events.js"></script>
 <script type="text/javascript" src="/js/create_form_scripts.js"></script>
 <script type="text/javascript" src="/js/enums.js"></script>
+<script type="text/javascript" src="/js/common_scripts.js"></script>
 <script>
 
     const ministries = JSON.parse(' <%- JSON.stringify(ministries) %> ');

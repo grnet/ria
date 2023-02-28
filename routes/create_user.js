@@ -1,7 +1,13 @@
 const routes = require("express").Router();
 let database = require("../services/database");
 const bcrypt = require("bcrypt");
-const { authUser, authAdmin, authAgency, authRole } = require("../middleware/auth");
+const {
+  authUser,
+  authAdmin,
+  authAgency,
+  authRole,
+} = require("../middleware/auth");
+const ministries = require("../lib/ministries");
 
 routes.get(
   "/",
@@ -10,24 +16,10 @@ routes.get(
   authAgency,
   authAdmin,
   async function (req, res, next) {
-    let latest_entry = await database.ministries.max("id").catch((error) => {
-      console.log(error);
-    }); // get entry with highest id
     const user = req.session.user;
-    let res_data = await database.ministries
-      .findOne({ where: { id: latest_entry } })
-      .catch((error) => {
-        console.log(error);
-      });
-    let ministries = [];
-    for (i in res_data.dataValues.ministries) {
-      let value = res_data.dataValues.ministries[i].ministry;
-      if (value && String(value).trim()) {
-        ministries.push({ ministry: value });
-      }
-    }
+    const ministriesResult = await ministries.getMinistries();
     res.render("user_views/create_user", {
-      ministries: ministries,
+      ministries: ministriesResult,
       user: user,
     });
   }
@@ -41,24 +33,45 @@ routes.post(
   authAdmin,
   async function (req, res, next) {
     const userPassword = req.body.password;
-    bcrypt.hash(userPassword, 10, async function (err, hash) {
-      //add row to user model, map values from req.body
-      if (hash) {
-        let res_data = await database.user.create({
-          fname: req.body.fname,
-          lname: req.body.lname,
-          taxId: req.body.taxId,
-          username: req.body.username,
-          password: hash,
-          role: req.body.role,
-          isAdmin: req.body.isAdmin,
-          agency: req.body.ypoyrgeio,
-        });
-        res.send(res_data);
-      } else {
+    const agency = req.body.other_agency
+      ? req.body.other_agency
+      : req.body.agency;
+    if (userPassword) {
+      bcrypt.hash(userPassword, 10, async function (err, hash) {
+        //add row to user model, map values from req.body
+        if (hash) {
+          let res_data = await database.user.create({
+            fname: req.body.fname,
+            lname: req.body.lname,
+            taxId: req.body.taxId,
+            username: req.body.username,
+            password: hash,
+            role: req.body.role,
+            isAdmin: req.body.isAdmin,
+            agency: agency,
+          });
+          res.send(res_data);
+        } else {
+          console.log("error while hashing");
+        }
+      });
+    } else {
+      let res_data = await database.user.create({
+        fname: req.body.fname,
+        lname: req.body.lname,
+        taxId: req.body.taxId,
+        username: req.body.username,
+        password: hash,
+        role: req.body.role,
+        isAdmin: req.body.isAdmin,
+        agency: agency,
+      });
+
+      if (!res_data) {
         console.log("error while hashing");
       }
-    });
+      res.send(res_data);
+    }
   }
 );
 
