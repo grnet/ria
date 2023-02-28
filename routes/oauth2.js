@@ -267,13 +267,14 @@ const gsispa = async (req, res) => {
     if (user && user.dataValues) {
       if(!user.role) {
         res
+          .redirect('login')
           .status(400)
           .send({
             msg: "Δε σας έχει ανατεθεί ρόλος για να περιηγηθείτε στην εφαρμογή.",
           });
       }
       if (!user.agency) {
-        res.status(400).send({
+        res.redirect("login").status(400).send({
           msg: "Δε σας έχει ανατεθεί φορέας για να περιηγηθείτε στην εφαρμογή.",
         });
       }
@@ -286,7 +287,7 @@ const gsispa = async (req, res) => {
         lname: userinfo.lastname,
         taxId: userinfo.taxid
       });
-      res.status(302).send({
+      res.redirect("login").status(302).send({
         msg: "Δε σας έχει ανατεθεί ρόλος για να περιηγηθείτε στην εφαρμογή.",
       });
     }

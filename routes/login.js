@@ -39,6 +39,7 @@ routes.post(
         bcrypt.compare(inputPassword, user.password, function (err, result) {
           if (result) {
             req.session.user = user;
+            req.session.user.loginMethod = 'application';
             res.status(200).send({ redirect: "user_views/dashboard" });
           } else {
             errors.errors.push({

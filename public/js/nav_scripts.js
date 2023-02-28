@@ -1,3 +1,5 @@
+const { user } = require("../../services/database");
+
 $("#ministries").on("click", function (ev) {
   ev.preventDefault();
   $.ajax({
@@ -13,19 +15,23 @@ $("#ministries").on("click", function (ev) {
 });
 
 $("#exit").on("click", function (ev) {
-  ev.preventDefault();
-  $.ajax({
-    url: `/logout`,
-    error: function (error) {
-      console.log(error);
-    },
-    success: function (data) {
-      window.location.href = "/login";
-    },
-    type: "GET",
-  });
+  if (user.loginMethod && user.loginMethod === "application") {
+    ev.preventDefault();
+    $.ajax({
+      url: `/logout`,
+      error: function (error) {
+        console.log(error);
+      },
+      success: function (data) {
+        window.location.href = "/login";
+      },
+      type: "GET",
+    });
+  }
+  window.location.replace(
+    "https://www1.gsis.gr/oauth2server/logout/%7bclientId%7d/?url=https://ria.gov.gr/});"
+  );
 });
-
 
 function setUserRestrictions(userRole) {
   if (userRole === Roles.Parliamentarian) {
