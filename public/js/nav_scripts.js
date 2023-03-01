@@ -13,23 +13,17 @@ $("#ministries").on("click", function (ev) {
 });
 
 $("#exit").on("click", function (ev) {
-  console.log(user);
-  if (user.loginMethod && user.loginMethod === "application") {
-    ev.preventDefault();
-    $.ajax({
-      url: `/logout`,
-      error: function (error) {
-        console.log(error);
-      },
-      success: function (data) {
-        window.location.href = "/login";
-      },
-      type: "GET",
-    });
-  }
-  window.location.replace(
-    "https://test.gsis.gr/oauth2server/logout/TG8T4616438/?url=https://ria.demo.gov.gr/login"
-  );
+  ev.preventDefault();
+  $.ajax({
+    url: `/logout`,
+    error: function (error) {
+      console.log(error);
+    },
+    success: function (data) {
+      window.location.replace(data.redirect);
+    },
+    type: "GET",
+  });
 });
 
 function setUserRestrictions(userRole) {

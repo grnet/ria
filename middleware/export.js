@@ -1227,7 +1227,8 @@ exports.exportPDF = async function (req, res, next) {
         { text: "\n\n" },
         createSignatories(
           field_17_minister_names.field_17_minister_name,
-          field_17_minister_roles.field_17_minister_role
+          field_17_minister_roles.field_17_minister_role,
+          field_17_minister_ministries.field_17_minister_ministry
         ),
         {
           text: "\n\n",
@@ -2301,7 +2302,8 @@ exports.exportPDF = async function (req, res, next) {
       { text: "\n\n" },
       createSignatories(
         minister_names.minister_name,
-        minister_roles.minister_role
+        minister_roles.minister_role,
+        minister_ministries.minister_ministry
       ),
     ],
   };
@@ -3667,13 +3669,17 @@ function createField20(field_20, data) {
   return fieldData;
 }
 
-function createSignatories(names, roles) {
+function createSignatories(names, roles, ministries) {
   let signatories = [];
   const ministerIndexes = [];
   const substitutesIndexes = [];
   const undersecretariesIndexes = [];
   for (let i in roles) {
-    if (roles[i].includes("ΥΠΟΥΡΓΟΣ") && !roles[i].includes("ΥΦΥΠΟΥΡΓΟΣ")) {
+    if (
+      roles[i].includes("ΥΠΟΥΡΓΟΣ") &&
+      !roles[i].includes("ΥΦΥΠΟΥΡΓΟΣ") &&
+      !roles[i].includes("ΑΝΑΠΛΗΡΩΤΗΣ")
+    ) {
       ministerIndexes.push(i);
     }
     if (roles[i].includes("ΥΦΥΠΟΥΡΓΟΣ")) {
@@ -3685,78 +3691,145 @@ function createSignatories(names, roles) {
   }
   if (ministerIndexes.length > 0) {
     signatories.push({
-      text: "ΟΙ ΥΠΟΥΡΓΟΙ \n",
+      text: "\n\nΟΙ ΥΠΟΥΡΓΟΙ \n",
       bold: true,
       alignment: "center",
     });
     signatories.push({ text: "\n" });
-    signatories.push({
-      table: {
-        headerRows: 0,
-        widths: ["50%", "50%"],
-        body: createMinisterRows(ministerIndexes, roles, names),
-      },
-    });
-    table = [];
+    signatories.push(
+      createSignatoryTables(ministerIndexes, names, ministries, roles)
+    );
   }
 
   if (substitutesIndexes.length > 0) {
     signatories.push({
-      text: "ΟΙ ΥΦΥΠΟΥΡΓΟΙ \n",
+      text: "\n\nΟΙ ΥΦΥΠΟΥΡΓΟΙ \n",
       bold: true,
       alignment: "center",
     });
     signatories.push({ text: "\n" });
-
-    signatories.push({
-      table: {
-        headerRows: 0,
-        widths: ["50%", "50%"],
-        body: createMinisterRows(substitutesIndexes, roles, names),
-      },
-    });
-    table = [];
+    signatories.push(
+      createSignatoryTables(substitutesIndexes, names, ministries)
+    );
   }
   if (undersecretariesIndexes.length > 0) {
     signatories.push({
-      text: "ΟΙ ΑΝΑΠΛΗΡΩΤΕΣ ΥΠΟΥΡΓΟΙ\n",
+      text: "\n\nΟΙ ΑΝΑΠΛΗΡΩΤΕΣ ΥΠΟΥΡΓΟΙ\n",
       bold: true,
       alignment: "center",
     });
     signatories.push({ text: "\n" });
-    signatories.push({
-      table: {
-        headerRows: 0,
-        widths: ["50%", "50%"],
-        body: createMinisterRows(undersecretariesIndexes, roles, names),
-      },
-    });
-    table = [];
+    signatories.push(
+      createSignatoryTables(undersecretariesIndexes, names, ministries)
+    );
   }
   if (signatories) {
     return signatories;
   }
 }
 
-function createMinisterRows(indexes, roles, names) {
+function createSignatoryTables(indexes, names, ministries, roles) {
   const table = [];
-  for (i = 0; i < indexes.length; i += 2) {
+  const result = [];
+  let lastIndex, role1, role2;
+
+  if (indexes.length === 1) {
+    role1 =
+      !ministries[indexes[0]] || ministries[indexes[0]] === ""
+        ? roles[indexes[0]].split(" ").slice(1).join(" ")
+        : ministries[indexes[0]].split(" ").slice(1).join(" ");
     table.push([
+      { text: "", border: [false, false, false, false] },
       {
-        text: roles[indexes[i]] + "\n\n\n\n\n\n" + names[indexes[i]],
+        text: role1 + "\n\n\n\n\n\n" + names[indexes[0]],
         bold: true,
         alignment: "center",
       },
+      { text: "", border: [false, false, false, false] },
     ]);
-    if (indexes[i + 1]) {
+  } else if (indexes.length % 2 === 1) {
+    lastIndex = indexes[indexes.length - 1];
+
+    for (i = 0; i < indexes.length - 2; i += 2) {
+      role1 =
+        !ministries[indexes[i]] || ministries[indexes[i]] === ""
+          ? roles[indexes[i]].split(" ").slice(1).join(" ")
+          : ministries[indexes[i]].split(" ").slice(1).join(" ");
+      role2 =
+        !ministries[indexes[i + 1]] || ministries[indexes[i + 1]] === ""
+          ? roles[indexes[i + 1]].split(" ").slice(1).join(" ")
+          : ministries[indexes[i + 1]].split(" ").slice(1).join(" ");
       table.push([
         {
-          text: roles[indexes[i + 1]] + "\n\n\n\n\n\n" + names[indexes[i + 1]],
+          text: role1 + "\n\n\n\n\n\n" + names[indexes[i]],
+          bold: true,
+          alignment: "center",
+        },
+        { text: "", border: [false, false, false, false] },
+        {
+          text: role2 + "\n\n\n\n\n\n" + names[indexes[i + 1]],
           bold: true,
           alignment: "center",
         },
       ]);
+      table.push([
+        { text: "\n", border: [false, false, false, false] },
+        { text: "\n", border: [false, false, false, false] },
+        { text: "\n", border: [false, false, false, false] },
+      ]);
+    }
+    table.push([
+      { text: "\n", border: [false, false, false, false] },
+      { text: "\n", border: [false, false, false, false] },
+      { text: "\n", border: [false, false, false, false] },
+    ]);
+    role1 =
+      !ministries[lastIndex] || ministries[lastIndex] === ""
+        ? roles[lastIndex].split(" ").slice(1).join(" ")
+        : ministries[lastIndex].split(" ").slice(1).join(" ");
+    table.push([
+      { text: "", border: [false, false, false, false] },
+      {
+        text: role1 + "\n\n\n\n\n\n" + names[lastIndex],
+        bold: true,
+        alignment: "center",
+      },
+      { text: "", border: [false, false, false, false] },
+    ]);
+  } else {
+    for (i = 0; i < indexes.length; i += 2) {
+      role1 =
+        !ministries[indexes[i]] || ministries[indexes[i]] === ""
+          ? roles[indexes[i]].split(" ").slice(1).join(" ")
+          : ministries[indexes[i]].split(" ").slice(1).join(" ");
+      table.push([
+        {
+          text: role1 + "\n\n\n\n\n\n" + names[indexes[i]],
+          bold: true,
+          alignment: "center",
+        },
+        { text: "", border: [false, false, false, false] },
+        {
+          text: role1 + "\n\n\n\n\n\n" + names[indexes[i + 1]],
+          bold: true,
+          alignment: "center",
+        },
+      ]);
+      table.push([
+        { text: "\n", border: [false, false, false, false] },
+        { text: "\n", border: [false, false, false, false] },
+        { text: "\n", border: [false, false, false, false] },
+      ]);
     }
   }
-  return table;
+  //Todo: return table with widths
+  result.push({ text: "\n\n" });
+  result.push({
+    table: {
+      headerRows: 0,
+      widths: ["33%", "34%", "33%"],
+      body: table,
+    },
+  });
+  return result;
 }

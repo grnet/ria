@@ -737,18 +737,19 @@ $("#field_17_ypoyrgeio").val(
 let index = $("#tbody_ministers").prop("rows").length;
 for (let j in tables.signatories.minister_name) {
   $("#tbody_ministers").append(`
-  <tr id="R${++index}">
-      </td>
+  <tr id="R${index++}">
       <td>
         <select id="minister_name${index}" name="minister_name${index}" class="govgr-select" onchange="ministerNameOnChange('minister_name${index}', 'minister_role${index}', 'minister_ministry${index}')" required></select>
       </td>
       <td>
-        <textarea class="form-control" id="minister_role${index}" name="minister_role${index}" rows="1" readonly>${
-    tables.signatories.minister_role[j]
-  }</textarea>
-        <button class="btn remove float-right" type="button"><img src="/img/delete.png" width="50px"></button>
-        <input type="hidden" id="minister_ministry${index}" name="minister_ministry${index}" >
-        </td>
+        <textarea class="form-control" id="minister_role${index}" name="minister_role${index}" rows="3" readonly>${
+          tables.signatories.minister_role[j]
+        }</textarea>
+        <input type="hidden" id="minister_ministry${index}" name="minister_ministry${index}" 
+      </td>
+      <td><button class="btn remove float-right" type="button"><img src="/img/delete.png" width="50px"></button></td>
+
+        
     </tr>`);
   populateMinistersNameSelect(`minister_name${index}`);
   if (tables.signatories && tables.signatories.minister_name[j]) {
@@ -765,7 +766,7 @@ for (let j in tables.signatories.minister_name) {
 index = $("#tbody_17").prop("rows").length;
 for (let i in tables.field_17_signatories.field_17_minister_name) {
   $("#tbody_17").append(`
-        <tr id="R${++index}">            
+        <tr id="R${index++}">            
             <td>
               <select id="field_17_minister_name${index}" name="field_17_minister_name${index}" class="col-sm-8 form-control" onchange="ministerSurnameOnChange('field_17_minister_name${index}', 'field_17_minister_role${index}', 'field_17_minister_ministry${index}')" required></select>
             </td>

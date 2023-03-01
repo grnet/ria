@@ -356,7 +356,7 @@ $("#add_row_table_17").on("click", function () {
 $("#add_row_ministers_table").on("click", function () {
   let index = $("#tbody_ministers").prop("rows").length;
   $("#tbody_ministers").append(`
-        <tr class="govgr-table__row" id="R${++index}">              
+        <tr class="govgr-table__row" id="R${index++}">              
             <td> 
                 <select style="width:100%;" id="minister_name${
                   index - 1
