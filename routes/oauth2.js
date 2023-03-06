@@ -268,13 +268,20 @@ const gsispa = async (req, res) => {
   if (debug) console.log("GSIS UserInfo", userinfo);
   if (userinfo) {
     delete req.session.errors;
-    let user = await database.user.findOne({
-      where: {
-        taxId: userinfo.taxid,
-      },
-    });
+    let user;
+    try {
+      user = await database.user.findOne({
+        where: {
+          taxId: userinfo.taxid,
+        },
+      });
+      //TODO: refactor catch
+    } catch (err) {
+      console.log(err);
+      res.send(400);
+    }
     if (debug) console.log("App UserInfo", user);
-    if (user && user.dataValues) {
+    if (user) {
       if (!user.role) {
         req.session.errors = {
           msg: "Δε σας έχει ανατεθεί ρόλος για να περιηγηθείτε στην εφαρμογή.",
@@ -297,6 +304,7 @@ const gsispa = async (req, res) => {
       req.session.errors = {
         msg: "Δε σας έχει ανατεθεί ρόλος για να περιηγηθείτε στην εφαρμογή.",
       };
+      res.redirect(302, "login");
     }
   }
   res.end();

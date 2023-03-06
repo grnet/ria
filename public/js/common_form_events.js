@@ -355,6 +355,7 @@ $("#add_row_table_17").on("click", function () {
 
 $("#add_row_ministers_table").on("click", function () {
   let index = $("#tbody_ministers").prop("rows").length;
+  console.log(index);
   $("#tbody_ministers").append(`
         <tr class="govgr-table__row" id="R${index++}">              
             <td> 

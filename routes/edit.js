@@ -143,7 +143,8 @@ routes.get(
 
       const tooltips = JSON.stringify(await tooltipsCsv.getTooltips());
       const ministriesResult = await ministries.getMinistries();
-      const ministersResult = await ministries.getMinisters(ministriesResult);
+      const unsortedMinistries = await ministries.getUnsortedMinistries();
+      const ministersResult = await ministries.getMinisters(unsortedMinistries);
 
       res.render("edit_analysis", {
         //TODO: review endpoint name

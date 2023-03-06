@@ -6,7 +6,7 @@ routes.get("/", async function (req, res, next) {
     req.session.destroy();
     if (!req.session) {
       res.send({
-        redirect: "../login",
+        redirect: `https://${process.env.SITE}/login`,
       });
     }
   } else {

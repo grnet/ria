@@ -576,7 +576,7 @@ if (anaptiksi) {
     setChoicesJs(`perivallon_energeia_index${i}`);
   }
 } else {
-  $(".ependyseis :input").hide();
+  $(".ependyseis").hide();
 }
 
 if ($("#field_4").val() === "Ναι") {
@@ -734,10 +734,10 @@ $("#field_17_ypoyrgeio").val(
     : $("#field_17_ypoyrgeio option:first").val()
 );
 
-let index = $("#tbody_ministers").prop("rows").length;
 for (let j in tables.signatories.minister_name) {
+  let index = $("#tbody_ministers").prop("rows").length;
   $("#tbody_ministers").append(`
-  <tr id="R${index++}">
+  <tr id="R${index}">
       <td>
         <select id="minister_name${index}" name="minister_name${index}" class="govgr-select" onchange="ministerNameOnChange('minister_name${index}', 'minister_role${index}', 'minister_ministry${index}')" required></select>
       </td>
@@ -763,8 +763,8 @@ for (let j in tables.signatories.minister_name) {
   setChoicesJs(`minister_name${index}`);
 }
 
-index = $("#tbody_17").prop("rows").length;
 for (let i in tables.field_17_signatories.field_17_minister_name) {
+  index = $("#tbody_17").prop("rows").length;
   $("#tbody_17").append(`
         <tr id="R${index++}">            
             <td>

@@ -14,6 +14,7 @@ exports.exportPDF = async function (req, res, next) {
     where: { id: req.params.entry_id },
   });
   let data = result.dataValues.data;
+  let uploads = result.dataValues.uploads[0];
   let accountingData = result.dataValues.accountingData;
 
   const minister_names = await tablesLib.getTableData(["minister_name"], data);
@@ -1113,10 +1114,13 @@ exports.exportPDF = async function (req, res, next) {
                 },
                 {
                   text:
-                    "\n\n\n" +
-                    accountingData.field_16_genikos_onoma +
-                    " " +
-                    accountingData.field_16_genikos_epitheto,
+                    accountingData.field_16_genikos_epitheto &&
+                    accountingData.field_16_genikos_onoma
+                      ? "\n\n\n" +
+                        accountingData.field_16_genikos_onoma +
+                        " " +
+                        accountingData.field_16_genikos_epitheto
+                      : "\n\n",
                   style: "header4",
                 },
                 {
@@ -1318,14 +1322,6 @@ exports.exportPDF = async function (req, res, next) {
                   style: "header4",
                   fillColor: "#dcdcdc",
                 },
-              ],
-              [
-                {
-                  text: "",
-                  border: [false, false, false, false],
-                  fillColor: "white",
-                },
-                { text: "Δείτε το Παράρτημα" },
               ],
             ],
           },
@@ -2338,9 +2334,9 @@ exports.exportPDF = async function (req, res, next) {
   try {
     const merger = new PDFMerger();
     await merger.add(pdf_path);
-    if (data.field_21_upload) {
-      for (i in entry.dataValues.field_21_upload) {
-        await merger.add("public/uploads/" + entry.field_21_upload[i]);
+    if (uploads.field21.length > 0) {
+      for (i in uploads.field21) {
+        await merger.add("public/uploads/" + uploads.field21[i]);
       }
     }
 
@@ -2348,9 +2344,9 @@ exports.exportPDF = async function (req, res, next) {
     fs.unlink(pdf_path_b, async function (err) {
       console.error(err);
     });
-    if (data.field_23_upload) {
-      for (i in entry.dataValues.field_23_upload) {
-        await merger.add("public/uploads/" + entry.field_23_upload[i]);
+    if (uploads.field23.length > 0) {
+      for (i in uploads.field23) {
+        await merger.add("public/uploads/" + uploads.field23[i]);
       }
     }
 
@@ -2359,9 +2355,9 @@ exports.exportPDF = async function (req, res, next) {
       console.error(err);
     });
 
-    if (data.field_36_upload) {
-      for (i in entry.dataValues.field_36_upload) {
-        await merger.add("public/uploads/" + entry.field_36_upload[i]);
+    if (uploads.field36.length > 0) {
+      for (i in uploads.field36) {
+        await merger.add("public/uploads/" + uploads.field36[i]);
       }
     }
 
@@ -2419,12 +2415,14 @@ function isEmpty(value) {
 }
 
 function richText(value) {
-  const richText = htmlToPdfmake(value, {
-    window: window,
-    replaceText: function (richText) {
-      return richText.replace(/(?:\r\n|\r|\n)/g, "<br>");
-    },
-  });
+  const richText = value
+    ? htmlToPdfmake(value, {
+        window: window,
+        replaceText: function (richText) {
+          return richText.replace(/(?:\r\n|\r|\n)/g, "<br>");
+        },
+      })
+    : "\n\n";
   return richText;
 }
 
@@ -3598,7 +3596,7 @@ function createField19(data) {
         text: checkboxValue(data.field_19_apodosi_allo_nisiwtikotita),
         alignment: "center",
       },
-    ],
+    ]
   );
   fieldTable = {
     table: {
@@ -3619,7 +3617,6 @@ function createField19(data) {
   });
   return fieldData;
 }
-
 
 function createField20(data) {
   let table = [];
