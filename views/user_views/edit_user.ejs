@@ -216,9 +216,9 @@
         <script type="text/javascript" src="/js/nav_scripts.js"></script>
         <script type="text/javascript" src="/js/enums.js"></script>
         <script>
-            const user = JSON.parse(' <%- JSON.stringify(user) %> ');
+            const user = JSON.parse(' <%- JSON.stringify(authUser) %> ');
             setUserRestrictions(user.role);
-            const isAdmin = '<%= user.isAdmin %>';
+            const isAdmin = user.isAdmin;
 
             let username = $("#username").val();
             $("#delete_user").on("click", function (ev) {
@@ -288,7 +288,9 @@
                 $("#agency").append(`<option value="${ministries[i]}">${ministries[i]}</option>`);
             }
             $("#agency").append('<option value="Άλλος">Άλλος</option>');
-            $("#agency").val(user.agency);
+            let agency = "<%= user.agency %>";
+            console.log(agency);
+            $("#agency").val(agency);
             if (!$("#agency").val()) {
                 $('#other_agency_div').show();
                 $("#agency").val('Άλλος');

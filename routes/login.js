@@ -2,12 +2,11 @@ const routes = require("express").Router();
 let database = require("../services/database");
 const { body, check, validationResult } = require("express-validator");
 const bcrypt = require("bcrypt");
-const { user } = require("../services/database");
 
 routes.get("/", async function (req, res, next) {
-  const valid_errors = req.session.errors;
+  const validation_errors = req.session.errors;
   delete req.session.errors;
-  res.render("login", { errors: valid_errors });
+  res.render("login", { errors: validation_errors });
 });
 
 routes.post(

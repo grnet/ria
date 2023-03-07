@@ -60,7 +60,7 @@
   <script>
     const user = JSON.parse(' <%- JSON.stringify(user) %> ');
 
-    let isAdmin = user.isAdmin;
+    const isAdmin = user.isAdmin;
 
     setUserRestrictions(user.role);
   </script>

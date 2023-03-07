@@ -22,6 +22,7 @@ routes.get("/:taxId", authUser, authAdmin, async (req, res, next) => {
 
     res.render("user_views/edit_user", {
       user: entry.dataValues,
+      authUser: req.session.user,
       ministries: ministriesResult,
     }); // TODO: fix bug where user here is referenced in frontend as logged in user and not as to-be-edited user, which results in bugs with permissions
   } else {

@@ -175,8 +175,9 @@
         <script type="text/javascript" src="/js/enums.js"></script>
         <script>
             const user = JSON.parse(' <%- JSON.stringify(user) %> ');
+            const lname = user.lname;
             setUserRestrictions(user.role);
-            let isAdmin = '<%= user.isAdmin %>';
+            const isAdmin = user.isAdmin;
 
             let username = $("#username").val();
             let validationErrors;

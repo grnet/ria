@@ -3,6 +3,7 @@ const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args)); // consider upgrage nodejs to use internal fetch
 const fxmlparser = require("fast-xml-parser");
 let database = require("../services/database");
+const entities = require("html-entities");
 
 let debug = process.env.DEBUG || false;
 
@@ -298,7 +299,7 @@ const gsispa = async (req, res) => {
     } else {
       await database.user.create({
         fname: userinfo.firstname,
-        lname: userinfo.lastname,
+        lname: entities.decode(userinfo.lastname),
         taxId: userinfo.taxid,
       });
       req.session.errors = {
