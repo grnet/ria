@@ -1,17 +1,16 @@
 const routes = require("express").Router();
 
 routes.get("/", async function (req, res, next) {
-  console.log(req.session.loginType);
-  if (req.session.loginType && req.session.loginType === "app") {
+  if (req.session.user && req.session.user.loginMethod === "app") {
     req.session.destroy();
     if (!req.session) {
       res.send({
-        redirect: `${process.env.SITE}/login`,
+        redirect: `/login`,
       });
     }
   } else {
     res.send({
-      redirect: `https://test.gsis.gr/oauth2server/logout/${process.env.CLIENT_ID}/?url=${process.env.SITE}`,
+      redirect: `${process.env.GSID_SITE}/oauth2server/logout/${process.env.CLIENT_ID}/?url=${process.env.SITE}`,
     });
   }
 });

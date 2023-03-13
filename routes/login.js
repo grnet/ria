@@ -29,16 +29,24 @@ routes.post(
     if (errors.errors.length === 0) {
       //no validation errors
       const inputPassword = req.body.password;
-      let user = await database.user.findOne({
-        where: {
-          username: req.body.username,
-        },
-      });
+      let user;
+      try {
+        user = await database.user.findOne({
+          where: {
+            username: req.body.username,
+          },
+        });
+      } catch {
+        errors.errors.push({
+          msg: "Δε βρέθηκε χρήστης με αυτό το όνομα ή κωδικό.",
+        });
+        res.status(404).send(errors.errors);
+      }
       if (user && user.dataValues) {
         bcrypt.compare(inputPassword, user.password, function (err, result) {
           if (result) {
-            req.session.user = user;
-            req.session.loginType = "app";
+            req.session.user = user.dataValues;
+            req.session.user.loginMethod = "app";
             res.status(200).send({ redirect: "user_views/dashboard" });
           } else {
             errors.errors.push({

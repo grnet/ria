@@ -313,11 +313,11 @@ routes.put(
           }
         );
 
-        const author = req.session.user.fname + " " + req.session.user.lname;
-
         await database.audit.create({
-          user: author,
+          authorTaxId: req.session.user.taxId,
           data: req.body,
+          type: entry.type,
+          status: req.body.status,
           timestamp: req.body.last_updated,
           action: req.method,
           auditId: analysis_id,
@@ -374,11 +374,11 @@ routes.put(
         }
       );
 
-      const author = req.session.user.fname + " " + req.session.user.lname;
-
       await database.audit.create({
-        user: author,
+        authorTaxId: req.session.user.taxId,
         data: req.body,
+        type: analysis.type,
+        status: req.body.status,
         timestamp: req.body.last_updated,
         action: req.method,
         auditId: analysis_id,

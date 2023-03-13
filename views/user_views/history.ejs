@@ -31,32 +31,33 @@
               </thead>
               <!-- TODO: fix table headers and rows to display correct information -->
               <tbody class="govgr-table__body">
-                <% for(var i=0; i<user.analyses.length; i++) {%>
-                  <tr class="govgr-table__row" onclick="setReferer('<%=  user.analyses[i].id %>')">
-                    <td class="govgr-table__cell hover:underline">
-                      <%= user.analyses[i].data.title %>
-                    </td>
-                    <td class="govgr-table__cell">
-                      <%= user.fname%>
-                        <%= user.lname%>
-                    </td>
-                    <td class="govgr-table__cell">
-                      <%= user.role%>
-                    </td>
-                    <td class="govgr-table__cell">
-                      <%= user.agency %>
-                    </td>
-                    <td class="govgr-table__cell">
-                      <%= user.analyses[i].author %>
-                    </td>
-                    <td class="govgr-table__cell">
-                      <%= user.analyses[i].type %>
-                    </td>
-                    <td class="govgr-table__cell">
-                      <%= user.analyses[i].status %>
-                    </td>
-                  </tr>
-                  <% } %>
+                <% for(let i=0; i<latestEntries.length; i++) {%>
+                    <tr class="govgr-table__row" onclick="setReferer('<%=  latestEntries[i].userEntry.id %>')">
+                      <td class="govgr-table__cell hover:underline">
+                        <%= latestEntries[i].userEntry.data.title %>
+                      </td>
+                      <td class="govgr-table__cell">
+                        <%= latestEntries[i].firstAuditEntry.user.fname %> 
+                        <%= latestEntries[i].firstAuditEntry.user.lname %>
+                      </td>
+                      <td class="govgr-table__cell">
+                        <%= latestEntries[i].latestAuditEntry.user.fname %> 
+                        <%= latestEntries[i].latestAuditEntry.user.lname %>
+                      </td>
+                      <td class="govgr-table__cell">
+                        <%= latestEntries[i].latestAuditEntry.user.role %>                      
+                      </td>
+                      <td class="govgr-table__cell">
+                        <%= latestEntries[i].latestAuditEntry.user.agency %>
+                      </td>
+                      <td class="govgr-table__cell">
+                        <%= latestEntries[i].userEntry.type %>
+                      </td>
+                      <td class="govgr-table__cell">
+                        <%= latestEntries[i].userEntry.status %>
+                      </td>
+                    </tr>
+                <% } %>
               </tbody>
             </table>
           </div>
@@ -131,7 +132,7 @@
 
       const isAdmin = '<%= user.isAdmin %>';
       const userEntries = '<%= entries %>';
-      const agencyEntries = '<%= user.analyses %>';
+      const agencyEntries = '<%= latestEntries %>';
 
       if (userEntries.length > 0 && agencyEntries.length === 0) {
         $("#agency_div").show();

@@ -16,6 +16,18 @@ function applyAssoc(sequelize) {
     foreignKeyConstraint: true,
   });
 
+  //establishing one to many association between user and audit models
+  user.hasMany(audit, {
+    sourceKey: "taxId",
+    foreignKey: "authorTaxId",
+    foreignKeyConstraint: true,
+  });
+  audit.belongsTo(user, {
+    foreignKey: "authorTaxId",
+    targetKey: "taxId",
+    foreignKeyConstraint: true,
+  });
+
   //establishing one to many association between analysis and audit models
   analysis.hasMany(audit, {
     sourceKey: "id",

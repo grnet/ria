@@ -6,6 +6,7 @@ const { authUser, authAgency, authRole } = require("../middleware/auth");
 const tables = require("../lib/tables");
 const ministries = require("../lib/ministries");
 const tooltipsCsv = require("../lib/tooltips");
+const { user } = require("../services/database");
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -132,11 +133,13 @@ routes.post(
     });
 
     await database.audit.create({
-      user: req.session.user.fname + " " + req.session.user.lname,
       data: req.body,
+      type: req.body.type,
+      status: req.body.status,
       timestamp: req.body.initial_submit,
       action: req.method,
       auditId: res_data.id,
+      authorTaxId: req.session.user.taxId,
     });
 
     res.send({ redirect: "../user_views/history" });

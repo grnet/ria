@@ -279,7 +279,7 @@ const gsispa = async (req, res) => {
       //TODO: refactor catch
     } catch (err) {
       console.log(err);
-      res.send(400);
+      res.status(400).send({msg: 'Υπήρξε κάποιο σφάλμα κατά την είσοδο σας στην εφαρμογή. Παρακαλώ δοκιμάστε ξανά.'});
     }
     if (debug) console.log("App UserInfo", user);
     if (user) {
