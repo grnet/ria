@@ -32,7 +32,7 @@
               <!-- TODO: fix table headers and rows to display correct information -->
               <tbody class="govgr-table__body">
                 <% for(let i=0; i<latestEntries.length; i++) {%>
-                    <tr class="govgr-table__row" onclick="setReferer('<%=  latestEntries[i].userEntry.id %>')">
+                    <tr class="govgr-table__row" onclick="setReferer('<%=  latestEntries[i].userEntry.auditId %>')">
                       <td class="govgr-table__cell hover:underline">
                         <%= latestEntries[i].userEntry.data.title %>
                       </td>
@@ -51,10 +51,10 @@
                         <%= latestEntries[i].latestAuditEntry.user.agency %>
                       </td>
                       <td class="govgr-table__cell">
-                        <%= latestEntries[i].userEntry.type %>
+                        <%= latestEntries[i].latestAuditEntry.type %>
                       </td>
                       <td class="govgr-table__cell">
-                        <%= latestEntries[i].userEntry.status %>
+                        <%= latestEntries[i].latestAuditEntry.status %>
                       </td>
                     </tr>
                 <% } %>

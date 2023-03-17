@@ -9,9 +9,17 @@ const htmlToPdfmake = require("html-to-pdfmake");
 const tablesLib = require("../lib/tables");
 
 exports.exportGlk = async function (req, res, next) {
+  console.log(req.params);
+  console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+  const index = req.params.entry_id.indexOf(":");
+  const id =
+    index != -1 ? req.params.entry_id.substring(1) : req.params.entry_id;
   let result = await database.analysis.findOne({
-    where: { id: req.params.entry_id },
+    where: {
+      id: id,
+    },
   });
+  console.log(result);
   let data = result.dataValues.data;
   let accountingData = result.dataValues.accountingData;
 
@@ -421,7 +429,7 @@ exports.exportGlk = async function (req, res, next) {
   };
 
   var pdfDoc = printer.createPdfKitDocument(docDefinition);
-  var pdf_name = data.glk_pdf_name + ".pdf";
+  var pdf_name = data.title +'_accounting' + ".pdf";
   //pdf_name = pdf_name.replace(/\s+/g, '');
   var export_path = "public/exports/";
   var pdf_path = path.resolve(export_path, pdf_name);

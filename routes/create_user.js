@@ -36,6 +36,7 @@ routes.post(
     const agency = req.body.other_agency
       ? req.body.other_agency
       : req.body.agency;
+      console.log(req.body);
     if (userPassword) {
       bcrypt.hash(userPassword, 10, async function (err, hash) {
         //add row to user model, map values from req.body

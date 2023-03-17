@@ -273,6 +273,7 @@ routes.put(
             }
           }
           if (file.signed_pdf_upload) {
+            console.log(file.signed_pdf_upload);
             for (i in file.signed_pdf_upload) {
               signed_pdf.push(file.signed_pdf_upload[i].filename);
             }
@@ -287,44 +288,68 @@ routes.put(
           console.log("Error message: " + e.message);
         }
 
-        const uploads = req.file
-          ? [
-              {
-                field21: field21,
-                field23: field23,
-                field36: field36,
-                bill: bill,
-                signed_pdf: signed_pdf,
-              },
-            ]
-          : entry.uploads;
-
-        let analysis = await database.analysis.update(
+        const uploads = [
           {
-            data: req.body,
-            uploads: uploads,
-            author: req.session.user.taxId,
-            status: req.body.status,
+            field21: field21,
+            field23: field23,
+            field36: field36,
+            bill: bill,
+            signed_pdf: signed_pdf,
           },
-          {
-            where: {
-              id: analysis_id,
-            },
-          }
-        );
+        ];
 
-        await database.audit.create({
-          authorTaxId: req.session.user.taxId,
-          data: req.body,
-          type: entry.type,
-          status: req.body.status,
-          timestamp: req.body.last_updated,
-          action: req.method,
-          auditId: analysis_id,
-        });
+        let analysis;
+        if (req.body.status === "Κατατέθηκε") {
+          analysis = await database.analysis.update(
+            {
+              uploads: uploads,
+              author: req.session.user.taxId,
+              status: req.body.status,
+            },
+            {
+              where: {
+                id: analysis_id,
+              },
+            }
+          );
+          await database.audit.create({
+            authorTaxId: req.session.user.taxId,
+            data: entry.data,
+            type: entry.type,
+            status: req.body.status,
+            timestamp: new Date().toLocaleString("el-GR", {
+              timeZone: "Europe/Athens",
+            }),
+            action: req.method,
+            auditId: analysis_id,
+          });
+        } else {
+          analysis = await database.analysis.update(
+            {
+              data: req.body,
+              uploads: uploads,
+              author: req.session.user.taxId,
+              status: req.body.status,
+            },
+            {
+              where: {
+                id: analysis_id,
+              },
+            }
+          );
+          await database.audit.create({
+            authorTaxId: req.session.user.taxId,
+            data: req.body,
+            type: entry.type,
+            status: req.body.status,
+            timestamp: req.body.last_updated,
+            action: req.method,
+            auditId: analysis_id,
+          });
+        }
 
         if (!analysis) {
-          res.status(404).send("Error in updating analysis.");
+          res.status(404).send("Error while updating analysis.");
         } else {
           res.send({ redirect: "../user_views/history" });
         }
@@ -360,6 +385,9 @@ routes.put(
         console.log("Error message: " + e.message);
       }
 
+      const entry = await database.analysis.findOne({
+        where: { id: analysis_id },
+      });
       let analysis = await database.analysis.update(
         {
           accountingData: req.body,
@@ -373,13 +401,15 @@ routes.put(
           },
         }
       );
-
+      const data = req.body;
       await database.audit.create({
         authorTaxId: req.session.user.taxId,
-        data: req.body,
-        type: analysis.type,
+        data: entry.data,
+        type: entry.type,
         status: req.body.status,
-        timestamp: req.body.last_updated,
+        timestamp: new Date().toLocaleString("el-GR", {
+          timeZone: "Europe/Athens",
+        }),
         action: req.method,
         auditId: analysis_id,
       });
@@ -474,6 +504,7 @@ routes.post(
   async function (req, res, next) {
     let entries = await database.audit.findAll({
       where: { auditId: req.params.entry_id },
+      include: [{ model: database.user }],
     });
 
     entries

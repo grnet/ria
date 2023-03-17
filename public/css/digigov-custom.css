@@ -5,7 +5,7 @@
 h1 {
     /*@apply govgr-heading-xl*/
     font-size: 2.5rem;
-;
+    ;
 }
 
 h2 {
@@ -29,19 +29,19 @@ h6 {
 }
 
 
-.active{
-font-weight: bold;
+.active {
+    font-weight: bold;
 
 }
 
-:focus-visible{
-    outline:1px solid red;
+:focus-visible {
+    outline: 1px solid red;
 
 }
 
 a:active {
- color:#00122a;
- text-decoration:underline
+    color: #00122a;
+    text-decoration: underline
 }
 
 /* a {
@@ -61,8 +61,8 @@ for hover ----.link {
 @media (min-width:768px) {
     .govgr-main-wrapper-4 {
         display: grid;
-        grid-template-columns: repeat(4,minmax(0,1fr)) ;
-        gap: 3rem ;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 3rem;
     }
 }
 
@@ -74,7 +74,7 @@ for hover ----.link {
 }
 
 .govgr-grid-column-2-4 {
-    grid-column: span 2 / span 2 ;
+    grid-column: span 2 / span 2;
     display: flex;
     height: -webkit-fit-content;
     height: -moz-fit-content;
@@ -88,7 +88,7 @@ for hover ----.link {
 }
 
 .govgr-header-logo {
-    border-right: 1px solid #fff;
+    /*border-right: 1px solid #fff; */
 }
 
 .govgr-heading-l {
@@ -121,11 +121,12 @@ for hover ----.link {
     line-height: 1.25; */
 }
 
-@media (min-width:768px){
+@media (min-width:768px) {
     .govgr-heading-xl {
         font-size: 3rem;
         line-height: 1;
         line-height: 1.25;
+        margin-bottom: 2rem;
     }
 }
 
@@ -141,9 +142,9 @@ for hover ----.link {
 
 @media (min-width:768px) {
     .govgr-field {
-     margin-bottom:1rem
+        margin-bottom: 1rem
     }
-   }
+}
 
 
 @media (min-width:768px) {
@@ -162,7 +163,7 @@ for hover ----.link {
         height: 1rem;
         width: 1rem;
         transition-property: all;
-        transition-timing-function: cubic-bezier(.4,0,.2,1);
+        transition-timing-function: cubic-bezier(.4, 0, .2, 1);
         transition-duration: .15s;
     }
 
@@ -175,99 +176,103 @@ for hover ----.link {
         max-width: 80rem;
     }
 
-@media (min-width:640px) {
- .govgr-horizontal-nav__container {
-  margin-left:auto;
-  margin-right:auto;
-  flex-direction:row;
-  gap:.5rem;
-  padding:0rem 0rem;
- }
-}
-
-hr {
-    border: 1px solid #f1f1f1;
-    margin-bottom: 5px;
-}
-
-/* Input */
-@media (min-width:768px) {
-    .govgr-input,
-    .govgr-select,
-    .govgr-textarea {
-     font-size:1.10rem;
+    @media (min-width:640px) {
+        .govgr-horizontal-nav__container {
+            margin-left: auto;
+            margin-right: auto;
+            flex-direction: row;
+            gap: .5rem;
+            padding: 0.5rem 1rem;
+        }
     }
-   }
 
-   .govgr-checkboxes__item {
-    
-    margin-bottom:.5rem;
-   }
-   
-@media (min-width:768px) {
-    .govgr-label,.govgr-label-row {
-     font-size:1.10rem;
-     font-weight: 700
+    hr {
+        border: 1px solid #f1f1f1;
+        margin-bottom: 5px;
     }
-}
 
-   .govgr-checkboxes__input {
-   
-    height:1.5rem;
-    width:1.5rem;
-    top: 0rem;
-   }
+    /* Input */
+    @media (min-width:768px) {
+
+        .govgr-input,
+        .govgr-select,
+        .govgr-textarea {
+            font-size: 1.10rem;
+        }
+    }
+
+    .govgr-checkboxes__item {
+
+        margin-bottom: .5rem;
+    }
+
+    @media (min-width:768px) {
+
+        .govgr-label,
+        .govgr-label-row {
+            font-size: 1.10rem;
+            font-weight: 700
+        }
+    }
+
+    .govgr-checkboxes__input {
+
+        height: 1.5rem;
+        width: 1.5rem;
+        top: 0rem;
+    }
 
 
-.govgr-dropdown__content {
- 
-  padding:0rem;
-}
+    .govgr-dropdown__content {
 
-.checkbox-group {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+        padding: 0rem;
+    }
 
-.govgr-dropdown__content > li{
- border-bottom-width:1px;
- --tw-border-opacity:1;
- border-color:rgba(204,204,204,var(--tw-border-opacity));
- padding:.5rem 1rem;
-}
+    .checkbox-group {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-/* New menu */
-/*.menu_ul  li  a {*/
+    .govgr-dropdown__content>li {
+        border-bottom-width: 1px;
+        --tw-border-opacity: 1;
+        border-color: rgba(204, 204, 204, var(--tw-border-opacity));
+        padding: .5rem 1rem;
+    }
+
+    /* New menu */
+    /*.menu_ul  li  a {*/
     /*text-decoration: none;*/
-/*}*/
+    /*}*/
 
-.menu_ul,.menu_ul ul,
-.dropdown_ul ul {
-   
-    list-style: none;
-    margin: 0;
-    padding-left: 0;
-}
+    .menu_ul,
+    .menu_ul ul,
+    .dropdown_ul ul {
 
-.menu_ul li {
-    display: block;
-    float: left;
-    padding: 1rem;
-    position: relative;
-    text-decoration: none;
+        list-style: none;
+        margin: 0;
+        padding-left: 0;
+    }
 
-    /* transition-duration: 0.5s; */
-}
+    .menu_ul li {
+        display: block;
+        float: left;
+        padding: 1rem;
+        position: relative;
+        text-decoration: none;
 
-/*.menu_ul li:hover,
+        /* transition-duration: 0.5s; */
+    }
+
+    /*.menu_ul li:hover,
 .menu_ul li:focus-within {
   
     /*background-color: #003375;*/
     /*color: white;*/
-}*/
+}
 
-.menu_ul li:focus-within a {
+*/ .menu_ul li:focus-within a {
     outline: none;
 }
 
@@ -293,33 +298,31 @@ hr {
     display: none;
 }
 
-.menu_ul li:hover > ul,
-.menu_ul li:focus-within > ul,
+.menu_ul li:hover>ul,
+.menu_ul li:focus-within>ul,
 .menu_ul li ul:focus,
-.menu_ul li ul:hover 
- {
+.menu_ul li ul:hover {
     visibility: visible;
     opacity: 1;
     display: block;
     color: black;
     background-color: white;
     min-width: max-content;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-} 
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
 
-.dropdown_ul li:hover > ul,
-.dropdown_ul li:focus-within > ul,
+.dropdown_ul li:hover>ul,
+.dropdown_ul li:focus-within>ul,
 .dropdown_ul li ul:focus,
-.dropdown_ul li ul:hover 
- {
+.dropdown_ul li ul:hover {
     visibility: visible;
     opacity: 1;
     display: block;
     color: black;
     background-color: white;
     min-width: max-content;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-} 
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
 
 
 .menu_ul li ul li {
@@ -337,6 +340,7 @@ text-decoration:underline;
     } */
 
 @media screen and (max-width: 600px) {
+
     /* .topnav li:not(:first-child),
     .dropdown  {
         display: none;
@@ -419,172 +423,171 @@ text-decoration:underline;
 }
 
 .tooltip_text[data-show] {
-        display: block;
-    }
+    display: block;
+}
 
-       
-    #home::before { /*li::marker,*/
+
+#home::before {
+    /*li::marker,*/
     font-family: 'Font Awesome 6 Free';
-    font-weight: 900;
+    font-weight: 400;
     content: '\f35a';
     /*color: coral;*/
-	margin-right: 8px; 
-     }
+    margin-right: 8px;
+}
 
 
-     .hyphens {
+.hyphens {
     -webkit-hyphens: auto;
     -moz-hyphens: auto;
     hyphens: auto;
+}
+
+
+.govgr-accordion__section .govgr-accordion__section-content {
+    display: block !important;
+    max-height: 0 !important;
+    overflow: hidden;
+    padding: 0;
+    transition: max-height 0.4s cubic-bezier(0, 1, 0, 1), padding 0.2s cubic-bezier(0, 1, 0, 1);
+}
+
+.govgr-accordion__section.govgr-accordion__section-selected .govgr-accordion__section-content {
+    max-height: 700px !important;
+    position: relative;
+    padding: 0.5rem 0;
+    transition: max-height 0.8s ease-in-out, padding 0.4s cubic-bezier(0, 1, 0, 1);
+}
+
+/* Accordion */
+.govgr-accordion .govgr-accordion__section-button {
+    /* Needed to fix displaced accordion button */
+    position: relative;
+}
+
+/* Divider */
+.govgr-divider-m {
+    height: 1rem;
+    width: 100;
+}
+
+.govgr-divider-l {
+    height: 2rem;
+    width: 100;
+    border-top: 5px solid #003375;
+}
+
+/* Breadcrumbs */
+.govgr-breadcrumbs {
+    margin-top: 0;
+}
+
+/* mt */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* mt */
+/* divider */
+.govgr-divider-red {
+    border-top: 5px solid #d4351c;
+}
+
+.govgr-heading-s-blue {
+    font-style: #07375f;
+}
+
+.img_right_center {
+    vertical-align: middle;
+}
+
+.column_align_center {
+    align-self: center;
+}
+
+/* Instead of position:sticky for the element (eg. image) not to follow the scrolling to the bottom */
+.govgr-grid-column-one-third {
+    position: static;
+
+    /* position: relative; */
+}
+
+/* Smaller body font for big screens */
+@media (min-width:1024px) {
+
+    body,
+    .pg-main-cs-2 {
+        font-size: 1rem;
+        line-height: 1.5rem;
     }
+}
 
+body {
+    background-color: #fafafa;
+}
 
-    .govgr-accordion__section .govgr-accordion__section-content {
-        display: block!important;
-        max-height: 0!important;
-        overflow: hidden;
-        padding: 0;
-        transition: max-height 0.4s cubic-bezier(0, 1, 0, 1), padding 0.2s cubic-bezier(0, 1, 0, 1);
-    }
+/* GovGR width-container max-width 64rem fix for big screens */
+.govgr-width-container {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 80rem;
 
-    .govgr-accordion__section.govgr-accordion__section-selected .govgr-accordion__section-content {
-        max-height: 700px!important;
-        position: relative;
-        padding: 0.5rem 0;
-        transition: max-height 0.8s ease-in-out, padding 0.4s cubic-bezier(0, 1, 0, 1);
-    }
+    /* 1280px */
+    padding: 1rem 1rem;
+}
 
-    /* Accordion */
-    .govgr-accordion .govgr-accordion__section-button {
-        /* Needed to fix displaced accordion button */
-        position: relative;
-    }
-
-    /* Divider */
-    .govgr-divider-m {
-        height: 1rem;
-        width: 100;
-    }
-
-    .govgr-divider-l {
-        height: 2rem;
-        width: 100;
-        border-top: 5px solid #003375;
-    }
-
-    /* Breadcrumbs */
-    .govgr-breadcrumbs {
-        margin-top: 0;
-    }
-
-    /* mt */
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: #f9f9f9;
-        min-width: 160px;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        z-index: 1;
-    }
-
-    .dropdown-content a {
-        color: black;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-        text-align: left;
-    }
-
-    .dropdown-content a:hover {
-        background-color: #f1f1f1;
-    }
-
-    .dropdown:hover .dropdown-content {
-        display: block;
-    }
-
-    /* mt */
-    /* divider */
-    .govgr-divider-red {
-        border-top: 5px solid #d4351c;
-    }
-
-    .govgr-heading-s-blue {
-        font-style: #07375f;
-    }
-
-    .img_right_center {
-        vertical-align: middle;
-    }
-
-    .column_align_center {
-        align-self: center;
-    }
-
-    /* Instead of position:sticky for the element (eg. image) not to follow the scrolling to the bottom */
-    .govgr-grid-column-one-third {
-        position: static;
-
-        /* position: relative; */
-    }
-
-    /* Smaller body font for big screens */
-    @media (min-width:1024px) {
-        body,
-        .pg-main-cs-2 {
-            font-size: 1rem;
-            line-height: 1.5rem;
-        }
-    }
-
-    body {
-        background-color: #fafafa;
-    }
-
-    /* GovGR width-container max-width 64rem fix for big screens */
-    .govgr-width-container {
-        width: 100%;
-        margin-right: auto;
-        margin-left: auto;
-        max-width: 120rem;
-
-        /* 1280px */
-        padding: 1rem 1rem;
-    }
-
-    /* .govgr-width-container {
+/* .govgr-width-container {
     max-width: 64rem;
     padding: 2rem 1rem;
     } */
-    /* GovGR Header-container max-width 64rem fix for big screens */
-    .govgr-header__container {
-        display: flex;
-        max-width: 80rem;
-        align-items: center;
-        justify-content: space-between;
-        padding: .5rem 1rem;
-    }
+/* GovGR Header-container max-width 64rem fix for big screens */
+.govgr-header__container {
+    display: flex;
+    max-width: 80rem;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1rem;
+}
 
-    /* Header height extra-same as .govgr-header */
-    .govgr-header__container {
-        line-height: 3rem;
-    }
+/* Header height extra-same as .govgr-header */
+.govgr-header__container {
+    line-height: 3rem;
+}
 
-    .govgr-breadcrumbs {
-        background-color: #f5f5f6 !important;
-        font-size: 0.8rem;
-        line-height: 1.5rem;
-    }
+.govgr-breadcrumbs {
+    background-color: #f5f5f6 !important;
+    font-size: 0.8rem;
+    line-height: 1.5rem;
+}
 
-    .govgr-breadcrumbs-width-container {
-        width: 100%;
-        margin-right: auto;
-        margin-left: auto;
-        max-width: 80rem;
+.govgr-breadcrumbs-width-container {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 80rem;
 
-        /* 1280px */
-        padding: 0.2rem 1rem;
-    }
-
-  
-      
+    /* 1280px */
+    padding: 0.2rem 1rem;
+}

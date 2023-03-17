@@ -396,14 +396,13 @@
                 </tr>
             </thead>
             <tbody class="govgr-table__body">
-                <% if( data.signed_pdf_upload && data.signed_pdf_upload.length) { for (var i=0; i<
-                    data.signed_pdf_upload.length;i++) { %>
+                <% if( uploads.signed_pdf && uploads.signed_pdf.length) { %> 
                     <tr class="govgr-table__row">
-                        <td class="govgr-table__cell"> <a href="/uploads/<%= data.signed_pdf_upload[i] %> ">
-                                <%= data.signed_pdf_upload[i] %>
+                        <td class="govgr-table__cell"> <a href="/uploads/<%= uploads.signed_pdf[0] %> ">
+                                <%= uploads.signed_pdf[0] %>
                             </a> </td>
                     </tr>
-                    <% } }%>
+                <% } %>
             </tbody>
         </table> <br>
     </div> <br>

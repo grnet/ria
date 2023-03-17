@@ -28,7 +28,7 @@ routes.get(
 );
 
 routes.put(
-  "/:taxid",
+  "/:taxId",
   authUser,
   authRole,
   authAgency,
@@ -40,7 +40,7 @@ routes.put(
     req.session.errors = [];
     let user = await database.user.findOne({
       where: {
-        taxId: req.params.taxid,
+        taxId: req.body.taxId,
       },
     });
     const agency = req.body.other_agency
@@ -48,6 +48,7 @@ routes.put(
       : req.body.agency;
     if (user && user.dataValues) {
       if (!password) {
+        console.log('EEEEEEEEEEEEEEEEEEE');
         //if password not provided update everything but the password
         await database.user
           .update(
@@ -55,14 +56,14 @@ routes.put(
               fname: req.body.fname,
               lname: req.body.lname,
               username: req.body.username,
-              taxId: req.body.taxid,
+              taxId: req.body.taxId,
               role: req.body.role,
               isAdmin: req.body.isAdmin,
               agency: agency,
             },
             {
               where: {
-                taxId: req.params.taxid,
+                taxId: req.params.taxId,
               },
             }
           )
@@ -78,7 +79,7 @@ routes.put(
                     {
                       fname: req.body.fname,
                       lname: req.body.lname,
-                      taxId: req.body.taxid,
+                      taxId: req.body.taxId,
                       username: req.body.username,
                       password: hash,
                       role: req.body.role,
@@ -87,14 +88,16 @@ routes.put(
                     },
                     {
                       where: {
-                        taxId: req.params.taxid,
+                        taxId: req.params.taxId,
                       },
                     }
                   );
+                  console.log('DDDDDDDDDDDDDDDD');
                   res.send({ redirect: "./dashboard" });
                 }
               });
             } else {
+              console.log('CCCCCCCCCCCCCCC');
               req.session.errors.push({ msg: "Οι κωδικοί δεν ταιριάζουν." }); //custom error message
               const errors = req.session.errors;
               if (errors) {
@@ -102,6 +105,7 @@ routes.put(
               }
             }
           } else {
+            console.log('BBBBBBBBBB');
             req.session.errors.push({
               msg: "Εισαγάγατε λάθος κωδικό πρόσβασης.",
             });
@@ -110,6 +114,7 @@ routes.put(
         });
       }
     } else {
+      console.log('AAAAAAAAAAAAAAAAAAA');
       req.session.errors.push({ msg: "Εισαγάγατε λανθασμένα στοιχεία." });
       return res.send(req.session.errors);
     }

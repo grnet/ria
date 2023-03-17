@@ -229,7 +229,7 @@
                                     ΠΟΛΙΤΙΚΗ
                                 </label>
                                 <input class="govgr-checkboxes__input" type="checkbox" id="eksoteriki_politiki"
-                                    name="eksoteriki_politiki" value="eksoteriki_politiki" />
+                                    name="eksoteriki_politiki" />
                             </div>
                             <div class="govgr-checkboxes__item">
                                 <label for="forologiki_politiki" class="govgr-label govgr-checkboxes__label">ΟΙΚΟΝΟΜΙΚΗ
@@ -1318,28 +1318,24 @@
 
         $(".export-glk").on("click", function (ev) {
             ev.preventDefault();
-            var pdf_name = prompt("Παρακαλώ εισάγετε το όνομα του PDF");
-            if (pdf_name) {
-                $("#glk_pdf_name").val(pdf_name);
-                setDate("#field_16_genikos_date");
-                $.ajax({
-                    url: `/edit_analysis/:${analysis_id}/export/accounting`,
-                    data: $(this).serialize(), //data: $("form").serialize(),
-                    processData: false,
-                    error: function (error) {
-                        console.log(error);
-                    },
-                    success: function (data) {
-                        window.open(`/exports/${pdf_name}.pdf`)
-                        $("#glk_pdf_download").html(`Το τελευταίο αποθηκευμένο PDF
-                                    βρίσκεται <a href="/exports/${pdf_name}.pdf"><b><u>εδώ</u></b></a>.`)
-                        $("#glk_pdf_download").show();
-                    },
-                    type: 'POST'
-                })
-            } else if (pdf_name === "") {
-                alert("Το όνομα του PDF δεν πρέπει να είναι κενό!")
-            }
+            $("#glk_pdf_name").val(pdf_name);
+            setDate("#field_16_genikos_date");
+            $.ajax({
+                url: `/edit_analysis/:${analysis_id}/export/accounting`,
+                data: $(this).serialize(), //data: $("form").serialize(),
+                processData: false,
+                error: function (error) {
+                    console.log(error);
+                },
+                success: function (data) {
+                    window.open(`/exports/${title}_accounting.pdf`)
+                    $("#glk_pdf_download").html(`Το τελευταίο αποθηκευμένο PDF
+                                    βρίσκεται <a href="/exports/${title}_accounting.pdf"><b><u>εδώ</u></b></a>.`)
+                    $("#glk_pdf_download").show();
+                },
+                type: 'POST'
+            })
+
         });
 
         //ajax call to find all versions of current analysis
@@ -1354,6 +1350,7 @@
                 success: function (result) {
                     var rowCount = $('#versions_table tbody tr').length;
                     if (rowCount === 0) {
+                        console.log(result);
                         for (i in result.entries) { //populate modal table
                             $("#versions_table tbody").append(`
                                         <tr class="govgr-table__row" > 
@@ -1366,7 +1363,7 @@
                                                 ${result.entries[i].timestamp}
                                             </td>   
                                             <td class="govgr-table__cell">
-                                                ${result.entries[i].user}
+                                                ${result.entries[i].user.fname} ${result.entries[i].user.lname}
                                             </td>                                             
                                         </tr>`
                             );
@@ -1486,12 +1483,12 @@
         //     for (i in validations) {
         //         if (validations[i]()) {
         //             validationPassed = false;
-        //             $('#errors').append(`              
+        //             $('#errors').append(`
         //                 <div class="alert alert-danger alert-dismissible fade show bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
         //                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         //                         <span aria-hidden="true">&times;</span>
-        //                     </button>     
-        //                     ${validations[i]()} </div>                                 
+        //                     </button>
+        //                     ${validations[i]()} </div>
         //             `)
         //         }
         //         console.log(validations[i]())

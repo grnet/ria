@@ -13,7 +13,7 @@ routes.get(
     try {
       let user = await database.user.findOne({
         where: {
-          taxId: 'req.session.user.taxId',
+          taxId: req.session.user.taxId,
         },
         include: [{ model: database.analysis }],
       });
@@ -27,8 +27,6 @@ routes.get(
               "$user.agency$": user.agency, //has to be from same agency
             },
             include: [{ model: database.user }],
-            raw: true,
-            nest: true,
           });
         } else if (user.role === Enums.Roles.GeneralAccountingOffice) {
           status = Enums.Status.Pending;
@@ -39,8 +37,6 @@ routes.get(
               },
             },
             include: [{ model: database.user }],
-            raw: true,
-            nest: true,
           });
         } else if (user.role === Enums.Roles.Parliament) {
           status = Enums.Status.Uploaded;
@@ -49,35 +45,45 @@ routes.get(
               status: status,
             },
             include: [{ model: database.user }],
-            raw: true,
-            nest: true,
           });
         } else {
           entries = await database.analysis.findAll({ include: database.user });
         }
-        const userEntries = await database.audit.findAll({
-          where: { authorTaxId: user.taxId },
-          include: [{ model: database.user }],
-        });
-
-        const latestEntries = [];
-        for (i in userEntries) {
-          let firstAuditEntry = await database.audit.findAll({
+        const userEntries = [];
+        for (i in entries) {
+          let entry = await database.audit.findAll({
             limit: 1,
-            where: { auditId: userEntries[i].auditId },
+            where: {
+              authorTaxId: user.taxId,
+              auditId: entries[i].dataValues.id,
+            },
             include: [{ model: database.user }],
-          });
-          let latestAuditEntry = await database.audit.findAll({
-            limit: 1,
-            where: { auditId: userEntries[i].auditId },
             order: [["createdAt", "DESC"]],
-            include: [{ model: database.user }],
           });
-          latestEntries.push({
-            firstAuditEntry: firstAuditEntry[0].dataValues,
-            userEntry: userEntries[i].dataValues,
-            latestAuditEntry: latestAuditEntry[0].dataValues,
-          });
+          userEntries.push(entry[0]);
+        }
+        const latestEntries = [];
+        if (userEntries.length > 0) {
+          for (i in userEntries) {
+            if (userEntries[i] && "auditId" in userEntries[i]) {
+              let firstAuditEntry = await database.audit.findAll({
+                limit: 1,
+                where: { auditId: userEntries[i].auditId },
+                include: [{ model: database.user }],
+              });
+              let latestAuditEntry = await database.audit.findAll({
+                limit: 1,
+                where: { auditId: userEntries[i].auditId },
+                order: [["createdAt", "DESC"]],
+                include: [{ model: database.user }],
+              });
+              latestEntries.push({
+                firstAuditEntry: firstAuditEntry[0].dataValues,
+                userEntry: userEntries[i].dataValues,
+                latestAuditEntry: latestAuditEntry[0].dataValues,
+              });
+            }
+          }
         }
         res.render("user_views/history", {
           entries: entries,

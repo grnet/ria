@@ -20,7 +20,9 @@ $("#exit").on("click", function (ev) {
       console.log(error);
     },
     success: function (data) {
-      window.location.replace(data.redirect);
+      if (data.redirect) window.location.replace(data.redirect);
+      window.location.href = "/login";
+
     },
     type: "GET",
   });

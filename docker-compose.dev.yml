@@ -55,6 +55,7 @@ services:
             - GSIS_GOV=$GSIS_GOV
     database:
         image: mysql:8
+        # command: --sort_buffer_size=1073741824
         ports:
             - '127.0.0.1:2306:3306'
         expose: 

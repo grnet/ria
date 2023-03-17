@@ -42,8 +42,8 @@
                             </div>
                             <hr />
                             <div class="govgr-field">
-                                <label class="govgr-label" for="taxid"> <span>ΑΦΜ:</span>
-                                    <input class="govgr-input govgr-!-width-one-half" type="text" id="taxid"
+                                <label class="govgr-label" for="taxId"> <span>ΑΦΜ:</span>
+                                    <input class="govgr-input govgr-!-width-one-half" type="text" id="taxId"
                                         name="taxId" required minlength="9" maxlength="9" value="<%= user.taxId %>" />
                                 </label>
                             </div>
@@ -217,8 +217,11 @@
         <script type="text/javascript" src="/js/enums.js"></script>
         <script>
             const user = JSON.parse(' <%- JSON.stringify(authUser) %> ');
+            const targetUser = JSON.parse(' <%- JSON.stringify(user) %> ');
+            console.log(user);
+            console.log(targetUser);
             setUserRestrictions(user.role);
-            const isAdmin = user.isAdmin;
+            const isAdmin = targetUser.isAdmin;
 
             let username = $("#username").val();
             $("#delete_user").on("click", function (ev) {
@@ -300,11 +303,11 @@
             let roleValue = "<%= user.role %>";
             $("#role").val(roleValue ? roleValue : $("#ypoyrgeio option:first").val());//if user is assigned a role, set dropdown accordingly, else set to first option
 
-            if (!user.username) {
+            if (!targetUser.username) {
                 $('#username').prop('disabled', true);
             }
 
-            if (!user.password) {
+            if (!targetUser.password) {
                 $('#password').prop('disabled', true);
                 $('#new_password').prop('disabled', true);
                 $('#password_repeat').prop('disabled', true);
@@ -320,7 +323,8 @@
             })
             /////////////////////////////////////////////////////////////////////////////////////        
 
-            if (user.isAdmin) {
+            if (targetUser.isAdmin) {
+                console.log();
                 $("#isAdmin").prop('checked', true);
                 $("#agency").prop('disabled', false);
                 $("#role").prop('disabled', false);

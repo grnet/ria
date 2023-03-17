@@ -11,12 +11,12 @@ const tablesLib = require("../lib/tables");
 
 exports.exportPDF = async function (req, res, next) {
   let data = req.diffData;
-  const minister_names = await tablesLib.getTableData(["minister_name"], data);
-  const minister_ministries = await tablesLib.getTableData(
-    ["minister_ministry"],
-    data
-  );
-  const minister_roles = await tablesLib.getTableData(["minister_role"], data);
+  // const minister_names = await tablesLib.getTableData(["minister_name"], data);
+  // const minister_ministries = await tablesLib.getTableData(
+  //   ["minister_ministry"],
+  //   data
+  // );
+  // const minister_roles = await tablesLib.getTableData(["minister_role"], data);
 
   // const field_17_minister_names = await tablesLib.getTableData(
   //   ["field_17_minister_name"],
@@ -2310,10 +2310,10 @@ exports.exportPDF = async function (req, res, next) {
           },
         },
         { text: "\n\n" },
-        createSignatories(
-          minister_names.minister_name,
-          minister_roles.minister_role
-        ),
+        // createSignatories(
+        //   minister_names.minister_name,
+        //   minister_roles.minister_role
+        // ),
       ],
     ],
   };
