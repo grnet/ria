@@ -1304,9 +1304,8 @@ exports.exportPDF = async function (req, res, next) {
             ],
           },
         },
-        { text: "", pageBreak: "before" },
         createField20(data),
-        { text: "\n\n" },
+        { text: "", pageBreak: "before" },
         {
           table: {
             widths: ["5%", "95%"],
@@ -3658,14 +3657,14 @@ function createField20(data) {
       text: "ΚΙΝΔΥΝΟΙ ΡΥΘΜΙΣΗΣ",
       alignment: "center",
       rowSpan: 8,
-      fillColor: "#93C572",
+      fillColor: "#FDDA0D	",
       fontSize: 10,
     },
     {
       text: "ΔΙΑΧΕΙΡΙΣΗ KΙΝΔΥΝΩΝ",
       alignment: "center",
       rowSpan: 4,
-      fillColor: "#C1E1C1",
+      fillColor: "#FFFF8F",
       fontSize: 10,
     },
     {
@@ -3804,7 +3803,7 @@ function createField20(data) {
       alignment: "center",
       rowSpan: 4,
       fontSize: 10,
-      fillColor: "#C1E1C1",
+      fillColor: "#FFFF8F",
     },
     {
       text: "Πιλοτική εφαρμογή",
@@ -4017,6 +4016,7 @@ function createSignatoryTables(indexes, names, ministries, roles) {
   const result = [];
   let lastIndex, role1, role2;
 
+  console.log(names, ministries, roles );
   if (indexes.length === 1) {
     role1 =
       !ministries[indexes[0]] || ministries[indexes[0]] === ""
@@ -4086,6 +4086,10 @@ function createSignatoryTables(indexes, names, ministries, roles) {
         !ministries[indexes[i]] || ministries[indexes[i]] === ""
           ? roles[indexes[i]].split(" ").slice(1).join(" ")
           : ministries[indexes[i]].split(" ").slice(1).join(" ");
+      role2 =
+        !ministries[indexes[i + 1]] || ministries[indexes[i + 1]] === ""
+          ? roles[indexes[i + 1]].split(" ").slice(1).join(" ")
+          : ministries[indexes[i + 1]].split(" ").slice(1).join(" ");    
       table.push([
         {
           text: role1 + "\n\n\n\n\n\n" + names[indexes[i]],
@@ -4094,7 +4098,7 @@ function createSignatoryTables(indexes, names, ministries, roles) {
         },
         { text: "", border: [false, false, false, false] },
         {
-          text: role1 + "\n\n\n\n\n\n" + names[indexes[i + 1]],
+          text: role2 + "\n\n\n\n\n\n" + names[indexes[i + 1]],
           bold: true,
           alignment: "center",
         },
