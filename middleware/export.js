@@ -4016,7 +4016,6 @@ function createSignatoryTables(indexes, names, ministries, roles) {
   const result = [];
   let lastIndex, role1, role2;
 
-  console.log(names, ministries, roles );
   if (indexes.length === 1) {
     role1 =
       !ministries[indexes[0]] || ministries[indexes[0]] === ""
