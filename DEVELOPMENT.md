@@ -6,9 +6,9 @@
 4. Run `cp .env.sample .env`.
 5. Free ports defined in Dockerfile and docker-compose.yml.
 6. Build images: 
-`docker-compose -f docker-compose.yml build`
+`docker-compose -f docker-compose.dev.yml build`
 7. Start app:
-`docker-compose -f docker-compose.yml up -d`
+`docker-compose -f docker-compose.dev.yml up -d`
 
 Access app through [localhost](http://localhost:3000/).
 
