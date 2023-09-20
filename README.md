@@ -8,13 +8,15 @@ In the Greek Legislative Procedure any new law and any amendment of any law subm
 
 This project aims to digitalize the Legislative Procedure, providing an end-to-end solution, from the drafting of a law, to gathering the digital signatures of Ministers and to its final submission in the Greek Parliament for voting.      
 
+As a platform, it allows multiple users to intervene at different stages to the composition of the final Analysis, using a multi-page form with several fields that capture the necessary information. It follows the whole lifecycle of the production of the final Analysis and minimizes the exchange of information via emails between Ministries. 
+
 # Frontend
 
-Frontend is implemented using html forms with ejs templating and jquery.
+The frontend is implemented using html forms with ejs templating and jquery.
 
 # Backend
 
-Backend is implemented using express.js and sequelize.
+The backend is implemented using express.js and sequelize.
 
 # Structure
 
